@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "config:base",
+    ":disableDependencyDashboard",
+    ":automergeMinor",
+    ":separateMajorReleases",
+    ":separatePatchReleases",
+    ":semanticCommitTypeAll(📦)",
+    ":semanticCommitScopeDisabled",
+    ":pinVersions",
+    ":rebaseStalePrs",
+    ":prHourlyLimitNone",
+    ":ignoreModulesAndTests",
+    ":updateNotScheduled",
+    ":automergeRequireAllStatusChecks",
+    ":maintainLockFilesDisabled"
+  ],
+  "prHourlyLimit": 1,
+  "prConcurrentLimit": 1,
+  "commitMessageAction": "📦",
+  "commitMessageTopic": "{{{depName}}}",
+  "commitMessage": "📦 update {{{depName}}} to v{{{newVersion}}}",
+  "npmrc": ".npmrc",
+  "baseBranches": ["main"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "extends": ["schedule:weekly"]
+  }
+}
