@@ -32,5 +32,13 @@
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged",
     "commit-msg": "pnpm exec tsx ./scripts/verify-commit.ts"
-  }
+  },
+  "sideEffects": false,
+  "browserslist": [
+    "chrome 89",
+    "edge 89",
+    "firefox 89",
+    "opera 75",
+    "safari 15"
+  ]
 }
