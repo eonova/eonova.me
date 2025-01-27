@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "15.1.6",
@@ -21,17 +22,17 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "picocolors": "^1.1.1",
     "postcss": "^8",
-    "simple-git-hooks": "^2.11.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
   "license": "MIT",
-  "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged",
-    "commit-msg": "pnpm exec tsx ./scripts/verify-commit.ts"
+  "lint-staged": {
+    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix",
+    "**/*": "prettier --write --ignore-unknown"
   },
   "sideEffects": false,
   "browserslist": [

@@ -7,7 +7,6 @@
     ":separatePatchReleases",
     ":semanticCommitTypeAll(📦)",
     ":semanticCommitScopeDisabled",
-    ":pinVersions",
     ":rebaseStalePrs",
     ":prHourlyLimitNone",
     ":ignoreModulesAndTests",
