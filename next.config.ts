@@ -12,8 +12,10 @@ const withMDX = createMDX({
 
 /** @type {import('next').NextConfig} */
 const CustomConfig: NextConfig = {
+  reactStrictMode: true,
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  bundlePagesRouterDependencies: true,
   // Optionally, add any other Next.js config below
 }
 

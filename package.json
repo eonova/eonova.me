@@ -2,6 +2,8 @@
   "name": "leospark",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "sideEffects": false,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -29,7 +31,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.7",
     "@react-three/drei": "^9.121.4",
-    "@react-three/fiber": "^8.17.12",
+    "@react-three/fiber": "9.0.0-alpha.8",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@tanstack/react-query": "^5.44.0",
     "@tanstack/react-query-devtools": "^5.44.0",
@@ -46,6 +48,7 @@
     "dayjs": "^1.11.13",
     "drizzle-orm": "^0.39.0",
     "framer-motion": "^12.0.6",
+    "framer-motion-3d": "^12.0.6",
     "knip": "^5.43.6",
     "lodash": "^4.17.21",
     "lucide-react": "^0.474.0",
@@ -58,6 +61,7 @@
     "react-dom": "^19.0.0",
     "react-lorem-ipsum": "^1.4.10",
     "react-spring": "^9.7.5",
+    "react-use-measure": "^2.1.1",
     "sonner": "^1.7.2",
     "superjson": "^2.2.2",
     "tailwind-merge": "^2.6.0",
@@ -92,7 +96,6 @@
     "taze": "^18.3.0",
     "typescript": "^5"
   },
-  "license": "MIT",
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged",
     "commit-msg": "pnpm exec tsx ./scripts/verify-commit.ts"
@@ -101,7 +104,6 @@
     "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix",
     "**/*": "prettier --write --ignore-unknown"
   },
-  "sideEffects": false,
   "browserslist": [
     "chrome 89",
     "edge 89",
