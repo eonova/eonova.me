@@ -1,6 +1,8 @@
 import Link from 'next/link'
 
 import { FOOTER_LINKS } from '~/config/links'
+import { cn } from '~/lib/utils'
+import { Badge, badgeVariants } from '../base/badge'
 
 const Footer: React.FC = () => {
   return (
@@ -33,10 +35,14 @@ const Footer: React.FC = () => {
           </Link>
         </div>
         <Link
-          href="https://git.new/honghong-me"
-          className="flex items-center justify-center overflow-hidden rounded-md border"
+          target="black"
+          href="https://beian.miit.gov.cn/#/Integrated/index"
         >
-          111
+          <button className="cursor-pointer font-semibold overflow-hidden relative z-100 border rounded-full border-gray-600 dark:border-white/80 group px-2.5 py-0.5">
+            <span className="relative z-10 text-gray-600 dark:text-white/80 group-hover:text-white dark:group-hover:text-black text-sm duration-500">粤ICP备2022128395号-2</span>
+            <span className="absolute w-full h-full bg-gray-600 dark:bg-white/80 -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
+            <span className="absolute w-full h-full bg-gray-600 dark:bg-white/80 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
+          </button>
         </Link>
       </div>
     </footer>

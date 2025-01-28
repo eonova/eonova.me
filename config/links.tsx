@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 
 import {
-  SITE_FACEBOOK_URL,
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
   SITE_X_URL,
@@ -72,25 +71,22 @@ export const FOOTER_LINKS = [
   {
     id: 1,
     links: [
-      { href: "/", key: "home" },
-      { href: "/blog", key: "blog" },
-      { href: "/about", key: "about" },
-      { href: "/dashboard", key: "dashboard" },
+      { href: "/blog", key: "博客" },
+      { href: "/about", key: "关于" },
+      { href: "/album", key: "相册" },
     ],
   },
   {
     id: 2,
     links: [
-      { href: "/guestbook", key: "guestbook" },
-      { href: "/uses", key: "uses" },
-      { href: "/projects", key: "projects" },
-      { href: "https://links.honghong.me", key: "links" },
+      { href: "/guestbook", key: "留言板" },
+      { href: "/friends", key: "友链" },
+      { href: "/projects", key: "项目" },
     ],
   },
   {
     id: 3,
     links: [
-      { href: SITE_FACEBOOK_URL, key: "facebook" },
       { href: SITE_INSTAGRAM_URL, key: "instagram" },
       { href: SITE_GITHUB_URL, key: "github" },
       { href: SITE_YOUTUBE_URL, key: "youtube" },
@@ -103,11 +99,6 @@ export const SOCIAL_LINKS: SocialLinks = [
     href: SITE_GITHUB_URL,
     title: "GitHub",
     icon: SiGithub,
-  },
-  {
-    href: SITE_FACEBOOK_URL,
-    title: "Facebook",
-    icon: SiFacebook,
   },
   {
     href: SITE_INSTAGRAM_URL,

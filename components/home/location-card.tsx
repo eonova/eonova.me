@@ -47,7 +47,7 @@ function LocationCard() {
       baseColor: [0.8, 0.8, 0.8],
       markerColor: [1, 1, 1],
       glowColor: [0.5, 0.5, 0.5],
-      markers: [{ location: [22.3193, 114.1694], size: 0.1 }],
+      markers: [{ location: [115.661229, 23.3017], size: 0.1 }],
       scale: 1.05,
       onRender: (state) => {
         state.phi = 2.75 + r.get()
@@ -66,7 +66,7 @@ function LocationCard() {
     <div className="shadow-feature-card dark:shadow-feature-card-dark relative flex h-60 flex-col gap-6 overflow-hidden rounded-xl p-4 lg:p-6">
       <div className="flex items-center gap-2">
         <MapPinIcon className="size-[18px]" />
-        <h2 className="text-sm font-light">Hong Kong</h2>
+        <h2 className="text-sm font-light">广东汕尾</h2>
       </div>
       <div className="absolute inset-x-0 bottom-[-190px] mx-auto aspect-square h-[388px] [@media(max-width:420px)]:bottom-[-140px] [@media(max-width:420px)]:h-[320px] [@media(min-width:768px)_and_(max-width:858px)]:h-[350px]">
         <div
