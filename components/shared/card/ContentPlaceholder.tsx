@@ -10,7 +10,7 @@ export const ContentPlaceholder = React.memo(() => {
       className="content-container"
       style={{ ...inverted, originY: 0, originX: 0 }}
     >
-      <LoremIpsum p={6} avgWordsPerSentence={6} avgSentencesPerParagraph={4} />
+      <LoremIpsum p={3} avgWordsPerSentence={5} avgSentencesPerParagraph={2} />
     </motion.div>
   )
 })

@@ -1,10 +1,10 @@
 'use client'
 
 import type { ToasterProps } from '~/components/base/toaster'
-import { TooltipProvider } from '@radix-ui/react-tooltip'
 import { AppProgressBar as LoadingProgressBar } from 'next-nprogress-bar'
 import { ThemeProvider, useTheme } from 'next-themes'
 import { Toaster } from '~/components/base/toaster'
+import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/page-progress'
 
 interface ProvidesProps {

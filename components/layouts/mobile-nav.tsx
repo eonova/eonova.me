@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@headlessui/react'
-import { Link, MenuIcon } from 'lucide-react'
+import { MenuIcon } from 'lucide-react'
 
 function MobileNav() {
   return (
