@@ -48,7 +48,7 @@ function LocationCard() {
       baseColor: [0.8, 0.8, 0.8],
       markerColor: [1, 1, 1],
       glowColor: [0.5, 0.5, 0.5],
-      markers: [{ location: [115.661229, 23.3017], size: 0.1 }],
+      markers: [{ location: [23.3044952, 115.6553157], size: 0.1 }],
       scale: 1.05,
       onRender: (state) => {
         state.phi = 2.75 + r.get()

@@ -10,6 +10,7 @@ import Connect from './connect'
 import FavoriteFramework from './favorite-framework'
 import LocationCard from './location-card'
 import StacksCard from './stacks-card'
+import CodingTime from './coding-time'
 
 const variants = {
   initial: {
@@ -74,7 +75,7 @@ function AboutMe() {
         <div className="grid gap-4">
           <Connect />
           <div className="grid gap-4 [@media(min-width:450px)]:grid-cols-2">
-            <LocationCard />
+            <CodingTime />
             <FavoriteFramework />
           </div>
         </div>

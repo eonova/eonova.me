@@ -71,7 +71,7 @@ export const Card = memo(
     )
 
     return (
-      <li ref={containerRef} className="card" onClick={onSelect}>
+      <li ref={containerRef} className="card " onClick={onSelect}>
         <Overlay isSelected={isSelected} onClick={onSelect} />
         <div className={`card-content-container ${isSelected && 'open'}`}>
           <motion.div

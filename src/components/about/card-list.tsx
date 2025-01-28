@@ -38,22 +38,6 @@ const cardData: CardData[] = [
     pointOfInterest: 200,
     backgroundColor: '#8F986D',
   },
-  // Photo by Simone Hutsch on Unsplash
-  {
-    id: 'd',
-    category: 'Photography',
-    title: 'The Latest Ultra-Specific Photography Editing Apps',
-    pointOfInterest: 150,
-    backgroundColor: '#FA6779',
-  },
-  // Photo by Siora Photography on Unsplash
-  {
-    id: 'h',
-    category: 'They\'re all the same',
-    title: '100 Cupcake Apps for the Cupcake Connoisseur',
-    pointOfInterest: 60,
-    backgroundColor: '#282F49',
-  },
 ]
 
 function List() {
