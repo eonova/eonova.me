@@ -1,8 +1,8 @@
 'use client'
 import type { CardData } from '../shared/card'
-import { useParams, useRouter } from 'next/navigation'
 import * as React from 'react'
 import { Card } from '../shared/card'
+import { CardProvider, useCardContext } from '../shared/card/CardContext'
 import '~/styles/card.css'
 
 const cardData: CardData[] = [
@@ -54,35 +54,18 @@ const cardData: CardData[] = [
     pointOfInterest: 60,
     backgroundColor: '#282F49',
   },
-  // Photo by Yerlin Matu on Unsplash
-  {
-    id: 'e',
-    category: 'Cats',
-    title: 'Yes, They Are Sociopaths',
-    pointOfInterest: 200,
-    backgroundColor: '#AC7441',
-  },
-  // Photo by Ali Abdul Rahman on Unsplash
-  {
-    id: 'b',
-    category: 'Holidays',
-    title: 'Seriously the Only Escape is the Stratosphere',
-    pointOfInterest: 260,
-    backgroundColor: '#CC555B',
-  },
 ]
 
 function List() {
-  const router = useRouter()
-  const { id } = useParams()
+  const { selectedCardId, setSelectedCardId } = useCardContext()
 
   return (
     <ul className="card-list">
       {cardData.map(card => (
         <Card
           key={card.id}
-          isSelected={id === card.id}
-          history={router}
+          isSelected={selectedCardId === card.id}
+          onSelect={() => setSelectedCardId(selectedCardId === card.id ? null : card.id)}
           {...card}
         />
       ))}
@@ -91,5 +74,9 @@ function List() {
 }
 
 export default function CardList() {
-  return <List />
+  return (
+    <CardProvider>
+      <List />
+    </CardProvider>
+  )
 }

@@ -8,7 +8,7 @@
 .card {
   position: relative;
   padding: 25px;
-  height: 460px;
+  height: 300px;
   flex: 0 0 40%;
   max-width: 40%;
 }
@@ -42,7 +42,7 @@
   position: fixed;
   z-index: 1;
   overflow: hidden;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .card-content {
@@ -105,10 +105,7 @@ h2 {
   will-change: opacity;
   top: 0;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 990px;
+  width: 100vw;
 }
 
 .overlay a {
@@ -117,15 +114,12 @@ h2 {
   top: 0;
   bottom: 0;
   width: 100vw;
-  left: 50%;
-
-  transform: translateX(-50%);
 }
 
 .content-container {
   padding: 460px 35px 35px 35px;
   max-width: 700px;
-  width: 90vw;
+  width: 100vw;
 }
 
 p {

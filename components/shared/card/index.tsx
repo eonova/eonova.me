@@ -1,6 +1,5 @@
 'use client'
 import { motion, useMotionValue } from 'framer-motion'
-import Link from 'next/link'
 import * as React from 'react'
 import { memo, useRef } from 'react'
 import { useInvertedBorderRadius } from '~/hooks/use-inverted-border-radius'
@@ -21,9 +20,7 @@ export interface CardData {
 
 interface Props extends CardData {
   isSelected: boolean
-  history: {
-    push: (route: string) => void
-  }
+  onSelect: () => void
 }
 
 // Distance in pixels a user has to scroll a card down before we recognise
@@ -36,7 +33,7 @@ export const Card = memo(
     id,
     title,
     category,
-    history,
+    onSelect,
     pointOfInterest,
     backgroundColor,
   }: Props) => {
@@ -51,7 +48,7 @@ export const Card = memo(
     const constraints = useScrollConstraints(cardRef, isSelected)
 
     function checkSwipeToDismiss() {
-      y.get() > dismissDistance && history.push('/')
+      y.get() > dismissDistance && onSelect()
     }
 
     function checkZIndex(latest: { scaleX: number }) {
@@ -74,8 +71,8 @@ export const Card = memo(
     )
 
     return (
-      <li ref={containerRef} className="card">
-        <Overlay isSelected={isSelected} />
+      <li ref={containerRef} className="card" onClick={onSelect}>
+        <Overlay isSelected={isSelected} onClick={onSelect} />
         <div className={`card-content-container ${isSelected && 'open'}`}>
           <motion.div
             ref={cardRef}
@@ -98,23 +95,30 @@ export const Card = memo(
             <ContentPlaceholder />
           </motion.div>
         </div>
-        {!isSelected && <Link href={id} className="card-open-link" />}
       </li>
     )
   },
   (prev, next) => prev.isSelected === next.isSelected,
 )
 
-function Overlay({ isSelected }: { isSelected: boolean }) {
+function Overlay({ isSelected, onClick }: { isSelected: boolean, onClick: () => void }) {
   return (
     <motion.div
       initial={false}
-      animate={{ opacity: isSelected ? 1 : 0 }}
+      animate={{ opacity: isSelected ? 0.5 : 0 }}
       transition={{ duration: 0.2 }}
-      style={{ pointerEvents: isSelected ? 'auto' : 'none' }}
+      style={{
+        pointerEvents: isSelected ? 'auto' : 'none',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 1,
+      }}
       className="overlay"
-    >
-      <Link href="/" />
-    </motion.div>
+      onClick={onClick}
+    />
   )
 }
