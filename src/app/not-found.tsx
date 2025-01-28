@@ -1,5 +1,3 @@
-'use client'
-
 import type { Metadata } from 'next'
 import { Button } from '@headlessui/react'
 import Link from 'next/link'
