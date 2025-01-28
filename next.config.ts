@@ -1,7 +1,23 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
+import bundleAnalyzer from '@next/bundle-analyzer'
+import createMDX from '@next/mdx'
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+const withBundleAnalyzer = bundleAnalyzer({
+  // eslint-disable-next-line node/prefer-global/process
+  enabled: process.env.ANALYZE === 'true',
+})
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+})
+
+/** @type {import('next').NextConfig} */
+const CustomConfig: NextConfig = {
+  // Configure `pageExtensions` to include markdown and MDX files
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  // Optionally, add any other Next.js config below
+}
+
+const nextConfig = withMDX(withBundleAnalyzer(CustomConfig))
+
+export default nextConfig
