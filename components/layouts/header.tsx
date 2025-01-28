@@ -1,16 +1,17 @@
 'use client'
 
-import { useEffect, useState } from "react";
-import Logo from "../logo";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import ThemeToggle from "./theme-toggle";
-import { cn } from "~/lib/utils";
-import Navbar from "./navbar";
-import { Separator } from "../base/separator";
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { cn } from '~/lib/utils'
+import { Separator } from '../base/separator'
+import Logo from '../logo'
+import MobileNav from './mobile-nav'
+import Navbar from './navbar'
+import ThemeToggle from './theme-toggle'
 
 interface HeaderProps {
-  className?: string;
+  className?: string
 }
 
 const Header: React.FC<HeaderProps> = ({ className }) => {
@@ -20,7 +21,8 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     const changeBackground = () => {
       if (window.scrollY > 100) {
         setIsScrolled(true)
-      } else {
+      }
+      else {
         setIsScrolled(false)
       }
     }
@@ -34,31 +36,32 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
   return (
     <motion.header
       className={cn(
-        'bg-background/30 fixed inset-x-0 top-4 z-40 mx-auto flex h-[50px] max-w-5xl items-center justify-between rounded-full px-8 shadow-sm saturate-100 backdrop-blur-[10px] transition-colors',
-        isScrolled && 'bg-background/80', className
+        'bg-background/30 fixed inset-x-0 top-4 z-40 flex h-[40px] sm:h-[50px] max-w-5xl items-center justify-between rounded-full px-5 sm:px-8 mx-4 md:mx-auto shadow-sm saturate-100 backdrop-blur-[10px] transition-colors',
+        isScrolled && 'bg-background/80',
+        className,
       )}
       initial={{
-        y: -100
+        y: -100,
       }}
       animate={{
-        y: 0
+        y: 0,
       }}
       transition={{
-        duration: 0.3
+        duration: 0.3,
       }}
     >
       <Link className="h-full" href="/" passHref>
-        <Logo />
+        <Logo className="-mr-5 sm:mr-0" />
       </Link>
 
-      <div className='flex items-center gap-2'>
+      <div className="flex items-center gap-2">
         <Navbar />
-        <Separator orientation='vertical' className='h-6' />
+        <Separator orientation="vertical" className="h-6" />
         <ThemeToggle />
-        {/* <MobileNav /> */}
+        <MobileNav />
       </div>
     </motion.header>
-  );
+  )
 }
 
-export default Header;
+export default Header

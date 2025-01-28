@@ -1,38 +1,38 @@
 'use client'
 import Image from 'next/image'
-import Header from "~/components/layouts/header";
-import Footer from "~/components/layouts/footer";
+import Footer from '~/components/layouts/footer'
+import Header from '~/components/layouts/header'
 
-type LayoutProps = {
+interface LayoutProps {
   children: React.ReactNode
 }
 
-const Layout = (props: LayoutProps) => {
+function Layout(props: LayoutProps) {
   const { children } = props
 
   return (
     <>
       <Header />
-      <main id='skip-nav' className='mx-auto mb-16 max-w-5xl px-4 py-24 sm:px-8'>
+      <main id="skip-nav" className="mx-auto mb-16 max-w-5xl px-4 py-24 sm:px-8">
         {children}
       </main>
       <Footer />
       <Image
         width={1512}
         height={550}
-        className='absolute left-1/2 top-0 -z-10 -translate-x-1/2'
-        src='/images/gradient-background-top.png'
-        alt=''
-        role='presentation'
+        className="absolute left-1/2 top-0 -z-10 -translate-x-1/2"
+        src="/images/gradient-background-top.png"
+        alt=""
+        role="presentation"
         priority
       />
       <Image
         width={1512}
         height={447}
-        className='absolute -bottom-6 left-1/2 -z-10 -translate-x-1/2'
-        src='/images/gradient-background-bottom.png'
-        alt=''
-        role='presentation'
+        className="absolute -bottom-6 left-1/2 -z-10 -translate-x-1/2"
+        src="/images/gradient-background-bottom.png"
+        alt=""
+        role="presentation"
         priority
       />
     </>
