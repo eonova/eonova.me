@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
 
       <div className="flex items-center gap-2">
         <Navbar />
-        <Separator orientation="vertical" className="h-6" />
+        <Separator orientation="vertical" className={cn("h-6 sm:block hidden")} />
         <ThemeToggle />
         <MobileNav />
       </div>
