@@ -25,6 +25,7 @@ function LocationCard() {
     let width = 0
 
     const onResize = () => {
+      // eslint-disable-next-line no-cond-assign
       if (canvasRef.current && (width = canvasRef.current.offsetWidth)) {
         window.addEventListener('resize', onResize)
       }

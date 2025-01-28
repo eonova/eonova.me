@@ -1,7 +1,7 @@
-import { range } from "lodash"
-import { cn } from "~/lib/utils"
+import { range } from 'lodash'
+import { cn } from '~/lib/utils'
 
-type MarqueeProps = {
+interface MarqueeProps {
   children: React.ReactNode
   gap?: string
   direction?: 'left' | 'up'
@@ -11,7 +11,7 @@ type MarqueeProps = {
   className?: string
 }
 
-export const Marquee = (props: MarqueeProps) => {
+export function Marquee(props: MarqueeProps) {
   const {
     children,
     gap = '1rem',
@@ -19,7 +19,7 @@ export const Marquee = (props: MarqueeProps) => {
     pauseOnHover = false,
     reverse = false,
     fade = false,
-    className
+    className,
   } = props
 
   const mask = fade
@@ -32,27 +32,27 @@ export const Marquee = (props: MarqueeProps) => {
       className={cn(
         'group flex overflow-hidden',
         direction === 'left' ? 'flex-row' : 'flex-col',
-        className
+        className,
       )}
       style={{
         maskImage: mask,
         WebkitMaskImage: mask,
-        gap
+        gap,
       }}
     >
-      {range(2).map((n) => (
+      {range(2).map(n => (
         <div
           key={n}
           style={
             {
-              '--gap': gap
+              '--gap': gap,
             } as React.CSSProperties
           }
           className={cn(
             'flex shrink-0 justify-around gap-[var(--gap)]',
             direction === 'left' ? 'animate-marquee-left flex-row' : 'animate-marquee-up flex-col',
             pauseOnHover && 'group-hover:[animation-play-state:paused]',
-            reverse && 'direction-reverse'
+            reverse && 'direction-reverse',
           )}
         >
           {children}

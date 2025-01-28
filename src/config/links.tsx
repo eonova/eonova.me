@@ -1,118 +1,117 @@
+import type { IconType } from '@icons-pack/react-simple-icons'
 import {
-  type IconType,
-  SiFacebook,
   SiGithub,
   SiInstagram,
   SiX,
   SiYoutube,
-} from "@icons-pack/react-simple-icons";
+} from '@icons-pack/react-simple-icons'
 import {
   FlameIcon,
-  MessageCircleIcon,
   Images,
+  Link,
+  MessageCircleIcon,
   PencilIcon,
   UserCircleIcon,
-  Link,
-} from "lucide-react";
+} from 'lucide-react'
 
 import {
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
   SITE_X_URL,
   SITE_YOUTUBE_URL,
-} from "./constants";
+} from './constants'
 
 type SocialLinks = Array<{
-  href: string;
-  title: string;
-  icon: IconType;
-}>;
+  href: string
+  title: string
+  icon: IconType
+}>
 
 export const HEADER_LINKS = [
   {
     icon: <PencilIcon className="size-3.5" />,
-    href: "/blog",
-    key: "blog",
-    text: "博客",
+    href: '/blog',
+    key: 'blog',
+    text: '博客',
   },
   {
     icon: <MessageCircleIcon className="size-3.5" />,
-    href: "/guestbook",
-    key: "guestbook",
-    text: "留言板",
+    href: '/guestbook',
+    key: 'guestbook',
+    text: '留言板',
   },
   {
     icon: <Link className="size-3.5" />,
-    href: "/friends",
-    key: "friends",
-    text: "友链",
+    href: '/friends',
+    key: 'friends',
+    text: '友链',
   },
   {
     icon: <FlameIcon className="size-3.5" />,
-    href: "/projects",
-    key: "projects",
-    text: "项目",
+    href: '/projects',
+    key: 'projects',
+    text: '项目',
   },
   {
     icon: <Images className="size-3.5" />,
-    href: "/album",
-    key: "album",
-    text: "相册",
+    href: '/album',
+    key: 'album',
+    text: '相册',
   },
   {
     icon: <UserCircleIcon className="size-3.5" />,
-    href: "/about",
-    key: "about",
-    text: "关于",
+    href: '/about',
+    key: 'about',
+    text: '关于',
   },
-] as const;
+] as const
 
 export const FOOTER_LINKS = [
   {
     id: 1,
     links: [
-      { href: "/blog", key: "博客" },
-      { href: "/about", key: "关于" },
-      { href: "/album", key: "相册" },
+      { href: '/blog', key: '博客' },
+      { href: '/about', key: '关于' },
+      { href: '/album', key: '相册' },
     ],
   },
   {
     id: 2,
     links: [
-      { href: "/guestbook", key: "留言板" },
-      { href: "/friends", key: "友链" },
-      { href: "/projects", key: "项目" },
+      { href: '/guestbook', key: '留言板' },
+      { href: '/friends', key: '友链' },
+      { href: '/projects', key: '项目' },
     ],
   },
   {
     id: 3,
     links: [
-      { href: SITE_INSTAGRAM_URL, key: "instagram" },
-      { href: SITE_GITHUB_URL, key: "github" },
-      { href: SITE_YOUTUBE_URL, key: "youtube" },
+      { href: SITE_INSTAGRAM_URL, key: 'instagram' },
+      { href: SITE_GITHUB_URL, key: 'github' },
+      { href: SITE_YOUTUBE_URL, key: 'youtube' },
     ],
   },
-] as const;
+] as const
 
 export const SOCIAL_LINKS: SocialLinks = [
   {
     href: SITE_GITHUB_URL,
-    title: "GitHub",
+    title: 'GitHub',
     icon: SiGithub,
   },
   {
     href: SITE_INSTAGRAM_URL,
-    title: "Instagram",
+    title: 'Instagram',
     icon: SiInstagram,
   },
   {
     href: SITE_X_URL,
-    title: "X",
+    title: 'X',
     icon: SiX,
   },
   {
     href: SITE_YOUTUBE_URL,
-    title: "YouTube",
+    title: 'YouTube',
     icon: SiYoutube,
   },
-];
+]

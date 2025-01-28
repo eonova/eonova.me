@@ -3,7 +3,6 @@ import bundleAnalyzer from '@next/bundle-analyzer'
 import createMDX from '@next/mdx'
 
 const withBundleAnalyzer = bundleAnalyzer({
-  // eslint-disable-next-line node/prefer-global/process
   enabled: process.env.ANALYZE === 'true',
 })
 
