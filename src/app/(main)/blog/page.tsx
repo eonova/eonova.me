@@ -1,7 +1,8 @@
-import PageTitle from '~/components/page-title'
-import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import FilteredPosts from '~/components/filtered-posts'
+import PageTitle from '~/components/page-title'
+
 const Blog: React.FC = () => {
   const sortedPosts = sortPosts(allBlogs)
   const posts = allCoreContent(sortedPosts)

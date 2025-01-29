@@ -177,13 +177,13 @@ export default makeSource({
       rehypeKatex,
       rehypeKatexNoTranslate,
       [rehypeCitation, { path: path.join(root, 'data') }],
-      [rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
+      [rehypePrismPlus, { defaultLanguage: 'ts', ignoreMissing: true }],
       rehypePresetMinify,
     ],
   },
   onSuccess: async (importData) => {
-    const { allDocuments } = await importData()
-    createTagCount(allDocuments)
-    createSearchIndex(allDocuments)
+    const { allBlogs } = await importData()
+    createTagCount(allBlogs)
+    createSearchIndex(allBlogs)
   },
 })
