@@ -90,7 +90,7 @@
   max-width: 300px;
 }
 
-h2 {
+.card h2 {
   color: #fff;
   margin: 8px 0;
 }
@@ -125,7 +125,7 @@ h2 {
   width: 100vw;
 }
 
-p {
+.card p {
   color: #9d9ca1;
   font-size: 20px;
   line-height: 28px;

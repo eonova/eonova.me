@@ -1,7 +1,6 @@
 'use client'
 import { motion, useDeprecatedInvertedScale } from 'framer-motion'
 import * as React from 'react'
-import { LoremIpsum } from 'react-lorem-ipsum'
 
 export const ContentPlaceholder = React.memo(() => {
   const inverted = useDeprecatedInvertedScale()
@@ -10,7 +9,7 @@ export const ContentPlaceholder = React.memo(() => {
       className="content-container"
       style={{ ...inverted, originY: 0, originX: 0 }}
     >
-      <LoremIpsum p={3} avgWordsPerSentence={5} avgSentencesPerParagraph={2} />
+      1111
     </motion.div>
   )
 })

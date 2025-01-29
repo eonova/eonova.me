@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-require-imports */
 import type { Config } from 'tailwindcss'
 
 import sharedConfig from './src/utils/tailwind-plugin'
@@ -7,6 +8,10 @@ export default {
   content: [
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/pliny/**/*.js',
+    './src/components/**/*.{js,ts,tsx}',
+    './src/layouts/**/*.{js,ts,tsx}',
+    './data/**/*.mdx',
   ],
   presets: [sharedConfig],
   theme: {
@@ -69,6 +74,22 @@ export default {
       },
     },
   },
-  // eslint-disable-next-line ts/no-require-imports
-  plugins: [require('tailwindcss-animate')],
+
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    ({ addBase, theme }) => {
+      addBase({
+        'a, button': {
+          'outlineColor': theme('colors.primary.500'),
+          '&:focus-visible': {
+            outline: '2px solid',
+            borderRadius: theme('borderRadius.DEFAULT'),
+            outlineColor: theme('colors.primary.500'),
+          },
+        },
+      })
+    },
+  ],
 } satisfies Config
