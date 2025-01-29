@@ -12,7 +12,7 @@
   appearance: none;
   border: none;
   background-color: transparent;
-  color: #58a074;
+  color: #6dc580d7;
 }
 
 #content_progress::-webkit-progress-bar {
@@ -20,9 +20,9 @@
 }
 
 #content_progress::-webkit-progress-value {
-  background-color: #58a074;
+  background-color: #6dc580d7;
 }
 
 #content_progress::-moz-progress-bar {
-  background-color: 58a074;
+  background-color: #6dc580d7;
 }

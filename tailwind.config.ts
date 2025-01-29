@@ -1,7 +1,7 @@
 /* eslint-disable ts/no-require-imports */
 import type { Config } from 'tailwindcss'
-
-import sharedConfig from './src/utils/tailwind-plugin'
+import animate from 'tailwindcss-animate'
+import plugin from 'tailwindcss/plugin'
 
 export default {
   darkMode: 'class',
@@ -9,11 +9,9 @@ export default {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/pliny/**/*.js',
-    './src/components/**/*.{js,ts,tsx}',
     './src/layouts/**/*.{js,ts,tsx}',
     './data/**/*.mdx',
   ],
-  presets: [sharedConfig],
   theme: {
     extend: {
       backgroundImage: {
@@ -29,6 +27,22 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      borderColor: {
+        'primary-500': '#003366', // 自定义颜色值
+      },
+      fontFamily: {
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'tree-view-content-down': 'tree-view-content-down 0.2s ease-out',
+        'tree-view-content-up': 'tree-view-content-up 0.2s ease-out',
+        'caret-blink': 'caret-blink 1.25s ease-out infinite',
+        'marquee-left': 'marquee-left var(--duration, 30s) linear infinite',
+        'marquee-up': 'marquee-up var(--duration, 30s) linear infinite',
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -122,6 +136,9 @@ export default {
       }),
     },
   },
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 
   plugins: [
     require('tailwindcss-animate'),
@@ -139,5 +156,97 @@ export default {
         },
       })
     },
+    animate,
+    plugin((api) => {
+      api.addBase({
+        ':root': {
+          '--background': '0 0% 100%',
+          '--foreground': '0 0% 3.9%',
+
+          '--card': '0 0% 99.7%',
+          '--card-foreground': '0 0% 3.9%',
+
+          '--popover': '0 0% 100%',
+          '--popover-foreground': '0 0% 15.1%',
+
+          '--primary': '0 0% 9%',
+          '--primary-foreground': '0 0% 98%',
+
+          '--secondary': '0 0% 96.1%',
+          '--secondary-foreground': '0 0% 9%',
+
+          '--muted': '0 0% 96.1%',
+          '--muted-foreground': '0 0% 45.1%',
+
+          '--accent': '0 0% 94.1%',
+          '--accent-foreground': '0 0% 9%',
+
+          '--destructive': '0 84.2% 60.2%',
+          '--destructive-foreground': '0 0% 98%',
+
+          '--border': '0 0% 89.8%',
+          '--input': '0 0% 89.8%',
+          '--ring': '0 0% 63.9%',
+
+          '--radius': '0.5rem',
+
+          '--sidebar-background': '0 0% 98%',
+          '--sidebar-foreground': '240 5.3% 26.1%',
+          '--sidebar-primary': '240 5.9% 10%',
+          '--sidebar-primary-foreground': '0 0% 98%',
+          '--sidebar-accent': '240 4.8% 95.9%',
+          '--sidebar-accent-foreground': '240 5.9% 10%',
+          '--sidebar-border': '220 13% 91%',
+          '--sidebar-ring': '217.2 91.2% 59.8%',
+        },
+        '.dark': {
+          '--background': '0 0% 2%',
+          '--foreground': '0 0% 100%',
+
+          '--card': '0 0% 4%',
+          '--card-foreground': '0 0% 98%',
+
+          '--popover': '0 0% 4%',
+          '--popover-foreground': '0 0% 88%',
+
+          '--primary': '0 0% 98%',
+          '--primary-foreground': '0 0% 9%',
+
+          '--secondary': '0 0% 12.9%',
+          '--secondary-foreground': '0 0% 98%',
+
+          '--muted': '0 0% 12%',
+          '--muted-foreground': '0 0% 60%',
+
+          '--accent': '0 0% 15%',
+          '--accent-foreground': '0 0% 100%',
+
+          '--destructive': '6 84% 48%',
+          '--destructive-foreground': '0 0% 98%',
+
+          '--border': '0 0% 14%',
+          '--input': '0 0% 14%',
+          '--ring': '0 0% 14.9%',
+
+          '--sidebar-background': '240 5.9% 10%',
+          '--sidebar-foreground': '240 4.8% 95.9%',
+          '--sidebar-primary': '224.3 76.3% 48%',
+          '--sidebar-primary-foreground': '0 0% 100%',
+          '--sidebar-accent': '240 3.7% 15.9%',
+          '--sidebar-accent-foreground': '240 4.8% 95.9%',
+          '--sidebar-border': '240 3.7% 15.9%',
+          '--sidebar-ring': '217.2 91.2% 59.8%',
+        },
+        'html': {
+          'scroll-behavior': 'smooth',
+        },
+        'body': {
+          'background-color': 'theme(\'colors.background\')',
+          'color': 'theme(\'colors.foreground\')',
+          '-webkit-font-smoothing': 'antialiased',
+          '-moz-osx-font-smoothing': 'grayscale',
+        },
+      })
+    }),
   ],
 } satisfies Config

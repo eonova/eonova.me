@@ -36,7 +36,7 @@ function Providers(props: ProvidesProps) {
         <PageProgress />
         <LoadingProgressBar
           height="2px"
-          color="#58a074"
+          color="#6dc580d7"
           options={{ showSpinner: false }}
           shallowRouting
         />
