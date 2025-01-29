@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "ES2018",
+    "composite": true,
+    "target": "ES6",
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "paths": {
       "~/*": ["./src/*"],
       "@/*": ["./*"],
@@ -13,9 +15,11 @@
     },
     "resolveJsonModule": true,
     "allowJs": true,
-    "strict": true,
+    "strict": false,
+    "strictNullChecks": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "skipLibCheck": true,
     "plugins": [
@@ -33,7 +37,6 @@
     ".contentlayer/generated/**/*.json",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "**/*.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]

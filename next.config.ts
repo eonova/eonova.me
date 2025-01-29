@@ -1,13 +1,9 @@
 import type { NextConfig } from 'next'
 import bundleAnalyzer from '@next/bundle-analyzer'
-import createMDX from '@next/mdx'
+import { withContentlayer } from 'next-contentlayer2'
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
-})
-
-const withMDX = createMDX({
-  // Add markdown plugins here, as desired
 })
 
 // You might need to insert additional domains in script-src if you are using external services
@@ -63,9 +59,18 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const CustomConfig: NextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   bundlePagesRouterDependencies: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+    ],
+  },
   async headers() {
     return [
       {
@@ -77,6 +82,7 @@ const CustomConfig: NextConfig = {
   // Optionally, add any other Next.js config below
 }
 
-const nextConfig = withMDX(withBundleAnalyzer(CustomConfig))
-
-export default nextConfig
+export default () => {
+  const plugins = [withContentlayer, withBundleAnalyzer]
+  return plugins.reduce((acc, next) => next(acc), CustomConfig)
+}
