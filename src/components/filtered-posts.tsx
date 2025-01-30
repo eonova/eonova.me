@@ -1,16 +1,16 @@
 'use client'
 
-import type { Blog } from 'contentlayer/generated'
-import type { CoreContent } from 'pliny/utils/contentlayer'
+import type { BlogPost } from 'mdx/generated'
 
 import { SearchIcon } from 'lucide-react'
 import { useState } from 'react'
+
 import { Input } from './base/input'
 import { Label } from './base/label'
 import PostCards from './post-cards'
 
 interface FilteredPostsProps {
-  posts: CoreContent<Blog>[]
+  posts: BlogPost[]
 }
 
 function FilteredPosts(props: FilteredPostsProps) {
@@ -30,8 +30,8 @@ function FilteredPosts(props: FilteredPostsProps) {
           onChange={(e) => {
             setSearchValue(e.target.value)
           }}
-          placeholder="Search articles"
-          aria-label="Search articles"
+          placeholder="搜寻文章"
+          aria-label="搜寻文章"
           className="w-full pl-12"
           id="search"
         />
@@ -41,7 +41,9 @@ function FilteredPosts(props: FilteredPostsProps) {
       </div>
       {filteredPosts.length === 0
         ? (
-          <div className="my-24 text-center text-xl">No posts found</div>
+          <div className="my-24 text-center text-xl">
+            暂无结果
+          </div>
         )
         : null}
       <PostCards posts={filteredPosts} />
