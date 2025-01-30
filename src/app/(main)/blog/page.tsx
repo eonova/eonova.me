@@ -7,7 +7,6 @@ const Blog: React.FC = () => {
   const sortedPosts = sortPosts(allBlogs)
   const posts = allCoreContent(sortedPosts)
 
-  console.log('posts', posts)
   return (
     <>
       <PageTitle

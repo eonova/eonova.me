@@ -32,9 +32,7 @@ function PostCard(props: PostCardProps) {
     loading: '--',
   })
 
-  console.log('images', images)
-
-  const img = '/static/non-image.jpg'
+  const img = images?.[0] ? images[0] : '/static/non-image.jpg'
 
   return (
     <Link
