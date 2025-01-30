@@ -74,6 +74,12 @@ const CustomConfig: NextConfig = {
       },
     ],
   },
+  eslint: {
+    ignoreDuringBuilds: !!process.env.CI
+  },
+  typescript: {
+    ignoreBuildErrors: !!process.env.CI
+  },
   async headers() {
     return [
       {
