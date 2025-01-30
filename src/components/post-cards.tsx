@@ -28,9 +28,13 @@ function PostCards(props: PostCardsProps) {
 function PostCard(props: PostCardProps) {
   const { images, slug, title, summary, date } = props
   const formattedDate = useFormattedDate(date, {
-    format: 'LL',
+    format: 'YYYY-MM-DD',
     loading: '--',
   })
+
+  console.log('images', images)
+
+  const img = '/static/non-image.jpg'
 
   return (
     <Link
@@ -38,7 +42,7 @@ function PostCard(props: PostCardProps) {
       className="shadow-feature-card dark:shadow-feature-card-dark group rounded-xl px-2 py-4"
     >
       <BlurImage
-        src={images}
+        src={img}
         className="rounded-lg"
         width={1200}
         height={630}

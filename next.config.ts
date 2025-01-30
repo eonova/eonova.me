@@ -1,6 +1,10 @@
 import type { NextConfig } from 'next'
 import bundleAnalyzer from '@next/bundle-analyzer'
-import { withContentlayer } from 'next-contentlayer2'
+import { createContentlayerPlugin } from 'next-contentlayer2'
+
+const withContentlayer = createContentlayerPlugin({
+  configPath: './mdx.config.ts',
+})
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -59,7 +63,6 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const CustomConfig: NextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   bundlePagesRouterDependencies: true,
