@@ -17,7 +17,7 @@ const title = '博客'
 const description = ''
 const url = '/blog'
 
-export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
   return {

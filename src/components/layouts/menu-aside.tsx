@@ -7,8 +7,10 @@ interface MenuAsideProps {
 
 const MenuAside: React.FC<MenuAsideProps> = ({ toc }) => {
   return (
-    <aside className="sticky top-20 right-2 w-50 lg:w-48 xl:w-80">
-      {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
+    <aside className="lg:min-w-[270px] lg:max-w-[270px]">
+      <div className="sticky top-36">
+        {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
+      </div>
     </aside>
   )
 }

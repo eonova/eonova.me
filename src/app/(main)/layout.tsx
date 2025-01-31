@@ -13,7 +13,7 @@ function Layout(props: LayoutProps) {
   return (
     <>
       <Header />
-      <main id="skip-nav" className="mx-auto mb-16 max-w-5xl px-6 pt-28 sm:pt-24 sm:py-24 sm:px-8">
+      <main className="mx-auto mb-16 max-w-5xl px-6 pt-28 sm:pt-24 sm:py-24 sm:px-8 overflow-visible">
         {children}
       </main>
       <Footer />

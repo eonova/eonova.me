@@ -4,13 +4,15 @@ import type { Article, WithContext } from 'schema-dts'
 import { allBlogPosts } from 'mdx/generated'
 import { notFound } from 'next/navigation'
 
-import MenuAside from '~/components/layouts/menu-aside'
+import StickyBox from 'react-sticky-box'
 
+import MenuAside from '~/components/layouts/menu-aside'
 import Mdx from '~/components/mdx'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import Footer from './footer'
 import Header from './header'
 import MobileTableOfContents from './mobile-table-of-contents'
+
 import Providers from './providers'
 
 interface PageProps {
@@ -123,11 +125,12 @@ async function Page(props: PageProps) {
       <Providers post={post}>
         <Header />
 
-        <article className="w-full sm:px-4">
-          <Mdx code={code} />
-        </article>
-        <MenuAside toc={toc} />
-
+        <div className="mt-8 flex flex-col justify-between lg:flex-row gap-2">
+          <article className="w-full overflow-visible sm:px-4">
+            <Mdx code={code} />
+          </article>
+          <MenuAside toc={toc} />
+        </div>
         {toc.length > 0 ? <MobileTableOfContents toc={toc} /> : null}
         <Footer />
       </Providers>
