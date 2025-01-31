@@ -16,6 +16,7 @@ interface TableOfContentsProps {
 function TableOfContents(props: TableOfContentsProps) {
   const { resolvedTheme: theme } = useTheme()
   const [isMounted, setIsMounted] = useState(false)
+  const isDark = theme === 'dark'
 
   useEffect(() => {
     setIsMounted(true)
@@ -32,7 +33,6 @@ function TableOfContents(props: TableOfContentsProps) {
     setActiveId(activeIdFromScrollspy || null)
   }, [activeIdFromScrollspy])
 
-  //
   const getActiveIds = (activeId: string) => {
     const activeItem = toc.find(item => item.url === activeId)
     if (!activeItem)
@@ -64,34 +64,35 @@ function TableOfContents(props: TableOfContentsProps) {
     return Math.max(prev, curr.depth)
   }, Number.MIN_SAFE_INTEGER)
 
-  const isDark = theme === 'dark'
-
-  function getColor(isVisible: boolean) {
-    // 根据层级不同颜色不同
-    if (isDark) {
-      return isVisible ? 'rgba(255, 255, 255, .4)' : 'rgba(255, 255, 255, .1)'
-    }
-    else {
-      return isVisible ? 'rgba(0, 0, 0,.4)' : 'rgba(0, 0, 0,.2)'
-    }
-  }
-
   // 获取目录是否被hover
-  const [isHover, setHoverState] = useState<string | null>(null)
+  const [HoverUrl, setHoverUrl] = useState<string | null>(null)
 
   function handleMouseEnter(url: string) {
-    setHoverState(url)
+    setHoverUrl(url)
   }
   if (!isMounted) {
     return null
   }
   function handleMouseLeave() {
-    setHoverState(null)
+    setHoverUrl(null)
+  }
+
+  function getColor(isVisible: boolean, url: string) {
+    // 根据层级不同颜色不同
+    if (isDark) {
+      if (isVisible || url === HoverUrl)
+        return 'rgba(255, 255, 255, .5)'
+      return 'rgba(255, 255, 255, .1)'
+    }
+    else {
+      if (isVisible || url === HoverUrl)
+        return 'rgba(0, 0, 0, .5)'
+      return 'rgba(0, 0, 0,.1)'
+    }
   }
 
   return (
     <div className="hidden lg:block">
-      <div className="mb-4 pl-4">目录</div>
       <div>
         {
           toc.map((item) => {
@@ -122,7 +123,7 @@ function TableOfContents(props: TableOfContentsProps) {
                       className="rounded-full"
                       style={{
                         width: `${8 * (maxDepth - depth + 1)}px`,
-                        background: getColor(allActiveIds.includes(url)),
+                        background: getColor(allActiveIds.includes(url), url),
                         display: 'inline-block',
                         height: '5px',
                       }}
@@ -130,7 +131,7 @@ function TableOfContents(props: TableOfContentsProps) {
                   </div>
                   <motion.div
                     initial={{ opacity: 1 }}
-                    animate={{ opacity: allActiveIds.includes(url) || isHover ? 1 : 0 }}
+                    animate={{ opacity: allActiveIds.includes(url) || HoverUrl ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
                     className={depth === minDepth ? 'font-bold' : ''}
                   >

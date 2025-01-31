@@ -4,15 +4,14 @@ import type { Article, WithContext } from 'schema-dts'
 import { allBlogPosts } from 'mdx/generated'
 import { notFound } from 'next/navigation'
 
-import Mdx from '~/components/mdx'
+import MenuAside from '~/components/layouts/menu-aside'
 
+import Mdx from '~/components/mdx'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import Footer from './footer'
 import Header from './header'
 import MobileTableOfContents from './mobile-table-of-contents'
-import ProgressBar from './progress-bar'
 import Providers from './providers'
-import MenuAside from '~/components/layouts/menu-aside'
 
 interface PageProps {
   params: Promise<{
@@ -128,7 +127,6 @@ async function Page(props: PageProps) {
           <Mdx code={code} />
         </article>
         <MenuAside toc={toc} />
-        <ProgressBar />
 
         {toc.length > 0 ? <MobileTableOfContents toc={toc} /> : null}
         <Footer />

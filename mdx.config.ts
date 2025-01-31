@@ -113,6 +113,6 @@ const Page = defineCollection({
 })
 
 export default defineConfig({
-  contentDirPath: 'src/content',
+  contentDirPath: 'data/',
   collections: [BlogPost, Project, Page],
 })

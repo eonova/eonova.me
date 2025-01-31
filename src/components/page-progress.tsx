@@ -23,6 +23,7 @@ const PageProgress: React.FC = () => {
         document.removeEventListener('scroll', handleScroll)
       }
     }
+    return undefined
   }, [])
 
   return <progress id="content_progress" value="0"></progress>

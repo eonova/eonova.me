@@ -1,4 +1,3 @@
-
 import { withMDX } from '@ileostar/mdx/next'
 import bundleAnalyzer from '@next/bundle-analyzer'
 
@@ -71,10 +70,10 @@ const CustomConfig = {
     ],
   },
   eslint: {
-    ignoreDuringBuilds: !!process.env.CI
+    ignoreDuringBuilds: !!process.env.CI,
   },
   typescript: {
-    ignoreBuildErrors: !!process.env.CI
+    ignoreBuildErrors: !!process.env.CI,
   },
   async headers() {
     return [
