@@ -27,11 +27,12 @@ const components: MDXComponents = {
   h5: (props: React.ComponentProps<'h5'>) => <Heading as="h5" {...props} />,
   h6: (props: React.ComponentProps<'h6'>) => <Heading as="h6" {...props} />,
   a: (props: React.ComponentProps<'a'>) => {
-    const { children, ...rest } = props
+    const { children, href, ...rest } = props
 
     return (
       <Link
         className="hover:text-foreground text-[#ff6363] no-underline transition-colors"
+        href={href || ''}
         {...rest}
       >
         {children}
