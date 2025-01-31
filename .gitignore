@@ -43,3 +43,7 @@ next-env.d.ts
 # mdx
 .mdx
 
+#ide
+.vscode/*
+!.vscode/setting.json
+
