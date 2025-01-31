@@ -8,5 +8,6 @@
     "tszhong",
     "turbopack",
     "Visualstudiocode"
-  ]
+  ],
+  "oxc.enable": false
 }
