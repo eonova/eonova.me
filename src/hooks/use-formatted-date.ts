@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { dayjs } from '~/utils/dayjs'
 
-type Options = {
+interface Options {
   format: string
   loading?: string
   relative?: boolean
@@ -10,7 +10,7 @@ type Options = {
   suffix?: string
 }
 
-export const useFormattedDate = (date: Date | string, options: Options) => {
+export function useFormattedDate(date: Date | string, options: Options) {
   const { relative = false, format, loading, prefix = '', suffix = '' } = options
   const [formattedDate, setFormattedDate] = useState<string | null>(loading ?? null)
 
@@ -20,7 +20,8 @@ export const useFormattedDate = (date: Date | string, options: Options) => {
       const weeksDiff = dayjs().diff(targetDate, 'week')
 
       return Math.abs(weeksDiff) > 1 ? `on ${targetDate.format(format)}` : dayjs().to(targetDate)
-    } else {
+    }
+    else {
       return `${prefix}${dayjs(date).format(format)}${suffix}`
     }
   }, [date, format, prefix, relative, suffix])

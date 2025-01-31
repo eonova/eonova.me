@@ -1,0 +1,17 @@
+{
+  "name": "mdx-generated",
+  "description": "Generated MDX data",
+  "version": "0.0.0",
+  "exports": {
+    "./generated": {
+      "import": "./generated/index.mjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "generated": [
+        "./generated"
+      ]
+    }
+  }
+}

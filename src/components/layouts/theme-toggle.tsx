@@ -16,14 +16,14 @@ function ThemeToggle() {
   return (
     <Menu>
       <MenuButton
-        className="size-9 p-0 inline-flex justify-center items-center"
+        className="size-8 sm:size-9 p-0 inline-flex justify-center items-center"
         aria-label="Toggle theme"
         data-testid="theme-toggle"
         title="Toggle theme"
       >
         <span className="sr-only">Toggle theme</span>
-        <SunIcon className="size-4 dark:hidden" />
-        <MoonIcon className="hidden size-4 dark:block" />
+        <SunIcon className="size-6 sm:size-4 dark:hidden" />
+        <MoonIcon className="hidden size-6 sm:size-4 dark:block" />
       </MenuButton>
 
       <MenuItems

@@ -1,0 +1,12 @@
+#header {
+  transition: transform 0.3s ease-in-out;
+}
+
+#header .header-hidden {
+  transform: translateY(-100%);
+}
+
+.dark #header {
+  background-image: radial-gradient(rgba(255, 255, 255, 0) 1px, rgba(0, 0, 0, 0.1) 1px);
+  background-size: 4px 4px;
+}
