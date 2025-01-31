@@ -4,7 +4,7 @@ import type { TOC } from '@ileostar/mdx'
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useScrollspy } from '~/hooks/use-scrollspy'
 import { cn } from '~/lib/utils'
@@ -14,12 +14,24 @@ interface TableOfContentsProps {
 }
 
 function TableOfContents(props: TableOfContentsProps) {
-  const { theme } = useTheme()
+  const { resolvedTheme: theme } = useTheme()
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
   const { toc } = props
-  const activeId = useScrollspy(
+  const [activeId, setActiveId] = useState<string | null>(null)
+
+  const activeIdFromScrollspy = useScrollspy(
     toc.map(item => item.url),
     { rootMargin: '0% 0% -80% 0%' },
   )
+
+  useEffect(() => {
+    setActiveId(activeIdFromScrollspy || null)
+  }, [activeIdFromScrollspy])
+
   //
   const getActiveIds = (activeId: string) => {
     const activeItem = toc.find(item => item.url === activeId)
@@ -54,7 +66,7 @@ function TableOfContents(props: TableOfContentsProps) {
 
   const isDark = theme === 'dark'
 
-  function getColor(depth: number, isVisible: boolean) {
+  function getColor(isVisible: boolean) {
     // 根据层级不同颜色不同
     if (isDark) {
       return isVisible ? 'rgba(255, 255, 255, .4)' : 'rgba(255, 255, 255, .1)'
@@ -70,7 +82,9 @@ function TableOfContents(props: TableOfContentsProps) {
   function handleMouseEnter(url: string) {
     setHoverState(url)
   }
-
+  if (!isMounted) {
+    return null
+  }
   function handleMouseLeave() {
     setHoverState(null)
   }
@@ -108,14 +122,14 @@ function TableOfContents(props: TableOfContentsProps) {
                       className="rounded-full"
                       style={{
                         width: `${8 * (maxDepth - depth + 1)}px`,
-                        background: getColor(depth, allActiveIds.includes(url)),
+                        background: getColor(allActiveIds.includes(url)),
                         display: 'inline-block',
                         height: '5px',
                       }}
                     />
                   </div>
                   <motion.div
-                    initial={{ opacity: 0 }}
+                    initial={{ opacity: 1 }}
                     animate={{ opacity: allActiveIds.includes(url) || isHover ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
                     className={depth === minDepth ? 'font-bold' : ''}
