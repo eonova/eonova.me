@@ -112,6 +112,11 @@ const CalSans = localFont({
   variable: '--font-title',
 })
 
+const worldfont = localFont({
+  src: '../../public/fonts/kuaikanshijieti20231213.ttf',
+  variable: '--font-world',
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -120,7 +125,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(GeistSans.variable, GeistMono.variable, CalSans.variable, 'scroll-smooth')}
+      className={cn(GeistSans.variable, GeistMono.variable, CalSans.variable, worldfont.variable, 'scroll-smooth')}
       suppressHydrationWarning
     >
       <body

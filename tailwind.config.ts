@@ -80,6 +80,7 @@ export default {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
+        world: ['var(--font-world)'],
       },
       lineHeight: {
         11: '2.75rem',

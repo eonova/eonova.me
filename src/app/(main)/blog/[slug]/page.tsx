@@ -4,8 +4,6 @@ import type { Article, WithContext } from 'schema-dts'
 import { allBlogPosts } from 'mdx/generated'
 import { notFound } from 'next/navigation'
 
-import StickyBox from 'react-sticky-box'
-
 import MenuAside from '~/components/layouts/menu-aside'
 import Mdx from '~/components/mdx'
 import { SITE_NAME, SITE_URL } from '~/config/constants'

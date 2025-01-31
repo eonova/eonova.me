@@ -2,7 +2,7 @@ import { defineCollection, defineConfig } from '@ileostar/mdx'
 
 const BlogPost = defineCollection({
   name: 'BlogPost',
-  filePathPattern: '**/blog/*.mdx',
+  filePathPattern: ['**/posts/*.mdx', '**/posts/*.md'],
   fields: [
     {
       name: 'title',
@@ -35,7 +35,7 @@ const BlogPost = defineCollection({
       name: 'slug',
       type: 'string',
       resolve: (doc) => {
-        return doc.filePath.split('/').pop()?.replace('.mdx', '')
+        return doc.filePath.split('/').pop()?.replace(/\.mdx|\.md$/, '')
       },
     },
   ],

@@ -6,6 +6,7 @@ import PageTitle from '~/components/page-title'
 
 import ProjectCards from '~/components/project-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
+import BackgroundFont from '~/components/background-font'
 
 interface PageProps {
   params: Promise<{
@@ -79,6 +80,7 @@ async function Page(props: PageProps) {
         title={title}
         description={description}
       />
+      <BackgroundFont className="text-6xl">2025年</BackgroundFont>
       <ProjectCards projects={projects} />
     </>
   )

@@ -6,13 +6,6 @@ import FilteredPosts from '~/components/filtered-posts'
 import PageTitle from '~/components/page-title'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 
-interface PageProps {
-  params: Promise<{
-    locale: string
-  }>
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
-
 const title = '博客'
 const description = ''
 const url = '/blog'
@@ -40,7 +33,7 @@ export async function generateMetadata(parent: ResolvingMetadata): Promise<Metad
   }
 }
 
-async function Page(props: PageProps) {
+async function Page() {
   const posts = allBlogPosts
     .toSorted((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
