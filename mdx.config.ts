@@ -25,7 +25,7 @@ const BlogPost = defineCollection({
       required: true,
     },
     {
-      name: 'language',
+      name: 'cover',
       type: 'string',
       required: true,
     },
@@ -82,7 +82,7 @@ const Project = defineCollection({
       type: 'boolean',
     },
     {
-      name: 'language',
+      name: 'cover',
       type: 'string',
       required: true,
     },
@@ -101,13 +101,6 @@ const Project = defineCollection({
 const Page = defineCollection({
   name: 'Page',
   filePathPattern: '**/pages/*.mdx',
-  fields: [
-    {
-      name: 'language',
-      type: 'string',
-      required: true,
-    },
-  ],
   computedFields: [
     {
       name: 'slug',

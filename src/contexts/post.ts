@@ -6,7 +6,7 @@ type PostContext = BlogPost
 
 const Context = createContext<PostContext | undefined>(undefined)
 
-export const usePostContext = () => {
+export function usePostContext() {
   const context = useContext(Context)
 
   if (!context) {

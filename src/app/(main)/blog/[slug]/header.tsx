@@ -8,11 +8,13 @@ import { usePostContext } from '~/contexts/post'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 
 function Header() {
-  const { date, title, slug } = usePostContext()
+  const { cover, date, title, slug } = usePostContext()
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
     loading: '...',
   })
+
+  const images = cover !== '' ? cover : '/images/non-image.png'
 
   return (
     <div className="space-y-16 py-16">
@@ -50,12 +52,12 @@ function Header() {
       </div>
       <ImageZoom
         zoomImg={{
-          src: `/images/blog/${slug}/cover.png`,
+          src: images,
           alt: title,
         }}
       >
         <BlurImage
-          src={`/images/blog/${slug}/cover.png`}
+          src={images}
           className="rounded-lg"
           width={1200}
           height={630}

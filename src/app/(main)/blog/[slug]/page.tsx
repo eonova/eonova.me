@@ -12,7 +12,7 @@ import Header from './header'
 import MobileTableOfContents from './mobile-table-of-contents'
 import ProgressBar from './progress-bar'
 import Providers from './providers'
-import TableOfContents from './table-of-contents'
+import MenuAside from '~/components/layouts/menu-aside'
 
 interface PageProps {
   params: Promise<{
@@ -22,17 +22,10 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export function generateStaticParams(): Array<{ slug: string, locale: string }> {
-  return allBlogPosts.map(post => ({
-    slug: post.slug,
-    locale: post.language,
-  }))
-}
-
 export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
-  const { slug, locale } = await props.params
+  const { slug } = await props.params
 
-  const post = allBlogPosts.find(p => p.slug === slug && p.language === locale)
+  const post = allBlogPosts.find(p => p.slug === slug)
 
   if (!post)
     return {}
@@ -131,16 +124,10 @@ async function Page(props: PageProps) {
       <Providers post={post}>
         <Header />
 
-        <div className="mt-8 flex flex-col justify-between lg:flex-row">
-          <article className="w-full lg:w-[670px]">
-            <Mdx code={code} />
-          </article>
-          <aside className="lg:min-w-[270px] lg:max-w-[270px]">
-            <div className="sticky top-24">
-              {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
-            </div>
-          </aside>
-        </div>
+        <article className="w-full sm:px-4">
+          <Mdx code={code} />
+        </article>
+        <MenuAside toc={toc} />
         <ProgressBar />
 
         {toc.length > 0 ? <MobileTableOfContents toc={toc} /> : null}

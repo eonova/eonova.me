@@ -4,7 +4,7 @@ export type BlogPost = {
     date: string
     modifiedTime: string
     summary: string
-    language: string
+    cover: string
     slug: string
     code: string
     raw: string
@@ -24,7 +24,7 @@ export type Project = {
     github: string
     techstack: Techstack[]
     selected?: boolean
-    language: string
+    cover: string
     slug: string
     code: string
     raw: string
@@ -38,7 +38,7 @@ export type Project = {
 }
     
 export type Page = {
-    language: string
+
     slug: string
     code: string
     raw: string

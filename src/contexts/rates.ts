@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 
-type RatesContext = {
+interface RatesContext {
   increment: () => void
   decrement: () => void
   getCount: () => number
@@ -8,7 +8,7 @@ type RatesContext = {
 
 const Context = createContext<RatesContext | undefined>(undefined)
 
-export const useRatesContext = () => {
+export function useRatesContext() {
   const context = useContext(Context)
 
   if (!context) {

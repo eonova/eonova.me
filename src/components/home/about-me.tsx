@@ -82,7 +82,7 @@ function AboutMe() {
       </motion.div>
       <div className="my-8 flex items-center justify-center">
         <Link href="/about" className={cn(buttonVariants({ variant: 'outline' }), 'rounded-xl')}>
-          Know more about me
+          进一步了解我
         </Link>
       </div>
     </motion.div>
