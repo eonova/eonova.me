@@ -7,29 +7,29 @@ import { useEffect, useState } from 'react'
 const TEXTS = [
   {
     text: '硬核实用的编程',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00BFFF]'
+    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00BFFF]',
   },
   {
     text: '自己拍的小照片',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#b5b557] to-[#ddc335]'
+    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#b5b557] to-[#ddc335]',
   },
   {
     text: '看过略有想法的电影 ',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#FF0000] to-[#FF7F50]'
+    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#FF0000] to-[#FF7F50]',
   },
   {
     text: '读过有所感悟的书',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#32CD32] to-[#37e837]'
+    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#32CD32] to-[#37e837]',
   },
   {
     text: '奇妙的代码世界',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#8A2BE2] to-[#9932CC]'
+    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#8A2BE2] to-[#9932CC]',
   },
   {
     text: '有趣的生活日常',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#FF69B4] to-[#FF1493]'
-  }
-];
+    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#FF69B4] to-[#FF1493]',
+  },
+]
 
 const SPEED = 2
 

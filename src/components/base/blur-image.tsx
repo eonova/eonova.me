@@ -4,7 +4,7 @@
 'use client'
 
 import NextImage from 'next/image'
-import { forwardRef, useState } from 'react'
+import { useState } from 'react'
 import { cn } from '~/lib/utils'
 
 type ImageProps = {
@@ -12,7 +12,7 @@ type ImageProps = {
   lazy?: boolean
 } & React.ComponentPropsWithoutRef<typeof NextImage>
 
-export const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
+export function BlurImage({ ref, ...props }: ImageProps & { ref?: React.RefObject<HTMLImageElement | null> }) {
   const { alt, src, className, imageClassName, lazy = true, ...rest } = props
   const [isLoading, setIsLoading] = useState(true)
 
@@ -22,7 +22,7 @@ export const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) =
         ref={ref}
         className={cn(isLoading && 'scale-[1.02] blur-xl grayscale', imageClassName)}
         style={{
-          transition: 'filter 700ms ease, transform 150ms ease'
+          transition: 'filter 700ms ease, transform 150ms ease',
         }}
         src={src}
         alt={alt}
@@ -36,6 +36,6 @@ export const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) =
       />
     </div>
   )
-})
+}
 
 BlurImage.displayName = 'Image'

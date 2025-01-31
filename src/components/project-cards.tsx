@@ -4,7 +4,6 @@ import type { Project } from 'mdx/generated'
 import Link from 'next/link'
 import { BlurImage } from './base/blur-image'
 
-
 type ProjectCardProps = Project
 interface ProjectCardsProps {
   projects: Project[]

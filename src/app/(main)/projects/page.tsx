@@ -1,23 +1,14 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { CollectionPage, WithContext } from 'schema-dts'
 
 import { allProjects } from 'mdx/generated'
-import PageTitle from '~/components/page-title'
-
-import ProjectCards from '~/components/project-cards'
-import { SITE_NAME, SITE_URL } from '~/config/constants'
 import BackgroundFont from '~/components/background-font'
 
-interface PageProps {
-  params: Promise<{
-    locale: string
-  }>
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
+import PageTitle from '~/components/page-title'
+import ProjectCards from '~/components/project-cards'
+import { SITE_NAME, SITE_URL } from '~/config/constants'
 
-export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
+export async function generateMetadata(): Promise<Metadata> {
   const title = '项目'
   const description = '我的项目清单。所有东西都是用 ❤️ 制作'
   const url = '/projects'
@@ -29,20 +20,18 @@ export async function generateMetadata(parent: ResolvingMetadata): Promise<Metad
       canonical: url,
     },
     openGraph: {
-      ...previousOpenGraph,
       url,
       title,
       description,
     },
     twitter: {
-      ...previousTwitter,
       title,
       description,
     },
   }
 }
 
-async function Page(props: PageProps) {
+async function Page() {
   const title = '项目'
   const description = '我的项目清单。所有东西都是用 ❤️ 制作'
   const url = '/projects'

@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
 import { allBlogPosts } from 'mdx/generated'
 
@@ -10,9 +10,7 @@ const title = '博客'
 const description = ''
 const url = '/blog'
 
-export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
@@ -20,13 +18,11 @@ export async function generateMetadata(parent: ResolvingMetadata): Promise<Metad
       canonical: url,
     },
     openGraph: {
-      ...previousOpenGraph,
       url,
       title,
       description,
     },
     twitter: {
-      ...previousTwitter,
       title,
       description,
     },

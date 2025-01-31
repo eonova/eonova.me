@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import useIsScroll from '~/hooks/use-is-scroll'
+import useScrollDirection from '~/hooks/use-scroll-direction'
 import { cn } from '~/lib/utils'
 import { Separator } from '../base/separator'
 import Logo from '../logo'
@@ -9,8 +11,6 @@ import MobileNav from './mobile-nav'
 import Navbar from './navbar'
 import ThemeToggle from './theme-toggle'
 import '~/styles/header.css'
-import useScrollDirection from '~/hooks/use-scroll-direction'
-import useIsScroll from '~/hooks/use-is-scroll'
 
 interface HeaderProps {
   className?: string
@@ -27,8 +27,8 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       opacity: 0,
       transition: {
         duration: 0.3,
-        ease: 'easeOut'
-      }
+        ease: 'easeOut',
+      },
     },
     // 可见且未滚动状态
     visible: {
@@ -37,8 +37,8 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       top: '10px',
       transition: {
         duration: 0.3,
-        ease: 'easeOut'
-      }
+        ease: 'easeOut',
+      },
     },
     // 滚动后隐藏状态
     hidden: {
@@ -47,11 +47,11 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       top: '-50px',
       transition: {
         duration: 0.3,
-        ease: 'easeOut'
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
 
-  };
+  }
   return (
     <motion.header
       variants={headerVariants}

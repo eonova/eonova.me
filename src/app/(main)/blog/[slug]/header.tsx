@@ -8,7 +8,7 @@ import { usePostContext } from '~/contexts/post'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 
 function Header() {
-  const { cover, date, title, slug } = usePostContext()
+  const { cover, date, title } = usePostContext()
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
     loading: '...',

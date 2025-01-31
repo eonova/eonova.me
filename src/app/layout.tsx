@@ -115,7 +115,7 @@ const CalSans = localFont({
 const worldfont = localFont({
   src: '../../public/fonts/kuaikanshijieti20231213.ttf',
   variable: '--font-world',
-});
+})
 
 export default function RootLayout({
   children,

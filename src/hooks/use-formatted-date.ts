@@ -27,7 +27,6 @@ export function useFormattedDate(date: Date | string, options: Options) {
   }, [date, format, prefix, relative, suffix])
 
   useEffect(() => {
-    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect -- it needs to be computed on client side
     setFormattedDate(computedDate)
   }, [computedDate])
 

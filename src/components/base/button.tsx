@@ -53,4 +53,4 @@ function Button({ ref, className, variant, size, asChild = false, ...props }: Bu
 }
 Button.displayName = 'Button'
 
-export { Button, buttonVariants, type ButtonProps }
+export { Button, type ButtonProps, buttonVariants }

@@ -83,7 +83,17 @@ const CustomConfig = {
       },
     ]
   },
-  // Optionally, add any other Next.js config below
+
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      }
+    }
+
+    return config
+  },
 }
 
 export default () => {

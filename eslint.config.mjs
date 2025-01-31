@@ -16,5 +16,7 @@ export default antfu({
     'react-hooks/exhaustive-deps': 'off',
     'react/no-array-index-key': 'off',
     'jsdoc/check-param-names': 'off',
+    'react-dom/no-dangerously-set-innerhtml': 'off',
+    'react/prefer-destructuring-assignment': 'off'
   },
 })

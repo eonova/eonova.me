@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { AboutPage, WithContext } from 'schema-dts'
 
 import { allPages } from 'mdx/generated'
@@ -16,9 +16,7 @@ import {
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
 
-export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
+export async function generateMetadata(): Promise<Metadata> {
   const title = '关于'
   const description = '👋 嗨！我是 LeoStar，一个热爱网页开发的学生。'
   const url = '/about'
@@ -30,14 +28,12 @@ export async function generateMetadata(parent: ResolvingMetadata): Promise<Metad
       canonical: url,
     },
     openGraph: {
-      ...previousOpenGraph,
       url,
       type: 'profile',
       title,
       description,
     },
     twitter: {
-      ...previousTwitter,
       title,
       description,
     },

@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { SoftwareApplication, WithContext } from 'schema-dts'
 
 import { allProjects } from 'mdx/generated'
@@ -18,25 +18,16 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export function generateStaticParams(): Array<{ slug: string, locale: string }> {
-  return allProjects.map(project => ({
-    slug: project.slug,
-    locale: project.language,
-  }))
-}
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const { slug } = await props.params
 
-export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
-  const { slug, locale } = await props.params
-
-  const project = allProjects.find(p => p.slug === slug && p.language === locale)
+  const project = allProjects.find(p => p.slug === slug)
 
   if (!project) {
     return {}
   }
 
   const { name, description } = project
-  const previousTwitter = (await parent).twitter ?? {}
-  const previousOpenGraph = (await parent).openGraph ?? {}
   const url = `/projects/${slug}`
 
   return {
@@ -46,7 +37,6 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
       canonical: url,
     },
     openGraph: {
-      ...previousOpenGraph,
       url,
       title: name,
       description,
@@ -61,7 +51,6 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
       ],
     },
     twitter: {
-      ...previousTwitter,
       title: name,
       description,
       images: [

@@ -42,33 +42,33 @@ function TreeViewNode(props: TreeViewNodeProps) {
     <TreeViewPrimitive.NodeProvider key={node.id} node={node} indexPath={indexPath}>
       {node.children
         ? (
-          <TreeViewPrimitive.Branch>
-            <TreeViewPrimitive.BranchControl className="hover:bg-accent hover:text-accent-foreground flex items-center justify-between rounded-md px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm">
-              <TreeViewPrimitive.BranchText className="flex items-center gap-2">
-                <FolderIcon className="size-4" />
-                {' '}
-                {node.name}
-              </TreeViewPrimitive.BranchText>
-              <TreeViewPrimitive.BranchIndicator className="[&[data-state=open]>svg]:rotate-90">
-                <ChevronRightIcon className="size-4 transition-transform duration-200" />
-              </TreeViewPrimitive.BranchIndicator>
-            </TreeViewPrimitive.BranchControl>
-            <TreeViewPrimitive.BranchContent className="data-[state=open]:animate-tree-view-content-down data-[state=closed]:animate-tree-view-content-up overflow-hidden">
-              <TreeViewPrimitive.BranchIndentGuide />
-              {node.children.map((child, index) => (
-                <TreeViewNode key={child.id} node={child} indexPath={[...indexPath, index]} />
-              ))}
-            </TreeViewPrimitive.BranchContent>
-          </TreeViewPrimitive.Branch>
-        )
+            <TreeViewPrimitive.Branch>
+              <TreeViewPrimitive.BranchControl className="hover:bg-accent hover:text-accent-foreground flex items-center justify-between rounded-md px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm">
+                <TreeViewPrimitive.BranchText className="flex items-center gap-2">
+                  <FolderIcon className="size-4" />
+                  {' '}
+                  {node.name}
+                </TreeViewPrimitive.BranchText>
+                <TreeViewPrimitive.BranchIndicator className="[&[data-state=open]>svg]:rotate-90">
+                  <ChevronRightIcon className="size-4 transition-transform duration-200" />
+                </TreeViewPrimitive.BranchIndicator>
+              </TreeViewPrimitive.BranchControl>
+              <TreeViewPrimitive.BranchContent className="data-[state=open]:animate-tree-view-content-down data-[state=closed]:animate-tree-view-content-up overflow-hidden">
+                <TreeViewPrimitive.BranchIndentGuide />
+                {node.children.map((child, index) => (
+                  <TreeViewNode key={child.id} node={child} indexPath={[...indexPath, index]} />
+                ))}
+              </TreeViewPrimitive.BranchContent>
+            </TreeViewPrimitive.Branch>
+          )
         : (
-          <TreeViewPrimitive.Item className="hover:bg-accent hover:text-accent-foreground data-[selected]:bg-accent relative rounded-md px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm">
-            <TreeViewPrimitive.ItemText className="flex items-center gap-2">
-              <FileIcon className="size-4" />
-              {node.name}
-            </TreeViewPrimitive.ItemText>
-          </TreeViewPrimitive.Item>
-        )}
+            <TreeViewPrimitive.Item className="hover:bg-accent hover:text-accent-foreground data-[selected]:bg-accent relative rounded-md px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm">
+              <TreeViewPrimitive.ItemText className="flex items-center gap-2">
+                <FileIcon className="size-4" />
+                {node.name}
+              </TreeViewPrimitive.ItemText>
+            </TreeViewPrimitive.Item>
+          )}
     </TreeViewPrimitive.NodeProvider>
   )
 }

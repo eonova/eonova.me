@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:mdx": "mdx build",
     "start": "next start",
     "lint": "next lint",
     "lint:ui": "eslint --inspect-config",
@@ -18,7 +19,7 @@
     "@ark-ui/react": "^4.9.1",
     "@headlessui/react": "^2.2.0",
     "@icons-pack/react-simple-icons": "^11.2.0",
-    "@ileostar/mdx": "0.3.8",
+    "@ileostar/mdx": "0.3.6",
     "@radix-ui/react-aspect-ratio": "^1.1.1",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-scroll-area": "^1.2.2",

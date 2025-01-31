@@ -14,7 +14,7 @@ const linkVariants = cva({
 type LinkProps = {
   href: string
 } & Omit<React.ComponentProps<'a'>, 'href'> &
-  VariantProps<typeof linkVariants>
+VariantProps<typeof linkVariants>
 
 function Link(props: LinkProps) {
   const { href, className, children, variant, ...rest } = props

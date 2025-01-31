@@ -1,25 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react'
 
-const useIsScroll = (threshold = 100) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+function useIsScroll(threshold = 100) {
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const changeBackground = () => {
       if (window.scrollY > threshold) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+        setIsScrolled(true)
       }
-    };
+      else {
+        setIsScrolled(false)
+      }
+    }
 
-    document.addEventListener('scroll', changeBackground);
+    document.addEventListener('scroll', changeBackground)
 
     return () => {
-      document.removeEventListener('scroll', changeBackground);
-    };
-  }, [threshold]);
+      document.removeEventListener('scroll', changeBackground)
+    }
+  }, [threshold])
 
-  return isScrolled;
-};
+  return isScrolled
+}
 
-export default useIsScroll;
+export default useIsScroll
