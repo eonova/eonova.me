@@ -1,6 +1,7 @@
 {
   "name": "leospark",
   "private": true,
+  "packageManager": "pnpm@9.12.3",
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
