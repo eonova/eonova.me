@@ -1,0 +1,8 @@
+.page-section-title {
+  opacity: 0.5;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0);
+  height: 0.8em;
+  line-height: 1.1;
+  -webkit-text-stroke: thin;
+  overflow: hidden;
+}

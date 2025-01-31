@@ -1,0 +1,72 @@
+{
+  "收藏夹分类": [
+    {
+      "分类名称": "搜索引擎",
+      "链接列表": [
+        {
+          "名称": "百度",
+          "链接": "https://www.baidu.com"
+        },
+        {
+          "名称": "谷歌",
+          "链接": "https://www.google.com"
+        },
+        {
+          "名称": "必应",
+          "链接": "https://www.bing.com"
+        }
+      ]
+    },
+    {
+      "分类名称": "社交媒体",
+      "链接列表": [
+        {
+          "名称": "微博",
+          "链接": "https://weibo.com"
+        },
+        {
+          "名称": "抖音",
+          "链接": "https://www.douyin.com"
+        },
+        {
+          "名称": "知乎",
+          "链接": "https://www.zhihu.com"
+        }
+      ]
+    },
+    {
+      "分类名称": "学习资源",
+      "链接列表": [
+        {
+          "名称": "哔哩哔哩",
+          "链接": "https://www.bilibili.com"
+        },
+        {
+          "名称": "中国大学 MOOC",
+          "链接": "https://www.icourse163.org"
+        },
+        {
+          "名称": "Coursera",
+          "链接": "https://www.coursera.org"
+        }
+      ]
+    },
+    {
+      "分类名称": "开发工具",
+      "链接列表": [
+        {
+          "名称": "GitHub",
+          "链接": "https://github.com"
+        },
+        {
+          "名称": "Stack Overflow",
+          "链接": "https://stackoverflow.com"
+        },
+        {
+          "名称": "MDN Web Docs",
+          "链接": "https://developer.mozilla.org"
+        }
+      ]
+    }
+  ]
+}
