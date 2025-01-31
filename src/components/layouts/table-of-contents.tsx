@@ -30,9 +30,10 @@ function TableOfContents(props: TableOfContentsProps) {
     let currentDepth = activeItem.depth
 
     for (let i = toc.indexOf(activeItem) - 1; i >= 0; i--) {
-      if (toc[i].depth < currentDepth) {
-        activeIds.unshift(toc[i].url)
-        currentDepth = toc[i].depth
+      const currentItem = toc[i]
+      if (currentItem && currentItem.depth < currentDepth) {
+        activeIds.unshift(currentItem.url)
+        currentDepth = currentItem.depth
       }
     }
 
