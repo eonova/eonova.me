@@ -1,0 +1,27 @@
+[
+  {
+    "path": "/*",
+    "resourceSizes": [
+      {
+        "resourceType": "total",
+        "budget": 1600
+      }
+    ]
+  },{
+    "path": "/about",
+    "resourceSizes": [
+      {
+        "resourceType": "total",
+        "budget": 1600
+      }
+    ]
+  },{
+    "path": "/blog",
+    "resourceSizes": [
+      {
+        "resourceType": "total",
+        "budget": 1600
+      }
+    ]
+  }
+]

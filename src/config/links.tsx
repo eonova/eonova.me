@@ -29,37 +29,37 @@ type SocialLinks = Array<{
 
 export const HEADER_LINKS = [
   {
-    icon: <PencilIcon className="size-3.5" />,
+    icon: <PencilIcon className="size-6" />,
     href: '/blog',
     key: 'blog',
     text: '博客',
   },
   {
-    icon: <MessageCircleIcon className="size-3.5" />,
+    icon: <MessageCircleIcon className="size-6" />,
     href: '/guestbook',
     key: 'guestbook',
     text: '留言板',
   },
   {
-    icon: <Link className="size-3.5" />,
+    icon: <Link className="size-6" />,
     href: '/friends',
     key: 'friends',
     text: '友链',
   },
   {
-    icon: <FlameIcon className="size-3.5" />,
+    icon: <FlameIcon className="size-6" />,
     href: '/projects',
     key: 'projects',
     text: '项目',
   },
   {
-    icon: <Images className="size-3.5" />,
+    icon: <Images className="size-6" />,
     href: '/album',
     key: 'album',
     text: '相册',
   },
   {
-    icon: <UserCircleIcon className="size-3.5" />,
+    icon: <UserCircleIcon className="size-6" />,
     href: '/about',
     key: 'about',
     text: '关于',
