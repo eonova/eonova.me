@@ -47,3 +47,5 @@ next-env.d.ts
 .vscode/*
 !.vscode/setting.json
 
+
+.vercel

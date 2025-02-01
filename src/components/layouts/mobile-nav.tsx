@@ -2,17 +2,22 @@
 
 import { Button } from '@headlessui/react'
 import { MenuIcon } from 'lucide-react'
+import { useNav } from '~/stores/nav'
 
 function MobileNav() {
+  const navStore = useNav()
   return (
-    <Button
-      className="flex size-8 sm:size-9 items-center justify-center p-0 sm:hidden"
-      type="button"
-      aria-label="Toggle menu"
-    >
-      <span className="sr-only">Toggle menu</span>
-      <MenuIcon className="size-6" />
-    </Button>
+    <>
+      <Button
+        className="flex size-8 sm:size-9 items-center justify-center p-0 sm:hidden"
+        type="button"
+        aria-label="Toggle menu"
+        onClick={navStore.setIsVisible}
+      >
+        <span className="sr-only">Toggle menu</span>
+        <MenuIcon className="size-6" />
+      </Button>
+    </>
 
   )
 }

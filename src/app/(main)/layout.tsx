@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import Footer from '~/components/layouts/footer'
 import Header from '~/components/layouts/header'
+import MobileNavAside from '~/components/layouts/mobile-sidebar'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -16,6 +17,7 @@ function Layout(props: LayoutProps) {
       <main className="mx-auto mb-16 max-w-5xl px-6 pt-28 sm:pt-24 sm:py-24 sm:px-8 overflow-visible">
         {children}
       </main>
+      <MobileNavAside />
       <Footer />
       <Image
         width={1512}

@@ -14,7 +14,7 @@ const TEXTS = [
     className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#b5b557] to-[#ddc335]',
   },
   {
-    text: '看过略有想法的电影 ',
+    text: '看过好看的电影',
     className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#FF0000] to-[#FF7F50]',
   },
   {
@@ -89,7 +89,7 @@ function Hero() {
                 key="title-middle-left"
                 className="leading-[30px] sm:leading-[45px]"
               >
-                在这里分享我
+                在这里分享
               </motion.div>
               <div className="relative overflow-hidden">
                 <AnimatePresence mode="popLayout">
