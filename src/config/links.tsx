@@ -42,12 +42,6 @@ export const HEADER_LINKS = [
     text: '留言板',
   },
   {
-    icon: <Link className="size-6" />,
-    href: '/friends',
-    key: 'friends',
-    text: '友链',
-  },
-  {
     icon: <FlameIcon className="size-6" />,
     href: '/projects',
     key: 'projects',
@@ -86,7 +80,7 @@ export const FOOTER_LINKS = [
     id: 2,
     links: [
       { href: '/guestbook', key: '留言板' },
-      { href: '/friends', key: '友链' },
+      { href: '/project', key: '项目' },
       { href: '/links', key: '收藏夹' },
     ],
   },
