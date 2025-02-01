@@ -58,22 +58,37 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const CustomConfig = {
   reactStrictMode: true,
-  // Configure `pageExtensions` to include markdown and MDX files
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  experimental: {
+    optimizePackageImports: ['shiki']
+  },
   bundlePagesRouterDependencies: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-      },
-    ],
   },
   eslint: {
     ignoreDuringBuilds: !!process.env.CI,
   },
   typescript: {
     ignoreBuildErrors: !!process.env.CI,
+  },
+
+  async redirects() {
+    return [
+      {
+        source: '/atom',
+        destination: '/rss.xml',
+        permanent: true
+      },
+      {
+        source: '/feed',
+        destination: '/rss.xml',
+        permanent: true
+      },
+      {
+        source: '/rss',
+        destination: '/rss.xml',
+        permanent: true
+      }
+    ]
   },
   async headers() {
     return [
@@ -96,7 +111,4 @@ const CustomConfig = {
   },
 }
 
-export default () => {
-  const plugins = [withMDX, withBundleAnalyzer]
-  return plugins.reduce((acc, next) => next(acc), CustomConfig)
-}
+export default withMDX(withBundleAnalyzer(CustomConfig))

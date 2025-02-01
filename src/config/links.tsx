@@ -9,6 +9,7 @@ import {
   FlameIcon,
   Images,
   Link,
+  Link2,
   MessageCircleIcon,
   PencilIcon,
   UserCircleIcon,
@@ -59,6 +60,12 @@ export const HEADER_LINKS = [
     text: '相册',
   },
   {
+    icon: <Link2 className="size-6" />,
+    href: '/links',
+    key: 'links',
+    text: '收藏夹',
+  },
+  {
     icon: <UserCircleIcon className="size-6" />,
     href: '/about',
     key: 'about',
@@ -80,7 +87,7 @@ export const FOOTER_LINKS = [
     links: [
       { href: '/guestbook', key: '留言板' },
       { href: '/friends', key: '友链' },
-      { href: '/projects', key: '项目' },
+      { href: '/links', key: '收藏夹' },
     ],
   },
   {
