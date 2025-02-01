@@ -40,7 +40,7 @@ const MobileNavAside: React.FC<MobileNavAsideProps> = ({ className }) => {
 
   // 点击链接时关闭侧边栏
   const handleLinkClick = () => {
-    navStore.setIsVisible(false) // 关闭侧边栏
+    navStore.setIsVisible() // 关闭侧边栏
   }
 
   return (
