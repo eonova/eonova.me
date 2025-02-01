@@ -1,22 +1,11 @@
 import type { Metadata, Viewport } from 'next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { Geist, Geist_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
 import { cn } from '~/lib/utils'
 import Providers from './providers'
 import '~/styles/globals.css'
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -107,11 +96,6 @@ export const viewport: Viewport = {
   ],
 }
 
-const CalSans = localFont({
-  src: '../../public/fonts/CalSans-SemiBold.woff2',
-  variable: '--font-title',
-})
-
 const worldfont = localFont({
   src: '../../public/fonts/kuaikanshijieti20231213.ttf',
   variable: '--font-world',
@@ -125,12 +109,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(GeistSans.variable, GeistMono.variable, CalSans.variable, worldfont.variable, 'scroll-smooth')}
+      className={cn(GeistSans.variable, GeistMono.variable, worldfont.variable, 'scroll-smooth')}
       suppressHydrationWarning
     >
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
-      >
+      <body className="antialiased relative">
         <Providers>
           {children}
         </Providers>

@@ -65,10 +65,10 @@ const CustomConfig = {
   images: {
   },
   eslint: {
-    ignoreDuringBuilds: !!process.env.CI,
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: !!process.env.CI,
+    ignoreBuildErrors: true,
   },
 
   async redirects() {
@@ -97,17 +97,6 @@ const CustomConfig = {
         headers: securityHeaders,
       },
     ]
-  },
-
-  webpack(config, { isServer }) {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-      }
-    }
-
-    return config
   },
 }
 

@@ -8,7 +8,6 @@ import {
 import {
   FlameIcon,
   Images,
-  Link,
   Link2,
   MessageCircleIcon,
   PencilIcon,

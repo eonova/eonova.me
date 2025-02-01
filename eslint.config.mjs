@@ -19,4 +19,7 @@ export default antfu({
     'react-dom/no-dangerously-set-innerhtml': 'off',
     'react/prefer-destructuring-assignment': 'off'
   },
+  extends: [
+    'plugin:@next/next/recommended',
+  ],
 })
