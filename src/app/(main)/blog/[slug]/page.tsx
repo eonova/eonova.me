@@ -3,14 +3,17 @@ import type { Article, WithContext } from 'schema-dts'
 
 import { allBlogPosts } from 'mdx/generated'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 
+import Comments from '~/components/comments'
 import MenuAside from '~/components/layouts/menu-aside'
 import Mdx from '~/components/mdx'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
+import { flags } from '~/lib/env'
 import Footer from './footer'
+
 import Header from './header'
 import MobileTableOfContents from './mobile-table-of-contents'
-
 import Providers from './providers'
 
 interface PageProps {
@@ -129,9 +132,13 @@ async function Page(props: PageProps) {
         <Footer />
       </Providers>
 
-      {/* <Suspense>
-        <Comments slug={slug} />
-      </Suspense> */}
+      {flags.comment
+        ? (
+          <Suspense>
+            <Comments slug={slug} />
+          </Suspense>
+        )
+        : null}
     </>
   )
 }

@@ -1,8 +1,8 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { BlurImage } from '../base'
 
 const TEXTS = [
   {
@@ -128,7 +128,7 @@ function Hero() {
             duration: 0.3,
           }}
         >
-          <Image
+          <BlurImage
             src="/images/avatar.png"
             className="rounded-full"
             width={112}

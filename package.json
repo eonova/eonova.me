@@ -30,6 +30,7 @@
     "@ark-ui/react": "^4.9.1",
     "@auth/drizzle-adapter": "^1.7.4",
     "@headlessui/react": "^2.2.0",
+    "@hookform/resolvers": "^3.10.0",
     "@icons-pack/react-simple-icons": "^11.2.0",
     "@ileostar/mdx": "0.3.6",
     "@normy/react-query": "^0.18.0",

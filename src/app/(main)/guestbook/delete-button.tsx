@@ -1,0 +1,69 @@
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button,
+  buttonVariants,
+  toast,
+} from '~/components/base'
+
+import { useMessageContext } from '~/contexts/message'
+import { api } from '~/trpc/react'
+
+function DeleteButton() {
+  const { message } = useMessageContext()
+  const utils = api.useUtils()
+
+  const guestbookMutation = api.guestbook.delete.useMutation({
+    onSuccess: () => toast.success('评论删除成功'),
+    onSettled: () => utils.guestbook.invalidate(),
+    onError: error => toast.error(error.message),
+  })
+
+  const handleDeleteMessage = (id: string) => {
+    guestbookMutation.mutate({ id })
+  }
+
+  return (
+    <div className="mt-4 flex justify-end">
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button
+            variant="destructive"
+            disabled={guestbookMutation.isPending}
+            aria-disabled={guestbookMutation.isPending}
+          >
+            删除
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>删除评论</AlertDialogTitle>
+            <AlertDialogDescription>
+              您确定要删除此评论吗？此操作无法撤销。
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>取消</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                handleDeleteMessage(message.id)
+              }}
+              className={buttonVariants({ variant: 'destructive' })}
+            >
+              删除
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
+  )
+}
+
+export default DeleteButton

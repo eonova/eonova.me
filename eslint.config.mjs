@@ -8,6 +8,7 @@ export default antfu({
   ignores: [
     './README.md',
     'components/base/*',
+    './src/trpc/react.ts',
   ],
   rules: {
     'import/no-anonymous-default-export': 'off',

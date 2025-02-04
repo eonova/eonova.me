@@ -1,7 +1,7 @@
 'use client'
 
 import { SiFacebook, SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
-import { CodeIcon, CommandIcon, LinkIcon, LogInIcon, LogOutIcon } from 'lucide-react'
+import { CommandIcon, LogInIcon, LogOutIcon } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import { Fragment, useCallback, useEffect, useState } from 'react'
 
@@ -31,7 +31,6 @@ type Groups = Array<{
 function CommandMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [selectingValue, setSelectingValue] = useState('')
-  const [copy] = useCopyToClipboard()
   const { status } = useSession()
   const dialogStore = useDialogsStore()
 
@@ -65,43 +64,22 @@ function CommandMenu() {
       actions: [
         ...(status === 'authenticated'
           ? [
-              {
-                title: '登出',
-                icon: <LogOutIcon className="mr-3 size-4" />,
-                onSelect: () => signOut(),
-              },
-            ]
+            {
+              title: '登出',
+              icon: <LogOutIcon className="mr-3 size-4" />,
+              onSelect: () => signOut(),
+            },
+          ]
           : [
-              {
-                title: '登入',
-                icon: <LogInIcon className="mr-3 size-4" />,
-                onSelect: () => {
-                  setIsOpen(false)
-                  dialogStore.setDialogs(true)
-                },
+            {
+              title: '登入',
+              icon: <LogInIcon className="mr-3 size-4" />,
+              onSelect: () => {
+                setIsOpen(false)
+                dialogStore.setDialogs(true)
               },
-            ]),
-      ],
-    },
-    {
-      name: '一般',
-      actions: [
-        {
-          title: '复制链接',
-          icon: <LinkIcon className="mr-3 size-4" />,
-          onSelect: async () => {
-            setIsOpen(false)
-
-            await copy({ text: globalThis.location.href })
-          },
-        },
-        {
-          title: '源代码',
-          icon: <CodeIcon className="mr-3 size-4" />,
-          onSelect: () => {
-            openLink('https://github.com/tszhong0411/honghong.me')
-          },
-        },
+            },
+          ]),
       ],
     },
     {

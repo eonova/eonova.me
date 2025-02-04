@@ -6,6 +6,7 @@ import useIsScroll from '~/hooks/use-is-scroll'
 import useScrollDirection from '~/hooks/use-scroll-direction'
 import { cn } from '~/lib/utils'
 import { Separator } from '../base/separator'
+import CommandMenu from '../command-menu'
 import Logo from '../logo'
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
@@ -72,6 +73,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         <Navbar />
         <Separator orientation="vertical" className={cn('h-6 sm:block hidden')} />
         <ThemeToggle />
+        <CommandMenu />
         <MobileNav />
       </div>
     </motion.header>
