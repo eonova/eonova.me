@@ -1,5 +1,11 @@
+import { fileURLToPath } from 'node:url'
 import { withMDX } from '@ileostar/mdx/next'
 import bundleAnalyzer from '@next/bundle-analyzer'
+import { createJiti } from 'jiti'
+
+const jiti = createJiti(fileURLToPath(import.meta.url))
+
+jiti.import('./src/lib/env.ts')
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -59,7 +65,7 @@ const securityHeaders = [
 const CustomConfig = {
   reactStrictMode: true,
   experimental: {
-    optimizePackageImports: ['shiki']
+    optimizePackageImports: ['shiki'],
   },
   bundlePagesRouterDependencies: true,
   images: {
@@ -76,18 +82,18 @@ const CustomConfig = {
       {
         source: '/atom',
         destination: '/rss.xml',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/feed',
         destination: '/rss.xml',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/rss',
         destination: '/rss.xml',
-        permanent: true
-      }
+        permanent: true,
+      },
     ]
   },
   async headers() {

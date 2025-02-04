@@ -1,10 +1,13 @@
 import Link from 'next/link'
-
 import { FOOTER_LINKS } from '~/config/links'
+
+import { flags } from '~/lib/env'
+import NowPlaying from './now-playing'
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-background/30 relative mx-4 md:mx-auto  mb-6 flex max-w-5xl flex-col rounded-2xl p-8 shadow-sm saturate-100 backdrop-blur-[10px]">
+      {flags.spotify ? <NowPlaying /> : null}
       <div className="mt-12 grid grid-cols-2 sm:grid-cols-3">
         {FOOTER_LINKS.map(list => (
           <div

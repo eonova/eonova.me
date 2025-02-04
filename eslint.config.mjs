@@ -17,7 +17,8 @@ export default antfu({
     'react/no-array-index-key': 'off',
     'jsdoc/check-param-names': 'off',
     'react-dom/no-dangerously-set-innerhtml': 'off',
-    'react/prefer-destructuring-assignment': 'off'
+    'react/prefer-destructuring-assignment': 'off',
+    'on-console': 'off',
   },
   extends: [
     'plugin:@next/next/recommended',
