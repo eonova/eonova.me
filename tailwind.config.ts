@@ -93,6 +93,10 @@ export default {
         80: '80',
       },
       keyframes: {
+        'shine': {
+          '0%': { 'background-position': '100%' },
+          '100%': { 'background-position': '-100%' },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -123,6 +127,7 @@ export default {
         },
       },
       animation: {
+        'shine': 'shine 5s linear infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'tree-view-content-down': 'tree-view-content-down 0.2s ease-out',

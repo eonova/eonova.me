@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { useMediaQuery } from 'usehooks-ts'
 import TiltedCard from './tilted-card'
 
 const TEXTS = [
@@ -48,8 +47,8 @@ const variants = {
     opacity: 0,
   },
 }
+
 function Hero() {
-  const matches = useMediaQuery('(min-width: 640px)')
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
@@ -62,17 +61,8 @@ function Hero() {
     }
   }, [])
 
+  // 客户端渲染的完整内容
   const textItem = TEXTS[currentIndex]
-  if (!textItem)
-    return null
-
-  const tiltedProps = {
-    containerHeight: matches ? '80px' : '65px',
-    containerWidth: matches ? '80px' : '65px',
-    imageHeight: matches ? '110px' : '65px',
-    imageWidth: matches ? '110px' : '65px',
-  }
-
   return (
     <div className="space-y-6 md:my-16">
       <div className="flex flex-col-reverse gap-8 md:flex-row md:justify-between">
@@ -91,7 +81,9 @@ function Hero() {
           }}
         >
           <h1 className="font-title bg-gradient-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text text-2xl font-bold leading-9 text-transparent sm:text-4xl sm:leading-[3.5rem] dark:from-white dark:via-white/90 dark:to-white/70">
-            <div>我是 LeoStar，一个爱捣鼓的前端</div>
+            <div>
+              我是 LeoStar ，一个爱捣鼓的前端
+            </div>
             <div className="flex gap-2">
               <motion.div
                 layout
@@ -115,7 +107,7 @@ function Hero() {
                     }}
                     className="inline-flex items-center justify-center leading-[30px] sm:leading-[45px]"
                   >
-                    <span className={textItem.className}>{textItem.text}</span>
+                    {textItem && <span className={textItem.className}>{textItem.text}</span>}
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -146,7 +138,6 @@ function Hero() {
             scaleOnHover={1.2}
             showMobileWarning={false}
             showTooltip
-            {...tiltedProps}
             displayOverlayContent
             overlayContent={(
               <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2 bg-white/30 sm:flex hidden">

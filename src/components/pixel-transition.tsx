@@ -111,7 +111,7 @@ function PixelTransition({
   }
 
   return (
-    <div
+    <li
       ref={containerRef}
       // Combine your own className with the Tailwind classes for styling
       className={`
@@ -121,7 +121,6 @@ function PixelTransition({
         rounded-[15px]
         border-2
         border-white
-        w-[300px]
         max-w-full
         relative
         overflow-hidden
@@ -149,7 +148,7 @@ function PixelTransition({
         ref={pixelGridRef}
         className="absolute inset-0 w-full h-full pointer-events-none z-[3]"
       />
-    </div>
+    </li>
   )
 }
 

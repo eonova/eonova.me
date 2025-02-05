@@ -1,12 +1,30 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { api } from '~/trpc/react'
+import ShinyText from '../shiny-text'
 
 function NowPlaying() {
   const { status, data } = api.spotify.get.useQuery()
   const isPlaying = status === 'success' && data.isPlaying && data.songUrl
   const notListening = status === 'success' && (!data.isPlaying || !data.songUrl)
+  const [text, setText] = useState<string>('')
+
+  useEffect(() => {
+    switch (status) {
+      case 'pending':
+        setText('载入中 ...')
+        break
+      case 'error':
+        setText('无法获取 Spotify 资料')
+        break
+    }
+    if (isPlaying)
+      setText(`${data.name} - ${data.artist}`)
+    if (notListening)
+      setText('未在收听 - Spotify')
+  }, [status, isPlaying, notListening])
 
   return (
     <div className="flex items-center gap-4">
@@ -24,21 +42,15 @@ function NowPlaying() {
       </svg>
 
       <div className="inline-flex w-full items-center justify-center gap-1 text-sm md:justify-start">
-        <p>
-          {status === 'pending' ? '载入中 ...' : null}
-          {status === 'error' ? '无法获取 Spotify 资料' : null}
-          {isPlaying
-            ? (
-                <Link href={data.songUrl}>
-                  {data.name}
-                  {' '}
-                  -
-                  {data.artist}
-                </Link>
-              )
-            : null}
-          {notListening ? '未在收听 - Spotify' : null}
-        </p>
+        {
+          !isPlaying
+            ? <ShinyText text={text} disabled speed={3} className="custom-class" />
+            : (
+              <Link target="black" href={data?.songUrl ?? ''}>
+                <ShinyText text={text} disabled speed={3} className="custom-class" />
+              </Link>
+            )
+        }
       </div>
     </div>
   )

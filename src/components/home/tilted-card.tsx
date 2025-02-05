@@ -2,6 +2,7 @@
 import type { ReactNode } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useRef, useState } from 'react'
+import '~/styles/tilted.css'
 
 const springValues = {
   damping: 30,
@@ -13,10 +14,6 @@ interface TiltedCardProps {
   imageSrc: string
   altText?: string
   captionText?: string
-  containerHeight?: string
-  containerWidth?: string
-  imageHeight?: string
-  imageWidth?: string
   scaleOnHover?: number
   rotateAmplitude?: number
   showMobileWarning?: boolean
@@ -29,10 +26,6 @@ export default function TiltedCard({
   imageSrc,
   altText = 'Tilted card image',
   captionText = '',
-  containerHeight = '300px',
-  containerWidth = '100%',
-  imageHeight = '300px',
-  imageWidth = '300px',
   scaleOnHover = 1.1,
   rotateAmplitude = 14,
   showMobileWarning = true,
@@ -92,12 +85,9 @@ export default function TiltedCard({
 
   return (
     <figure
+      id="figure"
       ref={ref}
       className="relative w-full h-full [perspective:800px] flex flex-col items-center justify-center"
-      style={{
-        height: containerHeight,
-        width: containerWidth,
-      }}
       onMouseMove={handleMouse}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -109,10 +99,9 @@ export default function TiltedCard({
       )}
 
       <motion.div
+        id="tilted-avatar"
         className="relative [transform-style:preserve-3d]"
         style={{
-          width: imageWidth,
-          height: imageHeight,
           rotateX,
           rotateY,
           scale,
@@ -122,10 +111,6 @@ export default function TiltedCard({
           src={imageSrc}
           alt={altText}
           className="absolute top-0 left-0 object-cover rounded-full will-change-transform border border-slate-600/20 dark:border-white/20 border-solid shadow-slate-600 dark:shadow-white shadow [transform:translateZ(0)]"
-          style={{
-            width: imageWidth,
-            height: imageHeight,
-          }}
         />
 
         {displayOverlayContent && overlayContent && (

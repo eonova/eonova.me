@@ -1,0 +1,20 @@
+#figure {
+  height: 65px;
+  width: 65px;
+}
+
+#tilted-avatar {
+  height: 65px;
+  width: 65px;
+}
+
+@media (min-width: 540px) {
+  #figure {
+    height: 90px;
+    width: 90px;
+  }
+  #tilted-avatar {
+    height: 90px;
+    width: 90px;
+  }
+}

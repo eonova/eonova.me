@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import Dock from '~/components/layouts/dock'
 import Footer from '~/components/layouts/footer'
 import Header from '~/components/layouts/header'
 import MobileNavAside from '~/components/layouts/mobile-sidebar'
@@ -18,6 +19,7 @@ function Layout(props: LayoutProps) {
         {children}
       </main>
       <MobileNavAside />
+      <Dock collapsible={false} position="left" responsive="top" />
       <Footer />
       <Image
         width={1512}

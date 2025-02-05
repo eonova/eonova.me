@@ -3,10 +3,13 @@ import type { AboutPage, WithContext } from 'schema-dts'
 
 import { allPages } from 'mdx/generated'
 import { notFound } from 'next/navigation'
+import TextPressure from '~/components/about/ascii-text'
+import ASCIIText from '~/components/about/ascii-text'
 import BounceCards from '~/components/about/bounce-cards'
+import IntroCard from '~/components/about/initro-card'
 import Mdx from '~/components/mdx'
 import PageTitle from '~/components/page-title'
-import PixelTransition from '~/components/pixel-transition'
+import QuoteCard from '~/components/quote-card'
 import {
   SITE_DESCRIPTION,
   SITE_FACEBOOK_URL,
@@ -101,32 +104,30 @@ async function Page() {
         transformStyles={transformStyles}
       />
       <Mdx code={code} />
-      <PixelTransition
-        firstContent={(
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-            alt="default pixel transition content, a cat!"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      <ul className="relative w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-5 mt-10 ">
+        <div className="overflow-hidden relative  col-span-1 md:col-span-4 lg:col-span-8 h-80 rounded-3xl  bg-black/10 dark:bg-[#1d1e22]/30 backdrop-blur-xs p-0!  border dark:border-white/10 border-black/5">
+          <ASCIIText
+            text="LeoStar"
+            enableWaves
+            asciiFontSize={4}
           />
-        )}
-        secondContent={(
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              display: 'grid',
-              placeItems: 'center',
-              backgroundColor: '#111',
-            }}
-          >
-            <p style={{ fontWeight: 900, fontSize: '3rem', color: '#ffffff' }}>Meow!</p>
-          </div>
-        )}
-        gridSize={12}
-        pixelColor="#ffffff"
-        animationStepDuration={0.4}
-        className="custom-pixel-card"
-      />
+        </div>
+        <IntroCard className="col-span-1 md:col-span-2 lg:col-span-4 rounded-2xl lg:rounded-3xl
+              bg-black/10 dark:bg-[#1d1e22]/30 backdrop-blur-xs
+              hover:scale-[1.02] transition-transform duration-300 active:scale-95
+              will-change-transform backface-visibility-hidden"
+        >
+          111
+        </IntroCard>
+        <QuoteCard className="col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl" />
+        <QuoteCard className="col-span-1 md:col-span-2 lg:col-span-3 rounded-3xl" />
+        <IntroCard className="col-span-1 md:col-span-2 lg:col-span-5 rounded-3xl bg-black/10 dark:bg-[#1d1e22]/30 backdrop-blur-xs">
+          111
+        </IntroCard>
+        <IntroCard className="col-span-1 md:col-span-4 lg:col-span-8 h-80 rounded-3xl  bg-black/10 dark:bg-[#1d1e22]/30 backdrop-blur-xs" subheading="约定" title="六年之约" desc="与jack叔叔的约定">
+
+        </IntroCard>
+      </ul>
     </>
   )
 }

@@ -2,7 +2,7 @@
 import { gsap } from 'gsap'
 import Image from 'next/image'
 import { useEffect } from 'react'
-import { useMediaQuery } from 'usehooks-ts'
+import '~/styles/bounce.css'
 
 interface BounceCardsProps {
   className?: string
@@ -15,24 +15,6 @@ interface BounceCardsProps {
   transformStyles?: string[]
 }
 
-function getTransformStyles(val: boolean) {
-  return val
-    ? [
-      'rotate(10deg) translate(-170px)',
-      'rotate(5deg) translate(-85px)',
-      'rotate(-3deg)',
-      'rotate(-10deg) translate(85px)',
-      'rotate(2deg) translate(170px)',
-    ]
-    : [
-      'rotate(10deg) translate(-100px)',
-      'rotate(5deg) translate(-35px)',
-      'rotate(-3deg)',
-      'rotate(-10deg) translate(35px)',
-      'rotate(2deg) translate(100px)',
-    ]
-}
-
 export default function BounceCards({
   className = '',
   images = [],
@@ -40,7 +22,6 @@ export default function BounceCards({
   animationStagger = 0.06,
   easeType = 'elastic.out(1, 0.8)',
 }: BounceCardsProps) {
-  const matches = useMediaQuery('(min-width: 640px)')
   useEffect(() => {
     gsap.fromTo(
       '.card',
@@ -60,12 +41,7 @@ export default function BounceCards({
       {images.map((src, idx) => (
         <div
           key={idx}
-          className="card absolute w-[120px] sm:w-[200px] aspect-square border-4 sm:border-8 border-white rounded-[15px] sm:rounded-[30px] overflow-hidden"
-          style={{
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-            transform:
-              getTransformStyles(matches)[idx] !== undefined ? getTransformStyles(matches)[idx] : 'none',
-          }}
+          className="bounce-card card absolute w-[120px] sm:w-[200px] aspect-square border-4 sm:border-8 border-white dark:border-gray-700/60 rounded-[15px] sm:rounded-[30px] overflow-hidden shadow-md shadow-gray-200 dark:shadow-white/20"
         >
           <Image
             className="w-full h-full object-cover"
