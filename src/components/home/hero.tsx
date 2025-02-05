@@ -2,7 +2,8 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { BlurImage } from '../base'
+import { useMediaQuery } from 'usehooks-ts'
+import TiltedCard from './tilted-card'
 
 const TEXTS = [
   {
@@ -48,6 +49,7 @@ const variants = {
   },
 }
 function Hero() {
+  const matches = useMediaQuery('(min-width: 640px)')
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
@@ -63,6 +65,13 @@ function Hero() {
   const textItem = TEXTS[currentIndex]
   if (!textItem)
     return null
+
+  const tiltedProps = {
+    containerHeight: matches ? '80px' : '65px',
+    containerWidth: matches ? '80px' : '65px',
+    imageHeight: matches ? '110px' : '65px',
+    imageWidth: matches ? '110px' : '65px',
+  }
 
   return (
     <div className="space-y-6 md:my-16">
@@ -128,12 +137,22 @@ function Hero() {
             duration: 0.3,
           }}
         >
-          <BlurImage
-            src="/images/avatar.png"
-            className="rounded-full"
-            width={112}
-            height={112}
-            alt="LeoStar"
+
+          <TiltedCard
+            imageSrc="/images/avatar.png"
+            altText="LeoStar"
+            captionText="LeoStar"
+            rotateAmplitude={12}
+            scaleOnHover={1.2}
+            showMobileWarning={false}
+            showTooltip
+            {...tiltedProps}
+            displayOverlayContent
+            overlayContent={(
+              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2 bg-white/30 sm:flex hidden">
+                Hello
+              </p>
+            )}
           />
           <div className="absolute inset-0 -z-10 bg-gradient-to-tl from-purple-700 to-orange-700 opacity-0 blur-2xl md:opacity-50" />
         </motion.div>

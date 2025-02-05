@@ -69,6 +69,16 @@ const CustomConfig = {
   },
   bundlePagesRouterDependencies: true,
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
+    ],
+    domains: ['images.unsplash.com'],
   },
   eslint: {
     ignoreDuringBuilds: true,

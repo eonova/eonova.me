@@ -3,8 +3,10 @@ import type { AboutPage, WithContext } from 'schema-dts'
 
 import { allPages } from 'mdx/generated'
 import { notFound } from 'next/navigation'
+import BounceCards from '~/components/about/bounce-cards'
 import Mdx from '~/components/mdx'
 import PageTitle from '~/components/page-title'
+import PixelTransition from '~/components/pixel-transition'
 import {
   SITE_DESCRIPTION,
   SITE_FACEBOOK_URL,
@@ -40,6 +42,22 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
+const images = [
+  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=500&auto=format',
+  'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format',
+  'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format',
+  'https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format',
+  'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format',
+]
+
+const transformStyles = [
+  'rotate(5deg) translate(-150px)',
+  'rotate(0deg) translate(-70px)',
+  'rotate(-5deg)',
+  'rotate(5deg) translate(70px)',
+  'rotate(-5deg) translate(150px)',
+]
+
 async function Page() {
   const title = '关于'
   const description = '👋 嗨！我是 LeoStar，一个热爱网页开发的学生。'
@@ -74,7 +92,41 @@ async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageTitle title={title} description={description} />
+      <BounceCards
+        className="custom-class"
+        images={images}
+        animationDelay={0.3}
+        animationStagger={0.12}
+        easeType="elastic.out(1, 0.5)"
+        transformStyles={transformStyles}
+      />
       <Mdx code={code} />
+      <PixelTransition
+        firstContent={(
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+            alt="default pixel transition content, a cat!"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        )}
+        secondContent={(
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'grid',
+              placeItems: 'center',
+              backgroundColor: '#111',
+            }}
+          >
+            <p style={{ fontWeight: 900, fontSize: '3rem', color: '#ffffff' }}>Meow!</p>
+          </div>
+        )}
+        gridSize={12}
+        pixelColor="#ffffff"
+        animationStepDuration={0.4}
+        className="custom-pixel-card"
+      />
     </>
   )
 }

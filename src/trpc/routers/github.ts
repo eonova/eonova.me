@@ -1,16 +1,17 @@
 import { Octokit } from '@octokit/rest'
 import { TRPCError } from '@trpc/server'
 import { GITHUB_USERNAME } from '~/config/constants'
+
 import { env } from '~/lib/env'
-
 import { ratelimit } from '~/lib/kv'
-import { getIp } from '~/utils/get-ip'
 
+import { getIp } from '~/utils/get-ip'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 const getKey = (id: string) => `github:${id}`
 
 export const githubRouter = createTRPCRouter({
+  // 获取用户信息和仓库星星总数
   get: publicProcedure.query(async ({ ctx }) => {
     const ip = getIp(ctx.headers)
 
@@ -46,6 +47,8 @@ export const githubRouter = createTRPCRouter({
       followers,
     }
   }),
+
+  // 获取指定仓库的星星数
   getRepoStars: publicProcedure.query(async ({ ctx }) => {
     const ip = getIp(ctx.headers)
 

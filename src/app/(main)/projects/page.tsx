@@ -69,7 +69,7 @@ async function Page() {
         title={title}
         description={description}
       />
-      <BackgroundFont className="text-6xl">2025年</BackgroundFont>
+      <BackgroundFont className="text-7xl text-gray-500/50 dark:text-white/50" lineHeight="1.2">2025年</BackgroundFont>
       <ProjectCards projects={projects} />
     </>
   )
