@@ -47,8 +47,6 @@ jobs:
           urls: |
             https://leo-spark.vercel.app/
             https://leo-spark.vercel.app/blog
-            https://leo-spark.vercel.app/album
-            https://leo-spark.vercel.app/project
             https://leo-spark.vercel.app/about
           budgetPath: ./.github/budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts

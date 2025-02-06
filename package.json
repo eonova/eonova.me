@@ -29,6 +29,9 @@
     "prepare": "simple-git-hooks",
     "up": "taze major -I"
   },
+  "peerDependencies": {
+    "pg": "^8"
+  },
   "dependencies": {
     "@ark-ui/react": "^4.9.1",
     "@auth/drizzle-adapter": "^1.7.4",

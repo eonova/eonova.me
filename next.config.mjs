@@ -53,6 +53,7 @@ const NextConfigHeaders = [
 const CustomConfig = {
   reactStrictMode: true,
 
+  serverExternalPackages: ['pg', 'drizzle-orm'],
   experimental: {
     optimizePackageImports: ['shiki'],
   },
@@ -103,13 +104,23 @@ const CustomConfig = {
     return NextConfigHeaders
   },
 
-  webpack: (c) => {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // 客户端构建时忽略这些模块
+      config.resolve.fallback = {
+        fs: false,
+        net: false,
+        dns: false,
+        tls: false,
+        // 其他缺失的模块可以继续添加
+      };
+    }
     if (process.env.REACT_SCAN_MONITOR_API_KEY) {
-      c.plugins.push(ReactComponentName({}))
+      config.plugins.push(ReactComponentName({}))
     }
 
-    return c
-  }
+    return config
+  },
 }
 
 export default withMDX(withBundleAnalyzer(CustomConfig))
