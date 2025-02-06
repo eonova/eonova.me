@@ -13,3 +13,10 @@
   .bounce-card:nth-child(4) { transform: rotate(-10deg) translate(85px); }
   .bounce-card:nth-child(5) { transform: rotate(2deg) translate(170px); }
 }
+@media (min-width: 1024px){
+  .bounce-card:nth-child(1) { transform: rotate(10deg) translate(-235px); }
+  .bounce-card:nth-child(2) { transform: rotate(5deg) translate(-120px); }
+  .bounce-card:nth-child(3) { transform: rotate(-3deg); }
+  .bounce-card:nth-child(4) { transform: rotate(-10deg) translate(120px); }
+  .bounce-card:nth-child(5) { transform: rotate(2deg) translate(235px); }
+}

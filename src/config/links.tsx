@@ -35,28 +35,28 @@ export const HEADER_LINKS = [
     text: '博客',
   },
   {
-    icon: <MessageCircleIcon className="size-6" />,
-    href: '/guestbook',
-    key: 'guestbook',
-    text: '留言板',
-  },
-  {
     icon: <FlameIcon className="size-6" />,
     href: '/projects',
     key: 'projects',
     text: '项目',
   },
   {
-    icon: <Images className="size-6" />,
-    href: '/album',
-    key: 'album',
-    text: '相册',
+    icon: <MessageCircleIcon className="size-6" />,
+    href: '/guestbook',
+    key: 'guestbook',
+    text: '留言板',
   },
   {
     icon: <Link2 className="size-6" />,
     href: '/links',
     key: 'links',
     text: '收藏夹',
+  },
+  {
+    icon: <Images className="size-6" />,
+    href: '/album',
+    key: 'album',
+    text: '相册',
   },
   {
     icon: <UserCircleIcon className="size-6" />,

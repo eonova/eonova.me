@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "dictionaries": [
+    "software-terms",
+    "npm",
+    "fullstack",
+    "redis"
+  ],
+  "files": [
+    "**",
+    ".vscode/**",
+    ".github/**"
+  ],
+  "ignorePaths": [
+    "pnpm-lock.yaml",
+    ".pnpm-store/",
+    "src/db/migrations/**"
+  ],
+  "ignoreRegExpList": [
+    "apiKey='[a-zA-Z0-9-]{32}'"
+  ],
+  "useGitignore": true,
+  "version": "0.2",
+  "words": [
+    "aeroplane",
+    "cmdk",
+    "cobe",
+    "Contentlayer",
+    "ENFP",
+    "kuaikanshijieti",
+    "lightningcss",
+    "MBTI",
+    "normy",
+    "nuqs",
+    "popmotion",
+    "sonner",
+    "techstack",
+    "tszhong",
+    "turbopack",
+    "Upyun",
+    "usehooks",
+    "Visualstudiocode",
+    "worldfont"
+  ]
+}

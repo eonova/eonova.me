@@ -1,91 +1,73 @@
 {
   "categories": [
-      {
-          "categoryName": "技术开发",
-          "websites": [
-              {
-                  "images": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-                  "url": "https://github.com",
-                  "title": "GitHub",
-                  "desc": "全球最大的开源代码托管平台，开发者的聚集地，有海量的开源项目和丰富的代码资源。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://developer.mozilla.org/",
-                  "title": "MDN Web Docs",
-                  "desc": "提供全面且权威的 Web 技术文档，包括 HTML、CSS、JavaScript 等，是前端开发者必备的学习和参考资源。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://stackoverflow.com/",
-                  "title": "Stack Overflow",
-                  "desc": "一个面向程序员的问答社区，开发者可以在这里提出和解决编程中遇到的各种问题。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://stackoverflow.com/",
-                  "title": "Stack Overflows",
-                  "desc": "一个面向程序员的问答社区，开发者可以在这里提出和解决编程中遇到的各种问题。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://stackoverflow.com/",
-                  "title": "Stack Overflowss",
-                  "desc": "一个面向程序员的问答社区，开发者可以在这里提出和解决编程中遇到的各种问题。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://stackoverflow.com/",
-                  "title": "Stack Overflowsss",
-                  "desc": "一个面向程序员的问答社区，开发者可以在这里提出和解决编程中遇到的各种问题。"
-              }
-          ]
-      },
-      {
-          "categoryName": "知识学习",
-          "websites": [
-              {
-                "images": "/images/me.png",
-                  "url": "https://www.wikipedia.org/",
-                  "title": "Wikipedia",
-                  "desc": "一个自由、免费、内容开放的百科全书，涵盖了各种领域的知识。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://www.coursera.org/",
-                  "title": "Coursera",
-                  "desc": "提供来自全球顶尖大学和机构的在线课程，涵盖多种学科，可帮助学习者提升技能和知识。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://www.edx.org/",
-                  "title": "edX",
-                  "desc": "非营利性的在线学习平台，提供高质量的课程，与众多高校和机构合作。"
-              }
-          ]
-      },
-      {
-          "categoryName": "娱乐社交",
-          "websites": [
-              {
-                "images": "/images/me.png",
-                  "url": "https://www.bilibili.com/",
-                  "title": "Bilibili",
-                  "desc": "国内知名的视频弹幕网站，有丰富的动漫、游戏、科技等各类视频内容。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://www.facebook.com/",
-                  "title": "Facebook",
-                  "desc": "全球知名的社交网络服务网站，用户可以分享动态、照片、视频，与朋友和家人保持联系。"
-              },
-              {
-                "images": "/images/me.png",
-                  "url": "https://www.instagram.com/",
-                  "title": "Instagram",
-                  "desc": "以分享照片和短视频为主的社交平台，在全球拥有大量用户，尤其受年轻人喜爱。"
-              }
-          ]
-      }
+    {
+      "categoryName": "技术开发",
+      "websites": [
+        {
+          "images": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+          "url": "https://github.com",
+          "title": "GitHub",
+          "desc": "全球最大的开源代码托管平台，开发者的聚集地，有海量的开源项目和丰富的代码资源。"
+        },
+        {
+          "images": "https://www.hover.dev/favicon.ico",
+          "url": "https://www.hover.dev/",
+          "title": "Hover.dev",
+          "desc": "Animated UI Component and Template for React"
+        },
+        {
+          "images": "/images/me.png",
+          "url": "https://stackoverflow.com/",
+          "title": "Stack Overflow",
+          "desc": "一个面向程序员的问答社区，开发者可以在这里提出和解决编程中遇到的各种问题。"
+        }
+      ]
+    },
+    {
+      "categoryName": "知识学习",
+      "websites": [
+        {
+          "images": "/images/me.png",
+          "url": "https://www.wikipedia.org/",
+          "title": "Wikipedia",
+          "desc": "一个自由、免费、内容开放的百科全书，涵盖了各种领域的知识。"
+        },
+        {
+          "images": "/images/me.png",
+          "url": "https://www.coursera.org/",
+          "title": "Coursera",
+          "desc": "提供来自全球顶尖大学和机构的在线课程，涵盖多种学科，可帮助学习者提升技能和知识。"
+        },
+        {
+          "images": "/images/me.png",
+          "url": "https://www.edx.org/",
+          "title": "edX",
+          "desc": "非营利性的在线学习平台，提供高质量的课程，与众多高校和机构合作。"
+        }
+      ]
+    },
+    {
+      "categoryName": "娱乐社交",
+      "websites": [
+        {
+          "images": "/images/me.png",
+          "url": "https://www.bilibili.com/",
+          "title": "Bilibili",
+          "desc": "国内知名的视频弹幕网站，有丰富的动漫、游戏、科技等各类视频内容。"
+        },
+        {
+          "images": "/images/me.png",
+          "url": "https://www.facebook.com/",
+          "title": "Facebook",
+          "desc": "全球知名的社交网络服务网站，用户可以分享动态、照片、视频，与朋友和家人保持联系。"
+        },
+        {
+          "images": "/images/me.png",
+          "url": "https://www.instagram.com/",
+          "title": "Instagram",
+          "desc": "以分享照片和短视频为主的社交平台，在全球拥有大量用户，尤其受年轻人喜爱。"
+        }
+      ]
+    }
   ]
 }

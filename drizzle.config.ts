@@ -1,6 +1,6 @@
 import type { Config } from 'drizzle-kit'
 
-import { env } from '~/lib/env'
+import { env } from './src/lib/env'
 
 export default {
   dialect: 'postgresql',

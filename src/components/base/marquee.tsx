@@ -1,5 +1,5 @@
-import { range } from 'lodash'
 import { cn } from '~/lib/utils'
+import { range } from '~/utils/range'
 
 interface MarqueeProps {
   children: React.ReactNode

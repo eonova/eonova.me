@@ -1,11 +1,11 @@
 /** @type {import('postcss-load-config').Config} */
 const config = {
   plugins: {
-    tailwindcss: {},
+    'tailwindcss': {},
     'postcss-lightningcss': {
-      browsers: '>= .25%'
-    }
+      browsers: '>= .25%',
+    },
   },
-};
+}
 
-export default config;
+export default config

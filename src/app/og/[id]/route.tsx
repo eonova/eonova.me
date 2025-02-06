@@ -1,13 +1,12 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { SITE_URL } from '@/lib/constants'
-import { db, eq, posts } from '@tszhong0411/db'
-import { getErrorMessage } from '@tszhong0411/utils'
 import { allBlogPosts } from 'mdx/generated'
 import { ImageResponse } from 'next/og'
-
 import { NextResponse } from 'next/server'
+import { SITE_URL } from '~/config/constants'
+import { db, eq, posts } from '~/db'
+import { getErrorMessage } from '~/utils/get-error-message'
 
 interface OGRouteProps {
   params: Promise<{

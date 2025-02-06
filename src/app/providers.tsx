@@ -1,6 +1,7 @@
 'use client'
 
 import type { ToasterProps } from '~/components/base/toaster'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { SessionProvider } from 'next-auth/react'
 import { AppProgressBar as LoadingProgressBar } from 'next-nprogress-bar'
 import { ThemeProvider, useTheme } from 'next-themes'
@@ -19,38 +20,41 @@ function Providers(props: ProvidesProps) {
   const { theme = 'system' } = useTheme()
 
   return (
-    <NuqsAdapter>
-      <TRPCReactProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          enableColorScheme
-          disableTransitionOnChange
-        >
-          <SessionProvider>
-            <TooltipProvider>
-              {children}
-              <Toaster
-                toastOptions={{
-                  duration: 2500,
-                }}
-                visibleToasts={5}
-                theme={theme as ToasterProps['theme']}
-                expand
-              />
-              <PageProgress />
-              <LoadingProgressBar
-                height="2px"
-                color="#6dc580d7"
-                options={{ showSpinner: false }}
-                shallowRouting
-              />
-            </TooltipProvider>
-          </SessionProvider>
-        </ThemeProvider>
-      </TRPCReactProvider>
-    </NuqsAdapter>
+    <>
+      <NuqsAdapter>
+        <TRPCReactProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            enableColorScheme
+            disableTransitionOnChange
+          >
+            <SessionProvider>
+              <TooltipProvider>
+                {children}
+                <Toaster
+                  toastOptions={{
+                    duration: 2500,
+                  }}
+                  visibleToasts={5}
+                  theme={theme as ToasterProps['theme']}
+                  expand
+                />
+                <PageProgress />
+                <LoadingProgressBar
+                  height="2px"
+                  color="#6dc580d7"
+                  options={{ showSpinner: false }}
+                  shallowRouting
+                />
+              </TooltipProvider>
+            </SessionProvider>
+          </ThemeProvider>
+        </TRPCReactProvider>
+      </NuqsAdapter>
+      <SpeedInsights />
+    </>
   )
 }
 
