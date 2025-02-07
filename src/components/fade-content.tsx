@@ -49,7 +49,7 @@ function FadeContent({
         } ${blur ? (inView ? 'blur-0' : 'blur-[3px]') : ''}`}
       style={{
         transition: `opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`,
-        opacity: inView ? '100' : initialOpacity
+        opacity: inView ? '100' : initialOpacity,
       }}
     >
       {children}

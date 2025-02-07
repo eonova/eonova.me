@@ -10,19 +10,18 @@ import { cn } from '~/lib/utils'
 type ImageProps = {
   imageClassName?: string
   lazy?: boolean
-} & React.ComponentPropsWithoutRef<typeof NextImage>
+} & React.ComponentProps<typeof NextImage>
 
-export function BlurImage({ ref, ...props }: ImageProps & { ref?: React.RefObject<HTMLImageElement | null> }) {
+function BlurImage(props: ImageProps) {
   const { alt, src, className, imageClassName, lazy = true, ...rest } = props
   const [isLoading, setIsLoading] = useState(true)
 
   return (
     <div className={cn('overflow-hidden', isLoading && 'animate-pulse', className)}>
       <NextImage
-        ref={ref}
         className={cn(isLoading && 'scale-[1.02] blur-xl grayscale', imageClassName)}
         style={{
-          transition: 'filter 700ms ease, transform 150ms ease',
+          transition: 'filter 700ms ease, scale 150ms ease',
         }}
         src={src}
         alt={alt}
@@ -38,4 +37,4 @@ export function BlurImage({ ref, ...props }: ImageProps & { ref?: React.RefObjec
   )
 }
 
-BlurImage.displayName = 'Image'
+export { BlurImage }

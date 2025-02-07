@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import AppointProgress from '~/components/about/appoint-progress'
 import BounceCards from '~/components/about/bounce-cards'
-import IntroCard from '~/components/about/initro-card'
+import IntroCard from '~/components/about/intro-card'
 import { VelocityScroll } from '~/components/about/scrollbasedvelocity'
 import BackgroundFont from '~/components/background-font'
 import Video from '~/components/mdx/video'
@@ -140,7 +140,7 @@ async function Page() {
         </>
         <>
           <IntroCard
-            className="h-[180px] col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs backdrop-blur-xs"
+            className="h-[180px] col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs"
             subheading="性格"
           >
             <div className="mt-2">
@@ -158,7 +158,7 @@ async function Page() {
             </div>
           </IntroCard>
           <IntroCard
-            className="h-[180px] col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs bg-[#fcb7bf] backdrop-blur-xs text-black"
+            className="h-[180px] col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl bg-[#fcb7bf] backdrop-blur-xs text-black"
             subheading="星座"
             isColor
           >
@@ -223,6 +223,15 @@ async function Page() {
         </>
         <>
           <IntroCard
+            className="h-72 col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs text-white"
+            subheading="番剧"
+            title="Charlotte"
+            desc="友利奈绪"
+            isColor
+          >
+            <Image className="absolute top-0 z-[-1] left-0 w-full h-full" src="/images/about/ylnx.jpg" alt="友利奈绪" width={400} height={200} />
+          </IntroCard>
+          <IntroCard
             className="h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl backdrop-blur-xs text-white"
             subheading="运动"
             title="羽毛球"
@@ -240,24 +249,15 @@ async function Page() {
           >
             <Image className="absolute top-0 z-[-1] left-0 w-full" src="/images/about/music.png" alt="音乐" width={300} height={150} />
           </IntroCard>
-          <IntroCard
-            className="h-72 col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs text-white"
-            subheading="番剧"
-            title="Charlotte"
-            desc="友利奈绪"
-            isColor
-          >
-            <Image className="absolute top-0 z-[-1] left-0 w-full h-full" src="/images/about/ylnx.jpg" alt="友利奈绪" width={200} height={150} />
-          </IntroCard>
         </>
         <>
           <IntroCard
-            className="h-50 col-span-1 md:col-span-2 lg:col-span-3 rounded-3xl bg-[#FDE047] backdrop-blur-xs text-[110px] flex justify-center items-center"
+            className="h-56 col-span-1 md:col-span-2 lg:col-span-3 rounded-3xl bg-[#FDE047] backdrop-blur-xs text-[110px] flex justify-center items-center"
             isColor
           >
             😆
           </IntroCard>
-          <QuoteCard className="h-50 col-span-1 md:col-span-2 lg:col-span-5 rounded-3xl backdrop-blur-xs" by="梭罗">人生是旷野，不是轨道。</QuoteCard>
+          <QuoteCard className="h-56 col-span-1 md:col-span-2 lg:col-span-5 rounded-3xl backdrop-blur-xs" by="梭罗">人生是旷野，不是轨道。</QuoteCard>
         </>
         <VelocityScroll
           className="font-sans text-center text-3xl font-bold  text-black dark:text-white md:text-4xl"
@@ -265,7 +265,7 @@ async function Page() {
           default_velocity={5}
         />
         <IntroCard
-          className="h-80 col-span-1 md:col-span-4 lg:col-span-8 dark:bg-[#1d1e22]/30 backdrop-blur-xs backdrop-blur-xs"
+          className="h-80 col-span-1 md:col-span-4 lg:col-span-8 dark:bg-[#1d1e22]/30 backdrop-blur-xs"
           subheading="约定"
           title="六年之约"
           desc="与jack叔叔的约定"

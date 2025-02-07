@@ -63,32 +63,32 @@ function GetInTouch() {
               src={me}
               width={3975}
               height={3975}
-              className="absolute left-1/2 top-1/2 size-20 -translate-x-1/2 -translate-y-1/2 rounded-[20px]"
+              className="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full"
               alt="我坐在办公桌前写程序"
             />
             <div
               id="next-js"
               className="absolute bottom-12 left-14 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
             >
-              Next.js
+              编程
             </div>
             <div
               id="react-js"
               className="absolute left-2 top-20 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
             >
-              React.js
+              生活
             </div>
             <div
               id="typescript"
               className="absolute bottom-20 right-1 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
             >
-              TypeScript
+              学习
             </div>
             <div
               id="javascript"
               className="absolute right-8 top-10 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
             >
-              JavaScript
+              技术
             </div>
 
             <div id="pointer" className="absolute">
@@ -115,10 +115,10 @@ function GetInTouch() {
 
           <div className="flex flex-col justify-center px-4">
             <p className="mb-2 bg-gradient-to-r from-black to-black/70 bg-clip-text text-3xl font-semibold text-transparent dark:from-zinc-100 dark:to-zinc-400">
-              有关 Next.js 的任何问题？
+              欢迎大家来找我交流
             </p>
             <p className="text-zinc-800 dark:text-zinc-300">
-              随时联络我！
+              期待ing (✧∀✧)
             </p>
             <div className="my-8">
               <a

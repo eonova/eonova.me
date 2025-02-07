@@ -78,10 +78,10 @@ const IntroCard: React.FC<IntroCardProps> = ({
       transition={{
         duration: 0.5,
       }}
-      className={cn('overflow-hidden relative p-6 px-8 rounded-3xl border dark:border-white/10 border-black/5 shadow-feature-card dark:shadow-feature-card-dark', className)}
+      className={cn('overflow-hidden relative rounded-3xl p-6 px-8 border dark:border-white/10 border-black/5 shadow-feature-card dark:shadow-feature-card-dark', className)}
     >
       <div
-        className="pointer-events-none absolute top-10 inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
         style={{
           opacity,
           background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,

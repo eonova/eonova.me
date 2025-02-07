@@ -3,6 +3,12 @@
 @import './shiki.css';
 @import './typography.css';
 
+@font-face {
+  font-family: 'World';
+  src: url('./fonts/kuaikanshijieti20231213.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @theme {
   --color-anchor: var(--anchor);
@@ -14,7 +20,7 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-world:  var(--font-world);
+  --font-world: 'World';
 }
 
 @layer base {

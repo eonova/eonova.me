@@ -12,41 +12,40 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
-// You might need to insert additional domains in script-src if you are using external services
 const NextConfigHeaders = [
   {
     source: '/(.*)',
     headers: [
       {
         key: 'Referrer-Policy',
-        value: 'strict-origin-when-cross-origin'
+        value: 'strict-origin-when-cross-origin',
       },
       {
         key: 'Permissions-Policy',
-        value: 'camera=(), microphone=(), geolocation=()'
+        value: 'camera=(), microphone=(), geolocation=()',
       },
       {
         key: 'Strict-Transport-Security',
-        value: 'max-age=31536000; includeSubDomains; preload'
+        value: 'max-age=31536000; includeSubDomains; preload',
       },
       {
         key: 'X-Frame-Options',
-        value: 'SAMEORIGIN'
+        value: 'SAMEORIGIN',
       },
       {
         key: 'X-Content-Type-Options',
-        value: 'nosniff'
+        value: 'nosniff',
       },
       {
         key: 'X-DNS-Prefetch-Control',
-        value: 'on'
+        value: 'on',
       },
       {
         key: 'X-XSS-Protection',
-        value: '1; mode=block'
-      }
-    ]
-  }
+        value: '1; mode=block',
+      },
+    ],
+  },
 ]
 
 /** @type {import('next').NextConfig} */
@@ -106,14 +105,12 @@ const CustomConfig = {
 
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      // 客户端构建时忽略这些模块
       config.resolve.fallback = {
         fs: false,
         net: false,
         dns: false,
         tls: false,
-        // 其他缺失的模块可以继续添加
-      };
+      }
     }
     if (process.env.REACT_SCAN_MONITOR_API_KEY) {
       config.plugins.push(ReactComponentName({}))

@@ -34,7 +34,8 @@ const QuoteCard: React.FC<QuoteCardProps> = (
       variants={variants}
       transition={{
         duration: 0.5,
-      }}>
+      }}
+    >
       <div className="quote-card-name">Quote</div>
       <div className="quote">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 330 307" height="80" width="80">
