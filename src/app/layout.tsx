@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import Script from 'next/script'
+import Dock from '~/components/layouts/dock'
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
 import { env } from '~/lib/env'
 import { cn } from '~/lib/utils'
@@ -119,6 +120,7 @@ export default function RootLayout({
       <body className="antialiased relative">
         <Providers>
           {children}
+          <Dock />
         </Providers>
         {
           env.REACT_SCAN_MONITOR_API_KEY

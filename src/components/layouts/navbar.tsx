@@ -11,14 +11,14 @@ function Navbar() {
 
   return (
     <nav>
-      <ul className="hidden gap-2 sm:flex">
+      <ul className="hidden gap-2 md:flex">
         {HEADER_LINKS.map((link) => {
           const isActive = link.href === pathname
 
           return (
             <li
               key={link.key}
-              className="relative flex h-[60px] items-center justify-center"
+              className="relative flex h-[55px] items-center justify-center"
             >
               <Link
                 className={cn(
@@ -36,11 +36,11 @@ function Navbar() {
               </Link>
               {isActive
                 ? (
-                    <>
-                      <div className="bg-nav-link-indicator dark:bg-nav-link-indicator-dark absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2" />
-                      <div className="absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-[4px] bg-[rgb(255_122_151)] blur dark:bg-[rgb(223_29_72)]" />
-                    </>
-                  )
+                  <>
+                    <div className="bg-nav-link-indicator dark:bg-nav-link-indicator-dark absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2" />
+                    <div className="absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-[4px] bg-[rgb(255_122_151)] blur dark:bg-[rgb(223_29_72)]" />
+                  </>
+                )
                 : null}
             </li>
           )

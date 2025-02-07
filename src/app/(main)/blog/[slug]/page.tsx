@@ -11,7 +11,6 @@ import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { flags } from '~/lib/env'
 import Footer from './footer'
 import Header from './header'
-import LikeButton from './like-button'
 import MobileTableOfContents from './mobile-table-of-contents'
 import Providers from './providers'
 
@@ -120,18 +119,19 @@ async function Page(props: PageProps) {
       <Providers post={post}>
         <Header />
 
-        <div className="mt-8 flex flex-col justify-between lg:flex-row gap-2">
-          <article className="w-full overflow-visible sm:px-4">
+        <div className="mt-8 w-full overflow-visible flex flex-col justify-between lg:flex-row gap-2">
+          <article className="w-full  sm:px-4">
             <Mdx code={code} />
           </article>
-          <aside className="lg:min-w-[270px] lg:max-w-[270px]">
-            <div className="sticky top-36">
-              {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
+          <aside className="w-[0] hidden lg:block">
+            <div className="sticky top-44">
+              <div className='absolute z-1 lg:min-w-[270px] lg:max-w-[270px]'>
+                {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
+              </div>
             </div>
-            {flags.likeButton ? <LikeButton slug={slug} /> : null}
           </aside>
         </div>
-        {toc.length > 0 ? <MobileTableOfContents toc={toc} /> : null}
+        {toc.length > 0 && <MobileTableOfContents toc={toc} />}
         <Footer />
       </Providers>
 

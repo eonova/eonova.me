@@ -9,7 +9,7 @@ function MobileNav() {
   return (
     <>
       <Button
-        className="flex size-8 sm:size-9 items-center justify-center p-0 sm:hidden"
+        className="flex size-8 md:size-9 items-center justify-center p-0 md:hidden"
         type="button"
         aria-label="Toggle menu"
         onClick={navStore.setIsVisible}

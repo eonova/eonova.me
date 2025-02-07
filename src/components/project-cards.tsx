@@ -30,7 +30,7 @@ function ProjectCard(props: ProjectCardProps) {
       className="shadow-feature-card dark:shadow-feature-card-dark group rounded-xl px-2 py-4"
     >
       <BlurImage
-        src={`/images/projects/${slug}/cover.png`}
+        src={`/images/projects/${slug}.png`}
         width={1280}
         height={832}
         imageClassName="group-hover:scale-105"

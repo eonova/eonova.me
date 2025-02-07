@@ -35,19 +35,19 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     visible: {
       y: 0,
       opacity: 1,
-      top: '10px',
+      top: '16px',
       transition: {
         duration: 0.3,
-        ease: 'easeOut',
+        ease: 'easeIn',
       },
     },
     // 滚动后隐藏状态
     hidden: {
-      y: -20, // 可以调整隐藏时的偏移量
-      opacity: 0.8, // 可以调整隐藏时的透明度
+      y: -100, // 可以调整隐藏时的偏移量
+      opacity: 0.7, // 可以调整隐藏时的透明度
       top: '-50px',
       transition: {
-        duration: 0.3,
+        duration: 0.5,
         ease: 'easeOut',
       },
     },
@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     <motion.header
       variants={headerVariants}
       className={cn(
-        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] max-w-5xl items-center justify-between rounded-full px-5 sm:px-8 mx-4 md:mx-auto shadow-sm backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 ',
+        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] sm:h-[55px] max-w-5xl items-center justify-between rounded-full px-5 sm:px-8 mx-4 md:mx-auto shadow-sm backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 during-300',
         isScrolled && 'bg-background/80',
         className,
       )}

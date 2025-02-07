@@ -1,118 +1,98 @@
-import { animated, useSpring, useSprings } from '@react-spring/web'
-import { useCallback, useEffect, useState } from 'react'
+'use client'
 
-function Dock({ position = 'bottom', collapsible = false, responsive = 'bottom' }) {
-  const [hoverIndex, setHoverIndex] = useState(null)
-  const [isDockVisible, setDockVisible] = useState(!collapsible)
-  const [currentPosition, setCurrentPosition] = useState(position)
+import { motion } from 'framer-motion'
+import { ArrowUp, MessageCircle, MoonIcon, SunIcon } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { cn } from '~/lib/utils'
 
-  const DOCK_ITEMS = ['🍕', '🍔', '🌭', '🌮', '🌯']
-
-  const getTranslateValue = useCallback((position, isHovered) => {
-    if (!isHovered)
-      return 'translateX(0px) translateY(0px)'
-
-    const translations = {
-      left: 'translateX(5px) translateY(0px)',
-      right: 'translateX(-5px) translateY(0px)',
-      top: 'translateX(0px) translateY(5px)',
-      bottom: 'translateX(0px) translateY(-5px)',
-    }
-    return translations[position]
-  }, [])
-
-  const [springs, api] = useSprings(
-    DOCK_ITEMS.length,
-    () => ({
-      scale: 1,
-      translate: 'translateX(0px) translateY(0px)',
-      config: { tension: 200, friction: 15 },
-    }),
-    [currentPosition],
-  )
-
-  useEffect(() => {
-    api.start((index) => {
-      const isHovered = index === hoverIndex
-      const isNeighbor = hoverIndex !== null && Math.abs(hoverIndex - index) === 1
-
-      return {
-        scale: isHovered ? 1.5 : isNeighbor ? 1.3 : 1,
-        translate: getTranslateValue(currentPosition, isHovered),
-        immediate: false,
-      }
-    })
-  }, [hoverIndex, currentPosition, api, getTranslateValue])
-
-  const handleMouseEnter = useCallback((index) => {
-    setHoverIndex(index)
-  }, [])
-
-  const handleMouseLeave = useCallback(() => {
-    setHoverIndex(null)
-  }, [])
-
-  const handleParentMouseEnter = useCallback(() => {
-    if (collapsible)
-      setDockVisible(true)
-  }, [collapsible])
-
-  const handleParentMouseLeave = useCallback(() => {
-    if (collapsible)
-      setDockVisible(false)
-  }, [collapsible])
-
-  useEffect(() => {
-    const updatePosition = () => {
-      setCurrentPosition(responsive && window.innerWidth <= 768 ? responsive : position)
-    }
-
-    updatePosition()
-    window.addEventListener('resize', updatePosition)
-    return () => window.removeEventListener('resize', updatePosition)
-  }, [position, responsive])
-
-  const getDockStyle = useCallback((position) => {
-    const styles = {
-      left: 'flex-col items-start justify-center h-full left-4',
-      right: 'flex-col items-end justify-center h-full right-4',
-      top: 'flex-row items-start justify-center w-full top-4',
-      bottom: 'flex-row items-end justify-center w-full bottom-4',
-    }
-    return styles[position] || styles.bottom
-  }, [])
-
-  const visibilitySpring = useSpring({
-    opacity: isDockVisible ? 1 : 0,
-    config: { tension: 120, friction: 14 },
-  })
-
-  return (
-    <div
-      className={`fixed w-24 h-36 pointer-events-none flex ${getDockStyle(currentPosition)}`}
-      onMouseEnter={handleParentMouseEnter}
-      onMouseLeave={handleParentMouseLeave}
-    >
-      <animated.div
-        className="flex pointer-events-auto border border-white/[0.11] p-3 rounded-[20px] transition-all duration-200 ease-out"
-        style={visibilitySpring}
-      >
-        {springs.map((springs, index) => (
-          <animated.div
-            key={DOCK_ITEMS[index]}
-            className="bg-[#060606] m-[5px] w-[50px] h-[50px] p-[10px] rounded-[10px] border border-white/[0.11] flex relative z-0 text-[1.5em] items-center justify-center transition-all duration-100 ease-out cursor-pointer pointer-events-auto hover:z-[2] hover:bg-[#111] hover:transition-colors hover:duration-300"
-            style={{
-              transform: springs.scale.to(s => `${springs.translate.get()} scale(${s})`),
-            }}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
-          >
-            {DOCK_ITEMS[index]}
-          </animated.div>
-        ))}
-      </animated.div>
-    </div>
-  )
+interface DockProps {
+  className?: string
 }
 
+const Dock: React.FC<DockProps> = ({
+  className,
+}) => {
+  const [isVisible, setIsVisible] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsVisible(true)
+      }
+      else {
+        setIsVisible(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
+  // 定义函数，用于点击时跳转到评论区
+  const goToCommentSection = () => {
+    const commentSection = document.getElementById('comment');
+    if (commentSection) {
+      commentSection.scrollIntoView({ behavior: 'smooth' }); // 平滑滚动
+    }
+  };
+
+  return (
+    <>
+      <motion.div
+        className={
+          cn('fixed right-3 bottom-25 rounded-full text-slate-700 dark:text-white bg-black/5 dark:bg-gray-300/10 duration-200 hidden lg:block', !isVisible && 'opacity-0', className)
+        }
+        initial={{ x: '120%' }}
+        animate={{ x: isVisible ? '0%' : '120%' }}
+        transition={{ duration: 0.3 }}
+      >
+        <ul className="flex flex-col justify-between items-center w-full h-full p-2 gap-2">
+          <li
+            className="dark:bg-white/10 cursor-pointer rounded-full p-2"
+            onClick={scrollToTop}
+          >
+            <ArrowUp className="size-6" />
+          </li>
+          <li
+            className="dark:bg-white/10 cursor-pointer rounded-full p-2"
+            onClick={toggleTheme}
+          >
+            <SunIcon
+              className="size-6 dark:hidden"
+            />
+            <MoonIcon
+              className="hidden size-6 dark:block"
+            />
+          </li>
+          {
+            pathname.match(/\/blog\//g)?.length === 1 && (
+              <li
+                className="dark:bg-white/10 cursor-pointer rounded-full p-2"
+                onClick={goToCommentSection}
+              >
+                <MessageCircle
+                  className="size-6" />
+              </li>
+            )
+          }
+        </ul>
+        {/* Content for the top motion.div */}
+      </motion.div>
+    </>
+  )
+}
 export default Dock

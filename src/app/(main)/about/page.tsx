@@ -179,7 +179,7 @@ async function Page() {
         </>
         <>
           <IntroCard
-            className="h-[215px] sm:h-[250px] col-span-1 md:col-span-1 lg:col-span-3 rounded-3xl backdrop-blur-xs p-5 text-white"
+            className="h-[250px] col-span-1 md:col-span-1 lg:col-span-3 rounded-3xl backdrop-blur-xs p-5 text-white"
             subheading="幸福感"
             title="捕捉美好瞬间"
             desc="感受生活"
@@ -200,13 +200,13 @@ async function Page() {
             </div>
           </IntroCard>
           <IntroCard
-            className="h-[215px] sm:h-[250px] col-span-1 md:col-span-3 lg:col-span-5 rounded-3xl backdrop-blur-xs p-5 text-white"
+            className="h-[165px] sm:h-[250px] col-span-1 md:col-span-3 lg:col-span-5 rounded-3xl backdrop-blur-xs p-5 text-white"
             subheading="兴趣"
             title="GUITAR 吉他"
             desc="乐器"
             isColor
           >
-            <div className="absolute top-[-15] sm:top-[-12] z-[-2] w-full h-full left-0">
+            <div className="absolute top-[-40] sm:top-[-12] z-[-2] w-full h-full left-0">
               <Video
                 className="min-w-[260px] min-h-[220px] w-full h-full"
                 src="https://img.leostar.top/study/bbbbd4a6b9e766ce6aa323bc7ce09113.mp4"
@@ -223,7 +223,7 @@ async function Page() {
         </>
         <>
           <IntroCard
-            className="h-72 col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs text-white"
+            className="h-60 sm:h-72 col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs text-white"
             subheading="番剧"
             title="Charlotte"
             desc="友利奈绪"

@@ -42,7 +42,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
       description,
       images: [
         {
-          url: `/images/projects/${slug}/cover.png`,
+          url: `/images/projects/${slug}.png`,
           width: 1280,
           height: 832,
           alt: description,
@@ -55,7 +55,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
       description,
       images: [
         {
-          url: `/images/projects/${slug}/cover.png`,
+          url: `/images/projects/${slug}.png`,
           width: 1280,
           height: 832,
           alt: description,
@@ -91,7 +91,7 @@ async function Page(props: PageProps) {
       'url': SITE_URL,
     },
     'sameAs': [github],
-    'screenshot': `${SITE_URL}/images/projects/${slug}/cover.png`,
+    'screenshot': `${SITE_URL}/images/projects/${slug}.png`,
   }
 
   return (
@@ -103,7 +103,7 @@ async function Page(props: PageProps) {
       <div className="mx-auto max-w-3xl">
         <Header {...project} />
         <BlurImage
-          src={`/images/projects/${slug}/cover.png`}
+          src={`/images/projects/${slug}.png`}
           width={1280}
           height={832}
           alt={name}

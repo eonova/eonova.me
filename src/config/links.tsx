@@ -41,16 +41,16 @@ export const HEADER_LINKS = [
     text: '项目',
   },
   {
-    icon: <MessageCircleIcon className="size-6" />,
-    href: '/guestbook',
-    key: 'guestbook',
-    text: '留言板',
-  },
-  {
     icon: <Link2 className="size-6" />,
     href: '/links',
     key: 'links',
     text: '收藏夹',
+  },
+  {
+    icon: <MessageCircleIcon className="size-6" />,
+    href: '/guestbook',
+    key: 'guestbook',
+    text: '留言板',
   },
   {
     icon: <Images className="size-6" />,

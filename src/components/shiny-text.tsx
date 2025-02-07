@@ -4,12 +4,13 @@ import { cn } from '~/lib/utils'
 
 interface ShinyTextProps {
   text: string
+  title: string
   disabled?: boolean
   speed?: number
   className?: string
 }
 
-const ShinyText: React.FC<ShinyTextProps> = ({ text, disabled = false, speed = 5, className = '' }) => {
+const ShinyText: React.FC<ShinyTextProps> = ({ text, title, disabled = false, speed = 5, className = '' }) => {
   const animationDuration = `${speed}s`
 
   return (
@@ -21,6 +22,7 @@ const ShinyText: React.FC<ShinyTextProps> = ({ text, disabled = false, speed = 5
         WebkitBackgroundClip: 'text',
         animationDuration,
       }}
+      title={title}
     >
       {text}
     </div>

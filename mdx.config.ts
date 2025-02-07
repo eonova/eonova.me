@@ -2,7 +2,7 @@ import { defineCollection, defineConfig } from '@ileostar/mdx'
 
 const BlogPost = defineCollection({
   name: 'BlogPost',
-  filePathPattern: '**/posts/*.mdx',
+  filePathPattern: '**/posts/*.md',
   fields: [
     {
       name: 'title',
@@ -43,7 +43,7 @@ const BlogPost = defineCollection({
 
 const Project = defineCollection({
   name: 'Project',
-  filePathPattern: '**/projects/*.mdx',
+  filePathPattern: '**/projects/*.md',
   fields: [
     {
       name: 'name',
@@ -81,18 +81,13 @@ const Project = defineCollection({
       name: 'selected',
       type: 'boolean',
     },
-    {
-      name: 'cover',
-      type: 'string',
-      required: true,
-    },
   ],
   computedFields: [
     {
       name: 'slug',
       type: 'string',
       resolve: (doc) => {
-        return doc.filePath.split('/').pop()?.replace('.mdx', '')
+        return doc.filePath.split('/').pop()?.replace('.md', '')
       },
     },
   ],
