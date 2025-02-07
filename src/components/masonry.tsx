@@ -4,7 +4,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { a, useTransition } from 'react-spring'
 
-import '~/styles/masonry.css'
+import '~/styles/page/masonry.css'
 
 function Masonry({ data }) {
   const [columns, setColumns] = useState(2)

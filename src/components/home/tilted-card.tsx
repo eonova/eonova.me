@@ -2,7 +2,7 @@
 import type { ReactNode } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useRef, useState } from 'react'
-import '~/styles/tilted.css'
+import '~/styles/page/tilted.css'
 
 const springValues = {
   damping: 30,

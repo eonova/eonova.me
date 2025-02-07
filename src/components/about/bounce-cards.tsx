@@ -2,7 +2,7 @@
 import { gsap } from 'gsap'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
-import '~/styles/bounce.css'
+import '~/styles/page/bounce.css'
 
 interface BounceCardsProps {
   className?: string

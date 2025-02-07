@@ -2,7 +2,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { cn } from '~/lib/utils'
-import '~/styles/quote.css'
+import '~/styles/page/quote.css'
 
 interface QuoteCardProps {
   className?: string

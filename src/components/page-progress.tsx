@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import '~/styles/progress.css'
+import '~/styles/page/progress.css'
 
 const PageProgress: React.FC = () => {
   useEffect(() => {

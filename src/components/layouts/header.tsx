@@ -11,7 +11,7 @@ import Logo from '../logo'
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
 import ThemeToggle from './theme-toggle'
-import '~/styles/header.css'
+import '~/styles/page/header.css'
 
 interface HeaderProps {
   className?: string
