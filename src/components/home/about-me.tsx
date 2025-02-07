@@ -6,11 +6,12 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { cn } from '~/lib/utils'
 import { buttonVariants } from '../base/button'
-import CodingTime from './coding-time'
+import CodingTime from './coding-hours'
 import Connect from './connect'
 import FavoriteFramework from './favorite-framework'
 import LocationCard from './location-card'
 import StacksCard from './stacks-card'
+import CodingHours from './coding-hours'
 
 const variants = {
   initial: {
@@ -75,7 +76,7 @@ function AboutMe() {
         <div className="grid gap-4">
           <Connect />
           <div className="grid gap-4 [@media(min-width:450px)]:grid-cols-2">
-            <CodingTime />
+            <CodingHours />
             <FavoriteFramework />
           </div>
         </div>
