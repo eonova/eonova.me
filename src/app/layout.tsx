@@ -99,11 +99,6 @@ export const viewport: Viewport = {
   ],
 }
 
-const worldfont = localFont({
-  src: '../../public/fonts/kuaikanshijieti20231213.ttf',
-  variable: '--font-world',
-})
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -112,7 +107,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(GeistSans.variable, GeistMono.variable, worldfont.variable, 'scroll-smooth')}
+      className={cn(GeistSans.variable, GeistMono.variable, 'scroll-smooth')}
       suppressHydrationWarning
     >
       <head>

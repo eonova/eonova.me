@@ -4,23 +4,25 @@
     "resourceSizes": [
       {
         "resourceType": "total",
-        "budget": 1600
+        "budget": 3200
       }
     ]
-  },{
+  },
+  {
     "path": "/about",
     "resourceSizes": [
       {
         "resourceType": "total",
-        "budget": 1600
+        "budget": 3200
       }
     ]
-  },{
+  },
+  {
     "path": "/blog",
     "resourceSizes": [
       {
         "resourceType": "total",
-        "budget": 1600
+        "budget": 3200
       }
     ]
   }
