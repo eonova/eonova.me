@@ -51,7 +51,7 @@ const MobileNavAside: React.FC<MobileNavAsideProps> = ({ className }) => {
         animate={navStore.isVisible ? 'open' : 'closed'}
         variants={sidebarVariants}
         className={cn(
-          `fixed top-0 z-[999] h-screen bg-white dark:bg-gray-800 w-96 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 sm:hidden px-10`,
+          `fixed top-0 z-[999] h-screen bg-white dark:bg-gray-800 w-[80vw] transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 sm:hidden px-10`,
           className,
         )}
       >
@@ -71,8 +71,8 @@ const MobileNavAside: React.FC<MobileNavAsideProps> = ({ className }) => {
             alt="LeoStar"
           />
           <div className="flex flex-col gap-2">
-            <h2 className="font-world text-3xl">LeoStar</h2>
-            <h3 className="text-gray-600/80 dark:text-white/50">一个爱捣鼓的前端</h3>
+            <h3 className="font-world text-3xl">LeoStar</h3>
+            <h4 className="text-gray-600/80 dark:text-white/50">一个爱捣鼓的前端</h4>
           </div>
         </div>
         <Separator className="mx-auto" />

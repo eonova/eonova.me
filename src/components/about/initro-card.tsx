@@ -81,14 +81,14 @@ const IntroCard: React.FC<IntroCardProps> = ({
       className={cn('overflow-hidden relative p-6 px-8 rounded-3xl border dark:border-white/10 border-black/5 shadow-feature-card dark:shadow-feature-card-dark', className)}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        className="pointer-events-none absolute top-10 inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
         style={{
           opacity,
           background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
         }}
       />
-      {subheading && <h4 className={cn("text-black/50 dark:text-white/60 font-mono text-[10px]", isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{subheading}</h4>}
-      {title && <h3 className="font-world text-4xl mt-5">{title}</h3>}
+      {subheading && <p className={cn('text-black/50 dark:text-white/60 font-mono text-[10px]', isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{subheading}</p>}
+      {title && <p className="font-world text-4xl mt-5">{title}</p>}
       {children}
       {desc && <p className={cn('font-mono absolute bottom-6', isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{desc}</p>}
     </motion.div>

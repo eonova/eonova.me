@@ -8,6 +8,7 @@ import BounceCards from '~/components/about/bounce-cards'
 import IntroCard from '~/components/about/initro-card'
 import { VelocityScroll } from '~/components/about/scrollbasedvelocity'
 import BackgroundFont from '~/components/background-font'
+import Video from '~/components/mdx/video'
 import PageTitle from '~/components/page-title'
 import QuoteCard from '~/components/quote-card'
 import {
@@ -30,7 +31,6 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
-import Video from '~/components/mdx/video'
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = '关于'
@@ -115,7 +115,7 @@ async function Page() {
             desc="一名前端开发Coder、UI设计狮"
             isColor
           >
-            <div className='mt-3'>
+            <div className="mt-3">
               <h2>你好，很高兴认识你👋</h2>
               <p>我是 LeoStar</p>
             </div>
@@ -180,68 +180,70 @@ async function Page() {
         <>
           <IntroCard
             className="h-[215px] sm:h-[250px] col-span-1 md:col-span-1 lg:col-span-3 rounded-3xl backdrop-blur-xs backdrop-blur-xs p-5 text-white"
-            subheading='幸福感'
-            title='捕捉美好瞬间'
-            desc='感受生活'
-            isColor={true}
+            subheading="幸福感"
+            title="捕捉美好瞬间"
+            desc="感受生活"
+            isColor
           >
-            <div className='absolute top-[-15] z-[-2] w-full h-full left-0'>
+            <div className="absolute top-[-15] z-[-2] w-full h-full left-0">
               <Video
                 className="min-w-[260px] w-full"
-                src='/videos/about/beauty.mp4'
-                autoPlay={true}
+                src="https://img.leostar.top/study/08512629bf6cd862577020adee823f71.mp4"
+                autoPlay
                 width={0}
                 height={0}
                 controls={false}
-                loop={true}
-                muted={true}
+                loop
+                muted
               />
             </div>
           </IntroCard>
           <IntroCard
             className="h-[215px] sm:h-[250px] col-span-1 md:col-span-3 lg:col-span-5 rounded-3xl backdrop-blur-xs backdrop-blur-xs p-5 text-white"
-            subheading='兴趣'
-            title='GUITAR 吉他'
-            desc='乐器'
-            isColor={true}
+            subheading="兴趣"
+            title="GUITAR 吉他"
+            desc="乐器"
+            isColor
           >
-            <div className='absolute top-[-15] sm:top-[-12] z-[-2] w-full h-full left-0'>
+            <div className="absolute top-[-15] sm:top-[-12] z-[-2] w-full h-full left-0">
               <Video
                 className="min-w-[260px] min-h-[220px] w-full h-full"
-                src='/videos/about/guitar.mp4'
-                autoPlay={true}
+                src="https://img.leostar.top/study/bbbbd4a6b9e766ce6aa323bc7ce09113.mp4"
+                autoPlay
                 width={0}
                 height={0}
                 controls={false}
-                loop={true}
-                muted={true}
+                loop
+                muted
               />
             </div>
           </IntroCard>
         </>
         <>
-          <IntroCard className="h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl backdrop-blur-xs backdrop-blur-xs text-white"
-            subheading='运动'
-            title='羽毛球'
-            desc='Sport'
-            isColor={true}
+          <IntroCard
+            className="h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl backdrop-blur-xs backdrop-blur-xs text-white"
+            subheading="运动"
+            title="羽毛球"
+            desc="Sport"
+            isColor
           >
             <Image className="absolute top-0 z-[-1] left-0 w-full" src="/images/about/badminton.png" alt="羽毛球" width={200} height={150} />
           </IntroCard>
           <IntroCard
             className="h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl backdrop-blur-xs font-world  backdrop-blur-xs overflow-hidden text-white"
-            subheading='音乐'
-            title='华语流行'
-            desc='Music'
-            isColor={true}
+            subheading="音乐"
+            title="华语流行"
+            desc="Music"
+            isColor
           >
             <Image className="absolute top-0 z-[-1] left-0 w-full" src="/images/about/music.png" alt="音乐" width={300} height={150} />
           </IntroCard>
-          <IntroCard className="h-72 col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs backdrop-blur-xs text-white"
-            subheading='番剧'
-            title='Charlotte'
-            desc='友利奈绪'
-            isColor={true}
+          <IntroCard
+            className="h-72 col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs backdrop-blur-xs text-white"
+            subheading="番剧"
+            title="Charlotte"
+            desc="友利奈绪"
+            isColor
           >
             <Image className="absolute top-0 z-[-1] left-0 w-full h-full" src="/images/about/ylnx.jpg" alt="友利奈绪" width={200} height={150} />
           </IntroCard>
@@ -253,7 +255,7 @@ async function Page() {
           >
             😆
           </IntroCard>
-          <QuoteCard className="h-50 col-span-1 md:col-span-2 lg:col-span-5 rounded-3xl backdrop-blur-xs" by='梭罗'>人生是旷野，不是轨道。</QuoteCard>
+          <QuoteCard className="h-50 col-span-1 md:col-span-2 lg:col-span-5 rounded-3xl backdrop-blur-xs" by="梭罗">人生是旷野，不是轨道。</QuoteCard>
         </>
         <VelocityScroll
           className="font-sans text-center text-3xl font-bold  text-black dark:text-white md:text-4xl"
