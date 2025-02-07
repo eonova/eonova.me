@@ -105,6 +105,7 @@ const CustomConfig = {
 
   webpack: (config, { isServer }) => {
     if (!isServer) {
+      config.cache = false
       config.resolve.fallback = {
         fs: false,
         net: false,
