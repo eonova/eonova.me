@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import localFont from 'next/font/local'
 import Script from 'next/script'
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
 import { env } from '~/lib/env'
@@ -99,11 +98,6 @@ export const viewport: Viewport = {
   ],
 }
 
-const WorldFont = localFont({
-  src: '../../public/fonts/kuaikanshijieti20231213.woff2',
-  variable: '--font-world',
-})
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -112,7 +106,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(GeistSans.variable, GeistMono.variable, WorldFont.variable, 'scroll-smooth')}
+      className={cn(GeistSans.variable, GeistMono.variable, 'scroll-smooth')}
       suppressHydrationWarning
     >
       <head>
