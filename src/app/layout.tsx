@@ -7,7 +7,6 @@ import { env } from '~/lib/env'
 import { cn } from '~/lib/utils'
 import Providers from './providers'
 import ReactScan from './react-scan'
-import '@fontsource/carter-one'
 import '~/styles/globals.css'
 
 export const metadata: Metadata = {
