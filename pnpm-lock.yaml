@@ -113,6 +113,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      cn-fontsource-ding-talk-jin-bu-ti-regular:
+        specifier: ^1.0.3
+        version: 1.0.3
       cobe:
         specifier: ^0.6.3
         version: 0.6.3
@@ -4657,6 +4660,9 @@ packages:
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
       react-dom: ^18 || ^19 || ^19.0.0-rc
+
+  cn-fontsource-ding-talk-jin-bu-ti-regular@1.0.3:
+    resolution: {integrity: sha512-DeSn8ooCvRnYxC2306F/rFb5jI9AquYGwGlTlc1LeJjpoSE/rKPndGlGrjyFFXsPyJq4vbrlU+Rwtp2DzWXEJw==}
 
   cobe@0.6.3:
     resolution: {integrity: sha512-WHr7X4o1ym94GZ96h7b1pNemZJacbOzd02dZtnVwuC4oWBaLg96PBmp2rIS1SAhUDhhC/QyS9WEqkpZIs/ZBTg==}
@@ -13329,6 +13335,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
+
+  cn-fontsource-ding-talk-jin-bu-ti-regular@1.0.3: {}
 
   cobe@0.6.3:
     dependencies:

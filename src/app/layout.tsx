@@ -114,6 +114,7 @@ export default function RootLayout({
           src="https://unpkg.com/react-scan/dist/install-hook.global.js"
           strategy="beforeInteractive"
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
       </head>
       <body className="antialiased relative">
         <Providers>

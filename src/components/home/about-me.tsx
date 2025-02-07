@@ -6,12 +6,11 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { cn } from '~/lib/utils'
 import { buttonVariants } from '../base/button'
-import CodingTime from './coding-hours'
+import CodingHours from './coding-hours'
 import Connect from './connect'
 import FavoriteFramework from './favorite-framework'
 import LocationCard from './location-card'
 import StacksCard from './stacks-card'
-import CodingHours from './coding-hours'
 
 const variants = {
   initial: {

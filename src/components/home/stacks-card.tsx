@@ -1,25 +1,36 @@
 'use client'
 
 import {
+  SiApifox,
+  SiBun,
   SiCloudflare,
   SiCss3,
+  SiDiscord,
+  SiDrizzle,
   SiFigma,
   SiFirebase,
   SiGit,
+  SiGithub,
   SiHtml5,
+  SiIconify,
   SiJavascript,
-  SiJest,
   SiMarkdown,
   SiMysql,
   SiNextdotjs,
   SiNodedotjs,
+  SiOllama,
   SiPostgresql,
-  SiPrisma,
   SiPython,
   SiReact,
+  SiRenovate,
   SiTailwindcss,
+  SiTampermonkey,
+  SiThreedotjs,
   SiTypescript,
   SiVite,
+  SiVitest,
+  SiVuedotjs,
+  SiWakatime,
 } from '@icons-pack/react-simple-icons'
 import { ZapIcon } from 'lucide-react'
 import { Marquee } from '../base/marquee'
@@ -39,21 +50,31 @@ function StacksCard() {
         <SiFigma className="size-10" />
         <SiTailwindcss className="size-10" />
         <SiNextdotjs className="size-10" />
+        <SiVuedotjs className="size-10" />
         <SiReact className="size-10" />
         <SiPython className="size-10" />
         <SiPostgresql className="size-10" />
+        <SiThreedotjs className="size-10" />
+        <SiRenovate className="size-10" />
+        <SiApifox className="size-10" />
+        <SiIconify className="size-10" />
       </Marquee>
       <Marquee gap="20px" className="py-4" reverse fade pauseOnHover>
-        <SiPrisma className="size-10" />
+        <SiBun className="size-10" />
         <SiMysql className="size-10" />
         <SiFirebase className="size-10" />
         <SiGit className="size-10" />
         <SiVite className="size-10" />
-        <SiCloudflare className="size-10" />
+        <SiDrizzle className="size-10" />
         <SiCloudflare className="size-10" />
         <SiMarkdown className="size-10" />
-        <SiJest className="size-10" />
+        <SiVitest className="size-10" />
         <SiNodedotjs className="size-10" />
+        <SiGithub className="size-10" />
+        <SiDiscord className="size-10" />
+        <SiWakatime className="size-10" />
+        <SiOllama className="size-10" />
+        <SiTampermonkey className="size-10" />
       </Marquee>
     </div>
   )
