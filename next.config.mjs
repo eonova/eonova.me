@@ -3,6 +3,7 @@ import { withMDX } from '@ileostar/mdx/next'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import { createJiti } from 'jiti'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
+import CompressionPlugin from 'compression-webpack-plugin'
 
 const jiti = createJiti(fileURLToPath(import.meta.url))
 
@@ -50,9 +51,11 @@ const NextConfigHeaders = [
 
 /** @type {import('next').NextConfig} */
 const CustomConfig = {
+  compress: true,
+  productionBrowserSourceMaps: true,
   reactStrictMode: true,
 
-  serverExternalPackages: ['pg', 'drizzle-orm'],
+  serverExternalPackages: ['pg', 'drizzle-orm', 'pg-native'],
   experimental: {
     optimizePackageImports: ['shiki'],
   },
@@ -112,6 +115,14 @@ const CustomConfig = {
         dns: false,
         tls: false,
       }
+      config.plugins.push(
+        new CompressionPlugin({
+          algorithm: 'gzip',
+          test: /\.js$|\.css$|\.html$/,
+          threshold: 10240, // 10KB
+          minRatio: 0.8,
+        })
+      )
     }
     if (process.env.REACT_SCAN_MONITOR_API_KEY) {
       config.plugins.push(ReactComponentName({}))
