@@ -123,14 +123,14 @@ async function Page() {
           </IntroCard>
           <div className="flex flex-col gap-5 justify-between col-span-1 md:col-span-2 lg:col-span-3">
             <IntroCard
-              className="h-[90px] w-full rounded-3xl backdrop-blur-xs bg-[#FDE047] backdrop-blur-xs flex items-center justify-between font-world text-white"
+              className="h-[90px] w-full rounded-3xl bg-[#FDE047] backdrop-blur-xs flex items-center justify-between font-world text-white"
               isColor
             >
               <h2 className="text-2xl">生于</h2>
               <p className="text-[32px]">{DATE_BIRTH}</p>
             </IntroCard>
             <IntroCard
-              className="h-[90px] w-full rounded-3xl backdrop-blur-xs bg-[#FDBA74] backdrop-blur-xs flex items-center justify-between font-world text-white"
+              className="h-[90px] w-full rounded-3xl bg-[#FDBA74] backdrop-blur-xs flex items-center justify-between font-world text-white"
               isColor
             >
               <h2 className="text-2xl">专业</h2>
@@ -179,7 +179,7 @@ async function Page() {
         </>
         <>
           <IntroCard
-            className="h-[215px] sm:h-[250px] col-span-1 md:col-span-1 lg:col-span-3 rounded-3xl backdrop-blur-xs backdrop-blur-xs p-5 text-white"
+            className="h-[215px] sm:h-[250px] col-span-1 md:col-span-1 lg:col-span-3 rounded-3xl backdrop-blur-xs p-5 text-white"
             subheading="幸福感"
             title="捕捉美好瞬间"
             desc="感受生活"
@@ -199,7 +199,7 @@ async function Page() {
             </div>
           </IntroCard>
           <IntroCard
-            className="h-[215px] sm:h-[250px] col-span-1 md:col-span-3 lg:col-span-5 rounded-3xl backdrop-blur-xs backdrop-blur-xs p-5 text-white"
+            className="h-[215px] sm:h-[250px] col-span-1 md:col-span-3 lg:col-span-5 rounded-3xl backdrop-blur-xs p-5 text-white"
             subheading="兴趣"
             title="GUITAR 吉他"
             desc="乐器"
@@ -213,6 +213,7 @@ async function Page() {
                 width={0}
                 height={0}
                 controls={false}
+                preload="metadata"
                 loop
                 muted
               />
@@ -221,7 +222,7 @@ async function Page() {
         </>
         <>
           <IntroCard
-            className="h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl backdrop-blur-xs backdrop-blur-xs text-white"
+            className="h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl backdrop-blur-xs text-white"
             subheading="运动"
             title="羽毛球"
             desc="Sport"
@@ -230,7 +231,7 @@ async function Page() {
             <Image className="absolute top-0 z-[-1] left-0 w-full" src="/images/about/badminton.png" alt="羽毛球" width={200} height={150} />
           </IntroCard>
           <IntroCard
-            className="h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl backdrop-blur-xs font-world  backdrop-blur-xs overflow-hidden text-white"
+            className="h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl font-world  backdrop-blur-xs overflow-hidden text-white"
             subheading="音乐"
             title="华语流行"
             desc="Music"
@@ -239,7 +240,7 @@ async function Page() {
             <Image className="absolute top-0 z-[-1] left-0 w-full" src="/images/about/music.png" alt="音乐" width={300} height={150} />
           </IntroCard>
           <IntroCard
-            className="h-72 col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs backdrop-blur-xs text-white"
+            className="h-72 col-span-1 md:col-span-2 lg:col-span-4 rounded-3xl backdrop-blur-xs text-white"
             subheading="番剧"
             title="Charlotte"
             desc="友利奈绪"
@@ -250,7 +251,7 @@ async function Page() {
         </>
         <>
           <IntroCard
-            className="h-50 col-span-1 md:col-span-2 lg:col-span-3 rounded-3xl backdrop-blur-xs bg-[#FDE047] backdrop-blur-xs text-[110px] flex justify-center items-center"
+            className="h-50 col-span-1 md:col-span-2 lg:col-span-3 rounded-3xl bg-[#FDE047] backdrop-blur-xs text-[110px] flex justify-center items-center"
             isColor
           >
             😆

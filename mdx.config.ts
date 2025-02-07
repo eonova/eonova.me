@@ -98,21 +98,7 @@ const Project = defineCollection({
   ],
 })
 
-const Page = defineCollection({
-  name: 'Page',
-  filePathPattern: '**/pages/*.mdx',
-  computedFields: [
-    {
-      name: 'slug',
-      type: 'string',
-      resolve: (doc) => {
-        return doc.filePath.split('/').pop()?.replace('.mdx', '')
-      },
-    },
-  ],
-})
-
 export default defineConfig({
   contentDirPath: 'data/',
-  collections: [BlogPost, Project, Page],
+  collections: [BlogPost, Project],
 })
