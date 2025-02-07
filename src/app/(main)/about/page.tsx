@@ -34,7 +34,7 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = '关于'
-  const description = '👋 嗨！我是 LeoStar，，一个爱捣鼓的前端开发。'
+  const description = '👋 嗨！我是 LeoStar，一个爱捣鼓的前端开发。'
   const url = '/about'
 
   return {
