@@ -99,6 +99,11 @@ export const viewport: Viewport = {
   ],
 }
 
+const worldfont = localFont({
+  src: '../styles/fonts/kuaikanshijieti20231213.ttf',
+  variable: '--font-world',
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -107,7 +112,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(GeistSans.variable, GeistMono.variable, 'scroll-smooth')}
+      className={cn(GeistSans.variable, GeistMono.variable, worldfont.variable, 'scroll-smooth')}
       suppressHydrationWarning
     >
       <head>
@@ -120,11 +125,10 @@ export default function RootLayout({
         <Providers>
           {children}
         </Providers>
-        {env.REACT_SCAN_MONITOR_API_KEY
-          ? (
-            <ReactScan apiKey={env.REACT_SCAN_MONITOR_API_KEY} />
-          )
-          : null}
+        {
+          env.REACT_SCAN_MONITOR_API_KEY
+          && <ReactScan apiKey={env.REACT_SCAN_MONITOR_API_KEY} />
+        }
       </body>
     </html>
   )
