@@ -6,10 +6,15 @@ import { SessionProvider } from 'next-auth/react'
 import { AppProgressBar as LoadingProgressBar } from 'next-nprogress-bar'
 import { ThemeProvider, useTheme } from 'next-themes'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import { Suspense } from 'react'
+import Analytics from '~/components/base/analytics'
 import { Toaster } from '~/components/base/toaster'
 import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/page-progress'
+import SignInDialog from '~/components/sign-in-dialog'
+import { flags } from '~/lib/env'
 import { TRPCReactProvider } from '~/trpc/react'
+import Debug from './debug'
 
 interface ProvidesProps {
   children: React.ReactNode
@@ -33,6 +38,8 @@ function Providers(props: ProvidesProps) {
             <SessionProvider>
               <TooltipProvider>
                 {children}
+                {flags.analytics ? <Analytics /> : null}
+                <SignInDialog />
                 <Toaster
                   toastOptions={{
                     duration: 2500,
@@ -41,6 +48,9 @@ function Providers(props: ProvidesProps) {
                   theme={theme as ToasterProps['theme']}
                   expand
                 />
+                <Suspense>
+                  <Debug />
+                </Suspense>
                 <PageProgress />
                 <LoadingProgressBar
                   height="2px"

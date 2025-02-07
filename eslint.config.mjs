@@ -3,7 +3,11 @@ import antfu from '@antfu/eslint-config'
 export default antfu({
   react: true,
   typescript: true,
-  stylistic: true,
+  stylistic: {
+    rules: {
+      'css.lint.unknownAtRules': 'ignore',
+    },
+  },
   markdown: true,
   ignores: [
     './README.md',

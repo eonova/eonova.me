@@ -56,6 +56,7 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "next.config.mjs",
+    "postcss.config.mjs",
     "drizzle.config.ts"
   ],
   "exclude": ["node_modules"]

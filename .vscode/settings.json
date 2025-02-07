@@ -1,22 +1,46 @@
 {
-  "cSpell.words": [
-    "cmdk",
-    "cobe",
-    "Contentlayer",
-    "ENFP",
-    "kuaikanshijieti",
-    "lightningcss",
-    "normy",
-    "nuqs",
-    "popmotion",
-    "sonner",
-    "techstack",
-    "tszhong",
-    "turbopack",
-    "Upyun",
-    "usehooks",
-    "Visualstudiocode",
-    "worldfont"
+  "cSpell.diagnosticLevel": "Warning",
+  "cSpell.enabled": true,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
+
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+
+  "eslint.runtime": "node",
+  "eslint.useFlatConfig": true,
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+
+  "files.associations": {
+    "*.css": "tailwindcss",
+    ".env*": "properties"
+  },
+
+  "files.watcherExclude": {
+    "**/.auth/**": true,
+    "**/.eslint-config-inspector": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.hg/store/**": true,
+    "**/.mdx/**": true,
+    "**/.next/**": true,
+    "**/.turbo/**": true,
+    "**/.vercel/**": true,
+    "**/coverage/**": true,
+    "**/dist/**": true,
+    "**/node_modules/**": true,
+    "**/playwright-report/**": true,
+    "**/test-results/**": true
+  },
+
+  "tailwindCSS.experimental.classRegex": [
+    ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
-  "oxc.enable": false
+
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

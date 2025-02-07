@@ -45,10 +45,11 @@ function FadeContent({
   return (
     <div
       ref={ref}
-      className={`${className} transition-opacity ${blur ? 'transition-[opacity,filter]' : ''} ${inView ? 'opacity-100' : `opacity-[${initialOpacity}]`
+      className={`${className} transition-opacity ${blur ? 'transition-[opacity,filter]' : ''}
         } ${blur ? (inView ? 'blur-0' : 'blur-[3px]') : ''}`}
       style={{
         transition: `opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`,
+        opacity: inView ? '100' : initialOpacity
       }}
     >
       {children}
