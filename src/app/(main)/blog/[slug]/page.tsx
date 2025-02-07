@@ -4,15 +4,14 @@ import type { Article, WithContext } from 'schema-dts'
 import { allBlogPosts } from 'mdx/generated'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
-
 import Comments from '~/components/comments'
-import MenuAside from '~/components/layouts/menu-aside'
+import TableOfContents from '~/components/layouts/table-of-contents'
 import Mdx from '~/components/mdx'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { flags } from '~/lib/env'
 import Footer from './footer'
-
 import Header from './header'
+import LikeButton from './like-button'
 import MobileTableOfContents from './mobile-table-of-contents'
 import Providers from './providers'
 
@@ -81,8 +80,7 @@ async function Page(props: PageProps) {
   const { slug } = await props.params
 
   const post = allBlogPosts.find(p => p.slug === slug)
-  const localizedPath = `/blog/${slug}`
-  const url = `${SITE_URL}${localizedPath}`
+  const url = `${SITE_URL}/blog/${slug}`
 
   if (!post) {
     notFound()
@@ -126,19 +124,24 @@ async function Page(props: PageProps) {
           <article className="w-full overflow-visible sm:px-4">
             <Mdx code={code} />
           </article>
-          <MenuAside toc={toc} />
+          <aside className="lg:min-w-[270px] lg:max-w-[270px]">
+            <div className="sticky top-36">
+              {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
+            </div>
+            {flags.likeButton ? <LikeButton slug={slug} /> : null}
+          </aside>
         </div>
         {toc.length > 0 ? <MobileTableOfContents toc={toc} /> : null}
         <Footer />
       </Providers>
 
-      {flags.comment
-        ? (
+      {
+        flags.comment && (
           <Suspense>
             <Comments slug={slug} />
           </Suspense>
         )
-        : null}
+      }
     </>
   )
 }

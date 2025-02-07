@@ -193,6 +193,7 @@ async function Page() {
                 width={0}
                 height={0}
                 controls={false}
+                preload="metadata"
                 loop
                 muted
               />
