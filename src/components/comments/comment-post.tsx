@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, toast } from '@leostar/ui'
+import { Button, toast } from '~/components/base'
 import { SendIcon } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
