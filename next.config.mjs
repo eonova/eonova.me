@@ -55,9 +55,10 @@ const CustomConfig = {
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
 
-  serverExternalPackages: ['pg', 'drizzle-orm', 'pg-native'],
+  serverExternalPackages: ['drizzle-orm', 'pg-native'],
   experimental: {
     optimizePackageImports: ['shiki'],
+    reactCompiler: true,
   },
 
   bundlePagesRouterDependencies: true,
@@ -127,7 +128,7 @@ const CustomConfig = {
           test: /\.js$|\.css$|\.html$/,
           threshold: 10240, // 10KB
           minRatio: 0.8,
-        })
+        }),
       )
     }
     if (process.env.REACT_SCAN_MONITOR_API_KEY) {

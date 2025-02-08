@@ -1,5 +1,3 @@
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-nocheck
 import type { DefaultSession, NextAuthConfig } from 'next-auth'
 import type { InferSelectModel } from '../db'
 
@@ -46,7 +44,7 @@ const config: NextAuthConfig = {
     usersTable: users,
     accountsTable: accounts,
     sessionsTable: sessions,
-    verificationTokensTable: verificationTokens,
+    verificationTokensTable: verificationTokens
   }),
 
   callbacks: {

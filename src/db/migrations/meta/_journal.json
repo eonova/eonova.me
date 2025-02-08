@@ -1,27 +1,13 @@
 {
+  "version": "7",
   "dialect": "postgresql",
   "entries": [
     {
-      "breakpoints": true,
       "idx": 0,
-      "tag": "0000_goofy_kree",
       "version": "7",
-      "when": 1726414488093
-    },
-    {
-      "breakpoints": true,
-      "idx": 1,
-      "tag": "0001_bizarre_black_queen",
-      "version": "7",
-      "when": 1734620571101
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1738645344525,
-      "tag": "0002_brave_rawhide_kid",
+      "when": 1738984997228,
+      "tag": "0000_plain_thor",
       "breakpoints": true
     }
-  ],
-  "version": "7"
+  ]
 }

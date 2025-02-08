@@ -18,7 +18,7 @@ export const users = pgTable('user', {
   image: text('image'),
   role: roleEnum('role').default('user').notNull(),
   createdAt: timestamp('created_at', { precision: 3 }).notNull().defaultNow(),
-  updatedAt: timestamp('updated_at', { precision: 3 }).notNull().defaultNow(),
+  updatedAt: timestamp('updated_at', { precision: 3 }).notNull().defaultNow()
 })
 
 export const accounts = pgTable(
@@ -36,15 +36,15 @@ export const accounts = pgTable(
     token_type: text('token_type'),
     scope: text('scope'),
     id_token: text('id_token'),
-    session_state: text('session_state'),
+    session_state: text('session_state')
   },
-  account => [
+  (account) => [
     {
       compoundKey: primaryKey({
-        columns: [account.provider, account.providerAccountId],
-      }),
-    },
-  ],
+        columns: [account.provider, account.providerAccountId]
+      })
+    }
+  ]
 )
 
 export const sessions = pgTable('session', {
@@ -52,7 +52,7 @@ export const sessions = pgTable('session', {
   userId: text('user_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-  expires: timestamp('expires', { precision: 3 }).notNull(),
+  expires: timestamp('expires', { precision: 3 }).notNull()
 })
 
 export const verificationTokens = pgTable(
@@ -60,34 +60,34 @@ export const verificationTokens = pgTable(
   {
     identifier: text('identifier').notNull(),
     token: text('token').notNull(),
-    expires: timestamp('expires', { precision: 3 }).notNull(),
+    expires: timestamp('expires', { precision: 3 }).notNull()
   },
-  verificationToken => [
+  (verificationToken) => [
     {
       compoundKey: primaryKey({
-        columns: [verificationToken.identifier, verificationToken.token],
-      }),
-    },
-  ],
+        columns: [verificationToken.identifier, verificationToken.token]
+      })
+    }
+  ]
 )
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
   sessions: many(sessions),
   comments: many(comments),
-  guestbook: many(guestbook),
+  guestbook: many(guestbook)
 }))
 
 export const accountsRelations = relations(accounts, ({ one }) => ({
   user: one(users, {
     fields: [accounts.userId],
-    references: [users.id],
-  }),
+    references: [users.id]
+  })
 }))
 
 export const sessionsRelations = relations(sessions, ({ one }) => ({
   user: one(users, {
     fields: [sessions.userId],
-    references: [users.id],
-  }),
+    references: [users.id]
+  })
 }))
