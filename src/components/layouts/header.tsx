@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       opacity: 0,
       transition: {
         duration: 0.3,
-        ease: 'easeOut',
+        ease: 'easeIn',
       },
     },
     // 可见且未滚动状态
@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       opacity: 1,
       top: '16px',
       transition: {
-        duration: 0.3,
+        duration: 0.4,
         ease: 'easeIn',
       },
     },
@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       opacity: 0.7, // 可以调整隐藏时的透明度
       top: '-50px',
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: 'easeOut',
       },
     },

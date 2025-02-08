@@ -8,17 +8,15 @@ cover: 'https://img.leostar.top/study/20230616123026.png'
 ---
 
 
-![image.png](https://img.leostar.top/study/20230616123026.png)
-
 ## 网络请求发展史
 
-1.  传统的Ajax
+1. 传统的Ajax
      传统的Ajax请求是基于`XMLHttpRequest`（XHR）对象。可以直接使用。但是使用起来配置较为麻烦，实际开发中使用非常少，在MVC时代通常使用的是JQuery-Ajax。相对于传统的Ajax现在使用更多的是`Fetch`请求。
 
-2.  JQuery-Ajax
+2. JQuery-Ajax
     JQuery-Ajax在前端JQuery时，因为JQuery的强大兼容性在项目开发中`$Ajax`使用非常广泛，需要引入JQuery库，其底层原理也是对传统的Ajax，XHR对象进行封装。但是在前端框架MVVC时代，例如使用vue搭建项目，如果再继续使用`$Ajax`就还需再单独引入JQuery重量级1w+代码量的库是得不偿失的。所以针对于框架的网络请求应运而生。
 
-3.  axios
+3. axios
     在Vue1.0时代，官方推出了`Vue-resource`，其体积相对于JQuery小的多，但是在Vue2.0时代官方宣布不再更新，那么继续使用`Vue-resource`就会存在版本无法匹配问题。因此在Vue2.0时代开始，官方推荐使用`axios`作为新一代的Ajax库。`axios`其优点：在浏览器中发送XMLHttpRequest请求、在node中发送http请求、支持Promise API、拦截请求和相应、转换请求和响应数据等，这里不再一一描述，想进一步了解其优点，可以查询相关资料。
 
 ## 原生XMLHttpRequest实现
@@ -103,7 +101,7 @@ axios.post('/user',{
 - 请求类型：`method: 'get'`
 - 请根路径：`baseURL: 'http://www.mt.com/api'`
 - 请求前的数据处理：`transformRequest:[function(data){}]`
-- 请求后的数据处理：` transformResponse: [function(data){}]`
+- 请求后的数据处理：`transformResponse: [function(data){}]`
 - 自定义的请求头：`headers:{'x-Requested-With':'XMLHttpRequest'}`
 - URL查询对象：`params:{ id: 12 },`
 - 查询对象序列化函数：`paramsSerializer: function(params){ }`
@@ -361,14 +359,3 @@ service.interceptors.response.use(
 
 export default service
 ```
-
->文章参考：
->
->Hello Simon：https://blog.csdn.net/qq_31947477/article/details/106328200
->happyRainbow：https://juejin.cn/post/7084163923552780319
->Benjamin59：https://juejin.cn/post/7034827130701611016
-
-
-
-
-

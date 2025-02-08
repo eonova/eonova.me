@@ -71,8 +71,14 @@ const CustomConfig = {
         pathname: '/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.leostar.top',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
     ],
-    domains: ['images.unsplash.com'],
   },
 
   eslint: {

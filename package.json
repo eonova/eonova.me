@@ -6,11 +6,11 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">=20.11.0",
+    "node": ">=22",
     "pnpm": ">=9"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbo -p 3000",
     "build": "next build",
     "build:mdx": "mdx build",
     "bundle-analyzer": "cross-env ANALYZE=true pnpm run build",
@@ -124,6 +124,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^22.13.1",
+    "@types/pg": "^8.11.11",
     "@types/react": "19.0.2",
     "@types/react-dom": "19.0.3",
     "@types/rss": "^0.0.32",
