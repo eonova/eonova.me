@@ -1,5 +1,5 @@
 import React from 'react'
-import './logo.css'
+import '~/styles/page/logo.css'
 
 interface LogoProps {
   className?: string

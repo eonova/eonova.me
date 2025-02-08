@@ -1,5 +1,3 @@
-'use client'
-
 import type { MDXComponents } from '@ileostar/mdx'
 import { getMDXComponent } from '@ileostar/mdx'
 

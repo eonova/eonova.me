@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from 'next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import SignInDialog from '~/components/sign-in-dialog'
 import Script from 'next/script'
 import Dock from '~/components/layouts/dock'
+import Hello from '~/components/hello'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
 import { env } from '~/lib/env'
 import { cn } from '~/lib/utils'
@@ -119,9 +122,12 @@ export default function RootLayout({
       </head>
       <body className="antialiased relative">
         <Providers>
+          <Hello />
           {children}
+          <SignInDialog />
           <Dock />
         </Providers>
+        <SpeedInsights />
         {
           env.REACT_SCAN_MONITOR_API_KEY
           && <ReactScan apiKey={env.REACT_SCAN_MONITOR_API_KEY} />

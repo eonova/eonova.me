@@ -1,11 +1,10 @@
-'use client'
 import { redirect } from 'next/navigation'
 import AdminHeader from '~/components/admin/admin-header'
 import AdminSidebar from '~/components/admin/admin-sidebar'
-import { SidebarProvider } from '~/components/base/sidebar'
+import { SidebarProvider } from '~/components/base'
 import { getCurrentUser } from '~/lib/auth'
 
-interface LayoutProps {
+type LayoutProps = {
   params: Promise<{
     locale: string
   }>
@@ -13,7 +12,7 @@ interface LayoutProps {
   children: React.ReactNode
 }
 
-async function Layout(props: LayoutProps) {
+const Layout = async (props: LayoutProps) => {
   const { children } = props
   const session = await getCurrentUser()
 
@@ -24,9 +23,9 @@ async function Layout(props: LayoutProps) {
   return (
     <SidebarProvider>
       <AdminSidebar />
-      <div className="flex w-full flex-col overflow-x-hidden px-4">
+      <div className='flex w-full flex-col overflow-x-hidden px-4'>
         <AdminHeader />
-        <main className="py-6">{children}</main>
+        <main className='py-6'>{children}</main>
       </div>
     </SidebarProvider>
   )

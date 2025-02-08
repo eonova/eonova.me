@@ -1,7 +1,6 @@
 'use client'
 
 import type { ToasterProps } from '~/components/base/toaster'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { SessionProvider } from 'next-auth/react'
 import { AppProgressBar as LoadingProgressBar } from 'next-nprogress-bar'
 import { ThemeProvider, useTheme } from 'next-themes'
@@ -11,7 +10,6 @@ import Analytics from '~/components/base/analytics'
 import { Toaster } from '~/components/base/toaster'
 import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/page-progress'
-import SignInDialog from '~/components/sign-in-dialog'
 import { flags } from '~/lib/env'
 import { TRPCReactProvider } from '~/trpc/react'
 import Debug from './debug'
@@ -25,46 +23,42 @@ function Providers(props: ProvidesProps) {
   const { theme = 'system' } = useTheme()
 
   return (
-    <>
-      <NuqsAdapter>
-        <TRPCReactProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            enableColorScheme
-            disableTransitionOnChange
-          >
-            <SessionProvider>
-              <TooltipProvider>
-                {children}
-                {flags.analytics ? <Analytics /> : null}
-                <SignInDialog />
-                <Toaster
-                  toastOptions={{
-                    duration: 2500,
-                  }}
-                  visibleToasts={5}
-                  theme={theme as ToasterProps['theme']}
-                  expand
-                />
-                <Suspense>
-                  <Debug />
-                </Suspense>
-                <PageProgress />
-                <LoadingProgressBar
-                  height="2px"
-                  color="#6dc580d7"
-                  options={{ showSpinner: false }}
-                  shallowRouting
-                />
-              </TooltipProvider>
-            </SessionProvider>
-          </ThemeProvider>
-        </TRPCReactProvider>
-      </NuqsAdapter>
-      <SpeedInsights />
-    </>
+    <NuqsAdapter>
+      <TRPCReactProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          enableColorScheme
+          disableTransitionOnChange
+        >
+          <SessionProvider>
+            <TooltipProvider>
+              {children}
+              {flags.analytics ? <Analytics /> : null}
+              <Toaster
+                toastOptions={{
+                  duration: 2500,
+                }}
+                visibleToasts={5}
+                theme={theme as ToasterProps['theme']}
+                expand
+              />
+              <Suspense>
+                <Debug />
+              </Suspense>
+              <PageProgress />
+              <LoadingProgressBar
+                height="2px"
+                color="#6dc580d7"
+                options={{ showSpinner: false }}
+                shallowRouting
+              />
+            </TooltipProvider>
+          </SessionProvider>
+        </ThemeProvider>
+      </TRPCReactProvider>
+    </NuqsAdapter>
   )
 }
 

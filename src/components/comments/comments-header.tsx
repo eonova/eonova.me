@@ -24,33 +24,31 @@ function CommentHeader() {
     <div className="flex items-center justify-between px-1">
       <NumberFlowGroup>
         <div>
-          {commentsCountQuery.status === 'pending'
-            ? `--评论 0`
-            : null}
+          {commentsCountQuery.status === 'pending' && `评论 --`}
           {commentsCountQuery.status === 'error' ? '错误' : null}
-          {commentsCountQuery.status === 'success'
-            ? (
-                <NumberFlow
-                  willChange
-                  value={commentsCountQuery.data.comments}
-                  suffix={`评论${commentsCountQuery.data.comments}`}
-                />
-              )
-            : null}
+          {
+            commentsCountQuery.status === 'success'
+            && (
+              <NumberFlow
+                willChange
+                value={commentsCountQuery.data.comments}
+                suffix={` 评论`}
+              />
+            )
+          },
           {' · '}
-          {repliesCountQuery.status === 'pending'
-            ? `-- '回复 0'`
-            : null}
-          {repliesCountQuery.status === 'error' ? '错误' : null}
-          {repliesCountQuery.status === 'success'
-            ? (
-                <NumberFlow
-                  willChange
-                  value={repliesCountQuery.data.replies}
-                  suffix={`回复 ${repliesCountQuery.data.replies}`}
-                />
-              )
-            : null}
+          {repliesCountQuery.status === 'pending' && '回复 --'}
+          {repliesCountQuery.status === 'error' && '错误'}
+          {
+            repliesCountQuery.status === 'success'
+            && (
+              <NumberFlow
+                willChange
+                value={repliesCountQuery.data.replies}
+                suffix={` 回复`}
+              />
+            )
+          }
         </div>
       </NumberFlowGroup>
       <DropdownMenu>
