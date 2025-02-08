@@ -32,7 +32,7 @@
   },
   "peerDependencies": {
     "@tanstack/react-table": "^8",
-    "@tszhong0411/utils": ">=0",
+    "@leostar/utils": ">=0",
     "next": "^15",
     "pg": "^8",
     "react": "^19",
@@ -65,7 +65,7 @@
     "@trpc/client": "11.0.0-rc.666",
     "@trpc/react-query": "11.0.0-rc.666",
     "@trpc/server": "11.0.0-rc.666",
-    "@tszhong0411/ui": "^0.0.56",
+    "@leostar/ui": "^0.0.56",
     "@upstash/ratelimit": "^2.0.5",
     "@upstash/redis": "^1.34.3",
     "@vercel/speed-insights": "^1.1.0",

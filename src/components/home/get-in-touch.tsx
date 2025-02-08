@@ -1,7 +1,7 @@
 'use client'
 
 import me from '@/public/images/avatar.png'
-import { BlurImage } from '@tszhong0411/ui'
+import { BlurImage } from '~/components/base/blur-image'
 import { motion, useAnimate, useInView } from 'framer-motion'
 
 import { useEffect, useRef } from 'react'

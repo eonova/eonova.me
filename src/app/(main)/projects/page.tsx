@@ -7,6 +7,7 @@ import BackgroundFont from '~/components/background-font'
 import PageTitle from '~/components/page-title'
 import ProjectCards from '~/components/project-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
+import { groupAndSortByYear } from '~/utils/group-sort-by-year'
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = '项目'
@@ -59,6 +60,7 @@ async function Page() {
     })),
   }
 
+  const groupedData = groupAndSortByYear(projects);
   return (
     <>
       <script
@@ -69,8 +71,12 @@ async function Page() {
         title={title}
         description={description}
       />
-      <BackgroundFont className="text-7xl text-gray-500/50 dark:text-white/50" lineHeight="1.2">2025年</BackgroundFont>
-      <ProjectCards projects={projects} />
+      {Object.entries(groupedData).reverse().map(([year, projects], idx) => (
+        <div className={idx !== 0 ? 'mt-5' : ''} key={year}>
+          <BackgroundFont className="text-7xl text-gray-500/50 dark:text-white/50" lineHeight="1.1">{year}</BackgroundFont>
+          <ProjectCards projects={projects} />
+        </div>
+      ))}
     </>
   )
 }

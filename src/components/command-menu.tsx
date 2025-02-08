@@ -12,7 +12,6 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
-import { useCopyToClipboard } from '~/hooks/use-copy-to-clipboard'
 import { useDialogsStore } from '~/stores/dialogs'
 import { Button } from './base/button'
 import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from './base/command'

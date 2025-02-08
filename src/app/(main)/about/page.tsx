@@ -209,7 +209,7 @@ async function Page() {
             <div className="absolute top-[-40] sm:top-[-12] z-[-2] w-full h-full left-0">
               <Video
                 className="min-w-[260px] min-h-[220px] w-full h-full"
-                src="https://img.leostar.top/study/bbbbd4a6b9e766ce6aa323bc7ce09113.mp4"
+                src="https://img.leostar.top/study/02e691e904ec58bba00d690dbb457fd6.mp4"
                 autoPlay
                 width={0}
                 height={0}

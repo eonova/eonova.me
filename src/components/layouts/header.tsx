@@ -7,7 +7,7 @@ import useScrollDirection from '~/hooks/use-scroll-direction'
 import { cn } from '~/lib/utils'
 import { Separator } from '../base/separator'
 import CommandMenu from '../command-menu'
-import Logo from '../logo'
+import Avatar from '../avatar'
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
 import ThemeToggle from './theme-toggle'
@@ -66,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       animate={!isVisible ? 'hidden' : 'visible'}
     >
       <Link className="h-full flex items-center" href="/" passHref>
-        <Logo className="-mr-5 sm:mr-0" />
+        <Avatar className="-mr-5 sm:mr-0" />
       </Link>
 
       <div className="flex items-center gap-2">

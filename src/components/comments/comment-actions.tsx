@@ -1,7 +1,7 @@
 import type { GetInfiniteCommentsInput } from '~/trpc/routers/comments'
 
 import NumberFlow from '@number-flow/react'
-import { Button, buttonVariants, toast } from '@tszhong0411/ui'
+import { Button, buttonVariants, toast } from '@leostar/ui'
 import { cva } from 'class-variance-authority'
 import { ChevronDownIcon, MessageSquareIcon, ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react'
 import { useSession } from 'next-auth/react'

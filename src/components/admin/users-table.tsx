@@ -2,7 +2,7 @@
 
 import type { ColumnDef } from '@tanstack/react-table'
 
-import type { DataTableFilterField } from '@tszhong0411/ui'
+import type { DataTableFilterField } from '@leostar/ui'
 import type { GetUsersOutput } from '~/trpc/routers/users'
 import {
 

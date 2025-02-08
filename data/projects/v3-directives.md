@@ -1,8 +1,9 @@
 ---
 name: '@ileostar/v3-directives'
 description: Vue3 自定义指令集
-homepage: https://honghong.me
-github: https://github.com/tszhong0411/honghong.me
+homepage: https://v3-directives.leostar.top/
+github: https://github.com/ileostar/v3-directives
+date: '2024-03-22T00:00:00Z'
 techstack:
   - label: Vue3
   - label: Vitepress
@@ -14,6 +15,7 @@ selected: true
 ☠Vue3 directives 自定义指令库: [📖 在线文档](https://v3-directives.leostar.top/)
 
 ![Static Badge](https://img.shields.io/npm/v/@ileostar/v3-directives?color=409eff)
+
 ![Static Badge](https://img.shields.io/github/stars/ileostar/v3-directives?style=social)
 
 ## 🕹Usage

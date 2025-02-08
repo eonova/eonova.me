@@ -1,6 +1,6 @@
 import type { SidebarLink } from '~/config/admin-sidebar-links'
 
-import { SidebarMenuButton, SidebarMenuItem } from '@tszhong0411/ui'
+import { SidebarMenuButton, SidebarMenuItem } from '@leostar/ui'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 

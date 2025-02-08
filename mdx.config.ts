@@ -56,6 +56,11 @@ const Project = defineCollection({
       required: true,
     },
     {
+      name: 'date',
+      type: 'string',
+      required: true,
+    },
+    {
       name: 'homepage',
       type: 'string',
       required: false,

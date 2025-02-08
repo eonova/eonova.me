@@ -2,7 +2,7 @@
 
 import type { ColumnDef, SortingState } from '@tanstack/react-table'
 
-import type { DataTableFilterField } from '@tszhong0411/ui'
+import type { DataTableFilterField } from '@leostar/ui'
 import type { GetCommentsOutput } from '~/trpc/routers/comments'
 import {
 

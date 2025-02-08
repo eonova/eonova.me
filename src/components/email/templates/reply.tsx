@@ -53,7 +53,7 @@ function Reply(props: ReplyProps) {
       <Preview>
         New reply on the post "
         {post.title}
-        " on honghong.me
+        " on leostar.top
       </Preview>
       <Tailwind>
         <Body className="m-auto bg-white p-1">
@@ -114,8 +114,8 @@ Reply.PreviewProps = {
   reply:
     'Thank you for your kind words! I\'m glad you found the article helpful. Let me know if you have any questions!',
   replier: {
-    name: 'John Smith',
-    image: 'https://honghong.me/api/avatar/john-doe',
+    name: 'LeoStar',
+    image: 'https://leostar.top/api/avatar/leostar',
   },
   comment:
     'This is exactly what I needed! The explanations are clear and concise. Thanks for sharing! 👏',

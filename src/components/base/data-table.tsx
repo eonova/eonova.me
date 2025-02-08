@@ -530,7 +530,7 @@ function DataTableToolbar<TData,>(props: DataTableToolbarProps<TData>) {
  * Copyright (c) Sadman Sakib
  * Source: https://github.com/sadmann7/shadcn-table/blob/88abb37998be2ceb1c9b558beff05bb7d839b8cc/src/components/data-table/data-table-skeleton.tsx
  *
- * Modified by: tszhong0411
+ * Modified by: leostar
  */
 type DataTableSkeletonProps = {
   columnCount: number

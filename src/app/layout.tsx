@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    site: '@tszhong0411',
+    site: '@leostar',
     siteId: '1152256803746377730',
-    creator: '@tszhong0411',
+    creator: '@leostar',
     creatorId: '1152256803746377730',
     images: [
       {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     ],
   },
   keywords: SITE_KEYWORDS,
-  creator: 'tszhong0411',
+  creator: 'leostar',
   openGraph: {
     url: SITE_URL,
     type: 'website',

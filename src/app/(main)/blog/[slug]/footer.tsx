@@ -5,7 +5,7 @@ import { usePostContext } from '~/contexts/post'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 
 function editURL(slug: string) {
-  return `https://github.com/tszhong0411/honghong.me/blob/main/apps/web/src/content/blog/${slug}.mdx?plain=1`
+  return `https://github.com/ileostar/leospark/blob/main/apps/web/src/content/blog/${slug}.mdx?plain=1`
 }
 
 function Footer() {

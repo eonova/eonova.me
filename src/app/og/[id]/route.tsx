@@ -143,7 +143,7 @@ export async function GET(_: Request, props: OGRouteProps) {
                 fontSize: 30,
               }}
             >
-              honghong.me
+              leostar.top
             </div>
           </div>
         </div>

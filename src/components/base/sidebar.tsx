@@ -1,5 +1,5 @@
 import { Slot } from '@radix-ui/react-slot'
-import { cn } from '@tszhong0411/utils'
+import { cn } from '@leostar/utils'
 import { cva, type VariantProps } from 'cva'
 import { PanelLeftIcon } from 'lucide-react'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'

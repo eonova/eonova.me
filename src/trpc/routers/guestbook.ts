@@ -98,7 +98,7 @@ export const guestbookRouter = createTRPCRouter({
               {
                 title: 'New comment!',
                 description: input.message,
-                url: 'https://honghong.me/guestbook',
+                url: 'https://leostar.top/guestbook',
                 color: '6609519',
                 author: {
                   name: user.name,

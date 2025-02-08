@@ -4,8 +4,8 @@ function Logo() {
   return (
     <Section className="mb-6">
       <Img
-        src="https://honghong.me/images/avatar.png"
-        alt="Hong's logo"
+        src="https://leostar.top/images/avatar.png"
+        alt="LeoStar's logo"
         width="48"
         height="48"
         className="rounded-full"
