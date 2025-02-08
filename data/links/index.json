@@ -10,6 +10,41 @@
           "desc": "全球最大的开源代码托管平台，开发者的聚集地，有海量的开源项目和丰富的代码资源。"
         },
         {
+          "images": "https://icon-sets.iconify.design/favicon.ico",
+          "url": "https://icon-sets.iconify.design/",
+          "title": "Iconify",
+          "desc": "All popular icon sets, one framework."
+        },
+        {
+          "images": "https://railway.com/favicon.ico",
+          "url": "https://railway.com",
+          "title": "Railway",
+          "desc": "Shipping great products is hard. Scaling infrastructure is easy."
+        },
+        {
+          "images": "https://resend.com/static/favicons/favicon.ico",
+          "url": "https://resend.com/",
+          "title": "Resend",
+          "desc": "The best way to reach humans instead of spam folders. Deliver transactional and marketing emails at scale."
+        },
+        {
+          "images": "https://bolt.new/static/favicon.svg",
+          "url": "https://bolt.new/",
+          "title": "bolt.new",
+          "desc": "AI-Powered Web Development at Your Fingertips"
+        },
+        {
+          "images": "https://bun.sh/favicon.ico",
+          "url": "https://bun.sh/",
+          "title": "Bun",
+          "desc": "A fast all-in-one JavaScript runtime"
+        }
+      ]
+    },
+    {
+      "categoryName": "UI组件库",
+      "websites": [
+        {
           "images": "https://www.hover.dev/favicon.ico",
           "url": "https://www.hover.dev/",
           "title": "Hover.dev",
@@ -17,32 +52,67 @@
         },
         {
           "images": "/images/me.png",
-          "url": "https://stackoverflow.com/",
-          "title": "Stack Overflow",
-          "desc": "一个面向程序员的问答社区，开发者可以在这里提出和解决编程中遇到的各种问题。"
+          "url": "https://www.wikipedia.org/",
+          "title": "Wikipedia",
+          "desc": "一个自由、免费、内容开放的百科全书，涵盖了各种领域的知识。"
         }
       ]
     },
     {
-      "categoryName": "知识学习",
+      "categoryName": "开发套餐",
       "websites": [
+        {
+          "images": "https://nextjs.org/favicon.ico",
+          "url": "https://nextjs.org/",
+          "title": "Nextjs",
+          "desc": "The React Framework for the Web."
+        },
+        {
+          "images": "https://orm.drizzle.team/favicon.ico",
+          "url": "https://orm.drizzle.team/",
+          "title": "Drizzle-orm",
+          "desc": "Drizzle ORM is a headless TypeScript ORM with a head. 🐲"
+        },
+        {
+          "images": "https://assets.vercel.com/image/upload/front/favicon/vercel/apple-touch-icon-72x72.png",
+          "url": "https://vercel.com/",
+          "title": "Vercel",
+          "desc": "一个云平台,用于构建、部署和扩展无服务器应用程序和静态网站"
+        },
+        {
+          "images": "https://supabase.com/favicon/apple-icon-57x57.png",
+          "url": "https://supabase.com/",
+          "title": "Supabase",
+          "desc": "Supabase is an open source Firebase alternative."
+        },
+        {
+          "images": "https://upstash.com/icons/apple-touch-icon.png",
+          "url": "https://upstash.com/",
+          "title": "Upstash",
+          "desc": "Redis Serverless Server"
+        },
+        {
+          "images": "https://logtoeu.blob.core.windows.net/public-blobs/admin/aG3Wi7UOuSQ7/2023/03/19/JVncuuqe/favicon.png",
+          "url": "https://auth.logto.io/",
+          "title": "Logto",
+          "desc": "The better auth and identify infrastructure"
+        }
+      ]
+    },
+    {
+      "categoryName": "美工设计",
+      "websites": [
+        {
+          "images": "https://static.figma.com/uploads/b6df2735e4cb368306acf5480b50f96e69f96099",
+          "url": "https://www.figma.com/",
+          "title": "Figma",
+          "desc": "The Collaborative Interface Design Tool"
+        },
         {
           "images": "/images/me.png",
           "url": "https://www.wikipedia.org/",
           "title": "Wikipedia",
           "desc": "一个自由、免费、内容开放的百科全书，涵盖了各种领域的知识。"
-        },
-        {
-          "images": "/images/me.png",
-          "url": "https://www.coursera.org/",
-          "title": "Coursera",
-          "desc": "提供来自全球顶尖大学和机构的在线课程，涵盖多种学科，可帮助学习者提升技能和知识。"
-        },
-        {
-          "images": "/images/me.png",
-          "url": "https://www.edx.org/",
-          "title": "edX",
-          "desc": "非营利性的在线学习平台，提供高质量的课程，与众多高校和机构合作。"
         }
       ]
     },
@@ -50,10 +120,33 @@
       "categoryName": "娱乐社交",
       "websites": [
         {
-          "images": "/images/me.png",
+          "images": "https://www.bilibili.com/favicon.ico",
           "url": "https://www.bilibili.com/",
           "title": "Bilibili",
           "desc": "国内知名的视频弹幕网站，有丰富的动漫、游戏、科技等各类视频内容。"
+        },
+        {
+          "images": "/images/me.png",
+          "url": "https://www.facebook.com/",
+          "title": "Facebook",
+          "desc": "全球知名的社交网络服务网站，用户可以分享动态、照片、视频，与朋友和家人保持联系。"
+        },
+        {
+          "images": "/images/me.png",
+          "url": "https://www.instagram.com/",
+          "title": "Instagram",
+          "desc": "以分享照片和短视频为主的社交平台，在全球拥有大量用户，尤其受年轻人喜爱。"
+        }
+      ]
+    },
+    {
+      "categoryName": "音乐",
+      "websites": [
+        {
+          "images": "https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico",
+          "url": "https://open.spotify.com/",
+          "title": "Spotify",
+          "desc": "Music for everyone"
         },
         {
           "images": "/images/me.png",

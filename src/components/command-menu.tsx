@@ -13,10 +13,10 @@ import {
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
 import { useDialogsStore } from '~/stores/dialogs'
-import { Button } from './base/button'
+import { Button } from '@headlessui/react'
 import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from './base/command'
 import { Kbd } from './base/kbd'
-import Logo from './logo'
+import { LeoStarLogoDark, LeoStarLogoLight } from './logo'
 
 type Groups = Array<{
   name: string
@@ -126,14 +126,13 @@ function CommandMenu() {
   return (
     <>
       <Button
-        variant="ghost"
-        className="size-9 p-0"
+        className="size-8 sm:size-9 p-0 flex justify-center items-center cursor-pointer"
         onClick={() => {
           setIsOpen(true)
         }}
         aria-label="开启指令选单"
       >
-        <CommandIcon className="size-4" />
+        <CommandIcon className="size-6 sm:size-4" />
       </Button>
       <CommandDialog
         open={isOpen}
@@ -159,7 +158,8 @@ function CommandMenu() {
           ))}
         </CommandList>
         <CommandFooter>
-          <Logo className="size-4" />
+          <LeoStarLogoDark className="hidden dark:flex size-6 mt-2 ml-2 justify-center items-center text-white dark:text-black" />
+          <LeoStarLogoLight className="flex dark:hidden size-6 mt-2 ml-2 justify-center items-center text-white dark:text-black" />
           <CommandFooterTrigger triggerKey={<Kbd keys={['enter']} className="py-0" />}>
             {
               isSelectingCommand

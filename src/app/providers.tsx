@@ -6,7 +6,7 @@ import { AppProgressBar as LoadingProgressBar } from 'next-nprogress-bar'
 import { ThemeProvider, useTheme } from 'next-themes'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Suspense } from 'react'
-import Analytics from '~/components/base/analytics'
+import { Analytics } from "@vercel/analytics/react"
 import { Toaster } from '~/components/base/toaster'
 import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/page-progress'

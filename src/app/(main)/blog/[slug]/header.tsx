@@ -53,9 +53,9 @@ function Header() {
                 className="rounded-full"
                 width={24}
                 height={24}
-                alt="Hong"
+                alt="LeoStar"
               />
-              Hong
+              LeoStar
             </Link>
           </div>
           <div className="space-y-1 md:mx-auto">

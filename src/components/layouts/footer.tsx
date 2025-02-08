@@ -39,8 +39,8 @@ const Footer: React.FC = () => {
           target="black"
           href="https://beian.miit.gov.cn/#/Integrated/index"
         >
-          <button type="button" className="cursor-pointer font-semibold overflow-hidden relative z-100 border rounded-full border-gray-600 dark:border-white/80 group px-2.5 py-0.5">
-            <span className="relative z-10 text-gray-600 dark:text-white/80 group-hover:text-white dark:group-hover:text-black text-sm duration-500">粤ICP备2022128395号-2</span>
+          <button type="button" className="cursor-pointer font-semibold flex items-center overflow-hidden relative z-100 border rounded-full border-gray-600 dark:border-white/80 group px-2 py-0.5">
+            <span className="relative z-10 text-[8px] sm:text-sm text-gray-600 dark:text-white/80 group-hover:text-white dark:group-hover:text-black duration-500">粤ICP备2022128395号-2</span>
             <span className="absolute w-full h-full bg-gray-600 dark:bg-white/80 -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
             <span className="absolute w-full h-full bg-gray-600 dark:bg-white/80 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
           </button>

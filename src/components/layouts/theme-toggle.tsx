@@ -16,7 +16,7 @@ function ThemeToggle() {
   return (
     <Menu>
       <MenuButton
-        className="size-8 sm:size-9 p-0 inline-flex justify-center items-center"
+        className="size-8 sm:size-9 p-0 inline-flex justify-center items-center cursor-pointer"
         aria-label="Toggle theme"
         data-testid="theme-toggle"
         title="Toggle theme"

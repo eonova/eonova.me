@@ -28,7 +28,7 @@ function Footer() {
         {' '}
         {new Date().getFullYear()}
         {' '}
-        Hong. All rights reserved.
+        LeoStar. All rights reserved.
       </Text>
     </>
   )

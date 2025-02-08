@@ -189,6 +189,7 @@ async function Page() {
               <Video
                 className="min-w-[260px] w-full"
                 src="https://img.leostar.top/study/08512629bf6cd862577020adee823f71.mp4"
+                second='/videos/page/life.mp4'
                 autoPlay
                 width={0}
                 height={0}
@@ -210,6 +211,7 @@ async function Page() {
               <Video
                 className="min-w-[260px] min-h-[220px] w-full h-full"
                 src="https://img.leostar.top/study/02e691e904ec58bba00d690dbb457fd6.mp4"
+                second='/videos/page/guitar.mp4'
                 autoPlay
                 width={0}
                 height={0}
