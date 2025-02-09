@@ -46,6 +46,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Separator } from './separator'
 import { Skeleton } from './skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table'
+import { range } from '~/utils/range'
 
 type DataTableProps<TData> = {
   table: TanstackTable<TData>

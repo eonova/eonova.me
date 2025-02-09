@@ -70,6 +70,14 @@ const CustomConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'avatars.githubusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com'
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
         port: '',
         pathname: '/**',
@@ -82,7 +90,7 @@ const CustomConfig: NextConfig = {
         pathname: '/**',
         search: '',
       },
-    ],
+    ]
   },
 
   eslint: {

@@ -32,10 +32,10 @@ function CommentHeader() {
               <NumberFlow
                 willChange
                 value={commentsCountQuery.data.comments}
-                suffix={` 评论`}
+                suffix='&nbsp;评论'
               />
             )
-          },
+          }
           {' · '}
           {repliesCountQuery.status === 'pending' && '回复 --'}
           {repliesCountQuery.status === 'error' && '错误'}
@@ -45,7 +45,7 @@ function CommentHeader() {
               <NumberFlow
                 willChange
                 value={repliesCountQuery.data.replies}
-                suffix={` 回复`}
+                suffix='&nbsp;回复'
               />
             )
           }
