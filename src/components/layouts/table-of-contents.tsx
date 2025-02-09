@@ -15,12 +15,8 @@ interface TableOfContentsProps {
 
 function TableOfContents(props: TableOfContentsProps) {
   const { resolvedTheme: theme } = useTheme()
-  const [isMounted, setIsMounted] = useState(false)
   const isDark = theme === 'dark'
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
   const { toc } = props
   const [activeId, setActiveId] = useState<string | null>(null)
 
@@ -70,9 +66,7 @@ function TableOfContents(props: TableOfContentsProps) {
   function handleMouseEnter(url: string) {
     setHoverUrl(url)
   }
-  if (!isMounted) {
-    return null
-  }
+
   function handleMouseLeave() {
     setHoverUrl(null)
   }
@@ -92,7 +86,7 @@ function TableOfContents(props: TableOfContentsProps) {
   }
 
   return (
-    <div className="hidden lg:block">
+    <div className="hidden lg:block lg:min-w-[150px] lg:min-h-70">
       <div>
         {
           toc.map((item) => {
