@@ -125,11 +125,9 @@ async function Page(props: PageProps) {
             <Mdx code={code} />
           </article>
           <aside className="w-[0] hidden lg:block">
-            <div className="sticky top-44">
-              <div className='absolute z-1 lg:min-w-[270px] lg:max-w-[270px]'>
-                {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
-                {flags.likeButton ? <LikeButton className='ml-5 justify-start' slug={slug} /> : null}
-              </div>
+            <div className="sticky top-32 lg:min-w-[270px] lg:max-w-[270px]">
+              {toc.length > 0 && <TableOfContents toc={toc} />}
+              {flags.likeButton && <LikeButton className='ml-5 justify-start' slug={slug} />}
             </div>
           </aside>
         </div>
