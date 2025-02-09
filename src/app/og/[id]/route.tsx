@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { allBlogs } from 'content-collections'
+import { allPosts } from 'content-collections'
 import { ImageResponse } from 'next/og'
 import { NextResponse } from 'next/server'
 import { SITE_URL } from '~/config/constants'
@@ -17,7 +17,7 @@ interface OGRouteProps {
 export async function GET(_: Request, props: OGRouteProps) {
   try {
     const { id } = await props.params
-    const postMetadata = allBlogs.find(p => p.slug === id)
+    const postMetadata = allPosts.find(p => p.slug === id)
 
     if (!postMetadata) {
       return NextResponse.json(

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import type { Article, WithContext } from 'schema-dts'
 
 import { allPosts } from 'content-collections'
@@ -23,8 +23,10 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata(props: PageProps): Promise<Metadata> {
+export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
   const { slug } = await props.params
+  const previousOpenGraph = (await parent).openGraph ?? {}
+  const previousTwitter = (await parent).twitter ?? {}
 
   const post = allPosts.find(p => p.slug === slug)
 
@@ -44,6 +46,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
       canonical: url,
     },
     openGraph: {
+      ...previousOpenGraph,
       url,
       type: 'article',
       title,
@@ -62,6 +65,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
       ],
     },
     twitter: {
+      ...previousTwitter,
       title,
       description: summary,
       images: [

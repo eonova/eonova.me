@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import type { AboutPage, WithContext } from 'schema-dts'
 
 import Image from 'next/image'
@@ -32,11 +32,14 @@ import {
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const title = '关于'
-  const description = '👋 嗨！我是 LeoStar，一个爱捣鼓的前端开发。'
-  const url = '/about'
+const title = '关于'
+const description = '👋 嗨！我是 LeoStar。'
+const url = '/about'
 
+export async function generateMetadata(_props: any, parent: ResolvingMetadata): Promise<Metadata> {
+
+  const previousOpenGraph = (await parent).openGraph ?? {}
+  const previousTwitter = (await parent).twitter ?? {}
   return {
     title,
     description,
@@ -44,12 +47,14 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: url,
     },
     openGraph: {
+      ...previousOpenGraph,
       url,
       type: 'profile',
       title,
       description,
     },
     twitter: {
+      ...previousTwitter,
       title,
       description,
     },
@@ -73,9 +78,6 @@ const transformStyles = [
 ]
 
 async function Page() {
-  const title = '关于'
-  const description = '👋 嗨！我是 LeoStar。'
-  const url = '/about'
 
   const jsonLd: WithContext<AboutPage> = {
     '@context': 'https://schema.org',

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 
 import PageTitle from '~/components/page-title'
@@ -16,22 +16,30 @@ const title = '留言板'
 const description = '有任何问题可以给我留言'
 const url = '/guestbook'
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(
+  _props: any,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const previousOpenGraph = (await parent).openGraph ?? {}
+  const previousTwitter = (await parent).twitter ?? {}
+
   return {
     title,
     description,
     alternates: {
-      canonical: url,
+      canonical: url
     },
     openGraph: {
+      ...previousOpenGraph,
       url,
       title,
-      description,
+      description
     },
     twitter: {
+      ...previousTwitter,
       title,
-      description,
-    },
+      description
+    }
   }
 }
 

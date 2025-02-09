@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import type { CollectionPage, WithContext } from 'schema-dts'
 
 import { allProjects } from 'content-collections'
@@ -8,34 +8,38 @@ import PageTitle from '~/components/page-title'
 import ProjectCards from '~/components/project-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { groupAndSortByYear } from '~/utils/group-sort-by-year'
+const title = '项目'
+const description = '我的项目清单。所有东西都是用 ❤️ 制作'
+const url = '/projects'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const title = '项目'
-  const description = '我的项目清单。所有东西都是用 ❤️ 制作'
-  const url = '/projects'
+export async function generateMetadata(
+  _props: any,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const previousOpenGraph = (await parent).openGraph ?? {}
+  const previousTwitter = (await parent).twitter ?? {}
 
   return {
     title,
     description,
     alternates: {
-      canonical: url,
+      canonical: url
     },
     openGraph: {
+      ...previousOpenGraph,
       url,
       title,
-      description,
+      description
     },
     twitter: {
+      ...previousTwitter,
       title,
-      description,
-    },
+      description
+    }
   }
 }
 
 async function Page() {
-  const title = '项目'
-  const description = '我的项目清单。所有东西都是用 ❤️ 制作'
-  const url = '/projects'
 
   const projects = allProjects
 

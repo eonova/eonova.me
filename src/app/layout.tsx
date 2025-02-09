@@ -36,10 +36,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    site: '@leostar',
-    siteId: '1152256803746377730',
-    creator: '@leostar',
-    creatorId: '1152256803746377730',
+    site: '@030leostar',
+    siteId: '1693931091722465280',
+    creator: '@030leostar',
+    creatorId: '1693931091722465280',
     images: [
       {
         url: '/images/og.png',
