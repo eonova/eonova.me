@@ -1,4 +1,4 @@
-// content-collections.ts
+// content.config.ts
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 
@@ -177,7 +177,7 @@ var getTOC = async (content) => {
 var remarkPlugins = [remarkGfm, remarkHeading];
 var rehypePlugins = [rehypeCode, rehypeInlineCode];
 
-// content-collections.ts
+// content.config.ts
 var transform = async (document, context) => {
   const code = await compileMDX(context, document, {
     remarkPlugins,
@@ -196,7 +196,7 @@ var transform = async (document, context) => {
 };
 var posts = defineCollection({
   name: "Post",
-  directory: "data/posts",
+  directory: "./data/posts",
   include: "**/*.md",
   schema: (z) => ({
     title: z.string(),
@@ -210,7 +210,7 @@ var posts = defineCollection({
 });
 var projects = defineCollection({
   name: "Project",
-  directory: "data/projects",
+  directory: "./data/projects",
   include: "**/*.md",
   schema: (z) => ({
     name: z.string(),
@@ -223,9 +223,9 @@ var projects = defineCollection({
   }),
   transform
 });
-var content_collections_default = defineConfig({
+var content_config_default = defineConfig({
   collections: [posts, projects]
 });
 export {
-  content_collections_default as default
+  content_config_default as default
 };

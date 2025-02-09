@@ -1,9 +1,12 @@
 import bundleAnalyzer from '@next/bundle-analyzer'
-import { withContentCollections } from '@content-collections/next'
+import { createContentCollectionPlugin } from '@content-collections/next'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
 import type { NextConfig } from 'next'
 import './src/lib/env.ts'
 
+const withContentCollections = createContentCollectionPlugin({
+  configPath: './content.config.ts'
+})
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -126,7 +129,6 @@ const CustomConfig: NextConfig = {
     if (process.env.REACT_SCAN_MONITOR_API_KEY) {
       config.plugins.push(ReactComponentName({}))
     }
-
     return config
   },
 }

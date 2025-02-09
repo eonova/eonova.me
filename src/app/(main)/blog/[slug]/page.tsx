@@ -13,6 +13,7 @@ import Footer from './footer'
 import Header from './header'
 import MobileTableOfContents from './mobile-table-of-contents'
 import Providers from './providers'
+import LikeButton from './like-button'
 
 interface PageProps {
   params: Promise<{
@@ -127,6 +128,7 @@ async function Page(props: PageProps) {
             <div className="sticky top-44">
               <div className='absolute z-1 lg:min-w-[270px] lg:max-w-[270px]'>
                 {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
+                {flags.likeButton ? <LikeButton className='ml-5 justify-start' slug={slug} /> : null}
               </div>
             </div>
           </aside>

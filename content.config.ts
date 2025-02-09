@@ -28,7 +28,7 @@ const transform = async <D extends BaseDoc>(document: D, context: Context) => {
 
 const posts = defineCollection({
   name: 'Post',
-  directory: 'data/posts',
+  directory: './data/posts',
   include: '**/*.md',
   schema: (z) => ({
     title: z.string(),
@@ -43,7 +43,7 @@ const posts = defineCollection({
 
 const projects = defineCollection({
   name: 'Project',
-  directory: 'data/projects',
+  directory: './data/projects',
   include: '**/*.md',
   schema: (z) => ({
     name: z.string(),

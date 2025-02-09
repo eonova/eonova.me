@@ -40,4 +40,4 @@ dist/
 .eslint-config-inspector/
 
 # MDX
-.mdx/
+.content-collections/

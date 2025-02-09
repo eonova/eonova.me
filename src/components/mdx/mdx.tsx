@@ -1,5 +1,4 @@
-import type { MDXComponents } from '@ileostar/mdx'
-import { getMDXComponent } from '@ileostar/mdx'
+import { useMDXComponent } from '@content-collections/mdx/react'
 
 import { BlurImage } from '../base/blur-image'
 import { CodeBlock } from '../base/code-block'
@@ -19,7 +18,7 @@ interface MdxProps {
   code: string
 }
 
-const components: MDXComponents = {
+const components = {
   h1: (props: React.ComponentProps<'h1'>) => <Heading as="h1" {...props} />,
   h2: (props: React.ComponentProps<'h2'>) => <Heading as="h2" {...props} />,
   h3: (props: React.ComponentProps<'h3'>) => <Heading as="h3" {...props} />,
@@ -61,7 +60,7 @@ const components: MDXComponents = {
 
 function Mdx(props: MdxProps) {
   const { code } = props
-  const MDXContent = getMDXComponent(code)
+  const MDXContent = useMDXComponent(code)
 
   return (
     <div className="prose w-full">

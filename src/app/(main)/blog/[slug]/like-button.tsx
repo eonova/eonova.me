@@ -8,15 +8,17 @@ import { motion } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { Separator } from '~/components/base/separator'
+import { cn } from '~/lib/utils'
 
 import { api } from '~/trpc/react'
 
 interface LikeButtonProps {
   slug: string
+  className?: string
 }
 
 function LikeButton(props: LikeButtonProps) {
-  const { slug } = props
+  const { slug, className } = props
   const [cacheCount, setCacheCount] = useState(0)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const utils = api.useUtils()
@@ -94,10 +96,10 @@ function LikeButton(props: LikeButtonProps) {
   }
 
   return (
-    <div className="mt-12 flex justify-center">
+    <div className={cn("mt-10 flex justify-center", className)}>
       <motion.button
         ref={buttonRef}
-        className="flex items-center gap-3 rounded-xl bg-zinc-900 px-4 py-2 text-lg text-white"
+        className="flex items-center gap-3 rounded-full bg-zinc-900 px-4 py-2 text-md text-white"
         onClick={handleLikeButtonClick}
         aria-label="喜欢这个文章"
         whileTap={{ scale: 0.96 }}
@@ -105,8 +107,8 @@ function LikeButton(props: LikeButtonProps) {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           strokeWidth="2"
           stroke="#ef4444"

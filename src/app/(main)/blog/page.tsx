@@ -1,6 +1,6 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
-import { allPosts } from '@/content-collections'
+import { allPosts } from 'content-collections'
 
 import FilteredPosts from '~/components/filtered-posts'
 import PageTitle from '~/components/page-title'

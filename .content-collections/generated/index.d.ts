@@ -1,4 +1,4 @@
-import configuration from "../../content-collections.ts";
+import configuration from "../../content.config.ts";
 import { GetTypeByName } from "@content-collections/core";
 
 export type Post = GetTypeByName<typeof configuration, "Post">;
