@@ -7,28 +7,27 @@ import Avatar from '../avatar'
 
 const TEXTS = [
   {
-    text: '硬核实用的编程',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00BFFF]',
-  },
-  {
     text: '自己拍的小照片',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#b5b557] to-[#ddc335]',
+    className:
+      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#0077ff] to-[#00e7df]'
   },
   {
     text: '看过好看的电影',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#FF0000] to-[#FF7F50]',
+    className:
+      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#7f00de] to-[#ff007f]'
   },
   {
     text: '读过有所感悟的书',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#32CD32] to-[#37e837]',
+    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#ffc900] to-[#ff1835]',
   },
   {
     text: '奇妙的代码世界',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#8A2BE2] to-[#9932CC]',
+    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#00e7df] to-[#0077ff]',
   },
   {
     text: '有趣的生活日常',
-    className: 'bg-clip-text text-transparent bg-gradient-to-r from-[#FF69B4] to-[#FF1493]',
+    className:
+      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#2ecc70] to-[#1ca085]'
   },
 ]
 
@@ -65,10 +64,10 @@ function Hero() {
   // 客户端渲染的完整内容
   const textItem = TEXTS[currentIndex]
   return (
-    <div className="space-y-6 md:my-16">
-      <div className="flex flex-col-reverse gap-8 md:flex-row md:justify-between">
+    <div className='my-16 space-y-6'>
+      <div className='flex justify-between gap-8'>
         <motion.div
-          className="flex flex-col gap-4 md:max-w-xl"
+          className="flex flex-col gap-2"
           initial={{
             y: 40,
             opacity: 0,
@@ -81,11 +80,11 @@ function Hero() {
             duration: 0.5,
           }}
         >
-          <h1 className="font-title bg-gradient-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text text-2xl font-bold leading-9 text-transparent sm:text-4xl sm:leading-[3.5rem] dark:from-white dark:via-white/90 dark:to-white/70">
+          <h1 className="flex flex-col flex-wrap gap-1 text-xl font-bold sm:text-3xl">
             <div>
-              我是 <Avatar /> ，一个爱捣鼓的前端
+              我是 <Avatar className='h-14 sm:h-18' /> ，一个爱捣鼓的前端
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               <motion.div
                 layout
                 key="title-middle-left"
@@ -119,7 +118,7 @@ function Hero() {
           </div>
         </motion.div>
         <motion.div
-          className="relative size-20 md:size-28"
+          className="relative hidden size-28 mt-3 md:block"
           initial={{
             scale: 0,
           }}
@@ -130,7 +129,6 @@ function Hero() {
             duration: 0.3,
           }}
         >
-
           <TiltedCard
             imageSrc="/favicon/apple-touch-icon.png"
             altText="LeoStar"
@@ -141,7 +139,7 @@ function Hero() {
             showTooltip
             displayOverlayContent
             overlayContent={(
-              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2.5 text-white bg-black/30 sm:flex hidden">
+              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2.5 text-white bg-black/30 md:flex hidden">
                 Hello
               </p>
             )}

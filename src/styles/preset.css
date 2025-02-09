@@ -61,20 +61,22 @@
       height: 0;
     }
   }
-  @keyframes shine {
-    0% {
-      background-position: 100%;
-    }
-    100% {
-      background-position: -100%;
-    }
-  }
+
   @keyframes accordion-down {
     from {
       height: 0;
     }
     to {
       height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 100%;
+    }
+    100% {
+      background-position: -100%;
     }
   }
 

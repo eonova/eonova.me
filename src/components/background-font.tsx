@@ -1,5 +1,5 @@
 import { cn } from '~/lib/utils'
-import '~/styles/page/font.css'
+import '~/styles/page/background-font.css'
 
 interface BackgroundFontProps {
   children: React.ReactNode

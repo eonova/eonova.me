@@ -26,12 +26,11 @@
 }
 
 #eGgXFSmcNq71 {
-  height: 100%;
-  width: 90px;
-  display: block;
+  width: 98px;
+  display: inline-block;
   fill: none;
   stroke: black;
-  stroke-width: 2;
+  stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -39,7 +38,6 @@
 @media screen and (max-width: 640px) {
   #eGgXFSmcNq71 {
     width: 75px;
-    height: 95%;
   }
 }
 

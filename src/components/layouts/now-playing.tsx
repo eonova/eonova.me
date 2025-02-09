@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { api } from '~/trpc/react'
 import ShinyText from '../shiny-text'
-import { filterTextByLength } from '~/utils/filter-text'
 
 function NowPlaying() {
   const { status, data } = api.spotify.get.useQuery()
@@ -48,7 +47,7 @@ function NowPlaying() {
             ? <ShinyText text={text} disabled speed={3} className="custom-class" />
             : (
               <Link target="black" href={data?.songUrl ?? ''}>
-                <ShinyText title={text} text={filterTextByLength(text, 36)} disabled speed={3} className="custom-class" />
+                <ShinyText text={text} disabled speed={3} className="custom-class" />
               </Link>
             )
         }

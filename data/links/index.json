@@ -109,33 +109,10 @@
           "desc": "The Collaborative Interface Design Tool"
         },
         {
-          "images": "/images/me.png",
-          "url": "https://www.wikipedia.org/",
-          "title": "Wikipedia",
-          "desc": "一个自由、免费、内容开放的百科全书，涵盖了各种领域的知识。"
-        }
-      ]
-    },
-    {
-      "categoryName": "娱乐社交",
-      "websites": [
-        {
-          "images": "https://www.bilibili.com/favicon.ico",
-          "url": "https://www.bilibili.com/",
-          "title": "Bilibili",
-          "desc": "国内知名的视频弹幕网站，有丰富的动漫、游戏、科技等各类视频内容。"
-        },
-        {
-          "images": "/images/me.png",
-          "url": "https://www.facebook.com/",
-          "title": "Facebook",
-          "desc": "全球知名的社交网络服务网站，用户可以分享动态、照片、视频，与朋友和家人保持联系。"
-        },
-        {
-          "images": "/images/me.png",
-          "url": "https://www.instagram.com/",
-          "title": "Instagram",
-          "desc": "以分享照片和短视频为主的社交平台，在全球拥有大量用户，尤其受年轻人喜爱。"
+          "images": "https://www.gaitubao.com/apple-touch-icon.png",
+          "url": "https://www.gaitubao.com/",
+          "title": "改图宝",
+          "desc": "快速、简单的在线修改图片工具"
         }
       ]
     },
@@ -147,18 +124,6 @@
           "url": "https://open.spotify.com/",
           "title": "Spotify",
           "desc": "Music for everyone"
-        },
-        {
-          "images": "/images/me.png",
-          "url": "https://www.facebook.com/",
-          "title": "Facebook",
-          "desc": "全球知名的社交网络服务网站，用户可以分享动态、照片、视频，与朋友和家人保持联系。"
-        },
-        {
-          "images": "/images/me.png",
-          "url": "https://www.instagram.com/",
-          "title": "Instagram",
-          "desc": "以分享照片和短视频为主的社交平台，在全球拥有大量用户，尤其受年轻人喜爱。"
         }
       ]
     }
