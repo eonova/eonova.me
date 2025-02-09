@@ -70,6 +70,7 @@ export const FOOTER_LINKS = [
   {
     id: 1,
     links: [
+      { href: '/', key: '首頁' },
       { href: '/blog', key: '博客' },
       { href: '/about', key: '关于' },
       { href: '/album', key: '相册' },
@@ -81,6 +82,7 @@ export const FOOTER_LINKS = [
       { href: '/guestbook', key: '留言板' },
       { href: '/project', key: '项目' },
       { href: '/links', key: '收藏夹' },
+      { href: '/rss.xml', key: 'RSS订阅' },
     ],
   },
   {
@@ -89,6 +91,7 @@ export const FOOTER_LINKS = [
       { href: SITE_INSTAGRAM_URL, key: 'instagram' },
       { href: SITE_GITHUB_URL, key: 'github' },
       { href: SITE_YOUTUBE_URL, key: 'youtube' },
+      { href: SITE_X_URL, key: 'twitter' },
     ],
   },
 ] as const

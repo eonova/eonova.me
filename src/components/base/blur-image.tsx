@@ -10,14 +10,15 @@ import { cn } from '~/lib/utils'
 type ImageProps = {
   imageClassName?: string
   lazy?: boolean
+  blurGlass?: boolean
 } & React.ComponentProps<typeof NextImage>
 
 function BlurImage(props: ImageProps) {
-  const { alt, src, className, imageClassName, lazy = true, ...rest } = props
+  const { blurGlass = false, alt, src, className, imageClassName, lazy = true, ...rest } = props
   const [isLoading, setIsLoading] = useState(true)
 
   return (
-    <div className={cn('overflow-hidden', isLoading && 'animate-pulse', className)}>
+    <div className={cn('overflow-hidden relative', isLoading && 'animate-pulse', className)}>
       <NextImage
         className={cn(isLoading && 'scale-[1.02] blur-xl grayscale', imageClassName)}
         style={{
@@ -33,6 +34,9 @@ function BlurImage(props: ImageProps) {
         }}
         {...rest}
       />
+      {
+        blurGlass && <div className='absolute bottom-0 right-0 w-full h-[60%] bg-gradient-to-t from-black/70' />
+      }
     </div>
   )
 }

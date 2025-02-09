@@ -10,8 +10,11 @@ import CommandMenu from '../command-menu'
 import Avatar from '../avatar'
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
-import ThemeToggle from './theme-toggle'
+import ThemeToggle from './theme-switcher'
 import '~/styles/page/header.css'
+import { Rss } from 'lucide-react'
+import { Button } from '../base'
+import { SvgLogo } from '../logo'
 
 interface HeaderProps {
   className?: string
@@ -57,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     <motion.header
       variants={headerVariants}
       className={cn(
-        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] sm:h-[55px] max-w-5xl items-center justify-between rounded-full px-5 sm:px-8 mx-4 md:mx-auto shadow-sm backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 during-300',
+        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] sm:h-[55px] max-w-5xl items-center justify-between rounded-full px-5 sm:px-8 mx-4 sm:mx-auto shadow-sm backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 during-300',
         isScrolled && 'bg-background/80',
         className,
       )}
@@ -65,13 +68,23 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       initial="initial"
       animate={!isVisible ? 'hidden' : 'visible'}
     >
-      <Link className="h-full flex items-center" href="/" passHref>
-        <Avatar className="-mr-5 sm:mr-0" />
+      <Link className="h-full flex items-center" href="/" aria-label="回到首页" passHref>
+        <SvgLogo className="h-8 w-8 sm:h-10 sm:w-10 mr-5" />
       </Link>
 
       <div className="flex items-center gap-2">
         <Navbar />
         <Separator orientation="vertical" className={cn('h-6 sm:block hidden')} />
+        <Link target='black' href='/rss.xml'>
+          <Button
+            variant='ghost'
+            className='size-9 p-0 rounded-full outline-0 focus-visible:outline-none border-0 cursor-pointer duration-200'
+            aria-label='RSS订阅'
+            data-testid='rss'
+          >
+            <Rss className='size-4' />
+          </Button>
+        </Link>
         <ThemeToggle />
         <CommandMenu />
         <MobileNav />

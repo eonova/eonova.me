@@ -10,7 +10,6 @@ export const SITE_DESCRIPTION = 'LeoStar • Full Stack Developer'
 export const SITE_KEYWORDS = ['LeoStar', 'leostar', 'Next.js', 'React', 'TypeScript', 'Node.js']
 
 export const SITE_GITHUB_URL = 'https://github.com/ileostar'
-export const SITE_FACEBOOK_URL = 'https://www.facebook.com/ileostar'
-export const SITE_INSTAGRAM_URL = 'https://www.instagram.com/030LeoStar'
+export const SITE_INSTAGRAM_URL = 'https://www.instagram.com/leostar030'
 export const SITE_X_URL = 'https://x.com/030LeoStar'
 export const SITE_YOUTUBE_URL = 'https://www.youtube.com/@030LeoStar'

@@ -128,7 +128,7 @@ function Card(props: CardProps) {
       <BlurImage
         width={1200}
         height={630}
-        src={cover ?? '/images/non-image.png'}
+        src={cover ?? '/images/og-background.png'}
         alt={title}
         className="rounded-lg"
       />

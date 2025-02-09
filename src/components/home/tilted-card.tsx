@@ -110,7 +110,7 @@ export default function TiltedCard({
         <motion.img
           src={imageSrc}
           alt={altText}
-          className="absolute top-0 left-0 object-cover rounded-full will-change-transform border border-slate-600/20 dark:border-white/20 border-solid shadow-slate-600 dark:shadow-white shadow [transform:translateZ(0)]"
+          className="absolute top-0 left-0 object-cover rounded-full will-change-transform border-solid shadow-slate-600/50 dark:shadow-white shadow [transform:translateZ(0)]"
         />
 
         {displayOverlayContent && overlayContent && (

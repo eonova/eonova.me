@@ -1,22 +1,21 @@
 'use client'
 
-import { SiFacebook, SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
+import { SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
 import { CommandIcon, LogInIcon, LogOutIcon } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import { Fragment, useCallback, useEffect, useState } from 'react'
 
 import {
-  SITE_FACEBOOK_URL,
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
 import { useDialogsStore } from '~/stores/dialogs'
-import { Button } from '@headlessui/react'
+import { Button } from '~/components/base'
 import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from './base/command'
 import { Kbd } from './base/kbd'
-import { LeoStarLogoDark, LeoStarLogoLight } from './logo'
+import { SvgLogo } from './logo'
 
 type Groups = Array<{
   name: string
@@ -92,13 +91,6 @@ function CommandMenu() {
           },
         },
         {
-          title: 'Facebook',
-          icon: <SiFacebook className="mr-3 size-4" />,
-          onSelect: () => {
-            openLink(SITE_FACEBOOK_URL)
-          },
-        },
-        {
           title: 'Instagram',
           icon: <SiInstagram className="mr-3 size-4" />,
           onSelect: () => {
@@ -126,7 +118,8 @@ function CommandMenu() {
   return (
     <>
       <Button
-        className="size-8 sm:size-9 p-0 flex justify-center items-center cursor-pointer"
+        variant='ghost'
+        className="size-8 sm:size-9 p-0 flex justify-center items-center rounded-full cursor-pointer duration-200"
         onClick={() => {
           setIsOpen(true)
         }}
@@ -158,8 +151,7 @@ function CommandMenu() {
           ))}
         </CommandList>
         <CommandFooter>
-          <LeoStarLogoDark className="hidden dark:flex size-6 mt-2 ml-2 justify-center items-center text-white dark:text-black" />
-          <LeoStarLogoLight className="flex dark:hidden size-6 mt-2 ml-2 justify-center items-center text-white dark:text-black" />
+          <SvgLogo className=" size-6 justify-center items-center" />
           <CommandFooterTrigger triggerKey={<Kbd keys={['enter']} className="py-0" />}>
             {
               isSelectingCommand

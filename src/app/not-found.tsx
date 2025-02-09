@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Button } from '@headlessui/react'
+import { Button } from '~/components/base'
 import Link from 'next/link'
 
 export const metadata: Metadata = {

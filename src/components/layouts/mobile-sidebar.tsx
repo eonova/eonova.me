@@ -59,6 +59,7 @@ const MobileNavAside: React.FC<MobileNavAsideProps> = ({ className }) => {
           type="button"
           className="absolute top-8 right-8 z-50 rounded-md md:hidden"
           onClick={() => navStore.setIsVisible()}
+          aria-label="Close menu"
         >
           <X className="text-3xl" />
         </button>

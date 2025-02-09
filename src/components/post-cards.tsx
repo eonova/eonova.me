@@ -33,7 +33,7 @@ function PostCard(props: PostCardProps) {
     loading: '--',
   })
 
-  const images = cover !== '' ? cover : '/images/non-image.png'
+  const images = cover !== '' ? cover : '/images/og-background.png'
 
   const viewsQuery = api.views.get.useQuery({
     slug

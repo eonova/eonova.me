@@ -2,11 +2,11 @@
 
 import type { ToasterProps } from '~/components/base/toaster'
 import { SessionProvider } from 'next-auth/react'
-import { AppProgressBar as LoadingProgressBar } from 'next-nprogress-bar'
 import { ThemeProvider, useTheme } from 'next-themes'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Suspense } from 'react'
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
+import { default as UmamiAnalytics } from '~/components/analytics'
 import { Toaster } from '~/components/base/toaster'
 import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/page-progress'
@@ -35,7 +35,12 @@ function Providers(props: ProvidesProps) {
           <SessionProvider>
             <TooltipProvider>
               {children}
-              {flags.analytics ? <Analytics /> : null}
+              {flags.analytics && (
+                <>
+                  <VercelAnalytics />
+                  <UmamiAnalytics />
+                </>
+              )}
               <Toaster
                 toastOptions={{
                   duration: 2500,
@@ -48,12 +53,6 @@ function Providers(props: ProvidesProps) {
                 <Debug />
               </Suspense>
               <PageProgress />
-              <LoadingProgressBar
-                height="2px"
-                color="#6dc580d7"
-                options={{ showSpinner: false }}
-                shallowRouting
-              />
             </TooltipProvider>
           </SessionProvider>
         </ThemeProvider>

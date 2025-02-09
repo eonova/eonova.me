@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@headlessui/react'
+import { Button } from '~/components/base'
 import { MenuIcon } from 'lucide-react'
 import { useNav } from '~/stores/nav'
 
@@ -9,7 +9,8 @@ function MobileNav() {
   return (
     <>
       <Button
-        className="flex size-8 md:size-9 items-center justify-center p-0 md:hidden"
+        variant='ghost'
+        className="flex size-8 md:size-9 items-center justify-center p-0 md:hidden rounded-full cursor-pointer duration-200"
         type="button"
         aria-label="Toggle menu"
         onClick={navStore.setIsVisible}

@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import TiltedCard from './tilted-card'
+import Avatar from '../avatar'
 
 const TEXTS = [
   {
@@ -82,7 +83,7 @@ function Hero() {
         >
           <h1 className="font-title bg-gradient-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text text-2xl font-bold leading-9 text-transparent sm:text-4xl sm:leading-[3.5rem] dark:from-white dark:via-white/90 dark:to-white/70">
             <div>
-              我是 LeoStar ，一个爱捣鼓的前端
+              我是 <Avatar /> ，一个爱捣鼓的前端
             </div>
             <div className="flex gap-2">
               <motion.div
@@ -131,7 +132,7 @@ function Hero() {
         >
 
           <TiltedCard
-            imageSrc="/images/avatar.png"
+            imageSrc="/favicon/apple-touch-icon.png"
             altText="LeoStar"
             captionText="LeoStar"
             rotateAmplitude={12}
@@ -140,7 +141,7 @@ function Hero() {
             showTooltip
             displayOverlayContent
             overlayContent={(
-              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2 bg-white/30 sm:flex hidden">
+              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2.5 text-white bg-black/30 sm:flex hidden">
                 Hello
               </p>
             )}

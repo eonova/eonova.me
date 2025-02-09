@@ -18,7 +18,7 @@ function Header() {
     loading: '...',
   })
 
-  const images = cover !== '' ? cover : '/images/non-image.png'
+  const images = cover !== '' ? cover : '/images/og-background.png'
 
   const incrementMutation = api.views.increment.useMutation({
     onSettled: () => utils.views.get.invalidate()
