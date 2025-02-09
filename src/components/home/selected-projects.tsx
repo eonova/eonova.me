@@ -1,9 +1,8 @@
 'use client'
 
-import type { Project } from 'mdx/generated'
 import { motion, useInView } from 'framer-motion'
 import { ArrowUpRightIcon, LightbulbIcon } from 'lucide-react'
-import { allProjects } from 'mdx/generated'
+import { allProjects, type Project } from 'content-collections'
 import Link from 'next/link'
 import { useRef } from 'react'
 import { cn } from '~/lib/utils'

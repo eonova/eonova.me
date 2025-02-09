@@ -1,6 +1,6 @@
 'use client'
 
-import type { TOC } from '@ileostar/mdx'
+import type { TOC } from '@ileostar/mdx-plugins'
 
 import { AlignLeftIcon } from 'lucide-react'
 import Link from 'next/link'

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type { Article, WithContext } from 'schema-dts'
 
-import { allBlogPosts } from 'mdx/generated'
+import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import Comments from '~/components/comments'
@@ -25,7 +25,7 @@ interface PageProps {
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const { slug } = await props.params
 
-  const post = allBlogPosts.find(p => p.slug === slug)
+  const post = allPosts.find(p => p.slug === slug)
 
   if (!post)
     return {}
@@ -78,7 +78,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 async function Page(props: PageProps) {
   const { slug } = await props.params
 
-  const post = allBlogPosts.find(p => p.slug === slug)
+  const post = allPosts.find(p => p.slug === slug)
   const url = `${SITE_URL}/blog/${slug}`
 
   if (!post) {

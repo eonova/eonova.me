@@ -4,24 +4,9 @@ description: 低代码全栈海报编辑器
 homepage: https://poster-craft.leostar.top/
 github: https://github.com/ileostar/PosterCraft
 date: '2025-01-22T00:00:00Z'
-techstack:
-  - label: Next.js
-  - label: Nest.js
-  - label: Turborepo
-  - label: Drizzle-orm
-  - label: Mysql
+techstack: ['Next.js','Nest.js','Turborepo','Drizzle-orm','Mysql']
 selected: true
 ---
-
-# PosterCraft
-
-<div align="center">
-  <img src="./public/assets/logo.png" width="40%"/>
-  <p>低代码全栈海报编辑器</p>
-  <a href="https://poster-craft.leostar.top" style="text-decoration: none;">👀在线预览</a>&nbsp;&nbsp;
-  |&nbsp;&nbsp;
-  <a href="https://poster-craft-docs.vercel.app/" style="text-decoration: none;">📃在线文档</a>
-</div>
 
 ## 🎈 项目介绍
 
@@ -73,7 +58,3 @@ pnpm dev:web
 ```
 
 启动后访问 `localhost:3000` 即可
-
-## 💖 贡献
-
-欢迎各位大佬提 `PR/ISSUE` 贡献，提`PR`前可以阅读[贡献指南](./CONTRIBUTING.md)

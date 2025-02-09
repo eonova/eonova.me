@@ -1,6 +1,6 @@
 'use client'
 
-import type { BlogPost } from 'mdx/generated'
+import type { Post } from 'content-collections'
 
 import { SearchIcon } from 'lucide-react'
 import { useState } from 'react'
@@ -10,7 +10,7 @@ import { Label } from './base/label'
 import PostCards from './post-cards'
 
 interface FilteredPostsProps {
-  posts: BlogPost[]
+  posts: Post[]
 }
 
 function FilteredPosts(props: FilteredPostsProps) {
@@ -41,10 +41,10 @@ function FilteredPosts(props: FilteredPostsProps) {
       </div>
       {filteredPosts.length === 0
         ? (
-            <div className="my-24 text-center text-xl">
-              暂无结果
-            </div>
-          )
+          <div className="my-24 text-center text-xl">
+            暂无结果
+          </div>
+        )
         : null}
       <PostCards posts={filteredPosts} />
     </>

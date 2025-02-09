@@ -2,7 +2,7 @@ import type { Post } from 'content-collections'
 
 import { createContext, useContext } from 'react'
 
-type PostContext = BlogPost
+type PostContext = Post
 
 const Context = createContext<PostContext | undefined>(undefined)
 

@@ -1,7 +1,5 @@
 import type { MetadataRoute } from 'next'
 
-// import { allBlogPosts, allPages, allProjects } from 'mdx/generated'
-
 import { SITE_URL } from '~/config/constants'
 
 function sitemap(): MetadataRoute.Sitemap {

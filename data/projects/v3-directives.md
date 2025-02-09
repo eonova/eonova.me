@@ -1,14 +1,10 @@
 ---
 name: '@ileostar/v3-directives'
-description: Vue3 自定义指令集
-homepage: https://v3-directives.leostar.top/
-github: https://github.com/ileostar/v3-directives
+description: 'Vue3 自定义指令集'
+homepage: 'https://v3-directives.leostar.top/'
+github: 'https://github.com/ileostar/v3-directives'
 date: '2024-03-22T00:00:00Z'
-techstack:
-  - label: Vue3
-  - label: Vitepress
-  - label: Typescript
-  - label: Tsup
+techstack: ['vue3', 'vitepress']
 selected: true
 ---
 

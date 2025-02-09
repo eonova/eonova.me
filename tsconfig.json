@@ -38,21 +38,20 @@
     "paths": {
       "~/*": ["./src/*"],
       "@/*": ["./*"],
-      "mdx/generated": ["./.mdx/generated"]
+      "@ileostar/mdx-plugins": ["./src/plugins"],
+      "content-collections": ["./.content-collections/generated"],
     },
     "plugins": [{ "name": "next" }]
   },
   "include": [
     "next-env.d.ts",
-    "next.config.mjs",
+    "next.config.ts",
     "eslint.config.mjs",
     "postcss.config.mjs",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "**/*.json",
-    ".mdx/generated",
-    ".mdx/generated/**/*.json"
+    "**/*.json"
   ],
   "exclude": ["node_modules"]
 }

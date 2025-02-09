@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type { SoftwareApplication, WithContext } from 'schema-dts'
 
-import { allProjects } from 'mdx/generated'
+import { allProjects } from 'content-collections'
 import { notFound } from 'next/navigation'
 
 import { BlurImage } from '~/components/base/blur-image'

@@ -1,12 +1,9 @@
-import { fileURLToPath } from 'node:url'
-import { withMDX } from '@ileostar/mdx/next'
 import bundleAnalyzer from '@next/bundle-analyzer'
-import { createJiti } from 'jiti'
+import { withContentCollections } from '@content-collections/next'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
+import type { NextConfig } from 'next'
+import './src/lib/env.ts'
 
-const jiti = createJiti(fileURLToPath(import.meta.url))
-
-jiti.import('./src/lib/env.ts')
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -49,7 +46,7 @@ const NextConfigHeaders = [
 ]
 
 /** @type {import('next').NextConfig} */
-const CustomConfig = {
+const CustomConfig: NextConfig = {
   compress: true,
 
   productionBrowserSourceMaps: true,
@@ -63,6 +60,8 @@ const CustomConfig = {
   },
 
   bundlePagesRouterDependencies: true,
+
+  transpilePackages: ['@ileostar/*'],
 
   images: {
     remotePatterns: [
@@ -132,4 +131,4 @@ const CustomConfig = {
   },
 }
 
-export default withMDX(withBundleAnalyzer(CustomConfig))
+export default withContentCollections(withBundleAnalyzer(CustomConfig))

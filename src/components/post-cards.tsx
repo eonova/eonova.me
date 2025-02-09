@@ -1,16 +1,17 @@
 'use client'
 
-import type { BlogPost } from 'mdx/generated'
+import type { Post } from 'content-collections'
+
 
 import Link from 'next/link'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { BlurImage } from './base/blur-image'
 
 interface PostCardsProps {
-  posts: BlogPost[]
+  posts: Post[]
 }
 
-type PostCardProps = BlogPost
+type PostCardProps = Post
 
 function PostCards(props: PostCardsProps) {
   const { posts } = props

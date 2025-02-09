@@ -1,9 +1,9 @@
-import type { Project } from 'mdx/generated'
+import type { Project } from 'content-collections'
 
 export function groupAndSortByYear(data: Project[]) {
-  const temp = data.reduce((acc: { [key: number]: Project[] }, current) => {
+  const temp = data.reduce((acc: { [key: string]: Project[] }, current) => {
     const date = new Date(current.date);
-    const year = date.getUTCFullYear();
+    const year = date.getUTCFullYear().toString();
 
     // 如果年份不在当前的分组中，初始化一个空数组
     if (!acc[year]) {

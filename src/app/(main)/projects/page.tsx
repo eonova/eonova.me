@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type { CollectionPage, WithContext } from 'schema-dts'
 
-import { allProjects } from 'mdx/generated'
+import { allProjects } from 'content-collections'
 import BackgroundFont from '~/components/background-font'
 
 import PageTitle from '~/components/page-title'
@@ -72,7 +72,7 @@ async function Page() {
         description={description}
       />
       {Object.entries(groupedData).reverse().map(([year, projects], idx) => (
-        <div className={idx !== 0 ? 'mt-5' : ''} key={year}>
+        <div className={idx !== 0 ? 'mt-5' : ''} key={year + idx}>
           <BackgroundFont className="text-7xl text-gray-500/50 dark:text-white/50" lineHeight="1.1">{year}</BackgroundFont>
           <ProjectCards projects={projects} />
         </div>

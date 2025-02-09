@@ -2,7 +2,7 @@ import type { RouterInputs, RouterOutputs } from '../react'
 
 import { createId } from '@paralleldrive/cuid2'
 import { TRPCError } from '@trpc/server'
-import { allBlogPosts } from 'mdx/generated'
+import { allPosts } from 'content-collections'
 import { Resend } from 'resend'
 import { z } from 'zod'
 import { Comment, Reply } from '~/components/email'
@@ -275,7 +275,7 @@ export const commentsRouter = createTRPCRouter({
 
       const commentId = createId()
 
-      const page = allBlogPosts.find(post => post.slug === input.slug)
+      const page = allPosts.find(post => post.slug === input.slug)
 
       if (!page)
         throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' })

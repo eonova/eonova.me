@@ -1,9 +1,8 @@
 'use client'
 
-import type { BlogPost } from 'mdx/generated'
 import { motion, useInView } from 'framer-motion'
 import { ArrowUpRightIcon, PencilIcon } from 'lucide-react'
-import { allBlogPosts } from 'mdx/generated'
+import { allPosts, type Post } from 'content-collections'
 import Link from 'next/link'
 
 import { useRef } from 'react'
@@ -27,7 +26,7 @@ const variants = {
 function LatestArticles() {
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
-  const filteredPosts = allBlogPosts
+  const filteredPosts = allPosts
     .toSorted((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
@@ -96,7 +95,7 @@ function LatestArticles() {
 }
 
 interface CardProps {
-  post: BlogPost
+  post: Post
 }
 
 function Card(props: CardProps) {
