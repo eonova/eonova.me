@@ -1,6 +1,6 @@
 import MarkdownToJSX from 'markdown-to-jsx'
 import Link from 'next/link'
-import { memo } from 'react'
+import { Fragment, memo } from 'react'
 
 import { TableCell, TableHead, TableHeader, TableRow } from '../base/table'
 import CommentCodeBlock from '../comments/comment-code-block'
@@ -14,7 +14,7 @@ const Markdown = memo((props: MarkdownProps) => {
   const { children } = props
 
   return (
-    <div className="prose [&_blockquote_*]:text-muted-foreground my-3 ml-0.5">
+    <div className='prose my-3 ml-0.5'>
       <MarkdownToJSX
         options={{
           overrides: {
@@ -27,6 +27,7 @@ const Markdown = memo((props: MarkdownProps) => {
             td: TableCell,
           },
           disableParsingRawHTML: true,
+          wrapper: Fragment
         }}
       >
         {children}

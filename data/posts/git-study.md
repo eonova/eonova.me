@@ -1,25 +1,19 @@
 ---
 title: Git入门
-id: 4e577749-d632-4a46-9065-f81235511ac9
-date: 2023-12-02 18:38:54
-auther: leostar
-cover: 
-excerpt: Git安装及配置 Git 各平台安装包下载地址为：http//git-scm.com/downloads 下载之后无脑下一步即可，安装完之后，桌面右键出现Git GUI、Git bash选项，说明已安装 接着进行git环境配置 常用命令如下： # 显示当前的Git配置git config --
-permalink: /archives/QaWp8uhz
-categories:
- - git
-tags: 
- - git
+date: '2023-12-01T00:00:00Z'
+modifiedTime: '2023-12-03T00:00:00Z'
+summary: Git安装及配置
+categories: ['技术']
+cover: 'https://img.leostar.top/study/51290772e02b0274af8e3b4a30356ffd.jpeg'
 ---
 
 ## Git安装及配置
 
-Git 各平台安装包下载地址为：http://git-scm.com/downloads
+Git 各平台安装包下载地址为：[http://git-scm.com/downloads](http://git-scm.com/downloads)
 
 下载之后无脑下一步即可，安装完之后，桌面右键出现Git GUI、Git bash选项，说明已安装:
 
 ![image.png](https://img.leostar.top/study/20231202175419.png)
-
 
 接着进行git环境配置
 
@@ -65,7 +59,6 @@ git config core.ignorecase  falsebash复制代码
 
 ![image.png](https://img.leostar.top/study/20231202175432.png)
 
-
 4. 将公钥（ id_rsa.pub），添加到Github或Gitee平台中，这里以Github为例：
 
    (1)Github登录成功后，点击个人账户>>Setting>>SSH and GPG Keys>>New SSH key；
@@ -74,7 +67,6 @@ git config core.ignorecase  falsebash复制代码
    ![](https://img.leostar.top/study/20231202175525.png)
    (3)回到git bash窗口，输入 `ssh -T git@github.com`，如下所示，说明配置成功！
    ![Uploading file...clh83](https://img.leostar.top/study/20231202175702.png)
-   
 
 下面有几个问题：
 （1）为什么要配？
@@ -132,7 +124,7 @@ git status # 查看工作区状态，显示有变更的文件。
 git diff # 比较文件的不同，即暂存区和工作区的差异。
 ~~~
 
-###  远程操作
+### 远程操作
 
 ~~~bash
 git push origin master # 将本地的master分支推送到远程对应的分支

@@ -21,6 +21,7 @@
     "db:generate": "pnpm with-env drizzle-kit generate",
     "db:migrate": "pnpm with-env drizzle-kit migrate",
     "db:push": "pnpm with-env drizzle-kit push",
+    "db:seed": "pnpm with-env tsx ./src/db/seed.ts",
     "db:studio": "pnpm with-env drizzle-kit studio",
     "with-env": "dotenv -e .env.local --",
     "lint": "next lint",

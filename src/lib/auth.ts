@@ -12,14 +12,14 @@ import { accounts, db, eq, sessions, users, verificationTokens } from '../db'
 import { env } from './env'
 
 declare module 'next-auth' {
-  interface Session extends Omit<DefaultSession, 'user'> {
+  interface Session {
     user: {
       id: string
       name?: string | null
       email: string
       image?: string | null
       role: InferSelectModel<typeof users>['role']
-    }
+    } & DefaultSession['user']
   }
 
   interface User {

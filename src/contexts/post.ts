@@ -1,4 +1,4 @@
-import type { BlogPost } from 'mdx/generated'
+import type { Post } from 'content-collections'
 
 import { createContext, useContext } from 'react'
 

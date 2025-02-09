@@ -19,25 +19,9 @@
     ".env*": "properties"
   },
 
-  "files.watcherExclude": {
-    "**/.auth/**": true,
-    "**/.eslint-config-inspector": true,
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/.hg/store/**": true,
-    "**/.mdx/**": true,
-    "**/.next/**": true,
-    "**/.turbo/**": true,
-    "**/.vercel/**": true,
-    "**/coverage/**": true,
-    "**/dist/**": true,
-    "**/node_modules/**": true,
-    "**/playwright-report/**": true,
-    "**/test-results/**": true
-  },
-
   "tailwindCSS.experimental.classRegex": [
-    ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
 
   "typescript.enablePromptUseWorkspaceTsdk": true,
