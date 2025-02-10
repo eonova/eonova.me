@@ -1,4 +1,4 @@
-import type { DefaultSession, NextAuthConfig } from 'next-auth'
+import type { DefaultSession, NextAuthConfig, NextAuthResult } from 'next-auth'
 import type { InferSelectModel } from '../db'
 
 import { DrizzleAdapter } from '@auth/drizzle-adapter'
@@ -98,7 +98,7 @@ const config: NextAuthConfig = {
 export const {
   handlers: { GET, POST },
   auth,
-} = NextAuth(config)
+}: NextAuthResult = NextAuth(config)
 
 export const getCurrentUser = cache(async () => {
   const session = await auth()

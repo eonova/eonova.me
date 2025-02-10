@@ -97,7 +97,7 @@ function CommentReply() {
     })
   }
 
-  const disabled = status === 'unauthenticated' || commentsMutation.isLoading
+  const disabled = status === 'unauthenticated' || commentsMutation.isPending
 
   return (
     <form onSubmit={submitCommentReply}>

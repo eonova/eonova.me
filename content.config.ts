@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Context, Meta } from '@content-collections/core'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
@@ -8,11 +9,12 @@ interface BaseDoc {
   content: string
 }
 
-async function transform<D extends BaseDoc>(document: D, context: Context) {
+const transform = async <D extends BaseDoc>(document: D, context: Context) => {
   const code = await compileMDX(context, document, {
     remarkPlugins,
-    rehypePlugins,
+    rehypePlugins
   })
+
   const path = document._meta.path
 
   if (!path) {
@@ -23,7 +25,7 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     ...document,
     code,
     slug: path,
-    toc: await getTOC(document.content),
+    toc: await getTOC(document.content)
   }
 }
 

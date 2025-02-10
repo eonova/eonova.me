@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 import { allPosts } from 'content-collections'
-import { ImageResponse } from '@vercel/og'
+import { ImageResponse } from 'next/og'
 import { NextResponse } from 'next/server'
 import { SITE_URL } from '~/config/constants'
 import { db, eq, posts } from '~/db'
@@ -150,7 +150,8 @@ export async function GET(_: Request, props: OGRouteProps) {
             weight: 700,
             style: 'normal'
           }
-        ]
+        ],
+
       }
     )
   }

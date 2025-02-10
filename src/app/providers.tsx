@@ -13,6 +13,11 @@ import PageProgress from '~/components/page-progress'
 import { flags } from '~/lib/env'
 import { TRPCReactProvider } from '~/trpc/react'
 import Debug from './debug'
+import dynamic from "next/dynamic";
+
+const SmoothScroll = dynamic(() => import("../components/lenis-provider").then(mod => mod.LenisProvider), {
+  ssr: false, // 禁用 SSR
+});
 
 interface ProvidesProps {
   children: React.ReactNode
@@ -34,7 +39,9 @@ function Providers(props: ProvidesProps) {
         >
           <SessionProvider>
             <TooltipProvider>
-              {children}
+              <SmoothScroll>
+                {children}
+              </SmoothScroll>
               {flags.analytics && <UmamiAnalytics />}
               <VercelAnalytics />
               <Toaster

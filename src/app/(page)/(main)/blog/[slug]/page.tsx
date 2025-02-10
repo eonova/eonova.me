@@ -89,7 +89,6 @@ async function Page(props: PageProps) {
   if (!post) {
     notFound()
   }
-  console.log('---------==========', `${SITE_URL}/og/${slug}`)
 
   const { title, summary, date, modifiedTime, code, toc } = post
 

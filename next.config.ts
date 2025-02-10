@@ -60,7 +60,8 @@ const CustomConfig: NextConfig = {
   compress: true,
 
   experimental: {
-    optimizePackageImports: ['shiki'],
+    optimizePackageImports: ['shiki', 'lenis'],
+    reactCompiler: true
   },
 
   images: {

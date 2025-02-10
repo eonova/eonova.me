@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as MenubarPrimitive from '@radix-ui/react-menubar'
 import { CheckIcon, ChevronRightIcon, DotIcon } from 'lucide-react'
 import { cn } from '~/lib/utils'

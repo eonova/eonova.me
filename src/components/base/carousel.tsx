@@ -1,4 +1,4 @@
-import useEmblaCarousel from 'embla-carousel-react'
+import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { cn } from '~/lib/utils'
