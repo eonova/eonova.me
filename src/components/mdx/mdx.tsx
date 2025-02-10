@@ -3,7 +3,6 @@ import { useMDXComponent } from '@content-collections/mdx/react'
 import { BlurImage } from '../base/blur-image'
 import { CodeBlock } from '../base/code-block'
 import { Kbd } from '../base/kbd'
-import { TreeView } from '../base/tree-view'
 import ImageZoom from '../image-zoom'
 import Logo from '../logo'
 import Heading from './heading'
@@ -13,6 +12,7 @@ import Table from './table'
 import Video from './video'
 import Link from 'next/link'
 import type { Url } from 'next/dist/shared/lib/router/router'
+import TreeView from './tree-vew'
 
 interface MdxProps {
   code: string

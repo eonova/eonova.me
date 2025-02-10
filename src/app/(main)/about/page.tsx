@@ -15,6 +15,7 @@ import {
   APPOINT_END_DATE,
   APPOINT_START_DATE,
   DATE_BIRTH,
+  LINK_MUSIC,
   MBTI_PERSONALITY,
   MBTI_PERSONALITY_NAME,
   PROFESSION,
@@ -246,7 +247,7 @@ async function Page() {
           <IntroCard
             className="h-60 lg:h-72 col-span-1 md:col-span-1 lg:col-span-2 rounded-3xl font-world  backdrop-blur-xs overflow-hidden text-white"
             subheading="音乐"
-            title="华语流行"
+            title={LINK_MUSIC}
             desc="Music"
             isColor
           >

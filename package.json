@@ -26,7 +26,6 @@
     "with-env": "dotenv -e .env.local --",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint --fix .",
-    "preinstall": "npx only-allow pnpm",
     "prepare": "simple-git-hooks",
     "up": "taze major -I",
     "plop": "plop"
@@ -45,7 +44,6 @@
     "@content-collections/core": "^0.8.0",
     "@content-collections/mdx": "^0.2.0",
     "@content-collections/next": "^0.2.4",
-    "@headlessui/react": "^2.2.0",
     "@hookform/resolvers": "^3.9.1",
     "@icons-pack/react-simple-icons": "10.2.0",
     "@normy/react-query": "^0.17.1",
@@ -69,7 +67,6 @@
     "@trpc/client": "11.0.0-rc.666",
     "@trpc/react-query": "11.0.0-rc.666",
     "@trpc/server": "11.0.0-rc.666",
-    "@tszhong0411/ui": "^0.0.56",
     "@upstash/ratelimit": "^2.0.5",
     "@upstash/redis": "^1.34.3",
     "@vercel/analytics": "^1.4.1",

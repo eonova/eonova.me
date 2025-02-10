@@ -26,7 +26,7 @@ interface ParallaxProps {
   className?: string
 }
 
-export function wrap(min: number, max: number, v: number) {
+function wrap(min: number, max: number, v: number) {
   const rangeSize = max - min
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min
 }
@@ -123,7 +123,7 @@ export const VelocityScroll: React.FC<VelocityScrollProps> = ({
   const isInView = useInView(locaityRef, { once: true, margin: '-100px' })
   return (
     <motion.div
-      className="relative py-4 shadow-feature-card overflow-hidden flex flex-col justify-between border border-solid border-1 rounded-2xl col-span-1 md:col-span-4 lg:col-span-8"
+      className="relative py-4 shadow-feature-card overflow-hidden flex flex-col justify-between border-solid border-1 rounded-2xl col-span-1 md:col-span-4 lg:col-span-8"
       initial="initial"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
