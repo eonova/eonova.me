@@ -70,7 +70,7 @@ export const FOOTER_LINKS = [
   {
     id: 1,
     links: [
-      { href: '/', key: '首頁' },
+      { href: '/', key: '首页' },
       { href: '/blog', key: '博客' },
       { href: '/about', key: '关于' },
       { href: '/album', key: '相册' },

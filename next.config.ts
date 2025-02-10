@@ -1,15 +1,21 @@
 import type { NextConfig } from 'next'
-import { createContentCollectionPlugin } from '@content-collections/next'
+import { createContentCollectionPlugin as createMDX } from '@content-collections/next'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
+import createPWA from '@ducanh2912/next-pwa'
 import './src/lib/env.ts'
 
-const withContentCollections = createContentCollectionPlugin({
+const withMDX = createMDX({
   configPath: './content.config.ts',
 })
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
+})
+
+const withPWA = createPWA({
+  dest: 'public',
+  disable: process.env.NODE_ENV === "development"
 })
 
 const NextConfigHeaders = [
@@ -141,4 +147,4 @@ const CustomConfig: NextConfig = {
   },
 }
 
-export default withContentCollections(withBundleAnalyzer(CustomConfig))
+export default withMDX(withBundleAnalyzer(withPWA(CustomConfig)))
