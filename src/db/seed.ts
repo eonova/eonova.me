@@ -4,7 +4,7 @@ import path from 'node:path'
 import { db } from './db'
 import { posts } from './schema'
 
-const main = async () => {
+async function main() {
   try {
     const files = await fs.readdir(path.join(process.cwd(), '../../apps/web/src/content/blog/en'))
 
@@ -15,9 +15,9 @@ const main = async () => {
 
     console.log('🎉 Data inserted successfully!')
 
-    // eslint-disable-next-line unicorn/no-process-exit -- required here
     process.exit(0)
-  } catch (error) {
+  }
+  catch (error) {
     console.error('❌ Error inserting data:\n', error)
   }
 }

@@ -1,5 +1,7 @@
-import { useMDXComponent } from '@content-collections/mdx/react'
+import type { Url } from 'next/dist/shared/lib/router/router'
 
+import { useMDXComponent } from '@content-collections/mdx/react'
+import Link from 'next/link'
 import { BlurImage } from '../base/blur-image'
 import { CodeBlock } from '../base/code-block'
 import { Kbd } from '../base/kbd'
@@ -9,10 +11,8 @@ import Heading from './heading'
 import ItemGrid from './item-grid'
 import LinkCard from './link-card'
 import Table from './table'
-import Video from './video'
-import Link from 'next/link'
-import type { Url } from 'next/dist/shared/lib/router/router'
 import TreeView from './tree-vew'
+import Video from './video'
 
 interface MdxProps {
   code: string
@@ -29,7 +29,7 @@ const components = {
     const { children, ...rest } = props
 
     return (
-      <Link className='hover:text-foreground text-anchor no-underline transition-colors' {...(rest as { href: Url })}>
+      <Link className="hover:text-foreground text-anchor no-underline transition-colors" {...(rest as { href: Url })}>
         {children}
       </Link>
     )

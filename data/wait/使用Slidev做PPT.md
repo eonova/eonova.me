@@ -3,18 +3,19 @@ title: 使用Slidev做PPT
 id: b84a71f6-841f-4428-b956-7b966f4ddb17
 date: 2023-11-21 13:47:10
 auther: leostar
-cover: 
+cover:
 excerpt: 概念 官网：Slidev官网 Slidev (slide + dev, /slʌɪdɪv/) 是基于 Web 的幻灯片制作和演示工具。它旨在让开发者专注在 Markdown 中编写内容，同时拥有支持 HTML 和 Vue 组件的能力，并且能够呈现像素级完美的布局，还在你的演讲稿中内置了互动的演示样例
 permalink: /archives/B8yii4rj
 categories:
  - jsji-jin
  - hua-li-hu-shao
-tags: 
+tags:
  - slidev
  - ppt
 ---
 
 ## 概念
+
 ![image.png](https://img.leostar.top/study/20231121133030.png)
 
 官网：[Slidev官网](https://cn.sli.dev/)
@@ -29,8 +30,11 @@ tags:
 ```bash
 pnpm create slidev
 ```
+
 ### 语法
+
 #### 扉页及布局
+
 通过将分隔符转换为扉页块 (front matter)，为每张幻灯片指定布局 (layout) 和其他元数据。每个扉页信息都以分隔符 `---` 开始，以另一个分隔符 `---` 结束。
 
 ```
@@ -46,7 +50,7 @@ This is the cover page.
 layout: center
 background: './images/background-1.png'
 class: 'text-white'
----​
+---
 
 # Page 2
 
@@ -58,13 +62,17 @@ This is a page with the layout `center` and a background image.
 
 This is a default page without any additional metadata.
 ```
+
 #### 代码块及高亮
+
 **代码块**
+
 ````
 ```ts
 console.log('Hello, World!')
 ```
 ````
+
 **高亮**
 如需针对特定行进行高亮展示，只需在 `{}` 内添加对应的行号。行号从 1 开始计算。
 
@@ -91,7 +99,9 @@ function add(
 }
 ```
 ````
+
 #### 插槽
+
 一些布局可以使用 [Vue 的具名插槽](https://v3.vuejs.org/guide/component-slots.html)。
 
 例如，在 [`two-cols` 布局](https://github.com/slidevjs/slidev/blob/main/packages/client/layouts/two-cols.vue) 中，你可以采用左（`default` 插槽）右（`right` 插槽）两列的布局方式。
@@ -118,7 +128,6 @@ This shows on the right
 ```
 
 ![image.png](https://img.leostar.top/study/20231121133814.png)
-
 
 我们还为具名插槽提供了一个语法糖 `::name::`。下述示例与上述示例的工作原理完全相同。
 
@@ -157,7 +166,9 @@ This shows on the right
 
 This shows on the left
 ```
+
 #### 备注
+
 注释将展示在演讲者模式中
 
 在 Markdown 中，每张幻灯片中的最后一个注释块将被视为备注。
@@ -187,6 +198,7 @@ The second page
 ```
 
 #### 多入口点
+
 `slides.md` :
 
 ```
@@ -209,6 +221,7 @@ Inline content will be ignored
 
 This page is from another file
 ```
+
 **合并 Frontmatter**
 你可以为主入口点和外部 markdown 页面提供 frontmatter。如果其中有相同的 key，**主入口点的 key 拥有更高的优先级**。例如：
 

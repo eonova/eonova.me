@@ -27,7 +27,6 @@ function CardTitle(props: CardTitleProps) {
   const { className, ...rest } = props
 
   return (
-    // eslint-disable-next-line jsx-a11y/heading-has-content -- content is passed via children
     <h3 className={cn('text-2xl font-semibold', className)} {...rest} />
   )
 }

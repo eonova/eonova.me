@@ -1,8 +1,9 @@
 'use client'
 
+import type { Project } from 'content-collections'
+import { allProjects } from 'content-collections'
 import { motion, useInView } from 'framer-motion'
 import { ArrowUpRightIcon, LightbulbIcon } from 'lucide-react'
-import { allProjects, type Project } from 'content-collections'
 import Link from 'next/link'
 import { useRef } from 'react'
 import { cn } from '~/lib/utils'
@@ -116,7 +117,7 @@ function Card(props: CardProps) {
         src={`/images/projects/${slug}.png`}
         alt={description}
         className="rounded-lg"
-        blurGlass={true}
+        blurGlass
       />
       <div className="absolute bottom-6 left-7 flex flex-col transition-[left] ease-out group-hover:left-[30px] z-40">
         <h3 className="text-2xl font-semibold text-white">{name}</h3>

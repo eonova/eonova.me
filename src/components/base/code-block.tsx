@@ -33,17 +33,17 @@ function CodeBlock(props: CodeBlockProps) {
     >
       {title
         ? (
-          <div className="bg-muted/50 flex flex-row items-center gap-2 border-b px-4 py-1.5">
-            <div className="text-muted-foreground">
-              <Icon className="size-3.5" />
+            <div className="bg-muted/50 flex flex-row items-center gap-2 border-b px-4 py-1.5">
+              <div className="text-muted-foreground">
+                <Icon className="size-3.5" />
+              </div>
+              <figcaption className="text-muted-foreground flex-1 truncate">{title}</figcaption>
+              <CopyButton onCopy={onCopy} />
             </div>
-            <figcaption className="text-muted-foreground flex-1 truncate">{title}</figcaption>
-            <CopyButton onCopy={onCopy} />
-          </div>
-        )
+          )
         : (
-          <CopyButton className="absolute right-1.5 top-1.5 z-10" onCopy={onCopy} />
-        )}
+            <CopyButton className="absolute right-1.5 top-1.5 z-10" onCopy={onCopy} />
+          )}
 
       <ScrollArea>
         <pre ref={mergeRefs(textInput, ref)} className={cn('p-4', className)} {...rest}>

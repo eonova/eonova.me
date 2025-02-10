@@ -14,7 +14,7 @@ const Markdown = memo((props: MarkdownProps) => {
   const { children } = props
 
   return (
-    <div className='prose my-3 ml-0.5'>
+    <div className="prose my-3 ml-0.5">
       <MarkdownToJSX
         options={{
           overrides: {
@@ -27,7 +27,7 @@ const Markdown = memo((props: MarkdownProps) => {
             td: TableCell,
           },
           disableParsingRawHTML: true,
-          wrapper: Fragment
+          wrapper: Fragment,
         }}
       >
         {children}

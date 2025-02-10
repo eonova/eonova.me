@@ -44,7 +44,7 @@ const config: NextAuthConfig = {
     usersTable: users,
     accountsTable: accounts,
     sessionsTable: sessions,
-    verificationTokensTable: verificationTokens
+    verificationTokensTable: verificationTokens,
   }),
 
   callbacks: {
@@ -79,6 +79,7 @@ const config: NextAuthConfig = {
         return true
       }
       catch (error) {
+        console.log('AUTH CALLBACK ERROR:', error)
         return false
       }
     },

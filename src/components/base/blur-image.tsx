@@ -35,7 +35,7 @@ function BlurImage(props: ImageProps) {
         {...rest}
       />
       {
-        blurGlass && <div className='absolute bottom-0 right-0 w-full h-[60%] bg-gradient-to-t from-black/70' />
+        blurGlass && <div className="absolute bottom-0 right-0 w-full h-[60%] bg-gradient-to-t from-black/70" />
       }
     </div>
   )

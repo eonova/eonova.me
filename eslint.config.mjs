@@ -8,11 +8,11 @@ export default antfu({
       'css.lint.unknownAtRules': 'ignore',
     },
   },
-  markdown: true,
   ignores: [
-    './README.md',
+    'README.md',
     'components/base/*',
     './src/trpc/react.ts',
+    'data/*',
   ],
   rules: {
     'import/no-anonymous-default-export': 'off',
@@ -23,7 +23,13 @@ export default antfu({
     'jsdoc/check-param-names': 'off',
     'react-dom/no-dangerously-set-innerhtml': 'off',
     'react/prefer-destructuring-assignment': 'off',
-    'on-console': 'off',
+    'react-web-api/no-leaked-event-listener': 'off',
+    'react/no-unstable-default-props': 'off',
+    'regexp/no-unused-capturing-group': 'off',
+    'regexp/no-dupe-disjunctions': 'off',
+    'no-prototype-builtins': 'off',
+    'no-console': 'off',
+    'ts/no-redeclare': 'off',
   },
   extends: [
     'plugin:@next/next/recommended',

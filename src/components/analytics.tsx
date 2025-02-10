@@ -1,10 +1,11 @@
-import { env } from '~/lib/env'
 import Script from 'next/script'
-
 import { isProduction } from '~/config/constants'
 
-const Analytics = () => {
-  if (!isProduction) return null
+import { env } from '~/lib/env'
+
+function Analytics() {
+  if (!isProduction)
+    return null
 
   return (
     <Script

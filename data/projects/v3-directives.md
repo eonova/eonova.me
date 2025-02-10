@@ -1,5 +1,5 @@
 ---
-name: '@ileostar/v3-directives'
+name: 'v3-directives'
 description: 'Vue3 自定义指令集'
 homepage: 'https://v3-directives.leostar.top/'
 github: 'https://github.com/ileostar/v3-directives'

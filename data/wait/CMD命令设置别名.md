@@ -3,12 +3,12 @@ title: CMD命令设置别名
 id: 5bf2da6c-9500-4d6f-b3c9-0daf0e0f6076
 date: 2023-12-02 19:19:52
 auther: leostar
-cover: 
+cover:
 excerpt: CMD命令设置别名 新建一个bat文件 配置参考antfu/dotfiles My dotfiles (github.com) REM ---Node Package Manager---@echo offdoskey s=nr start $*doskey d=nr dev $*dos
 permalink: /archives/pKkV1cEY
 categories:
  - git
-tags: 
+tags:
  - qi-ta
 ---
 

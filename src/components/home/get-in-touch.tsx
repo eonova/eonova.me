@@ -1,10 +1,10 @@
 'use client'
 
 import me from '@/public/images/home/call-me.jpg'
-import { BlurImage } from '~/components/base/blur-image'
 import { motion, useAnimate, useInView } from 'framer-motion'
-
 import { useEffect, useRef } from 'react'
+
+import { BlurImage } from '~/components/base/blur-image'
 
 const variants = {
   initial: {

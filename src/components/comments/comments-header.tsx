@@ -32,7 +32,7 @@ function CommentHeader() {
               <NumberFlow
                 willChange
                 value={commentsCountQuery.data.comments}
-                suffix='&nbsp;评论'
+                suffix="&nbsp;评论"
               />
             )
           }
@@ -45,7 +45,7 @@ function CommentHeader() {
               <NumberFlow
                 willChange
                 value={repliesCountQuery.data.replies}
-                suffix='&nbsp;回复'
+                suffix="&nbsp;回复"
               />
             )
           }

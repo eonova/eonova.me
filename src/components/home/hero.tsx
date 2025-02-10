@@ -2,19 +2,19 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import TiltedCard from './tilted-card'
 import Avatar from '../avatar'
+import TiltedCard from './tilted-card'
 
 const TEXTS = [
   {
     text: '自己拍的小照片',
     className:
-      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#0077ff] to-[#00e7df]'
+      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#0077ff] to-[#00e7df]',
   },
   {
     text: '看过好看的电影',
     className:
-      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#7f00de] to-[#ff007f]'
+      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#7f00de] to-[#ff007f]',
   },
   {
     text: '读过有所感悟的书',
@@ -27,7 +27,7 @@ const TEXTS = [
   {
     text: '有趣的生活日常',
     className:
-      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#2ecc70] to-[#1ca085]'
+      'bg-clip-text text-center text-transparent bg-linear-to-r from-[#2ecc70] to-[#1ca085]',
   },
 ]
 
@@ -64,8 +64,8 @@ function Hero() {
   // 客户端渲染的完整内容
   const textItem = TEXTS[currentIndex]
   return (
-    <div className='my-16 space-y-3'>
-      <div className='flex justify-between gap-8'>
+    <div className="my-16 space-y-3">
+      <div className="flex justify-between gap-8">
         <motion.div
           className="flex flex-col gap-2"
           initial={{
@@ -82,7 +82,11 @@ function Hero() {
         >
           <h1 className="flex flex-col flex-wrap text-xl font-bold sm:text-3xl">
             <div>
-              我是 <Avatar className='h-12 sm:h-16 md:h-18' /> ，一个爱捣鼓的前端
+              我是
+              {' '}
+              <Avatar className="h-12 sm:h-16 md:h-18" />
+              {' '}
+              ，一个爱捣鼓的前端
             </div>
             <div className="flex gap-1">
               <motion.div

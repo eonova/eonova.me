@@ -69,14 +69,14 @@ export function TRPCReactProvider(props: TRPCReactProviderProps) {
 
   return (
     <QueryNormalizerProvider queryClient={queryClient} normalizerConfig={{ devLogging: true }}>
-      <api.Provider client={trpcClient} queryClient={queryClient}>
+      <api client={trpcClient} queryClient={queryClient}>
         <QueryClientProvider client={queryClient}>
           <ReactQueryStreamedHydration transformer={SuperJSON}>
             {children}
           </ReactQueryStreamedHydration>
           <ReactQueryDevtools />
         </QueryClientProvider>
-      </api.Provider>
+      </api>
     </QueryNormalizerProvider>
   )
 }

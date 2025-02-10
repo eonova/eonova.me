@@ -18,7 +18,7 @@ const url = '/guestbook'
 
 export async function generateMetadata(
   _props: any,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
@@ -27,19 +27,19 @@ export async function generateMetadata(
     title,
     description,
     alternates: {
-      canonical: url
+      canonical: url,
     },
     openGraph: {
       ...previousOpenGraph,
       url,
       title,
-      description
+      description,
     },
     twitter: {
       ...previousTwitter,
       title,
-      description
-    }
+      description,
+    },
   }
 }
 

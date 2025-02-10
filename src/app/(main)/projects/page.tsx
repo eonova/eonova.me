@@ -8,13 +8,14 @@ import PageTitle from '~/components/page-title'
 import ProjectCards from '~/components/project-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { groupAndSortByYear } from '~/utils/group-sort-by-year'
+
 const title = '项目'
 const description = '我的项目清单。所有东西都是用 ❤️ 制作'
 const url = '/projects'
 
 export async function generateMetadata(
   _props: any,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
@@ -23,24 +24,23 @@ export async function generateMetadata(
     title,
     description,
     alternates: {
-      canonical: url
+      canonical: url,
     },
     openGraph: {
       ...previousOpenGraph,
       url,
       title,
-      description
+      description,
     },
     twitter: {
       ...previousTwitter,
       title,
-      description
-    }
+      description,
+    },
   }
 }
 
 async function Page() {
-
   const projects = allProjects
 
   const jsonLd: WithContext<CollectionPage> = {
@@ -64,7 +64,7 @@ async function Page() {
     })),
   }
 
-  const groupedData = groupAndSortByYear(projects);
+  const groupedData = groupAndSortByYear(projects)
   return (
     <>
       <script

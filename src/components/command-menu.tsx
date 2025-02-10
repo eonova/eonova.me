@@ -5,6 +5,7 @@ import { CommandIcon, LogInIcon, LogOutIcon } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import { Fragment, useCallback, useEffect, useState } from 'react'
 
+import { Button } from '~/components/base'
 import {
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
@@ -12,7 +13,6 @@ import {
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
 import { useDialogsStore } from '~/stores/dialogs'
-import { Button } from '~/components/base'
 import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from './base/command'
 import { Kbd } from './base/kbd'
 import { SvgLogo } from './logo'
@@ -62,22 +62,22 @@ function CommandMenu() {
       actions: [
         ...(status === 'authenticated'
           ? [
-            {
-              title: '登出',
-              icon: <LogOutIcon className="mr-3 size-4" />,
-              onSelect: () => signOut(),
-            },
-          ]
-          : [
-            {
-              title: '登入',
-              icon: <LogInIcon className="mr-3 size-4" />,
-              onSelect: () => {
-                setIsOpen(false)
-                dialogStore.setDialogs(true)
+              {
+                title: '登出',
+                icon: <LogOutIcon className="mr-3 size-4" />,
+                onSelect: () => signOut(),
               },
-            },
-          ]),
+            ]
+          : [
+              {
+                title: '登入',
+                icon: <LogInIcon className="mr-3 size-4" />,
+                onSelect: () => {
+                  setIsOpen(false)
+                  dialogStore.setDialogs(true)
+                },
+              },
+            ]),
       ],
     },
     {
@@ -118,7 +118,7 @@ function CommandMenu() {
   return (
     <>
       <Button
-        variant='ghost'
+        variant="ghost"
         className="size-8 sm:size-9 p-0 flex justify-center items-center rounded-full cursor-pointer duration-200"
         onClick={() => {
           setIsOpen(true)
@@ -140,7 +140,7 @@ function CommandMenu() {
             <Fragment key={group.name}>
               <CommandGroup heading={group.name}>
                 {group.actions.map(action => (
-                  <CommandItem className='cursor-pointer duration-200' key={action.title} onSelect={action.onSelect}>
+                  <CommandItem className="cursor-pointer duration-200" key={action.title} onSelect={action.onSelect}>
                     {action.icon}
                     {action.title}
                   </CommandItem>

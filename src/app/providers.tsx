@@ -1,12 +1,12 @@
 'use client'
 
 import type { ToasterProps } from '~/components/base/toaster'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import { SessionProvider } from 'next-auth/react'
 import { ThemeProvider, useTheme } from 'next-themes'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Suspense } from 'react'
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
-import { default as UmamiAnalytics } from '~/components/analytics'
+import UmamiAnalytics from '~/components/analytics'
 import { Toaster } from '~/components/base/toaster'
 import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/page-progress'
@@ -35,12 +35,8 @@ function Providers(props: ProvidesProps) {
           <SessionProvider>
             <TooltipProvider>
               {children}
-              {flags.analytics && (
-                <>
-                  <VercelAnalytics />
-                  <UmamiAnalytics />
-                </>
-              )}
+              {flags.analytics && <UmamiAnalytics />}
+              <VercelAnalytics />
               <Toaster
                 toastOptions={{
                   duration: 2500,

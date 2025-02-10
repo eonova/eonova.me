@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { Button } from '~/components/base'
 import Link from 'next/link'
+import { Button } from '~/components/base'
 
 export const metadata: Metadata = {
   title: '404',

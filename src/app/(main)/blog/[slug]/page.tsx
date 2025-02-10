@@ -11,9 +11,9 @@ import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { flags } from '~/lib/env'
 import Footer from './footer'
 import Header from './header'
+import LikeButton from './like-button'
 import MobileTableOfContents from './mobile-table-of-contents'
 import Providers from './providers'
-import LikeButton from './like-button'
 
 interface PageProps {
   params: Promise<{
@@ -131,7 +131,7 @@ async function Page(props: PageProps) {
           <aside className="w-[0] hidden lg:block">
             <div className="sticky top-32 lg:min-w-[270px] lg:max-w-[270px]">
               {toc.length > 0 && <TableOfContents toc={toc} />}
-              {flags.likeButton && <LikeButton className='ml-5 justify-start' slug={slug} />}
+              {flags.likeButton && <LikeButton className="ml-5 justify-start" slug={slug} />}
             </div>
           </aside>
         </div>

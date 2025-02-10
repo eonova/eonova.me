@@ -1,6 +1,6 @@
-import type { TOC } from '../types'
 import type { Heading } from 'mdast'
 import type { Plugin } from 'unified'
+import type { TOC } from '../types'
 
 import Slugger from 'github-slugger'
 import { visit } from 'unist-util-visit'
@@ -26,7 +26,8 @@ export const remarkHeading: Plugin = () => {
 
       const childNode = node.children[0]
 
-      if (childNode?.type !== 'text') return
+      if (childNode?.type !== 'text')
+        return
 
       const text = childNode.value
       const id = slugger.slug(childNode.value)
@@ -36,7 +37,7 @@ export const remarkHeading: Plugin = () => {
       toc.push({
         title: text,
         url: id,
-        depth: node.depth
+        depth: node.depth,
       })
 
       return 'skip'

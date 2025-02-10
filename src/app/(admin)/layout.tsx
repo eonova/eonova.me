@@ -4,7 +4,7 @@ import AdminSidebar from '~/components/admin/admin-sidebar'
 import { SidebarProvider } from '~/components/base'
 import { getCurrentUser } from '~/lib/auth'
 
-type LayoutProps = {
+interface LayoutProps {
   params: Promise<{
     locale: string
   }>
@@ -12,7 +12,7 @@ type LayoutProps = {
   children: React.ReactNode
 }
 
-const Layout = async (props: LayoutProps) => {
+async function Layout(props: LayoutProps) {
   const { children } = props
   const session = await getCurrentUser()
 
@@ -23,9 +23,9 @@ const Layout = async (props: LayoutProps) => {
   return (
     <SidebarProvider>
       <AdminSidebar />
-      <div className='flex w-full flex-col overflow-x-hidden px-4'>
+      <div className="flex w-full flex-col overflow-x-hidden px-4">
         <AdminHeader />
-        <main className='py-6'>{children}</main>
+        <main className="py-6">{children}</main>
       </div>
     </SidebarProvider>
   )

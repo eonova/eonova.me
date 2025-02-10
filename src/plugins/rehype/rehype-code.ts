@@ -1,3 +1,4 @@
+import type { RehypeShikiOptions } from '@shikijs/rehype'
 /**
  * fumadocs (MIT License)
  * Copyright (c) fuma-nama
@@ -6,24 +7,24 @@
  * Modified by: tszhong0411
  */
 import type { Root } from 'hast'
-import type { Plugin } from 'unified'
 
-import { type RehypeShikiOptions } from '@shikijs/rehype'
+import type { ShikiTransformer } from 'shiki'
+import type { Plugin } from 'unified'
 import rehypeShikiFromHighlighter from '@shikijs/rehype/core'
 import {
   transformerNotationDiff,
   transformerNotationFocus,
   transformerNotationHighlight,
-  transformerNotationWordHighlight
+  transformerNotationWordHighlight,
 } from '@shikijs/transformers'
-import { bundledLanguages, getSingletonHighlighter, type ShikiTransformer } from 'shiki'
+import { bundledLanguages, getSingletonHighlighter } from 'shiki'
 import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
 
 const titleRegex = /title=["']([^"']*)["']/
 
 export const DEFAULT_SHIKI_THEMES = {
   light: 'github-light-default',
-  dark: 'github-dark-default'
+  dark: 'github-dark-default',
 }
 
 export const rehypeCode: Plugin<[RehypeShikiOptions], Root> = () => {
@@ -41,39 +42,40 @@ export const rehypeCode: Plugin<[RehypeShikiOptions], Root> = () => {
       },
       root(hast) {
         const pre = hast.children[0]
-        if (pre?.type !== 'element') return
+        if (pre?.type !== 'element')
+          return
         hast.children = [
           {
             ...pre,
             properties: {
               ...pre.properties,
-              'data-lang': this.options.lang
-            }
-          }
+              'data-lang': this.options.lang,
+            },
+          },
         ]
-      }
+      },
     },
     transformerNotationHighlight({
-      matchAlgorithm: 'v3'
+      matchAlgorithm: 'v3',
     }),
     transformerNotationWordHighlight({
-      matchAlgorithm: 'v3'
+      matchAlgorithm: 'v3',
     }),
     transformerNotationDiff({
-      matchAlgorithm: 'v3'
+      matchAlgorithm: 'v3',
     }),
     transformerNotationFocus({
-      matchAlgorithm: 'v3'
-    })
+      matchAlgorithm: 'v3',
+    }),
   ]
 
   const highlighter = getSingletonHighlighter({
     engine: createOnigurumaEngine(import('shiki/wasm')),
     themes: Object.values(DEFAULT_SHIKI_THEMES),
-    langs: Object.keys(bundledLanguages)
+    langs: Object.keys(bundledLanguages),
   })
 
-  const transformer = highlighter.then((instance) =>
+  const transformer = highlighter.then(instance =>
     rehypeShikiFromHighlighter(instance, {
       themes: DEFAULT_SHIKI_THEMES,
       defaultColor: false,
@@ -84,8 +86,8 @@ export const rehypeCode: Plugin<[RehypeShikiOptions], Root> = () => {
         const title = titleMatch?.[1] ?? null
 
         return { title }
-      }
-    })
+      },
+    }),
   )
 
   return async (tree, file) => {

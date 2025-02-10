@@ -7,7 +7,6 @@ categories: ['技术']
 cover: 'https://img.leostar.top/study/20230616123026.png'
 ---
 
-
 ## 网络请求发展史
 
 1. 传统的Ajax
@@ -22,27 +21,28 @@ cover: 'https://img.leostar.top/study/20230616123026.png'
 ## 原生XMLHttpRequest实现
 
 ~~~js
-var request = new XMLHttpRequest(); // 创建XMLHttpRequest对象
-//ajax是异步的，设置回调函数
+const request = new XMLHttpRequest() // 创建XMLHttpRequest对象
+// ajax是异步的，设置回调函数
 request.onreadystatechange = function () { // 状态发生变化时，函数被回调
-    if (request.readyState === 4) { // 成功完成
-        // 判断响应状态码
-        if (request.status === 200) {
-            // 成功，通过responseText拿到响应的文本:
-            return success(request.responseText);
-        } else {
-            // 失败，根据响应码判断失败原因:
-            return fail(request.status);
-        }
-    } else {
-        // HTTP请求还在继续...
+  if (request.readyState === 4) { // 成功完成
+    // 判断响应状态码
+    if (request.status === 200) {
+      // 成功，通过responseText拿到响应的文本:
+      return success(request.responseText)
     }
+    else {
+      // 失败，根据响应码判断失败原因:
+      return fail(request.status)
+    }
+  }
+  else {
+    // HTTP请求还在继续...
+  }
 }
 // 发送请求:
-request.open('GET', '/api/categories');
-request.setRequestHeader("Content-Type", "application/json") //设置请求头
-request.send();//到这一步，请求才正式发出
-
+request.open('GET', '/api/categories')
+request.setRequestHeader('Content-Type', 'application/json') // 设置请求头
+request.send()// 到这一步，请求才正式发出
 ~~~
 
 ## axios安装
@@ -66,31 +66,27 @@ axios是基于Promise的，因此可以使用Promise API
 - axios.patch(url[, data[, config]]) **axios(config)请求方式：** axios接收一个对象，在对象中使用`键值对`方式写入配置信息，get请求下，默认method可以不写。
 
 ~~~js
-//执行GET请求
+// 执行GET请求
 import axios from 'axios'
 axios.default.baseURL = 'http://localhost:3000/api/products'
-axios.get('/user?ID=12345')  //返回的是一个Promise
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err));
+axios.get('/user?ID=12345') // 返回的是一个Promise
+  .then(res => console.log(res))
+  .catch(err => console.log(err))
 
-//可配置参数的方式
-axios.get('/user',{
-    params:{
-        ID:12345
-    }
-}).then(res=>console.log(res))
-    .catch(err=>console.log(err));
-
+// 可配置参数的方式
+axios.get('/user', {
+  params: {
+    ID: 12345
+  }
+}).then(res => console.log(res)).catch(err => console.log(err))
 ~~~
 
 ~~~js
-//发送post请求
-axios.post('/user',{
-    firstName: 'simon',
-    lastName:'li'
-}).then(res=>console.log(res))
-    .catch(err=>console.log(err));
-
+// 发送post请求
+axios.post('/user', {
+  firstName: 'simon',
+  lastName: 'li'
+}).then(res => console.log(res)).catch(err => console.log(err))
 ~~~
 
 ### axios配置
@@ -125,29 +121,27 @@ axios.post('/user',{
 axios.defaults.baseURL = 'http://123.207.32.32:8000'
 axios.defaults.timeout = 5000
 axios.defaults.headers['X-TOKEN'] = '123xxx'
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.responseType = 'blob' 
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.responseType = 'blob'
 
-axios('home/multidata',
-    {
-        params: {
-            type: 'pop',
-            page: 1
-        }
-    }
-).then(res => {
-    console.log(res);
-}).catch(err => {
-    console.log(err);
+axios('home/multidata', {
+  params: {
+    type: 'pop',
+    page: 1
+  }
+}).then((res) => {
+  console.log(res)
+}).catch((err) => {
+  console.log(err)
 })
 ~~~
 
 **实例配置**
 
 ~~~js
- let instance = axios.create(
-   //基本配置方法
- )
+const instance = axios.create(
+  // 基本配置方法
+)
 ~~~
 
 **axios请求配置**
@@ -155,9 +149,9 @@ axios('home/multidata',
 视具体情况而定，如调用某个路径的文件巨大，我们可以单独对其请求时长进行设置：
 
 ```js
- instance.get('/data.json',{
-   timeout:5000
- })
+instance.get('/data.json', {
+  timeout: 5000
+})
 ```
 
 >优先级：请求配置 > 实例配置 > 全局配置
@@ -176,18 +170,17 @@ axios.all方法接受一个数组作为参数，数组中的每个元素都是�
 
 ~~~js
 function getUserAccount() {
-  return axios.get('/user/12345');
+  return axios.get('/user/12345')
 }
 
 function getUserPermissions() {
-  return axios.get('/user/12345/permissions');
+  return axios.get('/user/12345/permissions')
 }
 
 axios.all([getUserAccount(), getUserPermissions()])
   .then(axios.spread((acct, perms) => {
     // 两个请求都完成后,acct是getUserAccount的返回值，同理，perms是 getUserPermissions的返回值
-  }));
-
+  }))
 ~~~
 
 ### 创建axios实例
@@ -216,7 +209,6 @@ axiosInstance1({
 }).catch(err=>{
     console.log(err)
 })
-
 
 // axios实例2
 const axiosInstance2 = axios.create({
@@ -248,15 +240,15 @@ axiosInstance1.default.baseURL = 'http://123.207.32.32:8000'
 axiosInstance1.default.timeout = 5000
 
 axiosInstance1({
-    url:'/home/multidata',
-    params:{
-        type:'pop',
-        page:3
-    }
-}).then(res=>{
-    console.log(res)
-}).catch(err=>{
-    console.log(err)
+  url: '/home/multidata',
+  params: {
+    type: 'pop',
+    page: 3
+  }
+}).then((res) => {
+  console.log(res)
+}).catch((err) => {
+  console.log(err)
 })
 ~~~
 
@@ -277,8 +269,8 @@ axiosInstance1({
 
 ```typescript
 export interface AxiosInterceptorManager<V> {
-  use<T = V>(onFulfilled?: (value: V) => T | Promise<T>, onRejected?: (error: any) => any): number;
-  eject(id: number): void;
+  use: <T = V>(onFulfilled?: (value: V) => T | Promise<T>, onRejected?: (error: any) => any) => number
+  eject: (id: number) => void
 }
 ```
 
@@ -289,12 +281,12 @@ export interface AxiosInterceptorManager<V> {
 - 对请求的参数进行序列化
 
 ```js
-axios.interceptor.request.use(res=>{
-    console.log('来到了request拦截的success中');
-    // 拦截完了要返回
-    return res
-},err=>{
-    console.log('来到了request拦截的failure中');
+axios.interceptor.request.use((res) => {
+  console.log('来到了request拦截的success中')
+  // 拦截完了要返回
+  return res
+}, (err) => {
+  console.log('来到了request拦截的failure中')
 })
 ```
 
@@ -304,12 +296,12 @@ axios.interceptor.request.use(res=>{
 - 根据响应的status状态码，做出不同的操作。例如：如果status是401，响应拦截失败，那么通常是token失效，没有授权，要跳转至登陆页；status是200，响应拦截成功操作，返回res.data响应数据
 
 ```js
-axios.interceptor.response.use(res=>{
-    console.log('来到了response拦截的success中');
-    // 拦截完了要返回
-    return res.data
-},err=>{
-    console.log('来到了response拦截的failure中');
+axios.interceptor.response.use((res) => {
+  console.log('来到了response拦截的success中')
+  // 拦截完了要返回
+  return res.data
+}, (err) => {
+  console.log('来到了response拦截的failure中')
 })
 ```
 
@@ -318,10 +310,10 @@ axios.interceptor.response.use(res=>{
 在项目中，我们通常会对请求进行二次封装，在项目中src/utils文件下新建request.js文件存放封装的请求，导入第三方请求库。那么为什么会二次封装请求呢？因为例如axios请求属于第三方库，如果后期作者不再维护axios库的时候，我们只需要修改request.js文件依赖的第三方框架部分，这样不会影响项目中其他需要发送请求的代码。
 
 ```js
-import axios from 'axios'
-import { useMsgbox, Message } from 'element3'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import axios from 'axios'
+import { Message, useMsgbox } from 'element3'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -329,30 +321,31 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(
-  config => {
+  (config) => {
     if (store.getters.token) {
       config.headers['X-Token'] = getToken()
     }
     return config
   },
-  error => {
+  (error) => {
     console.log(error) // for debug
     return Promise.reject(error)
   },
 )
 
 service.interceptors.response.use(
-  response => {
+  (response) => {
     const res = response.data
     if (res.code !== 20000) {
-      console.log('接口信息报错',res.message)
+      console.log('接口信息报错', res.message)
       return Promise.reject(new Error(res.message || 'Error'))
-    } else {
+    }
+    else {
       return res
     }
   },
-  error => {
-    console.log('接口信息报错' + error) 
+  (error) => {
+    console.log(`接口信息报错${error}`)
     return Promise.reject(error)
   },
 )

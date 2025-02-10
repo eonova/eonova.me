@@ -1,10 +1,10 @@
 import type { GetInfiniteCommentsInput } from '~/trpc/routers/comments'
 
 import NumberFlow from '@number-flow/react'
-import { Button, buttonVariants, toast } from '~/components/base'
 import { cva } from 'class-variance-authority'
 import { ChevronDownIcon, MessageSquareIcon, ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react'
 import { useSession } from 'next-auth/react'
+import { Button, buttonVariants, toast } from '~/components/base'
 import { useCommentContext } from '~/contexts/comment'
 
 import { useCommentsContext } from '~/contexts/comments'
@@ -40,11 +40,11 @@ function CommentActions() {
     slug,
     ...(comment.parentId
       ? {
-        parentId: comment.parentId,
-        sort: 'oldest',
-        type: 'replies',
-        ...(params.reply ? { highlightedCommentId: params.reply } : {}),
-      }
+          parentId: comment.parentId,
+          sort: 'oldest',
+          type: 'replies',
+          ...(params.reply ? { highlightedCommentId: params.reply } : {}),
+        }
       : { sort, ...(params.comment ? { highlightedCommentId: params.comment } : {}) }),
   }
 
@@ -160,37 +160,37 @@ function CommentActions() {
         {comment.parentId
           ? null
           : (
-            <Button
-              variant="secondary"
-              className="text-muted-foreground h-8 gap-1.5 px-2 text-xs font-medium"
-              onClick={() => {
-                setIsReplying(true)
-              }}
-            >
-              <MessageSquareIcon className="size-4" />
-              回复
-            </Button>
-          )}
+              <Button
+                variant="secondary"
+                className="text-muted-foreground h-8 gap-1.5 px-2 text-xs font-medium"
+                onClick={() => {
+                  setIsReplying(true)
+                }}
+              >
+                <MessageSquareIcon className="size-4" />
+                回复
+              </Button>
+            )}
       </div>
       {hasReplies
         ? (
-          <Button
-            variant="ghost"
-            size="sm"
-            className="mt-4 h-8 gap-1.5 px-2 text-xs font-medium"
-            onClick={() => {
-              setIsOpenReplies(!isOpenReplies)
-            }}
-          >
-            <ChevronDownIcon
-              className={cn('size-4 transition-transform duration-200', {
-                'rotate-180': isOpenReplies,
-              })}
-            />
-            <NumberFlow willChange value={comment.replies} />
-            {`回复 ${{ count: comment.replies }}`}
-          </Button>
-        )
+            <Button
+              variant="ghost"
+              size="sm"
+              className="mt-4 h-8 gap-1.5 px-2 text-xs font-medium"
+              onClick={() => {
+                setIsOpenReplies(!isOpenReplies)
+              }}
+            >
+              <ChevronDownIcon
+                className={cn('size-4 transition-transform duration-200', {
+                  'rotate-180': isOpenReplies,
+                })}
+              />
+              <NumberFlow willChange value={comment.replies} />
+              {`回复 ${{ count: comment.replies }}`}
+            </Button>
+          )
         : null}
     </>
   )

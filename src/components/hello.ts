@@ -2,19 +2,19 @@
 
 import { useEffect } from 'react'
 
-const Hello = () => {
+function Hello() {
   useEffect(() => {
     console.log(
       `\
 %cHey there, awesome developer!
 
-If you're digging this code, check out my GitHub repo:
+If you're digging this code, check out my GitHub:
 
 https://github.com/ileostar
 
 and give it a star ⭐
 `,
-      'font-size: 16px'
+      'font-size: 16px',
     )
   }, [])
 

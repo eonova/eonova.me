@@ -3,12 +3,12 @@ title: 初始Blender
 id: 4cd954a7-7815-42ea-8b4c-2cddb2d2aa9e
 date: 2023-12-02 19:22:26
 auther: leostar
-cover: 
-excerpt: 【Kurt】Blender3.5零基础入门教程 | 中文区必看Blender教程！| 更新至粒子篇_哔哩哔哩_bilibili 初始Blender 下载与安装 可以从下面任意网站下载 blender.org - Home of the Blender project - Free and Open 
+cover:
+excerpt: 【Kurt】Blender3.5零基础入门教程 | 中文区必看Blender教程！| 更新至粒子篇_哔哩哔哩_bilibili 初始Blender 下载与安装 可以从下面任意网站下载 blender.org - Home of the Blender project - Free and Open
 permalink: /archives/InIPejff
 categories:
  - 3djian-mo
-tags: 
+tags:
  - blender
 ---
 
@@ -66,21 +66,21 @@ tags:
 
 恢复变换：AIt+G,AIt+R,AIt+S
 
-新建物体： Shift+A	
+新建物体： Shift+A
 
-复制物体： Shift+D	
+复制物体： Shift+D
 
-关联复制： Alt+D	
+关联复制： Alt+D
 
-删除物体： X	
+删除物体： X
 
-隐藏物体： H	
+隐藏物体： H
 
-显示隐藏物体： Alt+H	
+显示隐藏物体： Alt+H
 
-隐藏没有被选中的物体： Shift+H	
+隐藏没有被选中的物体： Shift+H
 
-选择物体	刷选：C	全选：A，按住Shift可以加选或减选
+选择物体 刷选：C 全选：A，按住Shift可以加选或减选
 
 ### 认识界面
 

@@ -3,12 +3,12 @@ title: RegExp
 id: 04d32643-af0b-45cb-bc74-275a624e1ec8
 date: 2023-12-02 21:33:20
 auther: leostar
-cover: 
+cover:
 excerpt: RegExp的创建 首先，得先创建正则表达式 /ab+c/i; //字面量形式new RegExp('ab+c', 'i'); // 首个参数为字符串模式的构造函数new RegExp(/ab+c/, 'i'); // 首个参数为常规字面量的构造函数 其中的ab+c是正则表达式的pattern
 permalink: /archives/gGzttYgX
 categories:
  - jsji-jin
-tags: 
+tags:
  - zheng-ze-biao-da-shi
  - jsji-chu
 ---
@@ -18,9 +18,9 @@ tags:
 首先，得先创建正则表达式
 
 ```javascript
-/ab+c/i; //字面量形式
-new RegExp('ab+c', 'i'); // 首个参数为字符串模式的构造函数
-new RegExp(/ab+c/, 'i'); // 首个参数为常规字面量的构造函数
+/ab+c/i // 字面量形式
+new RegExp('ab+c', 'i') // 首个参数为字符串模式的构造函数
+new RegExp(/ab+c/, 'i') // 首个参数为常规字面量的构造函数
 ```
 
 其中的`ab+c`是正则表达式的pattern（模式），i表示匹配模式的flags（标记），也称修饰符，用于控制正则表达式的行为。下面给出了表示匹配模式的修饰符：
@@ -51,23 +51,23 @@ RegExp实例属性包括：
 这些属性可以通过正则表达式对象的实例来访问和修改。例如：
 
 ```javascript
-const regex = /abc/gi;
-console.log(regex.global); // true
-console.log(regex.ignoreCase); // true
-console.log(regex.multiline); // false
-console.log(regex.unicode); // false
-console.log(regex.dotAll); // false
-console.log(regex.source); // "abc"
-console.log(regex.lastIndex); // 0
-console.log(regex.sticky); // false
-console.log(regex.unicode); // false
+const regex = /abc/gi
+console.log(regex.global) // true
+console.log(regex.ignoreCase) // true
+console.log(regex.multiline) // false
+console.log(regex.unicode) // false
+console.log(regex.dotAll) // false
+console.log(regex.source) // "abc"
+console.log(regex.lastIndex) // 0
+console.log(regex.sticky) // false
+console.log(regex.unicode) // false
 
-regex.global = false;
-regex.ignoreCase = false;
-regex.multiline = true;
-regex.lastIndex = 10;
-regex.sticky = true;
-regex.unicode = true;
+regex.global = false
+regex.ignoreCase = false
+regex.multiline = true
+regex.lastIndex = 10
+regex.sticky = true
+regex.unicode = true
 ```
 
 上面的代码中，首先创建了一个正则表达式对象regex，然后通过实例属性访问了各个属性的值。最后通过赋值操作修改了部分属性的值。
@@ -81,17 +81,17 @@ regex.unicode = true;
 1. test(string)：测试字符串是否与正则表达式匹配，并返回布尔值。
 
    ```javascript
-   let regex = /pattern/;
-   let string = "example string";
-   let result = regex.test(string); // 返回 true 或 false
+   const regex = /pattern/
+   const string = 'example string'
+   const result = regex.test(string) // 返回 true 或 false
    ```
 
 2. exec(string)：在字符串中执行正则表达式匹配，并返回匹配结果的详细信息。
 
    ```javascript
-   let regex = /pattern/;
-   let string = "example string";
-   let match = regex.exec(string); // 返回一个数组，包含匹配结果的详细信息
+   const regex = /pattern/
+   const string = 'example string'
+   const match = regex.exec(string) // 返回一个数组，包含匹配结果的详细信息
    ```
 
 常用方法
@@ -105,11 +105,11 @@ regex.unicode = true;
    示例代码如下所示：
 
    ```javascript
-   let regex = /\d+/;
-   let text = "Today is 2023-07-21.";
-   let matches = text.match(regex);
-   
-   console.log(matches); // ["2023"]
+   const regex = /\d+/
+   const text = 'Today is 2023-07-21.'
+   const matches = text.match(regex)
+
+   console.log(matches) // ["2023"]
    ```
 
    上述代码中，`/\d+/` 是一个正则表达式，表示匹配一个或多个连续的数字。使用 `match()` 方法，我们在字符串 "Today is 2023-07-21." 中找到了一个匹配项 "2023"，并将其作为数组返回。
@@ -117,11 +117,11 @@ regex.unicode = true;
    如果正则表达式中存在捕获组 `( )`，则 `match()` 方法会将捕获组的匹配结果作为数组的额外元素返回。例如：
 
    ```javascript
-   let regex = /(\d{2})-(\d{2})-(\d{4})/;
-   let text = "Today is 2023-07-21.";
-   let matches = text.match(regex);
-   
-   console.log(matches); // ["2023-07-21", "20", "07", "2023"]
+   const regex = /(\d{2})-(\d{2})-(\d{4})/
+   const text = 'Today is 2023-07-21.'
+   const matches = text.match(regex)
+
+   console.log(matches) // ["2023-07-21", "20", "07", "2023"]
    ```
 
    上述代码中，正则表达式 `(\d{2})-(\d{2})-(\d{4})` 匹配了日期格式 "MM-DD-YYYY"。`match()` 方法返回的数组中，第一个元素是完整的匹配项 "2023-07-21"，接下来的元素分别是每个捕获组的匹配结果 "20"、"07" 和 "2023"。
@@ -136,11 +136,11 @@ regex.unicode = true;
    示例代码如下所示：
 
    ```javascript
-   let regex = /world/;
-   let text = "Hello, world!";
-   let position = text.search(regex);
-   
-   console.log(position); // 7
+   const regex = /world/
+   const text = 'Hello, world!'
+   const position = text.search(regex)
+
+   console.log(position) // 7
    ```
 
    上述代码中，`/world/` 是一个正则表达式，表示在字符串中搜索 "world"。使用 `search()` 方法，我们找到第一个匹配项 "world" 在字符串中的起始位置，结果返回为 7。
@@ -153,11 +153,11 @@ regex.unicode = true;
    示例代码如下所示：
 
    ```javascript
-   let regex = /apple/;
-   let text = "I have an apple.";
-   let newText = text.replace(regex, "banana");
-   
-   console.log(newText); // "I have a banana."
+   const regex = /apple/
+   const text = 'I have an apple.'
+   const newText = text.replace(regex, 'banana')
+
+   console.log(newText) // "I have a banana."
    ```
 
    上述代码中，`/apple/` 是一个正则表达式，表示匹配 "apple"。使用 `replace()` 方法，我们将字符串中的第一个 "apple" 替换为 "banana"，得到新的字符串 "I have a banana."。
@@ -171,12 +171,12 @@ regex.unicode = true;
    示例代码如下所示：
 
    ```javascript
-   let regex = /\w+/g;
-   let text = "Hello world! How are you?";
-   let matches = text.matchAll(regex);
-   
-   for (let match of matches) {
-     console.log(match[0]);
+   const regex = /\w+/g
+   const text = 'Hello world! How are you?'
+   const matches = text.matchAll(regex)
+
+   for (const match of matches) {
+     console.log(match[0])
    }
    ```
 
@@ -191,11 +191,11 @@ regex.unicode = true;
    示例代码如下所示：
 
    ```javascript
-   let regex = /[\s,]+/;
-   let text = "apple, banana, orange";
-   let words = text.split(regex);
-   
-   console.log(words); // ["apple", "banana", "orange"]
+   const regex = /[\s,]+/
+   const text = 'apple, banana, orange'
+   const words = text.split(regex)
+
+   console.log(words) // ["apple", "banana", "orange"]
    ```
 
    上述代码中，`/[\s,]+/` 是一个正则表达式，表示匹配一个或多个连续的空格字符或逗号。使用 `split()` 方法，我们将字符串根据空格字符和逗号进行拆分，得到一个由水果名称组成的数组。
@@ -269,57 +269,55 @@ regex.unicode = true;
 
 2. 搜索关键词高亮显示：
    ```javascript
-   let keyword = "example";
-   let regex = new RegExp(keyword, "gi");
-   let highlightedText = text.replace(regex, '<span class="highlight">$&</span>');
+   const keyword = 'example'
+   const regex = new RegExp(keyword, 'gi')
+   const highlightedText = text.replace(regex, '<span class="highlight">$&</span>')
    ```
    上述代码使用正则表达式将文本中所有匹配到的关键词 "example" 替换为带有高亮样式的 HTML `<span>` 标签。
 
 3. URL解析：
    ```javascript
-   let url = "https://www.example.com/path?param1=value1&param2=value2";
-   let regex = /^(https?):\/\/([^:/?]+)(:\d+)?([^?#]*)\??([^#]*)#?(\w*)$/;
-   let matches = url.match(regex);
+   const url = 'https://www.example.com/path?param1=value1&param2=value2'
+   const regex = /^(https?):\/\/([^:/?]+)(:\d+)?([^?#]*)\??([^#]*)#?(\w*)$/
+   const matches = url.match(regex)
    ```
    此正则表达式可以将URL按照协议、域名、端口、路径、查询参数和片段等分组进行解析，并将结果存储在 `matches` 数组中。
 
 4. 提取日期：
    ```javascript
-   let text = "Today is 2023-07-21.";
-   let regex = /\d{4}-\d{2}-\d{2}/;
-   let date = text.match(regex)[0];
+   const text = 'Today is 2023-07-21.'
+   const regex = /\d{4}-\d{2}-\d{2}/
+   const date = text.match(regex)[0]
    ```
    上述代码使用正则表达式提取出文本中的日期，即形如 "YYYY-MM-DD" 的格式。
 
 5. 批量替换文本中的指定内容：
    ```javascript
-   let text = "Replace all occurrences of foo and bar.";
-   let regex = /foo|bar/g;
-   let replacedText = text.replace(regex, "replacement");
+   const text = 'Replace all occurrences of foo and bar.'
+   const regex = /foo|bar/g
+   const replacedText = text.replace(regex, 'replacement')
    ```
    此正则表达式可以用于全局替换文本中所有匹配到的 "foo" 和 "bar" 为指定的 "replacement"。
 
 6. 从逗号分隔的字符串中提取值：
    ```javascript
-   let csv = "John,Doe,30,Male";
-   let values = csv.split(/,/);
+   const csv = 'John,Doe,30,Male'
+   const values = csv.split(/,/)
    ```
    上述代码使用正则表达式 `/,/` 将逗号分隔的字符串拆分成数组，每个元素为一个值。
 
 7. 只允许输入数字、限制字符长度：
    ```javascript
-   let input = "12345";
-   let numericRegex = /^\d+$/;
-   let maxLength = 10;
+   const input = '12345'
+   const numericRegex = /^\d+$/
+   const maxLength = 10
    if (numericRegex.test(input) && input.length <= maxLength) {
      // 符合要求的输入
-   } else {
+   }
+   else {
      // 输入不符合要求
    }
    ```
    此正则表达式 `/^\d+$/` 用于检查输入是否只包含数字，且通过判断输入的长度是否超过给定的最大长度来限制字符长度。
 
 以上示例仅展示了一小部分正则表达式在前端应用中的应用场景。实际上，正则表达式非常灵活，几乎可以处理任何基于模式匹配和搜索的需求。根据具体的需求，可以使用不同的正则表达式来实现相应的功能。
-
-
-

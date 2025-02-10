@@ -46,10 +46,10 @@ function NowPlaying() {
           !isPlaying
             ? <ShinyText text={text} disabled speed={3} className="custom-class" />
             : (
-              <Link target="black" href={data?.songUrl ?? ''}>
-                <ShinyText text={text} disabled speed={3} className="custom-class" />
-              </Link>
-            )
+                <Link target="black" href={data?.songUrl ?? ''}>
+                  <ShinyText text={text} disabled speed={3} className="custom-class" />
+                </Link>
+              )
         }
       </div>
     </div>

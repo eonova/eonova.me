@@ -39,7 +39,7 @@ function Comments(props: CommentsProps) {
           setSort,
         }}
       >
-        <div id='comment' className="space-y-6">
+        <div id="comment" className="space-y-6">
           <CommentPost />
           <CommentsList />
         </div>

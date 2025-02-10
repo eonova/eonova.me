@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from 'next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import SignInDialog from '~/components/sign-in-dialog'
 import Script from 'next/script'
-import Dock from '~/components/layouts/dock'
 import Hello from '~/components/hello'
-import { SpeedInsights } from '@vercel/speed-insights/next'
+import Dock from '~/components/layouts/dock'
+import SignInDialog from '~/components/sign-in-dialog'
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
 import { env } from '~/lib/env'
 import { cn } from '~/lib/utils'
@@ -118,7 +118,6 @@ export default function RootLayout({
           src="https://unpkg.com/react-scan/dist/install-hook.global.js"
           strategy="beforeInteractive"
         />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
       </head>
       <body className="antialiased relative">
         <Providers>

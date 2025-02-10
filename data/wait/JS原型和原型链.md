@@ -3,16 +3,15 @@ title: JS原型和原型链
 id: 2837545d-8db8-4b72-92a1-f0f7dc55dc7b
 date: 2023-12-02 21:32:54
 auther: leostar
-cover: 
+cover:
 excerpt: 什么是原型 JS声明构造函数(用来实例化对象的函数)时，会在内存中创建一个对应的对象，这个对象就是原函数的原型 通俗的来说原型就是一个可以被复制/克隆的类，通过复制原型可以获得一模一样的新对象，那么也可以说原型是一种模板。 特性： 原型创造出来的新对象实例会共享原型的所有属性和方法 所有函数都有一个
 permalink: /archives/PusYZgO5
 categories:
  - jsji-jin
-tags: 
+tags:
  - jsji-chu
  - yuan-xing-yuan-xing-lian
 ---
-
 
 ## 什么是原型
 
@@ -27,8 +26,6 @@ tags:
 2. 所有函数都有一个`prototype`(原型)属性，属性值指向原型对象
 
 3. 实例对象的`__proto__`指向构造函数的`prototype`
-
-   
 
 ## 什么是原型链
 
@@ -59,4 +56,3 @@ tags:
 >[ 什么是原型、原型链？原型和原型链的作用](https://blog.csdn.net/weixin_42125732/article/details/116043738)
 >
 >[[JS\]深入理解原型和原型链以及区别(包含面试题详解) - 掘金 (juejin.cn)](https://juejin.cn/post/7095651623812202533)
-

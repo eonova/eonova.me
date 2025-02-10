@@ -1,20 +1,19 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Rss } from 'lucide-react'
 import Link from 'next/link'
 import useIsScroll from '~/hooks/use-is-scroll'
 import useScrollDirection from '~/hooks/use-scroll-direction'
 import { cn } from '~/lib/utils'
+import { Button } from '../base'
 import { Separator } from '../base/separator'
 import CommandMenu from '../command-menu'
-import Avatar from '../avatar'
+import { SvgLogo } from '../logo'
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
 import ThemeToggle from './theme-switcher'
 import '~/styles/page/header.css'
-import { Rss } from 'lucide-react'
-import { Button } from '../base'
-import { SvgLogo } from '../logo'
 
 interface HeaderProps {
   className?: string
@@ -75,14 +74,14 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       <div className="flex items-center gap-2">
         <Navbar />
         <Separator orientation="vertical" className={cn('h-6 sm:block hidden')} />
-        <Link target='black' href='/rss.xml'>
+        <Link target="black" href="/rss.xml">
           <Button
-            variant='ghost'
-            className='size-9 p-0 rounded-full outline-0 focus-visible:outline-none border-0 cursor-pointer duration-200'
-            aria-label='RSS订阅'
-            data-testid='rss'
+            variant="ghost"
+            className="size-9 p-0 rounded-full outline-0 focus-visible:outline-none border-0 cursor-pointer duration-200"
+            aria-label="RSS订阅"
+            data-testid="rss"
           >
-            <Rss className='size-4' />
+            <Rss className="size-4" />
           </Button>
         </Link>
         <ThemeToggle />

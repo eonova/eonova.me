@@ -18,6 +18,7 @@ import {
 
 import { useMemo, useState } from 'react'
 import { cn } from '~/lib/utils'
+import { range } from '~/utils/range'
 import { Badge } from './badge'
 import { Button } from './button'
 import {
@@ -46,7 +47,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Separator } from './separator'
 import { Skeleton } from './skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table'
-import { range } from '~/utils/range'
 
 type DataTableProps<TData> = {
   table: TanstackTable<TData>
@@ -78,23 +78,23 @@ function DataTable<TData,>(props: DataTableProps<TData>) {
           <TableBody>
             {table.getRowModel().rows.length > 0
               ? (
-                table.getRowModel().rows.map(row => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-                    {row.getVisibleCells().map(cell => (
-                      <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              )
+                  table.getRowModel().rows.map(row => (
+                    <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                      {row.getVisibleCells().map(cell => (
+                        <TableCell key={cell.id}>
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                )
               : (
-                <TableRow>
-                  <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
+                  <TableRow>
+                    <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
+                      No results.
+                    </TableCell>
+                  </TableRow>
+                )}
           </TableBody>
         </Table>
       </div>
@@ -368,25 +368,25 @@ function DataTableFacetedFilter<TData, TValue>(props: DataTableFacetedFilterProp
               <div className="hidden space-x-1 lg:flex">
                 {selectedValues.size > 2
                   ? (
-                    <Badge variant="secondary" className="rounded-sm px-1 font-normal">
-                      {selectedValues.size}
-                      {' '}
-                      selected
-                    </Badge>
-                  )
+                      <Badge variant="secondary" className="rounded-sm px-1 font-normal">
+                        {selectedValues.size}
+                        {' '}
+                        selected
+                      </Badge>
+                    )
                   : (
-                    options
-                      .filter(option => selectedValues.has(option.value))
-                      .map(option => (
-                        <Badge
-                          variant="secondary"
-                          key={option.value}
-                          className="rounded-sm px-1 font-normal"
-                        >
-                          {option.label}
-                        </Badge>
-                      ))
-                  )}
+                      options
+                        .filter(option => selectedValues.has(option.value))
+                        .map(option => (
+                          <Badge
+                            variant="secondary"
+                            key={option.value}
+                            className="rounded-sm px-1 font-normal"
+                          >
+                            {option.label}
+                          </Badge>
+                        ))
+                    )}
               </div>
             </>
           )}
@@ -407,8 +407,8 @@ function DataTableFacetedFilter<TData, TValue>(props: DataTableFacetedFilterProp
           <ComboboxContent className="rounded-none border-0 bg-transparent p-1 shadow-none data-[state=closed]:!animate-none data-[state=open]:!animate-none">
             {collection.items.length === 0
               ? (
-                <div className="py-6 text-center text-sm">No results found.</div>
-              )
+                  <div className="py-6 text-center text-sm">No results found.</div>
+                )
               : null}
             {collection.items.map(item => (
               <ComboboxItem key={item.value} item={item}>
@@ -441,7 +441,6 @@ function DataTableFacetedFilter<TData, TValue>(props: DataTableFacetedFilterProp
                     variant="ghost"
                     onClick={() => {
                       column?.setFilterValue(undefined)
-                      console.log(selectedValues)
                     }}
                     className="h-8 w-full rounded-md"
                   >
@@ -480,34 +479,34 @@ function DataTableToolbar<TData,>(props: DataTableToolbarProps<TData>) {
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center gap-2">
         {searchableColumns.length > 0
-          && searchableColumns.map(
-            column =>
-              table.getColumn(column.id ? String(column.id) : '') && (
-                <Input
-                  key={String(column.id)}
-                  placeholder={column.placeholder}
-                  value={
-                    (table.getColumn(String(column.id))?.getFilterValue() as string | undefined)
-                    ?? ''
-                  }
-                  onChange={event =>
-                    table.getColumn(String(column.id))?.setFilterValue(event.target.value)}
-                  className="h-8 w-40 lg:w-64"
-                />
-              ),
-          )}
+        && searchableColumns.map(
+          column =>
+            table.getColumn(column.id ? String(column.id) : '') && (
+              <Input
+                key={String(column.id)}
+                placeholder={column.placeholder}
+                value={
+                  (table.getColumn(String(column.id))?.getFilterValue() as string | undefined)
+                  ?? ''
+                }
+                onChange={event =>
+                  table.getColumn(String(column.id))?.setFilterValue(event.target.value)}
+                className="h-8 w-40 lg:w-64"
+              />
+            ),
+        )}
         {filterableColumns.length > 0
-          && filterableColumns.map(
-            column =>
-              table.getColumn(column.id ? String(column.id) : '') && (
-                <DataTableFacetedFilter
-                  key={String(column.id)}
-                  column={table.getColumn(column.id ? String(column.id) : '')}
-                  title={column.label}
-                  options={column.options ?? []}
-                />
-              ),
-          )}
+        && filterableColumns.map(
+          column =>
+            table.getColumn(column.id ? String(column.id) : '') && (
+              <DataTableFacetedFilter
+                key={String(column.id)}
+                column={table.getColumn(column.id ? String(column.id) : '')}
+                title={column.label}
+                options={column.options ?? []}
+              />
+            ),
+        )}
         {isFiltered && (
           <Button
             variant="ghost"
@@ -560,13 +559,13 @@ function DataTableSkeleton(props: DataTableSkeletonProps) {
       <div className="flex items-center justify-between">
         <div className="flex flex-1 items-center gap-2">
           {searchableColumnsCount > 0
-            && range(searchableColumnsCount).map(i => (
-              <Skeleton key={i} className="h-8 w-40 lg:w-60" />
-            ))}
+          && range(searchableColumnsCount).map(i => (
+            <Skeleton key={i} className="h-8 w-40 lg:w-60" />
+          ))}
           {filterableColumnCount > 0
-            && range(filterableColumnCount).map(i => (
-              <Skeleton key={i} className="h-8 w-[4.5rem] border-dashed" />
-            ))}
+          && range(filterableColumnCount).map(i => (
+            <Skeleton key={i} className="h-8 w-[4.5rem] border-dashed" />
+          ))}
         </div>
         <Skeleton className="ml-auto hidden h-8 w-[4.5rem] lg:flex" />
       </div>

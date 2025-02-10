@@ -51,7 +51,7 @@ git config core.ignorecase  falsebash复制代码
    ~~~bash
    # 生成ssh
    ssh-keygen -t rsa
-    
+
    # 命令执行后，连敲3次回车键
    ~~~
 

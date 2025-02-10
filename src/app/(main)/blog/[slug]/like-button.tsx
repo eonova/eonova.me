@@ -96,7 +96,7 @@ function LikeButton(props: LikeButtonProps) {
   }
 
   return (
-    <div className={cn("mt-10 flex justify-center", className)}>
+    <div className={cn('mt-10 flex justify-center', className)}>
       <motion.button
         ref={buttonRef}
         className="flex items-center gap-3 rounded-full bg-zinc-900 px-4 py-2 text-md text-white"
@@ -145,8 +145,8 @@ function LikeButton(props: LikeButtonProps) {
         {status === 'error' ? <div>错误</div> : null}
         {status === 'success'
           ? (
-            <NumberFlow willChange continuous value={data.likes + cacheCount} />
-          )
+              <NumberFlow willChange continuous value={data.likes + cacheCount} />
+            )
           : null}
       </motion.button>
     </div>

@@ -44,11 +44,11 @@ const Dock: React.FC<DockProps> = ({
 
   // 定义函数，用于点击时跳转到评论区
   const goToCommentSection = () => {
-    const commentSection = document.getElementById('comment');
+    const commentSection = document.getElementById('comment')
     if (commentSection) {
-      commentSection.scrollIntoView({ behavior: 'smooth' }); // 平滑滚动
+      commentSection.scrollIntoView({ behavior: 'smooth' }) // 平滑滚动
     }
-  };
+  }
 
   return (
     <>
@@ -85,7 +85,8 @@ const Dock: React.FC<DockProps> = ({
                 onClick={goToCommentSection}
               >
                 <MessageCircle
-                  className="size-6" />
+                  className="size-6"
+                />
               </li>
             )
           }

@@ -1,11 +1,11 @@
-import bundleAnalyzer from '@next/bundle-analyzer'
-import { createContentCollectionPlugin } from '@content-collections/next'
-import ReactComponentName from 'react-scan/react-component-name/webpack'
 import type { NextConfig } from 'next'
+import { createContentCollectionPlugin } from '@content-collections/next'
+import bundleAnalyzer from '@next/bundle-analyzer'
+import ReactComponentName from 'react-scan/react-component-name/webpack'
 import './src/lib/env.ts'
 
 const withContentCollections = createContentCollectionPlugin({
-  configPath: './content.config.ts'
+  configPath: './content.config.ts',
 })
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -70,11 +70,11 @@ const CustomConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'avatars.githubusercontent.com'
+        hostname: 'avatars.githubusercontent.com',
       },
       {
         protocol: 'https',
-        hostname: '**.googleusercontent.com'
+        hostname: '**.googleusercontent.com',
       },
       {
         protocol: 'https',
@@ -90,7 +90,7 @@ const CustomConfig: NextConfig = {
         pathname: '/**',
         search: '',
       },
-    ]
+    ],
   },
 
   eslint: {

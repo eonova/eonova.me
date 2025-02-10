@@ -1,9 +1,9 @@
 'use client'
 
-import { Button, toast } from '~/components/base'
 import { SendIcon } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
+import { Button, toast } from '~/components/base'
 
 import { useCommentsContext } from '~/contexts/comments'
 import { api } from '~/trpc/react'

@@ -21,14 +21,14 @@ function Header() {
   const images = cover !== '' ? cover : '/images/og-background.png'
 
   const incrementMutation = api.views.increment.useMutation({
-    onSettled: () => utils.views.get.invalidate()
+    onSettled: () => utils.views.get.invalidate(),
   })
   const viewsCountQuery = api.views.get.useQuery({
-    slug
+    slug,
   })
 
   const commentsCountQuery = api.comments.getTotalCommentsCount.useQuery({
-    slug
+    slug,
   })
   const incremented = useRef(false)
 
@@ -66,17 +66,21 @@ function Header() {
             <div className="text-muted-foreground">浏览</div>
             {viewsCountQuery.status === 'pending' ? '--' : null}
             {viewsCountQuery.status === 'error' ? '错误' : null}
-            {viewsCountQuery.status === 'success' ? (
-              <NumberFlow willChange value={viewsCountQuery.data.views} />
-            ) : null}
+            {viewsCountQuery.status === 'success'
+              ? (
+                  <NumberFlow willChange value={viewsCountQuery.data.views} />
+                )
+              : null}
           </div>
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">评论数</div>
             {commentsCountQuery.status === 'pending' ? '--' : null}
             {commentsCountQuery.status === 'error' ? '错误' : null}
-            {commentsCountQuery.status === 'success' ? (
-              <NumberFlow willChange value={commentsCountQuery.data.comments} />
-            ) : null}
+            {commentsCountQuery.status === 'success'
+              ? (
+                  <NumberFlow willChange value={commentsCountQuery.data.comments} />
+                )
+              : null}
           </div>
         </div>
       </div>

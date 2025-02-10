@@ -1,10 +1,10 @@
 import MainLayout from '~/components/main-layout'
 
-type LayoutProps = {
+interface LayoutProps {
   children: React.ReactNode
 }
 
-const Layout = (props: LayoutProps) => {
+function Layout(props: LayoutProps) {
   const { children } = props
 
   return <MainLayout>{children}</MainLayout>

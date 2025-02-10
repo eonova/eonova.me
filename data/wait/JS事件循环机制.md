@@ -3,12 +3,12 @@ title: JS事件循环机制
 id: 18c6db91-9e38-4a8e-962f-a30eff92dd2c
 date: 2023-12-02 21:30:28
 auther: leostar
-cover: 
+cover:
 excerpt: JS事件循环机制 JavaScript是单线程 为什么JavaScript不能有多个线程呢？ 答：作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点
 permalink: /archives/yivPczPm
 categories:
  - jsji-jin
-tags: 
+tags:
  - jsji-chu
  - jsshi-jian
 ---
@@ -53,8 +53,8 @@ tags:
 ```js
 console.log('1')
 
-setTimeout(function (){
-	console.log('2')
+setTimeout(() => {
+  console.log('2')
 }, 1000)
 
 console.log('3')
@@ -102,17 +102,17 @@ console.log('3')
 ```js
 console.log('1')
 
-setTimeout(function callback(){
-	console.log('2')
+setTimeout(() => {
+  console.log('2')
 }, 1000)
 
 new Promise((resolve, reject) => {
-    console.log('3')
-    resolve()
+  console.log('3')
+  resolve()
 })
-.then(res => {
-    console.log('4');
-})
+  .then((res) => {
+    console.log('4')
+  })
 
 console.log('5')
 ```
@@ -152,21 +152,21 @@ console.log('5')
 ## 练习
 
 ```js
-console.log('script start');
+console.log('script start')
 
-setTimeout(function() {
-  console.log('timeout1');
-}, 10);
+setTimeout(() => {
+  console.log('timeout1')
+}, 10)
 
-new Promise(resolve => {
-    console.log('promise1');
-    resolve();
-    setTimeout(() => console.log('timeout2'), 10);
-}).then(function() {
-    console.log('then1')
+new Promise((resolve) => {
+  console.log('promise1')
+  resolve()
+  setTimeout(() => console.log('timeout2'), 10)
+}).then(() => {
+  console.log('then1')
 })
 
-console.log('script end');
+console.log('script end')
 ```
 
 **分析：**
