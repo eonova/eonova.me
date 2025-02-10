@@ -37,7 +37,13 @@
 
 @media screen and (max-width: 640px) {
   #eGgXFSmcNq71 {
-    width: 75px;
+    width: 90px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #eGgXFSmcNq71 {
+    width: 70px;
   }
 }
 

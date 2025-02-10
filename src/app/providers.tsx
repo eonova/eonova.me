@@ -20,7 +20,7 @@ interface ProvidesProps {
 
 function Providers(props: ProvidesProps) {
   const { children } = props
-  const { theme = 'system' } = useTheme()
+  const { theme = 'dark' } = useTheme()
 
   return (
     <NuqsAdapter>

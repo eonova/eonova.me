@@ -52,7 +52,7 @@ function DialogContent(props: DialogContentProps) {
           )}
           aria-label="Close"
         >
-          <XIcon className="size-4" aria-hidden="true" />
+          <XIcon className="size-4 cursor-pointer" aria-hidden="true" />
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>
     </DialogPortal>

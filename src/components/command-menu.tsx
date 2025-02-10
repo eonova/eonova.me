@@ -140,7 +140,7 @@ function CommandMenu() {
             <Fragment key={group.name}>
               <CommandGroup heading={group.name}>
                 {group.actions.map(action => (
-                  <CommandItem key={action.title} onSelect={action.onSelect}>
+                  <CommandItem className='cursor-pointer duration-200' key={action.title} onSelect={action.onSelect}>
                     {action.icon}
                     {action.title}
                   </CommandItem>

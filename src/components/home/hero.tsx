@@ -64,7 +64,7 @@ function Hero() {
   // 客户端渲染的完整内容
   const textItem = TEXTS[currentIndex]
   return (
-    <div className='my-16 space-y-6'>
+    <div className='my-16 space-y-3'>
       <div className='flex justify-between gap-8'>
         <motion.div
           className="flex flex-col gap-2"
@@ -80,9 +80,9 @@ function Hero() {
             duration: 0.5,
           }}
         >
-          <h1 className="flex flex-col flex-wrap gap-1 text-xl font-bold sm:text-3xl">
+          <h1 className="flex flex-col flex-wrap text-xl font-bold sm:text-3xl">
             <div>
-              我是 <Avatar className='h-14 sm:h-18' /> ，一个爱捣鼓的前端
+              我是 <Avatar className='h-12 sm:h-16 md:h-18' /> ，一个爱捣鼓的前端
             </div>
             <div className="flex gap-1">
               <motion.div
@@ -130,7 +130,7 @@ function Hero() {
           }}
         >
           <TiltedCard
-            imageSrc="/favicon/apple-touch-icon.png"
+            imageSrc="/images/home/avatar.webp"
             altText="LeoStar"
             captionText="LeoStar"
             rotateAmplitude={12}
@@ -139,7 +139,7 @@ function Hero() {
             showTooltip
             displayOverlayContent
             overlayContent={(
-              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2.5 text-white bg-black/30 md:flex hidden">
+              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2.5 bg-white/70 dark:bg-white/30 md:flex hidden">
                 Hello
               </p>
             )}

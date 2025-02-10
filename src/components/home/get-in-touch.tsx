@@ -1,6 +1,6 @@
 'use client'
 
-import me from '@/public/images/avatar.png'
+import me from '@/public/images/home/call-me.jpg'
 import { BlurImage } from '~/components/base/blur-image'
 import { motion, useAnimate, useInView } from 'framer-motion'
 
@@ -64,7 +64,7 @@ function GetInTouch() {
               width={3975}
               height={3975}
               className="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full"
-              alt="我坐在办公桌前写程序"
+              alt="Call Me"
             />
             <div
               id="next-js"
