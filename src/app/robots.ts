@@ -7,7 +7,7 @@ function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/', '/api/avatar/*'],
+        allow: ['/', '/api/avatar/*', '/og/*'],
         disallow: ['/api/'],
       },
     ],

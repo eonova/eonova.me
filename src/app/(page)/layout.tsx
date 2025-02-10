@@ -9,8 +9,8 @@ import SignInDialog from '~/components/sign-in-dialog'
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
 import { env } from '~/lib/env'
 import { cn } from '~/lib/utils'
-import Providers from './providers'
-import ReactScan from './react-scan'
+import Providers from '../providers'
+import ReactScan from '../react-scan'
 import '~/styles/globals.css'
 
 export const metadata: Metadata = {

@@ -40,8 +40,7 @@ function GoogleIcon() {
 
 function SignInDialog() {
   const dialogStore = useDialogsStore()
-  const [isGitHubLoading, setIsGitHubLoading] = useState(false)
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
     <Dialog
@@ -61,41 +60,41 @@ function SignInDialog() {
           <Button
             className="h-10 rounded-xl font-semibold"
             onClick={() => {
-              setIsGitHubLoading(true)
+              setIsLoading(true)
               void signIn('github')
             }}
-            disabled={isGitHubLoading || isGoogleLoading}
+            disabled={isLoading}
           >
-            {isGitHubLoading
+            {isLoading
               ? (
-                  <Loader2Icon className="animate-spin" />
-                )
+                <Loader2Icon className="animate-spin" />
+              )
               : (
-                  <>
-                    <SiGithub className="mr-3" />
-                    使用 Github 登录
-                  </>
-                )}
+                <>
+                  <SiGithub className="mr-3" />
+                  使用 Github 登录
+                </>
+              )}
           </Button>
           <Button
             className="h-10 rounded-xl border font-semibold"
             variant="ghost"
             onClick={() => {
-              setIsGoogleLoading(true)
+              setIsLoading(true)
               void signIn('google')
             }}
-            disabled={isGitHubLoading || isGoogleLoading}
+            disabled={isLoading}
           >
-            {isGoogleLoading
+            {isLoading
               ? (
-                  <Loader2Icon className="animate-spin" />
-                )
+                <Loader2Icon className="animate-spin" />
+              )
               : (
-                  <>
-                    <GoogleIcon />
-                    使用 Google 登录
-                  </>
-                )}
+                <>
+                  <GoogleIcon />
+                  使用 Google 登录
+                </>
+              )}
           </Button>
         </div>
       </DialogContent>

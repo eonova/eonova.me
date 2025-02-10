@@ -6,7 +6,7 @@ import type { GetInfiniteCommentsOutput } from '~/trpc/routers/comments'
 import Image from 'next/image'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-import { useOnClickOutside } from 'usehooks-ts'
+import { useClickOutside } from '~/hooks/use-click-outside'
 import { CommentProvider } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
 import { useCommentParams } from '~/hooks/use-comment-params'
@@ -51,8 +51,7 @@ function Comment(props: CommentProps) {
     format: '',
   })
 
-  // @ts-expect-error -- https://github.com/juliencrn/usehooks-ts/issues/602
-  useOnClickOutside<HTMLDivElement>(commentRef, () => {
+  useClickOutside<HTMLDivElement>(commentRef, () => {
     setIsHighlighted(false)
   })
 
@@ -103,23 +102,23 @@ function Comment(props: CommentProps) {
                 <div className="text-muted-foreground">
                   {formattedDate
                     ? (
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <span>{formattedDate}</span>
-                          </TooltipTrigger>
-                          <TooltipContent>{new Date(createdAt).toLocaleString()}</TooltipContent>
-                        </Tooltip>
-                      )
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <span>{formattedDate}</span>
+                        </TooltipTrigger>
+                        <TooltipContent>{new Date(createdAt).toLocaleString()}</TooltipContent>
+                      </Tooltip>
+                    )
                     : (
-                        <Skeleton className="h-4 w-24" />
-                      )}
+                      <Skeleton className="h-4 w-24" />
+                    )}
                 </div>
                 {role === 'admin'
                   ? (
-                      <div className="rounded-full border border-red-500/50 bg-red-100/50 px-2 py-0.5 text-sm dark:bg-red-900/50">
-                        作者
-                      </div>
-                    )
+                    <div className="rounded-full border border-red-500/50 bg-red-100/50 px-2 py-0.5 text-sm dark:bg-red-900/50">
+                      作者
+                    </div>
+                  )
                   : null}
               </div>
               <CommentMenu />
@@ -127,13 +126,13 @@ function Comment(props: CommentProps) {
 
             {isDeleted
               ? (
-                  <p className="text-muted-foreground my-3 ml-0.5 text-sm">
-                    [此评论已被删除]
-                  </p>
-                )
+                <p className="text-muted-foreground my-3 ml-0.5 text-sm">
+                  [此评论已被删除]
+                </p>
+              )
               : (
-                  <Markdown>{body}</Markdown>
-                )}
+                <Markdown>{body}</Markdown>
+              )}
 
             {isReplying ? <CommentReply /> : <CommentActions />}
           </div>

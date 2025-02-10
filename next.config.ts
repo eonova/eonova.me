@@ -24,53 +24,44 @@ const NextConfigHeaders = [
     headers: [
       {
         key: 'Referrer-Policy',
-        value: 'strict-origin-when-cross-origin',
+        value: 'strict-origin-when-cross-origin'
       },
       {
         key: 'Permissions-Policy',
-        value: 'camera=(), microphone=(), geolocation=()',
+        value: 'camera=(), microphone=(), geolocation=()'
       },
       {
         key: 'Strict-Transport-Security',
-        value: 'max-age=31536000; includeSubDomains; preload',
+        value: 'max-age=31536000; includeSubDomains; preload'
       },
       {
         key: 'X-Frame-Options',
-        value: 'SAMEORIGIN',
+        value: 'SAMEORIGIN'
       },
       {
         key: 'X-Content-Type-Options',
-        value: 'nosniff',
+        value: 'nosniff'
       },
       {
         key: 'X-DNS-Prefetch-Control',
-        value: 'on',
+        value: 'on'
       },
       {
         key: 'X-XSS-Protection',
-        value: '1; mode=block',
-      },
-    ],
-  },
+        value: '1; mode=block'
+      }
+    ]
+  }
 ]
+
 
 /** @type {import('next').NextConfig} */
 const CustomConfig: NextConfig = {
   compress: true,
 
-  productionBrowserSourceMaps: true,
-
-  reactStrictMode: true,
-
-  serverExternalPackages: ['drizzle-orm', 'pg-native'],
   experimental: {
     optimizePackageImports: ['shiki'],
-    reactCompiler: true,
   },
-
-  bundlePagesRouterDependencies: true,
-
-  transpilePackages: ['@ileostar/*'],
 
   images: {
     remotePatterns: [
@@ -126,25 +117,17 @@ const CustomConfig: NextConfig = {
       },
     ]
   },
+
   async headers() {
     return NextConfigHeaders
   },
 
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.cache = false
-      config.resolve.fallback = {
-        fs: false,
-        net: false,
-        dns: false,
-        tls: false,
-      }
-    }
+  webpack: (c) => {
     if (process.env.REACT_SCAN_MONITOR_API_KEY) {
-      config.plugins.push(ReactComponentName({}))
+      c.plugins.push(ReactComponentName({}))
     }
-    return config
-  },
+    return c
+  }
 }
 
 export default withMDX(withBundleAnalyzer(withPWA(CustomConfig)))
