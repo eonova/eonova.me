@@ -65,7 +65,7 @@ const MobileNavAside: React.FC<MobileNavAsideProps> = ({ className }) => {
         </button>
         <div className="p-8 px-2 pt-16 flex gap-6 items-center">
           <Image
-            src="/images/avatar.png"
+            src="/favicon/apple-touch-icon.png"
             className="rounded-full"
             width={70}
             height={70}
