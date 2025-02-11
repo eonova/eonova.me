@@ -1,0 +1,10 @@
+/* 瀑布流布局修正 */
+.my-masonry-grid {
+  display: flex;
+  margin-left: -1rem;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 1rem;
+  background-clip: padding-box;
+}

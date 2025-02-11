@@ -1,4 +1,4 @@
-import { LayoutDashboardIcon, MessagesSquareIcon, UsersIcon } from 'lucide-react'
+import { Album, LayoutDashboardIcon, MessagesSquareIcon, UsersIcon } from 'lucide-react'
 
 export const ADMIN_SIDEBAR_LINKS = [
   {
@@ -18,6 +18,11 @@ export const ADMIN_SIDEBAR_LINKS = [
         titleKey: 'comments',
         url: '/admin/comments',
         icon: MessagesSquareIcon,
+      },
+      {
+        titleKey: 'album',
+        url: '/admin/album',
+        icon: Album,
       },
     ],
   },

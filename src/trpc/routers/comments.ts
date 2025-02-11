@@ -193,6 +193,7 @@ export const commentsRouter = createTRPCRouter({
         nextCursor: result.at(-1)?.createdAt ?? null,
       }
     }),
+
   getTotalCommentsCount: publicProcedure
     .input(z.object({ slug: z.string().min(1) }))
     .query(async ({ ctx, input }) => {
@@ -214,6 +215,7 @@ export const commentsRouter = createTRPCRouter({
         comments: value[0]?.value ?? 0,
       }
     }),
+
   getCommentsCount: publicProcedure
     .input(z.object({ slug: z.string().min(1) }))
     .query(async ({ ctx, input }) => {
@@ -235,6 +237,7 @@ export const commentsRouter = createTRPCRouter({
         comments: value[0]?.value ?? 0,
       }
     }),
+
   getRepliesCount: publicProcedure
     .input(z.object({ slug: z.string().min(1) }))
     .query(async ({ ctx, input }) => {

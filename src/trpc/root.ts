@@ -8,6 +8,7 @@ import { usersRouter } from './routers/users'
 import { viewsRouter } from './routers/views'
 import { wakatimeRouter } from './routers/wakatime'
 import { youtubeRouter } from './routers/youtube'
+import { albumRouter } from './routers/album'
 import { createTRPCRouter } from './trpc'
 
 export const appRouter = createTRPCRouter({
@@ -21,6 +22,7 @@ export const appRouter = createTRPCRouter({
   guestbook: guestbookRouter,
   rates: ratesRouter,
   users: usersRouter,
+  album: albumRouter,
 })
 
 export type AppRouter = typeof appRouter
