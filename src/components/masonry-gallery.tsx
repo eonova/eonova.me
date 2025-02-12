@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Masonry from './masonry';
 import Lightbox from './lightbox';
+import { cn } from '~/lib/utils'
+import { buttonVariants } from '~/components/base/button'
 
 interface ImageItem {
   id: number; // 图片 ID
@@ -52,22 +54,28 @@ const WaterfallGallery = ({
         <div className="text-center my-8">
           <button
             onClick={() => setCurrentPage((p) => p + 1)}
-            className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors cursor-pointer"
+            className={cn("px-6 py-2 transition-colors cursor-pointer rounded-xl",
+              buttonVariants({
+                variant: 'outline',
+              }),)}
           >
             加载更多
           </button>
         </div>
-      )}
+      )
+      }
 
       {/* 图片预览 Lightbox */}
-      {isOpen && (
-        <Lightbox
-          items={items}
-          selectedIndex={selectedIndex}
-          onLightboxClose={handleCloseLightbox}
-        />
-      )}
-    </div>
+      {
+        isOpen && (
+          <Lightbox
+            items={items}
+            selectedIndex={selectedIndex}
+            onLightboxClose={handleCloseLightbox}
+          />
+        )
+      }
+    </div >
   );
 };
 

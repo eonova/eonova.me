@@ -120,7 +120,7 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
               height={item.height}
               width={item.width}
               alt={item.description || ''}
-              className="w-full h-full object-cover rounded-[5px]"
+              className="w-full h-full object-cover"
             />
           </a.div>
         );
