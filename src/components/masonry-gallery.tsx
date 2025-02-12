@@ -5,8 +5,10 @@ import Masonry from './masonry';
 import Lightbox from './lightbox';
 import { cn } from '~/lib/utils'
 import { buttonVariants } from '~/components/base/button'
+import { api } from '~/trpc/react'
+import WhirlpoolLoader from './whirlpool-loader'
 
-interface ImageItem {
+export interface ImageItem {
   id: number; // 图片 ID
   imageUrl: string;
   height: number; // 图片原始高度
@@ -15,14 +17,17 @@ interface ImageItem {
 }
 
 interface WaterfallGalleryProps {
-  items: ImageItem[]; // 图片数据
   itemsPerPage?: number; // 每页显示的图片数量
 }
 
 const WaterfallGallery = ({
-  items,
   itemsPerPage = 12,
 }: WaterfallGalleryProps) => {
+  const { status, data } = api.album.getAllImages.useQuery()
+  const items: ImageItem[] = data?.images ?? []
+  const isSuccess = status === 'success'
+  const isError = status === 'error'
+  const isLoading = status === 'pending'
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -42,40 +47,48 @@ const WaterfallGallery = ({
   };
 
   return (
-    <div className="container mx-auto py-8">
-      {/* 瀑布流布局 */}
-      <Masonry
-        data={visibleItems}
-        onImageClick={handleImageClick}
-      />
-
-      {/* 加载更多按钮 */}
-      {visibleItems.length < items.length && (
-        <div className="text-center my-8">
-          <button
-            onClick={() => setCurrentPage((p) => p + 1)}
-            className={cn("px-6 py-2 transition-colors cursor-pointer rounded-xl",
-              buttonVariants({
-                variant: 'outline',
-              }),)}
-          >
-            加载更多
-          </button>
-        </div>
-      )
-      }
-
-      {/* 图片预览 Lightbox */}
+    <>
+      {isLoading && <WhirlpoolLoader />}
+      {isError && <div>无法获取用户数据。请刷新页面。</div>}
       {
-        isOpen && (
-          <Lightbox
-            items={items}
-            selectedIndex={selectedIndex}
-            onLightboxClose={handleCloseLightbox}
-          />
+        isSuccess && (
+          <div className="container mx-auto py-8">
+            {/* 瀑布流布局 */}
+            <Masonry
+              data={visibleItems}
+              onImageClick={handleImageClick}
+            />
+
+            {/* 加载更多按钮 */}
+            {visibleItems.length < items.length && (
+              <div className="text-center my-8">
+                <button
+                  onClick={() => setCurrentPage((p) => p + 1)}
+                  className={cn("px-6 py-2 transition-colors cursor-pointer rounded-xl",
+                    buttonVariants({
+                      variant: 'outline',
+                    }),)}
+                >
+                  加载更多
+                </button>
+              </div>
+            )
+            }
+
+            {/* 图片预览 Lightbox */}
+            {
+              isOpen && (
+                <Lightbox
+                  items={items}
+                  selectedIndex={selectedIndex}
+                  onLightboxClose={handleCloseLightbox}
+                />
+              )
+            }
+          </div >
         )
       }
-    </div >
+    </>
   );
 };
 

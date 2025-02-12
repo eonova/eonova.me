@@ -56,14 +56,6 @@ const images = [
   '/images/about/intro-3.jpg',
 ]
 
-const transformStyles = [
-  'rotate(5deg) translate(-150px)',
-  'rotate(0deg) translate(-70px)',
-  'rotate(-5deg)',
-  'rotate(5deg) translate(70px)',
-  'rotate(-5deg) translate(150px)',
-]
-
 async function Page() {
   const jsonLd: WithContext<AboutPage> = {
     '@context': 'https://schema.org',
@@ -93,7 +85,13 @@ async function Page() {
         animationDelay={0.3}
         animationStagger={0.12}
         easeType="elastic.out(1, 0.5)"
-        transformStyles={transformStyles}
+        transformStyles={[
+          'rotate(5deg) translate(-150px)',
+          'rotate(0deg) translate(-70px)',
+          'rotate(-5deg)',
+          'rotate(5deg) translate(70px)',
+          'rotate(-5deg) translate(150px)',
+        ]}
       />
       <ul className="relative w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-5 mt-5">
         <IntroOne />

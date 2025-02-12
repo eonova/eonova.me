@@ -1,27 +1,65 @@
-'use client'
 import WaterfallGallery from '~/components/masonry-gallery'
 import PageTitle from '~/components/page-title'
-import { api } from '~/trpc/react'
+import type { Metadata, ResolvingMetadata } from 'next'
+import { SITE_DESCRIPTION, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_NAME, SITE_URL, SITE_X_URL, SITE_YOUTUBE_URL } from '~/config/constants'
+import type { WithContext, WebPage } from 'schema-dts'
+
+const title = '相册'
+const description = '记录生活点点滴滴✨'
+const url = '/album'
+
+export async function generateMetadata(_props: any, parent: ResolvingMetadata): Promise<Metadata> {
+  const previousOpenGraph = (await parent).openGraph ?? {}
+  const previousTwitter = (await parent).twitter ?? {}
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      ...previousOpenGraph,
+      url,
+      type: 'profile',
+      title,
+      description,
+    },
+    twitter: {
+      ...previousTwitter,
+      title,
+      description,
+    },
+  }
+}
 
 const Album: React.FC = () => {
-  const { status, data } = api.album.getAllImages.useQuery()
-
-  const isSuccess = status === 'success'
-  const isError = status === 'error'
-  console.log('============', data?.images)
+  const jsonLd: WithContext<WebPage> = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    'name': title,
+    description,
+    url,
+    'mainEntity': {
+      '@type': 'Person',
+      'name': SITE_NAME,
+      'description': SITE_DESCRIPTION,
+      'url': SITE_URL,
+      'sameAs': [SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL],
+    },
+  }
   return (
     <>
-      <PageTitle
-        title="相册"
-        description="👋 嗨！我是 LeoStar，一个热爱网页开发的学生。"
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {isError && <div>无法获取用户数据。请刷新页面。</div>}
-      {isSuccess && (
-        <WaterfallGallery
-          items={data?.images}
-          itemsPerPage={12}
-        />
-      )}
+      <PageTitle
+        title={title}
+        description={description}
+      />
+      <WaterfallGallery
+        itemsPerPage={12}
+      />
     </>
   )
 }

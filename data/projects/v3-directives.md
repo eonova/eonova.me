@@ -4,7 +4,7 @@ description: 'Vue3 自定义指令集'
 homepage: 'https://v3-directives.leostar.top/'
 github: 'https://github.com/ileostar/v3-directives'
 date: '2024-03-22T00:00:00Z'
-techstack: ['vue3', 'vitepress']
+techstack: ['Vue3', 'Vitepress', 'Tsup', 'Typescript']
 selected: true
 ---
 

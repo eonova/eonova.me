@@ -1,32 +1,28 @@
-import React, { useEffect } from 'react'
-import '~/styles/page/progress.css'
+import { cn } from "~/lib/utils";
+import { motion, useScroll, useSpring } from "framer-motion";
 
-const PageProgress: React.FC = () => {
-  useEffect(() => {
-    const winHeight = window.innerHeight
-    const docHeight = document.documentElement.scrollHeight
-    const progressBar = document.getElementById(
-      'content_progress',
-    ) as HTMLProgressElement
-    if (progressBar) {
-      progressBar.max = docHeight - winHeight
-      progressBar.value = window.scrollY
-
-      const handleScroll = () => {
-        progressBar.max
-          = document.documentElement.scrollHeight - window.innerHeight
-        progressBar.value = window.scrollY
-      }
-
-      document.addEventListener('scroll', handleScroll)
-      return () => {
-        document.removeEventListener('scroll', handleScroll)
-      }
-    }
-    return undefined
-  }, [])
-
-  return <progress id="content_progress" value="0"></progress>
+interface ScrollProgressProps {
+  className?: string;
 }
 
-export default PageProgress
+export default function ScrollProgress({ className }: ScrollProgressProps) {
+  const { scrollYProgress } = useScroll();
+
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 200,
+    damping: 50,
+    restDelta: 0.001,
+  });
+
+  return (
+    <motion.div
+      className={cn(
+        "fixed inset-x-0 top-0 z-[1000] h-1 origin-left bg-gradient-to-r from-[#A97CF8] via-[#F38CB8] to-[#FDCC92]",
+        className,
+      )}
+      style={{
+        scaleX,
+      }}
+    />
+  );
+}
