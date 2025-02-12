@@ -76,11 +76,6 @@ const WaterfallGallery = ({
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII="
               />
-              {item.description && (
-                <div className="rounded-xl absolute bottom-0 left-0 right-0 p-0 bg-gradient-to-t from-black/60 to-transparent h-8">
-                  <p className="text-white/80 text-sm pl-3">{item.description}</p>
-                </div>
-              )}
             </div>
           </div>
         ))}

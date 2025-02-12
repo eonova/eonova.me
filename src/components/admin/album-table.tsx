@@ -73,7 +73,7 @@ function AlbumTable(props: AlbumTableProps) {
       ),
       cell: ({ row }) => {
         const rowData = row.original; // 获取当前行的数据
-        return <p className='truncate w-50' title={rowData.width + '*' + rowData.height}>{rowData.imageUrl}</p>;
+        return <p className='truncate w-50' title={rowData.width + '*' + rowData.height}>{rowData.width + '*' + rowData.height}</p>;
       }
     },
     {
