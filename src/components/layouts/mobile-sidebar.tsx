@@ -46,6 +46,7 @@ const MobileNavAside: React.FC<MobileNavAsideProps> = ({ className }) => {
   return (
     <>
       {/* 侧边栏 */}
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
       <motion.aside
         initial={false}
         animate={navStore.isVisible ? 'open' : 'closed'}

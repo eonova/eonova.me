@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     <motion.header
       variants={headerVariants}
       className={cn(
-        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] sm:h-[60px] max-w-[850px] items-center justify-between rounded-full px-5 sm:px-8 mx-4 sm:mx-auto shadow-sm backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 during-300',
+        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] sm:h-[60px] max-w-[820px] items-center justify-between rounded-full px-5 sm:px-8 mx-4 sm:mx-auto shadow-sm backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 during-300',
         isScrolled && 'bg-background/80',
         className,
       )}

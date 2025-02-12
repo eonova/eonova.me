@@ -1,12 +1,12 @@
 'use client'
 import { useState, useMemo } from 'react';
 import Masonry from 'react-masonry-css';
-import Image from 'next/image';
 import Lightbox from 'yet-another-react-lightbox';
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import 'yet-another-react-lightbox/styles.css';
 import "yet-another-react-lightbox/plugins/captions.css";
 import '~/styles/page/gallery.css'
+import { BlurImage } from './base';
 
 interface ImageItem {
   imageUrl: string;
@@ -67,7 +67,7 @@ const WaterfallGallery = ({
             }}
           >
             <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <Image
+              <BlurImage
                 src={item.imageUrl}
                 alt={item.description || ''}
                 width={item.width ?? 300}

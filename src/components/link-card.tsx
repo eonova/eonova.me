@@ -17,9 +17,9 @@ const LinkCard: React.FC<LinkCardProps> = ({ props, className }) => {
   const { images, title, desc, url } = props
   return (
     <FadeContent blur duration={300} easing="ease-out" initialOpacity={0}>
-      <Link href={url} className={cn('dark:shadow-inner dark:shadow-white/5 border border-black/5 dark:border-white/10 border-solid group rounded-2xl flex gap-3 p-2 shadow-feature-card hover:bg-gray-200/20 during-300 dark:bg-[#1d1e22]/30 dark:hover:bg-[#1d1e22]/10 h-36', className)} target="black">
+      <Link href={url} className={cn('dark:shadow-inner dark:shadow-white/5 border border-black/5 dark:border-white/10 border-solid group rounded-2xl flex gap-3 p-2 shadow-feature-card hover:bg-gray-200/20 during-300 dark:bg-[#1d1e22]/30 dark:hover:bg-[#1d1e22]/10 h-32', className)} target="black">
         <div
-          className="overflow-hidden rounded-full h-16 w-16"
+          className="overflow-hidden rounded-full h-12 w-12"
         >
           <BlurImage
             src={images}

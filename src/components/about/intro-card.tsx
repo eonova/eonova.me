@@ -78,7 +78,7 @@ const IntroCard: React.FC<IntroCardProps> = ({
       transition={{
         duration: 0.5,
       }}
-      className={cn('overflow-hidden relative rounded-3xl p-6 px-8 border dark:border-white/10 border-black/5 shadow-feature-card dark:shadow-feature-card-dark', className)}
+      className={cn('overflow-hidden relative rounded-3xl p-6 px-8 border dark:border-white/10 border-black/5 shadow-feature-card dark:shadow-feature-card-dark font-world', className)}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
@@ -87,10 +87,10 @@ const IntroCard: React.FC<IntroCardProps> = ({
           background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
         }}
       />
-      {subheading && <p className={cn('text-black/50 dark:text-white/60 font-mono text-[10px]', isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{subheading}</p>}
-      {title && <p className="font-world text-4xl mt-5">{title}</p>}
+      {subheading && <p className={cn('text-black/50 dark:text-white/60 text-sm', isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{subheading}</p>}
+      {title && <p className=" text-4xl mt-5">{title}</p>}
       {children}
-      {desc && <p className={cn('font-mono absolute bottom-6', isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{desc}</p>}
+      {desc && <p className={cn('absolute bottom-6', isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{desc}</p>}
     </motion.div>
   )
 }
