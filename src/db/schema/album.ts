@@ -1,6 +1,5 @@
-import { createId } from "@paralleldrive/cuid2"
+import { createId } from '@paralleldrive/cuid2'
 import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
-
 
 export const album = pgTable('album', {
   id: text('id').primaryKey().$defaultFn(createId),

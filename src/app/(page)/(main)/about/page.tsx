@@ -2,6 +2,12 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { AboutPage, WithContext } from 'schema-dts'
 
 import BounceCards from '~/components/about/bounce-cards'
+import IntroFive from '~/components/about/intro-five'
+import IntroFour from '~/components/about/intro-four'
+import IntroOne from '~/components/about/intro-one'
+import IntroSix from '~/components/about/intro-six'
+import IntroThree from '~/components/about/intro-three'
+import IntroTwo from '~/components/about/intro-two'
 import { VelocityScroll } from '~/components/about/scrollbasedvelocity'
 import PageTitle from '~/components/page-title'
 import {
@@ -13,12 +19,6 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
-import IntroOne from '~/components/about/intro-one'
-import IntroTwo from '~/components/about/intro-two'
-import IntroThree from '~/components/about/intro-three'
-import IntroFour from '~/components/about/intro-four'
-import IntroFive from '~/components/about/intro-five'
-import IntroSix from '~/components/about/intro-six'
 
 const title = '关于'
 const description = '👋 嗨！我是 LeoStar。'

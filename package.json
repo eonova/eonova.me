@@ -2,8 +2,8 @@
   "name": "leospark",
   "type": "module",
   "private": true,
-  "description": "The personal portfolio of leostar",
   "packageManager": "pnpm@10.2.1",
+  "description": "The personal portfolio of leostar",
   "license": "MIT",
   "engines": {
     "node": ">=22",
@@ -153,6 +153,7 @@
     "dotenv-cli": "^8.0.0",
     "drizzle-kit": "^0.30.4",
     "eslint": "^9.20.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "lint-staged": "^15.4.3",
     "picocolors": "^1.1.1",

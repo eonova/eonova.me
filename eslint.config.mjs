@@ -11,7 +11,7 @@ export default antfu({
   ignores: [
     'README.md',
     'components/base/*',
-    './src/trpc/react.ts',
+    './src/trpc/react.tsx',
     'data/*',
   ],
   rules: {

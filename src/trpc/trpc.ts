@@ -1,16 +1,16 @@
 import { initTRPC, TRPCError } from '@trpc/server'
-import { db } from '~/db'
 import { SuperJSON } from 'superjson'
 import { ZodError } from 'zod'
+import { db } from '~/db'
 import { auth } from '~/lib/auth'
 
-export const createTRPCContext = async (opts: { headers: Headers }) => {
+export async function createTRPCContext(opts: { headers: Headers }) {
   const session = await auth()
 
   return {
     db,
     session,
-    ...opts
+    ...opts,
   }
 }
 
@@ -21,10 +21,10 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       ...shape,
       data: {
         ...shape.data,
-        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null
-      }
+        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null,
+      },
     }
-  }
+  },
 })
 
 export const createTRPCRouter = t.router
@@ -35,7 +35,7 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
   if (t._config.isDev) {
     // artificial delay in dev
     const waitMs = Math.floor(Math.random() * 400) + 100
-    await new Promise((resolve) => setTimeout(resolve, waitMs))
+    await new Promise(resolve => setTimeout(resolve, waitMs))
   }
 
   const result = await next()
@@ -55,8 +55,8 @@ export const protectedProcedure = publicProcedure.use(({ ctx, next }) => {
 
   return next({
     ctx: {
-      session: { ...ctx.session, user: ctx.session.user }
-    }
+      session: { ...ctx.session, user: ctx.session.user },
+    },
   })
 })
 

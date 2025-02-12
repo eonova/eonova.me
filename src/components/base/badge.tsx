@@ -1,4 +1,5 @@
-import { cva, type VariantProps } from 'cva'
+import type { VariantProps } from 'cva'
+import { cva } from 'cva'
 import { cn } from '~/lib/utils'
 
 const badgeVariants = cva({

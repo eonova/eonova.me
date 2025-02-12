@@ -12,13 +12,13 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-import { DataTable, DataTableColumnHeader, DataTableToolbar } from '../base/data-table'
 import Image from 'next/image'
-import DeleteAlbumDialog from './album-delete-dialog'
-import UpdateAlbumDialog from './album-update-dialog'
+import { useState } from 'react'
 import { useAlbumDialogsStore } from '~/stores/album'
 import { Button } from '../base'
-import { useState } from 'react'
+import { DataTable, DataTableColumnHeader, DataTableToolbar } from '../base/data-table'
+import DeleteAlbumDialog from './album-delete-dialog'
+import UpdateAlbumDialog from './album-update-dialog'
 
 type Image = GetUsersOutput['images'][number]
 
@@ -36,7 +36,7 @@ function AlbumTable(props: AlbumTableProps) {
         <DataTableColumnHeader column={column} title="图片地址" />
       ),
       cell: ({ row }) => {
-        const image = row.original; // 获取当前行的数据
+        const image = row.original // 获取当前行的数据
         return (
           <div className="w-24 h-20">
             <Image
@@ -47,7 +47,7 @@ function AlbumTable(props: AlbumTableProps) {
               className="object-cover w-full h-full"
             />
           </div>
-        );
+        )
       },
     },
     {
@@ -56,8 +56,8 @@ function AlbumTable(props: AlbumTableProps) {
         <DataTableColumnHeader column={column} title="图片地址" />
       ),
       cell: ({ row }) => {
-        const rowData = row.original; // 获取当前行的数据
-        return <p className='truncate w-50' title={rowData.imageUrl}>{rowData.imageUrl}</p>;
+        const rowData = row.original // 获取当前行的数据
+        return <p className="truncate w-50" title={rowData.imageUrl}>{rowData.imageUrl}</p>
       },
     },
     {
@@ -72,9 +72,9 @@ function AlbumTable(props: AlbumTableProps) {
         <DataTableColumnHeader column={column} title="描述" />
       ),
       cell: ({ row }) => {
-        const rowData = row.original; // 获取当前行的数据
-        return <p className='truncate w-50' title={rowData.width + '*' + rowData.height}>{rowData.width + '*' + rowData.height}</p>;
-      }
+        const rowData = row.original // 获取当前行的数据
+        return <p className="truncate w-50" title={`${rowData.width}*${rowData.height}`}>{`${rowData.width}*${rowData.height}`}</p>
+      },
     },
     {
       accessorKey: 'createdAt',
@@ -88,9 +88,9 @@ function AlbumTable(props: AlbumTableProps) {
         <DataTableColumnHeader column={column} title="更新" />
       ),
       cell: ({ row }) => {
-        const rowData = row.original; // 获取当前行的数据
-        return <Button variant="secondary" type='button' aria-details='更新图片' onClick={() => openUpdateDialog(rowData)} >更新</Button>
-      }
+        const rowData = row.original // 获取当前行的数据
+        return <Button variant="secondary" type="button" aria-details="更新图片" onClick={() => openUpdateDialog(rowData)}>更新</Button>
+      },
     },
     {
       accessorKey: 'delete',
@@ -98,9 +98,9 @@ function AlbumTable(props: AlbumTableProps) {
         <DataTableColumnHeader column={column} title="删除" />
       ),
       cell: ({ row }) => {
-        const rowData = row.original; // 获取当前行的数据
-        return <Button variant="destructive" type='button' aria-details='删除图片' onClick={() => openDeleteDialog(rowData)} >删除</Button>
-      }
+        const rowData = row.original // 获取当前行的数据
+        return <Button variant="destructive" type="button" aria-details="删除图片" onClick={() => openDeleteDialog(rowData)}>删除</Button>
+      },
     },
   ]
   const [currentRowData, setCurrentRowData] = useState<Image>()

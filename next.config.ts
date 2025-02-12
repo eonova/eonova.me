@@ -1,8 +1,8 @@
 import type { NextConfig } from 'next'
 import { createContentCollectionPlugin as createMDX } from '@content-collections/next'
+import createPWA from '@ducanh2912/next-pwa'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
-import createPWA from '@ducanh2912/next-pwa'
 import './src/lib/env.ts'
 
 const withMDX = createMDX({
@@ -15,7 +15,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const withPWA = createPWA({
   dest: 'public',
-  disable: process.env.NODE_ENV === "development"
+  disable: process.env.NODE_ENV === 'development',
 })
 
 const NextConfigHeaders = [
@@ -24,36 +24,35 @@ const NextConfigHeaders = [
     headers: [
       {
         key: 'Referrer-Policy',
-        value: 'strict-origin-when-cross-origin'
+        value: 'strict-origin-when-cross-origin',
       },
       {
         key: 'Permissions-Policy',
-        value: 'camera=(), microphone=(), geolocation=()'
+        value: 'camera=(), microphone=(), geolocation=()',
       },
       {
         key: 'Strict-Transport-Security',
-        value: 'max-age=31536000; includeSubDomains; preload'
+        value: 'max-age=31536000; includeSubDomains; preload',
       },
       {
         key: 'X-Frame-Options',
-        value: 'SAMEORIGIN'
+        value: 'SAMEORIGIN',
       },
       {
         key: 'X-Content-Type-Options',
-        value: 'nosniff'
+        value: 'nosniff',
       },
       {
         key: 'X-DNS-Prefetch-Control',
-        value: 'on'
+        value: 'on',
       },
       {
         key: 'X-XSS-Protection',
-        value: '1; mode=block'
-      }
-    ]
-  }
+        value: '1; mode=block',
+      },
+    ],
+  },
 ]
-
 
 /** @type {import('next').NextConfig} */
 const CustomConfig: NextConfig = {
@@ -61,7 +60,7 @@ const CustomConfig: NextConfig = {
 
   experimental: {
     optimizePackageImports: ['shiki', 'lenis'],
-    reactCompiler: true
+    reactCompiler: true,
   },
 
   images: {
@@ -128,7 +127,7 @@ const CustomConfig: NextConfig = {
       c.plugins.push(ReactComponentName({}))
     }
     return c
-  }
+  },
 }
 
 export default withMDX(withBundleAnalyzer(withPWA(CustomConfig)))

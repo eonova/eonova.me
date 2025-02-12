@@ -1,11 +1,11 @@
+import type { RouterOutputs } from '../react'
+import { TRPCError } from '@trpc/server'
+
 import { z } from 'zod'
 import { album, eq } from '~/db'
-
-import { adminProcedure, createTRPCRouter, publicProcedure } from '../trpc'
-import { TRPCError } from '@trpc/server'
 import { ratelimit } from '~/lib/kv'
 import { getIp } from '~/utils/get-ip'
-import type { RouterOutputs } from '../react'
+import { adminProcedure, createTRPCRouter, publicProcedure } from '../trpc'
 
 const getKey = (id: string) => `album:${id}`
 
@@ -31,7 +31,7 @@ export const albumRouter = createTRPCRouter({
       })
 
       return {
-        images: result
+        images: result,
       }
     }),
 
@@ -48,14 +48,14 @@ export const albumRouter = createTRPCRouter({
       imageUrl,
       description,
       width,
-      height
+      height,
     })
   }),
 
   deleteImage: adminProcedure.input(
     z.object({
-      id: z.string()
-    })
+      id: z.string(),
+    }),
   ).mutation(async ({ ctx, input }) => {
     const { id } = input
     await ctx.db.delete(album).where(eq(album.id, id))
@@ -67,21 +67,21 @@ export const albumRouter = createTRPCRouter({
       imageUrl: z.string(),
       description: z.string(),
       height: z.number(),
-      width: z.number()
-    })
+      width: z.number(),
+    }),
   ).mutation(async ({ ctx, input }) => {
     const { id, imageUrl, description, height, width } = input
     if (!id)
-      throw "The id cannot be empty"
+      throw 'The id cannot be empty'
     await ctx.db.update(album).set({
       ...(imageUrl ? { imageUrl } : {}),
       ...(description ? { description } : {}),
       ...(height ? { height } : {}),
-      ...(width ? { width } : {})
+      ...(width ? { width } : {}),
     }).where(
-      eq(album.id, id)
+      eq(album.id, id),
     )
-  })
+  }),
 })
 
 export type GetUsersOutput = RouterOutputs['album']['getAllImages']

@@ -1,6 +1,6 @@
-import { DATE_BIRTH, PROFESSION } from "~/config/about";
-import BackgroundFont from "../background-font";
-import IntroCard from "./intro-card";
+import { DATE_BIRTH, PROFESSION } from '~/config/about'
+import BackgroundFont from '../background-font'
+import IntroCard from './intro-card'
 
 const IntroOne: React.FC = () => {
   return (
@@ -34,7 +34,7 @@ const IntroOne: React.FC = () => {
         </IntroCard>
       </div>
     </>
-  );
+  )
 }
 
-export default IntroOne;
+export default IntroOne

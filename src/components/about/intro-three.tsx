@@ -1,6 +1,6 @@
-import IntroCard from './intro-card';
-import Video from './video';
-import { cn } from '~/lib/utils';
+import { cn } from '~/lib/utils'
+import IntroCard from './intro-card'
+import Video from './video'
 
 const IntroThree: React.FC = () => {
   return (
@@ -13,8 +13,9 @@ const IntroThree: React.FC = () => {
         isColor
       >
         <div className={
-          cn("absolute z-[-2] w-full h-full left-0 top-0")
-        }>
+          cn('absolute z-[-2] w-full h-full left-0 top-0')
+        }
+        >
           <Video
             className="min-w-[260px] w-full"
             videoSrc="https://img.leostar.top/study/08512629bf6cd862577020adee823f71.mp4"
@@ -30,18 +31,17 @@ const IntroThree: React.FC = () => {
         desc="乐器"
         isColor
       >
-        <div className={cn("absolute z-[-2] w-full h-full left-0 top-0")}>
+        <div className={cn('absolute z-[-2] w-full h-full left-0 top-0')}>
           <Video
             className="min-w-[260px] w-full min-h-full"
             videoSrc="https://img.leostar.top/study/02e691e904ec58bba00d690dbb457fd6.mp4"
             videoSecondSrc="/videos/guitar.mp4"
-            fallbackImageSrc='/images/about/guitar.jpg'
+            fallbackImageSrc="/images/about/guitar.jpg"
           />
         </div>
       </IntroCard>
     </>
-  );
+  )
 }
 
-export default IntroThree;
-
+export default IntroThree

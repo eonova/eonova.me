@@ -1,6 +1,6 @@
-import { LINK_MUSIC } from "~/config/about";
-import IntroCard from "./intro-card";
 import Image from 'next/image'
+import { LINK_MUSIC } from '~/config/about'
+import IntroCard from './intro-card'
 
 interface IntroFourProps {
 
@@ -37,7 +37,7 @@ const IntroFour: React.FC<IntroFourProps> = () => {
         <Image className="absolute top-0 z-[-1] left-0 w-full sm:h-full" src="/images/about/music.png" alt="音乐" width={300} height={150} />
       </IntroCard>
     </>
-  );
+  )
 }
 
-export default IntroFour;
+export default IntroFour

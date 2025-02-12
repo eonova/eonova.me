@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Button } from "~/components/base/button"
+import { useState } from 'react'
+import { Button } from '~/components/base/button'
 import {
   Dialog,
   DialogContent,
@@ -7,19 +7,19 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "~/components/base/dialog"
-import { Input } from "~/components/base/input"
-import { Label } from "~/components/base/label"
-import { useAlbumDialogsStore } from "~/stores/album"
-import { api } from "~/trpc/react"
-import { toast } from "../base"
+} from '~/components/base/dialog'
+import { Input } from '~/components/base/input'
+import { Label } from '~/components/base/label'
+import { useAlbumDialogsStore } from '~/stores/album'
+import { api } from '~/trpc/react'
+import { toast } from '../base'
 
 interface UpdateAlbumDialogProps {
-  id: string,
-  imageUrl: string | null,
+  id: string
+  imageUrl: string | null
   description: string | null
-  height: number | null,
-  width: number | null,
+  height: number | null
+  width: number | null
 }
 
 const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
@@ -27,7 +27,7 @@ const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
   imageUrl,
   description,
   height,
-  width
+  width,
 }) => {
   const [updateImageUrl, setUpdateImageUrl] = useState<string>(imageUrl ?? '')
   const [updateDescription, setUpdateDescription] = useState<string>(description ?? '')
@@ -57,10 +57,12 @@ const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
   }
 
   return (
-    <Dialog open={albumDialogStore.updateDialog}
+    <Dialog
+      open={albumDialogStore.updateDialog}
       onOpenChange={(v) => {
         albumDialogStore.setUpdateDialogs(v)
-      }}>
+      }}
+    >
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
@@ -73,25 +75,25 @@ const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
             <Label htmlFor="name" className="text-right">
               图片地址
             </Label>
-            <Input id="imageUrl" value={updateImageUrl} onChange={(e) => setUpdateImageUrl(e.target.value)} className="col-span-3" />
+            <Input id="imageUrl" value={updateImageUrl} onChange={e => setUpdateImageUrl(e.target.value)} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               图片描述
             </Label>
-            <Input id="username" value={updateDescription} onChange={(e) => setUpdateDescription(e.target.value)} className="col-span-3" />
+            <Input id="username" value={updateDescription} onChange={e => setUpdateDescription(e.target.value)} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               宽度
             </Label>
-            <Input id="width" value={updateWidth} onChange={(e) => setUpdateWidth(Number(e.target.value))} className="col-span-3" />
+            <Input id="width" value={updateWidth} onChange={e => setUpdateWidth(Number(e.target.value))} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               高度
             </Label>
-            <Input id="height" value={updateHeight} onChange={(e) => setUpdateHeight(Number(e.target.value))} className="col-span-3" />
+            <Input id="height" value={updateHeight} onChange={e => setUpdateHeight(Number(e.target.value))} className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
@@ -99,8 +101,7 @@ const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
-export default UpdateAlbumDialog;
-
+export default UpdateAlbumDialog

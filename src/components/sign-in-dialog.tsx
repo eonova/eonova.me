@@ -67,14 +67,14 @@ function SignInDialog() {
           >
             {isLoading
               ? (
-                <Loader2Icon className="animate-spin" />
-              )
+                  <Loader2Icon className="animate-spin" />
+                )
               : (
-                <>
-                  <SiGithub className="mr-3" />
-                  使用 Github 登录
-                </>
-              )}
+                  <>
+                    <SiGithub className="mr-3" />
+                    使用 Github 登录
+                  </>
+                )}
           </Button>
           <Button
             className="h-10 rounded-xl border font-semibold"
@@ -87,14 +87,14 @@ function SignInDialog() {
           >
             {isLoading
               ? (
-                <Loader2Icon className="animate-spin" />
-              )
+                  <Loader2Icon className="animate-spin" />
+                )
               : (
-                <>
-                  <GoogleIcon />
-                  使用 Google 登录
-                </>
-              )}
+                  <>
+                    <GoogleIcon />
+                    使用 Google 登录
+                  </>
+                )}
           </Button>
         </div>
       </DialogContent>

@@ -1,13 +1,13 @@
+import type { GetUsersOutput } from '~/trpc/routers/album'
 import { create } from 'zustand'
 import { toast } from '~/components/base'
-import { api } from '~/trpc/react'
 
-import type { GetUsersOutput } from '~/trpc/routers/album'
+import { api } from '~/trpc/react'
 
 type Image = GetUsersOutput['images'][number]
 
 interface AlbumDialogsState {
-  AllImages: Image[],
+  AllImages: Image[]
   addDialog: boolean
   setAddDialogs: (value: boolean) => void
   updateDialog: boolean
@@ -33,15 +33,16 @@ export const useAlbumDialogsStore = create<AlbumDialogsState>(set => ({
     deleteDialog: value,
   }),
   setAllImages: (value: Image[]) => set({
-    AllImages: value
+    AllImages: value,
   }),
   updateAllImages: () => {
     const { status, data } = api.album.getAllImages.useQuery()
     if (status === 'success') {
       set({ AllImages: data?.images || [] })
-    } else {
+    }
+    else {
       toast.error('更新数据失败')
     }
     return data
-  }
+  },
 }))

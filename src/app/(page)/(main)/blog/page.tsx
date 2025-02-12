@@ -21,19 +21,19 @@ export async function generateMetadata(
     title,
     description,
     alternates: {
-      canonical: url
+      canonical: url,
     },
     openGraph: {
       ...previousOpenGraph,
       url,
       title,
-      description
+      description,
     },
     twitter: {
       ...previousTwitter,
       title,
-      description
-    }
+      description,
+    },
   }
 }
 

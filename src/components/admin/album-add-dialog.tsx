@@ -1,6 +1,6 @@
 'use client'
-import { useState } from "react"
-import { Button } from "~/components/base/button"
+import { useState } from 'react'
+import { Button } from '~/components/base/button'
 import {
   Dialog,
   DialogContent,
@@ -8,12 +8,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "~/components/base/dialog"
-import { Input } from "~/components/base/input"
-import { Label } from "~/components/base/label"
-import { api } from "~/trpc/react"
-import { toast } from "../base"
-import { useAlbumDialogsStore } from "~/stores/album"
+} from '~/components/base/dialog'
+import { Input } from '~/components/base/input'
+import { Label } from '~/components/base/label'
+import { useAlbumDialogsStore } from '~/stores/album'
+import { api } from '~/trpc/react'
+import { toast } from '../base'
 
 const AddAlbumDialog: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string>('')
@@ -31,7 +31,7 @@ const AddAlbumDialog: React.FC = () => {
     onError: error => toast.error(error.message),
     onSettled: () => {
       utils.album.getAllImages.invalidate()
-    }
+    },
   })
 
   function addImage() {
@@ -39,15 +39,17 @@ const AddAlbumDialog: React.FC = () => {
       imageUrl,
       description,
       width,
-      height
+      height,
     })
   }
 
   return (
-    <Dialog open={albumDialogStore.addDialog}
+    <Dialog
+      open={albumDialogStore.addDialog}
       onOpenChange={(v) => {
         albumDialogStore.setAddDialogs(v)
-      }}>
+      }}
+    >
       <DialogTrigger asChild>
         <Button variant="outline" onClick={() => albumDialogStore.setAddDialogs(true)}>添加图片</Button>
       </DialogTrigger>
@@ -60,25 +62,25 @@ const AddAlbumDialog: React.FC = () => {
             <Label htmlFor="name" className="text-right">
               图片地址
             </Label>
-            <Input id="name" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className="col-span-3" />
+            <Input id="name" value={imageUrl} onChange={e => setImageUrl(e.target.value)} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               图片描述
             </Label>
-            <Input id="username" value={description} onChange={(e) => setDescription(e.target.value)} className="col-span-3" />
+            <Input id="username" value={description} onChange={e => setDescription(e.target.value)} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               宽度
             </Label>
-            <Input id="width" value={width} onChange={(e) => setWidth(Number(e.target.value))} className="col-span-3" />
+            <Input id="width" value={width} onChange={e => setWidth(Number(e.target.value))} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               高度
             </Label>
-            <Input id="height" value={height} onChange={(e) => setHeight(Number(e.target.value))} className="col-span-3" />
+            <Input id="height" value={height} onChange={e => setHeight(Number(e.target.value))} className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
@@ -86,8 +88,7 @@ const AddAlbumDialog: React.FC = () => {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
-export default AddAlbumDialog;
-
+export default AddAlbumDialog

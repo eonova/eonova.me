@@ -1,15 +1,16 @@
 'use client'
 
-import gsap from 'gsap'
 import type { LenisOptions } from 'lenis'
-import { LenisRef, ReactLenis } from 'lenis/react'
+import type { LenisRef } from 'lenis/react'
+import gsap from 'gsap'
+import { ReactLenis } from 'lenis/react'
 import { useEffect, useRef } from 'react'
 
 interface LenisProviderProps {
   children: React.ReactNode
 }
 
-export const LenisProvider = ({ children }: LenisProviderProps) => {
+export function LenisProvider({ children }: LenisProviderProps) {
   const lenisRef = useRef<LenisRef | null>(null)
 
   useEffect(() => {
@@ -28,8 +29,8 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
     touchMultiplier: 0.7, // 调整触摸滚动速度
     smoothWheel: true, // 启用鼠标滚轮平滑滚动
     easing: function easeOutSine(x: number): number {
-      return Math.sin((x * Math.PI) / 2);
-    }
+      return Math.sin((x * Math.PI) / 2)
+    },
   }
 
   return (
@@ -38,4 +39,3 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
     </ReactLenis>
   )
 }
-

@@ -40,16 +40,16 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
   const url = `/blog/${slug}`
 
   return {
-    title: title,
+    title,
     description: summary,
     alternates: {
-      canonical: url
+      canonical: url,
     },
     openGraph: {
       ...previousOpenGraph,
       url,
       type: 'article',
-      title: title,
+      title,
       description: summary,
       publishedTime: ISOPublishedTime,
       modifiedTime: ISOModifiedTime,
@@ -60,23 +60,23 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
           width: 1200,
           height: 630,
           alt: title,
-          type: 'image/png'
-        }
-      ]
+          type: 'image/png',
+        },
+      ],
     },
     twitter: {
       ...previousTwitter,
-      title: title,
+      title,
       description: summary,
       images: [
         {
           url: `/og/${slug}`,
           width: 1200,
           height: 630,
-          alt: title
-        }
-      ]
-    }
+          alt: title,
+        },
+      ],
+    },
   }
 }
 
@@ -95,29 +95,29 @@ async function Page(props: PageProps) {
   const jsonLd: WithContext<Article> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: title,
-    name: title,
-    description: summary,
+    'headline': title,
+    'name': title,
+    'description': summary,
     url,
-    datePublished: date,
-    dateModified: modifiedTime,
-    image: `${SITE_URL}/og/${slug}`,
-    author: {
+    'datePublished': date,
+    'dateModified': modifiedTime,
+    'image': `${SITE_URL}/og/${slug}`,
+    'author': {
       '@type': 'Person',
-      name: SITE_NAME,
-      url: SITE_URL
+      'name': SITE_NAME,
+      'url': SITE_URL,
     },
-    publisher: {
+    'publisher': {
       '@type': 'Person',
-      name: SITE_NAME,
-      url: SITE_URL
-    }
+      'name': SITE_NAME,
+      'url': SITE_URL,
+    },
   }
 
   return (
     <>
       <script
-        type='application/ld+json'
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 

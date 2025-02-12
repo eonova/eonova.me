@@ -1,12 +1,12 @@
 'use client'
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 
 interface VideoFallbackProps {
   className?: string
-  videoSrc: string;
+  videoSrc: string
   videoSecondSrc?: string
-  fallbackImageSrc: string;
+  fallbackImageSrc: string
 }
 
 const VideoFallback: React.FC<VideoFallbackProps> = ({
@@ -15,25 +15,25 @@ const VideoFallback: React.FC<VideoFallbackProps> = ({
   videoSecondSrc,
   fallbackImageSrc,
 }) => {
-  const [isVideoError, setIsVideoError] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoError, setIsVideoError] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     const handleVideoError = () => {
-      setIsVideoError(true);
-    };
+      setIsVideoError(true)
+    }
 
-    const videoElement = videoRef.current;
+    const videoElement = videoRef.current
     if (videoElement) {
-      videoElement.addEventListener('error', handleVideoError);
+      videoElement.addEventListener('error', handleVideoError)
     }
 
     return () => {
       if (videoElement) {
-        videoElement.removeEventListener('error', handleVideoError);
+        videoElement.removeEventListener('error', handleVideoError)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   if (isVideoError) {
     return (
@@ -46,7 +46,7 @@ const VideoFallback: React.FC<VideoFallbackProps> = ({
           priority
         />
       </div>
-    );
+    )
   }
 
   return (
@@ -68,8 +68,7 @@ const VideoFallback: React.FC<VideoFallbackProps> = ({
         Your browser does not support the video tag.
       </video>
     </div>
-  );
-};
+  )
+}
 
-export default VideoFallback;
-
+export default VideoFallback

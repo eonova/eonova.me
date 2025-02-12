@@ -1,7 +1,7 @@
-import { APPOINT_END_DATE, APPOINT_START_DATE } from "~/config/about";
-import AppointProgress from "./appoint-progress";
-import IntroCard from "./intro-card";
-import BackgroundFont from "../background-font";
+import { APPOINT_END_DATE, APPOINT_START_DATE } from '~/config/about'
+import BackgroundFont from '../background-font'
+import AppointProgress from './appoint-progress'
+import IntroCard from './intro-card'
 
 const IntroSix: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const IntroSix: React.FC = () => {
       </div>
       <BackgroundFont className="z-[-1] absolute text-black/10 dark:text-white/10 bottom-0 left-20 sm:left-80 text-8xl sm:text-[130px] overflow-hidden">APPOINT</BackgroundFont>
     </IntroCard>
-  );
+  )
 }
 
-export default IntroSix;
+export default IntroSix

@@ -4,6 +4,7 @@ import type { ToasterProps } from '~/components/base/toaster'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import { SessionProvider } from 'next-auth/react'
 import { ThemeProvider, useTheme } from 'next-themes'
+import dynamic from 'next/dynamic'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Suspense } from 'react'
 import UmamiAnalytics from '~/components/analytics'
@@ -13,11 +14,10 @@ import PageProgress from '~/components/page-progress'
 import { flags } from '~/lib/env'
 import { TRPCReactProvider } from '~/trpc/react'
 import Debug from './debug'
-import dynamic from "next/dynamic";
 
-const SmoothScroll = dynamic(() => import("../components/lenis-provider").then(mod => mod.LenisProvider), {
+const SmoothScroll = dynamic(() => import('../components/lenis-provider').then(mod => mod.LenisProvider), {
   ssr: false, // 禁用 SSR
-});
+})
 
 interface ProvidesProps {
   children: React.ReactNode

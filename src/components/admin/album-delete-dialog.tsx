@@ -1,5 +1,5 @@
-
-import { toast } from "sonner"
+import Image from 'next/image'
+import { toast } from 'sonner'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,10 +9,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "~/components/base/alert-dialog"
-import { useAlbumDialogsStore } from "~/stores/album"
-import { api } from "~/trpc/react"
-import Image from 'next/image'
+} from '~/components/base/alert-dialog'
+import { useAlbumDialogsStore } from '~/stores/album'
+import { api } from '~/trpc/react'
 
 interface DeleteAlbumDialogProps {
   id: string
@@ -21,7 +20,7 @@ interface DeleteAlbumDialogProps {
 
 const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({
   id,
-  imageUrl
+  imageUrl,
 }) => {
   const albumDialogStore = useAlbumDialogsStore()
   const utils = api.useUtils()
@@ -30,15 +29,17 @@ const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({
       albumDialogStore.setDeleteDialogs(false)
       toast.success('删除成功')
     },
-    onError: (error) => toast.error('删除图片失败：' + error),
+    onError: error => toast.error(`删除图片失败：${error}`),
     onSettled: () => utils.album.getAllImages.invalidate(),
   })
 
   return (
-    <AlertDialog open={albumDialogStore.deleteDialog}
+    <AlertDialog
+      open={albumDialogStore.deleteDialog}
       onOpenChange={(v) => {
         albumDialogStore.setDeleteDialogs(v)
-      }}>
+      }}
+    >
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>删除</AlertDialogTitle>
@@ -59,7 +60,7 @@ const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
+  )
 }
 
-export default DeleteAlbumDialog;
+export default DeleteAlbumDialog
