@@ -22,7 +22,7 @@ function Navbar() {
             >
               <Link
                 className={cn(
-                  'rounded px-3 py-2 text-sm font-medium transition-colors',
+                  'rounded px-2 py-2 text-sm font-medium transition-colors',
                   {
                     'text-muted-foreground hover:text-foreground': !isActive,
                   },

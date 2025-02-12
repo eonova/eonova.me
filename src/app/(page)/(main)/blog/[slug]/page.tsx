@@ -125,15 +125,15 @@ async function Page(props: PageProps) {
         <Header />
 
         <div className="mt-8 w-full overflow-visible flex flex-col justify-between lg:flex-row gap-2">
-          <article className="w-full  sm:px-4">
-            <Mdx code={code} />
-          </article>
-          <aside className="w-[0] hidden lg:block">
-            <div className="sticky top-32 lg:min-w-[270px] lg:max-w-[270px]">
+          <aside className="w-[0] lg:ml-[-15vw] xl:ml-[-20vw] hidden lg:block">
+            <div className="sticky top-32 -left-[50] lg:min-w-[200px] lg:max-w-[200px]">
               {toc.length > 0 && <TableOfContents toc={toc} />}
               {flags.likeButton && <LikeButton className="ml-5 justify-start" slug={slug} />}
             </div>
           </aside>
+          <article className="w-full  sm:px-4">
+            <Mdx code={code} />
+          </article>
         </div>
         {toc.length > 0 && <MobileTableOfContents toc={toc} />}
         <Footer />

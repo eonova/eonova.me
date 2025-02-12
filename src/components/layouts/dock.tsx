@@ -65,17 +65,17 @@ const Dock: React.FC<DockProps> = ({
             className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
             onClick={scrollToTop}
           >
-            <ArrowUp className="size-4" />
+            <ArrowUp className="size-5" />
           </li>
           <li
             className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
             onClick={toggleTheme}
           >
             <SunIcon
-              className="size-4 dark:hidden"
+              className="size-5 dark:hidden"
             />
             <MoonIcon
-              className="hidden size-4 dark:block"
+              className="hidden size-5 dark:block"
             />
           </li>
           {
@@ -85,7 +85,7 @@ const Dock: React.FC<DockProps> = ({
                 onClick={goToCommentSection}
               >
                 <MessageCircle
-                  className="size-4"
+                  className="size-5"
                 />
               </li>
             )

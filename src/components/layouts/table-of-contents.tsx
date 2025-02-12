@@ -127,7 +127,7 @@ function TableOfContents(props: TableOfContentsProps) {
                     initial={{ opacity: 1 }}
                     animate={{ opacity: allActiveIds.includes(url) || HoverUrl ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className={depth === minDepth ? 'font-bold' : ''}
+                    className={cn("truncate", depth === minDepth ? 'font-bold' : '')}
                   >
                     {title}
                   </motion.div>

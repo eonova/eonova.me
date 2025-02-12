@@ -99,7 +99,7 @@ function LikeButton(props: LikeButtonProps) {
     <div className={cn('mt-10 flex justify-center', className)}>
       <motion.button
         ref={buttonRef}
-        className="flex items-center gap-3 rounded-full bg-zinc-900 px-4 py-2 text-md text-white"
+        className="flex items-center gap-2.5 rounded-full border-[#f2eaead2] dark:border-0 bg-[#f2eaead2] shadow border backdrop-blur-lg dark:bg-zinc-900 px-2.5 py-1.5 text-sm text-black dark:text-white"
         onClick={handleLikeButtonClick}
         aria-label="喜欢这个文章"
         whileTap={{ scale: 0.96 }}

@@ -224,6 +224,10 @@
 
   html {
     @apply scroll-smooth;
+    -webkit-text-size-adjust: 100% !important;
+    -moz-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
   }
 
   body {

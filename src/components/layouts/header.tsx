@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     <motion.header
       variants={headerVariants}
       className={cn(
-        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] sm:h-[60px] max-w-4xl items-center justify-between rounded-full px-5 sm:px-8 mx-4 sm:mx-auto shadow-sm backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 during-300',
+        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] sm:h-[60px] max-w-[850px] items-center justify-between rounded-full px-5 sm:px-8 mx-4 sm:mx-auto shadow-sm backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 during-300',
         isScrolled && 'bg-background/80',
         className,
       )}
@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       animate={!isVisible ? 'hidden' : 'visible'}
     >
       <Link className="h-full flex items-center" href="/" aria-label="回到首页" passHref>
-        <SvgLogo className="h-8 w-8 sm:h-10 sm:w-10 mr-5" />
+        <SvgLogo className="h-8 w-8 sm:h-9 sm:w-9 mr-5" />
       </Link>
 
       <div className="flex items-center gap-2">
