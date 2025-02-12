@@ -65,7 +65,7 @@ function Hero() {
   const textItem = TEXTS[currentIndex]
   return (
     <div className="my-16 space-y-3">
-      <div className="flex justify-between gap-8">
+      <div className="flex justify-between gap-6">
         <motion.div
           className="flex flex-col gap-2"
           initial={{
@@ -84,7 +84,7 @@ function Hero() {
             <div>
               我是
               {' '}
-              <Avatar className="h-12 sm:h-16 md:h-18" />
+              <Avatar className="h-12 sm:h-16" />
               {' '}
               ，一个爱捣鼓的前端
             </div>
@@ -137,14 +137,14 @@ function Hero() {
             imageSrc="/images/home/avatar.webp"
             altText="LeoStar"
             captionText="LeoStar"
-            rotateAmplitude={12}
+            rotateAmplitude={14}
             scaleOnHover={1.2}
             showMobileWarning={false}
             showTooltip
             displayOverlayContent
             overlayContent={(
-              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-8 p-2.5 bg-white/70 dark:bg-white/30 md:flex hidden">
-                Hello
+              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-7.5 p-2.5 bg-white/70 dark:bg-white/30 md:flex hidden">
+                Hi
               </p>
             )}
           />

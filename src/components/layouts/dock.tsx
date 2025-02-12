@@ -60,32 +60,32 @@ const Dock: React.FC<DockProps> = ({
         animate={{ x: isVisible ? '0%' : '120%' }}
         transition={{ duration: 0.3 }}
       >
-        <ul className="flex flex-col justify-between items-center w-full h-full p-2 gap-2">
+        <ul className="flex flex-col justify-between items-center w-full h-full p-1.5 gap-1">
           <li
-            className="dark:bg-white/10 cursor-pointer rounded-full p-2"
+            className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
             onClick={scrollToTop}
           >
-            <ArrowUp className="size-6" />
+            <ArrowUp className="size-4" />
           </li>
           <li
-            className="dark:bg-white/10 cursor-pointer rounded-full p-2"
+            className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
             onClick={toggleTheme}
           >
             <SunIcon
-              className="size-6 dark:hidden"
+              className="size-4 dark:hidden"
             />
             <MoonIcon
-              className="hidden size-6 dark:block"
+              className="hidden size-4 dark:block"
             />
           </li>
           {
             pathname.match(/\/blog\//g)?.length === 1 && (
               <li
-                className="dark:bg-white/10 cursor-pointer rounded-full p-2"
+                className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
                 onClick={goToCommentSection}
               >
                 <MessageCircle
-                  className="size-6"
+                  className="size-4"
                 />
               </li>
             )
