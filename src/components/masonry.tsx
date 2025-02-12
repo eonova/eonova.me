@@ -34,10 +34,10 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
       let newColumns = 1;
       if (containerWidth >= 1500) {
         newColumns = 5;
-      } else if (containerWidth >= 1024 && containerWidth < 1500) {
-        newColumns = 4;
       } else if (containerWidth >= 750 && containerWidth < 1024) {
         newColumns = 4;
+      } else if (containerWidth >= 500 && containerWidth < 750) {
+        newColumns = 3;
       } else {
         newColumns = 2;
       }
