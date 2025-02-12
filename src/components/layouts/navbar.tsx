@@ -11,7 +11,7 @@ function Navbar() {
 
   return (
     <nav>
-      <ul className="hidden gap-2 md:flex">
+      <ul className="hidden gap-2.5 md:flex">
         {HEADER_LINKS.map((link) => {
           const isActive = link.href === pathname
 

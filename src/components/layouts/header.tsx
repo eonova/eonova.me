@@ -71,9 +71,9 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         <SvgLogo className="h-8 w-8 sm:h-9 sm:w-9 mr-5" />
       </Link>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 sm:gap-1">
         <Navbar />
-        <Separator orientation="vertical" className={cn('h-6 sm:block hidden')} />
+        <Separator orientation="vertical" className={cn('h-6 mx-1 sm:block hidden')} />
         <Link target="black" href="/rss.xml">
           <Button
             variant="ghost"
