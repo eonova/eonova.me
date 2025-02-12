@@ -35,9 +35,6 @@ importers:
       '@icons-pack/react-simple-icons':
         specifier: 10.2.0
         version: 10.2.0(react@19.0.0)
-      '@normy/react-query':
-        specifier: ^0.17.1
-        version: 0.17.1(@tanstack/react-query@5.66.0(react@19.0.0))
       '@number-flow/react':
         specifier: ^0.5.5
         version: 0.5.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -104,9 +101,6 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.65.1
         version: 5.66.0(@tanstack/react-query@5.66.0(react@19.0.0))(react@19.0.0)
-      '@tanstack/react-query-next-experimental':
-        specifier: ^5.65.0
-        version: 5.66.0(@tanstack/react-query@5.66.0(react@19.0.0))(next@15.1.6(@babel/core@7.26.8)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@tanstack/react-table':
         specifier: ^8.20.6
         version: 8.20.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -2946,14 +2940,6 @@ packages:
     resolution: {integrity: sha512-nIh/M6Kh3ZtOmlY00DaUYB4xeeV6F3/ts1l29iwl3/cfyY/OuCfUx+v08zgx8TKPTifXRcjjqVQ4KB2zOYSbyw==}
     engines: {node: '>=18.18.0'}
 
-  '@normy/core@0.11.1':
-    resolution: {integrity: sha512-Gj2JPR8PTlLcyaw7gLwGNAdeiOlyvb5OXn5n1jqvlQo8mG7Gv8x4v6uvVSVdYKJcHcDPtenbJ+jzKU/EHYT5aw==}
-
-  '@normy/react-query@0.17.1':
-    resolution: {integrity: sha512-xml2LiISPwbqwS2HrXsAIBtea1dKpL1tUYvALNGbSY37t3ZQ7g2slaaQlU+UwnUim7Rm2XttHjCVaRLFfvVTtQ==}
-    peerDependencies:
-      '@tanstack/react-query': '>=5.4.3'
-
   '@number-flow/react@0.5.5':
     resolution: {integrity: sha512-Zdju5n0osxrb+7jbcpUJ9L2VJ2+9ptwjz5+A+2wq9Q32hs3PW/noPJjHtLTrtGINM9mEw76DcDg0ac/dx6j1aA==}
     peerDependencies:
@@ -4046,13 +4032,6 @@ packages:
     resolution: {integrity: sha512-uB57wA2YZaQ2fPcFW0E9O1zAGDGSbRKRx84uMk/86VyU9jWVxvJ3Uzp+zNm+nZJYsuekCIo2opTdgNuvM3cKgA==}
     peerDependencies:
       '@tanstack/react-query': ^5.66.0
-      react: ^18 || ^19
-
-  '@tanstack/react-query-next-experimental@5.66.0':
-    resolution: {integrity: sha512-BCBlqWVtCSev1Bmk5QJs99gN7TsiLGgRsg4efaI/P9zwPD9EmpvltMNixyMb/mwojDX+n6xMKZ8EKkXSgFp32w==}
-    peerDependencies:
-      '@tanstack/react-query': ^5.66.0
-      next: ^13 || ^14 || ^15
       react: ^18 || ^19
 
   '@tanstack/react-query@5.66.0':
@@ -12263,16 +12242,6 @@ snapshots:
       '@nodelib/fs.scandir': 4.0.1
       fastq: 1.19.0
 
-  '@normy/core@0.11.1':
-    dependencies:
-      '@babel/runtime': 7.26.7
-      deepmerge: 4.3.1
-
-  '@normy/react-query@0.17.1(@tanstack/react-query@5.66.0(react@19.0.0))':
-    dependencies:
-      '@normy/core': 0.11.1
-      '@tanstack/react-query': 5.66.0(react@19.0.0)
-
   '@number-flow/react@0.5.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       esm-env: 1.2.2
@@ -13445,12 +13414,6 @@ snapshots:
     dependencies:
       '@tanstack/query-devtools': 5.65.0
       '@tanstack/react-query': 5.66.0(react@19.0.0)
-      react: 19.0.0
-
-  '@tanstack/react-query-next-experimental@5.66.0(@tanstack/react-query@5.66.0(react@19.0.0))(next@15.1.6(@babel/core@7.26.8)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      '@tanstack/react-query': 5.66.0(react@19.0.0)
-      next: 15.1.6(@babel/core@7.26.8)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
 
   '@tanstack/react-query@5.66.0(react@19.0.0)':

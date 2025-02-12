@@ -23,8 +23,8 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
   }, [])
 
   const option: LenisOptions = {
-    duration: 0.35,
-    wheelMultiplier: 0.7, // 调整鼠标滚轮速度
+    duration: 0.3,
+    wheelMultiplier: 0.65, // 调整鼠标滚轮速度
     touchMultiplier: 0.7, // 调整触摸滚动速度
     smoothWheel: true, // 启用鼠标滚轮平滑滚动
     easing: function easeOutSine(x: number): number {

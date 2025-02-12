@@ -1,11 +1,11 @@
 import React from 'react'
-import '~/styles/page/avatar.css'
+import '~/styles/page/write-logo.css'
 
-interface AvatarProps {
+interface WriteLogoProps {
   className?: string
 }
 
-const Avatar: React.FC<AvatarProps> = ({ className }) => {
+const WriteLogo: React.FC<WriteLogoProps> = ({ className }) => {
   return (
     <svg
       id="eGgXFSmcNq71"
@@ -62,4 +62,4 @@ const Avatar: React.FC<AvatarProps> = ({ className }) => {
   )
 }
 
-export default Avatar
+export default WriteLogo

@@ -6,7 +6,9 @@ import { api } from '~/trpc/react'
 import ShinyText from '../shiny-text'
 
 function NowPlaying() {
-  const { status, data } = api.spotify.get.useQuery()
+  const { status, data } = api.spotify.get.useQuery(undefined, {
+    staleTime: 1000 * 60
+  })
   const isPlaying = status === 'success' && data.isPlaying && data.songUrl
   const notListening = status === 'success' && (!data.isPlaying || !data.songUrl)
   const [text, setText] = useState<string>('')
@@ -46,10 +48,10 @@ function NowPlaying() {
           !isPlaying
             ? <ShinyText text={text} disabled speed={3} className="custom-class" />
             : (
-                <Link target="black" href={data?.songUrl ?? ''}>
-                  <ShinyText text={text} disabled speed={3} className="custom-class" />
-                </Link>
-              )
+              <Link target="black" href={data?.songUrl ?? ''}>
+                <ShinyText text={text} disabled speed={3} className="custom-class" />
+              </Link>
+            )
         }
       </div>
     </div>

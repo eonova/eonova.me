@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import Avatar from '../avatar'
+import WriteLogo from '../write-logo'
 import TiltedCard from './tilted-card'
 
 const TEXTS = [
@@ -84,7 +84,7 @@ function Hero() {
             <div>
               我是
               {' '}
-              <Avatar className="h-12 sm:h-16" />
+              <WriteLogo className="h-12 sm:h-16" />
               {' '}
               ，一个爱捣鼓的前端
             </div>

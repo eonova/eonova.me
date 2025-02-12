@@ -31,6 +31,7 @@ export function SvgLogo(props: LogoProps) {
     </svg>
   )
 }
+
 function Logo() {
   return (
     <div className="flex flex-col gap-4 md:flex-row">
