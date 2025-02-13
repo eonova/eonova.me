@@ -6,10 +6,10 @@ import { posts } from './schema'
 
 async function main() {
   try {
-    const files = await fs.readdir(path.join(process.cwd(), '../../apps/web/src/content/blog/en'))
+    const files = await fs.readdir(path.join(process.cwd(), '../../data/post/'))
 
     for (const file of files) {
-      const slug = file.replace('.mdx', '')
+      const slug = file.replace('.md', '')
       await db.insert(posts).values({ slug, views: 0 })
     }
 
