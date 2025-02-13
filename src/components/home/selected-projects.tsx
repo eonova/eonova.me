@@ -112,8 +112,8 @@ function Card(props: CardProps) {
         <ArrowUpRightIcon className="size-[18px] opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
       <BlurImage
-        width={1280}
-        height={832}
+        width={600}
+        height={450}
         src={`/images/projects/${slug}.png`}
         alt={description}
         className="rounded-lg"

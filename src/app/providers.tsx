@@ -1,7 +1,6 @@
 'use client'
 
 import type { ToasterProps } from '~/components/base/toaster'
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import { SessionProvider } from 'next-auth/react'
 import { ThemeProvider, useTheme } from 'next-themes'
 import dynamic from 'next/dynamic'
@@ -43,7 +42,6 @@ function Providers(props: ProvidesProps) {
                 {children}
               </SmoothScroll>
               {flags.analytics && <UmamiAnalytics />}
-              <VercelAnalytics />
               <Toaster
                 toastOptions={{
                   duration: 2500,

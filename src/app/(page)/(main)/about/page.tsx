@@ -1,14 +1,15 @@
 import type { Metadata, ResolvingMetadata } from 'next'
+import dynamic from 'next/dynamic'
 import type { AboutPage, WithContext } from 'schema-dts'
 
-import BounceCards from '~/components/about/bounce-cards'
-import IntroFive from '~/components/about/intro-five'
-import IntroFour from '~/components/about/intro-four'
-import IntroOne from '~/components/about/intro-one'
-import IntroSix from '~/components/about/intro-six'
-import IntroThree from '~/components/about/intro-three'
-import IntroTwo from '~/components/about/intro-two'
-import { VelocityScroll } from '~/components/about/scrollbasedvelocity'
+const BounceCards = dynamic(() => import('~/components/about/bounce-cards'))
+const IntroFive = dynamic(() => import('~/components/about/intro-five'))
+const IntroFour = dynamic(() => import('~/components/about/intro-four'))
+const IntroOne = dynamic(() => import('~/components/about/intro-one'))
+const IntroSix = dynamic(() => import('~/components/about/intro-six'))
+const IntroThree = dynamic(() => import('~/components/about/intro-three'))
+const IntroTwo = dynamic(() => import('~/components/about/intro-two'))
+const VelocityScroll = dynamic(() => import('~/components/about/scrollbasedvelocity').then(mod => mod.VelocityScroll))
 import PageTitle from '~/components/page-title'
 import {
   SITE_DESCRIPTION,

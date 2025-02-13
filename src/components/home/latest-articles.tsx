@@ -127,8 +127,8 @@ function Card(props: CardProps) {
         <ArrowUpRightIcon className="size-[18px] opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
       <BlurImage
-        width={1200}
-        height={630}
+        width={800}
+        height={410}
         src={cover ?? '/images/og-background.png'}
         alt={title}
         className="rounded-lg"
@@ -140,16 +140,16 @@ function Card(props: CardProps) {
           {likesQuery.status === 'error' ? '错误' : null}
           {likesQuery.status === 'success'
             ? (
-                <div>{`${likesQuery.data.likes} 点赞`}</div>
-              )
+              <div>{`${likesQuery.data.likes} 点赞`}</div>
+            )
             : null}
           <div>&middot;</div>
           {viewsQuery.status === 'pending' ? '--' : null}
           {viewsQuery.status === 'error' ? '错误' : null}
           {viewsQuery.status === 'success'
             ? (
-                <div>{`${viewsQuery.data.views} 浏览量`}</div>
-              )
+              <div>{`${viewsQuery.data.views} 浏览量`}</div>
+            )
             : null}
         </div>
       </div>
