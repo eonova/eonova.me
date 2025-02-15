@@ -1,6 +1,4 @@
-<h1 align="center">LeoSpark🎇</h1>
-
-> **“LeoSpark”** 表达狮子座（Leo）的个性特点，像火花（Spark）一样的热情、活力和创造力，希望在网络世界中展现出独特的自我。
+<h1 align="center">LeoStar's Space🎇</h1>
 
 ## 🚀 一键部署
 

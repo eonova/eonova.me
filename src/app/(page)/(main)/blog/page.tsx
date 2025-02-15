@@ -33,7 +33,7 @@ export async function generateMetadata(
       ...previousTwitter,
       title,
       description,
-    },
+    }
   }
 }
 
