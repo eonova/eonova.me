@@ -51,6 +51,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "**/*.json"
-  ],
+, "plopfile.js"  ],
   "exclude": ["node_modules", "eslint.config.mjs"]
 }

@@ -1,3 +1,4 @@
+export const CATEGORIES = ['技术', '生活', '总结']
 export default async function (plop) {
   // 定义一个自定义辅助函数，用于获取时间戳
   plop.setHelper('getCurrentTimestamp', () => {
@@ -10,6 +11,13 @@ export default async function (plop) {
         type: 'input',
         name: 'name',
         message: '博客文件名',
+      },
+      {
+        type: 'list', // 选择类型
+        name: 'categories', // 输入项的名称
+        message: '选择分类', // 提示信息
+        choices: CATEGORIES, // 选项列表
+        default: CATEGORIES[0], // 默认值
       },
     ],
     actions: [{

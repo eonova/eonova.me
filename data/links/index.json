@@ -42,7 +42,7 @@
       ]
     },
     {
-      "categoryName": "UI组件库",
+      "categoryName": "UI KIT",
       "websites": [
         {
           "images": "https://www.hover.dev/favicon.ico",
@@ -51,10 +51,58 @@
           "desc": "Animated UI Component and Template for React"
         },
         {
-          "images": "/images/me.png",
-          "url": "https://www.wikipedia.org/",
-          "title": "Wikipedia",
-          "desc": "一个自由、免费、内容开放的百科全书，涵盖了各种领域的知识。"
+          "images": "https://magicui.design/favicon.ico",
+          "url": "https://magicui.design/",
+          "title": "Magic UI",
+          "desc": "UI library for Design Engineers"
+        },
+        {
+          "images": "https://ui.aceternity.com/favicon.ico",
+          "url": "https://ui.aceternity.com/",
+          "title": "Aceternity UI",
+          "desc": "Make your websites look 10x better"
+        },
+        {
+          "images": "https://www.ui-layouts.com/favicon.ico",
+          "url": "https://www.ui-layouts.com/",
+          "title": "UI Layouts",
+          "desc": "The Components Your Website Deserve!"
+        },
+        {
+          "images": "https://www.cult-ui.com/favicon.ico",
+          "url": "https://www.cult-ui.com/",
+          "title": "Cult UI",
+          "desc": "Components crafted for Design Engineers"
+        },
+        {
+          "images": "https://www.eldoraui.site/favicon.ico",
+          "url": "https://www.eldoraui.site/",
+          "title": "Eldora UI",
+          "desc": "UI library for Design Engineers"
+        },
+        {
+          "images": "https://syntaxui.com/favicon.ico",
+          "url": "https://syntaxui.com/",
+          "title": "Syntax UI",
+          "desc": "Stop coding from scratch. Build faster. Launch sooner."
+        },
+        {
+          "images": "https://lunarui.dev/favicon.png",
+          "url": "https://lunarui.dev/",
+          "title": "Lunar UI",
+          "desc": "Build sites that sell well."
+        },
+        {
+          "images": "https://animata.design/apple-touch-icon.png",
+          "url": "https://animata.design/",
+          "title": "Animata Design",
+          "desc": "Hand-crafted ✍️ interaction animations and effects from around the internet 🛜 to copy and paste into your project."
+        },
+        {
+          "images": "https://inspira-ui.com/favicon.ico",
+          "url": "https://inspira-ui.com/",
+          "title": "Inspira UI",
+          "desc": "Build beautiful websites using Vue & Nuxt"
         }
       ]
     },

@@ -32,7 +32,7 @@ git config --global user.name "username"
 git config --global user.email "username@email.com"
 
 # 设置大小写敏感（windows不区分大小写的解决办法）
-git config core.ignorecase  falsebash复制代码
+git config core.ignorecase  falsebash
 ~~~
 
 1. 我们先在GitHub或Gitee官网上注册一个账号，注册好后，桌面右键选择Git Bash，进行账号配置，命令如下：
