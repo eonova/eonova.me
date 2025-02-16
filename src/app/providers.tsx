@@ -6,11 +6,9 @@ import { ThemeProvider, useTheme } from 'next-themes'
 import dynamic from 'next/dynamic'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Suspense } from 'react'
-import UmamiAnalytics from '~/components/analytics'
 import { Toaster } from '~/components/base/toaster'
 import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/page-progress'
-import { flags } from '~/lib/env'
 import { TRPCReactProvider } from '~/trpc/react'
 import Debug from './debug'
 
@@ -41,7 +39,6 @@ function Providers(props: ProvidesProps) {
               <SmoothScroll>
                 {children}
               </SmoothScroll>
-              {flags.analytics && <UmamiAnalytics />}
               <Toaster
                 toastOptions={{
                   duration: 2500,

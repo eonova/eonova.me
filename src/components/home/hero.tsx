@@ -137,7 +137,7 @@ function Hero() {
             imageSrc="/images/home/avatar.webp"
             altText="LeoStar"
             captionText="LeoStar"
-            rotateAmplitude={14}
+            rotateAmplitude={18}
             scaleOnHover={1.2}
             showMobileWarning={false}
             showTooltip

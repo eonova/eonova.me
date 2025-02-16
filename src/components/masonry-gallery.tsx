@@ -8,7 +8,7 @@ import { buttonVariants } from '~/components/base/button'
 import { api } from '~/trpc/react'
 import WhirlpoolLoader from './whirlpool-loader'
 
-export interface ImageItem {
+interface ImageItem {
   id: number; // 图片 ID
   imageUrl: string;
   height: number; // 图片原始高度

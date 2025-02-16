@@ -1,6 +1,52 @@
 {
   "categories": [
     {
+      "categoryName": "好用工具",
+      "websites": [
+        {
+          "images": "https://www.tldraw.com/apple-touch-icon.png",
+          "url": "https://www.tldraw.com/",
+          "title": "Tldraw",
+          "desc": "Music for everyone"
+        },
+        {
+          "images": "https://excalidraw.com/apple-touch-icon.png",
+          "url": "https://excalidraw.com/",
+          "title": "Excalidraw",
+          "desc": "Music for everyone"
+        },
+        {
+          "images": "https://cli.im/favicon.ico",
+          "url": "https://cli.im/",
+          "title": "草料二维码",
+          "desc": "Music for everyone"
+        },
+        {
+          "images": "https://squoosh.app/c/icon-large-maskable-c2078ced.png",
+          "url": "https://squoosh.app/",
+          "title": "squoosh",
+          "desc": "图片压缩工具"
+        }
+      ]
+    },
+    {
+      "categoryName": "美工设计",
+      "websites": [
+        {
+          "images": "https://static.figma.com/uploads/b6df2735e4cb368306acf5480b50f96e69f96099",
+          "url": "https://www.figma.com/",
+          "title": "Figma",
+          "desc": "The Collaborative Interface Design Tool"
+        },
+        {
+          "images": "https://www.gaitubao.com/apple-touch-icon.png",
+          "url": "https://www.gaitubao.com/",
+          "title": "改图宝",
+          "desc": "快速、简单的在线修改图片工具"
+        }
+      ]
+    },
+    {
       "categoryName": "技术开发",
       "websites": [
         {
@@ -34,75 +80,10 @@
           "desc": "AI-Powered Web Development at Your Fingertips"
         },
         {
-          "images": "https://bun.sh/favicon.ico",
-          "url": "https://bun.sh/",
-          "title": "Bun",
-          "desc": "A fast all-in-one JavaScript runtime"
-        }
-      ]
-    },
-    {
-      "categoryName": "UI KIT",
-      "websites": [
-        {
-          "images": "https://www.hover.dev/favicon.ico",
-          "url": "https://www.hover.dev/",
-          "title": "Hover.dev",
-          "desc": "Animated UI Component and Template for React"
-        },
-        {
-          "images": "https://magicui.design/favicon.ico",
-          "url": "https://magicui.design/",
-          "title": "Magic UI",
-          "desc": "UI library for Design Engineers"
-        },
-        {
-          "images": "https://ui.aceternity.com/favicon.ico",
-          "url": "https://ui.aceternity.com/",
-          "title": "Aceternity UI",
-          "desc": "Make your websites look 10x better"
-        },
-        {
-          "images": "https://www.ui-layouts.com/favicon.ico",
-          "url": "https://www.ui-layouts.com/",
-          "title": "UI Layouts",
-          "desc": "The Components Your Website Deserve!"
-        },
-        {
-          "images": "https://www.cult-ui.com/favicon.ico",
-          "url": "https://www.cult-ui.com/",
-          "title": "Cult UI",
-          "desc": "Components crafted for Design Engineers"
-        },
-        {
-          "images": "https://www.eldoraui.site/favicon.ico",
-          "url": "https://www.eldoraui.site/",
-          "title": "Eldora UI",
-          "desc": "UI library for Design Engineers"
-        },
-        {
-          "images": "https://syntaxui.com/favicon.ico",
-          "url": "https://syntaxui.com/",
-          "title": "Syntax UI",
-          "desc": "Stop coding from scratch. Build faster. Launch sooner."
-        },
-        {
-          "images": "https://lunarui.dev/favicon.png",
-          "url": "https://lunarui.dev/",
-          "title": "Lunar UI",
-          "desc": "Build sites that sell well."
-        },
-        {
-          "images": "https://animata.design/apple-touch-icon.png",
-          "url": "https://animata.design/",
-          "title": "Animata Design",
-          "desc": "Hand-crafted ✍️ interaction animations and effects from around the internet 🛜 to copy and paste into your project."
-        },
-        {
-          "images": "https://inspira-ui.com/favicon.ico",
-          "url": "https://inspira-ui.com/",
-          "title": "Inspira UI",
-          "desc": "Build beautiful websites using Vue & Nuxt"
+          "images": "https://logtoeu.blob.core.windows.net/public-blobs/admin/aG3Wi7UOuSQ7/2023/03/19/JVncuuqe/favicon.png",
+          "url": "https://auth.logto.io/",
+          "title": "Logto",
+          "desc": "The better auth and identify infrastructure"
         }
       ]
     },
@@ -138,40 +119,100 @@
           "url": "https://upstash.com/",
           "title": "Upstash",
           "desc": "Redis Serverless Server"
-        },
-        {
-          "images": "https://logtoeu.blob.core.windows.net/public-blobs/admin/aG3Wi7UOuSQ7/2023/03/19/JVncuuqe/favicon.png",
-          "url": "https://auth.logto.io/",
-          "title": "Logto",
-          "desc": "The better auth and identify infrastructure"
         }
       ]
     },
     {
-      "categoryName": "美工设计",
+      "categoryName": "灵感找寻",
       "websites": [
         {
-          "images": "https://static.figma.com/uploads/b6df2735e4cb368306acf5480b50f96e69f96099",
-          "url": "https://www.figma.com/",
-          "title": "Figma",
-          "desc": "The Collaborative Interface Design Tool"
+          "images": "https://codepen.io/favicon.ico",
+          "url": "https://codepen.io/",
+          "title": "Codepen",
+          "desc": "An online community for testing and showcasing user-created HTML, CSS and JavaScript code snippets."
         },
         {
-          "images": "https://www.gaitubao.com/apple-touch-icon.png",
-          "url": "https://www.gaitubao.com/",
-          "title": "改图宝",
-          "desc": "快速、简单的在线修改图片工具"
+          "images": "https://uiverse.io/favicon.ico",
+          "url": "https://uiverse.io/",
+          "title": "uiverse",
+          "desc": "The Largest Library of Open-Source UI"
+        },
+        {
+          "images": "https://www.awwwards.com/favicon.ico",
+          "url": "https://www.awwwards.com/",
+          "title": "awwwards",
+          "desc": "Website Awards - Best Web Design Trends"
+        },
+        {
+          "images": "https://cdn.dribbble.com/assets/favicon-192x192-d70ad402693bdd1a8460da7f9f3c590e817da7369c5287789ac968cf6947d214.png",
+          "url": "https://dribbble.com/",
+          "title": "dribbble",
+          "desc": "Discover the world’s top designers"
+        },
+        {
+          "images": "https://www.ui.cn/favicon.ico",
+          "url": "https://www.ui.cn/",
+          "title": "UI 中国",
+          "desc": "一个设计师必逛的灵感网站！"
         }
       ]
     },
     {
-      "categoryName": "音乐",
+      "categoryName": "UI 组件库",
       "websites": [
         {
-          "images": "https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico",
-          "url": "https://open.spotify.com/",
-          "title": "Spotify",
-          "desc": "Music for everyone"
+          "images": "https://ui.shadcn.com/apple-touch-icon.png",
+          "url": "https://ui.shadcn.com/",
+          "title": "Shadcn UI",
+          "desc": "A set of beautifully-designed, accessible, and customizable components to help you build your component library. "
+        },
+        {
+          "images": "https://daisyui.com/favicon.ico",
+          "url": "https://daisyui.com/",
+          "title": "Daisy UI",
+          "desc": "The most popular component library for Tailwind CSS"
+        },
+        {
+          "images": "https://www.hover.dev/favicon.ico",
+          "url": "https://www.hover.dev/",
+          "title": "Hover.dev",
+          "desc": "Animated UI Component and Template for React"
+        },
+        {
+          "images": "https://magicui.design/favicon.ico",
+          "url": "https://magicui.design/",
+          "title": "Magic UI",
+          "desc": "UI library for Design Engineers"
+        },
+        {
+          "images": "https://ui.aceternity.com/apple-icon.png?2deb28af3ac52d4d",
+          "url": "https://ui.aceternity.com/",
+          "title": "Aceternity UI",
+          "desc": "Make your websites look 10x better"
+        },
+        {
+          "images": "https://lunarui.dev/favicon.png",
+          "url": "https://lunarui.dev/",
+          "title": "Lunar UI",
+          "desc": "Build sites that sell well."
+        },
+        {
+          "images": "https://img.leostar.top/blog/favicon.ico",
+          "url": "https://animata.design/",
+          "title": "Animata Design",
+          "desc": "Hand-crafted ✍️ interaction animations and effects from around the internet 🛜 to copy and paste into your project."
+        },
+        {
+          "images": "https://img.leostar.top/blog/20250216190901492.ico",
+          "url": "https://inspira-ui.com/",
+          "title": "Inspira UI",
+          "desc": "Build beautiful websites using Vue & Nuxt"
+        },
+        {
+          "images": "https://www.reactbits.dev/favicon.ico",
+          "url": "https://www.reactbits.dev/",
+          "title": "Reactbits",
+          "desc": "Animated UI Components For React"
         }
       ]
     }

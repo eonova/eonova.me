@@ -7,7 +7,6 @@ export const flags = {
   auth: process.env.NEXT_PUBLIC_FLAG_AUTH === 'true',
   stats: process.env.NEXT_PUBLIC_FLAG_STATS === 'true',
   spotify: process.env.NEXT_PUBLIC_FLAG_SPOTIFY === 'true',
-  analytics: process.env.NEXT_PUBLIC_FLAG_ANALYTICS === 'true',
   guestbookNotification: process.env.NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION === 'true',
   likeButton: process.env.NEXT_PUBLIC_FLAG_LIKE_BUTTON === 'true',
   search: process.env.NEXT_PUBLIC_FLAG_ALGOLIA === 'true',
@@ -76,12 +75,6 @@ export const env = createEnv({
     REACT_SCAN_MONITOR_API_KEY: z.string().optional(),
   },
   client: {
-    ...(flags.analytics
-      ? {
-        NEXT_PUBLIC_UMAMI_URL: z.string().url(),
-        NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.string().uuid(),
-      }
-      : {}),
 
     NEXT_PUBLIC_FLAG_COMMENT: z.string().min(1).optional(),
     NEXT_PUBLIC_FLAG_AUTH: z.string().min(1).optional(),
@@ -93,9 +86,6 @@ export const env = createEnv({
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-
-    NEXT_PUBLIC_UMAMI_URL: process.env.NEXT_PUBLIC_UMAMI_URL,
-    NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
 
     NEXT_PUBLIC_FLAG_COMMENT: process.env.NEXT_PUBLIC_FLAG_COMMENT,
     NEXT_PUBLIC_FLAG_AUTH: process.env.NEXT_PUBLIC_FLAG_AUTH,
