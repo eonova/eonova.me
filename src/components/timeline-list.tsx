@@ -6,10 +6,7 @@ interface TimelineListProps {
 }
 
 const TimelineList: React.FC<TimelineListProps> = ({ children, className }) => {
-  return (
-    <><ul className={cn('shiro-timeline', className)}>{children}</ul>
-    </>
-  );
+  return <ul className={cn('shiro-timeline', className)}>{children}</ul>;
 }
 
 export default TimelineList;

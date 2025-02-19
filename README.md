@@ -1,6 +1,10 @@
-<h1 align="center" style="font-size: 36px;font-weight:bold; margin-bottom:15px;border: none;"> Eonova 💠 </h1>
+<h1 align="center"> Eonova 💠</h1>
 
 > "纪元（Eon）" + "Nova"（超新星），狮子座的宇宙级爆发
+
+## 🎉 项目介绍
+
+基于现代化技术栈构建的高性能个人博客，集成技术文章展示、开源项目管理等能力
 
 ## 🌌 核心特性
 

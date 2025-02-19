@@ -2,6 +2,7 @@
 @import './preset.css';
 @import './shiki.css';
 @import './typography.css';
+@import './layer.css';
 
 @theme {
   --color-anchor: var(--anchor);
