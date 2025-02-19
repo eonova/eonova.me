@@ -6,10 +6,13 @@ import {
   SiYoutube,
 } from '@icons-pack/react-simple-icons'
 import {
+  Archive,
   FlameIcon,
   Images,
   Link2,
   MessageCircleIcon,
+  MessageSquareMore,
+  Notebook,
   PencilIcon,
   UserCircleIcon,
 } from 'lucide-react'
@@ -20,19 +23,45 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from './constants'
+import type { ReactNode } from 'react'
 
 type SocialLinks = Array<{
   href: string
   title: string
   icon: IconType
 }>
-
-export const HEADER_LINKS = [
+export interface IHeaderMenu {
+  text: string
+  href: string
+  key?: string
+  icon?: ReactNode
+  subMenu?: Omit<IHeaderMenu, 'exclude'>[]
+}
+export const HEADER_LINKS: IHeaderMenu[] = [
   {
     icon: <PencilIcon className="size-6" />,
     href: '/blog',
     key: 'blog',
-    text: '博客',
+    text: '文稿',
+    subMenu: []
+  },
+  {
+    icon: <Notebook className="size-6" />,
+    href: '/notes',
+    key: 'notes',
+    text: '手记',
+  },
+  {
+    icon: <Archive className="size-6" />,
+    href: '/archive',
+    key: 'archive',
+    text: '归档',
+  },
+  {
+    icon: <MessageSquareMore className="size-6" />,
+    href: '/talk',
+    key: 'talk',
+    text: '碎碎念',
   },
   {
     icon: <FlameIcon className="size-6" />,
@@ -44,7 +73,7 @@ export const HEADER_LINKS = [
     icon: <Link2 className="size-6" />,
     href: '/links',
     key: 'links',
-    text: '收藏夹',
+    text: '收藏',
   },
   {
     icon: <MessageCircleIcon className="size-6" />,
