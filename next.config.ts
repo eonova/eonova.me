@@ -1,7 +1,7 @@
 import type { NextConfig as MyNextConfig } from 'next'
 import { createContentCollectionPlugin as createMDX } from '@content-collections/next'
-import createPWA from '@ducanh2912/next-pwa'
 import bundleAnalyzer from '@next/bundle-analyzer'
+import createPWA from 'next-pwa'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
 import './src/lib/env.ts'
 
@@ -19,20 +19,6 @@ const withPWA = createPWA({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
   register: true,
-  skipWaiting: true,
-  runtimeCaching: [
-    {
-      urlPattern: /\.(?:png|jpg|jpeg|svg|webp)$/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'images-cache',
-        expiration: {
-          maxEntries: 50,
-          maxAgeSeconds: 30 * 24 * 60 * 60 // 30天
-        }
-      }
-    }
-  ]
 })
 
 const NextConfigHeaders = [
@@ -106,7 +92,7 @@ const MyNextConfig: MyNextConfig = {
       },
     ],
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: 'default-src \'self\'; script-src \'none\'; sandbox;',
   },
 
   eslint: {
