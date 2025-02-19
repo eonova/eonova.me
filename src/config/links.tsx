@@ -73,7 +73,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     icon: <ListCollapse className="size-5" />,
     href: '#',
     key: 'more',
-    text: '更多',
+    text: '我的',
     subMenu: [
       {
         icon: <FlameIcon className="size-5" />,
@@ -93,13 +93,13 @@ export const HEADER_LINKS: IHeaderMenu[] = [
         key: 'album',
         text: '相册',
       },
-      {
-        icon: <UserCircleIcon className="size-5" />,
-        href: '/about',
-        key: 'about',
-        text: '关于',
-      },
     ]
+  },
+  {
+    icon: <UserCircleIcon className="size-5" />,
+    href: '/about',
+    key: 'about',
+    text: '关于',
   },
 ] as const
 
