@@ -1,11 +1,4 @@
 import type { RehypeShikiOptions } from '@shikijs/rehype'
-/**
- * fumadocs (MIT License)
- * Copyright (c) fuma-nama
- * Source: https://github.com/fuma-nama/fumadocs/blob/7b18075cc97ca876ab14b22f05349a09dc0e4025/packages/core/src/mdx-plugins/rehype-code.ts
- *
- * Modified by: tszhong0411
- */
 import type { Root } from 'hast'
 
 import type { ShikiTransformer } from 'shiki'
