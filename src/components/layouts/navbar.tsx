@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { HEADER_LINKS } from '~/config/links'
 import MenuPopover from './menu-popover'
 import Link from 'next/link'
@@ -11,6 +11,13 @@ function Navbar() {
   const pathname = usePathname()
   const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null)
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
+  const debounceTimer = useRef<NodeJS.Timeout | null>(null)
+
+  // 防抖函数
+  const debounce = useCallback((fn: () => void, delay: number) => {
+    if (debounceTimer.current) clearTimeout(debounceTimer.current)
+    debounceTimer.current = setTimeout(fn, delay)
+  }, [])
 
   // 全局点击关闭逻辑
   useEffect(() => {
@@ -27,6 +34,14 @@ function Navbar() {
     return () => document.removeEventListener('click', handleClickOutside)
   }, [activeSubMenu])
 
+  // 清理定时器
+  useEffect(() => {
+    return () => {
+      if (debounceTimer.current) clearTimeout(debounceTimer.current)
+      if (hoverTimeout) clearTimeout(hoverTimeout)
+    }
+  }, [hoverTimeout])
+
   return (
     <nav>
       <ul className="hidden gap-2.5 md:flex">
@@ -40,8 +55,11 @@ function Navbar() {
               className="nav-menu relative flex h-[60px] items-center justify-center"
               onMouseEnter={() => {
                 if (hasSubMenu) {
-                  if (hoverTimeout) clearTimeout(hoverTimeout)
-                  setActiveSubMenu(link.key)
+                  // 添加防抖处理
+                  debounce(() => {
+                    if (hoverTimeout) clearTimeout(hoverTimeout)
+                    setActiveSubMenu(link.key)
+                  }, 100) // 100ms防抖时间
                 }
               }}
               onMouseLeave={() => {
@@ -49,7 +67,7 @@ function Navbar() {
                   setHoverTimeout(
                     setTimeout(() => {
                       setActiveSubMenu(null)
-                    }, 200) // 添加200ms延迟关闭
+                    }, 200) // 保持200ms延迟关闭
                   )
                 }
               }}
