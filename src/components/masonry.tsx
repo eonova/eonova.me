@@ -2,7 +2,6 @@
 'use client';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useTransition, a } from 'react-spring';
-import { BlurImage } from './base';
 
 interface ImageItem {
   id: number;
@@ -51,7 +50,7 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
   }, []);
 
   const [heights, gridItems] = useMemo(() => {
-    let heights = new Array(columns).fill(0);
+    let heights = Array.from({ length: columns }, () => 0);
     const gridItems = data.map((child, index) => {
       if (!child) return null;
       const column = heights.indexOf(Math.min(...heights));
@@ -71,12 +70,6 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
 
   const transitions = useTransition(gridItems, {
     keys: (item) => item?.index ?? 'fallback-key',
-    from: ({ x, y, width, height }) => ({
-      x,
-      y,
-      width,
-      height,
-    }),
     update: ({ x, y, width, height }) => ({
       x,
       y,
