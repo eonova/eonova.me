@@ -1,16 +1,10 @@
 ---
-title: RegExp
-id: 04d32643-af0b-45cb-bc74-275a624e1ec8
-date: 2023-12-02 21:33:20
-auther: leostar
-cover:
-excerpt: RegExp的创建 首先，得先创建正则表达式 /ab+c/i; //字面量形式new RegExp('ab+c', 'i'); // 首个参数为字符串模式的构造函数new RegExp(/ab+c/, 'i'); // 首个参数为常规字面量的构造函数 其中的ab+c是正则表达式的pattern
-permalink: /archives/gGzttYgX
-categories:
- - jsji-jin
-tags:
- - zheng-ze-biao-da-shi
- - jsji-chu
+title: RegExp学习
+date: '2023-12-02T00:00:00Z'
+modifiedTime: '2023-12-02T00:00:00Z'
+summary: RegExp学习
+categories: ['tech']
+cover: 'https://img.leostar.top/study/51290772e02b0274af8e3b4a30356ffd.jpeg'
 ---
 
 ## RegExp的创建
@@ -204,7 +198,7 @@ regex.unicode = true
 
 详细参考[正则表达式 – 语法 | 菜鸟教程 (runoob.com)](https://www.runoob.com/regexp/regexp-syntax.html)
 
-### 字符匹配：
+### 字符匹配
 
 - 普通字符：只匹配自身，例如 `a` 匹配字符 "a"。
 - 元字符（特殊字符）：具有特殊含义的字符，如 `.`、`*`、`+` 等。
@@ -268,45 +262,56 @@ regex.unicode = true
    ```
 
 2. 搜索关键词高亮显示：
+
    ```javascript
    const keyword = 'example'
    const regex = new RegExp(keyword, 'gi')
    const highlightedText = text.replace(regex, '<span class="highlight">$&</span>')
    ```
+
    上述代码使用正则表达式将文本中所有匹配到的关键词 "example" 替换为带有高亮样式的 HTML `<span>` 标签。
 
 3. URL解析：
+
    ```javascript
    const url = 'https://www.example.com/path?param1=value1&param2=value2'
    const regex = /^(https?):\/\/([^:/?]+)(:\d+)?([^?#]*)\??([^#]*)#?(\w*)$/
    const matches = url.match(regex)
    ```
+
    此正则表达式可以将URL按照协议、域名、端口、路径、查询参数和片段等分组进行解析，并将结果存储在 `matches` 数组中。
 
 4. 提取日期：
+
    ```javascript
    const text = 'Today is 2023-07-21.'
    const regex = /\d{4}-\d{2}-\d{2}/
    const date = text.match(regex)[0]
    ```
+
    上述代码使用正则表达式提取出文本中的日期，即形如 "YYYY-MM-DD" 的格式。
 
 5. 批量替换文本中的指定内容：
+
    ```javascript
    const text = 'Replace all occurrences of foo and bar.'
    const regex = /foo|bar/g
    const replacedText = text.replace(regex, 'replacement')
    ```
+
    此正则表达式可以用于全局替换文本中所有匹配到的 "foo" 和 "bar" 为指定的 "replacement"。
 
 6. 从逗号分隔的字符串中提取值：
+
    ```javascript
    const csv = 'John,Doe,30,Male'
    const values = csv.split(/,/)
    ```
+
    上述代码使用正则表达式 `/,/` 将逗号分隔的字符串拆分成数组，每个元素为一个值。
 
 7. 只允许输入数字、限制字符长度：
+
    ```javascript
    const input = '12345'
    const numericRegex = /^\d+$/
@@ -318,6 +323,7 @@ regex.unicode = true
      // 输入不符合要求
    }
    ```
+
    此正则表达式 `/^\d+$/` 用于检查输入是否只包含数字，且通过判断输入的长度是否超过给定的最大长度来限制字符长度。
 
 以上示例仅展示了一小部分正则表达式在前端应用中的应用场景。实际上，正则表达式非常灵活，几乎可以处理任何基于模式匹配和搜索的需求。根据具体的需求，可以使用不同的正则表达式来实现相应的功能。

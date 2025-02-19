@@ -79,11 +79,7 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
 async function Page(props: PageProps) {
   const { slug } = await props.params
 
-  const posts = allPosts.filter((p) => {
-    console.log('----------------', p.categories.includes(slug))
-    console.log('-----demo--------', p.categories.includes('tech'))
-    return p.categories.includes(slug)
-  })
+  const posts = allPosts.filter((p) => p.categories.includes(slug)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   const url = `${SITE_URL}/categories/${slug}`
 
   if (!posts) {

@@ -2,10 +2,12 @@
 
 import type { Post } from 'content-collections'
 
+import { ChartColumnStacked, Clock, Eye, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
-import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { api } from '~/trpc/react'
-import { BlurImage } from './base/blur-image'
+import { Category } from '~/types/categories'
+import { HoverOverlay } from './hover-overlay'
+import { BottomToUpTransitionView } from './transition'
 
 interface PostCardsProps {
   posts: Post[]
@@ -17,22 +19,34 @@ function PostCards(props: PostCardsProps) {
   const { posts } = props
 
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      {posts.map(post => (
-        <PostCard key={post.slug} {...post} />
+    <ul className="flex flex-col gap-5">
+      {posts.map((post, idx) => (
+        <PostCard key={post.slug} {...post} idx={idx} />
       ))}
-    </div>
+    </ul>
   )
 }
 
 function PostCard(props: PostCardProps) {
-  const { cover, slug, title, summary, date } = props
-  const formattedDate = useFormattedDate(date, {
-    format: 'YYYY-MM-DD',
-    loading: '--',
-  })
+  const { slug, title, categories, date, idx } = props
 
-  const images = cover !== '' ? cover : '/images/og-background.png'
+  const formatDate = (date: string | number | Date) => {
+    const now = new Date()
+    const diff = now.getTime() - new Date(date).getTime()
+    const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24))
+
+    if (diffDays < 30) {
+      return `${diffDays} 天前`
+    }
+    else {
+      return new Intl.DateTimeFormat('zh-CN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long',
+      }).format(new Date(date)).replace('星期', ' 星期')
+    }
+  }
 
   const viewsQuery = api.views.get.useQuery({
     slug,
@@ -43,43 +57,42 @@ function PostCard(props: PostCardProps) {
   })
 
   return (
-    <Link
-      href={`/posts/${slug}`}
-      className="shadow-feature-card dark:shadow-feature-card-dark group rounded-xl px-2 py-4"
+    <BottomToUpTransitionView
+      delay={700 + 50 * idx}
     >
-      <BlurImage
-        src={images}
-        className="rounded-lg"
-        width={1200}
-        height={630}
-        imageClassName="transition-transform group-hover:scale-105"
-        alt={title}
-      />
-      <div className="flex items-center justify-between gap-2 px-2 pt-4 text-sm text-zinc-500">
-        {formattedDate}
-        <div className="flex gap-2">
-          {likesQuery.status === 'pending' ? '--' : null}
-          {likesQuery.status === 'error' ? '错误' : null}
-          {likesQuery.status === 'success'
-            ? (
-              <div>{`${likesQuery.data.likes} 点赞`}</div>
-            )
-            : null}
-          <div>&middot;</div>
-          {viewsQuery.status === 'pending' ? '--' : null}
-          {viewsQuery.status === 'error' ? '错误' : null}
-          {viewsQuery.status === 'success'
-            ? (
-              <div>{`${viewsQuery.data.views} 浏览量`}</div>
-            )
-            : null}
-        </div>
-      </div>
-      <div className="flex flex-col px-2 py-4">
-        <h3 className="font-title text-2xl font-bold">{title}</h3>
-        <p className="text-muted-foreground mt-2">{summary}</p>
-      </div>
-    </Link>
+      <Link
+        href={`/posts/${slug}`}
+        className="relative tracking-wide group rounded-xl hover:bg-slate-300/30 duration-500 p-5 w-full flex flex-col items-start gap-3 focus-visible:!shadow-none"
+      >
+        <h2 className="font-world text-3xl w-full">{title}</h2>
+        <ul className="flex items-center gap-2.5">
+          <li className="text-black/55 flex gap-1 items-center">
+            <Clock className="size-3" />
+            <span className="text-sm">{formatDate(date)}</span>
+          </li>
+          <li className="text-black/55 flex gap-1 items-center">
+            <ChartColumnStacked className="size-3" />
+            <span className="text-sm">{Category[categories as keyof typeof Category]}</span>
+          </li>
+          <li className="text-black/55 flex gap-1 items-center">
+            <Eye className="size-3" />
+            <span className="text-sm">
+              {likesQuery.status === 'pending' && '--'}
+              {likesQuery.status === 'error' && '错误'}
+              {likesQuery.status === 'success' && likesQuery.data.likes}
+            </span>
+          </li>
+          <li className="text-black/55 flex gap-1 items-center">
+            <ThumbsUp className="size-3" />
+            <span className="text-sm">
+              {viewsQuery.status === 'pending' && '--'}
+              {viewsQuery.status === 'error' && '错误'}
+              {viewsQuery.status === 'success' && viewsQuery.data.views}
+            </span>
+          </li>
+        </ul>
+      </Link>
+    </BottomToUpTransitionView>
   )
 }
 
