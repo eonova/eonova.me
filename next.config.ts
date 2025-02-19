@@ -1,4 +1,4 @@
-import type { NextConfig as MyNextConfig } from 'next'
+import type { NextConfig } from 'next'
 import { createContentCollectionPlugin as createMDX } from '@content-collections/next'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import createPWA from 'next-pwa'
@@ -58,7 +58,7 @@ const NextConfigHeaders = [
 ]
 
 /** @type {import('next').NextConfig} */
-const MyNextConfig: MyNextConfig = {
+const MyNextConfig: NextConfig = {
   compress: true,
 
   experimental: {
