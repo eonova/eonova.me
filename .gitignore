@@ -28,10 +28,6 @@ test-results/
 *.tsbuildinfo
 next-env.d.ts
 
-#ide
-.vscode/*
-!.vscode/setting.json
-
 # Build outputs
 .next/
 out/
