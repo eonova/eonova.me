@@ -1,4 +1,4 @@
-<div align="center" style="font-size: 36px;font-weight:bold; margin-bottom:15px;"> Eonova 💠</div>
+<h1 align="center" style="font-size: 36px;font-weight:bold; margin-bottom:15px;border: none;"> Eonova 💠 </h1>
 
 > "纪元（Eon）" + "Nova"（超新星），狮子座的宇宙级爆发
 
