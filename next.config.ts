@@ -5,7 +5,7 @@ import bundleAnalyzer from '@next/bundle-analyzer'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
 import './src/lib/env.ts'
 
-process.title = 'LeoSpark (NextJS)'
+process.title = 'Eonova (NextJS)'
 
 const withMDX = createMDX({
   configPath: './content.config.ts',
@@ -18,6 +18,21 @@ const withBundleAnalyzer = bundleAnalyzer({
 const withPWA = createPWA({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
+  register: true,
+  skipWaiting: true,
+  runtimeCaching: [
+    {
+      urlPattern: /\.(?:png|jpg|jpeg|svg|webp)$/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'images-cache',
+        expiration: {
+          maxEntries: 50,
+          maxAgeSeconds: 30 * 24 * 60 * 60 // 30天
+        }
+      }
+    }
+  ]
 })
 
 const NextConfigHeaders = [
