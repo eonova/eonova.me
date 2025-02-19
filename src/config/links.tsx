@@ -10,6 +10,7 @@ import {
   FlameIcon,
   Images,
   Link2,
+  ListCollapse,
   MessageCircleIcon,
   MessageSquareMore,
   Notebook,
@@ -33,65 +34,72 @@ type SocialLinks = Array<{
 export interface IHeaderMenu {
   text: string
   href: string
-  key?: string
+  key: string
   icon?: ReactNode
   subMenu?: Omit<IHeaderMenu, 'exclude'>[]
 }
 export const HEADER_LINKS: IHeaderMenu[] = [
   {
-    icon: <PencilIcon className="size-6" />,
+    icon: <PencilIcon className="size-5" />,
     href: '/blog',
     key: 'blog',
-    text: '文稿',
-    subMenu: []
+    text: '文稿'
   },
   {
-    icon: <Notebook className="size-6" />,
+    icon: <Notebook className="size-5" />,
     href: '/notes',
     key: 'notes',
     text: '手记',
   },
   {
-    icon: <Archive className="size-6" />,
+    icon: <Archive className="size-5" />,
     href: '/archive',
     key: 'archive',
     text: '归档',
   },
   {
-    icon: <MessageSquareMore className="size-6" />,
+    icon: <MessageSquareMore className="size-5" />,
     href: '/talk',
     key: 'talk',
     text: '碎碎念',
   },
   {
-    icon: <FlameIcon className="size-6" />,
-    href: '/projects',
-    key: 'projects',
-    text: '项目',
-  },
-  {
-    icon: <Link2 className="size-6" />,
-    href: '/links',
-    key: 'links',
-    text: '收藏',
-  },
-  {
-    icon: <MessageCircleIcon className="size-6" />,
+    icon: <MessageCircleIcon className="size-5" />,
     href: '/guestbook',
     key: 'guestbook',
     text: '留言板',
   },
   {
-    icon: <Images className="size-6" />,
-    href: '/album',
-    key: 'album',
-    text: '相册',
-  },
-  {
-    icon: <UserCircleIcon className="size-6" />,
-    href: '/about',
-    key: 'about',
-    text: '关于',
+    icon: <ListCollapse className="size-5" />,
+    href: '#',
+    key: 'more',
+    text: '更多',
+    subMenu: [
+      {
+        icon: <FlameIcon className="size-5" />,
+        href: '/projects',
+        key: 'projects',
+        text: '项目',
+      },
+      {
+        icon: <Link2 className="size-5" />,
+        href: '/links',
+        key: 'links',
+        text: '收藏',
+      },
+      {
+        icon: <Images className="size-5" />,
+        href: '/album',
+        key: 'album',
+        text: '相册',
+      },
+      {
+        icon: <UserCircleIcon className="size-5" />,
+        href: '/about',
+        key: 'about',
+        text: '关于',
+      },
+    ]
   },
 ] as const
 

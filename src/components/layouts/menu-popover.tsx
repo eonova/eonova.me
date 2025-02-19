@@ -1,52 +1,43 @@
-// 'use client'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { memo } from 'react'
+import type { IHeaderMenu } from '~/config/links'
 
-// import Link from 'next/link'
-// import React, { memo } from 'react'
+const animationConfig = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 10 }
+}
 
-// import { FloatPopover } from '~/components/base/float-popover'
+interface MenuPopoverProps {
+  link: IHeaderMenu
+  isOpen: boolean
+}
 
-// import type { IHeaderMenu } from '../config'
-// import { cn } from '~/lib/utils'
+const MenuPopover = memo(({ link, isOpen }: MenuPopoverProps) => (
+  <motion.div
+    data-key={link.key}
+    initial="hidden"
+    animate={isOpen ? 'visible' : 'exit'}
+    variants={animationConfig}
+    transition={{ duration: 0.15 }}
+    className="absolute left-1/2 top-full z-50 -translate-x-1/2 transform"
+    aria-hidden={!isOpen}
+  >
+    <div className="shadow-feature-card bg-popover flex flex-col gap-2 rounded-2xl p-2">
+      {link.subMenu?.map((subItem) => (
+        <Link
+          key={subItem.key}
+          href={subItem.href}
+          className="hover:bg-accent hover:text-accent-foreground flex items-center gap-4 rounded-xl px-4 py-2 duration-200"
+        >
+          {subItem.icon}
+          <p className="whitespace-nowrap rounded-md text-sm">{subItem.text}</p>
+        </Link>
+      ))}
+    </div>
+  </motion.div>
+))
 
-// export const MenuPopover: Component<{
-//   subMenu: IHeaderMenu['subMenu']
-// }> = memo(({ children, subMenu }) => {
-//   if (!subMenu) return children
-
-//   return (
-//     <FloatPopover
-//       strategy="fixed"
-//       placement="bottom"
-//       offset={10}
-//       headless
-//       popoverWrapperClassNames="z-[19] relative"
-//       popoverClassNames={cn([
-//         'select-none rounded-xl bg-white/60 outline-none dark:bg-neutral-900/60',
-//         'border border-zinc-900/5 shadow-lg shadow-zinc-800/5 backdrop-blur-md',
-//         'dark:border-zinc-100/10 dark:from-zinc-900/70 dark:to-zinc-800/90',
-//         'relative flex w-[130px] flex-col',
-//         'focus-visible:!ring-0',
-//       ])}
-//       triggerElement={<>{children}</>}
-//     >
-//       {subMenu.length > 0 && subMenu.map((m) => <Item key={m.title} {...m} />)}
-//     </FloatPopover>
-//   )
-// })
-// MenuPopover.displayName = 'MenuPopover'
-
-// const Item = memo(function Item(props: IHeaderMenu) {
-//   const { title, path, icon } = props
-
-//   return (
-//     <Link
-//       key={title}
-//       href={`${path}`}
-//       className="relative flex w-full items-center justify-around space-x-2 px-4 py-3 duration-200 hover:bg-accent/5 hover:text-accent"
-//       role="button"
-//     >
-//       {!!icon && <span>{icon}</span>}
-//       <span>{title}</span>
-//     </Link>
-//   )
-// })
+MenuPopover.displayName = 'MenuPopover'
+export default MenuPopover

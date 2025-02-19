@@ -1,47 +1,95 @@
 'use client'
 
-import Link from 'next/link'
-
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { HEADER_LINKS } from '~/config/links'
+import MenuPopover from './menu-popover'
+import Link from 'next/link'
 import { cn } from '~/lib/utils'
 
 function Navbar() {
   const pathname = usePathname()
+  const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null)
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
+
+  // 全局点击关闭逻辑
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (activeSubMenu) {
+        const isInside = e.target && (e.target as HTMLElement).closest(`.menu-popover[data-key="${activeSubMenu}"]`)
+        if (!isInside) {
+          setActiveSubMenu(null)
+        }
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [activeSubMenu])
 
   return (
     <nav>
       <ul className="hidden gap-2.5 md:flex">
         {HEADER_LINKS.map((link) => {
           const isActive = link.href === pathname
+          const hasSubMenu = !!link.subMenu
 
           return (
             <li
               key={link.key}
-              className="relative flex h-[60px] items-center justify-center"
+              className="nav-menu relative flex h-[60px] items-center justify-center"
+              onMouseEnter={() => {
+                if (hasSubMenu) {
+                  if (hoverTimeout) clearTimeout(hoverTimeout)
+                  setActiveSubMenu(link.key)
+                }
+              }}
+              onMouseLeave={() => {
+                if (hasSubMenu) {
+                  setHoverTimeout(
+                    setTimeout(() => {
+                      setActiveSubMenu(null)
+                    }, 200) // 添加200ms延迟关闭
+                  )
+                }
+              }}
             >
               <Link
                 className={cn(
-                  'rounded px-2 py-2 text-sm font-medium transition-colors',
+                  'group flex items-center rounded px-2 py-2 text-sm font-medium transition-colors',
                   {
                     'text-muted-foreground hover:text-foreground': !isActive,
-                  },
-                  {
                     'text-foreground': isActive,
-                  },
+                    'cursor-default': hasSubMenu,
+                  }
                 )}
-                href={link.href}
+                href={hasSubMenu ? '#' : link.href}
               >
                 {link.text}
               </Link>
-              {isActive
-                ? (
-                    <>
-                      <div className="bg-nav-link-indicator dark:bg-nav-link-indicator-dark absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2" />
-                      <div className="absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-[4px] bg-[rgb(255_122_151)] blur dark:bg-[rgb(223_29_72)]" />
-                    </>
-                  )
-                : null}
+
+              {isActive && (
+                <>
+                  <div className="bg-nav-link-indicator dark:bg-nav-link-indicator-dark absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2" />
+                  <div className="absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-[4px] bg-[rgb(255_122_151)] blur dark:bg-[rgb(223_29_72)]" />
+                </>
+              )}
+
+              {hasSubMenu && (
+                <div
+                  className={cn(
+                    'absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 transform transition-all duration-200 ease-out',
+                    activeSubMenu === link.key
+                      ? 'opacity-100 translate-y-0'
+                      : 'opacity-0 translate-y-2 pointer-events-none'
+                  )}
+                  data-key={link.key}
+                  onMouseEnter={() => hoverTimeout && clearTimeout(hoverTimeout)}
+                  onMouseLeave={() => setActiveSubMenu(null)}
+                >
+                  <MenuPopover isOpen={activeSubMenu === link.key} link={link} />
+                </div>
+              )}
             </li>
           )
         })}
