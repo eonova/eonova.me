@@ -4,7 +4,7 @@ date: '2023-12-02T00:00:00Z'
 modifiedTime: '2023-12-02T00:00:00Z'
 summary: RegExp学习
 categories: ['tech']
-cover: 'https://img.leostar.top/study/51290772e02b0274af8e3b4a30356ffd.jpeg'
+cover: 'https://img.leostar.top/blog/20250220024447904.png'
 ---
 
 ## RegExp的创建
