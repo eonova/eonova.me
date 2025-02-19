@@ -1,1 +1,1 @@
-export const CATEGORIES = ['tech', 'life', 'design', 'share']
+export const CATEGORIES = ['tech', 'life', 'design']

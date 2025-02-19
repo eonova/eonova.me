@@ -6,7 +6,6 @@ import { ChartColumnStacked, Clock, Eye, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { api } from '~/trpc/react'
 import { Category } from '~/types/categories'
-import { HoverOverlay } from './hover-overlay'
 import { BottomToUpTransitionView } from './transition'
 
 interface PostCardsProps {
@@ -62,19 +61,19 @@ function PostCard(props: PostCardProps) {
     >
       <Link
         href={`/posts/${slug}`}
-        className="relative tracking-wide group rounded-xl hover:bg-slate-300/30 duration-500 p-5 w-full flex flex-col items-start gap-3 focus-visible:!shadow-none"
+        className="relative tracking-wide group rounded-xl hover:bg-slate-300/30 dark:hover:bg-slate-300/10 duration-500 p-5 w-full flex flex-col items-start gap-3 focus-visible:!shadow-none"
       >
         <h2 className="font-world text-3xl w-full">{title}</h2>
         <ul className="flex items-center gap-2.5">
-          <li className="text-black/55 flex gap-1 items-center">
+          <li className="text-black/55 dark:text-white/55 flex gap-1 items-center">
             <Clock className="size-3" />
             <span className="text-sm">{formatDate(date)}</span>
           </li>
-          <li className="text-black/55 flex gap-1 items-center">
+          <li className="text-black/55 dark:text-white/55 flex gap-1 items-center">
             <ChartColumnStacked className="size-3" />
             <span className="text-sm">{Category[categories as keyof typeof Category]}</span>
           </li>
-          <li className="text-black/55 flex gap-1 items-center">
+          <li className="text-black/55 dark:text-white/55 flex gap-1 items-center">
             <Eye className="size-3" />
             <span className="text-sm">
               {likesQuery.status === 'pending' && '--'}
@@ -82,7 +81,7 @@ function PostCard(props: PostCardProps) {
               {likesQuery.status === 'success' && likesQuery.data.likes}
             </span>
           </li>
-          <li className="text-black/55 flex gap-1 items-center">
+          <li className="text-black/55 dark:text-white/55 flex gap-1 items-center">
             <ThumbsUp className="size-3" />
             <span className="text-sm">
               {viewsQuery.status === 'pending' && '--'}

@@ -1,4 +1,4 @@
-export const CATEGORIES = ['tech', 'life', 'design', 'share']
+export const CATEGORIES = ['tech', 'life', 'design']
 export default async function (plop) {
   // 定义一个自定义辅助函数，用于获取时间戳
   plop.setHelper('getCurrentTimestamp', () => {
