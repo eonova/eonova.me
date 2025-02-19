@@ -22,14 +22,14 @@ interface ProvidesProps {
 
 function Providers(props: ProvidesProps) {
   const { children } = props
-  const { theme = 'dark' } = useTheme()
+  const { theme } = useTheme()
 
   return (
     <NuqsAdapter>
       <TRPCReactProvider>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme='system'
           enableSystem
           enableColorScheme
           disableTransitionOnChange
