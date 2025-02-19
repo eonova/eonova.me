@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowUp, MessageCircle, MoonIcon, SunIcon } from 'lucide-react'
+import { ArrowUp, MessageCircle } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -15,7 +15,7 @@ const Dock: React.FC<DockProps> = ({
   className,
 }) => {
   const [isVisible, setIsVisible] = useState(false)
-  const { theme, setTheme } = useTheme()
+  useTheme()
   const pathname = usePathname()
 
   useEffect(() => {
@@ -36,10 +36,6 @@ const Dock: React.FC<DockProps> = ({
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
   // 定义函数，用于点击时跳转到评论区
@@ -66,17 +62,6 @@ const Dock: React.FC<DockProps> = ({
             onClick={scrollToTop}
           >
             <ArrowUp className="size-5" />
-          </li>
-          <li
-            className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
-            onClick={toggleTheme}
-          >
-            <SunIcon
-              className="size-5 dark:hidden"
-            />
-            <MoonIcon
-              className="hidden size-5 dark:block"
-            />
           </li>
           {
             pathname.match(/\/blog\//g)?.length === 1 && (
