@@ -1,6 +1,5 @@
 import type { IconType } from '@icons-pack/react-simple-icons'
 import type { ReactNode } from 'react'
-import { allPosts } from '@/.content-collections/generated'
 
 import {
   SiGithub,
