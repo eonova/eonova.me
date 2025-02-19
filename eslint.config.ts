@@ -1,13 +1,9 @@
-import antfu from '@antfu/eslint-config'
+import leostar from '@ileostar/eslint-config'
 
-export default antfu({
+export default leostar({
   react: true,
   typescript: true,
-  stylistic: {
-    rules: {
-      'css.lint.unknownAtRules': 'ignore',
-    },
-  },
+  stylistic: true,
   ignores: [
     'README.md',
     'components/base/*',
@@ -30,8 +26,5 @@ export default antfu({
     'no-prototype-builtins': 'off',
     'no-console': 'off',
     'ts/no-redeclare': 'off',
-  },
-  extends: [
-    'plugin:@next/next/recommended',
-  ],
+  }
 })

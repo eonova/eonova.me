@@ -5,6 +5,8 @@ import bundleAnalyzer from '@next/bundle-analyzer'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
 import './src/lib/env.ts'
 
+process.title = 'LeoSpark (NextJS)'
+
 const withMDX = createMDX({
   configPath: './content.config.ts',
 })

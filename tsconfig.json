@@ -1,30 +1,19 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "incremental": false,
-    "target": "ESNext",
-    "jsx": "preserve",
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "moduleDetection": "force",
-    "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./*"],
-      "@ileostar/mdx-plugins": ["./src/plugins"],
-      "content-collections": ["./.content-collections/generated"]
-    },
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "checkJs": true,
-    "strict": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
+    "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "alwaysStrict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
@@ -33,24 +22,27 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "declaration": true,
-    "declarationMap": true,
-    "noEmit": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "plugins": [{ "name": "next" }]
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "ESNext",
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [".next/*"]
+    },
+    "plugins": [{ "name": "next" }],
+    "tsBuildInfoFile": ".tsbuildinfo"
   },
+  "exclude": ["node_modules"],
   "include": [
     "next-env.d.ts",
-    "next.config.ts",
-    "postcss.config.mjs",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "**/*.json"
-, "plopfile.js"  ],
-  "exclude": ["node_modules", "eslint.config.mjs"]
+    "eslint.config.ts",
+    ".next/types/**/*.ts"
+  ]
 }
