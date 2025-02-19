@@ -78,10 +78,10 @@ function Navbar() {
                   {
                     'text-muted-foreground hover:text-foreground': !isActive,
                     'text-foreground': isActive,
-                    'cursor-default': hasSubMenu,
+                    'cursor-default': hasSubMenu && link.href === '#'
                   }
                 )}
-                href={hasSubMenu ? '#' : link.href}
+                href={(hasSubMenu && link.href === '#') ? '#' : link.href}
               >
                 {link.text}
               </Link>

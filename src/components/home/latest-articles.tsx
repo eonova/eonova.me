@@ -80,7 +80,7 @@ function LatestArticles() {
       </motion.div>
       <div className="my-8 flex items-center justify-center">
         <Link
-          href="/blog"
+          href="/posts"
           className={cn(
             buttonVariants({
               variant: 'outline',
@@ -116,7 +116,7 @@ function Card(props: CardProps) {
 
   return (
     <Link
-      href={`/blog/${slug}`}
+      href={`/posts/${slug}`}
       className="shadow-feature-card dark:shadow-feature-card-dark group relative rounded-xl p-2"
     >
       <div className="flex items-center justify-between p-4">

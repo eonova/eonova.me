@@ -64,7 +64,7 @@ const Dock: React.FC<DockProps> = ({
             <ArrowUp className="size-5" />
           </li>
           {
-            pathname.match(/\/blog\//g)?.length === 1 && (
+            pathname.match(/\/posts\//g)?.length === 1 && (
               <li
                 className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
                 onClick={goToCommentSection}

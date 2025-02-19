@@ -2,17 +2,17 @@ import type { MetadataRoute } from 'next'
 import { allPosts, allProjects } from 'content-collections'
 import { SITE_URL } from '~/config/constants'
 
-const sitemap = (): MetadataRoute.Sitemap => {
+function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     '',
-    '/blog',
+    '/posts',
     '/projects',
     '/links',
     '/guestbook',
     '/albums',
     '/about',
-    ...new Set(allProjects.map((project) => `/projects/${project.slug}`)),
-    ...new Set(allPosts.map((post) => `/blog/${post.slug}`))
+    ...new Set(allProjects.map(project => `/projects/${project.slug}`)),
+    ...new Set(allPosts.map(post => `/posts/${post.slug}`)),
   ]
 
   return routes.map(route => ({

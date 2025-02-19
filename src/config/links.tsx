@@ -1,4 +1,7 @@
 import type { IconType } from '@icons-pack/react-simple-icons'
+import type { ReactNode } from 'react'
+import { allPosts } from '@/.content-collections/generated'
+
 import {
   SiGithub,
   SiInstagram,
@@ -17,14 +20,15 @@ import {
   PencilIcon,
   UserCircleIcon,
 } from 'lucide-react'
-
+import { Category } from '~/types/categories'
 import {
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
+  SITE_URL,
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from './constants'
-import type { ReactNode } from 'react'
+import { CATEGORIES } from './posts'
 
 type SocialLinks = Array<{
   href: string
@@ -38,12 +42,18 @@ export interface IHeaderMenu {
   icon?: ReactNode
   subMenu?: Omit<IHeaderMenu, 'exclude'>[]
 }
+
 export const HEADER_LINKS: IHeaderMenu[] = [
   {
     icon: <PencilIcon className="size-5" />,
-    href: '/blog',
-    key: 'blog',
-    text: '文稿'
+    href: '/posts',
+    key: 'posts',
+    text: '文章',
+    subMenu: CATEGORIES.map((i: string) => ({
+      text: Category[i as keyof typeof Category],
+      href: `${SITE_URL}/categories/${i}`,
+      key: i,
+    })),
   },
   {
     icon: <Notebook className="size-5" />,
@@ -93,7 +103,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
         key: 'album',
         text: '相册',
       },
-    ]
+    ],
   },
   {
     icon: <UserCircleIcon className="size-5" />,
@@ -108,7 +118,7 @@ export const FOOTER_LINKS = [
     id: 1,
     links: [
       { href: '/', key: '首页' },
-      { href: '/blog', key: '博客' },
+      { href: '/posts', key: '博客' },
       { href: '/about', key: '关于' },
       { href: '/album', key: '相册' },
     ],

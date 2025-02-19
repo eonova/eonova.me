@@ -293,7 +293,7 @@ export const commentsRouter = createTRPCRouter({
 
       const post = {
         title,
-        url: `https://leostar.top/blog/${input.slug}`,
+        url: `https://leostar.top/posts/${input.slug}`,
       }
 
       await ctx.db.transaction(async (tx) => {

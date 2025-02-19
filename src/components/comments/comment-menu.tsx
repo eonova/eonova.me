@@ -53,7 +53,7 @@ function CommentMenu() {
           <DropdownMenuItem
             onClick={() =>
               void copy({
-                text: `${globalThis.location.origin}/blog/${slug}?${commentQuery}`,
+                text: `${globalThis.location.origin}/posts/${slug}?${commentQuery}`,
                 successMessage: '链接已复制到剪贴板',
               })}
           >
@@ -62,14 +62,14 @@ function CommentMenu() {
           <AlertDialogTrigger asChild>
             {isAuthor
               ? (
-                  <DropdownMenuItem
-                    className="text-red-600 focus:text-red-500"
-                    disabled={deleteCommentMutation.isPending}
-                    aria-disabled={deleteCommentMutation.isPending}
-                  >
-                    删除
-                  </DropdownMenuItem>
-                )
+                <DropdownMenuItem
+                  className="text-red-600 focus:text-red-500"
+                  disabled={deleteCommentMutation.isPending}
+                  aria-disabled={deleteCommentMutation.isPending}
+                >
+                  删除
+                </DropdownMenuItem>
+              )
               : null}
           </AlertDialogTrigger>
         </DropdownMenuContent>

@@ -6,7 +6,7 @@ import { posts } from './schema'
 
 async function main() {
   try {
-    const files = await fs.readdir(path.join(process.cwd(), '../../data/post/'))
+    const files = await fs.readdir(path.join(process.cwd(), '../../data/posts/'))
 
     for (const file of files) {
       const slug = file.replace('.md', '')

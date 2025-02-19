@@ -44,7 +44,7 @@ function PostCard(props: PostCardProps) {
 
   return (
     <Link
-      href={`/blog/${slug}`}
+      href={`/posts/${slug}`}
       className="shadow-feature-card dark:shadow-feature-card-dark group rounded-xl px-2 py-4"
     >
       <BlurImage
@@ -62,16 +62,16 @@ function PostCard(props: PostCardProps) {
           {likesQuery.status === 'error' ? '错误' : null}
           {likesQuery.status === 'success'
             ? (
-                <div>{`${likesQuery.data.likes} 点赞`}</div>
-              )
+              <div>{`${likesQuery.data.likes} 点赞`}</div>
+            )
             : null}
           <div>&middot;</div>
           {viewsQuery.status === 'pending' ? '--' : null}
           {viewsQuery.status === 'error' ? '错误' : null}
           {viewsQuery.status === 'success'
             ? (
-                <div>{`${viewsQuery.data.views} 浏览量`}</div>
-              )
+              <div>{`${viewsQuery.data.views} 浏览量`}</div>
+            )
             : null}
         </div>
       </div>

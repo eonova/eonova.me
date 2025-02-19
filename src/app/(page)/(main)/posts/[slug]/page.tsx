@@ -37,7 +37,7 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
 
   const ISOPublishedTime = new Date(date).toISOString()
   const ISOModifiedTime = new Date(modifiedTime).toISOString()
-  const url = `/blog/${slug}`
+  const url = `/posts/${slug}`
 
   return {
     title,

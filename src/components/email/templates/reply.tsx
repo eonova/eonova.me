@@ -123,7 +123,7 @@ Reply.PreviewProps = {
   id: 'comment=1&reply=1',
   post: {
     title: 'Understanding Modern Web Development',
-    url: 'http://localhost:3000/blog/understanding-modern-web-development',
+    url: 'http://localhost:3000/posts/understanding-modern-web-development',
   },
 } satisfies ReplyProps
 
