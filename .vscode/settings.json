@@ -61,5 +61,6 @@
     "scss",
     "pcss",
     "postcss"
-  ]
+  ],
+  "oxc.enable": false
 }
