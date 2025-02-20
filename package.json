@@ -2,28 +2,28 @@
   "name": "eonova",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.4.1",
+  "packageManager": "bun@1.2.2",
   "description": "The personal portfolio of leostar",
   "license": "MIT",
   "engines": {
     "node": ">=22",
-    "pnpm": ">=9"
+    "bun": ">=1"
   },
   "scripts": {
-    "dev": "pnpm with-env next dev --turbo -p 3001",
-    "build": "pnpm with-env next build",
+    "dev": "bun with-env next dev --turbo -p 3777",
+    "build": "bun with-env next build",
     "build:mdx": "content-collections build",
-    "bundle-analyzer": "cross-env ANALYZE=true pnpm run build",
+    "bundle-analyzer": "cross-env ANALYZE=true bun run build",
     "clean": "rm -rf .next .content-collections .vercel",
-    "check:knip": "pnpm with-env knip",
+    "check:knip": "bun with-env knip",
     "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique",
     "start": "next start",
-    "db:check": "pnpm with-env drizzle-kit check",
-    "db:generate": "pnpm with-env drizzle-kit generate",
-    "db:migrate": "pnpm with-env drizzle-kit migrate",
-    "db:push": "pnpm with-env drizzle-kit push",
-    "db:seed": "pnpm with-env tsx ./src/db/seed.ts",
-    "db:studio": "pnpm with-env drizzle-kit studio",
+    "db:check": "bun with-env drizzle-kit check",
+    "db:generate": "bun with-env drizzle-kit generate",
+    "db:migrate": "bun with-env drizzle-kit migrate",
+    "db:push": "bun with-env drizzle-kit push",
+    "db:seed": "bun with-env tsx ./src/db/seed.ts",
+    "db:studio": "bun with-env drizzle-kit studio",
     "with-env": "dotenv -e .env.local --",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint --fix .",
@@ -167,8 +167,8 @@
     "typescript": "5.7.3"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged",
-    "commit-msg": "pnpm exec tsx ./scripts/verify-commit.ts"
+    "pre-commit": "bun exec lint-staged",
+    "commit-msg": "bun exec tsx ./scripts/verify-commit.ts"
   },
   "lint-staged": {
     "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix",

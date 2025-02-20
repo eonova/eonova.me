@@ -31,7 +31,7 @@ graph TD
     H --> J["PostgreSQL 8"]
     I --> K["Redis 1.34"]
     
-    L[构建工具链] --> M["pnpm 10"]
+    L[构建工具链] --> M["bun 10"]
     L --> N["Webpack 5"]
     M --> O["ESLint 9"]
     M --> P["TypeScript 编译器"]
@@ -58,7 +58,7 @@ version: '3'
 services:
   web:
     build: .
-    command: pnpm dev
+    command: bun dev
     ports:
       - "3000:3000"
     environment:
@@ -71,30 +71,30 @@ services:
 
 ```bash
 # 安装全部依赖
-pnpm i
+bun i
 
 # 启动开发服务器（带3000进程并行）
-pnpm dev --p 3000
+bun dev --p 3000
 
 # 构建生产版本
-pnpm build
+bun build
 
 # 数据库初始化
-pnpm db:migrate
-pnpm db:seed
+bun db:migrate
+bun db:seed
 ```
 
 关键脚本说明
 
 ```bash
 # 代码质量检查
-pnpm lint # ESLint + Prettier
+bun lint # ESLint + Prettier
 
 # 数据库操作
-pnpm db:studio # 图形化数据库管理
+bun db:studio # 图形化数据库管理
 
 # 分析构建包
-pnpm bundle-analyzer
+bun bundle-analyzer
 ```
 
 ## ☕️ 请我喝咖啡
