@@ -10,6 +10,7 @@ export default leostar({
     'src/trpc/react.tsx',
     'data/*',
     'public/*',
+    '.github/*',
   ],
   rules: {
     'import/no-anonymous-default-export': 'off',

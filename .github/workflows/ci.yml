@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        bun_version: ["1.2.2", "1.1.8"]
+        bun_version: [1.2.2]
         os: [ubuntu-latest, windows-latest]
       fail-fast: false
 
@@ -35,20 +35,20 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
 
       - name: Install
-        run: bun install --frozen-lockfile  # 锁定依赖版本[2](@ref)
+        run: bun install --frozen-lockfile # 锁定依赖版本[2](@ref)
 
       - name: Lint
-        run: bun lint  # 自动兼容 ESLint 配置[1](@ref)
+        run: bun lint # 自动兼容 ESLint 配置[1](@ref)
 
       - name: Knip
-        run: bun check:knip  # 利用 Bun 的快速执行能力[2](@ref)
+        run: bun check:knip # 利用 Bun 的快速执行能力[2](@ref)
 
       - name: Type Check
-        run: bun type-check  # 内置 TypeScript 支持[2](@ref)
+        run: bun type-check # 内置 TypeScript 支持[2](@ref)
 
   lighthouse:
     runs-on: ubuntu-latest
-    needs: build  # 添加依赖关系[3](@ref)
+    needs: build # 添加依赖关系[3](@ref)
     steps:
       - uses: actions/checkout@v4
       - name: Audit URLs using Lighthouse
