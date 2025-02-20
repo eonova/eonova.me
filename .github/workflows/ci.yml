@@ -35,17 +35,17 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
 
       - name: Install
-        run: bun install --frozen-lockfile # 锁定依赖版本[2](@ref)
+        run: bun install --frozen-lockfile
 
       - name: Lint
-        run: bun lint # 自动兼容 ESLint 配置[1](@ref)
+        run: bun lint
 
       - name: Knip
-        run: bun check:knip # 利用 Bun 的快速执行能力[2](@ref)
+        run: bun check:knip
 
   lighthouse:
     runs-on: ubuntu-latest
-    needs: build # 添加依赖关系[3](@ref)
+    needs: build
     steps:
       - uses: actions/checkout@v4
       - name: Audit URLs using Lighthouse

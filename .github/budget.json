@@ -1,23 +1,9 @@
 [
   {
-    "path": "/",
+    "path": "/*",
     "resourceSizes": [
       {
-        "resourceType": "document",
-        "budget": 180
-      },
-      {
-        "resourceType": "script",
-        "budget": 600
-      },
-      {
-        "resourceType": "image",
-        "budget": 1200
-      }
-    ],
-    "timings": [
-      {
-        "metric": "first-contentful-paint",
+        "resourceType": "total",
         "budget": 1800
       }
     ]
@@ -26,12 +12,8 @@
     "path": "/about",
     "resourceSizes": [
       {
-        "resourceType": "document",
-        "budget": 150
-      },
-      {
-        "resourceType": "script",
-        "budget": 500
+        "resourceType": "total",
+        "budget": 1800
       }
     ]
   },
@@ -39,8 +21,8 @@
     "path": "/posts",
     "resourceSizes": [
       {
-        "resourceType": "document",
-        "budget": 200
+        "resourceType": "total",
+        "budget": 1800
       }
     ]
   },
@@ -48,8 +30,8 @@
     "path": "/album",
     "resourceSizes": [
       {
-        "resourceType": "image",
-        "budget": 2500
+        "resourceType": "total",
+        "budget": 2000
       }
     ]
   }
