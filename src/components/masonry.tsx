@@ -75,6 +75,12 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
 
   const transitions = useTransition(gridItems, {
     keys: item => item?.index ?? 'fallback-key',
+    from: ({ x, y, width, height }) => ({
+      x,
+      y,
+      width,
+      height,
+    }),
     update: ({ x, y, width, height }) => ({
       x,
       y,

@@ -1,5 +1,7 @@
-export const CATEGORIES = ['tech', 'life', 'design']
-export default async function (plop) {
+import { NodePlopAPI } from 'plop';
+import { CATEGORIES } from '~/config/posts';
+
+export default async function (plop: NodePlopAPI) {
   // 定义一个自定义辅助函数，用于获取时间戳
   plop.setHelper('getCurrentTimestamp', () => {
     return new Date().toISOString()
