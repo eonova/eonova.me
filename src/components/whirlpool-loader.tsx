@@ -1,7 +1,7 @@
-import React from 'react'
 import { motion } from 'framer-motion'
+import React from 'react'
 
-const WhirlpoolLoader = () => {
+function WhirlpoolLoader() {
   const segments = 50
   const rotations = 5
 
@@ -12,7 +12,7 @@ const WhirlpoolLoader = () => {
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
         >
-          {[...Array(segments)].map((_, i) => {
+          {[...Array.from({ length: segments })].map((_, i) => {
             const angle = (i / segments) * Math.PI * 2 * rotations
             const radius = 5 + (90 * i) / segments
             const x = Math.cos(angle) * radius

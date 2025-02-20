@@ -1,15 +1,6 @@
 import type { Metadata, ResolvingMetadata } from 'next'
-import dynamic from 'next/dynamic'
 import type { AboutPage, WithContext } from 'schema-dts'
-
-const BounceCards = dynamic(() => import('~/components/about/bounce-cards'))
-const IntroFive = dynamic(() => import('~/components/about/intro-five'))
-const IntroFour = dynamic(() => import('~/components/about/intro-four'))
-const IntroOne = dynamic(() => import('~/components/about/intro-one'))
-const IntroSix = dynamic(() => import('~/components/about/intro-six'))
-const IntroThree = dynamic(() => import('~/components/about/intro-three'))
-const IntroTwo = dynamic(() => import('~/components/about/intro-two'))
-const VelocityScroll = dynamic(() => import('~/components/about/scrollbasedvelocity').then(mod => mod.VelocityScroll))
+import dynamic from 'next/dynamic'
 import PageTitle from '~/components/page-title'
 import {
   SITE_DESCRIPTION,
@@ -20,6 +11,15 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+
+const BounceCards = dynamic(() => import('~/components/about/bounce-cards'))
+const IntroFive = dynamic(() => import('~/components/about/intro-five'))
+const IntroFour = dynamic(() => import('~/components/about/intro-four'))
+const IntroOne = dynamic(() => import('~/components/about/intro-one'))
+const IntroSix = dynamic(() => import('~/components/about/intro-six'))
+const IntroThree = dynamic(() => import('~/components/about/intro-three'))
+const IntroTwo = dynamic(() => import('~/components/about/intro-two'))
+const VelocityScroll = dynamic(() => import('~/components/about/scrollbasedvelocity').then(mod => mod.VelocityScroll))
 
 const title = '关于'
 const description = '👋 嗨！我是 LeoStar。'

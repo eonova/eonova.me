@@ -14,10 +14,10 @@ function FilteredPosts(props: FilteredPostsProps) {
     <>
       {posts.length === 0
         ? (
-          <div className="my-24 text-center text-xl">
-            暂无结果
-          </div>
-        )
+            <div className="my-24 text-center text-xl">
+              暂无结果
+            </div>
+          )
         : null}
       <PostCards posts={posts} />
     </>

@@ -5,9 +5,9 @@ import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import { appRouter } from '~/trpc/root'
 import { createTRPCContext } from '~/trpc/trpc'
 
-const createContext = async (req: NextRequest) => {
+async function createContext(req: NextRequest) {
   return createTRPCContext({
-    headers: req.headers
+    headers: req.headers,
   })
 }
 
@@ -20,8 +20,8 @@ async function handler(req: NextRequest) {
     onError:
       process.env.NODE_ENV === 'development'
         ? ({ path, error }) => {
-          console.error(`❌ tRPC failed on ${path ?? '<no-path>'}: ${error.message}`)
-        }
+            console.error(`❌ tRPC failed on ${path ?? '<no-path>'}: ${error.message}`)
+          }
         : undefined,
   })
 }

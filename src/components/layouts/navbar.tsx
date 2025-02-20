@@ -1,11 +1,11 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
-import { useEffect, useState, useCallback, useRef } from 'react'
-import { HEADER_LINKS } from '~/config/links'
-import MenuPopover from './menu-popover'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { HEADER_LINKS } from '~/config/links'
 import { cn } from '~/lib/utils'
+import MenuPopover from './menu-popover'
 
 function Navbar() {
   const pathname = usePathname()
@@ -15,7 +15,8 @@ function Navbar() {
 
   // 防抖函数
   const debounce = useCallback((fn: () => void, delay: number) => {
-    if (debounceTimer.current) clearTimeout(debounceTimer.current)
+    if (debounceTimer.current)
+      clearTimeout(debounceTimer.current)
     debounceTimer.current = setTimeout(fn, delay)
   }, [])
 
@@ -37,8 +38,10 @@ function Navbar() {
   // 清理定时器
   useEffect(() => {
     return () => {
-      if (debounceTimer.current) clearTimeout(debounceTimer.current)
-      if (hoverTimeout) clearTimeout(hoverTimeout)
+      if (debounceTimer.current)
+        clearTimeout(debounceTimer.current)
+      if (hoverTimeout)
+        clearTimeout(hoverTimeout)
     }
   }, [hoverTimeout])
 
@@ -57,7 +60,8 @@ function Navbar() {
                 if (hasSubMenu) {
                   // 添加防抖处理
                   debounce(() => {
-                    if (hoverTimeout) clearTimeout(hoverTimeout)
+                    if (hoverTimeout)
+                      clearTimeout(hoverTimeout)
                     setActiveSubMenu(link.key)
                   }, 100) // 100ms防抖时间
                 }
@@ -67,7 +71,7 @@ function Navbar() {
                   setHoverTimeout(
                     setTimeout(() => {
                       setActiveSubMenu(null)
-                    }, 200) // 保持200ms延迟关闭
+                    }, 200), // 保持200ms延迟关闭
                   )
                 }
               }}
@@ -78,8 +82,8 @@ function Navbar() {
                   {
                     'text-muted-foreground hover:text-foreground': !isActive,
                     'text-foreground': isActive,
-                    'cursor-default': hasSubMenu && link.href === '#'
-                  }
+                    'cursor-default': hasSubMenu && link.href === '#',
+                  },
                 )}
                 href={(hasSubMenu && link.href === '#') ? '#' : link.href}
               >
@@ -99,7 +103,7 @@ function Navbar() {
                     'absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 transform transition-all duration-200 ease-out',
                     activeSubMenu === link.key
                       ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-2 pointer-events-none'
+                      : 'opacity-0 translate-y-2 pointer-events-none',
                   )}
                   data-key={link.key}
                   onMouseEnter={() => hoverTimeout && clearTimeout(hoverTimeout)}

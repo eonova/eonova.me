@@ -1,8 +1,8 @@
+import type { Metadata, ResolvingMetadata } from 'next'
+import type { WebPage, WithContext } from 'schema-dts'
 import WaterfallGallery from '~/components/masonry-gallery'
 import PageTitle from '~/components/page-title'
-import type { Metadata, ResolvingMetadata } from 'next'
 import { SITE_DESCRIPTION, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_NAME, SITE_URL, SITE_X_URL, SITE_YOUTUBE_URL } from '~/config/constants'
-import type { WithContext, WebPage } from 'schema-dts'
 
 const title = '相册'
 const description = '记录生活点点滴滴✨'

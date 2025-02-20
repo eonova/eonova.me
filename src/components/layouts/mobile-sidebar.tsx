@@ -7,10 +7,10 @@ import { useEffect } from 'react' // 引入 useEffect
 import { HEADER_LINKS } from '~/config/links'
 import { cn } from '~/lib/utils'
 import { useNav } from '~/stores/nav'
-import { Separator } from '../base/separator'
 import { Sheet, SheetContent, SheetTitle, VisuallyHidden } from '../base'
+import { Separator } from '../base/separator'
 
-const MobileNavAside = () => {
+function MobileNavAside() {
   const navStore = useNav()
   const pathname = usePathname()
 
@@ -39,7 +39,7 @@ const MobileNavAside = () => {
       {/* 侧边栏 */}
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
       <Sheet open={navStore.isVisible} onOpenChange={handleLinkClick}>
-        <SheetContent side='left'>
+        <SheetContent side="left">
           <VisuallyHidden>
             <SheetTitle>侧边栏</SheetTitle>
           </VisuallyHidden>

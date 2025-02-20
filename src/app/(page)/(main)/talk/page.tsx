@@ -9,7 +9,7 @@ const Talk: React.FC<TalkProps> = () => {
         <p>🚧 碎碎念页面（建设中）</p>
       </div>
     </>
-  );
+  )
 }
 
-export default Talk;
+export default Talk

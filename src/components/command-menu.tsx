@@ -1,9 +1,12 @@
 'use client'
 
+// Algolia DocSearch
+import { DocSearch } from '@docsearch/react'
+import { SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
 import { CommandIcon, LogInIcon, LogOutIcon } from 'lucide-react'
+
 import { signOut, useSession } from 'next-auth/react'
 import { Fragment, useCallback, useEffect, useState } from 'react'
-
 import { Button } from '~/components/base'
 import {
   SITE_GITHUB_URL,
@@ -11,15 +14,12 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+import { env, flags } from '~/lib/env'
 import { useDialogsStore } from '~/stores/dialogs'
+
 import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from './base/command'
 import { Kbd } from './base/kbd'
 import { SvgLogo } from './logo'
-
-// Algolia DocSearch
-import { DocSearch } from '@docsearch/react'
-import { SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
-import { env, flags } from '~/lib/env'
 
 type Groups = Array<{
   name: string
@@ -60,29 +60,28 @@ function CommandMenu() {
     window.open(url, '_blank', 'noopener')
   }, [])
 
-
   const groups: Groups = [
     {
       name: '账户',
       actions: [
         ...(status === 'authenticated'
           ? [
-            {
-              title: '登出',
-              icon: <LogOutIcon className="mr-3 size-4" />,
-              onSelect: () => signOut(),
-            },
-          ]
-          : [
-            {
-              title: '登入',
-              icon: <LogInIcon className="mr-3 size-4" />,
-              onSelect: () => {
-                setIsOpen(false)
-                dialogStore.setDialogs(true)
+              {
+                title: '登出',
+                icon: <LogOutIcon className="mr-3 size-4" />,
+                onSelect: () => signOut(),
               },
-            },
-          ]),
+            ]
+          : [
+              {
+                title: '登入',
+                icon: <LogInIcon className="mr-3 size-4" />,
+                onSelect: () => {
+                  setIsOpen(false)
+                  dialogStore.setDialogs(true)
+                },
+              },
+            ]),
       ],
     },
     {
@@ -134,7 +133,7 @@ function CommandMenu() {
       <CommandDialog open={isOpen} onOpenChange={setIsOpen} value={selectingValue} onValueChange={setSelectingValue}>
         <CommandInput
           placeholder="输入指令或搜寻"
-          onValueChange={(value) => setSelectingValue(value)}
+          onValueChange={value => setSelectingValue(value)}
         />
         <CommandList>
           <CommandEmpty>没有找到结果。</CommandEmpty>

@@ -9,7 +9,7 @@ const Notes: React.FC<NotesProps> = () => {
         <p>🚧 手记页面（建设中）</p>
       </div>
     </>
-  );
+  )
 }
 
-export default Notes;
+export default Notes

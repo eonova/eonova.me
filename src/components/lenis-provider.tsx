@@ -4,7 +4,7 @@ import type { LenisOptions } from 'lenis'
 import type { LenisRef } from 'lenis/react'
 import gsap from 'gsap'
 import { ReactLenis } from 'lenis/react'
-import { useEffect, useRef, useCallback } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 interface LenisProviderProps {
   children: React.ReactNode
@@ -16,7 +16,8 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
   // 防抖处理的resize监听
   const handleResize = useCallback(() => {
-    if (resizeTimeout.current) clearTimeout(resizeTimeout.current)
+    if (resizeTimeout.current)
+      clearTimeout(resizeTimeout.current)
     resizeTimeout.current = setTimeout(() => {
       lenisRef.current?.lenis?.resize()
     }, 200) // 200ms防抖间隔
@@ -24,7 +25,8 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
   useEffect(() => {
     const lenis = lenisRef.current?.lenis
-    if (!lenis) return
+    if (!lenis)
+      return
 
     // 优化后的GSAP ticker绑定
     const update = (time: number) => {
@@ -53,18 +55,19 @@ export function LenisProvider({ children }: LenisProviderProps) {
       gsap.ticker.remove(update)
       window.removeEventListener('resize', handleResize)
       lenis.off('scroll', handleScroll)
-      if (resizeTimeout.current) clearTimeout(resizeTimeout.current)
+      if (resizeTimeout.current)
+        clearTimeout(resizeTimeout.current)
     }
   }, [handleResize])
 
   // 优化后的Lenis配置
   const options: LenisOptions = {
     duration: 0.8,
-    wheelMultiplier: 0.6,    // 更保守的滚轮速度
-    touchMultiplier: 0.8,    // 适中的触摸速度
+    wheelMultiplier: 0.6, // 更保守的滚轮速度
+    touchMultiplier: 0.8, // 适中的触摸速度
     smoothWheel: true,
-    infinite: false,         // 禁用无限滚动
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // 更高效的缓动函数
+    infinite: false, // 禁用无限滚动
+    easing: t => Math.min(1, 1.001 - 2 ** (-10 * t)), // 更高效的缓动函数
     orientation: 'vertical',
   }
 

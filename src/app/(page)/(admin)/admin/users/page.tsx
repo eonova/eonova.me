@@ -20,8 +20,8 @@ function Page() {
       />
       {isLoading
         ? (
-          <DataTableSkeleton columnCount={3} searchableColumnsCount={1} filterableColumnCount={1} />
-        )
+            <DataTableSkeleton columnCount={3} searchableColumnsCount={1} filterableColumnCount={1} />
+          )
         : null}
       {isError ? <div>无法获取用户数据。请刷新页面。</div> : null}
       {isSuccess ? <UsersTable data={data.users} /> : null}

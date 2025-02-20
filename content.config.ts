@@ -1,4 +1,3 @@
-// eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
 import type { Context, Meta } from '@content-collections/core'
 import { defineCollection, defineConfig } from '@content-collections/core'
@@ -13,7 +12,7 @@ interface BaseDoc {
 async function transform<D extends BaseDoc>(document: D, context: Context) {
   const code = await compileMDX(context, document, {
     remarkPlugins,
-    rehypePlugins
+    rehypePlugins,
   })
 
   const path = document._meta.path
@@ -26,7 +25,7 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     ...document,
     code,
     slug: path,
-    toc: await getTOC(document.content)
+    toc: await getTOC(document.content),
   }
 }
 

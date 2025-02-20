@@ -1,46 +1,48 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { db, eq, posts } from '~/db'
-import { getErrorMessage } from '~/utils/get-error-message'
 import { allPosts } from 'content-collections'
 import { ImageResponse } from 'next/og'
 import { NextResponse } from 'next/server'
-
 import { SITE_URL } from '~/config/constants'
+import { db, eq, posts } from '~/db'
 
-type OGRouteProps = {
+import { getErrorMessage } from '~/utils/get-error-message'
+
+interface OGRouteProps {
   params: Promise<{
     id: string
   }>
 }
 
-export const GET = async (_: Request, props: OGRouteProps) => {
+export async function GET(_: Request, props: OGRouteProps) {
   try {
     const { id } = await props.params
-    const postMetadata = allPosts.find((p) => p.slug === id)
+    const postMetadata = allPosts.find(p => p.slug === id)
 
     if (!postMetadata) {
       return NextResponse.json(
         {
-          error: 'Post not found'
+          error: 'Post not found',
         },
         {
-          status: 404
-        }
+          status: 404,
+        },
       )
     }
 
     const { title, date } = postMetadata
 
     const getTitleFontSize = () => {
-      if (title.length > 50) return 36
-      if (title.length > 40) return 48
+      if (title.length > 50)
+        return 36
+      if (title.length > 40)
+        return 48
       return 64
     }
 
     const roboto = fs.readFileSync(
-      path.join(process.cwd(), 'src/app/og/[id]/RobotoCondensed-Bold.ttf')
+      path.join(process.cwd(), 'src/app/og/[id]/RobotoCondensed-Bold.ttf'),
     )
 
     console.log('===========', roboto)
@@ -48,7 +50,7 @@ export const GET = async (_: Request, props: OGRouteProps) => {
     const post = await db
       .select({
         views: posts.views,
-        likes: posts.likes
+        likes: posts.likes,
       })
       .from(posts)
       .where(eq(posts.slug, id))
@@ -68,13 +70,13 @@ export const GET = async (_: Request, props: OGRouteProps) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             fontFamily: 'Roboto Condensed',
-            fontWeight: 700
+            fontWeight: 700,
           }}
         >
           <div
             style={{
               color: textColor,
-              fontSize: 30
+              fontSize: 30,
             }}
           >
             {date.split('T')[0]}
@@ -82,7 +84,7 @@ export const GET = async (_: Request, props: OGRouteProps) => {
           <div
             style={{
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
             }}
           >
             <div
@@ -93,7 +95,7 @@ export const GET = async (_: Request, props: OGRouteProps) => {
                 letterSpacing: '-0.03em',
                 color: 'transparent',
                 backgroundImage: 'linear-gradient(91.52deg, #FF4D4D 0.79%, #FFCCCC 109.05%)',
-                marginBottom: 24
+                marginBottom: 24,
               }}
             >
               {title}
@@ -105,12 +107,20 @@ export const GET = async (_: Request, props: OGRouteProps) => {
                 alignItems: 'center',
                 fontSize: 24,
                 gap: 16,
-                color: textColor
+                color: textColor,
               }}
             >
-              <span>{post[0]?.likes ?? 0} likes</span>
+              <span>
+                {post[0]?.likes ?? 0}
+                {' '}
+                likes
+              </span>
               <span>·</span>
-              <span>{post[0]?.views ?? 0} views</span>
+              <span>
+                {post[0]?.views ?? 0}
+                {' '}
+                views
+              </span>
             </div>
           </div>
           <div
@@ -119,7 +129,7 @@ export const GET = async (_: Request, props: OGRouteProps) => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              width: '100%'
+              width: '100%',
             }}
           >
             <svg
@@ -150,7 +160,7 @@ export const GET = async (_: Request, props: OGRouteProps) => {
             </svg>
             <div
               style={{
-                fontSize: 30
+                fontSize: 30,
               }}
             >
               leostar.top
@@ -166,19 +176,20 @@ export const GET = async (_: Request, props: OGRouteProps) => {
             name: 'Roboto Condensed',
             data: roboto,
             weight: 700,
-            style: 'normal'
-          }
-        ]
-      }
+            style: 'normal',
+          },
+        ],
+      },
     )
-  } catch (error) {
+  }
+  catch (error) {
     return NextResponse.json(
       {
-        error: 'Failed to generate image: ' + getErrorMessage(error)
+        error: `Failed to generate image: ${getErrorMessage(error)}`,
       },
       {
-        status: 500
-      }
+        status: 500,
+      },
     )
   }
 }

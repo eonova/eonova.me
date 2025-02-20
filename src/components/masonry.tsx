@@ -1,61 +1,66 @@
 // @ts-nocheck
-'use client';
-import { useState, useEffect, useRef, useMemo } from 'react';
-import { useTransition, a } from 'react-spring';
+'use client'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { a, useTransition } from 'react-spring'
 
 interface ImageItem {
-  id: number;
-  imageUrl: string;
-  height: number;
-  width: number;
-  description?: string | null;
+  id: number
+  imageUrl: string
+  height: number
+  width: number
+  description?: string | null
 }
 
 interface MasonryProps {
-  data: ImageItem[];
-  onImageClick?: (index: number) => void;
+  data: ImageItem[]
+  onImageClick?: (index: number) => void
 }
 
-const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
-  const [columns, setColumns] = useState(1);
-  const [width, setWidth] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const prevContainerWidth = useRef(0);
+function MasonryComponent({ data, onImageClick }: MasonryProps) {
+  const [columns, setColumns] = useState(1)
+  const [width, setWidth] = useState(0)
+  const ref = useRef<HTMLDivElement>(null)
+  const prevContainerWidth = useRef(0)
 
   useEffect(() => {
     const handleResize = () => {
-      const containerWidth = ref.current?.offsetWidth || 0;
-      if (containerWidth === prevContainerWidth.current) return;
+      const containerWidth = ref.current?.offsetWidth || 0
+      if (containerWidth === prevContainerWidth.current)
+        return
 
-      prevContainerWidth.current = containerWidth;
-      setWidth(containerWidth);
+      prevContainerWidth.current = containerWidth
+      setWidth(containerWidth)
 
-      let newColumns = 1;
+      let newColumns = 1
       if (containerWidth >= 1500) {
-        newColumns = 5;
-      } else if (containerWidth >= 750 && containerWidth < 1024) {
-        newColumns = 4;
-      } else if (containerWidth >= 500 && containerWidth < 750) {
-        newColumns = 3;
-      } else {
-        newColumns = 2;
+        newColumns = 5
+      }
+      else if (containerWidth >= 750 && containerWidth < 1024) {
+        newColumns = 4
+      }
+      else if (containerWidth >= 500 && containerWidth < 750) {
+        newColumns = 3
+      }
+      else {
+        newColumns = 2
       }
 
-      setColumns(newColumns);
-    };
+      setColumns(newColumns)
+    }
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const [heights, gridItems] = useMemo(() => {
-    let heights = Array.from({ length: columns }, () => 0);
+    const heights = Array.from({ length: columns }, () => 0)
     const gridItems = data.map((child, index) => {
-      if (!child) return null;
-      const column = heights.indexOf(Math.min(...heights));
-      const x = (width / columns) * column;
-      const y = (heights[column] += child.height) - child.height;
+      if (!child)
+        return null
+      const column = heights.indexOf(Math.min(...heights))
+      const x = (width / columns) * column
+      const y = (heights[column] += child.height) - child.height
       return {
         ...child,
         x,
@@ -63,13 +68,13 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
         width: width / columns,
         height: child.height,
         index,
-      };
-    });
-    return [heights, gridItems.filter(Boolean)];
-  }, [columns, data, width]);
+      }
+    })
+    return [heights, gridItems.filter(Boolean)]
+  }, [columns, data, width])
 
   const transitions = useTransition(gridItems, {
-    keys: (item) => item?.index ?? 'fallback-key',
+    keys: item => item?.index ?? 'fallback-key',
     update: ({ x, y, width, height }) => ({
       x,
       y,
@@ -79,7 +84,7 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
     leave: { height: 0, opacity: 0 },
     config: { mass: 5, tension: 500, friction: 100 },
     trail: 25,
-  });
+  })
 
   return (
     <div
@@ -88,7 +93,8 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
       style={{ height: Math.max(...heights) }}
     >
       {transitions((style, item) => {
-        if (!item) return null;
+        if (!item)
+          return null
         return (
           <a.div
             key={item.id}
@@ -96,7 +102,7 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
             className="absolute p-1 [will-change:transform,width,height,opacity] overflow-hidden cursor-pointer"
             onClick={() => {
               if (onImageClick) {
-                onImageClick(item.index);
+                onImageClick(item.index)
               }
             }}
           >
@@ -108,10 +114,10 @@ const MasonryComponent = ({ data, onImageClick }: MasonryProps) => {
               className="w-full h-full object-cover"
             />
           </a.div>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default MasonryComponent;
+export default MasonryComponent

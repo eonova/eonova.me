@@ -79,7 +79,7 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
 async function Page(props: PageProps) {
   const { slug } = await props.params
 
-  const posts = allPosts.filter((p) => p.categories.includes(slug)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const posts = allPosts.filter(p => p.categories.includes(slug)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   const url = `${SITE_URL}/categories/${slug}`
 
   if (!posts) {
@@ -105,43 +105,44 @@ async function Page(props: PageProps) {
       />
       <PageTitle title={title} description="" />
       {
-        posts.length > 0 ?
-          (
-            <main className="mt-10 md:px-10 text-zinc-950/80 dark:text-zinc-50/80">
-              <TimelineList>
-                {posts.map((child, i) => {
-                  const date = new Date(child.date)
+        posts.length > 0
+          ? (
+              <main className="mt-10 md:px-10 text-zinc-950/80 dark:text-zinc-50/80">
+                <TimelineList>
+                  {posts.map((child, i) => {
+                    const date = new Date(child.date)
 
-                  return (
-                    <BottomToUpTransitionView
-                      key={child.slug}
-                      delay={700 + 50 * i}
-                      as="li"
-                      className="flex min-w-0 items-center justify-between leading-loose"
-                    >
-                      <Link
-                        href={`/posts/${child.slug}`}
-                        className="min-w-0 truncate"
+                    return (
+                      <BottomToUpTransitionView
+                        key={child.slug}
+                        delay={700 + 50 * i}
+                        as="li"
+                        className="flex min-w-0 items-center justify-between leading-loose"
                       >
-                        {child.title}
-                      </Link>
-                      <span className="meta ml-2">
-                        {(date.getMonth() + 1).toString().padStart(2, '0')}
-                        /
-                        {date.getDate().toString().padStart(2, '0')}
-                        /
-                        {date.getFullYear()}
-                      </span>
-                    </BottomToUpTransitionView>
-                  )
-                })}
-              </TimelineList>
-            </main>
-          ) : (
-            <div className='flex items-center justify-center h-[55vh]'>
-              <NoneContent className='mx-auto w-md h-md md:w-[90%] md:h-[70vh]' />
-            </div>
-          )
+                        <Link
+                          href={`/posts/${child.slug}`}
+                          className="min-w-0 truncate"
+                        >
+                          {child.title}
+                        </Link>
+                        <span className="meta ml-2">
+                          {(date.getMonth() + 1).toString().padStart(2, '0')}
+                          /
+                          {date.getDate().toString().padStart(2, '0')}
+                          /
+                          {date.getFullYear()}
+                        </span>
+                      </BottomToUpTransitionView>
+                    )
+                  })}
+                </TimelineList>
+              </main>
+            )
+          : (
+              <div className="flex items-center justify-center h-[55vh]">
+                <NoneContent className="mx-auto w-md h-md md:w-[90%] md:h-[70vh]" />
+              </div>
+            )
       }
     </>
   )

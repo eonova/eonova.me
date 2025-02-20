@@ -29,7 +29,7 @@ function Providers(props: ProvidesProps) {
       <TRPCReactProvider>
         <ThemeProvider
           attribute="class"
-          defaultTheme='system'
+          defaultTheme="system"
           enableSystem
           enableColorScheme
           disableTransitionOnChange

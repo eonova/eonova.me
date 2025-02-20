@@ -479,34 +479,34 @@ function DataTableToolbar<TData,>(props: DataTableToolbarProps<TData>) {
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center gap-2">
         {searchableColumns.length > 0
-        && searchableColumns.map(
-          column =>
-            table.getColumn(column.id ? String(column.id) : '') && (
-              <Input
-                key={String(column.id)}
-                placeholder={column.placeholder}
-                value={
-                  (table.getColumn(String(column.id))?.getFilterValue() as string | undefined)
-                  ?? ''
-                }
-                onChange={event =>
-                  table.getColumn(String(column.id))?.setFilterValue(event.target.value)}
-                className="h-8 w-40 lg:w-64"
-              />
-            ),
-        )}
+          && searchableColumns.map(
+            column =>
+              table.getColumn(column.id ? String(column.id) : '') && (
+                <Input
+                  key={String(column.id)}
+                  placeholder={column.placeholder}
+                  value={
+                    (table.getColumn(String(column.id))?.getFilterValue() as string | undefined)
+                    ?? ''
+                  }
+                  onChange={event =>
+                    table.getColumn(String(column.id))?.setFilterValue(event.target.value)}
+                  className="h-8 w-40 lg:w-64"
+                />
+              ),
+          )}
         {filterableColumns.length > 0
-        && filterableColumns.map(
-          column =>
-            table.getColumn(column.id ? String(column.id) : '') && (
-              <DataTableFacetedFilter
-                key={String(column.id)}
-                column={table.getColumn(column.id ? String(column.id) : '')}
-                title={column.label}
-                options={column.options ?? []}
-              />
-            ),
-        )}
+          && filterableColumns.map(
+            column =>
+              table.getColumn(column.id ? String(column.id) : '') && (
+                <DataTableFacetedFilter
+                  key={String(column.id)}
+                  column={table.getColumn(column.id ? String(column.id) : '')}
+                  title={column.label}
+                  options={column.options ?? []}
+                />
+              ),
+          )}
         {isFiltered && (
           <Button
             variant="ghost"
@@ -559,13 +559,13 @@ function DataTableSkeleton(props: DataTableSkeletonProps) {
       <div className="flex items-center justify-between">
         <div className="flex flex-1 items-center gap-2">
           {searchableColumnsCount > 0
-          && range(searchableColumnsCount).map(i => (
-            <Skeleton key={i} className="h-8 w-40 lg:w-60" />
-          ))}
+            && range(searchableColumnsCount).map(i => (
+              <Skeleton key={i} className="h-8 w-40 lg:w-60" />
+            ))}
           {filterableColumnCount > 0
-          && range(filterableColumnCount).map(i => (
-            <Skeleton key={i} className="h-8 w-[4.5rem] border-dashed" />
-          ))}
+            && range(filterableColumnCount).map(i => (
+              <Skeleton key={i} className="h-8 w-[4.5rem] border-dashed" />
+            ))}
         </div>
         <Skeleton className="ml-auto hidden h-8 w-[4.5rem] lg:flex" />
       </div>

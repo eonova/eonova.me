@@ -1,14 +1,14 @@
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { memo } from 'react'
 import type { IHeaderMenu } from '~/config/links'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { memo } from 'react'
 import useIsScroll from '~/hooks/use-is-scroll'
 import { cn } from '~/lib/utils'
 
 const animationConfig = {
   hidden: { opacity: 0, y: -10 },
   visible: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 10 }
+  exit: { opacity: 0, y: 10 },
 }
 
 interface MenuPopoverProps {
@@ -28,13 +28,13 @@ const MenuPopover = memo(({ link, isOpen }: MenuPopoverProps) => {
       transition={{ duration: 0.3 }}
       id="nav"
       className={cn(
-        "rounded-full bg-background/30 absolute left-1/2 top-full z-50 -translate-x-1/2 transition-colors backdrop-blur-[10px] shadow-sm during-300 dark:border dark:border-solid dark:border-slate-600/50",
+        'rounded-full bg-background/30 absolute left-1/2 top-full z-50 -translate-x-1/2 transition-colors backdrop-blur-[10px] shadow-sm during-300 dark:border dark:border-solid dark:border-slate-600/50',
         isScrolled && 'bg-background/80',
       )}
       aria-hidden={!isOpen}
     >
       <div className="inset-x-0 flex gap-1 p-2">
-        {link.subMenu?.map((subItem) => (
+        {link.subMenu?.map(subItem => (
           <Link
             key={subItem.key}
             href={subItem.href}

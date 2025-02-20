@@ -71,8 +71,6 @@ export const albumRouter = createTRPCRouter({
     }),
   ).mutation(async ({ ctx, input }) => {
     const { id, imageUrl, description, height, width } = input
-    if (!id)
-      throw 'The id cannot be empty'
     await ctx.db.update(album).set({
       ...(imageUrl ? { imageUrl } : {}),
       ...(description ? { description } : {}),

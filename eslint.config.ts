@@ -7,8 +7,9 @@ export default leostar({
   ignores: [
     'README.md',
     'components/base/*',
-    './src/trpc/react.tsx',
+    'src/trpc/react.tsx',
     'data/*',
+    'public/*',
   ],
   rules: {
     'import/no-anonymous-default-export': 'off',
@@ -26,5 +27,6 @@ export default leostar({
     'no-prototype-builtins': 'off',
     'no-console': 'off',
     'ts/no-redeclare': 'off',
-  }
+    'ts/ban-ts-comment': 'off',
+  },
 })

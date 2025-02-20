@@ -9,7 +9,7 @@ const Archive: React.FC<ArchiveProps> = () => {
         <p>🚧 归档页面（建设中）</p>
       </div>
     </>
-  );
+  )
 }
 
-export default Archive;
+export default Archive

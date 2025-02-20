@@ -14,7 +14,7 @@ import {
 import { useAlbumDialogsStore } from '~/stores/album'
 import { api } from '~/trpc/react'
 
-const AlertDialogContentMemo = memo(AlertDialogContent);
+const AlertDialogContentMemo = memo(AlertDialogContent)
 interface DeleteAlbumDialogProps {
   id: string
   imageUrl: string
@@ -31,7 +31,8 @@ const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({
       albumDialogStore.setDeleteDialogs(false)
       toast.success('删除成功')
     },
-    onError: error => toast.error(`删除图片失败：${error}`), onSettled: () => utils.album.getAllImages.invalidate()
+    onError: error => toast.error(`删除图片失败：${error}`),
+    onSettled: () => utils.album.getAllImages.invalidate(),
   })
 
   return (
