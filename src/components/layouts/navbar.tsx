@@ -5,7 +5,11 @@ import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { HEADER_LINKS } from '~/config/links'
 import { cn } from '~/lib/utils'
-import MenuPopover from './menu-popover'
+import dynamic from 'next/dynamic'
+
+const MenuPopover = dynamic(() => import('./menu-popover'), {
+  loading: () => null,
+})
 
 function Navbar() {
   const pathname = usePathname()

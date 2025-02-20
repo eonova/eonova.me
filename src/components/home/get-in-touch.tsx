@@ -61,8 +61,8 @@ function GetInTouch() {
           <div className="relative size-64 max-md:mx-auto" ref={scope}>
             <BlurImage
               src={me}
-              width={3975}
-              height={3975}
+              width={500}
+              height={500}
               className="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full"
               alt="Call Me"
             />

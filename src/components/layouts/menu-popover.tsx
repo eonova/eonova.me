@@ -31,7 +31,6 @@ const MenuPopover = memo(({ link, isOpen }: MenuPopoverProps) => {
         'rounded-full bg-background/30 absolute left-1/2 top-full z-50 -translate-x-1/2 transition-colors backdrop-blur-[10px] shadow-sm during-300 dark:border dark:border-solid dark:border-slate-600/50',
         isScrolled && 'bg-background/80',
       )}
-      aria-hidden={!isOpen}
     >
       <div className="inset-x-0 flex gap-1 p-2">
         {link.subMenu?.map(subItem => (
