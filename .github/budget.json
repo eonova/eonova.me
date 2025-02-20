@@ -3,26 +3,22 @@
     "path": "/*",
     "resourceSizes": [
       {
-        "resourceType": "total",
-        "budget": 3200
-      }
-    ]
-  },
-  {
-    "path": "/about",
-    "resourceSizes": [
+        "resourceType": "document",
+        "budget": 150
+      },
       {
-        "resourceType": "total",
-        "budget": 3200
-      }
-    ]
-  },
-  {
-    "path": "/blog",
-    "resourceSizes": [
+        "resourceType": "script",
+        "budget": 500
+      },
       {
-        "resourceType": "total",
-        "budget": 3200
+        "resourceType": "image",
+        "budget": 1000
+      }
+    ],
+    "timings": [
+      {
+        "metric": "first-contentful-paint",
+        "budget": 2200
       }
     ]
   }

@@ -135,4 +135,4 @@ const MyNextConfig: NextConfig = {
   },
 }
 
-export default withMDX(withBundleAnalyzer(withPWA(MyNextConfig)))
+export default withPWA(withMDX(withBundleAnalyzer(MyNextConfig)))
