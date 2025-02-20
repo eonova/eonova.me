@@ -33,7 +33,9 @@ jobs:
           curl -fsSL https://bun.sh/install | bash
           echo 'export BUN_INSTALL="$HOME/.bun"' >> ~/.bashrc
           echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> ~/.bashrc
-          source ~/.bashrc
+
+      - name: Source Bashrc
+        run: source ~/.bashrc
 
       - name: Install
         run: bun install
