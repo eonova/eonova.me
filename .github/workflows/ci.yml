@@ -23,31 +23,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+
       - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
-
-      - name: Install Bun
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo 'export BUN_INSTALL="$HOME/.bun"' >> ~/.bashrc
-          echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> ~/.bashrc
-
-      - name: Source Bashrc
-        run: source ~/.bashrc
+          cache: pnpm
 
       - name: Install
-        run: bun install
+        run: pnpm i
 
       - name: Lint
-        run: bun run lint
+        run: pnpm lint
 
       - name: Knip
-        run: bun run check:knip
+        run: pnpm check:knip
 
       - name: Type Check
-        run: bun run type-check
+        run: pnpm type-check
 
   lighthouse:
     runs-on: ubuntu-latest
