@@ -65,7 +65,6 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "content.config.ts",
     "node_modules"
   ]
 }
