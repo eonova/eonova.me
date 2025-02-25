@@ -1,11 +1,11 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { HEADER_LINKS } from '~/config/links'
 import { cn } from '~/lib/utils'
-import dynamic from 'next/dynamic'
 
 const MenuPopover = dynamic(() => import('./menu-popover'), {
   loading: () => null,

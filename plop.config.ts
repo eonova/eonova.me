@@ -1,5 +1,5 @@
-import { NodePlopAPI } from 'plop';
-import { CATEGORIES } from '~/config/posts';
+import type { NodePlopAPI } from 'plop'
+import { CATEGORIES } from '~/config/posts'
 
 export default async function (plop: NodePlopAPI) {
   // 定义一个自定义辅助函数，用于获取时间戳

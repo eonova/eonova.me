@@ -11,7 +11,7 @@ const config: KnipConfig = {
     'eslint-plugin-react-refresh',
     'lint-staged',
     'picocolors',
-    '@ileostar/eslint-config',
+    '@ileostar/eslint-config'
   ],
   entry: ['*.config.mjs', '*.config.mts'],
   project: ['src/**/*.{ts,tsx}', 'scripts/*.ts'],

@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 import { createContentCollectionPlugin as createMDX } from '@content-collections/next'
-import bundleAnalyzer from '@next/bundle-analyzer'
 import createPWA from '@ducanh2912/next-pwa'
+import bundleAnalyzer from '@next/bundle-analyzer'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
 import './src/lib/env.ts'
 
@@ -19,7 +19,7 @@ const withPWA = createPWA({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
   register: true,
-  extendDefaultRuntimeCaching: true
+  extendDefaultRuntimeCaching: true,
 })
 
 const NextConfigHeaders = [
