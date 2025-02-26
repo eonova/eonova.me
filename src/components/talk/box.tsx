@@ -1,9 +1,9 @@
-import { Heart, Share2 } from 'lucide-react'
+import { Heart } from 'lucide-react'
 import Image from 'next/image'
-import LikeButton from './likes'
-import TalkMdx from './mdx'
 import { cn } from '~/lib/utils'
 import { dayjs } from '~/utils/dayjs'
+import LikeButton from './likes'
+import TalkMdx from './mdx'
 
 interface TalkBoxProps {
   id?: string
@@ -20,12 +20,9 @@ const TalkBox: React.FC<TalkBoxProps> = ({
   name = 'LeoStar',
   time = Date.now(),
 }) => {
-
-
-
   return (
     <li className="flex flex-col sm:flex-row mt-[50px] gap-2 sm:gap-4 space-y-2">
-      <div className='flex sm:hidden gap-3 sm:w-[40px]'>
+      <div className="flex sm:hidden gap-3 sm:w-[40px]">
         <Image
           className="size-[32px] sm:size-[40px] ring-2 ring-slate-200 dark:ring-zinc-800 rounded-full"
           src={images}
@@ -60,7 +57,8 @@ const TalkBox: React.FC<TalkBoxProps> = ({
               'relative inline-block rounded-xl p-3 text-zinc-800 dark:text-zinc-200',
               'rounded-tl-sm bg-zinc-600/5 dark:bg-zinc-500/20',
               'max-w-full overflow-auto',
-            )}>
+            )}
+          >
             <TalkMdx>
               {children}
             </TalkMdx>
@@ -71,11 +69,11 @@ const TalkBox: React.FC<TalkBoxProps> = ({
             id
               ? <LikeButton initialLikes={0} talkId={id} />
               : (
-                <div className="flex items-center gap-1 cursor-pointer">
-                  <Heart className="h-3 w-3" />
-                  <span>0</span>
-                </div>
-              )
+                  <div className="flex items-center gap-1 cursor-pointer">
+                    <Heart className="h-3 w-3" />
+                    <span>0</span>
+                  </div>
+                )
           }
         </div>
       </div>

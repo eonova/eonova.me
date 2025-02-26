@@ -1,5 +1,4 @@
 interface VideoCardProps extends React.IframeHTMLAttributes<HTMLIFrameElement> {
-  /**​ 视频宽高比，格式如 "16/9"，默认 16:9 */
   aspectRatio?: string
 }
 
@@ -18,9 +17,10 @@ const VideoCard: React.FC<VideoCardProps> = ({
       className="w-screen max-w-full"
     >
       <div className="flex justify-center">
-        <div className="relative h-0 w-full bg-gray-100 shadow-lg"
+        <div
+          className="relative h-0 w-full bg-gray-100 shadow-lg"
           style={{
-            paddingBottom: `${scaleRadio * 100}%`
+            paddingBottom: `${scaleRadio * 100}%`,
           }}
         >
           <iframe
@@ -32,11 +32,11 @@ const VideoCard: React.FC<VideoCardProps> = ({
               height: '100%',
               borderRadius: '8px',
               aspectRatio: 'unset',
-              position: 'absolute'
+              position: 'absolute',
             }}
             className="absolute inset-0 size-full rounded-md border-0"
             {...props}
-            src={props.src + '&autoplay=0'}
+            src={`${props.src}&autoplay=0`}
           />
         </div>
       </div>

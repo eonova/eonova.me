@@ -1,8 +1,8 @@
 import MarkdownToJSX from 'markdown-to-jsx'
 import Link from 'next/link'
 import { Fragment, memo } from 'react'
-import VideoCard from './video-card'
 import { MParagraph } from './paragraph'
+import VideoCard from './video-card'
 
 interface MarkdownProps {
   children: string

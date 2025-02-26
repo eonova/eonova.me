@@ -54,18 +54,19 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
     },
     onSuccess: () => {
       // 更新用户点赞计数
-      setUserLikes(prev => {
+      setUserLikes((prev) => {
         const newValue = prev + 1
         localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
         return newValue
       })
       // 主动刷新数据
       utils.talks.getAllTalks.invalidate()
-    }
+    },
   })
 
   const handleLike = () => {
-    if (!session || userLikes >= MAX_LIKES_PER_USER) return
+    if (!session || userLikes >= MAX_LIKES_PER_USER)
+      return
 
     // 只触发一次 mutation
     incrementLike({ talkId })
@@ -87,7 +88,8 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
       <Heart className={cn(
         'h-3 w-3 transition-colors',
         userLikes > 0 ? 'fill-red-500 text-red-500' : 'text-gray-400',
-      )} />
+      )}
+      />
 
       <div className="flex items-center gap-1">
         <NumberFlow
@@ -96,7 +98,9 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
         />
         {userLikes > 0 && (
           <span className="text-xs text-gray-500">
-            (+{Math.min(userLikes, MAX_LIKES_PER_USER)})
+            (+
+            {Math.min(userLikes, MAX_LIKES_PER_USER)}
+            )
           </span>
         )}
       </div>
