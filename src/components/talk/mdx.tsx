@@ -2,6 +2,7 @@ import MarkdownToJSX from 'markdown-to-jsx'
 import Link from 'next/link'
 import { Fragment, memo } from 'react'
 import VideoCard from './video-card'
+import { MParagraph } from './paragraph'
 
 interface MarkdownProps {
   children: string
@@ -15,10 +16,12 @@ const TalkMdx = memo((props: MarkdownProps) => {
       options={{
         overrides: {
           a: Link,
+          p: MParagraph,
           iframe: {
             component: VideoCard,
           },
         },
+        disableParsingRawHTML: false,
         wrapper: Fragment,
       }}
     >

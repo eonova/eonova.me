@@ -26,57 +26,53 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
     setUserLikes(storedLikes ? Math.min(Number(storedLikes), MAX_LIKES_PER_USER) : 0)
   }, [talkId])
 
-  // 实时数据订阅
+  // 获取实时点赞数
   const { data: realtimeData } = api.talks.getAllTalks.useQuery(undefined, {
     select: data => data.items.find(t => t.id === talkId)?.likes,
   })
+
+  // 同步后端数据到乐观状态
+  useEffect(() => {
+    if (typeof realtimeData === 'number') {
+      setOptimisticLikes(realtimeData)
+    }
+  }, [realtimeData])
 
   // 点赞 mutation
   const { mutate: incrementLike } = api.talks.incrementLikes.useMutation({
     onMutate: async () => {
       await utils.talks.getAllTalks.cancel()
-      const previousData = utils.talks.getAllTalks.getData()
 
-      // 乐观更新
-      utils.talks.getAllTalks.setData(undefined, (old) => {
-        if (!old)
-          return old
-        return {
-          ...old,
-          items: old.items.map(talk =>
-            talk.id === talkId
-              ? { ...talk, likes: talk.likes + 1 }
-              : talk,
-          ),
-        }
-      })
+      // 乐观更新直接使用最新值
+      setOptimisticLikes(prev => prev + 1)
 
-      return { previousData }
+      return { previousLikes: optimisticLikes }
     },
-    onError: (_err, _, context) => {
-      utils.talks.getAllTalks.setData(undefined, context?.previousData)
-      setOptimisticLikes(prev => prev - 1)
+    onError: (_, __, context) => {
+      // 回滚到之前的值
+      setOptimisticLikes(context?.previousLikes ?? optimisticLikes)
     },
     onSuccess: () => {
-      setUserLikes((prev) => {
+      // 更新用户点赞计数
+      setUserLikes(prev => {
         const newValue = prev + 1
         localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
         return newValue
       })
-    },
+      // 主动刷新数据
+      utils.talks.getAllTalks.invalidate()
+    }
   })
 
   const handleLike = () => {
-    if (!session || userLikes >= MAX_LIKES_PER_USER)
-      return
-    setOptimisticLikes(prev => prev + 1)
+    if (!session || userLikes >= MAX_LIKES_PER_USER) return
+
+    // 只触发一次 mutation
     incrementLike({ talkId })
   }
 
-  // 计算显示值
-  const displayLikes = realtimeData
-    ? realtimeData + (userLikes >= MAX_LIKES_PER_USER ? 0 : userLikes)
-    : optimisticLikes
+  // 直接显示乐观更新值
+  const displayLikes = optimisticLikes
 
   return (
     <div
@@ -91,19 +87,16 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
       <Heart className={cn(
         'h-3 w-3 transition-colors',
         userLikes > 0 ? 'fill-red-500 text-red-500' : 'text-gray-400',
-      )}
-      />
+      )} />
 
       <div className="flex items-center gap-1">
         <NumberFlow
           value={displayLikes}
-          className="font-medium text-xs text-gray-900 dark:text-gray-100"
+          className="font-medium text-sm text-gray-900 dark:text-gray-100"
         />
         {userLikes > 0 && (
           <span className="text-xs text-gray-500">
-            (+
-            {Math.min(userLikes, MAX_LIKES_PER_USER)}
-            )
+            (+{Math.min(userLikes, MAX_LIKES_PER_USER)})
           </span>
         )}
       </div>

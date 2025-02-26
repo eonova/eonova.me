@@ -63,16 +63,15 @@ const TalkList: React.FC<TalkListProps> = ({ pageSize = 10 }) => {
 
       {/* 数据列表 */}
       {talks.length > 0 && (
-        <ul className="grid gap-4">
+        <ul className="w-full">
           {talks.map(talk => (
-            <li key={talk.id}>
-              <TalkBox
-                id={talk.id}
-                time={talk.createdAt}
-              >
-                {talk.content}
-              </TalkBox>
-            </li>
+            <TalkBox
+              key={talk.id}
+              id={talk.id}
+              time={talk.createdAt}
+            >
+              {talk.content}
+            </TalkBox>
           ))}
         </ul>
       )}

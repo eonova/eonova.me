@@ -1,26 +1,44 @@
 interface VideoCardProps extends React.IframeHTMLAttributes<HTMLIFrameElement> {
-  ratio?: number
+  /**​ 视频宽高比，格式如 "16/9"，默认 16:9 */
+  aspectRatio?: string
 }
 
 const VideoCard: React.FC<VideoCardProps> = ({
+  aspectRatio = '16/9',
   style,
-  title = '视频播放器', // 可访问性要求
-  allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+  title = '视频播放器',
   allowFullScreen = true,
   ...props
 }) => {
+  const [widthRadio, heightRadio] = aspectRatio.split('/').map(Number)
+  const scaleRadio = heightRadio! / widthRadio!
+
   return (
-    <div className="flex justify-center w-full">
-      <div
-        className="relative overflow-hidden w-full rounded-md bg-gray-100 shadow-lg"
-      >
-        <iframe
-          className="absolute left-0 top-0 w-full size-full border-0"
-          title={title}
-          allow={allow}
-          allowFullScreen={allowFullScreen}
-          {...props}
-        />
+    <div
+      className="w-screen max-w-full"
+    >
+      <div className="flex justify-center">
+        <div className="relative h-0 w-full bg-gray-100 shadow-lg"
+          style={{
+            paddingBottom: `${scaleRadio * 100}%`
+          }}
+        >
+          <iframe
+            title={title}
+            allowFullScreen={allowFullScreen}
+            style={{
+              border: 0,
+              width: '100%',
+              height: '100%',
+              borderRadius: '8px',
+              aspectRatio: 'unset',
+              position: 'absolute'
+            }}
+            className="absolute inset-0 size-full rounded-md border-0"
+            {...props}
+            src={props.src + '&autoplay=0'}
+          />
+        </div>
       </div>
     </div>
   )
