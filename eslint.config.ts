@@ -19,6 +19,7 @@ export default leostar({
     'react-hooks/exhaustive-deps': 'off',
     'react/no-array-index-key': 'off',
     'jsdoc/check-param-names': 'off',
+    'react-dom/no-missing-iframe-sandbox': 'off',
     'react-dom/no-dangerously-set-innerhtml': 'off',
     'react/prefer-destructuring-assignment': 'off',
     'react-web-api/no-leaked-event-listener': 'off',

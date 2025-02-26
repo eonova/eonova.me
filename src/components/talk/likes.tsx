@@ -1,8 +1,8 @@
 'use client'
-import { Heart } from 'lucide-react'
 import NumberFlow from '@number-flow/react'
-import { useState, useEffect } from 'react'
+import { Heart } from 'lucide-react'
 import { useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
 import { cn } from '~/lib/utils'
 import { api } from '~/trpc/react'
 
@@ -28,7 +28,7 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
 
   // 实时数据订阅
   const { data: realtimeData } = api.talks.getAllTalks.useQuery(undefined, {
-    select: (data) => data.items.find(t => t.id === talkId)?.likes
+    select: data => data.items.find(t => t.id === talkId)?.likes,
   })
 
   // 点赞 mutation
@@ -39,14 +39,15 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
 
       // 乐观更新
       utils.talks.getAllTalks.setData(undefined, (old) => {
-        if (!old) return old
+        if (!old)
+          return old
         return {
           ...old,
           items: old.items.map(talk =>
             talk.id === talkId
               ? { ...talk, likes: talk.likes + 1 }
-              : talk
-          )
+              : talk,
+          ),
         }
       })
 
@@ -57,19 +58,17 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
       setOptimisticLikes(prev => prev - 1)
     },
     onSuccess: () => {
-      setUserLikes(prev => {
+      setUserLikes((prev) => {
         const newValue = prev + 1
         localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
         return newValue
       })
-    }
+    },
   })
 
   const handleLike = () => {
-    console.log(11111111111111111111111)
-    if (!session || userLikes >= MAX_LIKES_PER_USER) return
-
-    console.log(2222222222222222222222222)
+    if (!session || userLikes >= MAX_LIKES_PER_USER)
+      return
     setOptimisticLikes(prev => prev + 1)
     incrementLike({ talkId })
   }
@@ -85,14 +84,15 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
         'flex items-center gap-2 transition-all',
         session ? 'cursor-pointer hover:scale-105' : 'cursor-not-allowed',
         userLikes >= MAX_LIKES_PER_USER && 'opacity-50',
-        className
+        className,
       )}
       onClick={handleLike}
     >
       <Heart className={cn(
         'h-3 w-3 transition-colors',
-        userLikes > 0 ? 'fill-red-500 text-red-500' : 'text-gray-400'
-      )} />
+        userLikes > 0 ? 'fill-red-500 text-red-500' : 'text-gray-400',
+      )}
+      />
 
       <div className="flex items-center gap-1">
         <NumberFlow
@@ -101,7 +101,9 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
         />
         {userLikes > 0 && (
           <span className="text-xs text-gray-500">
-            (+{Math.min(userLikes, MAX_LIKES_PER_USER)})
+            (+
+            {Math.min(userLikes, MAX_LIKES_PER_USER)}
+            )
           </span>
         )}
       </div>

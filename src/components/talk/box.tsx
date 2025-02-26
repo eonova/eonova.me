@@ -1,7 +1,7 @@
 import { Heart, Share2 } from 'lucide-react'
 import Image from 'next/image'
-import TalkMdx from './mdx'
 import LikeButton from './likes'
+import TalkMdx from './mdx'
 
 interface TalkBoxProps {
   id?: string
@@ -50,11 +50,14 @@ const TalkBox: React.FC<TalkBoxProps> = ({
         </div>
         <div className="ml-3 sm:ml-0 flex items-center text-xs text-gray-500 dark:text-color-500/80 gap-4 w-full">
           {
-            id ? <LikeButton initialLikes={0} talkId={id} />
-              : <div className='flex items-center gap-1 cursor-pointer'>
-                <Heart className="h-3 w-3" />
-                <span>0</span>
-              </div>
+            id
+              ? <LikeButton initialLikes={0} talkId={id} />
+              : (
+                  <div className="flex items-center gap-1 cursor-pointer">
+                    <Heart className="h-3 w-3" />
+                    <span>0</span>
+                  </div>
+                )
           }
           <div className="flex items-center gap-1 cursor-pointer">
             <Share2 className="h-3 w-3" />

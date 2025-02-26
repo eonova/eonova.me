@@ -7,7 +7,7 @@ const MusicCard: React.FC<MusicCardProps> = () => {
     <div>
       Music
     </div>
-  );
+  )
 }
 
-export default MusicCard;
+export default MusicCard

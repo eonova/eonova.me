@@ -24,7 +24,7 @@ export const appRouter = createTRPCRouter({
   rates: ratesRouter,
   users: usersRouter,
   album: albumRouter,
-  talks: talksRouter
+  talks: talksRouter,
 })
 
 export type AppRouter = typeof appRouter

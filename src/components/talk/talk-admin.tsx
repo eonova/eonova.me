@@ -1,10 +1,10 @@
 'use client'
-import { useState } from "react";
-import { Button } from "../base/button";
-import { Textarea } from "../base/textarea";
-import TalkBox from "./box";
-import { api } from "~/trpc/react"
-import { toast } from "../base/toaster";
+import { useState } from 'react'
+import { api } from '~/trpc/react'
+import { Button } from '../base/button'
+import { Textarea } from '../base/textarea'
+import { toast } from '../base/toaster'
+import TalkBox from './box'
 
 interface TalkAdminProps {
   // 可添加 props 如初始数据等
@@ -20,15 +20,15 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
       setIsLoading(true)
     },
     onSuccess: () => {
-      toast.success("动态发布成功!")
+      toast.success('动态发布成功!')
       setTalkText('')
     },
     onError: (error) => {
-      toast.error("动态发布失败" + error.data)
+      toast.error(`动态发布失败${error.data}`)
     },
     onSettled: () => {
       setIsLoading(false)
-    }
+    },
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,18 +41,18 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
 
     // 调用 API
     createTalk({
-      content: talkText
+      content: talkText,
     })
   }
 
   return (
-    <div className='grid sm:grid-cols-2 gap-5 w-full flex-1'>
-      <form className='font-world flex flex-col gap-5' onSubmit={handleSubmit}>
+    <div className="grid sm:grid-cols-2 gap-5 w-full flex-1">
+      <form className="font-world flex flex-col gap-5" onSubmit={handleSubmit}>
         <h3>表达你的想法💡：</h3>
         <div className="flex flex-col gap-2">
           <Textarea
             value={talkText}
-            onChange={(e) => setTalkText(e.target.value)}
+            onChange={e => setTalkText(e.target.value)}
           />
 
           <div className="w-full flex justify-end gap-3">
@@ -75,7 +75,7 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
           </div>
         </div>
 
-        <div className='bg-gray-200/20 dark:bg-gray-200/10 rounded-xl p-5 text-xs flex-1'>
+        <div className="bg-gray-200/20 dark:bg-gray-200/10 rounded-xl p-5 text-xs flex-1">
           <h4 className="font-bold mb-2">发布规则：</h4>
           <ul className="space-y-1">
             <li>1. 内容需符合社区规范</li>
@@ -85,18 +85,20 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
         </div>
       </form>
 
-      <div className='flex flex-col gap-5'>
-        <h3 className='font-sans'>预览区域：</h3>
-        <div className='rounded-xl p-5 flex-1 border'>
-          {talkText ? (
-            <TalkBox>
-              {talkText}
-            </TalkBox>
-          ) : (
-            <div className="text-gray-500 text-sm">
-              输入内容后预览将在此处显示
-            </div>
-          )}
+      <div className="flex flex-col gap-5">
+        <h3 className="font-sans">预览区域：</h3>
+        <div className="rounded-xl p-5 flex-1 border">
+          {talkText
+            ? (
+                <TalkBox>
+                  {talkText}
+                </TalkBox>
+              )
+            : (
+                <div className="text-gray-500 text-sm">
+                  输入内容后预览将在此处显示
+                </div>
+              )}
         </div>
       </div>
     </div>

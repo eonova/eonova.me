@@ -1,9 +1,9 @@
 'use client'
-import { api } from "~/trpc/react"
-import TalkBox from "./box"
-import { Skeleton } from "../base/skeleton"
-import { useEffect } from "react"
-import { useInView } from "react-intersection-observer"
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { api } from '~/trpc/react'
+import { Skeleton } from '../base/skeleton'
+import TalkBox from './box'
 
 interface TalkListProps {
   pageSize?: number
@@ -23,8 +23,8 @@ const TalkList: React.FC<TalkListProps> = ({ pageSize = 10 }) => {
       limit: pageSize,
     },
     {
-      getNextPageParam: (lastPage) => lastPage.nextCursor,
-    }
+      getNextPageParam: lastPage => lastPage.nextCursor,
+    },
   )
 
   // 滚动加载观察点
@@ -40,14 +40,14 @@ const TalkList: React.FC<TalkListProps> = ({ pageSize = 10 }) => {
   }, [inView, hasNextPage, fetchNextPage])
 
   // 合并所有页面数据
-  const talks = data?.pages.flatMap((page) => page.items) ?? []
+  const talks = data?.pages.flatMap(page => page.items) ?? []
 
   return (
     <div className="space-y-4">
       {/* 加载状态 */}
       {isLoading && (
         <div className="space-y-4">
-          {[...Array(3)].map((_, i) => (
+          {[...Array.from({ length: 3 })].map((_, i) => (
             <Skeleton key={i} className="h-24 w-full rounded-lg" />
           ))}
         </div>
@@ -56,14 +56,15 @@ const TalkList: React.FC<TalkListProps> = ({ pageSize = 10 }) => {
       {/* 错误状态 */}
       {error && (
         <div className="text-red-500">
-          加载失败：{error.message}
+          加载失败：
+          {error.message}
         </div>
       )}
 
       {/* 数据列表 */}
       {talks.length > 0 && (
         <ul className="grid gap-4">
-          {talks.map((talk) => (
+          {talks.map(talk => (
             <li key={talk.id}>
               <TalkBox
                 id={talk.id}

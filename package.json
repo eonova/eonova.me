@@ -26,7 +26,7 @@
     "db:studio": "bun with-env drizzle-kit studio",
     "with-env": "dotenv -e .env.local -- bun",
     "lint": "eslint . --max-warnings 0",
-    "lint:fix": "eslint --fix .",
+    "lint:fix": "eslint . --max-warnings 0 --fix",
     "type-check": "tsc --noEmit",
     "prepare": "simple-git-hooks",
     "deps:up": "taze",
@@ -169,7 +169,7 @@
     "commit-msg": "bun exec tsx ./scripts/verify-commit.ts"
   },
   "lint-staged": {
-    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix",
+    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint . --max-warnings 0 --fix",
     "**/*": "prettier --write --ignore-unknown"
   },
   "browserslist": [

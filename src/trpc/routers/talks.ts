@@ -1,7 +1,7 @@
 import type { RouterOutputs } from '../react'
 import { TRPCError } from '@trpc/server'
+import { eq, lt, sql } from 'drizzle-orm'
 import { z } from 'zod'
-import { eq, sql, lt } from 'drizzle-orm'
 import { talks } from '~/db'
 import { ratelimit } from '~/lib/kv'
 import { getIp } from '~/utils/get-ip'
@@ -15,12 +15,13 @@ export const talksRouter = createTRPCRouter({
       z.object({
         limit: z.number().min(1).max(100).default(10),
         cursor: z.date().optional(),
-      }).optional().default({})
+      }).optional().default({}),
     )
     .query(async ({ ctx, input }) => {
       const ip = getIp(ctx.headers)
       const { success } = await ratelimit.limit(getKey(`get:${ip}`))
-      if (!success) throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
+      if (!success)
+        throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
 
       // 获取 limit + 1 条用于判断是否有下一页
       const items = await ctx.db.query.talks.findMany({
@@ -51,9 +52,9 @@ export const talksRouter = createTRPCRouter({
     .input(
       z.object({
         content: z.string()
-          .min(1, "内容不能为空")
-          .max(500, "内容长度不能超过500字符")
-      })
+          .min(1, '内容不能为空')
+          .max(500, '内容长度不能超过500字符'),
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const [newTalk] = await ctx.db.insert(talks).values({
@@ -73,9 +74,9 @@ export const talksRouter = createTRPCRouter({
       z.object({
         id: z.string().nonempty(),
         content: z.string()
-          .min(1, "内容不能为空")
-          .max(500, "内容长度不能超过500字符")
-      })
+          .min(1, '内容不能为空')
+          .max(500, '内容长度不能超过500字符'),
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const [updatedTalk] = await ctx.db.update(talks)

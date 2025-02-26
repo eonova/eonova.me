@@ -4,8 +4,8 @@ interface VideoCardProps extends React.IframeHTMLAttributes<HTMLIFrameElement> {
 
 const VideoCard: React.FC<VideoCardProps> = ({
   style,
-  title = "视频播放器", // 可访问性要求
-  allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+  title = '视频播放器', // 可访问性要求
+  allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
   allowFullScreen = true,
   ...props
 }) => {
@@ -26,4 +26,4 @@ const VideoCard: React.FC<VideoCardProps> = ({
   )
 }
 
-export default VideoCard;
+export default VideoCard
