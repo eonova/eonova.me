@@ -18,7 +18,7 @@ const VideoCard: React.FC<VideoCardProps> = ({
     >
       <div className="flex justify-center">
         <div
-          className="relative h-0 w-full bg-gray-100 shadow-lg"
+          className="relative h-0 w-full shadow-lg"
           style={{
             paddingBottom: `${scaleRadio * 100}%`,
           }}
