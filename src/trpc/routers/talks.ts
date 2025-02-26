@@ -96,5 +96,3 @@ export const talksRouter = createTRPCRouter({
       return updatedTalk
     }),
 })
-
-export type GetTalksOutput = RouterOutputs['talks']['getAllTalks']
