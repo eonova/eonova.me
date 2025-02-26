@@ -8,6 +8,27 @@
       "when": 1738984997228,
       "tag": "0000_plain_thor",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1740583033529,
+      "tag": "0001_curly_captain_cross",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1740584675680,
+      "tag": "0002_lazy_harry_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1740584881943,
+      "tag": "0003_powerful_tarot",
+      "breakpoints": true
     }
   ]
 }

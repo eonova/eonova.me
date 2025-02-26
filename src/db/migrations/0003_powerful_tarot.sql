@@ -1,0 +1,1 @@
+ALTER TABLE "talk" ALTER COLUMN "content" SET NOT NULL;

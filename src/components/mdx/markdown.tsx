@@ -26,7 +26,7 @@ const Markdown = memo((props: MarkdownProps) => {
             th: TableHead,
             td: TableCell,
           },
-          disableParsingRawHTML: true,
+          disableParsingRawHTML: false,
           wrapper: Fragment,
         }}
       >
