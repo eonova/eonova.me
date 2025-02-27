@@ -8,7 +8,7 @@ import color from 'tinycolor2'
  *
  * Modified by: leostar
  */
-import { getErrorMessage } from '~/utils/get-error-message'
+import { getErrorMessage } from '~/utils'
 
 export const runtime = 'edge'
 

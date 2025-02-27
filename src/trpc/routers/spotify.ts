@@ -1,9 +1,7 @@
 import { TRPCError } from '@trpc/server'
 import { env } from '~/lib/env'
 import { ratelimit } from '~/lib/kv'
-
-import { getIp } from '~/utils/get-ip'
-
+import { getIp } from '~/utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 const CLIENT_ID = env.SPOTIFY_CLIENT_ID

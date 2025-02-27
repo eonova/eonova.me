@@ -2,9 +2,7 @@ import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { eq, posts, sql, sum } from '~/db'
 import { ratelimit, redis, redisKeys } from '~/lib/kv'
-
-import { getIp } from '~/utils/get-ip'
-
+import { getIp } from '~/utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 const getKey = (id: string) => `views:${id}`

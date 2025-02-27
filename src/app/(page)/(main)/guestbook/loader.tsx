@@ -1,7 +1,7 @@
 import type { Key } from 'react'
 import { Skeleton } from '~/components/base'
 import { cn } from '~/lib/utils'
-import { range } from '~/utils/range'
+import { range } from '~/utils'
 
 function Placeholder() {
   return (

@@ -3,7 +3,7 @@ import { eq, lt, sql } from 'drizzle-orm'
 import { z } from 'zod'
 import { talks } from '~/db'
 import { ratelimit } from '~/lib/kv'
-import { getIp } from '~/utils/get-ip'
+import { getIp } from '~/utils'
 import { adminProcedure, createTRPCRouter, publicProcedure } from '../trpc'
 
 const getKey = (id: string) => `talks:${id}`

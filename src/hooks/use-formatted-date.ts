@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { dayjs } from '~/utils/dayjs'
+import { dayjs } from '~/utils'
 
 interface Options {
   format: string

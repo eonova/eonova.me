@@ -7,7 +7,7 @@ import BackgroundFont from '~/components/background-font'
 import PageTitle from '~/components/page-title'
 import ProjectCards from '~/components/project-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
-import { groupAndSortByYear } from '~/utils/group-sort-by-year'
+import { groupAndSortByYear } from '~/utils'
 
 const title = '项目'
 const description = '我的项目清单。所有东西都是用 ❤️ 制作'

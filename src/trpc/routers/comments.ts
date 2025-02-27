@@ -24,9 +24,7 @@ import {
 import { env } from '~/lib/env'
 
 import { ratelimit } from '~/lib/kv'
-import { getDefaultUser } from '~/utils/get-default-user'
-import { getIp } from '~/utils/get-ip'
-
+import { getDefaultUser, getIp } from '~/utils'
 import { adminProcedure, createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc'
 
 const resend = new Resend(env.RESEND_API_KEY)

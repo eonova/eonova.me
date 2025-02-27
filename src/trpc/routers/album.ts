@@ -4,7 +4,7 @@ import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { album, eq } from '~/db'
 import { ratelimit } from '~/lib/kv'
-import { getIp } from '~/utils/get-ip'
+import { getIp } from '~/utils'
 import { adminProcedure, createTRPCRouter, publicProcedure } from '../trpc'
 
 const getKey = (id: string) => `album:${id}`

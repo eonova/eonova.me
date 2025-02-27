@@ -1,8 +1,7 @@
 import { useSession } from 'next-auth/react'
 
 import { useDialogsStore } from '~/stores/dialogs'
-import { getAvatarAbbreviation } from '~/utils/get-avatar-abbreviation'
-import { getDefaultUser } from '~/utils/get-default-user'
+import { getAvatarAbbreviation, getDefaultUser } from '~/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../base/avatar'
 import { Button } from '../base/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '../base/dropdown-menu'

@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server'
 import { SITE_URL } from '~/config/constants'
 import { db, eq, posts } from '~/db'
 
-import { getErrorMessage } from '~/utils/get-error-message'
+import { getErrorMessage } from '~/utils'
 
 interface OGRouteProps {
   params: Promise<{

@@ -4,9 +4,7 @@ import { z } from 'zod'
 import { eq, likesSessions, posts, sql, sum } from '~/db'
 import { env } from '~/lib/env'
 import { ratelimit, redis, redisKeys } from '~/lib/kv'
-
-import { getIp } from '~/utils/get-ip'
-
+import { getIp } from '~/utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 function getSessionId(slug: string, ip: string): string {

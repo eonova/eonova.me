@@ -8,8 +8,7 @@ import { and, desc, eq, guestbook, lt } from '~/db'
 import { env, flags } from '~/lib/env'
 
 import { ratelimit } from '~/lib/kv'
-import { getDefaultUser } from '~/utils/get-default-user'
-import { getIp } from '~/utils/get-ip'
+import { getDefaultUser, getIp } from '~/utils'
 
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc'
 

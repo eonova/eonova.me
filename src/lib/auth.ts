@@ -6,7 +6,7 @@ import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import { cache } from 'react'
-import { getDefaultUser } from '~/utils/get-default-user'
+import { getDefaultUser } from '~/utils'
 import { accounts, db, eq, sessions, users, verificationTokens } from '../db'
 
 import { env } from './env'
