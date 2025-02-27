@@ -1,15 +1,15 @@
-interface NotesProps {
+import { allNotes } from "content-collections"
+import { redirect } from "next/navigation"
 
-}
-
-const Notes: React.FC<NotesProps> = () => {
-  return (
-    <>
-      <div className="bg-gray-300/10 rounded-2xl flex justify-center items-center w-full mx-auto h-[50vh] p-5 mt-10">
-        <p>🚧 手记页面（建设中）</p>
-      </div>
-    </>
+export default async function NotesPage() {
+  // 服务端排序避免客户端计算
+  const sortedNotes = [...allNotes].sort((a, b) =>
+    new Date(b.createTime).getTime() - new Date(a.createTime).getTime()
   )
-}
 
-export default Notes
+  if (!sortedNotes.length) {
+    redirect('/404') // 处理空数据
+  }
+
+  redirect(`/notes/${sortedNotes[0].slug}`)
+}

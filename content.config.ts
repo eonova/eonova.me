@@ -23,16 +23,8 @@ function generateSlug(str: string, length: number): string {
       .digest('hex')
 
     return hash.slice(0, Math.min(length, 64))
-  } else {
-    return str
-      .normalize('NFKD') // 分解重音符号
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '') // 移除非单词字符
-      .replace(/[\s_-]+/g, '-') // 空格/下划线转连字符
-      .replace(/^-+|-+$/g, '') // 去除首尾连字符
-      .slice(0, length)
-      .replace(/-+$/, '') // 二次去除尾部连字符
   }
+  return str
 }
 
 async function transform<D extends BaseDoc>(document: D, context: Context) {
@@ -47,8 +39,8 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     throw new Error(`Invalid path: ${document._meta.path}`)
   }
 
-  const isPost = path.includes('\\')
-  const pathSplit = path.split('\\')
+  const isPost = context.collection.name === 'Post'
+  const pathSplit = isPost ? path.split('\\') : path
   const slug = generateSlug(pathSplit[pathSplit.length - 1] ?? '', 10)
 
   return {
@@ -85,6 +77,7 @@ const notes = defineCollection({
     title: z.string(),
     createTime: z.string(),
     mood: z.string(),
+    cover: z.string(),
   }),
   transform,
 })

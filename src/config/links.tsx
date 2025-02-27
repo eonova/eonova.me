@@ -41,6 +41,8 @@ export interface IHeaderMenu {
   subMenu?: Omit<IHeaderMenu, 'exclude'>[]
 }
 
+import { allNotes } from 'content-collections'
+
 export const HEADER_LINKS: IHeaderMenu[] = [
   {
     icon: <PencilIcon className="size-5" />,
@@ -55,7 +57,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
   },
   {
     icon: <Notebook className="size-5" />,
-    href: '/notes',
+    href: '/notes/' + allNotes.sort((a, b) => new Date(b.createTime).getTime() - new Date(a.createTime).getTime())[0].slug,
     key: 'notes',
     text: '手记',
   },
