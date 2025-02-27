@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type { Context, Meta } from '@content-collections/core'
+import { createHash } from 'node:crypto'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { getTOC, rehypePlugins, remarkPlugins } from '@ileostar/mdx-plugins'
@@ -9,28 +10,57 @@ interface BaseDoc {
   content: string
 }
 
+function generateSlug(str: string, length: number): string {
+  const trimmed = str.trim()
+  if (!trimmed)
+    return ''
+
+  const chinesePattern = /[\u4E00-\u9FA5\u3400-\u4DBF\uF900-\uFAFF]/
+
+  if (chinesePattern.test(trimmed)) {
+    const hash = createHash('sha256')
+      .update(str.normalize('NFKC'))
+      .digest('hex')
+
+    return hash.slice(0, Math.min(length, 64))
+  } else {
+    return str
+      .normalize('NFKD') // 分解重音符号
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '') // 移除非单词字符
+      .replace(/[\s_-]+/g, '-') // 空格/下划线转连字符
+      .replace(/^-+|-+$/g, '') // 去除首尾连字符
+      .slice(0, length)
+      .replace(/-+$/, '') // 二次去除尾部连字符
+  }
+}
+
 async function transform<D extends BaseDoc>(document: D, context: Context) {
   const code = await compileMDX(context, document, {
     remarkPlugins,
     rehypePlugins,
-  });
+  })
 
-  const path = document._meta.path;
+  const path = document._meta.path
 
   if (!path) {
-    throw new Error(`Invalid path: ${document._meta.path}`);
+    throw new Error(`Invalid path: ${document._meta.path}`)
   }
 
-  const isPost = path.includes('\\');
-  const pathSplit = path.split('\\');
+  const isPost = path.includes('\\')
+  const pathSplit = path.split('\\')
+  const slug = generateSlug(pathSplit[pathSplit.length - 1] ?? '', 10)
 
   return {
     ...document,
     code,
-    categories: isPost ? pathSplit[0] : undefined,
-    slug: pathSplit[pathSplit.length - 1],
+    ...{
+      categories: isPost ? pathSplit[0] : undefined,
+      categoriesText: isPost ? pathSplit[0] : undefined,
+    },
+    slug,
     toc: await getTOC(document.content),
-  };
+  }
 }
 
 const posts = defineCollection({
@@ -54,11 +84,10 @@ const notes = defineCollection({
   schema: z => ({
     title: z.string(),
     createTime: z.string(),
-    mood: z.string()
+    mood: z.string(),
   }),
   transform,
 })
-
 
 const projects = defineCollection({
   name: 'Project',
