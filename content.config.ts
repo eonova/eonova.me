@@ -13,25 +13,24 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
   const code = await compileMDX(context, document, {
     remarkPlugins,
     rehypePlugins,
-  })
+  });
 
-  const path = document._meta.path
+  const path = document._meta.path;
 
   if (!path) {
-    throw new Error(`Invalid path: ${document._meta.path}`)
+    throw new Error(`Invalid path: ${document._meta.path}`);
   }
 
-  const isPost = path.includes('\\')
-  const slug = path.split('\\')[path.split('\\').length - 1]
+  const isPost = path.includes('\\');
+  const pathSplit = path.split('\\');
+
   return {
     ...document,
-    ...{
-      categories: isPost ? path.split('\\')[0] : void 0,
-    },
     code,
-    slug,
+    categories: isPost ? pathSplit[0] : undefined,
+    slug: pathSplit[pathSplit.length - 1],
     toc: await getTOC(document.content),
-  }
+  };
 }
 
 const posts = defineCollection({
@@ -47,6 +46,19 @@ const posts = defineCollection({
   }),
   transform,
 })
+
+const notes = defineCollection({
+  name: 'Notes',
+  directory: './data/notes',
+  include: '**/*.md',
+  schema: z => ({
+    title: z.string(),
+    createTime: z.string(),
+    mood: z.string()
+  }),
+  transform,
+})
+
 
 const projects = defineCollection({
   name: 'Project',
@@ -65,5 +77,5 @@ const projects = defineCollection({
 })
 
 export default defineConfig({
-  collections: [posts, projects],
+  collections: [notes, posts, projects],
 })
