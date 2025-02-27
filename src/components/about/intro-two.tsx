@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { MBTI_PERSONALITY, MBTI_PERSONALITY_NAME, STAR_SIGN, STAR_SIGN_NAME } from '~/config/about'
+import { MBTI_PERSONALITY, MBTI_PERSONALITY_NAME, STAR_SIGN, STAR_SIGN_NAME } from '~/config/about-profiles'
 import IntroCard from './intro-card'
 
 const IntroTwo: React.FC = () => {

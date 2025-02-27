@@ -21,10 +21,15 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     throw new Error(`Invalid path: ${document._meta.path}`)
   }
 
+  const isPost = path.includes('\\')
+  const slug = path.split('\\')[path.split('\\').length - 1]
   return {
     ...document,
+    ...{
+      categories: isPost ? path.split('\\')[0] : void 0,
+    },
     code,
-    slug: path,
+    slug,
     toc: await getTOC(document.content),
   }
 }
@@ -38,7 +43,6 @@ const posts = defineCollection({
     date: z.string(),
     modifiedTime: z.string(),
     summary: z.string(),
-    categories: z.array(z.string()),
     cover: z.string(),
   }),
   transform,

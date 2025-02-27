@@ -4,8 +4,8 @@ import type { Post } from 'content-collections'
 
 import { ChartColumnStacked, Clock, Eye, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
+import { CATEGORIES } from '~/config/posts'
 import { api } from '~/trpc/react'
-import { Category } from '~/types/categories'
 import { BottomToUpTransitionView } from './transition'
 
 interface PostCardsProps {
@@ -71,7 +71,7 @@ function PostCard(props: PostCardProps) {
           </li>
           <li className="text-black/55 dark:text-white/55 flex gap-1 items-center">
             <ChartColumnStacked className="size-3" />
-            <span className="text-sm">{Category[categories as keyof typeof Category]}</span>
+            <span className="text-sm">{CATEGORIES.find(i => i.label === categories)?.name}</span>
           </li>
           <li className="text-black/55 dark:text-white/55 flex gap-1 items-center">
             <Eye className="size-3" />

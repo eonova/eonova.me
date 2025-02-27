@@ -19,7 +19,6 @@ import {
   PencilIcon,
   UserCircleIcon,
 } from 'lucide-react'
-import { Category } from '~/types/categories'
 import {
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
@@ -48,10 +47,10 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     href: '/posts',
     key: 'posts',
     text: '文章',
-    subMenu: CATEGORIES.map((i: string) => ({
-      text: Category[i as keyof typeof Category],
-      href: `${SITE_URL}/categories/${i}`,
-      key: i,
+    subMenu: CATEGORIES.map(category => ({
+      text: category.name,
+      href: `${SITE_URL}/categories/${category.label}`,
+      key: category.label,
     })),
   },
   {

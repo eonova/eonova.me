@@ -1,4 +1,4 @@
-import { DATE_BIRTH, PROFESSION } from '~/config/about'
+import { DATE_BIRTH, PROFESSION } from '~/config/about-profiles'
 import BackgroundFont from '../background-font'
 import IntroCard from './intro-card'
 

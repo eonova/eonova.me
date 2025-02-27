@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { LINK_MUSIC } from '~/config/about'
+import { LINK_MUSIC } from '~/config/about-profiles'
 import IntroCard from './intro-card'
 
 interface IntroFourProps {

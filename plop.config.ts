@@ -24,19 +24,13 @@ export default async function (plop: NodePlopAPI) {
         type: 'list',
         name: 'category',
         message: '选择分类:',
-        choices: CATEGORIES,
-        default: CATEGORIES[0]
-      },
-      {
-        type: 'confirm',
-        name: 'addDate',
-        message: '是否添加创建时间?',
-        default: true
+        choices: CATEGORIES.map(i => i.label),
+        default: CATEGORIES[0]?.label
       }
     ],
     actions: [{
       type: 'add',
-      path: `data/posts/{{dashCase title}}.md`,
+      path: `data/posts/{{category}}/{{dashCase title}}.md`,
       templateFile: './src/templates/post.hbs',
       // 自动跳过已存在文件
       skipIfExists: true

@@ -10,7 +10,7 @@
     "bun": ">=1"
   },
   "scripts": {
-    "dev": "bun with-env next dev --turbo -p 3777",
+    "dev": "bun with-env next dev --turbo -p 3000",
     "build": "bun with-env next build",
     "build:mdx": "content-collections build",
     "bundle-analyzer": "cross-env ANALYZE=true bun run build",
