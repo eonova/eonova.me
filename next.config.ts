@@ -86,6 +86,13 @@ const MyNextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'minio.mythsman.com',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'img.leostar.top',
         port: '',
         pathname: '/**',

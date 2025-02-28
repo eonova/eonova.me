@@ -7,8 +7,11 @@ import {
   SiX,
   SiYoutube,
 } from '@icons-pack/react-simple-icons'
+import { allNotes } from 'content-collections'
 import {
   Archive,
+  Book,
+  Film,
   FlameIcon,
   Images,
   Link2,
@@ -26,6 +29,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from './constants'
+
 import { CATEGORIES } from './posts'
 
 type SocialLinks = Array<{
@@ -41,8 +45,6 @@ export interface IHeaderMenu {
   subMenu?: Omit<IHeaderMenu, 'exclude'>[]
 }
 
-import { allNotes } from 'content-collections'
-
 export const HEADER_LINKS: IHeaderMenu[] = [
   {
     icon: <PencilIcon className="size-5" />,
@@ -57,7 +59,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
   },
   {
     icon: <Notebook className="size-5" />,
-    href: '/notes/' + allNotes.sort((a, b) => new Date(b.createTime).getTime() - new Date(a.createTime).getTime())[0].slug,
+    href: `/notes/${allNotes.sort((a, b) => new Date(b.createTime).getTime() - new Date(a.createTime).getTime())[0].slug}`,
     key: 'notes',
     text: '手记',
   },
@@ -102,6 +104,18 @@ export const HEADER_LINKS: IHeaderMenu[] = [
         href: '/album',
         key: 'album',
         text: '相册',
+      },
+      {
+        icon: <Film className="size-5" />,
+        href: '/movies',
+        key: 'movies',
+        text: '电影',
+      },
+      {
+        icon: <Book className="size-5" />,
+        href: '/books',
+        key: 'books',
+        text: '书单',
       },
     ],
   },

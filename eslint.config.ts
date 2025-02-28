@@ -30,5 +30,6 @@ export default leostar({
     'no-console': 'off',
     'ts/no-redeclare': 'off',
     'ts/ban-ts-comment': 'off',
+    'no-irregular-whitespace': 'off'
   },
 })
