@@ -13,13 +13,13 @@ type BookAction = z.infer<typeof BookActionSchema>
 function validateBookItem(raw: any): DoubanItem {
   return {
     title: raw.item.title,
-    detailUrl: `https://book.douban.com/subject/${raw.items.douban_id}/`,
+    detailUrl: `https://book.douban.com/subject/${raw.item.douban_id}/`,
     coverUrl: raw.item.thumbnail,
     metaInfo: [
-      raw.items.author && `作者: ${raw.items.author}`,
-      raw.items.translator && `译者: ${raw.items.translator}`,
-      raw.items.press && `出版社: ${raw.items.press}`,
-      raw.items.producer && `出品方: ${raw.items.producer}`,
+      raw.item.author && `作者: ${raw.item.author}`,
+      raw.item.translator && `译者: ${raw.item.translator}`,
+      raw.item.press && `出版社: ${raw.item.press}`,
+      raw.item.producer && `出品方: ${raw.item.producer}`,
     ].filter(Boolean).join(' | '),
     publishDate: raw.item.publish_date,
     markInfo: [raw.mark_date, raw.label].filter(Boolean).join(' · '),
@@ -52,7 +52,7 @@ export const booksRouter = createTRPCRouter({
         return {
           success: true,
           data: {
-            user: mapDoubanUser(userRes.result.user),
+            user: mapDoubanUser(userRes.result),
             collections: actionsData.map(data => ({
               action: data.action,
               items: data.items.map(validateBookItem),

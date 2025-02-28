@@ -40,8 +40,10 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
   }
 
   const isPost = context.collection.name === 'Post'
+  const isNote = context.collection.name === 'Note'
+  console.log('===========', context.collection.name, isNote)
   const pathSplit = path.split('\\')
-  const slug = isPost ? generateSlug(pathSplit[pathSplit.length - 1] ?? '', 10) : path
+  const slug = (isPost || isNote) ? generateSlug(pathSplit[pathSplit.length - 1] ?? '', 10) : path
 
   return {
     ...document,
@@ -70,7 +72,7 @@ const posts = defineCollection({
 })
 
 const notes = defineCollection({
-  name: 'Notes',
+  name: 'Note',
   directory: './data/notes',
   include: '**/*.md',
   schema: z => ({

@@ -55,7 +55,7 @@ const Books: React.FC = () => {
   return (
     <>
       <PageTitle
-        title="电影"
+        title="影单"
         description="看一部电影，走一遍人生🎬"
       />
       {

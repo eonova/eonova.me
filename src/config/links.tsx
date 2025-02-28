@@ -94,22 +94,22 @@ export const HEADER_LINKS: IHeaderMenu[] = [
         text: '项目',
       },
       {
-        icon: <Link2 className="size-5" />,
-        href: '/links',
-        key: 'links',
-        text: '收藏',
-      },
-      {
         icon: <Images className="size-5" />,
         href: '/album',
         key: 'album',
         text: '相册',
       },
       {
+        icon: <Link2 className="size-5" />,
+        href: '/links',
+        key: 'links',
+        text: '收藏',
+      },
+      {
         icon: <Film className="size-5" />,
         href: '/movies',
         key: 'movies',
-        text: '电影',
+        text: '影单',
       },
       {
         icon: <Book className="size-5" />,
