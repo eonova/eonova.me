@@ -31,7 +31,7 @@ const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => 
       href={item.detailUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn('block rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow', className)}
+      className={cn('block rounded-lg dark:bg-[#1E2939] overflow-hidden shadow-lg hover:shadow-xl transition-shadow', className)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -43,7 +43,7 @@ const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => 
         alt={item.metaInfo}
         className="w-full h-64 object-cover"
       />
-      <div className="p-4 bg-background">
+      <div className="p-4 bg-background dark:bg-[#1E2939]">
         <h3 className="font-semibold line-clamp-2 mb-2">{item.title}</h3>
         <div className="text-sm text-muted-foreground line-clamp-2 mb-2">
           {item.metaInfo}
