@@ -1,7 +1,7 @@
 import { Heart } from 'lucide-react'
 import Image from 'next/image'
+import { dayjs } from '~/lib/dayjs'
 import { cn } from '~/lib/utils'
-import { dayjs } from '~/utils'
 import LikeButton from './likes'
 import TalkMdx from './mdx'
 

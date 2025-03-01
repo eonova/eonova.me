@@ -1,4 +1,5 @@
 import { albumRouter } from './routers/album'
+import { bangumiRouter } from './routers/bangumi'
 import { booksRouter } from './routers/books'
 import { commentsRouter } from './routers/comments'
 import { githubRouter } from './routers/github'
@@ -28,7 +29,8 @@ export const appRouter = createTRPCRouter({
   album: albumRouter,
   talks: talksRouter,
   movies: moviesRouter,
-  books: booksRouter
+  books: booksRouter,
+  bangumi: bangumiRouter,
 })
 
 export type AppRouter = typeof appRouter

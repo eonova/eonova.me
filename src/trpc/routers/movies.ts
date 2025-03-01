@@ -1,11 +1,11 @@
 import type { DoubanItem, DoubanPluginConfig, MovieAction } from '~/types/douban'
 import { z } from 'zod'
 import { MovieActionSchema } from '~/types/douban'
-import { buildErrorResponse } from '~/utils/buildErrorResponse'
-import { fetchUser } from '~/utils/fetchUser'
-import { getRateLevel } from '~/utils/getRateLevel'
-import { handleApiError } from '~/utils/handleApiError'
-import { mapDoubanUser } from '~/utils/mapDoubanUser'
+import { buildErrorResponse } from '~/utils/build-error-response'
+import { fetchUser } from '~/utils/douban/fetch-douban-user'
+import { getRateLevel } from '~/utils/douban/get-rate-level'
+import { handleApiError } from '~/utils/douban/handle-api-error'
+import { mapDoubanUser } from '~/utils/douban/map-douban-user'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 function validateMovieItem(raw: any): DoubanItem {

@@ -1,4 +1,4 @@
-import type { mapDoubanUser } from '~/utils/mapDoubanUser'
+import type { mapDoubanUser } from '~/utils/douban/map-douban-user'
 import { z } from 'zod'
 
 /** ​ 豆瓣内容类型 */

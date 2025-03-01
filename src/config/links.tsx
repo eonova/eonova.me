@@ -10,7 +10,9 @@ import {
 import { allNotes } from 'content-collections'
 import {
   Archive,
+  BellElectric,
   Book,
+  Cat,
   Film,
   FlameIcon,
   Images,
@@ -82,17 +84,37 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     text: '留言板',
   },
   {
+    icon: <BellElectric className="size-5" />,
+    href: '/books',
+    key: 'recreation',
+    text: '书影番',
+    subMenu: [
+      {
+        icon: <Book className="size-5" />,
+        href: '/books',
+        key: 'books',
+        text: '书单',
+      },
+      {
+        icon: <Film className="size-5" />,
+        href: '/movies',
+        key: 'movies',
+        text: '观影记录',
+      },
+      {
+        icon: <Cat className="size-5" />,
+        href: '/bangumi',
+        key: 'bangumi',
+        text: '追番',
+      },
+    ],
+  },
+  {
     icon: <ListCollapse className="size-5" />,
-    href: '#',
+    href: '/album',
     key: 'more',
     text: '我的',
     subMenu: [
-      {
-        icon: <FlameIcon className="size-5" />,
-        href: '/projects',
-        key: 'projects',
-        text: '项目',
-      },
       {
         icon: <Images className="size-5" />,
         href: '/album',
@@ -100,22 +122,16 @@ export const HEADER_LINKS: IHeaderMenu[] = [
         text: '相册',
       },
       {
+        icon: <FlameIcon className="size-5" />,
+        href: '/projects',
+        key: 'projects',
+        text: '项目',
+      },
+      {
         icon: <Link2 className="size-5" />,
         href: '/links',
         key: 'links',
         text: '收藏',
-      },
-      {
-        icon: <Film className="size-5" />,
-        href: '/movies',
-        key: 'movies',
-        text: '影单',
-      },
-      {
-        icon: <Book className="size-5" />,
-        href: '/books',
-        key: 'books',
-        text: '书单',
       },
     ],
   },
