@@ -23,28 +23,28 @@ export const env = createEnv({
   server: {
     ...(flags.spotify
       ? {
-          SPOTIFY_CLIENT_ID: z.string().min(1),
-          SPOTIFY_CLIENT_SECRET: z.string().min(1),
-          SPOTIFY_REFRESH_TOKEN: z.string().min(1),
-        }
+        SPOTIFY_CLIENT_ID: z.string().min(1),
+        SPOTIFY_CLIENT_SECRET: z.string().min(1),
+        SPOTIFY_REFRESH_TOKEN: z.string().min(1),
+      }
       : {}),
 
     ...(flags.auth
       ? {
-          AUTH_SECRET: z.string().min(1),
-          GOOGLE_CLIENT_ID: z.string().min(1),
-          GOOGLE_CLIENT_SECRET: z.string().min(1),
-          GITHUB_CLIENT_ID: z.string().min(1),
-          GITHUB_CLIENT_SECRET: z.string().min(1),
-        }
+        AUTH_SECRET: z.string().min(1),
+        GOOGLE_CLIENT_ID: z.string().min(1),
+        GOOGLE_CLIENT_SECRET: z.string().min(1),
+        GITHUB_CLIENT_ID: z.string().min(1),
+        GITHUB_CLIENT_SECRET: z.string().min(1),
+      }
       : {}),
 
     ...(flags.stats
       ? {
-          GOOGLE_API_KEY: z.string().min(1),
-          GITHUB_TOKEN: z.string().min(1),
-          WAKATIME_API_KEY: z.string().min(1),
-        }
+        GOOGLE_API_KEY: z.string().min(1),
+        GITHUB_TOKEN: z.string().min(1),
+        WAKATIME_API_KEY: z.string().min(1),
+      }
       : {}),
 
     ...(flags.comment
@@ -53,29 +53,30 @@ export const env = createEnv({
 
     ...(flags.guestbookNotification
       ? {
-          DISCORD_WEBHOOK_URL: z.string().url(),
-        }
+        DISCORD_WEBHOOK_URL: z.string().url(),
+      }
       : {}),
 
     ...(flags.likeButton
       ? {
-          IP_ADDRESS_SALT: z.string().min(1),
-        }
+        IP_ADDRESS_SALT: z.string().min(1),
+      }
       : {}),
     ...(flags.search
       ? {
-          ALGOLIA_APP_ID: z.string().min(1),
-          ALGOLIA_SEARCH_ONLY_API_KEY: z.string().min(1),
-        }
+        ALGOLIA_APP_ID: z.string().min(1),
+        ALGOLIA_SEARCH_ONLY_API_KEY: z.string().min(1),
+      }
       : {}),
-    DOUBAN_COOKIE: z.string().min(1),
+    DOUBAN_ID: z.string().min(1),
+    BANGUMI_USERNAME: z.string().min(1),
+    BANGUMI_APIKEY: z.string().optional(),
     DATABASE_URL: z.string().url(),
     UPSTASH_REDIS_REST_URL: z.string().url(),
     UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
     REACT_SCAN_MONITOR_API_KEY: z.string().optional(),
   },
   client: {
-
     NEXT_PUBLIC_FLAG_COMMENT: z.string().min(1).optional(),
     NEXT_PUBLIC_FLAG_AUTH: z.string().min(1).optional(),
     NEXT_PUBLIC_FLAG_STATS: z.string().min(1).optional(),

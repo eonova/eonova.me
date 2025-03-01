@@ -18,7 +18,6 @@ export interface BangumiPluginConfig {
       offset?: number
     }
   }
-  apiKey?: string
 }
 
 export interface BangumiItem {

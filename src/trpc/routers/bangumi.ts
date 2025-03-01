@@ -1,5 +1,6 @@
 import type { AnimeAction, BangumiItem, BangumiPluginConfig } from '~/types/bangumi'
 import { z } from 'zod'
+import { env } from '~/lib/env'
 import { AnimeActionSchema, AnimeType } from '~/types/bangumi'
 import { getBangumiRate, handleApiError } from '~/utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
@@ -42,7 +43,7 @@ async function fetchAnimeCollection(
   const res = await fetch(endpoint.toString(), {
     headers: {
       'User-Agent': 'BangumiTRPC/1.0',
-      ...(config.apiKey && { Authorization: `Bearer ${config.apiKey}` }),
+      ...(env.BANGUMI_APIKEY && { Authorization: `Bearer ${env.BANGUMI_APIKEY}` }),
     },
   })
 
@@ -59,7 +60,6 @@ async function fetchAnimeCollection(
 export const bangumiRouter = createTRPCRouter({
   getAnimeData: publicProcedure
     .input(z.object({
-      username: z.string(),
       types: z.array(AnimeActionSchema),
       config: z.custom<Partial<BangumiPluginConfig>>(),
       cursor: z.number().optional().default(0),
@@ -67,7 +67,7 @@ export const bangumiRouter = createTRPCRouter({
     .query(async ({ input }) => {
       try {
         const { items, total } = await fetchAnimeCollection(
-          input.username,
+          env.BANGUMI_USERNAME,
           input.types[0]!,
           input.config,
           input.cursor,

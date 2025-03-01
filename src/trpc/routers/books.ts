@@ -1,6 +1,7 @@
 // src/trpc/routers/books.ts
 import type { DoubanItem, DoubanPluginConfig } from '~/types/douban'
 import { z } from 'zod'
+import { env } from '~/lib/env'
 import { buildErrorResponse } from '~/utils/build-error-response'
 import { fetchUser } from '~/utils/douban/fetch-douban-user'
 import { getRateLevel } from '~/utils/douban/get-rate-level'
@@ -33,20 +34,19 @@ function validateBookItem(raw: any): DoubanItem {
 export const booksRouter = createTRPCRouter({
   getBookData: publicProcedure
     .input(z.object({
-      userId: z.string(),
       actions: z.array(BookActionSchema),
       config: z.custom<Partial<DoubanPluginConfig>>(),
     }))
     .query(async ({ input }) => {
       try {
-        const userRes = await fetchUser(input.userId, input.config.httpHeaders?.referer)
+        const userRes = await fetchUser(env.DOUBAN_ID, input.config.httpHeaders?.referer)
         if (!userRes.success) {
           return buildErrorResponse(userRes.msg || '用户验证失败')
         }
 
         const actionsData = await Promise.all(
           input.actions.map(action =>
-            fetchBookAction(input.userId, action, input.config),
+            fetchBookAction(env.DOUBAN_ID, action, input.config),
           ),
         )
 

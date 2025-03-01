@@ -1,6 +1,7 @@
 // src/trpc/routers/movies.ts
 import type { DoubanItem, DoubanPluginConfig, MovieAction } from '~/types/douban'
 import { z } from 'zod'
+import { env } from '~/lib/env'
 import { MovieActionSchema } from '~/types/douban'
 import { buildErrorResponse } from '~/utils/build-error-response'
 import { fetchUser } from '~/utils/douban/fetch-douban-user'
@@ -42,14 +43,13 @@ async function fetchMovieAction(userId: string, action: MovieAction, config: Par
 export const moviesRouter = createTRPCRouter({
   getMovieData: publicProcedure
     .input(z.object({
-      userId: z.string(),
       actions: z.array(MovieActionSchema),
       config: z.custom<Partial<DoubanPluginConfig>>(),
     }))
     .query(async ({ input }) => {
       try {
         // 1. 验证用户有效性
-        const userRes = await fetchUser(input.userId, input.config.httpHeaders?.referer)
+        const userRes = await fetchUser(env.DOUBAN_ID, input.config.httpHeaders?.referer)
         if (!userRes.success) {
           return buildErrorResponse(userRes.msg || '用户验证失败')
         }
@@ -57,7 +57,7 @@ export const moviesRouter = createTRPCRouter({
         // 2. 并行获取各动作数据
         const actionsData = await Promise.all(
           input.actions.map(action =>
-            fetchMovieAction(input.userId, action, input.config),
+            fetchMovieAction(env.DOUBAN_ID, action, input.config),
           ),
         )
 

@@ -26,7 +26,6 @@ const Movies: React.FC = () => {
 
   // 数据查询
   const { data, status, isRefetching } = api.movies.getMovieData.useQuery({
-    userId: '271041273',
     actions: ['wish', 'collect'],
     config: {
       contentConfig: {
@@ -71,9 +70,9 @@ const Movies: React.FC = () => {
               onClick={() => setSelectedMode(mode)}
               className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors
               ${selectedMode === mode
-              ? 'bg-pink-500 text-white shadow-md'
-              : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
+                  ? 'bg-pink-500 text-white shadow-md'
+                  : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
             >
               {MODE_LABELS[mode]}
               {' '}
