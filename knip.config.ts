@@ -24,6 +24,7 @@ const config: KnipConfig = {
   ignore: [
     './scripts/verify-commit.ts',
     './src/db/seed.ts',
+    './src/config/notes.ts',
     '**/*.d.ts',
     './src/components/base/*',
     './src/plugins/*',

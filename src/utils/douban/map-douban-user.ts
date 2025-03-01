@@ -1,4 +1,4 @@
-import type { DoubanUser } from '~/types/douban';
+import type { DoubanUser } from '~/types/douban'
 
 export function mapDoubanUser(raw: any): DoubanUser {
   return {
@@ -23,5 +23,5 @@ export function mapDoubanUser(raw: any): DoubanUser {
       lastSyncedAt: new Date(raw.sync_at * 1000),
       lastCheckedAt: new Date(raw.check_at * 1000),
     },
-  };
+  }
 }

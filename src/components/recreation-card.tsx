@@ -1,6 +1,6 @@
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { cn } from "~/lib/utils"
+import { cn } from '~/lib/utils'
 
 function getMinYear(dateString: string) {
   const datePattern = /\d{4}-\d{2}-\d{2}/g
@@ -21,7 +21,7 @@ interface IRecreationCardProps {
     publishDate?: string
     rating?: string
     episodesInfo?: string
-  },
+  }
   className?: string
 }
 
@@ -31,7 +31,7 @@ const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => 
       href={item.detailUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn("block rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow", className)}
+      className={cn('block rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow', className)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -50,7 +50,10 @@ const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => 
         </div>
         <div className="flex justify-between text-sm">
           {item.rating && (
-            <span className="text-primary">★ {item.rating}</span>
+            <span className="text-primary">
+              ★
+              {item.rating}
+            </span>
           )}
           {item.episodesInfo && <span>{item.episodesInfo}</span>}
           {item.publishDate && <span>{getMinYear(item.publishDate)}</span>}

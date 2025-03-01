@@ -5,13 +5,13 @@ import { allNotes } from 'content-collections'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import Comments from '~/components/comments'
-import TableOfContents from '~/components/layouts/table-of-contents'
+import NoteMdx from '~/components/mdx/note-mdx'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { flags } from '~/lib/env'
+import Footer from './footer'
 import Header from './header'
 import MobileTableOfContents from './mobile-table-of-contents'
 import Providers from './providers'
-import Mdx from '~/components/mdx'
 
 interface PageProps {
   params: Promise<{
@@ -122,10 +122,11 @@ async function Page(props: PageProps) {
       />
 
       <Providers note={note}>
-        <div className='my-16 mb-8 p-10 w-full overflow-visible flex flex-col justify-between gap-2 relative bg-white dark:bg-zinc-900/50 md:col-start-1 rounded-[0_6px_6px_0] border-zinc-200/70 dark:border-neutral-800 lg:border'>
+        <div className="my-16 mb-8 p-10 w-full overflow-visible flex flex-col justify-between gap-2 relative bg-white dark:bg-zinc-900/50 md:col-start-1 rounded-[0_6px_6px_0] border-zinc-200/70 dark:border-neutral-800 lg:border">
           <Header />
           <article className="">
-            <Mdx code={code} />
+            <NoteMdx code={code} />
+            <Footer />
           </article>
           {toc.length > 0 && <MobileTableOfContents toc={toc} />}
         </div>

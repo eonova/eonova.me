@@ -3,10 +3,10 @@ import type { mapDoubanUser } from '~/utils/douban/map-douban-user'
 import { z } from 'zod'
 
 /** ​ 豆瓣内容类型 */
-export type DoubanType = 'book' | 'movie'
+type DoubanType = 'book' | 'movie'
 
 /** ​ 用户操作类型 */
-export type DoubanAction = 'do' | 'wish' | 'collect'
+type DoubanAction = 'do' | 'wish' | 'collect'
 
 /** ​ 评分等级 */
 export type RateLevel = '粪作' | '封神' | '一般' | '较好' | '佳作'
@@ -29,35 +29,6 @@ export interface DoubanItem {
   rate?: RateLevel
   /** ​ 用户评论 */
   comment?: string
-}
-
-/** ​ 分页数据容器 */
-export interface PaginatedData<T> {
-  /** ​ 当前页码 */
-  currentPage: number
-  /** ​ 每页数量 */
-  pageSize: number
-  /** ​ 总页数 */
-  totalPages: number
-  /** ​ 数据列表 */
-  list: T[]
-}
-
-/** ​ 用户数据上下文 */
-export interface DoubanContext {
-  /** ​ 当前类型 */
-  type: DoubanType
-  /** ​ 引用文本 */
-  quote?: string
-  /** ​ 分页配置 */
-  pagination: Omit<PaginatedData<unknown>, 'list'>
-  /** ​ 分类数据集合 */
-  collections: Array<{
-    /** ​ 操作类型 */
-    action: DoubanAction
-    /** ​ 具体条目 */
-    items: DoubanItem[]
-  }>
 }
 
 /** ​ 豆瓣用户信息 */
@@ -120,7 +91,7 @@ export interface DoubanPluginConfig {
 export const MovieActionSchema = z.enum(['do', 'wish', 'collect'])
 export type MovieAction = z.infer<typeof MovieActionSchema>
 
-export interface DoubanResponseType {
+interface DoubanResponseType {
   user: ReturnType<typeof mapDoubanUser>
   collections: {
     action: MovieAction

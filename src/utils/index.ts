@@ -1,5 +1,4 @@
 export * from './bangumi/bangumi-rate'
-export * from './bangumi/map-bangumi-user'
 export * from './build-error-response'
 export * from './douban/fetch-douban-user'
 export * from './douban/get-rate-level'

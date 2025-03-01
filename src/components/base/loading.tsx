@@ -1,6 +1,6 @@
 import { cn } from '~/lib/utils'
 
-export type LoadingProps = {
+export interface LoadingProps {
   loadingText?: string
   useDefaultLoadingText?: boolean
   className?: string
@@ -28,6 +28,6 @@ export const Loading: React.FC<LoadingProps> = ({
   )
 }
 
-export const FullPageLoading = () => (
-  <Loading useDefaultLoadingText className="h-[calc(100vh-6.5rem-10rem)]" />
-)
+export function FullPageLoading() {
+  return <Loading useDefaultLoadingText className="h-[calc(100vh-6.5rem-10rem)]" />
+}

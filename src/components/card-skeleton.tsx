@@ -1,5 +1,5 @@
-import { motion } from "framer-motion"
-import { Skeleton } from "./base/skeleton"
+import { motion } from 'framer-motion'
+import { Skeleton } from './base/skeleton'
 
 export function CardSkeleton() {
   return (

@@ -6,14 +6,14 @@ interface ICATEGORIES {
 export const CATEGORIES: ICATEGORIES[] = [
   {
     name: '技术',
-    label: 'tech'
+    label: 'tech',
   },
   {
     name: '生活',
-    label: 'life'
+    label: 'life',
   },
   {
     name: '设计',
-    label: 'design'
-  }
+    label: 'design',
+  },
 ]

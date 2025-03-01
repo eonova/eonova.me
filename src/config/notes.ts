@@ -10,32 +10,32 @@ export const MOODS: IMoods[] = [
   },
   {
     text: '平静',
-    icon: 'fas fa-peace',         // 双手合十图标
+    icon: 'fas fa-peace', // 双手合十图标
   },
   {
     text: '兴奋',
-    icon: 'fas fa-star',          // 星星闪烁图标
+    icon: 'fas fa-star', // 星星闪烁图标
   },
   {
     text: '疲惫',
-    icon: 'fas fa-bed',           // 床铺图标
+    icon: 'fas fa-bed', // 床铺图标
   },
   {
     text: '快乐',
-    icon: 'fas fa-smile-beam',    // 笑脸图标
+    icon: 'fas fa-smile-beam', // 笑脸图标
   },
   {
     text: '悲伤',
-    icon: 'fas fa-sad-tear',      // 含泪图标
+    icon: 'fas fa-sad-tear', // 含泪图标
   },
   {
     text: '专注',
-    icon: 'fas fa-brain',         // 大脑图标
+    icon: 'fas fa-brain', // 大脑图标
   },
   {
     text: '创意',
-    icon: 'fas fa-lightbulb',     // 灯泡图标
-  }
+    icon: 'fas fa-lightbulb', // 灯泡图标
+  },
 ]
 
 // 可选：添加类型安全校验
@@ -43,12 +43,12 @@ type ValidMoods = '焦虑' | '平静' | '兴奋' | '疲惫' | '快乐' | '悲伤
 
 // 可选：映射到颜色方案
 export const MOOD_COLORS: Record<ValidMoods, string> = {
-  '焦虑': 'bg-orange-100',
-  '平静': 'bg-blue-50',
-  '兴奋': 'bg-yellow-100',
-  '疲惫': 'bg-gray-200',
-  '快乐': 'bg-green-100',
-  '悲伤': 'bg-indigo-100',
-  '专注': 'bg-purple-100',
-  '创意': 'bg-pink-100'
+  焦虑: 'bg-orange-100',
+  平静: 'bg-blue-50',
+  兴奋: 'bg-yellow-100',
+  疲惫: 'bg-gray-200',
+  快乐: 'bg-green-100',
+  悲伤: 'bg-indigo-100',
+  专注: 'bg-purple-100',
+  创意: 'bg-pink-100',
 }

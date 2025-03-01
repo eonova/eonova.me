@@ -17,7 +17,7 @@ function validateBangumiItem(raw: any): BangumiItem {
     ].filter(Boolean).join(' | '),
     airDate: raw.air_date,
     collectionInfo: [
-      raw.updated && new Date(raw.updated).toLocaleDateString()
+      raw.updated && new Date(raw.updated).toLocaleDateString(),
     ].filter(Boolean).join(' · '),
     rating: raw.rating ? getBangumiRate(raw.rating.score) : undefined,
     comment: raw.comment?.replace(/\\n/g, '\n'),
@@ -29,7 +29,7 @@ async function fetchAnimeCollection(
   userId: string,
   type: AnimeAction,
   config: Partial<BangumiPluginConfig>,
-  offset: number
+  offset: number,
 ) {
   const endpoint = new URL(`https://api.bgm.tv/v0/users/${userId}/collections`)
   const limit = config.contentConfig?.pagination?.limit || 24
@@ -42,7 +42,7 @@ async function fetchAnimeCollection(
   const res = await fetch(endpoint.toString(), {
     headers: {
       'User-Agent': 'BangumiTRPC/1.0',
-      ...(config.apiKey && { 'Authorization': `Bearer ${config.apiKey}` })
+      ...(config.apiKey && { Authorization: `Bearer ${config.apiKey}` }),
     },
   })
 
@@ -68,9 +68,9 @@ export const bangumiRouter = createTRPCRouter({
       try {
         const { items, total } = await fetchAnimeCollection(
           input.username,
-          input.types[0],
+          input.types[0]!,
           input.config,
-          input.cursor
+          input.cursor,
         )
 
         const limit = input.config.contentConfig?.pagination?.limit || 24

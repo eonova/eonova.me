@@ -1,13 +1,13 @@
 // src/types/bangumi.ts
-import { z } from "zod"
+import { z } from 'zod'
 
 export type AnimeAction = 'wish' | 'watched' | 'watching' | 'shelving' | 'abandon'
 export enum AnimeType {
-  'wish' = 1,
-  'watched' = 2,
-  'watching' = 3,
-  'shelving' = 4,
-  'abandon' = 5,
+  wish = 1,
+  watched = 2,
+  watching = 3,
+  shelving = 4,
+  abandon = 5,
 }
 export const AnimeActionSchema = z.enum(['wish', 'watched', 'watching', 'shelving', 'abandon'])
 

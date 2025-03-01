@@ -1,4 +1,5 @@
 'use client'
+import type { DoubanDataResponse } from '~/types/douban'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { CardSkeleton } from '~/components/card-skeleton'
@@ -6,7 +7,6 @@ import InfiniteScrollingLoading from '~/components/infinite-scrolling-loading'
 import PageTitle from '~/components/page-title'
 import RecreationCard from '~/components/recreation-card'
 import { api } from '~/trpc/react'
-import type { DoubanDataResponse } from '~/types/douban'
 import { getFlatArrLength } from '~/utils/get-flat-arr-length'
 
 // 定义模式类型
@@ -22,7 +22,7 @@ const MODE_LABELS: Record<MovieMode, string> = {
 
 const Books: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1 })
-  const [selectedMode, setSelectedMode] = useState<MovieMode>('wish')
+  const [selectedMode, setSelectedMode] = useState<MovieMode>('do')
   const [loadedPages, setLoadedPages] = useState(1)
   const pageSize = 16
 
@@ -68,6 +68,7 @@ const Books: React.FC = () => {
           {MODES.map(mode => (
             <button
               key={mode}
+              type="button"
               onClick={() => setSelectedMode(mode)}
               className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors
               ${selectedMode === mode
@@ -78,7 +79,7 @@ const Books: React.FC = () => {
               {MODE_LABELS[mode]}
               {' '}
               (
-              {data && getFlatArrLength((data as DoubanDataResponse)?.data?.collections.find(c => c.action === mode)?.items ?? [])}
+              {data ? getFlatArrLength((data as DoubanDataResponse)?.data?.collections.find(c => c.action === mode)?.items ?? []) : 0}
               )
             </button>
           ))}

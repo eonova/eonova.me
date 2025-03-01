@@ -1,3 +1,3 @@
 export function buildErrorResponse(message: string) {
-  return { success: false, error: message };
+  return { success: false, error: message }
 }

@@ -1,10 +1,10 @@
-import { allNotes } from "content-collections"
-import { redirect } from "next/navigation"
+import { allNotes } from 'content-collections'
+import { redirect } from 'next/navigation'
 
 export default async function NotesPage() {
   // 服务端排序避免客户端计算
   const sortedNotes = [...allNotes].sort((a, b) =>
-    new Date(b.createTime).getTime() - new Date(a.createTime).getTime()
+    new Date(b.createTime).getTime() - new Date(a.createTime).getTime(),
   )
 
   if (!sortedNotes.length) {
