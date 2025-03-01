@@ -1,8 +1,10 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { AnimeCard, AnimeCardSkeleton } from '~/components/anime-card'
+import { CardSkeleton } from '~/components/card-skeleton'
+import InfiniteScrollingLoading from '~/components/infinite-scrolling-loading'
 import PageTitle from '~/components/page-title'
+import RecreationCard from '~/components/recreation-card'
 import { api } from '~/trpc/react'
 
 // 定义模式类型
@@ -15,7 +17,7 @@ const MODE_LABELS: Record<AnimeMode, string> = {
   watched: '看过',
   shelving: '搁置',
   wish: '想看',
-  abandon: '抛弃'
+  abandon: '抛弃',
 }
 
 export default function BangumiPage() {
@@ -26,6 +28,7 @@ export default function BangumiPage() {
   // 数据查询
   const {
     data,
+    status,
     fetchNextPage,
     hasNextPage,
     isFetching,
@@ -41,9 +44,9 @@ export default function BangumiPage() {
       },
     },
     {
-      getNextPageParam: lastPage => lastPage.data?.nextCursor,
+      getNextPageParam: lastPage => 'data' in lastPage ? lastPage.data?.nextCursor : undefined,
       initialCursor: 0,
-    }
+    },
   )
 
   // 模式切换时重置数据
@@ -59,7 +62,7 @@ export default function BangumiPage() {
   }, [inView, hasNextPage, isFetching])
 
   // 合并所有数据项
-  const allItems = data?.pages.flatMap(page => page.data?.items ?? []) || []
+  const allItems = data?.pages.flatMap(page => 'data' in page ? page.data?.items ?? [] : []) || []
 
   return (
     <div className="container mx-auto px-4">
@@ -67,7 +70,7 @@ export default function BangumiPage() {
 
       {/* 模式切换按钮 */}
       <div className="flex gap-2 mb-6 overflow-x-auto pb-3 scrollbar-hide">
-        {MODES.map((mode) => (
+        {MODES.map(mode => (
           <button
             key={mode}
             onClick={() => setSelectedMode(mode)}
@@ -85,43 +88,23 @@ export default function BangumiPage() {
       {/* 内容区域 */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
         {/* 首次加载或模式切换时的骨架屏 */}
-        {(isLoading || isRefetching) &&
-          Array(limit).fill(0).map((_, i) => <AnimeCardSkeleton key={`s-${i}`} />)}
+        {(isLoading || isRefetching)
+          && Array.from({ length: limit }).fill(0).map((_, i) => <CardSkeleton key={`skeleton-${i}`} />)}
 
         {/* 正常数据展示 */}
         {!(isLoading || isRefetching) && allItems.map((item, index) => (
-          <AnimeCard
+          <RecreationCard
             key={`${item.detailUrl}-${index}`}
             {...item}
+            item={item}
             className={isFetching ? 'opacity-75 transition-opacity' : ''}
           />
         ))}
-
-        {/* 加载更多时的骨架屏 */}
-        {isFetching && !isRefetching &&
-          Array(limit / 2).fill(0).map((_, i) => <AnimeCardSkeleton key={`f-${i}`} />)}
       </div>
 
       {/* 滚动触发元素 */}
       <div ref={ref} className="h-16 text-center py-4">
-        {hasNextPage ? (
-          <div className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400">
-            <svg
-              className="animate-spin h-6 w-6 text-pink-500"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M12 4V2A10 10 0 0 0 2 12h2a8 8 0 0 1 8-8z"
-              />
-            </svg>
-            <span>正在加载更多...</span>
-          </div>
-        ) : (
-          <div className="text-gray-500 dark:text-gray-400">
-            {allItems.length > 0 ? '🎉 已经到底啦～' : '⚠️ 暂无相关数据'}
-          </div>
-        )}
+        <InfiniteScrollingLoading status={status} hasNextPage={hasNextPage} totalItems={allItems.length} />
       </div>
     </div>
   )

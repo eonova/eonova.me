@@ -1,3 +1,4 @@
+// src/types/douban.ts
 import type { mapDoubanUser } from '~/utils/douban/map-douban-user'
 import { z } from 'zod'
 
@@ -119,7 +120,7 @@ export interface DoubanPluginConfig {
 export const MovieActionSchema = z.enum(['do', 'wish', 'collect'])
 export type MovieAction = z.infer<typeof MovieActionSchema>
 
-export interface MoviesResponseType {
+export interface DoubanResponseType {
   user: ReturnType<typeof mapDoubanUser>
   collections: {
     action: MovieAction
@@ -131,8 +132,8 @@ export interface MoviesResponseType {
   }
 }
 
-export interface MovieDataResponse {
+export interface DoubanDataResponse {
   success: boolean
-  data: MoviesResponseType
+  data: DoubanResponseType
   error?: string
 };

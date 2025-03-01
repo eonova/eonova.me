@@ -93,6 +93,13 @@ const MyNextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'lain.bgm.tv',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'img.leostar.top',
         port: '',
         pathname: '/**',

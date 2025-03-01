@@ -1,35 +1,37 @@
 'use client'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { CardSkeleton } from '~/components/card-skeleton'
+import InfiniteScrollingLoading from '~/components/infinite-scrolling-loading'
 import PageTitle from '~/components/page-title'
+import RecreationCard from '~/components/recreation-card'
 import { api } from '~/trpc/react'
+import type { DoubanDataResponse } from '~/types/douban'
 
-function getMinYear(dateString: { match: (arg0: RegExp) => never[] }) {
-  // 匹配所有YYYY-MM-DD格式的日期
-  const datePattern = /\d{4}-\d{2}-\d{2}/g
-  const dates = dateString.match(datePattern) || []
+// 定义模式类型
+const MODES = ['wish', 'collect'] as const
+type MovieMode = typeof MODES[number]
 
-  if (dates.length === 0)
-    return null
-
-  // 提取年份并转换为数字
-  const years = dates.map((date: string) => {
-    return Number.parseInt(date.substring(0, 4), 10)
-  })
-
-  // 返回最小年份
-  return Math.min(...years)
+// 模式映射中文
+const MODE_LABELS: Record<MovieMode, string> = {
+  wish: '在看',
+  collect: '看过',
 }
 
-const Books: React.FC = () => {
-  const { data, status } = api.movies.getMovieData.useQuery({
+const Movies: React.FC = () => {
+  const { ref, inView } = useInView({ threshold: 0.1 })
+  const [selectedMode, setSelectedMode] = useState<MovieMode>('wish')
+  const [loadedPages, setLoadedPages] = useState(1)
+  const pageSize = 16
+
+  // 数据查询
+  const { data, status, isRefetching } = api.movies.getMovieData.useQuery({
     userId: '271041273',
     actions: ['wish', 'collect'],
     config: {
       contentConfig: {
         pagination: {
-          defaultPageSize: 16,
+          defaultPageSize: 200,
           maxVisibleLines: 4,
         },
         type: 'movie',
@@ -38,135 +40,76 @@ const Books: React.FC = () => {
       },
     },
   })
-  const [currentTab, setCurrentTab] = useState('wish')
-  const [currentPage, setCurrentPage] = useState(1)
-  const pageSize = data?.data?.pagination?.pageSize
 
   // 获取当前选项卡数据
-  const currentCollection = data?.data?.collections?.find(c => c.action === currentTab)
+  const currentCollection = (data as DoubanDataResponse)?.data?.collections?.find(c => c.action === selectedMode)
   const allItems = currentCollection?.items?.flat() || []
+  const totalItems = allItems.length
+  const displayedItems = allItems.slice(0, loadedPages * pageSize)
+  const hasMore = displayedItems.length < totalItems
 
-  // 分页计算
-  const totalPages = Math.ceil(allItems.length / pageSize)
-  const paginatedItems = allItems.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize,
-  )
+  // 滚动加载处理
+  useEffect(() => {
+    if (inView && hasMore && !isRefetching) {
+      setLoadedPages(prev => prev + 1)
+    }
+  }, [inView, hasMore, isRefetching])
+
   return (
     <>
       <PageTitle
-        title="影单"
+        title="观影记录"
         description="看一部电影，走一遍人生🎬"
       />
-      {
-        data?.success && status === 'success'
-        && (
-          <div>
-            <div className="mb-8 flex space-x-4">
-              <button
-                onClick={() => {
-                  setCurrentTab('wish')
-                  setCurrentPage(1)
-                }}
-                className={`px-6 py-2 rounded-lg ${currentTab === 'wish'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 hover:bg-gray-300'
-                  }`}
-              >
-                想看 (
-                {data?.data?.user?.stats?.movie?.wish}
-                )
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentTab('collect')
-                  setCurrentPage(1)
-                }}
-                className={`px-6 py-2 rounded-lg ${currentTab === 'collect'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 hover:bg-gray-300'
-                  }`}
-              >
-                看过 (
-                {data?.data?.user?.stats?.movie?.collect}
-                )
-              </button>
-            </div>
-            {/* 电影网格布局 */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {paginatedItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg during-200 hover:scale-103 transition-all"
-                >
-                  <Image
-                    width={100}
-                    height={80}
-                    src={item.coverUrl}
-                    alt={item.metaInfo}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-md font-semibold mb-2 line-clamp-1" title={item.title} alt={item.title}>
-                      {item.title}
-                    </h3>
-                    <div className="mt-4 flex justify-between items-center text-sm">
-                      <span className="text-gray-500">{getMinYear(item.publishDate)}</span>
-                      <Link
-                        href={item.detailUrl}
-                        className="text-blue-500 hover:text-blue-700"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        查看详情 →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+      <div className="container mx-auto px-4">
+        {/* 模式切换按钮 */}
+        <div className="flex gap-2 mb-6 overflow-x-auto pb-3 scrollbar-hide">
+          {MODES.map(mode => (
+            <button
+              key={mode}
+              onClick={() => setSelectedMode(mode)}
+              className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors
+              ${selectedMode === mode
+                  ? 'bg-pink-500 text-white shadow-md'
+                  : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+            >
+              {MODE_LABELS[mode]}
+              {' '}
+              (
+              {(data as DoubanDataResponse)?.data?.user?.stats?.movie?.[mode] || 0}
+              )
+            </button>
+          ))}
+        </div>
 
-            {/* 分页控件 */}
-            <div className="flex justify-center items-center space-x-4">
-              <button
-                onClick={() => {
-                  setCurrentPage(p => Math.max(1, p - 1))
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-                disabled={currentPage === 1}
-                className="px-4 py-2 bg-white border rounded-md disabled:opacity-50 hover:bg-gray-50"
-              >
-                上一页
-              </button>
+        {/* 内容区域 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {/* 首次加载或切换标签时的骨架屏 */}
+          {(status === 'pending' || isRefetching) && (
+            Array.from({ length: pageSize }).fill(0).map((_, i) => (
+              <CardSkeleton key={`skeleton-${i}`} />
+            ))
+          )}
 
-              <span className="text-gray-600">
-                第
-                {' '}
-                {currentPage}
-                {' '}
-                页 / 共
-                {' '}
-                {totalPages}
-                {' '}
-                页
-              </span>
+          {/* 正常数据展示 */}
+          {status === 'success' && !isRefetching && displayedItems.map((item: any, idx: number) => (
+            <RecreationCard
+              key={`${item.detailUrl}-${idx}`}
+              {...item}
+              item={item}
+              className={isRefetching ? 'opacity-75 transition-opacity' : ''}
+            />
+          ))}
+        </div>
 
-              <button
-                onClick={() => {
-                  setCurrentPage(p => Math.min(totalPages, p + 1))
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 bg-white border rounded-md disabled:opacity-50 hover:bg-gray-50"
-              >
-                下一页
-              </button>
-            </div>
-          </div>
-        )
-      }
+        {/* 滚动触发 & 加载状态 */}
+        <div ref={ref} className="h-16 text-center py-4">
+          <InfiniteScrollingLoading status={status} hasNextPage={hasMore} totalItems={totalItems} />
+        </div>
+      </div>
     </>
   )
 }
 
-export default Books
+export default Movies
