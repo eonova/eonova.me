@@ -1,4 +1,4 @@
-import { allPosts } from 'content-collections'
+import { allNotes, allPosts } from 'content-collections'
 import { NextResponse } from 'next/server'
 import RSS from 'rss'
 
@@ -15,6 +15,7 @@ export function GET() {
   })
 
   const posts = allPosts
+  const notes = allNotes
 
   for (const post of posts) {
     const { title, summary, date, slug } = post
@@ -22,6 +23,18 @@ export function GET() {
     feed.item({
       title,
       url: `${SITE_URL}/posts/${slug}`,
+      date,
+      description: summary,
+      author: SITE_NAME,
+    })
+  }
+
+  for (const note of notes) {
+    const { title, summary, date, slug } = note
+
+    feed.item({
+      title,
+      url: `${SITE_URL}/notes/${slug}`,
       date,
       description: summary,
       author: SITE_NAME,

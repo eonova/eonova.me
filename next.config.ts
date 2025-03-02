@@ -68,6 +68,7 @@ const MyNextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['shiki', 'lenis'],
     reactCompiler: true,
+    serverComponentsExternalPackages: ['@vercel/og'],
   },
 
   images: {

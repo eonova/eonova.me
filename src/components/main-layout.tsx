@@ -14,7 +14,7 @@ function Layout(props: LayoutProps) {
   return (
     <>
       <Header />
-      <main className='mx-auto mb-16 w-full max-w-[820px] flex-1 px-6 py-24 sm:px-8'>
+      <main className="mx-auto mb-16 w-full max-w-[820px] px-6 py-24 sm:px-8">
         {children}
       </main>
       <MobileNavAside />
