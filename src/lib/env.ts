@@ -1,4 +1,5 @@
 import { createEnv } from '@t3-oss/env-nextjs'
+import { vercel } from '@t3-oss/env-nextjs/presets-zod'
 import { z } from 'zod'
 
 export const flags = {
@@ -13,13 +14,13 @@ export const flags = {
 
 export const env = createEnv({
   skipValidation: !!process.env.CI,
+  extends: [vercel()],
 
   shared: {
-    NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+    NODE_ENV: z.enum(['development', 'production', 'test']).default('development')
   },
 
   server: {
-    VERCEL_URL: z.string().optional(),
     ...(flags.spotify
       ? {
         SPOTIFY_CLIENT_ID: z.string().min(1),
@@ -30,11 +31,12 @@ export const env = createEnv({
 
     ...(flags.auth
       ? {
-        AUTH_SECRET: z.string().min(1),
+        BETTER_AUTH_SECRET: z.string().min(1),
+        BETTER_AUTH_URL: z.string().url(),
         GOOGLE_CLIENT_ID: z.string().min(1),
         GOOGLE_CLIENT_SECRET: z.string().min(1),
         GITHUB_CLIENT_ID: z.string().min(1),
-        GITHUB_CLIENT_SECRET: z.string().min(1),
+        GITHUB_CLIENT_SECRET: z.string().min(1)
       }
       : {}),
 
@@ -83,6 +85,9 @@ export const env = createEnv({
     NEXT_PUBLIC_FLAG_ANALYTICS: z.string().min(1).optional(),
     NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION: z.string().min(1).optional(),
     NEXT_PUBLIC_FLAG_LIKE_BUTTON: z.string().min(1).optional(),
+
+    NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: z.string().min(1).optional(),
+    NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF: z.string().min(1).optional()
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -94,6 +99,9 @@ export const env = createEnv({
     NEXT_PUBLIC_FLAG_ANALYTICS: process.env.NEXT_PUBLIC_FLAG_ANALYTICS,
     NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION: process.env.NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION,
     NEXT_PUBLIC_FLAG_LIKE_BUTTON: process.env.NEXT_PUBLIC_FLAG_LIKE_BUTTON,
+
+    NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
+    NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF
   },
 
   emptyStringAsUndefined: true,

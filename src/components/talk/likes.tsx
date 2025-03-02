@@ -1,5 +1,5 @@
 'use client'
-import NumberFlow from '@number-flow/react'
+import NumberFlow, { continuous } from '@number-flow/react'
 import { Heart } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
@@ -93,7 +93,9 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
 
       <div className="flex items-center gap-1">
         <NumberFlow
+          willChange
           value={displayLikes}
+          plugins={[continuous]}
           className="font-medium text-sm text-gray-900 dark:text-gray-100"
         />
         {userLikes > 0 && (

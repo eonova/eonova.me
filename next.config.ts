@@ -20,6 +20,7 @@ const withPWA = createPWA({
   disable: process.env.NODE_ENV === 'development',
   register: true,
   extendDefaultRuntimeCaching: true,
+  cacheOnFrontEndNav: true,
 })
 
 const NextConfigHeaders = [
@@ -61,6 +62,7 @@ const NextConfigHeaders = [
 /** @type {import('next').NextConfig} */
 const MyNextConfig: NextConfig = {
   compress: true,
+  reactStrictMode: true,
 
   transpilePackages: ['@t3-oss/env-nextjs'],
   experimental: {

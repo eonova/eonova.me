@@ -1,6 +1,6 @@
 import type { GetInfiniteCommentsInput } from '~/trpc/routers/comments'
 
-import NumberFlow, { NumberFlowGroup } from '@number-flow/react'
+import NumberFlow, { continuous, NumberFlowGroup } from '@number-flow/react'
 import { ListFilterIcon } from 'lucide-react'
 import { useCommentsContext } from '~/contexts/comments'
 
@@ -31,6 +31,7 @@ function CommentHeader() {
             && (
               <NumberFlow
                 willChange
+                plugins={[continuous]}
                 value={commentsCountQuery.data.comments}
                 suffix="&nbsp;评论"
               />
@@ -44,6 +45,7 @@ function CommentHeader() {
             && (
               <NumberFlow
                 willChange
+                plugins={[continuous]}
                 value={repliesCountQuery.data.replies}
                 suffix="&nbsp;回复"
               />

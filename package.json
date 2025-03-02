@@ -170,7 +170,7 @@
     "commit-msg": "bun exec tsx ./scripts/verify-commit.ts"
   },
   "lint-staged": {
-    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx}": "eslint . --max-warnings 0 --fix"
+    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix"
   },
   "browserslist": [
     "chrome 89",

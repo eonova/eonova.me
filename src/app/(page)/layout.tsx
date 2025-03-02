@@ -3,6 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import Script from 'next/script'
+import { Monitoring } from 'react-scan/monitoring/next'
 import Hello from '~/components/hello'
 import Dock from '~/components/layouts/dock'
 import SignInDialog from '~/components/sign-in-dialog'
@@ -10,7 +11,6 @@ import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from
 import { env } from '~/lib/env'
 import { cn } from '~/lib/utils'
 import Providers from '../providers'
-import ReactScan from '../react-scan'
 import '~/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -109,17 +109,26 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="zh-CN"
       className={cn(GeistSans.variable, GeistMono.variable, 'scroll-smooth')}
       suppressHydrationWarning
     >
       <head>
-        <Script
-          src="https://unpkg.com/react-scan/dist/install-hook.global.js"
-          strategy="beforeInteractive"
-        />
+        {env.NODE_ENV === 'development' && (
+          <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
+        )}
       </head>
-      <body className="antialiased relative">
+      <body className="relative flex min-h-screen flex-col">
+        {env.REACT_SCAN_MONITOR_API_KEY
+          ? (
+            <Monitoring
+              apiKey={env.REACT_SCAN_MONITOR_API_KEY}
+              url="https://monitoring.react-scan.com/api/v1/ingest"
+              commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+              branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+            />
+          )
+          : null}
         <Providers>
           <Hello />
           {children}
@@ -127,10 +136,6 @@ export default function RootLayout({
           <Dock />
         </Providers>
         <SpeedInsights />
-        {
-          env.REACT_SCAN_MONITOR_API_KEY
-          && <ReactScan apiKey={env.REACT_SCAN_MONITOR_API_KEY} />
-        }
       </body>
     </html>
   )
