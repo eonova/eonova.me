@@ -79,6 +79,8 @@
     "@upstash/redis": "^1.34.4",
     "@vercel/speed-insights": "^1.2.0",
     "babel-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
+    "better-auth": "^1.2.1",
+    "better-call": "^1.0.3",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
