@@ -63,7 +63,7 @@ export default function BangumiPage() {
   const allItems = data?.pages.flatMap(page => 'data' in page ? page.data?.items ?? [] : []) || []
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto">
       <PageTitle title="追番" description="二次元是心灵的乌托邦💖" />
 
       {/* 模式切换按钮 */}
@@ -85,7 +85,7 @@ export default function BangumiPage() {
       </div>
 
       {/* 内容区域 */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-8">
         {/* 首次加载或模式切换时的骨架屏 */}
         {(isLoading || isRefetching)
           && Array.from({ length: limit }).fill(0).map((_, i) => <CardSkeleton key={`skeleton-${i}`} />)}

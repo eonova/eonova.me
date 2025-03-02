@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { api } from '~/trpc/react'
+import InfiniteScrollingLoading from '../infinite-scrolling-loading'
 import { TalkSkeleton } from '../skeleton/talk-skeleton'
 import TalkBox from './box'
 
@@ -14,6 +15,7 @@ const TalkList: React.FC<TalkListProps> = ({ pageSize = 10 }) => {
   const {
     data,
     isLoading,
+    status,
     error,
     fetchNextPage,
     hasNextPage,
@@ -97,24 +99,12 @@ const TalkList: React.FC<TalkListProps> = ({ pageSize = 10 }) => {
       </AnimatePresence>
 
       {/* 加载更多指示器 */}
-      <motion.div
+      <div
         ref={ref}
         className="text-center text-sm text-gray-500"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
       >
-        {isFetchingNextPage && (
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-            className="inline-block"
-          >
-            🔄
-          </motion.div>
-        )}
-        {!hasNextPage && talks.length > 0 && '没有更多内容了'}
-        {!isLoading && talks.length === 0 && '暂时没有动态，快来发布第一条吧！'}
-      </motion.div>
+        <InfiniteScrollingLoading status={status} hasNextPage={isFetchingNextPage} totalItems={talks.length} />
+      </div>
     </div>
   )
 }

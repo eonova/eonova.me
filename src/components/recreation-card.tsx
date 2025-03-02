@@ -44,7 +44,7 @@ const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => 
         height={500}
         src={item.coverUrl}
         alt={item.metaInfo}
-        className="w-full h-64 sm:h-80 hover:scale-103 during-300 will-change-transform transition-transform object-cover"
+        className="w-full h-72 sm:h-80 hover:scale-103 during-300 will-change-transform transition-transform object-cover"
       />
       <div className="p-2.5 pt-4 text-sm absolute bg-gradient-to-t text-white from-black/70 via-black/40 to-transparent bottom-0 left-0 right-0">
         <h3 className="font-semibold text-center mb-2 truncate" title={item.title}>{item.title}</h3>

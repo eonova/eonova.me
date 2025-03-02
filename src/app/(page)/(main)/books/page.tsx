@@ -61,7 +61,7 @@ const Books: React.FC = () => {
         title="书单"
         description="读万卷书，行万里路📚"
       />
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         {/* 模式切换按钮 */}
         <div className="flex gap-2 mb-6 overflow-x-auto pb-3 scrollbar-hide">
           {MODES.map(mode => (
@@ -77,15 +77,13 @@ const Books: React.FC = () => {
             >
               {MODE_LABELS[mode]}
               {' '}
-              (
               {data ? getFlatArrLength((data as DoubanDataResponse)?.data?.collections.find(c => c.action === mode)?.items ?? []) : 0}
-              )
             </button>
           ))}
         </div>
 
         {/* 内容区域 */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-8">
           {/* 首次加载或切换标签时的骨架屏 */}
           {(status === 'pending' || isRefetching) && (
             Array.from({ length: pageSize }).fill(0).map((_, i) => (
