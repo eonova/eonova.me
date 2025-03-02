@@ -61,14 +61,14 @@ function CommentMenu() {
           <AlertDialogTrigger asChild>
             {isAuthor
               ? (
-                <DropdownMenuItem
-                  className="text-red-600 focus:text-red-500"
-                  disabled={deleteCommentMutation.isPending}
-                  aria-disabled={deleteCommentMutation.isPending}
-                >
-                  删除
-                </DropdownMenuItem>
-              )
+                  <DropdownMenuItem
+                    className="text-red-600 focus:text-red-500"
+                    disabled={deleteCommentMutation.isPending}
+                    aria-disabled={deleteCommentMutation.isPending}
+                  >
+                    删除
+                  </DropdownMenuItem>
+                )
               : null}
           </AlertDialogTrigger>
         </DropdownMenuContent>

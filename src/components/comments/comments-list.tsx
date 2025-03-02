@@ -21,31 +21,33 @@ function CommentsList() {
   const [params] = useCommentParams()
   const { highlighter, setHighlighter } = useHighlighterStore()
 
-  const { status, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    api.comments.getInfiniteComments.useInfiniteQuery(
+  const { status, data, fetchNextPage, hasNextPage, isFetchingNextPage }
+    = api.comments.getInfiniteComments.useInfiniteQuery(
       {
         slug,
         sort,
-        highlightedCommentId: params.comment ?? undefined
+        highlightedCommentId: params.comment ?? undefined,
       },
       {
-        getNextPageParam: (lastPage) => lastPage.nextCursor,
-        placeholderData: keepPreviousData
-      }
+        getNextPageParam: lastPage => lastPage.nextCursor,
+        placeholderData: keepPreviousData,
+      },
     )
 
   const { ref, inView } = useInView()
 
   useEffect(() => {
-    if (inView && hasNextPage) fetchNextPage()
+    if (inView && hasNextPage)
+      fetchNextPage()
   }, [fetchNextPage, hasNextPage, inView])
 
   useEffect(() => {
-    if (highlighter) return
+    if (highlighter)
+      return
 
     getSingletonHighlighterCore({
       themes: [githubLightDefault, githubDarkDefault],
-      engine: createOnigurumaEngine(import('shiki/wasm'))
+      engine: createOnigurumaEngine(import('shiki/wasm')),
     }).then((instance) => {
       setHighlighter(instance)
     })
@@ -62,24 +64,24 @@ function CommentsList() {
       <div className="space-y-8 py-2">
         {isSuccess
           ? data.pages.map(page =>
-            page.comments.map(comment => <Comment key={comment.id} comment={comment} />),
-          )
+              page.comments.map(comment => <Comment key={comment.id} comment={comment} />),
+            )
           : null}
         {noComments
           ? (
-            <div className="flex min-h-20 items-center justify-center">
-              <p className="text-muted-foreground text-sm">没有评论</p>
-            </div>
-          )
+              <div className="flex min-h-20 items-center justify-center">
+                <p className="text-muted-foreground text-sm">没有评论</p>
+              </div>
+            )
           : null}
         {isError
           ? (
-            <div className="flex min-h-20 items-center justify-center">
-              <p className="text-muted-foreground text-sm">
-                无法载入评论。请刷新页面。
-              </p>
-            </div>
-          )
+              <div className="flex min-h-20 items-center justify-center">
+                <p className="text-muted-foreground text-sm">
+                  无法载入评论。请刷新页面。
+                </p>
+              </div>
+            )
           : null}
         {isLoading ? <CommentLoader /> : null}
         <span ref={ref} className="invisible" />

@@ -66,22 +66,22 @@ function CommandMenu() {
       actions: [
         ...(session
           ? [
-            {
-              title: '登出',
-              icon: <LogOutIcon className="mr-3 size-4" />,
-              onSelect: () => signOut(),
-            },
-          ]
-          : [
-            {
-              title: '登入',
-              icon: <LogInIcon className="mr-3 size-4" />,
-              onSelect: () => {
-                setIsOpen(false)
-                dialogStore.setIsSignInOpen(true)
+              {
+                title: '登出',
+                icon: <LogOutIcon className="mr-3 size-4" />,
+                onSelect: () => signOut(),
               },
-            },
-          ]),
+            ]
+          : [
+              {
+                title: '登入',
+                icon: <LogInIcon className="mr-3 size-4" />,
+                onSelect: () => {
+                  setIsOpen(false)
+                  dialogStore.setIsSignInOpen(true)
+                },
+              },
+            ]),
       ],
     },
     {

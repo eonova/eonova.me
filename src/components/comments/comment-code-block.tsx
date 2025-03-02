@@ -60,15 +60,15 @@ function CommentCodeBlock(props: CommentCodeBlockProps) {
     <CodeBlock data-lang={lang} title={title} className="shiki" figureClassName="my-2">
       {isHighlighted && codeHtml
         ? (
-          <code
-            dangerouslySetInnerHTML={{
-              __html: codeHtml,
-            }}
-          />
-        )
+            <code
+              dangerouslySetInnerHTML={{
+                __html: codeHtml,
+              }}
+            />
+          )
         : (
-          <code>{code}</code>
-        )}
+            <code>{code}</code>
+          )}
     </CodeBlock>
   )
 }
