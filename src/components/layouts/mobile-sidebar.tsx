@@ -65,18 +65,18 @@ function MobileNavAside() {
             </div>
           </div>
           <Separator className="mx-auto" />
-          <ul className="w-full my-5">
+          <ul className="w-full my-5 flex flex-col gap-2">
             {HEADER_LINKS.map((link) => {
               const isActive = link.href === pathname
 
               return (
                 <li
                   key={link.key}
-                  className="relative flex flex-col h-[50px] items-start justify-center"
+                  className="relative flex flex-col items-start justify-center"
                 >
                   <Link
                     className={cn(
-                      'px-2 w-full bg-white/10 dark:bg-transparent font-medium transition-colors flex items-center text-[15px] gap-8',
+                      'p-2 w-full bg-white/10 dark:bg-transparent font-medium transition-colors flex items-center text-[15px] gap-6',
                       {
                         'text-muted-foreground hover:text-foreground': !isActive,
                       },
@@ -90,6 +90,39 @@ function MobileNavAside() {
                     {link.icon}
                     {link.text}
                   </Link>
+                  {
+                    link.subMenu && (
+                      <ul className="grid grid-cols-2 gap-2 py-2 w-full bg-gray-400/10 dark:bg-transparent rounded-md overflow-hidden">
+                        {link.subMenu.map((subLink) => {
+                          const isSubActive = subLink.href === pathname
+
+                          return (
+                            <li
+                              key={subLink.key}
+                              className="relative"
+                            >
+                              <Link
+                                className={cn(
+                                  'px-2 w-full font-medium transition-colors flex items-center text-[15px] gap-6',
+                                  {
+                                    'text-muted-foreground hover:text-foreground': !isSubActive,
+                                  },
+                                  {
+                                    'text-foreground': isSubActive,
+                                  },
+                                )}
+                                href={subLink.href}
+                                onClick={handleLinkClick} // 点击链接时关闭侧边栏
+                              >
+                                {/* {subLink.icon} */}
+                                {subLink.text}
+                              </Link>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    )
+                  }
                 </li>
               )
             })}

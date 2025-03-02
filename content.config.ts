@@ -42,7 +42,7 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
   const isPost = context.collection.name === 'Post'
   const isNote = context.collection.name === 'Note'
   const pathSplit = path.split('\\')
-  const slug = (isPost || isNote) ? generateSlug(pathSplit[pathSplit.length - 1] ?? '', 10) : path
+  const slug = (isPost || isNote) ? generateSlug(pathSplit[pathSplit.length - 1] ?? '', 10) : pathSplit[pathSplit.length - 1]
 
   return {
     ...document,

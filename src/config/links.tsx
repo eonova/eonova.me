@@ -7,7 +7,6 @@ import {
   SiX,
   SiYoutube,
 } from '@icons-pack/react-simple-icons'
-import { allNotes } from 'content-collections'
 import {
   Archive,
   BellElectric,
@@ -61,7 +60,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
   },
   {
     icon: <Notebook className="size-5" />,
-    href: `/notes/${allNotes.sort((a, b) => new Date(b.createTime).getTime() - new Date(a.createTime).getTime())[0].slug}`,
+    href: `/notes`,
     key: 'notes',
     text: '手记',
   },
@@ -85,7 +84,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
   },
   {
     icon: <BellElectric className="size-5" />,
-    href: '/books',
+    href: '#',
     key: 'recreation',
     text: '书影番',
     subMenu: [
@@ -111,7 +110,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
   },
   {
     icon: <ListCollapse className="size-5" />,
-    href: '/album',
+    href: '#',
     key: 'more',
     text: '我的',
     subMenu: [
