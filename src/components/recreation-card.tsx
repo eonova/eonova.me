@@ -46,7 +46,7 @@ const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => 
         alt={item.metaInfo}
         className="w-full h-64 sm:h-80 hover:scale-103 during-300 will-change-transform transition-transform object-cover"
       />
-      <div className="p-2.5 text-sm absolute bg-gradient-to-t text-white from-black/80 via-black/60 to-transparent bottom-0 left-0 right-0">
+      <div className="p-2.5 pt-4 text-sm absolute bg-gradient-to-t text-white from-black/70 via-black/40 to-transparent bottom-0 left-0 right-0">
         <h3 className="font-semibold text-center mb-2 truncate" title={item.title}>{item.title}</h3>
         <div className="flex justify-center">
           <div className='flex items-center gap-2 text-xs rounded-full p-1 px-2 bg-[#2C2721]'>

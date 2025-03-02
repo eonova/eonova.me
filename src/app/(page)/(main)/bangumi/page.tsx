@@ -1,10 +1,10 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { CardSkeleton } from '~/components/card-skeleton'
 import InfiniteScrollingLoading from '~/components/infinite-scrolling-loading'
 import PageTitle from '~/components/page-title'
 import RecreationCard from '~/components/recreation-card'
+import { CardSkeleton } from '~/components/skeleton/card-skeleton'
 import { api } from '~/trpc/react'
 
 // 定义模式类型
