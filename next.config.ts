@@ -3,7 +3,7 @@ import { createContentCollectionPlugin as createMDX } from '@content-collections
 import createPWA from '@ducanh2912/next-pwa'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
-import './src/lib/env.ts'
+import './src/lib/env'
 
 process.title = 'Eonova (NextJS)'
 
@@ -62,6 +62,7 @@ const NextConfigHeaders = [
 const MyNextConfig: NextConfig = {
   compress: true,
 
+  transpilePackages: ['@t3-oss/env-nextjs'],
   experimental: {
     optimizePackageImports: ['shiki', 'lenis'],
     reactCompiler: true,

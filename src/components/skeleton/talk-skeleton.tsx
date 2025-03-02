@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { Skeleton } from '~/components/base/skeleton'
 
-
 export function TalkSkeleton() {
   const loadingVariants = {
     hidden: { opacity: 0 },

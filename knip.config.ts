@@ -6,12 +6,8 @@ const config: KnipConfig = {
     'sharp',
     'tailwindcss',
     'react-email',
-    '@eslint-react/eslint-plugin',
-    'eslint-plugin-react-hooks',
-    'eslint-plugin-react-refresh',
     'lint-staged',
     'picocolors',
-    '@ileostar/eslint-config',
   ],
   entry: [
     '*.config.mjs',
