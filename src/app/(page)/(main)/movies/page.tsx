@@ -70,9 +70,9 @@ const Movies: React.FC = () => {
               onClick={() => setSelectedMode(mode)}
               className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors
               ${selectedMode === mode
-              ? 'bg-pink-500 text-white shadow-md'
-              : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
+                  ? 'bg-pink-500 text-white shadow-md'
+                  : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
             >
               {MODE_LABELS[mode]}
               {' '}
@@ -84,7 +84,7 @@ const Movies: React.FC = () => {
         </div>
 
         {/* 内容区域 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
           {/* 首次加载或切换标签时的骨架屏 */}
           {(status === 'pending' || isRefetching) && (
             Array.from({ length: pageSize }).fill(0).map((_, i) => (

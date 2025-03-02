@@ -25,9 +25,9 @@ export interface BangumiItem {
   detailUrl: string
   coverUrl?: string
   metaInfo: string
-  airDate: string
+  publishDate: string
   collectionInfo: string
-  rating?: string
   comment?: string
+  score?: string
   episodesInfo?: string
 }

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { cn } from '~/lib/utils'
 
 function getMinYear(dateString: string) {
-  const datePattern = /\d{4}-\d{2}-\d{2}/g
+  const datePattern = /\d{4}/g
   const dates = dateString.match(datePattern) || []
   if (dates.length === 0)
     return null
@@ -17,6 +17,7 @@ interface IRecreationCardProps {
     detailUrl: string
     coverUrl: string
     metaInfo: string
+    score?: string
     rate?: string
     publishDate?: string
     rating?: string
@@ -26,37 +27,38 @@ interface IRecreationCardProps {
 }
 
 const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => {
+  const date = item.publishDate ? getMinYear(item.publishDate) : '---'
+
   return (
     <motion.a
       href={item.detailUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn('block rounded-lg dark:bg-[#1E2939] overflow-hidden shadow-lg hover:shadow-xl transition-shadow', className)}
+      className={cn('relative block rounded-xl dark:bg-[#1E2939] overflow-hidden shadow-lg hover:shadow-xl transition-shadow', className)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <Image
         width={300}
-        height={450}
+        height={500}
         src={item.coverUrl}
         alt={item.metaInfo}
-        className="w-full h-64 object-cover"
+        className="w-full h-64 sm:h-80 hover:scale-103 during-300 will-change-transform transition-transform object-cover"
       />
-      <div className="p-4 bg-background dark:bg-[#1E2939]">
-        <h3 className="font-semibold line-clamp-2 mb-2">{item.title}</h3>
-        <div className="text-sm text-muted-foreground line-clamp-2 mb-2">
-          {item.metaInfo}
-        </div>
-        <div className="flex justify-between text-sm">
-          {item.rating && (
-            <span className="text-primary">
-              ★
-              {item.rating}
-            </span>
-          )}
-          {item.episodesInfo && <span>{item.episodesInfo}</span>}
-          {item.publishDate && <span>{getMinYear(item.publishDate)}</span>}
+      <div className="p-2.5 text-sm absolute bg-gradient-to-t text-white from-black/80 via-black/60 to-transparent bottom-0 left-0 right-0">
+        <h3 className="font-semibold text-center mb-2 truncate" title={item.title}>{item.title}</h3>
+        <div className="flex justify-center">
+          <div className='flex items-center gap-2 text-xs rounded-full p-1 px-2 bg-[#2C2721]'>
+            {(
+              <div className="rounded-full text-white flex items-center gap-1.5">
+                <svg className='text-yellow-500 w-2.5 h-2.5' viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.1l5.82 3.682c1.066.675 2.37-.322 2.09-1.584l-1.543-6.926 5.146-4.667c.94-.85.435-2.465-.799-2.567l-6.773-.602L13.29.89a1.38 1.38 0 0 0-2.581 0l-2.65 6.53-6.774.602C.052 8.126-.453 9.74.486 10.59l5.147 4.666-1.542 6.926c-.28 1.262 1.023 2.26 2.09 1.585L12 20.099z"></path></svg>
+                <span>{item.score || item.rate || '未评分'}</span>
+                {'·'}
+                {<span>{date}</span>}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </motion.a>

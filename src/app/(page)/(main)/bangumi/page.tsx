@@ -75,9 +75,9 @@ export default function BangumiPage() {
             onClick={() => setSelectedMode(mode)}
             className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors
               ${selectedMode === mode
-            ? 'bg-pink-500 text-white shadow-md'
-            : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
-          }`}
+                ? 'bg-pink-500 text-white shadow-md'
+                : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
           >
             {MODE_LABELS[mode]}
           </button>
@@ -85,7 +85,7 @@ export default function BangumiPage() {
       </div>
 
       {/* 内容区域 */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-8">
         {/* 首次加载或模式切换时的骨架屏 */}
         {(isLoading || isRefetching)
           && Array.from({ length: limit }).fill(0).map((_, i) => <CardSkeleton key={`skeleton-${i}`} />)}

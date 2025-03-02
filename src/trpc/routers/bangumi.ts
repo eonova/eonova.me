@@ -2,10 +2,13 @@ import type { AnimeAction, BangumiItem, BangumiPluginConfig } from '~/types/bang
 import { z } from 'zod'
 import { env } from '~/lib/env'
 import { AnimeActionSchema, AnimeType } from '~/types/bangumi'
-import { getBangumiRate, handleApiError } from '~/utils'
+import { handleApiError } from '~/utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 function validateBangumiItem(raw: any): BangumiItem {
+  console.log('-------------------')
+  console.log(raw)
+  console.log('-------------------')
   return {
     title: raw.name_cn || raw.name,
     detailUrl: `https://bgm.tv/subject/${raw.id}`,
@@ -16,11 +19,11 @@ function validateBangumiItem(raw: any): BangumiItem {
       `声优: ${raw.cast?.slice(0, 3).map((c: any) => c.name).join('/') || '暂无'}`,
       `制作: ${raw.production?.join('/') || '未知'}`,
     ].filter(Boolean).join(' | '),
-    airDate: raw.air_date,
+    publishDate: raw.date,
     collectionInfo: [
       raw.updated && new Date(raw.updated).toLocaleDateString(),
     ].filter(Boolean).join(' · '),
-    rating: raw.rating ? getBangumiRate(raw.rating.score) : undefined,
+    score: raw.score,
     comment: raw.comment?.replace(/\\n/g, '\n'),
     episodesInfo: raw.eps ? `全${raw.eps}话` : undefined,
   }
