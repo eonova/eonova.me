@@ -121,13 +121,13 @@ export default function RootLayout({
       <body className="relative flex min-h-screen flex-col">
         {env.REACT_SCAN_MONITOR_API_KEY
           ? (
-            <Monitoring
-              apiKey={env.REACT_SCAN_MONITOR_API_KEY}
-              url="https://monitoring.react-scan.com/api/v1/ingest"
-              commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
-              branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-            />
-          )
+              <Monitoring
+                apiKey={env.REACT_SCAN_MONITOR_API_KEY}
+                url="https://monitoring.react-scan.com/api/v1/ingest"
+                commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+                branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+              />
+            )
           : null}
         <Providers>
           <Hello />

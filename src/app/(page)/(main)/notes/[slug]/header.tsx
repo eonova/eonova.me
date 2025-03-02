@@ -51,8 +51,8 @@ function Header() {
           {viewsCountQuery.status === 'error' ? '错误' : null}
           {viewsCountQuery.status === 'success'
             ? (
-              <NumberFlow willChange plugins={[continuous]} value={viewsCountQuery.data.views} />
-            )
+                <NumberFlow willChange plugins={[continuous]} value={viewsCountQuery.data.views} />
+              )
             : null}
         </div>
         <div className="flex items-center gap-3">
@@ -61,8 +61,8 @@ function Header() {
           {commentsCountQuery.status === 'error' ? '错误' : null}
           {commentsCountQuery.status === 'success'
             ? (
-              <NumberFlow willChange plugins={[continuous]} value={commentsCountQuery.data.comments} />
-            )
+                <NumberFlow willChange plugins={[continuous]} value={commentsCountQuery.data.comments} />
+              )
             : null}
         </div>
       </div>

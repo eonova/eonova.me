@@ -5,7 +5,6 @@
       "name": "eonova",
       "dependencies": {
         "@ark-ui/react": "^4.9.2",
-        "@auth/drizzle-adapter": "1.7.2",
         "@content-collections/cli": "^0.1.6",
         "@content-collections/core": "^0.8.0",
         "@content-collections/mdx": "^0.2.0",
@@ -44,7 +43,6 @@
         "@vercel/speed-insights": "^1.2.0",
         "babel-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
         "better-auth": "^1.2.1",
-        "better-call": "^1.0.3",
         "canvas-confetti": "^1.9.3",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -188,8 +186,6 @@
     "@ark-ui/react": ["@ark-ui/react@4.9.2", "", { "dependencies": { "@internationalized/date": "3.7.0", "@zag-js/accordion": "0.82.2", "@zag-js/anatomy": "0.82.2", "@zag-js/auto-resize": "0.82.2", "@zag-js/avatar": "0.82.2", "@zag-js/carousel": "0.82.2", "@zag-js/checkbox": "0.82.2", "@zag-js/clipboard": "0.82.2", "@zag-js/collapsible": "0.82.2", "@zag-js/collection": "0.82.2", "@zag-js/color-picker": "0.82.2", "@zag-js/color-utils": "0.82.2", "@zag-js/combobox": "0.82.2", "@zag-js/core": "0.82.2", "@zag-js/date-picker": "0.82.2", "@zag-js/date-utils": "0.82.2", "@zag-js/dialog": "0.82.2", "@zag-js/dom-query": "0.82.2", "@zag-js/editable": "0.82.2", "@zag-js/file-upload": "0.82.2", "@zag-js/file-utils": "0.82.2", "@zag-js/focus-trap": "0.82.2", "@zag-js/highlight-word": "0.82.2", "@zag-js/hover-card": "0.82.2", "@zag-js/i18n-utils": "0.82.2", "@zag-js/menu": "0.82.2", "@zag-js/number-input": "0.82.2", "@zag-js/pagination": "0.82.2", "@zag-js/pin-input": "0.82.2", "@zag-js/popover": "0.82.2", "@zag-js/presence": "0.82.2", "@zag-js/progress": "0.82.2", "@zag-js/qr-code": "0.82.2", "@zag-js/radio-group": "0.82.2", "@zag-js/rating-group": "0.82.2", "@zag-js/react": "0.82.2", "@zag-js/select": "0.82.2", "@zag-js/signature-pad": "0.82.2", "@zag-js/slider": "0.82.2", "@zag-js/splitter": "0.82.2", "@zag-js/steps": "0.82.2", "@zag-js/switch": "0.82.2", "@zag-js/tabs": "0.82.2", "@zag-js/tags-input": "0.82.2", "@zag-js/time-picker": "0.82.2", "@zag-js/timer": "0.82.2", "@zag-js/toast": "0.82.2", "@zag-js/toggle-group": "0.82.2", "@zag-js/tooltip": "0.82.2", "@zag-js/tour": "0.82.2", "@zag-js/tree-view": "0.82.2", "@zag-js/types": "0.82.2" }, "peerDependencies": { "react": ">=18.0.0", "react-dom": ">=18.0.0" } }, "sha512-LJnz8nwXgGRszlkU2AiH3yLsAeXiXeQl4JBjMA7d8klZJBiBUp7URwLhBSWmoAIWRH7bW6fSPjhRAEkJLmD8gA=="],
 
     "@auth/core": ["@auth/core@0.37.2", "", { "dependencies": { "@panva/hkdf": "^1.2.1", "@types/cookie": "0.6.0", "cookie": "0.7.1", "jose": "^5.9.3", "oauth4webapi": "^3.0.0", "preact": "10.11.3", "preact-render-to-string": "5.2.3" }, "peerDependencies": { "@simplewebauthn/browser": "^9.0.1", "@simplewebauthn/server": "^9.0.2", "nodemailer": "^6.8.0" }, "optionalPeers": ["@simplewebauthn/browser", "@simplewebauthn/server", "nodemailer"] }, "sha512-kUvzyvkcd6h1vpeMAojK2y7+PAV5H+0Cc9+ZlKYDFhDY31AlvsB+GW5vNO4qE3Y07KeQgvNO9U0QUx/fN62kBw=="],
-
-    "@auth/drizzle-adapter": ["@auth/drizzle-adapter@1.7.2", "", { "dependencies": { "@auth/core": "0.37.2" } }, "sha512-PrXsbzcOGkw9A/lHr44SIOw0FBdXm9Me5xzmLCC54anPTiMmOq2FnJLjnPPnZZ/IKVOfTkSNOn9w9jtQgl2mCw=="],
 
     "@babel/code-frame": ["@babel/code-frame@7.26.2", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.25.9", "js-tokens": "^4.0.0", "picocolors": "^1.0.0" } }, "sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ=="],
 
