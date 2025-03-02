@@ -1,13 +1,13 @@
 import { create } from 'zustand'
 
 interface DialogsState {
-  signIn: boolean
-  setDialogs: (value: boolean) => void
+  isSignInOpen: boolean
+  setIsSignInOpen: (value: boolean) => void
 }
 
 export const useDialogsStore = create<DialogsState>(set => ({
-  signIn: false,
-  setDialogs: (value: boolean) => set({
-    signIn: value,
+  isSignInOpen: false,
+  setIsSignInOpen: (value: boolean) => set({
+    isSignInOpen: value,
   }),
 }))

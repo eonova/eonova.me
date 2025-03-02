@@ -1,11 +1,11 @@
 'use client'
 
 import { SendIcon } from 'lucide-react'
-import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { Button, toast } from '~/components/base'
-
 import { useCommentsContext } from '~/contexts/comments'
+
+import { useSession } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
 
 import CommentEditor from './comment-editor'
@@ -15,7 +15,7 @@ function CommentPost() {
   const { slug } = useCommentsContext()
   const [content, setContent] = useState('')
   const [isMounted, setIsMounted] = useState(false)
-  const { status } = useSession()
+  const { data: session, isPending } = useSession()
   const utils = api.useUtils()
 
   const commentsMutation = api.comments.post.useMutation({
@@ -55,10 +55,10 @@ function CommentPost() {
     }
   }, [])
 
-  if (status === 'loading' || !isMounted)
+  if (isPending || !isMounted)
     return null
 
-  const disabled = status !== 'authenticated' || commentsMutation.isPending
+  const disabled = session === null || commentsMutation.isPending
 
   return (
     <form

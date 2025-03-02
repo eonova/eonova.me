@@ -4,13 +4,13 @@ import type { MessageContext } from '~/contexts/message'
 
 import type { GetInfiniteMessagesOutput } from '~/trpc/routers/guestbook'
 import { keepPreviousData } from '@tanstack/react-query'
-import { useSession } from 'next-auth/react'
 import { useEffect, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
-
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from '~/components/base'
+
 import { MessageProvider } from '~/contexts/message'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
+import { useSession } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
 
 import DeleteButton from './delete-button'
@@ -63,22 +63,22 @@ function Messages() {
     <div className="flex flex-col gap-4" data-testid="guestbook-messages-list">
       {isSuccess
         ? data.pages.map(page =>
-            page.messages.map(message => <Message key={message.id} message={message} />),
-          )
+          page.messages.map(message => <Message key={message.id} message={message} />),
+        )
         : null}
       {noMessages
         ? (
-            <div className="flex min-h-24 items-center justify-center">
-              <p className="text-muted-foreground text-sm">没有留言，快来成为第一位留言者！</p>
-            </div>
-          )
+          <div className="flex min-h-24 items-center justify-center">
+            <p className="text-muted-foreground text-sm">没有留言，快来成为第一位留言者！</p>
+          </div>
+        )
         : null}
       {isError
         ? (
-            <div className="flex min-h-24 items-center justify-center">
-              <p className="text-muted-foreground text-sm">无法载入留言。请刷新页面。</p>
-            </div>
-          )
+          <div className="flex min-h-24 items-center justify-center">
+            <p className="text-muted-foreground text-sm">无法载入留言。请刷新页面。</p>
+          </div>
+        )
         : null}
       {isLoading ? <Loader /> : null}
       <span ref={ref} className="invisible" />

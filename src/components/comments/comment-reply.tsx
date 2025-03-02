@@ -1,14 +1,11 @@
 'use client'
 
 import type { GetInfiniteCommentsInput } from '~/trpc/routers/comments'
-
-import { useSession } from 'next-auth/react'
 import { useState } from 'react'
-
 import { useCommentContext } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
+import { useSession } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
-
 import { Button } from '../base/button'
 import { toast } from '../base/toaster'
 import CommentEditor from './comment-editor'
@@ -17,7 +14,7 @@ import UnauthorizedOverlay from './unauthorized-overlay'
 function CommentReply() {
   const [content, setContent] = useState('')
   const { comment, setIsReplying } = useCommentContext()
-  const { status } = useSession()
+  const { data: session } = useSession()
   const { slug, sort } = useCommentsContext()
   const utils = api.useUtils()
 
@@ -97,7 +94,8 @@ function CommentReply() {
     })
   }
 
-  const disabled = status === 'unauthenticated' || commentsMutation.isPending
+  const isAuthenticated = session !== null
+  const disabled = !isAuthenticated || commentsMutation.isPending
 
   return (
     <form onSubmit={submitCommentReply}>
@@ -114,7 +112,7 @@ function CommentReply() {
           disabled={disabled}
           autoFocus
         />
-        {status === 'unauthenticated' ? <UnauthorizedOverlay /> : null}
+        {isAuthenticated ? null : <UnauthorizedOverlay />}
       </div>
       <div className="mt-2 space-x-1">
         <Button

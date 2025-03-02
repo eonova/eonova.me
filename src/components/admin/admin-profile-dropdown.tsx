@@ -1,35 +1,30 @@
-import { useSession } from 'next-auth/react'
-
+import { useSession } from '~/lib/auth-client'
 import { useDialogsStore } from '~/stores/dialogs'
-import { getAvatarAbbreviation, getDefaultUser } from '~/utils'
+import { getAvatarAbbreviation } from '~/utils'
+import { getDefaultImage } from '~/utils/get-default-image'
 import { Avatar, AvatarFallback, AvatarImage } from '../base/avatar'
 import { Button } from '../base/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '../base/dropdown-menu'
 import { Skeleton } from '../base/skeleton'
 
 function AdminProfileDropdown() {
-  const { data, status } = useSession()
+  const { data: session, isPending } = useSession()
   const dialogStore = useDialogsStore()
 
-  if (status === 'loading') {
+  if (isPending) {
     return <Skeleton className="size-9 rounded-full" />
   }
 
-  if (!data) {
+  if (!session) {
     return (
-      <Button
-        size="sm"
-        onClick={() => {
-          dialogStore.setDialogs(true)
-        }}
-      >
+      <Button size="sm" onClick={() => dialogStore.setIsSignInOpen(true)}>
         登录
       </Button>
     )
   }
 
-  const { id, image, name, email } = data.user
-  const { defaultImage, defaultName } = getDefaultUser(id)
+  const { id, image, name, email } = session.user
+  const defaultImage = getDefaultImage(id)
 
   return (
     <DropdownMenu>
@@ -37,7 +32,7 @@ function AdminProfileDropdown() {
         <Button className="size-9 rounded-full" variant="ghost">
           <Avatar className="size-9">
             <AvatarImage className="size-9" src={image ?? defaultImage} />
-            <AvatarFallback>{getAvatarAbbreviation(name ?? defaultName)}</AvatarFallback>
+            <AvatarFallback>{getAvatarAbbreviation(name)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

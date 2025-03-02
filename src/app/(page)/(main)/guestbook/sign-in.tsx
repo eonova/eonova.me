@@ -12,7 +12,7 @@ function SignIn() {
       <Button
         className="dark:text-foreground inline-block bg-gradient-to-br from-[#fcd34d] via-[#ef4444] to-[#ec4899] font-extrabold"
         onClick={() => {
-          dialogStore.setDialogs(true)
+          dialogStore.setIsSignInOpen(true)
         }}
       >
         登入

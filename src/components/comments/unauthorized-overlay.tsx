@@ -9,7 +9,7 @@ function UnauthorizedOverlay() {
       <Button
         size="sm"
         onClick={() => {
-          dialogStore.setDialogs(true)
+          dialogStore.setIsSignInOpen(true)
         }}
       >
         登录

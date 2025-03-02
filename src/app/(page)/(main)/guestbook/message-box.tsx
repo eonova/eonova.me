@@ -1,8 +1,7 @@
 'use client'
 
-import type { User } from '~/lib/auth'
+import type { User } from '~/lib/auth-client'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signOut } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import {
@@ -19,8 +18,9 @@ import {
   Textarea,
   toast,
 } from '~/components/base'
-
+import { signOut } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
+import { getDefaultImage } from '~/utils/get-default-image'
 
 interface FormProps {
   user: User
@@ -57,11 +57,12 @@ function MessageBox(props: FormProps) {
       message: values.message,
     })
   }
+  const defaultImage = getDefaultImage(user.id)
 
   return (
     <div className="flex gap-3">
       <Avatar>
-        <AvatarImage src={user.image} width={40} height={40} alt={user.name} className="size-10" />
+        <AvatarImage src={user.image ?? defaultImage} alt={user.name} className="size-10" />
         <AvatarFallback className="bg-transparent">
           <Skeleton className="size-10 rounded-full" />
         </AvatarFallback>

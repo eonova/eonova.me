@@ -3,7 +3,7 @@ import type { WebPage, WithContext } from 'schema-dts'
 
 import PageTitle from '~/components/page-title'
 import { SITE_URL } from '~/config/constants'
-import { getCurrentUser } from '~/lib/auth'
+import { getSession } from '~/lib/auth'
 
 import { flags } from '~/lib/env'
 
@@ -46,7 +46,7 @@ export async function generateMetadata(
 async function Page() {
   if (!flags.auth)
     return null
-  const user = await getCurrentUser()
+  const session = await getSession()
 
   const jsonLd: WithContext<WebPage> = {
     '@context': 'https://schema.org',
@@ -70,10 +70,9 @@ async function Page() {
         title="留言板"
         description="在我的留言板上留下您的想法。您可以在这里告诉我任何事情！"
       />
-
-      <div className="mx-auto max-w-xl space-y-10">
+      <div className='mx-auto max-w-xl space-y-10'>
         <Pinned />
-        {user ? <MessageBox user={user} /> : <SignIn />}
+        {session ? <MessageBox user={session.user} /> : <SignIn />}
         <Messages />
       </div>
     </>

@@ -5,7 +5,6 @@ import { DocSearch } from '@docsearch/react'
 import { SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
 import { CommandIcon, LogInIcon, LogOutIcon } from 'lucide-react'
 
-import { signOut, useSession } from 'next-auth/react'
 import { Fragment, useCallback, useEffect, useState } from 'react'
 import { Button } from '~/components/base'
 import {
@@ -14,6 +13,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+import { signOut, useSession } from '~/lib/auth-client'
 import { env, flags } from '~/lib/env'
 import { useDialogsStore } from '~/stores/dialogs'
 
@@ -33,7 +33,7 @@ type Groups = Array<{
 function CommandMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [selectingValue, setSelectingValue] = useState('')
-  const { status } = useSession()
+  const { data: session } = useSession()
   const dialogStore = useDialogsStore()
 
   const isSelectingCommand = ['登出', '复制链接'].includes(
@@ -64,24 +64,24 @@ function CommandMenu() {
     {
       name: '账户',
       actions: [
-        ...(status === 'authenticated'
+        ...(session
           ? [
-              {
-                title: '登出',
-                icon: <LogOutIcon className="mr-3 size-4" />,
-                onSelect: () => signOut(),
-              },
-            ]
+            {
+              title: '登出',
+              icon: <LogOutIcon className="mr-3 size-4" />,
+              onSelect: () => signOut(),
+            },
+          ]
           : [
-              {
-                title: '登入',
-                icon: <LogInIcon className="mr-3 size-4" />,
-                onSelect: () => {
-                  setIsOpen(false)
-                  dialogStore.setDialogs(true)
-                },
+            {
+              title: '登入',
+              icon: <LogInIcon className="mr-3 size-4" />,
+              onSelect: () => {
+                setIsOpen(false)
+                dialogStore.setIsSignInOpen(true)
               },
-            ]),
+            },
+          ]),
       ],
     },
     {

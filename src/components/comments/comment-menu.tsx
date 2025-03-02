@@ -1,9 +1,8 @@
 import { MoreVerticalIcon } from 'lucide-react'
-import { useSession } from 'next-auth/react'
-
 import { useCommentContext } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
 import { useCopyToClipboard } from '~/hooks/use-copy-to-clipboard'
+import { useSession } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../base/alert-dialog'
 import { Button, buttonVariants } from '../base/button'
@@ -13,7 +12,7 @@ import { toast } from '../base/toaster'
 function CommentMenu() {
   const { comment } = useCommentContext()
   const { slug } = useCommentsContext()
-  const { data } = useSession()
+  const { data: session } = useSession()
   const utils = api.useUtils()
   const [copy] = useCopyToClipboard()
 
@@ -34,7 +33,7 @@ function CommentMenu() {
 
   const commentQuery = parentId ? `comment=${parentId}&reply=${id}` : `comment=${id}`
 
-  const isAuthor = !isDeleted && data?.user.id === userId
+  const isAuthor = !isDeleted && session?.user.id === userId
 
   return (
     <AlertDialog>
@@ -62,14 +61,14 @@ function CommentMenu() {
           <AlertDialogTrigger asChild>
             {isAuthor
               ? (
-                  <DropdownMenuItem
-                    className="text-red-600 focus:text-red-500"
-                    disabled={deleteCommentMutation.isPending}
-                    aria-disabled={deleteCommentMutation.isPending}
-                  >
-                    删除
-                  </DropdownMenuItem>
-                )
+                <DropdownMenuItem
+                  className="text-red-600 focus:text-red-500"
+                  disabled={deleteCommentMutation.isPending}
+                  aria-disabled={deleteCommentMutation.isPending}
+                >
+                  删除
+                </DropdownMenuItem>
+              )
               : null}
           </AlertDialogTrigger>
         </DropdownMenuContent>

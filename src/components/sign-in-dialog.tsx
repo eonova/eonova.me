@@ -2,12 +2,16 @@
 
 import { SiGithub } from '@icons-pack/react-simple-icons'
 import { Loader2Icon } from 'lucide-react'
-import { signIn } from 'next-auth/react'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
+import { signIn } from '~/lib/auth-client'
 import { useDialogsStore } from '~/stores/dialogs'
 import { Button } from './base/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './base/dialog'
+import { toast } from './base/toaster'
+
+type Provider = 'github' | 'google'
 
 function GoogleIcon() {
   return (
@@ -40,13 +44,33 @@ function GoogleIcon() {
 
 function SignInDialog() {
   const dialogStore = useDialogsStore()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isPending, setIsPending] = useState(false)
+  const pathname = usePathname()
 
+  const handleSignIn = async (provider: Provider) => {
+    localStorage.setItem('last-used-provider', provider)
+    await signIn.social({
+      provider,
+      callbackURL: pathname,
+      fetchOptions: {
+        onSuccess: () => {
+          setIsPending(false)
+        },
+        onError: () => {
+          setIsPending(false)
+          toast.error('登录失败')
+        },
+        onRequest: () => {
+          setIsPending(true)
+        },
+      },
+    })
+  }
   return (
     <Dialog
-      open={dialogStore.signIn}
+      open={dialogStore.isSignInOpen}
       onOpenChange={(v) => {
-        dialogStore.setDialogs(v)
+        dialogStore.setIsSignInOpen(v)
       }}
     >
       <DialogContent className="sm:max-w-[425px]">
@@ -59,42 +83,36 @@ function SignInDialog() {
         <div className="my-6 flex flex-col gap-4">
           <Button
             className="h-10 rounded-xl font-semibold"
-            onClick={() => {
-              setIsLoading(true)
-              void signIn('github')
-            }}
-            disabled={isLoading}
+            onClick={() => handleSignIn('github')}
+            disabled={isPending}
           >
-            {isLoading
+            {isPending
               ? (
-                  <Loader2Icon className="animate-spin" />
-                )
+                <Loader2Icon className="animate-spin" />
+              )
               : (
-                  <>
-                    <SiGithub className="mr-3" />
-                    使用 Github 登录
-                  </>
-                )}
+                <>
+                  <SiGithub className="mr-3" />
+                  使用 Github 登录
+                </>
+              )}
           </Button>
           <Button
             className="h-10 rounded-xl border font-semibold"
             variant="ghost"
-            onClick={() => {
-              setIsLoading(true)
-              void signIn('google')
-            }}
-            disabled={isLoading}
+            onClick={() => handleSignIn('google')}
+            disabled={isPending}
           >
-            {isLoading
+            {isPending
               ? (
-                  <Loader2Icon className="animate-spin" />
-                )
+                <Loader2Icon className="animate-spin" />
+              )
               : (
-                  <>
-                    <GoogleIcon />
-                    使用 Google 登录
-                  </>
-                )}
+                <>
+                  <GoogleIcon />
+                  使用 Google 登录
+                </>
+              )}
           </Button>
         </div>
       </DialogContent>
