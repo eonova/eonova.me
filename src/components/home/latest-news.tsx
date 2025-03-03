@@ -7,9 +7,9 @@ import { motion, useInView } from 'motion/react'
 import Link from 'next/link'
 
 import { useRef } from 'react'
+import { formatDate } from '~/utils'
 import TimelineList from '../timeline-list'
 import { BottomToUpTransitionView } from '../transition/bottom-to-top'
-import { formatDate } from '~/utils'
 
 const variants = {
   initial: {
@@ -81,7 +81,7 @@ function LatestNews() {
         <div className=" hidden sm:flex justify-center ">
           <div className="h-full w-0.5 rounded-full bg-gray-500/20" />
         </div>
-        <Card color={true} text="手记" articles={filteredNotes} />
+        <Card color text="手记" articles={filteredNotes} />
       </motion.div>
     </motion.div>
   )

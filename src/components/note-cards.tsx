@@ -5,8 +5,8 @@ import type { Note } from 'content-collections'
 import { Clock, Cloud, Eye, Sticker, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { api } from '~/trpc/react'
-import { BottomToUpTransitionView } from './transition'
 import { formatDate } from '~/utils'
+import { BottomToUpTransitionView } from './transition'
 
 interface NoteCardsProps {
   notes: Note[]

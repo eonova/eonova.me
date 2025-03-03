@@ -1,4 +1,4 @@
-export const formatDate = (date: string | number | Date) => {
+export function formatDate(date: string | number | Date) {
   const now = new Date()
   const diff = now.getTime() - new Date(date).getTime()
   const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24))

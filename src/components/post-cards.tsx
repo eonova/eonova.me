@@ -6,8 +6,8 @@ import { ChartColumnStacked, Clock, Eye, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { CATEGORIES } from '~/config/posts'
 import { api } from '~/trpc/react'
-import { BottomToUpTransitionView } from './transition'
 import { formatDate } from '~/utils'
+import { BottomToUpTransitionView } from './transition'
 
 interface PostCardsProps {
   posts: Post[]
@@ -29,7 +29,6 @@ function PostCards(props: PostCardsProps) {
 
 function PostCard(props: PostCardProps) {
   const { slug, title, categories, date, idx } = props
-
 
   const viewsQuery = api.views.get.useQuery({
     slug,
