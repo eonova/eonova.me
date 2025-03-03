@@ -1,7 +1,8 @@
+import type { Note, Post } from 'content-collections'
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { WebPage, WithContext } from 'schema-dts'
 
-import { allPosts } from 'content-collections'
+import type { WebPage, WithContext } from 'schema-dts'
+import { allNotes, allPosts } from 'content-collections'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import NoneContent from '~/components/none-content'
@@ -9,7 +10,6 @@ import PageTitle from '~/components/page-title'
 import TimelineList from '~/components/timeline-list'
 import { BottomToUpTransitionView } from '~/components/transition'
 import { SITE_URL } from '~/config/constants'
-import { CATEGORIES } from '~/config/posts'
 
 interface PageProps {
   params: Promise<{
@@ -19,59 +19,26 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
-  const { slug } = await props.params
+export async function generateMetadata(pageProps: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const { slug } = await pageProps.params
+  const title = `归档-${slug === 'posts' ? '文章' : '手记'}`
+  const url = `${SITE_URL}/archive/${slug}`
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
-
-  const post = allPosts.find(p => p.slug === slug)
-
-  if (!post)
-    return {}
-
-  const { date, modifiedTime, title, summary } = post
-
-  const ISOPublishedTime = new Date(date).toISOString()
-  const ISOModifiedTime = new Date(modifiedTime).toISOString()
-  const url = `/archive/${slug}`
-
   return {
     title,
-    description: summary,
     alternates: {
       canonical: url,
     },
     openGraph: {
       ...previousOpenGraph,
       url,
-      type: 'article',
+      type: 'profile',
       title,
-      description: summary,
-      publishedTime: ISOPublishedTime,
-      modifiedTime: ISOModifiedTime,
-      authors: SITE_URL,
-      images: [
-        {
-          url: `/og/${slug}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-          type: 'image/png',
-        },
-      ],
     },
     twitter: {
       ...previousTwitter,
       title,
-      description: summary,
-      images: [
-        {
-          url: `/og/${slug}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
     },
   }
 }
@@ -79,10 +46,19 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
 async function Page(props: PageProps) {
   const { slug } = await props.params
 
-  const posts = allPosts.filter(p => p.archive.includes(slug)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const articles = slug === 'posts' ? allPosts : allNotes
+  // 做成对象数组：键为年份，值为文章数组
+  const articlesByYear = articles.reduce((acc, article) => {
+    const year = new Date(article.date).getFullYear()
+    if (!acc[year]) {
+      acc[year] = []
+    }
+    acc[year].push(article)
+    return acc
+  }, {} as Record<string, typeof articles>)
   const url = `${SITE_URL}/archive/${slug}`
 
-  if (!posts) {
+  if (!articles) {
     notFound()
   }
 
@@ -91,12 +67,12 @@ async function Page(props: PageProps) {
     '@type': 'WebPage',
     'headline': slug,
     'name': slug,
-    'description': `分类-${CATEGORIES.find(i => i.label === slug)?.name}`,
+    'description': `归档-${slug === 'posts' ? '文章' : '手记'}`,
     url,
     'image': `${SITE_URL}/og/${slug}`,
   }
 
-  const title = `分类 - ${CATEGORIES.find(i => i.label === slug)?.name}`
+  const title = `归档-${slug === 'posts' ? '文章' : '手记'}`
   return (
     <>
       <script
@@ -105,37 +81,46 @@ async function Page(props: PageProps) {
       />
       <PageTitle title={title} description="" />
       {
-        posts.length > 0
+        (articlesByYear && Object.keys(articlesByYear).length > 0)
           ? (
-            <main className="mt-10 md:px-10 text-zinc-950/80 dark:text-zinc-50/80">
-              <TimelineList>
-                {posts.map((child, i) => {
-                  const date = new Date(child.date)
-
+            <main className="mt-10 md:px-3 text-zinc-950/80 dark:text-zinc-50/80">
+              {
+                Object.entries(articlesByYear).sort((a, b) => Number(b[0]) - Number(a[0])).map(([year, articles]) => {
                   return (
-                    <BottomToUpTransitionView
-                      key={child.slug}
-                      delay={700 + 50 * i}
-                      as="li"
-                      className="flex min-w-0 items-center justify-between leading-loose"
-                    >
-                      <Link
-                        href={`/posts/${child.slug}`}
-                        className="min-w-0 truncate"
+                    <ul key={year} className="mb-10">
+                      <BottomToUpTransitionView
+                        as="h4"
+                        delay={700}
+                        className="relative mb-4 ml-3 text-lg font-medium rounded-md before:content-auto before:absolute before:inset-y-[4px] before:-left-3 before:w-[2px] before:bg-accent"
                       >
-                        {child.title}
-                      </Link>
-                      <span className="meta ml-2">
-                        {(date.getMonth() + 1).toString().padStart(2, '0')}
-                        /
-                        {date.getDate().toString().padStart(2, '0')}
-                        /
-                        {date.getFullYear()}
-                      </span>
-                    </BottomToUpTransitionView>
+                        {year}
+                      </BottomToUpTransitionView>
+                      <TimelineList>
+                        {(articles as (Post | Note)[]).map((child: Post | Note, i: number) => {
+                          return (
+                            <BottomToUpTransitionView
+                              key={child.slug}
+                              delay={700 + 50 * i}
+                              as="li"
+                              className="flex min-w-0 items-center justify-between leading-loose"
+                            >
+                              <Link
+                                href={`/${child.type}/${child.slug}`}
+                                className="min-w-0 truncate"
+                              >
+                                {child.title}
+                              </Link>
+                              <span className="meta ml-2">
+                                {child.type === 'posts' ? `${child.categoriesText}/文章` : `天气：${child.weather}/心情：${child.mood}/手记`}
+                              </span>
+                            </BottomToUpTransitionView>
+                          )
+                        })}
+                      </TimelineList>
+                    </ul>
                   )
-                })}
-              </TimelineList>
+                })
+              }
             </main>
           )
           : (

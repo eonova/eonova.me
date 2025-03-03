@@ -71,6 +71,20 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     href: '/archive',
     key: 'archive',
     text: '归档',
+    subMenu: [
+      {
+        icon: <Archive className="size-5" />,
+        href: '/archive/posts',
+        key: 'archive-posts',
+        text: '文章',
+      },
+      {
+        icon: <Notebook className="size-5" />,
+        href: '/archive/notes',
+        key: 'archive-notes',
+        text: '手记',
+      },
+    ]
   },
   {
     icon: <MessageSquareMore className="size-5" />,
