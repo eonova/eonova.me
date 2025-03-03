@@ -85,5 +85,5 @@ export const WEATHER = [
   {
     text: '阴天',
     icon: 'fas fa-cloud-sun', // 阴天图标
-  }
+  },
 ]

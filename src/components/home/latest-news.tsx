@@ -2,8 +2,8 @@
 
 import type { Note, Post } from 'content-collections'
 import { allNotes, allPosts } from 'content-collections'
-import { motion, useInView } from 'motion/react'
 import { ArrowRight, ArrowUpRightIcon, NotebookPen, PencilIcon } from 'lucide-react'
+import { motion, useInView } from 'motion/react'
 import Link from 'next/link'
 
 import { useRef } from 'react'
@@ -77,12 +77,12 @@ function LatestNews() {
         }}
       >
         <Card articles={filteredPosts} />
-        <div className=' hidden sm:flex justify-center ' >
-          <div className='h-full w-0.5 rounded-full bg-gray-500/20' />
+        <div className=" hidden sm:flex justify-center ">
+          <div className="h-full w-0.5 rounded-full bg-gray-500/20" />
         </div>
-        <Card text='手记' articles={filteredNotes} />
+        <Card text="手记" articles={filteredNotes} />
       </motion.div>
-    </motion.div >
+    </motion.div>
   )
 }
 
@@ -94,7 +94,7 @@ interface CardProps {
 function Card(props: CardProps) {
   const { articles, text = '文章' } = props
   return (
-    <div className='col-span-6 flex flex-col gap-4 px-2'>
+    <div className="col-span-6 flex flex-col gap-4 px-2">
       <div className="flex items-center justify-between px-4 pl-0">
         <div className="flex items-center gap-3">
           {text === '文章' ? <PencilIcon className="size-[18px]" /> : <NotebookPen className="size-[18px]" />}
@@ -131,12 +131,13 @@ function Card(props: CardProps) {
         })}
       </TimelineList>
       <div className="flex items-center justify-end gap-2  dark:text-gray-400 hover:text-[#FF6467] dark:hover:text-[#FF6467] transition-colors duration-100 text-xs">
-        <ArrowRight className='size-3' />
+        <ArrowRight className="size-3" />
         <Link
           href={text === '文章' ? '/posts' : '/notes'}
-          className='rounded-xl'
+          className="rounded-xl"
         >
-          查看所有{text}
+          查看所有
+          {text}
         </Link>
       </div>
     </div>

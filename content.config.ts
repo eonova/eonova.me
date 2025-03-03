@@ -12,9 +12,9 @@ interface BaseDoc {
 }
 
 enum CATEGORIES {
-  'tech' = '技术',
-  'summary' = '总结',
-  'design' = '设计'
+  tech = '技术',
+  summary = '总结',
+  design = '设计',
 }
 
 function generateSlug(str: string, length: number): string {

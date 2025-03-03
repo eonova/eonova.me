@@ -84,7 +84,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
         key: 'archive-notes',
         text: '手记',
       },
-    ]
+    ],
   },
   {
     icon: <MessageSquareMore className="size-5" />,
