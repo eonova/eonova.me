@@ -6,6 +6,7 @@ import { Clock, Cloud, Eye, Sticker, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { api } from '~/trpc/react'
 import { BottomToUpTransitionView } from './transition'
+import { formatDate } from '~/utils'
 
 interface NoteCardsProps {
   notes: Note[]
@@ -27,24 +28,6 @@ function NoteCards(props: NoteCardsProps) {
 
 function NoteCard(props: NoteCardProps) {
   const { slug, title, mood, weather, date, idx } = props
-
-  const formatDate = (date: string | number | Date) => {
-    const now = new Date()
-    const diff = now.getTime() - new Date(date).getTime()
-    const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24))
-
-    if (diffDays < 30) {
-      return `${diffDays} 天前`
-    }
-    else {
-      return new Intl.DateTimeFormat('zh-CN', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        weekday: 'long',
-      }).format(new Date(date)).replace('星期', ' 星期')
-    }
-  }
 
   const viewsQuery = api.views.get.useQuery({
     slug,

@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import TimelineList from '../timeline-list'
 import { BottomToUpTransitionView } from '../transition/bottom-to-top'
+import { formatDate } from '~/utils'
 
 const variants = {
   initial: {
@@ -63,7 +64,7 @@ function LatestNews() {
         最新动态
       </motion.h2>
       <motion.div
-        className="mt-12 grid gap-4 md:grid-cols-13"
+        className="mt-12 grid gap-10 sm:gap-4 md:grid-cols-13"
         initial={{
           y: 40,
           opacity: 0,
@@ -80,7 +81,7 @@ function LatestNews() {
         <div className=" hidden sm:flex justify-center ">
           <div className="h-full w-0.5 rounded-full bg-gray-500/20" />
         </div>
-        <Card text="手记" articles={filteredNotes} />
+        <Card color={true} text="手记" articles={filteredNotes} />
       </motion.div>
     </motion.div>
   )
@@ -88,11 +89,12 @@ function LatestNews() {
 
 interface CardProps {
   text?: string
+  color?: boolean
   articles: Post[] | Note[]
 }
 
 function Card(props: CardProps) {
-  const { articles, text = '文章' } = props
+  const { articles, text = '文章', color = false } = props
   return (
     <div className="col-span-6 flex flex-col gap-4 px-2">
       <div className="flex items-center justify-between px-4 pl-0">
@@ -102,7 +104,7 @@ function Card(props: CardProps) {
         </div>
         <ArrowUpRightIcon className="size-[18px] opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
-      <TimelineList>
+      <TimelineList className={color ? 'shiro-timeline-yellow' : ''}>
         {articles.map((child, i) => {
           const date = new Date(child.date)
 
@@ -111,20 +113,16 @@ function Card(props: CardProps) {
               key={child.slug}
               delay={700 + 50 * i}
               as="li"
-              className="flex min-w-0 items-center justify-between leading-loose"
+              className="flex min-w-0 items-center justify-between leading-loose after:bg-[]"
             >
               <Link
-                href={`/posts/${child.slug}`}
+                href={`/${child.type}/${child.slug}`}
                 className="min-w-0 truncate"
               >
                 {child.title}
               </Link>
               <span className="meta ml-2">
-                {(date.getMonth() + 1).toString().padStart(2, '0')}
-                /
-                {date.getDate().toString().padStart(2, '0')}
-                /
-                {date.getFullYear()}
+                {formatDate(date)}
               </span>
             </BottomToUpTransitionView>
           )

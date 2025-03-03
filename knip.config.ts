@@ -3,6 +3,7 @@ import type { KnipConfig } from 'knip'
 const config: KnipConfig = {
   ignoreDependencies: [
     '@tailwindcss/typography',
+    'content-collections',
     'sharp',
     'tailwindcss',
     'react-email',
@@ -10,8 +11,9 @@ const config: KnipConfig = {
     'picocolors',
   ],
   entry: [
+    'content.config.ts',
     '*.config.mjs',
-    '*.config.mts',
+    '*.config.ts',
   ],
   project: [
     'src/**/*.{ts,tsx}',

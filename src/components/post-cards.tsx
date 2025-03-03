@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { CATEGORIES } from '~/config/posts'
 import { api } from '~/trpc/react'
 import { BottomToUpTransitionView } from './transition'
+import { formatDate } from '~/utils'
 
 interface PostCardsProps {
   posts: Post[]
@@ -29,23 +30,6 @@ function PostCards(props: PostCardsProps) {
 function PostCard(props: PostCardProps) {
   const { slug, title, categories, date, idx } = props
 
-  const formatDate = (date: string | number | Date) => {
-    const now = new Date()
-    const diff = now.getTime() - new Date(date).getTime()
-    const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24))
-
-    if (diffDays < 30) {
-      return `${diffDays} 天前`
-    }
-    else {
-      return new Intl.DateTimeFormat('zh-CN', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        weekday: 'long',
-      }).format(new Date(date)).replace('星期', ' 星期')
-    }
-  }
 
   const viewsQuery = api.views.get.useQuery({
     slug,

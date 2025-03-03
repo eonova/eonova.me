@@ -51,7 +51,7 @@ function MobileNavAside() {
           >
             <X className="text-3xl" />
           </button>
-          <div className="p-8 px-2 pt-16 flex gap-6 items-center">
+          <div className="py-8 pt-16 flex gap-6 items-center">
             <Image
               src="/favicon/apple-touch-icon.png"
               className="rounded-full"
@@ -65,18 +65,18 @@ function MobileNavAside() {
             </div>
           </div>
           <Separator className="mx-auto" />
-          <ul className="w-full my-5 flex flex-col gap-2">
+          <ul className="w-full my-5 flex flex-col gap-5">
             {HEADER_LINKS.map((link) => {
               const isActive = link.href === pathname
 
               return (
                 <li
                   key={link.key}
-                  className="relative flex flex-col items-start justify-center"
+                  className="relative flex flex-col items-start justify-center gap-7"
                 >
                   <Link
                     className={cn(
-                      'p-2 w-full bg-white/10 dark:bg-transparent font-medium transition-colors flex items-center text-[15px] gap-6',
+                      'w-full bg-white/10 dark:bg-transparent font-medium transition-colors flex items-center text-[15px] gap-3',
                       {
                         'text-muted-foreground hover:text-foreground': !isActive,
                       },
@@ -92,7 +92,7 @@ function MobileNavAside() {
                   </Link>
                   {
                     link.subMenu && (
-                      <ul className="grid grid-cols-2 gap-2 py-2 w-full bg-gray-400/10 dark:bg-transparent rounded-md overflow-hidden">
+                      <ul className="grid grid-cols-2 gap-7 w-full rounded-md overflow-hidden">
                         {link.subMenu.map((subLink) => {
                           const isSubActive = subLink.href === pathname
 
@@ -103,7 +103,7 @@ function MobileNavAside() {
                             >
                               <Link
                                 className={cn(
-                                  'px-2 w-full font-medium transition-colors flex items-center text-[15px] gap-6',
+                                  'w-full font-medium transition-colors flex items-center text-[15px] gap-7',
                                   {
                                     'text-muted-foreground hover:text-foreground': !isSubActive,
                                   },
@@ -127,7 +127,6 @@ function MobileNavAside() {
               )
             })}
           </ul>
-          <Separator className="mx-auto" />
         </SheetContent>
       </Sheet>
     </>
