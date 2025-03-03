@@ -1,5 +1,5 @@
 import type { NodePlopAPI } from 'plop'
-import { MOODS } from '~/config/notes'
+import { MOODS, WEATHER } from '~/config/notes'
 import { CATEGORIES } from '~/config/posts'
 
 export default async function (plop: NodePlopAPI) {
@@ -57,6 +57,13 @@ export default async function (plop: NodePlopAPI) {
         message: '今天心情怎么样？ 🎭 :',
         choices: MOODS.map(i => i.text),
         default: MOODS[0]?.text,
+      },
+      {
+        type: 'list',
+        name: 'weather',
+        message: '今天天气怎么样？ 🎈 :',
+        choices: WEATHER.map(i => i.text),
+        default: WEATHER[0]?.text,
       },
     ],
     actions: [{

@@ -1,8 +1,7 @@
 'use client'
 
-import { motion } from 'motion/react'
 import { ArrowUp, MessageCircle } from 'lucide-react'
-import { useTheme } from 'next-themes'
+import { motion } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { cn } from '~/lib/utils'
@@ -15,7 +14,6 @@ const Dock: React.FC<DockProps> = ({
   className,
 }) => {
   const [isVisible, setIsVisible] = useState(false)
-  useTheme()
   const pathname = usePathname()
 
   useEffect(() => {
@@ -38,11 +36,10 @@ const Dock: React.FC<DockProps> = ({
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  // 定义函数，用于点击时跳转到评论区
   const goToCommentSection = () => {
     const commentSection = document.getElementById('comment')
     if (commentSection) {
-      commentSection.scrollIntoView({ behavior: 'smooth' }) // 平滑滚动
+      commentSection.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
@@ -76,7 +73,6 @@ const Dock: React.FC<DockProps> = ({
             )
           }
         </ul>
-        {/* Content for the top motion.div */}
       </motion.div>
     </>
   )

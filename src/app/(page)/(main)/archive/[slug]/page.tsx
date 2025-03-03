@@ -33,7 +33,7 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
 
   const ISOPublishedTime = new Date(date).toISOString()
   const ISOModifiedTime = new Date(modifiedTime).toISOString()
-  const url = `/categories/${slug}`
+  const url = `/archive/${slug}`
 
   return {
     title,
@@ -79,8 +79,8 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
 async function Page(props: PageProps) {
   const { slug } = await props.params
 
-  const posts = allPosts.filter(p => p.categories.includes(slug)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  const url = `${SITE_URL}/categories/${slug}`
+  const posts = allPosts.filter(p => p.archive.includes(slug)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const url = `${SITE_URL}/archive/${slug}`
 
   if (!posts) {
     notFound()
@@ -107,7 +107,7 @@ async function Page(props: PageProps) {
       {
         posts.length > 0
           ? (
-            <main className="mt-10 md:px-3 text-zinc-950/80 dark:text-zinc-50/80">
+            <main className="mt-10 md:px-10 text-zinc-950/80 dark:text-zinc-50/80">
               <TimelineList>
                 {posts.map((child, i) => {
                   const date = new Date(child.date)

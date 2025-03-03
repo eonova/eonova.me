@@ -23,7 +23,7 @@ const VelocityScroll = dynamic(() => import('~/components/about/scrollbasedveloc
 
 const title = '关于'
 const description = '👋 嗨！我是 LeoStar。'
-const url = '/about'
+const url = `${SITE_URL}/about`
 
 export async function generateMetadata(_props: any, parent: ResolvingMetadata): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}

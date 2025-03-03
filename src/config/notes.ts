@@ -52,3 +52,38 @@ export const MOOD_COLORS: Record<ValidMoods, string> = {
   专注: 'bg-purple-100',
   创意: 'bg-pink-100',
 }
+
+export const WEATHER = [
+  {
+    text: '晴',
+    icon: 'fas fa-sun', // 太阳图标
+  },
+  {
+    text: '多云',
+    icon: 'fas fa-cloud', // 云图标
+  },
+  {
+    text: '雨天',
+    icon: 'fas fa-cloud-showers-heavy', // 大雨图标
+  },
+  {
+    text: '雷雨',
+    icon: 'fas fa-bolt', // 闪电图标
+  },
+  {
+    text: '雪天',
+    icon: 'fas fa-snowflake', // 雪花图标
+  },
+  {
+    text: '雾霾',
+    icon: 'fas fa-smog', // 雾霾图标
+  },
+  {
+    text: '风',
+    icon: 'fas fa-wind', // 风图标
+  },
+  {
+    text: '阴天',
+    icon: 'fas fa-cloud-sun', // 阴天图标
+  }
+]

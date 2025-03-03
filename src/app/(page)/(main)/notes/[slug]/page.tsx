@@ -33,10 +33,10 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
   if (!note)
     return {}
 
-  const { createTime, title, summary } = note
+  const { date, title, summary } = note
 
-  const ISOPublishedTime = new Date(createTime).toISOString()
-  const ISOModifiedTime = new Date(createTime).toISOString()
+  const ISOPublishedTime = new Date(date).toISOString()
+  const ISOModifiedTime = new Date(date).toISOString()
   const url = `/notes/${slug}`
 
   return {
@@ -90,7 +90,7 @@ async function Page(props: PageProps) {
     notFound()
   }
 
-  const { title, summary, createTime, code, toc } = note
+  const { title, summary, date, code, toc } = note
 
   const jsonLd: WithContext<Article> = {
     '@context': 'https://schema.org',
@@ -99,8 +99,8 @@ async function Page(props: PageProps) {
     'name': title,
     'description': summary,
     url,
-    'datePublished': createTime,
-    'dateModified': createTime,
+    'datePublished': date,
+    'dateModified': date,
     'image': `${SITE_URL}/og/${slug}`,
     'author': {
       '@type': 'Person',

@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import Link from 'next/link'
+import { memo } from 'react'
 import useIsScroll from '~/hooks/use-is-scroll'
 import useScrollDirection from '~/hooks/use-scroll-direction'
 import { cn } from '~/lib/utils'
@@ -22,7 +23,6 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
   const isScrolled = useIsScroll()
 
   const headerVariants = {
-    // 初始加载状态
     initial: {
       y: -100,
       opacity: 0,
@@ -31,7 +31,6 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         ease: 'easeIn',
       },
     },
-    // 可见且未滚动状态
     visible: {
       y: 0,
       opacity: 1,
@@ -41,18 +40,17 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         ease: 'easeIn',
       },
     },
-    // 滚动后隐藏状态
     hidden: {
-      y: -100, // 可以调整隐藏时的偏移量
-      opacity: 0.7, // 可以调整隐藏时的透明度
+      y: -100,
+      opacity: 0.7,
       top: '-50px',
       transition: {
         duration: 0.3,
         ease: 'easeOut',
       },
     },
-
   }
+
   return (
     <motion.header
       variants={headerVariants}
@@ -80,4 +78,4 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
   )
 }
 
-export default Header
+export default memo(Header)

@@ -8,9 +8,9 @@ import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { api } from '~/trpc/react'
 
 function Header() {
-  const { createTime, title, slug } = useNoteContext()
+  const { date, title, slug } = useNoteContext()
   const utils = api.useUtils()
-  const formattedDate = useFormattedDate(createTime, {
+  const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
     loading: '...',
   })
@@ -51,8 +51,8 @@ function Header() {
           {viewsCountQuery.status === 'error' ? '错误' : null}
           {viewsCountQuery.status === 'success'
             ? (
-                <NumberFlow willChange plugins={[continuous]} value={viewsCountQuery.data.views} />
-              )
+              <NumberFlow willChange plugins={[continuous]} value={viewsCountQuery.data.views} />
+            )
             : null}
         </div>
         <div className="flex items-center gap-3">
@@ -61,8 +61,8 @@ function Header() {
           {commentsCountQuery.status === 'error' ? '错误' : null}
           {commentsCountQuery.status === 'success'
             ? (
-                <NumberFlow willChange plugins={[continuous]} value={commentsCountQuery.data.comments} />
-              )
+              <NumberFlow willChange plugins={[continuous]} value={commentsCountQuery.data.comments} />
+            )
             : null}
         </div>
       </div>

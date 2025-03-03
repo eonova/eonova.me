@@ -1,6 +1,8 @@
 import Link from 'next/link'
-import { FOOTER_LINKS } from '~/config/links'
+import { memo } from 'react'
+import { SITE_GITHUB_URL } from '~/config/constants'
 
+import { FOOTER_LINKS } from '~/config/links'
 import { flags } from '~/lib/env'
 import NowPlaying from './now-playing'
 
@@ -30,8 +32,8 @@ const Footer: React.FC = () => {
         <div>
           &copy;
           {' '}
-          {new Date().getFullYear()}
-          <Link href="https://github.com/ileostar" className="ml-1">
+          {new Date().getFullYear() === 2025 ? new Date().getFullYear() : `2025-${new Date().getFullYear()}`}
+          <Link href={SITE_GITHUB_URL} className="ml-1">
             LeoStar
           </Link>
         </div>
@@ -40,4 +42,4 @@ const Footer: React.FC = () => {
   )
 }
 
-export default Footer
+export default memo(Footer)

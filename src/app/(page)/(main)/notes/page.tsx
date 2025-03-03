@@ -1,8 +1,8 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
 
-import { allPosts } from 'content-collections'
-import FilteredPosts from '~/components/filtered-posts'
+import { allNotes, allPosts } from 'content-collections'
+import NoteCards from '~/components/note-cards'
 import PageTitle from '~/components/page-title'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 
@@ -38,7 +38,7 @@ export async function generateMetadata(
 }
 
 async function Page() {
-  const posts = allPosts
+  const notes = allNotes
     .toSorted((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
@@ -71,7 +71,14 @@ async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageTitle title={title} description={description} />
-      <FilteredPosts posts={posts} />
+      {notes.length === 0
+        ? (
+            <div className="my-24 text-center text-xl">
+              暂无结果
+            </div>
+          )
+        : null}
+      <NoteCards notes={notes} />
     </>
   )
 }

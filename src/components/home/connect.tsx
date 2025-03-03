@@ -20,6 +20,7 @@ function Connect() {
             <Link
               key={href}
               href={href}
+              target='_blank'
               className="text-muted-foreground hover:text-foreground flex items-center gap-3 transition-colors"
             >
               <Icon className="size-[18px]" />

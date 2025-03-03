@@ -2,8 +2,8 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
 
 import { allPosts } from 'content-collections'
-import FilteredPosts from '~/components/filtered-posts'
 import PageTitle from '~/components/page-title'
+import PostCards from '~/components/post-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 
 const title = '文章'
@@ -71,7 +71,14 @@ async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageTitle title={title} description={description} />
-      <FilteredPosts posts={posts} />
+      {posts.length === 0
+        ? (
+          <div className="my-24 text-center text-xl">
+            暂无结果
+          </div>
+        )
+        : null}
+      <PostCards posts={posts} />
     </>
   )
 }

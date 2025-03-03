@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import {
   SiGithub,
   SiInstagram,
+  SiRss,
   SiX,
   SiYoutube,
 } from '@icons-pack/react-simple-icons'
@@ -54,6 +55,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     text: '文章',
     subMenu: CATEGORIES.map(category => ({
       text: category.name,
+      icon: category.icon,
       href: `${SITE_URL}/categories/${category.label}`,
       key: category.label,
     })),
@@ -146,28 +148,31 @@ export const FOOTER_LINKS = [
   {
     id: 1,
     links: [
-      { href: '/', key: '首页' },
-      { href: '/posts', key: '博客' },
-      { href: '/about', key: '关于' },
+      { href: '/posts', key: '文章' },
+      { href: '/notes', key: '手记' },
       { href: '/album', key: '相册' },
+      { href: '/bangumi', key: '追番' },
+      { href: '/movies', key: '观影记录' },
     ],
   },
   {
     id: 2,
     links: [
-      { href: '/guestbook', key: '留言板' },
+      { href: '/books', key: '书单' },
       { href: '/project', key: '项目' },
+      { href: '/about', key: '关于' },
       { href: '/links', key: '收藏夹' },
-      { href: '/rss.xml', key: 'RSS订阅' },
+      { href: '/guestbook', key: '留言板' },
     ],
   },
   {
     id: 3,
     links: [
-      { href: SITE_INSTAGRAM_URL, key: 'instagram' },
-      { href: SITE_GITHUB_URL, key: 'github' },
-      { href: SITE_YOUTUBE_URL, key: 'youtube' },
-      { href: SITE_X_URL, key: 'twitter' },
+      { href: '/rss.xml', key: 'RSS' },
+      { href: SITE_INSTAGRAM_URL, key: 'Instagram' },
+      { href: SITE_GITHUB_URL, key: 'Github' },
+      { href: SITE_YOUTUBE_URL, key: 'Youtube' },
+      { href: SITE_X_URL, key: 'Twitter' },
     ],
   },
 ] as const
@@ -192,5 +197,10 @@ export const SOCIAL_LINKS: SocialLinks = [
     href: SITE_YOUTUBE_URL,
     title: 'YouTube',
     icon: SiYoutube,
+  },
+  {
+    href: '/rss.xml',
+    title: 'RSS',
+    icon: SiRss,
   },
 ]

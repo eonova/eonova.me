@@ -4,10 +4,17 @@ import { createHash } from 'node:crypto'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { getTOC, rehypePlugins, remarkPlugins } from '@ileostar/mdx-plugins'
+import { CATEGORIES } from '~/config/posts'
 
 interface BaseDoc {
   _meta: Meta
   content: string
+}
+
+enum CATEGORIES {
+  'tech' = '技术',
+  'summary' = '总结',
+  'design' = '设计'
 }
 
 function generateSlug(str: string, length: number): string {
@@ -39,8 +46,8 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     throw new Error(`Invalid path: ${document._meta.path}`)
   }
 
-  const isPost = context.collection.name === 'Post'
-  const isNote = context.collection.name === 'Note'
+  const isPost = context.collection.name === 'posts'
+  const isNote = context.collection.name === 'notes'
   const pathSplit = path.split('\\')
   const slug = (isPost || isNote) ? generateSlug(pathSplit[pathSplit.length - 1] ?? '', 10) : pathSplit[pathSplit.length - 1]
 
@@ -48,16 +55,17 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     ...document,
     code,
     ...{
-      categories: isPost ? pathSplit[0] : undefined,
-      categoriesText: isPost ? pathSplit[0] : undefined,
+      categories: isPost ? pathSplit[0] : void 0,
+      categoriesText: isPost ? CATEGORIES[pathSplit[0]] : void 0,
     },
     slug,
+    type: context.collection.name,
     toc: await getTOC(document.content),
   }
 }
 
 const posts = defineCollection({
-  name: 'Post',
+  name: 'posts',
   directory: './data/posts',
   include: '**/*.md',
   schema: z => ({
@@ -71,20 +79,21 @@ const posts = defineCollection({
 })
 
 const notes = defineCollection({
-  name: 'Note',
+  name: 'notes',
   directory: './data/notes',
   include: '**/*.md',
   schema: z => ({
     title: z.string(),
-    createTime: z.string(),
+    date: z.string(),
     mood: z.string(),
+    weather: z.string(),
     cover: z.string(),
   }),
   transform,
 })
 
 const projects = defineCollection({
-  name: 'Project',
+  name: 'projects',
   directory: './data/projects',
   include: '**/*.md',
   schema: z => ({
