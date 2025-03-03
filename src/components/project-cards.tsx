@@ -31,9 +31,9 @@ function ProjectCard(props: ProjectCardProps) {
     >
       <BlurImage
         src={`/images/projects/${slug}.png`}
-        width={1280}
-        height={832}
-        imageClassName="group-hover:scale-105"
+        width={600}
+        height={450}
+        imageClassName="group-hover:scale-105 w-full"
         alt={name}
         className="rounded-lg"
       />

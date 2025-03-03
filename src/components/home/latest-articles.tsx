@@ -2,7 +2,7 @@
 
 import type { Post } from 'content-collections'
 import { allPosts } from 'content-collections'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView } from 'motion/react'
 import { ArrowUpRightIcon, PencilIcon } from 'lucide-react'
 import Link from 'next/link'
 
@@ -140,16 +140,16 @@ function Card(props: CardProps) {
           {likesQuery.status === 'error' ? '错误' : null}
           {likesQuery.status === 'success'
             ? (
-                <div>{`${likesQuery.data.likes} 点赞`}</div>
-              )
+              <div>{`${likesQuery.data.likes} 点赞`}</div>
+            )
             : null}
           <div>&middot;</div>
           {viewsQuery.status === 'pending' ? '--' : null}
           {viewsQuery.status === 'error' ? '错误' : null}
           {viewsQuery.status === 'success'
             ? (
-                <div>{`${viewsQuery.data.views} 浏览量`}</div>
-              )
+              <div>{`${viewsQuery.data.views} 浏览量`}</div>
+            )
             : null}
         </div>
       </div>

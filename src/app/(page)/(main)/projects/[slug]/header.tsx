@@ -2,8 +2,8 @@
 
 import type { Project } from 'content-collections'
 
-import { motion } from 'framer-motion'
 import { ArrowUpRightIcon } from 'lucide-react'
+import { motion } from 'motion/react'
 
 import Link from 'next/link'
 import { buttonVariants } from '~/components/base/button'
@@ -48,11 +48,11 @@ function Header(props: HeaderProps) {
       >
         {homepage
           ? (
-              <Link href={homepage} className={cn(buttonVariants(), 'group')}>
-                前往网站
-                <ArrowUpRightIcon className="ml-2 size-5 transition-transform group-hover:-rotate-12" />
-              </Link>
-            )
+            <Link href={homepage} className={cn(buttonVariants(), 'group')}>
+              前往网站
+              <ArrowUpRightIcon className="ml-2 size-5 transition-transform group-hover:-rotate-12" />
+            </Link>
+          )
           : null}
         <Link href={github} className={cn(buttonVariants(), 'group')}>
           {GITHUB_USERNAME}

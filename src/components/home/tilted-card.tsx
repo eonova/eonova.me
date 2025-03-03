@@ -1,6 +1,6 @@
 'use client'
 import type { ReactNode } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useMotionValue, useSpring } from 'motion/react'
 import { useRef, useState } from 'react'
 import '~/styles/page/tilted.css'
 

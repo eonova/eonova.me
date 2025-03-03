@@ -2,8 +2,8 @@
 
 import type { Project } from 'content-collections'
 import { allProjects } from 'content-collections'
-import { motion, useInView } from 'framer-motion'
 import { ArrowUpRightIcon, LightbulbIcon } from 'lucide-react'
+import { motion, useInView } from 'motion/react'
 import Link from 'next/link'
 import { useRef } from 'react'
 import { cn } from '~/lib/utils'
@@ -117,6 +117,7 @@ function Card(props: CardProps) {
         src={`/images/projects/${slug}.png`}
         alt={description}
         className="rounded-lg"
+        imageClassName="w-full"
         blurGlass
       />
       <div className="absolute bottom-6 left-7 flex flex-col transition-[left] ease-out group-hover:left-[30px] z-40">

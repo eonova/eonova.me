@@ -5,15 +5,13 @@ import { Button } from '~/components/base'
 import { useDialogsStore } from '~/stores/dialogs'
 
 function SignIn() {
-  const dialogStore = useDialogsStore()
+  const { setIsSignInOpen } = useDialogsStore()
 
   return (
     <>
       <Button
-        className="dark:text-foreground inline-block bg-gradient-to-br from-[#fcd34d] via-[#ef4444] to-[#ec4899] font-extrabold"
-        onClick={() => {
-          dialogStore.setIsSignInOpen(true)
-        }}
+        className='dark:text-foreground bg-linear-to-br inline-block from-[#fcd34d] via-[#ef4444] to-[#ec4899] font-extrabold'
+        onClick={() => setIsSignInOpen(true)}
       >
         登入
       </Button>

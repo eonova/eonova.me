@@ -1,11 +1,10 @@
-import type { Key } from 'react'
-import { Skeleton } from '~/components/base'
+import { Skeleton } from '~/components/base/skeleton'
 import { cn } from '~/lib/utils'
 import { range } from '~/utils'
 
 function Placeholder() {
   return (
-    <div className="rounded-lg border p-4 shadow-sm dark:bg-zinc-900/30">
+    <div className="shadow-xs rounded-lg border p-4 dark:bg-zinc-900/30">
       <div className="mb-3 flex gap-3">
         <Skeleton className="size-10 rounded-full" />
         <div className="flex flex-col justify-center gap-1">
@@ -18,16 +17,16 @@ function Placeholder() {
   )
 }
 
-function Loader(props: React.ComponentProps<'div'>) {
+function MessagesLoader(props: React.ComponentProps<'div'>) {
   const { className, ...rest } = props
 
   return (
     <div className={cn('flex flex-col gap-4', className)} {...rest}>
-      {range(8).map((n: Key | null | undefined) => (
+      {range(8).map(n => (
         <Placeholder key={n} />
       ))}
     </div>
   )
 }
 
-export default Loader
+export default MessagesLoader

@@ -1,8 +1,8 @@
 'use client'
 import NumberFlow, { continuous } from '@number-flow/react'
 import { Heart } from 'lucide-react'
-import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
+import { useSession } from '~/lib/auth-client'
 import { cn } from '~/lib/utils'
 import { api } from '~/trpc/react'
 

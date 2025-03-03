@@ -14,7 +14,7 @@ import { useSession } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
 
 import DeleteButton from './delete-button'
-import Loader from './loader'
+import MessagesLoader from './messages-loader'
 
 interface UpdatedDateProps {
   date: Date
@@ -63,25 +63,25 @@ function Messages() {
     <div className="flex flex-col gap-4" data-testid="guestbook-messages-list">
       {isSuccess
         ? data.pages.map(page =>
-            page.messages.map(message => <Message key={message.id} message={message} />),
-          )
+          page.messages.map(message => <Message key={message.id} message={message} />),
+        )
         : null}
       {noMessages
         ? (
-            <div className="flex min-h-24 items-center justify-center">
-              <p className="text-muted-foreground text-sm">没有留言，快来成为第一位留言者！</p>
-            </div>
-          )
+          <div className="flex min-h-24 items-center justify-center">
+            <p className="text-muted-foreground text-sm">没有留言，快来成为第一位留言者！</p>
+          </div>
+        )
         : null}
       {isError
         ? (
-            <div className="flex min-h-24 items-center justify-center">
-              <p className="text-muted-foreground text-sm">无法载入留言。请刷新页面。</p>
-            </div>
-          )
+          <div className="flex min-h-24 items-center justify-center">
+            <p className="text-muted-foreground text-sm">无法载入留言。请刷新页面。</p>
+          </div>
+        )
         : null}
-      {isLoading ? <Loader /> : null}
-      <span ref={ref} className="invisible" />
+      {isLoading ? <MessagesLoader /> : null}
+      <span ref={ref} className='invisible' />
     </div>
   )
 }

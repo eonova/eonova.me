@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import WriteLogo from '../write-logo'
 import TiltedCard from './tilted-card'

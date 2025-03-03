@@ -1,7 +1,7 @@
 'use client'
 
 import type { ComponentProps, ElementType } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 type BottomToUpProps = {
   delay?: number

@@ -108,8 +108,8 @@ async function Page(props: PageProps) {
         <Header {...project} />
         <BlurImage
           src={`/images/projects/${slug}.png`}
-          width={1280}
-          height={832}
+          width={600}
+          height={450}
           alt={name}
           className="my-12 rounded-lg"
           lazy={false}

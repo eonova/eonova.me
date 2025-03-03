@@ -2,7 +2,7 @@
 
 import type { AppRouter } from './root'
 import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { loggerLink, unstable_httpBatchStreamLink } from '@trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
@@ -78,6 +78,7 @@ export const TRPCReactProvider = (props: TRPCReactProviderProps) => {
       {/* eslint-disable-next-line @eslint-react/no-context-provider -- custom context */}
       <api.Provider client={trpcClient} queryClient={queryClient}>
         {children}
+        <ReactQueryDevtools />
       </api.Provider>
     </QueryClientProvider>
   )

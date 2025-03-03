@@ -21,6 +21,11 @@ const withPWA = createPWA({
   register: true,
   extendDefaultRuntimeCaching: true,
   cacheOnFrontEndNav: true,
+  workboxOptions: {
+    cleanupOutdatedCaches: true,
+    skipWaiting: true,
+    clientsClaim: true,
+  },
 })
 
 const NextConfigHeaders = [
@@ -68,7 +73,6 @@ const MyNextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['shiki', 'lenis'],
     reactCompiler: true,
-    serverComponentsExternalPackages: ['@vercel/og'],
   },
 
   images: {

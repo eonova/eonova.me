@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { ArrowUp, MessageCircle } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
