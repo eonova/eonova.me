@@ -17,6 +17,22 @@ enum CATEGORIES {
   design = '设计',
 }
 
+function removeTrim(str: string): string {
+  return str.includes('\\')
+    ? str.slice(str.lastIndexOf('\\') + 1)
+    : str
+}
+
+function validateSlug(slug: string): string {
+  if (slug.includes('/')) {
+    return slug.slice(slug.lastIndexOf('/') + 1)
+  }
+  else if (slug.includes('\\')) {
+    return slug.slice(slug.lastIndexOf('\\') + 1)
+  }
+  return slug
+}
+
 function generateSlug(str: string, length: number): string {
   const trimmed = str.trim()
   if (!trimmed)
@@ -48,17 +64,17 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
 
   const isPost = context.collection.name === 'posts'
   const isNote = context.collection.name === 'notes'
-  const pathSplit = path.split('\\')
-  const slug = (isPost || isNote) ? generateSlug(pathSplit[pathSplit.length - 1] ?? '', 10) : pathSplit[pathSplit.length - 1]
+  const pathStr = removeTrim(path)
+  const slug = (isPost || isNote) ? generateSlug(pathStr ?? '', 10) : pathStr
 
   return {
     ...document,
     code,
     ...{
-      categories: isPost ? pathSplit[0] : void 0,
-      categoriesText: isPost ? CATEGORIES[pathSplit[0]] : void 0,
+      categories: isPost ? path.split('\\')[0] : void 0,
+      categoriesText: isPost ? CATEGORIES[path.split('\\')[0]] : void 0,
     },
-    slug,
+    slug: validateSlug(slug),
     type: context.collection.name,
     toc: await getTOC(document.content),
   }
