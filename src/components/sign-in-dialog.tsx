@@ -43,7 +43,7 @@ function GoogleIcon() {
 }
 
 function SignInDialog() {
-  const dialogStore = useDialogsStore()
+  const { isSignInOpen, setIsSignInOpen } = useDialogsStore()
   const [isPending, setIsPending] = useState(false)
   const pathname = usePathname()
 
@@ -68,9 +68,9 @@ function SignInDialog() {
   }
   return (
     <Dialog
-      open={dialogStore.isSignInOpen}
+      open={isSignInOpen}
       onOpenChange={(v) => {
-        dialogStore.setIsSignInOpen(v)
+        setIsSignInOpen(v)
       }}
     >
       <DialogContent className="sm:max-w-[425px]">
