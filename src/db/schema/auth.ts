@@ -14,7 +14,7 @@ export const users = pgTable('user', {
   image: text('image'),
   createdAt: timestamp('created_at').notNull(),
   updatedAt: timestamp('updated_at').notNull(),
-  role: roleEnum('role').default('user').notNull()
+  role: roleEnum('role').default('user').notNull(),
 })
 
 export const accounts = pgTable('account', {
@@ -32,7 +32,7 @@ export const accounts = pgTable('account', {
   scope: text('scope'),
   password: text('password'),
   createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull()
+  updatedAt: timestamp('updated_at').notNull(),
 })
 
 export const sessions = pgTable('session', {
@@ -45,7 +45,7 @@ export const sessions = pgTable('session', {
   userAgent: text('user_agent'),
   userId: text('user_id')
     .notNull()
-    .references(() => users.id, { onDelete: 'cascade' })
+    .references(() => users.id, { onDelete: 'cascade' }),
 })
 
 export const verifications = pgTable('verification', {
@@ -54,26 +54,26 @@ export const verifications = pgTable('verification', {
   value: text('value').notNull(),
   expiresAt: timestamp('expires_at').notNull(),
   createdAt: timestamp('created_at'),
-  updatedAt: timestamp('updated_at')
+  updatedAt: timestamp('updated_at'),
 })
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
   sessions: many(sessions),
   comments: many(comments),
-  guestbook: many(guestbook)
+  guestbook: many(guestbook),
 }))
 
 export const accountsRelations = relations(accounts, ({ one }) => ({
   user: one(users, {
     fields: [accounts.userId],
-    references: [users.id]
-  })
+    references: [users.id],
+  }),
 }))
 
 export const sessionsRelations = relations(sessions, ({ one }) => ({
   user: one(users, {
     fields: [sessions.userId],
-    references: [users.id]
-  })
+    references: [users.id],
+  }),
 }))

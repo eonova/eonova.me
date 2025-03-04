@@ -6,5 +6,5 @@ export const likesSessions = pgTable('likes_session', {
   createdAt: timestamp('created_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP(3)`),
-  likes: integer('likes').notNull().default(0)
+  likes: integer('likes').notNull().default(0),
 })

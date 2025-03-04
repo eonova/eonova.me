@@ -14,12 +14,12 @@ export const guestbook = pgTable('guestbook', {
     .default(sql`CURRENT_TIMESTAMP(3)`),
   updatedAt: timestamp('updated_at')
     .notNull()
-    .default(sql`CURRENT_TIMESTAMP(3)`)
+    .default(sql`CURRENT_TIMESTAMP(3)`),
 })
 
 export const guestbookRelations = relations(guestbook, ({ one }) => ({
   user: one(users, {
     fields: [guestbook.userId],
-    references: [users.id]
-  })
+    references: [users.id],
+  }),
 }))

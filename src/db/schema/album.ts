@@ -13,5 +13,5 @@ export const album = pgTable('album', {
     .default(sql`CURRENT_TIMESTAMP(3)`),
   updatedAt: timestamp('updated_at')
     .notNull()
-    .default(sql`CURRENT_TIMESTAMP(3)`)
+    .default(sql`CURRENT_TIMESTAMP(3)`),
 })
