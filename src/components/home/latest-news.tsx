@@ -104,7 +104,7 @@ function Card(props: CardProps) {
         <ArrowUpRightIcon className="size-[18px] opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
       <TimelineList className={color ? 'shiro-timeline-yellow' : ''}>
-        {articles.map(child => {
+        {articles.map((child) => {
           const date = new Date(child.date)
 
           return (

@@ -23,6 +23,16 @@ function removeTrim(str: string): string {
     : str
 }
 
+function validateCategory(category: string): string {
+  if (category.includes('/')) {
+    return category.split('/')[0]
+  }
+  else if (category.includes('\\')) {
+    return category.split('\\')[0]
+  }
+  return category
+}
+
 function validateSlug(slug: string): string {
   if (slug.includes('/')) {
     return slug.slice(slug.lastIndexOf('/') + 1)
@@ -71,8 +81,8 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     ...document,
     code,
     ...{
-      categories: isPost ? path.split('\\')[0] : void 0,
-      categoriesText: isPost ? CATEGORIES[path.split('\\')[0]] : void 0,
+      categories: isPost ? validateCategory(path) : void 0,
+      categoriesText: isPost ? CATEGORIES[validateCategory(path)] : void 0,
     },
     slug: validateSlug(slug),
     type: context.collection.name,
