@@ -9,7 +9,6 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { formatDate } from '~/utils'
 import TimelineList from '../timeline-list'
-import { BottomToUpTransitionView } from '../transition/bottom-to-top'
 
 const variants = {
   initial: {
@@ -105,14 +104,12 @@ function Card(props: CardProps) {
         <ArrowUpRightIcon className="size-[18px] opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
       <TimelineList className={color ? 'shiro-timeline-yellow' : ''}>
-        {articles.map((child, i) => {
+        {articles.map(child => {
           const date = new Date(child.date)
 
           return (
-            <BottomToUpTransitionView
+            <li
               key={child.slug}
-              delay={700 + 50 * i}
-              as="li"
               className="flex min-w-0 items-center justify-between leading-loose after:bg-[]"
             >
               <Link
@@ -124,7 +121,7 @@ function Card(props: CardProps) {
               <span className="meta ml-2">
                 {formatDate(date)}
               </span>
-            </BottomToUpTransitionView>
+            </li>
           )
         })}
       </TimelineList>

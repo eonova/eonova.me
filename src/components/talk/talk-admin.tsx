@@ -1,10 +1,12 @@
 'use client'
 import { useState } from 'react'
+import { cn } from '~/lib/utils'
 import { api } from '~/trpc/react'
 import { Button } from '../base/button'
 import { Textarea } from '../base/textarea'
 import { toast } from '../base/toaster'
 import TalkBox from './box'
+import TalkMdx from './mdx'
 
 interface TalkAdminProps {
   // 可添加 props 如初始数据等
@@ -13,6 +15,8 @@ interface TalkAdminProps {
 const TalkAdmin: React.FC<TalkAdminProps> = () => {
   const [talkText, setTalkText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const { data: talks } = api.talks.getAllTalks.useQuery()
+  const utils = api.useUtils()
 
   // 初始化 tRPC 创建动态的 mutation
   const { mutate: createTalk } = api.talks.createTalk.useMutation({
@@ -27,6 +31,7 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
       toast.error(`动态发布失败${error.data}`)
     },
     onSettled: () => {
+      utils.talks.getAllTalks.invalidate()
       setIsLoading(false)
     },
   })
@@ -44,6 +49,21 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
       content: talkText,
     })
   }
+
+  // 拿到所有动态数据
+  // 刪除动态
+  const talkMutation = api.talks.deleteTalk.useMutation({
+    onSuccess: () => {
+      toast.success('删除成功')
+    },
+    onError: (error) => {
+      toast.error(`删除失败${error.data}`)
+    },
+    onSettled: () => {
+      utils.talks.getAllTalks.invalidate()
+      setIsLoading(false)
+    },
+  })
 
   return (
     <div className="grid sm:grid-cols-2 gap-5 w-full flex-1">
@@ -75,31 +95,47 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
           </div>
         </div>
 
-        <div className="bg-gray-200/20 dark:bg-gray-200/10 rounded-xl p-5 text-xs flex-1">
-          <h4 className="font-bold mb-2">发布规则：</h4>
-          <ul className="space-y-1">
-            <li>1. 内容需符合社区规范</li>
-            <li>2. 禁止发布广告信息</li>
-            <li>3. 每5分钟限发1条动态</li>
-          </ul>
-        </div>
-      </form>
-
-      <div className="flex flex-col gap-5">
-        <h3 className="font-sans">预览区域：</h3>
-        <div className="rounded-xl p-5 flex-1 border">
-          {talkText
-            ? (
+        <div className="flex flex-col gap-5">
+          <h3 className="font-sans">预览区域：</h3>
+          <div className="rounded-xl p-5 pt-[-5] flex-1 border">
+            {talkText
+              ? (
                 <TalkBox>
                   {talkText}
                 </TalkBox>
               )
-            : (
+              : (
                 <div className="text-gray-500 text-sm">
                   输入内容后预览将在此处显示
                 </div>
               )}
+          </div>
         </div>
+
+      </form>
+      <div className="bg-gray-200/20 dark:bg-gray-200/10 rounded-xl flex flex-col gap-2 text-xs h-full max-h-[75vh] overflow-y-auto">
+        {
+          talks?.items?.map(talk => (
+            <div key={talk.id} className="flex flex-col gap-2 p-2 ">
+              <div
+                className={cn(
+                  'relative inline-block rounded-xl p-3 text-zinc-800 dark:text-zinc-200',
+                  'rounded-tl-sm bg-zinc-600/5 dark:bg-zinc-500/20',
+                  ' overflow-auto',
+                )}
+              >
+                <TalkMdx>
+                  {talk.content}
+                </TalkMdx>
+              </div>
+              <div className="flex justify-end gap-3">
+                <Button onClick={() => talkMutation.mutate({ id: talk.id })} variant="destructive" className="w-15">
+                  删除
+                </Button>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   )
