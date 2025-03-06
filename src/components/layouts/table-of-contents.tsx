@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { useScrollspy } from '~/hooks/use-scrollspy'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 interface TableOfContentsProps {
   toc: TOC[]

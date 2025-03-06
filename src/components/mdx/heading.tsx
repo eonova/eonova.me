@@ -6,7 +6,7 @@
  * Modified by: leostar
  */
 import { LinkIcon } from 'lucide-react'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 type Types = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 type HeadingProps<T extends Types> = Omit<React.ComponentProps<T>, 'as'> & {

@@ -2,7 +2,7 @@
 'use client'
 import { useState } from 'react'
 import { buttonVariants } from '~/components/base/button'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 import { api } from '~/trpc/react'
 import Lightbox from './lightbox'
 import Masonry from './masonry'

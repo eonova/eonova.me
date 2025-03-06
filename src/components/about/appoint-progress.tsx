@@ -1,5 +1,5 @@
 import React from 'react'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 interface AppointProgressProps {
   startDate: Date // 开始日期

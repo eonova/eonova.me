@@ -1,5 +1,4 @@
-// src/types/douban.ts
-import type { mapDoubanUser } from '~/utils/douban/map-douban-user'
+import type { mapDoubanUser } from '~/utils'
 import { z } from 'zod'
 
 /** ​ 豆瓣内容类型 */

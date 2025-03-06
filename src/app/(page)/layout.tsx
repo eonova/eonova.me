@@ -9,7 +9,7 @@ import Dock from '~/components/layouts/dock'
 import SignInDialog from '~/components/sign-in-dialog'
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
 import { env } from '~/lib/env'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 import Providers from '../providers'
 import '~/styles/globals.css'
 
@@ -121,13 +121,13 @@ export default function RootLayout({
       <body className="antialiased relative">
         {env.REACT_SCAN_MONITOR_API_KEY
           ? (
-              <Monitoring
-                apiKey={env.REACT_SCAN_MONITOR_API_KEY}
-                url="https://monitoring.react-scan.com/api/v1/ingest"
-                commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
-                branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-              />
-            )
+            <Monitoring
+              apiKey={env.REACT_SCAN_MONITOR_API_KEY}
+              url="https://monitoring.react-scan.com/api/v1/ingest"
+              commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+              branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+            />
+          )
           : null}
         <Providers>
           <Hello />

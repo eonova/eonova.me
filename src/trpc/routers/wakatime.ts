@@ -1,7 +1,7 @@
 import { TRPCError } from '@trpc/server'
 import { env } from '~/lib/env'
 import { ratelimit } from '~/lib/kv'
-import { getIp } from '~/utils/'
+import { getIp } from '~/utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 const getKey = (id: string) => `wakatime:${id}`

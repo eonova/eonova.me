@@ -7,7 +7,7 @@ import PageTitle from '~/components/page-title'
 import RecreationCard from '~/components/recreation-card'
 import { CardSkeleton } from '~/components/skeleton/card-skeleton'
 import { api } from '~/trpc/react'
-import { getFlatArrLength } from '~/utils/get-flat-arr-length'
+import { getFlatArrLength } from '~/utils'
 
 // 定义模式类型
 const MODES = ['do', 'wish', 'collect'] as const
@@ -71,9 +71,9 @@ const Books: React.FC = () => {
               onClick={() => setSelectedMode(mode)}
               className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors
               ${selectedMode === mode
-              ? 'bg-pink-500 text-white shadow-md'
-              : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
+                  ? 'bg-pink-500 text-white shadow-md'
+                  : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
             >
               {MODE_LABELS[mode]}
               {' '}

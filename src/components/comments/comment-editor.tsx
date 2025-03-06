@@ -1,6 +1,6 @@
 import { BoldIcon, ItalicIcon, StrikethroughIcon } from 'lucide-react'
 import { useRef } from 'react'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 import { Button } from '../base/button'
 import { Textarea } from '../base/textarea'
 
@@ -12,7 +12,7 @@ interface Command {
 type CommentEditorProps = {
   initialValue?: string
 } & Command &
-React.ComponentProps<typeof Textarea>
+  React.ComponentProps<typeof Textarea>
 
 function setRangeText(textarea: HTMLTextAreaElement, replacement: string, start: number, end: number, selectionMode?: SelectionMode) {
   textarea.setRangeText(replacement, start, end, selectionMode)

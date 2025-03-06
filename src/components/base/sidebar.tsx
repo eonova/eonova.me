@@ -5,7 +5,7 @@ import { PanelLeftIcon } from 'lucide-react'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useIsMobile } from '~/hooks/use-is-mobile'
 
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 import { Button } from './button'
 import { Input } from './input'
 import { Separator } from './separator'
@@ -520,7 +520,7 @@ type SidebarMenuButtonProps = {
   isActive?: boolean
   tooltip?: string | React.ComponentProps<typeof TooltipContent>
 } & React.ComponentProps<'button'> &
-VariantProps<typeof sidebarMenuButtonVariants>
+  VariantProps<typeof sidebarMenuButtonVariants>
 
 function SidebarMenuButton(props: SidebarMenuButtonProps) {
   const {

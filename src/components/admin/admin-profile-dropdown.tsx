@@ -1,7 +1,6 @@
 import { useSession } from '~/lib/auth-client'
 import { useDialogsStore } from '~/stores/dialogs'
-import { getAvatarAbbreviation } from '~/utils'
-import { getDefaultImage } from '~/utils/get-default-image'
+import { getAvatarAbbreviation, getDefaultImage } from '~/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../base/avatar'
 import { Button } from '../base/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '../base/dropdown-menu'

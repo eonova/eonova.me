@@ -1,7 +1,7 @@
 import type { VariantProps } from 'cva'
 import { cva } from 'cva'
 import { LoaderIcon } from 'lucide-react'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 const buttonVariants = cva({
   base: [

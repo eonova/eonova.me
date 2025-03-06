@@ -1,7 +1,7 @@
 import type { VariantProps } from 'cva'
 import { cva } from 'cva'
 import NextLink from 'next/link'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 const linkVariants = cva({
   variants: {
@@ -14,7 +14,7 @@ const linkVariants = cva({
 type LinkProps = {
   href: string
 } & Omit<React.ComponentProps<'a'>, 'href'> &
-VariantProps<typeof linkVariants>
+  VariantProps<typeof linkVariants>
 
 function Link(props: LinkProps) {
   const { href, className, children, variant, ...rest } = props

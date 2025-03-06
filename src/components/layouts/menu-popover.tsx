@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { memo } from 'react'
 import useIsScroll from '~/hooks/use-is-scroll'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 const animationConfig = {
   hidden: { opacity: 0, y: -10 },

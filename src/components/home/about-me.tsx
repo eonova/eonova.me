@@ -4,7 +4,7 @@ import { motion, useInView } from 'motion/react'
 import Link from 'next/link'
 
 import { useRef } from 'react'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 import { buttonVariants } from '../base/button'
 import CodingHours from './coding-hours'
 import Connect from './connect'

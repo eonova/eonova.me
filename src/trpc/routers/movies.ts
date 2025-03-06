@@ -3,11 +3,7 @@ import type { DoubanItem, DoubanPluginConfig, MovieAction } from '~/types/douban
 import { z } from 'zod'
 import { env } from '~/lib/env'
 import { MovieActionSchema } from '~/types/douban'
-import { buildErrorResponse } from '~/utils/build-error-response'
-import { fetchUser } from '~/utils/douban/fetch-douban-user'
-import { getRateLevel } from '~/utils/douban/get-rate-level'
-import { handleApiError } from '~/utils/douban/handle-api-error'
-import { mapDoubanUser } from '~/utils/douban/map-douban-user'
+import { buildErrorResponse, fetchUser, getRateLevel, handleApiError, mapDoubanUser } from '~/utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 function validateMovieItem(raw: any): DoubanItem {

@@ -1,6 +1,6 @@
 import type { VariantProps } from 'cva'
 import { cva } from 'cva'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 const badgeVariants = cva({
   base: 'inline-flex items-center justify-center rounded-full border px-2.5 py-0.5 text-xs font-semibold',

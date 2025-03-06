@@ -1,6 +1,6 @@
 import type { TextareaAutosizeProps } from 'react-textarea-autosize'
 import TextareaAutosize from 'react-textarea-autosize'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 type TextareaProps = TextareaAutosizeProps & React.ComponentProps<'textarea'>
 

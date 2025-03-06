@@ -1,4 +1,3 @@
-// src/types/bangumi.ts
 import { z } from 'zod'
 
 export type AnimeAction = 'wish' | 'watched' | 'watching' | 'shelving' | 'abandon'

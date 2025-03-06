@@ -1,4 +1,4 @@
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 import IntroCard from './intro-card'
 import Video from './video'
 

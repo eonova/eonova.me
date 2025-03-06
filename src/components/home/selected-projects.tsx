@@ -6,7 +6,7 @@ import { ArrowUpRightIcon, LightbulbIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import Link from 'next/link'
 import { useRef } from 'react'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 import { BlurImage } from '../base/blur-image'
 import { buttonVariants } from '../base/button'
 

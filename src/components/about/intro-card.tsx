@@ -1,7 +1,7 @@
 'use client'
 import { motion, useInView } from 'motion/react'
 import { useRef, useState } from 'react'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 interface IntroCardProps {
   className?: string

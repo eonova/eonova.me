@@ -1,7 +1,7 @@
 import { Heart } from 'lucide-react'
 import Image from 'next/image'
 import { dayjs } from '~/lib/dayjs'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 import LikeButton from './likes'
 import TalkMdx from './mdx'
 
@@ -69,11 +69,11 @@ const TalkBox: React.FC<TalkBoxProps> = ({
             id
               ? <LikeButton initialLikes={0} talkId={id} />
               : (
-                  <div className="flex items-center gap-1 cursor-pointer">
-                    <Heart className="h-3 w-3" />
-                    <span>0</span>
-                  </div>
-                )
+                <div className="flex items-center gap-1 cursor-pointer">
+                  <Heart className="h-3 w-3" />
+                  <span>0</span>
+                </div>
+              )
           }
         </div>
       </div>

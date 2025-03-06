@@ -2,7 +2,7 @@ import type { VariantProps } from 'cva'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { cva } from 'cva'
 import { XIcon } from 'lucide-react'
-import { cn } from '~/lib/utils'
+import { cn } from '~/utils'
 
 const sheetVariants = cva({
   base: [

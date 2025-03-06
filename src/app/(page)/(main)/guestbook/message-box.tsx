@@ -20,7 +20,7 @@ import {
 } from '~/components/base'
 import { signOut } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
-import { getDefaultImage } from '~/utils/get-default-image'
+import { getDefaultImage } from '~/utils'
 
 interface FormProps {
   user: User
