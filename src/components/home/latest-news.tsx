@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { formatDate } from '~/utils'
 import TimelineList from '../timeline-list'
+import BackgroundFont from '../background-font'
 
 const variants = {
   initial: {
@@ -78,7 +79,7 @@ function LatestNews() {
       >
         <Card articles={filteredPosts} />
         <div className=" hidden sm:flex justify-center ">
-          <div className="h-full w-0.5 rounded-full bg-gray-500/20" />
+          <div className="h-full w-[1px] rounded-full bg-gray-500/20" />
         </div>
         <Card color text="手记" articles={filteredNotes} />
       </motion.div>
@@ -95,14 +96,8 @@ interface CardProps {
 function Card(props: CardProps) {
   const { articles, text = '文章', color = false } = props
   return (
-    <div className="col-span-6 flex flex-col gap-4 px-2">
-      <div className="flex items-center justify-between px-4 pl-0">
-        <div className="flex items-center gap-3">
-          {text === '文章' ? <PencilIcon className="size-[18px]" /> : <NotebookPen className="size-[18px]" />}
-          <h2>{text}</h2>
-        </div>
-        <ArrowUpRightIcon className="size-[18px] opacity-0 transition-opacity group-hover:opacity-100" />
-      </div>
+    <div className="relative col-span-6 flex flex-col px-2">
+      <BackgroundFont className="text-5xl text-gray-500/50 dark:text-white/50 h-full! absolute z-1 top-[-15] right-0 opacity-25! dark:opacity-20!" lineHeight='1'>{text}</BackgroundFont>
       <TimelineList className={color ? 'shiro-timeline-yellow' : ''}>
         {articles.map((child) => {
           const date = new Date(child.date)

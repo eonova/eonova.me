@@ -37,7 +37,7 @@ function MobileNavAside() {
   return (
     <>
       {/* 侧边栏 */}
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
+
       <Sheet open={navStore.isVisible} onOpenChange={handleLinkClick}>
         <SheetContent side="left">
           <VisuallyHidden>

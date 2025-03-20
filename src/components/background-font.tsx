@@ -10,7 +10,7 @@ interface BackgroundFontProps {
 const BackgroundFont: React.FC<BackgroundFontProps> = ({ children, className, lineHeight = '1.1' }) => {
   return (
     <h6
-      className={cn('page-section-title font-world', className)}
+      className={cn('page-section-title', className)}
       style={{
         lineHeight,
       }}

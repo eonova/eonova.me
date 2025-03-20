@@ -7,7 +7,7 @@ import PageTitle from '~/components/page-title'
 const Links: React.FC = () => {
   return (
     <>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
+
       <PageTitle
         title="收藏夹"
         description="我收藏的一些宝藏网站"

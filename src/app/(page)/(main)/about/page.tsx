@@ -72,13 +72,13 @@ async function Page() {
       'sameAs': [SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL],
     },
   }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
       <PageTitle title={title} description={description} />
       <BounceCards
         className="custom-class"
@@ -91,7 +91,7 @@ async function Page() {
           'rotate(0deg) translate(-70px)',
           'rotate(-5deg)',
           'rotate(5deg) translate(70px)',
-          'rotate(-5deg) translate(150px)',
+          'rotate(-5deg) translate(150px)'
         ]}
       />
       <ul className="relative w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-5 mt-5">
