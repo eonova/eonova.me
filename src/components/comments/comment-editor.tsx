@@ -12,7 +12,7 @@ interface Command {
 type CommentEditorProps = {
   initialValue?: string
 } & Command &
-  React.ComponentProps<typeof Textarea>
+React.ComponentProps<typeof Textarea>
 
 function setRangeText(textarea: HTMLTextAreaElement, replacement: string, start: number, end: number, selectionMode?: SelectionMode) {
   textarea.setRangeText(replacement, start, end, selectionMode)

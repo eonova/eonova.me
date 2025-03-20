@@ -2,6 +2,7 @@ import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
   ignoreDependencies: [
+    'cn-fontsource-ding-talk-jin-bu-ti-regular',
     '@tailwindcss/typography',
     'content-collections',
     'sharp',

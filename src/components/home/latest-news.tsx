@@ -2,14 +2,14 @@
 
 import type { Note, Post } from 'content-collections'
 import { allNotes, allPosts } from 'content-collections'
-import { ArrowRight, ArrowUpRightIcon, NotebookPen, PencilIcon } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import Link from 'next/link'
 
 import { useRef } from 'react'
 import { formatDate } from '~/utils'
-import TimelineList from '../timeline-list'
 import BackgroundFont from '../background-font'
+import TimelineList from '../timeline-list'
 
 const variants = {
   initial: {
@@ -97,7 +97,7 @@ function Card(props: CardProps) {
   const { articles, text = '文章', color = false } = props
   return (
     <div className="relative col-span-6 flex flex-col px-2">
-      <BackgroundFont className="text-5xl text-gray-500/50 dark:text-white/50 h-full! absolute z-1 top-[-18] right-0 opacity-30!" lineHeight='1'>{text}</BackgroundFont>
+      <BackgroundFont className="text-5xl text-gray-500/50 dark:text-white/50 h-full! absolute z-1 top-[-18] right-0 opacity-30!" lineHeight="1">{text}</BackgroundFont>
       <TimelineList className={color ? 'shiro-timeline-yellow' : ''}>
         {articles.map((child) => {
           const date = new Date(child.date)

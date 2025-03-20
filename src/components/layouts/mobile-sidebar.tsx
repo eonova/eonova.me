@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react' // 引入 useEffect
 import { HEADER_LINKS } from '~/config/links'
-import { cn } from '~/utils'
 import { useNav } from '~/stores/nav'
+import { cn } from '~/utils'
 import { Sheet, SheetContent, SheetTitle, VisuallyHidden } from '../base'
 import { Separator } from '../base/separator'
 

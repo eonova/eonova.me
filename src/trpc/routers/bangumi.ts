@@ -42,7 +42,7 @@ async function fetchAnimeCollection(
 
   const res = await fetch(endpoint.toString(), {
     headers: {
-      'User-Agent': 'BangumiTRPC/1.0'
+      'User-Agent': 'BangumiTRPC/1.0',
     },
   })
 

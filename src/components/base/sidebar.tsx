@@ -520,7 +520,7 @@ type SidebarMenuButtonProps = {
   isActive?: boolean
   tooltip?: string | React.ComponentProps<typeof TooltipContent>
 } & React.ComponentProps<'button'> &
-  VariantProps<typeof sidebarMenuButtonVariants>
+VariantProps<typeof sidebarMenuButtonVariants>
 
 function SidebarMenuButton(props: SidebarMenuButtonProps) {
   const {

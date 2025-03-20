@@ -91,7 +91,7 @@ async function Page() {
           'rotate(0deg) translate(-70px)',
           'rotate(-5deg)',
           'rotate(5deg) translate(70px)',
-          'rotate(-5deg) translate(150px)'
+          'rotate(-5deg) translate(150px)',
         ]}
       />
       <ul className="relative w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-5 mt-5">

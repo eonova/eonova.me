@@ -1,5 +1,4 @@
-import { cn } from '~/utils'
-import { range } from '~/utils'
+import { cn, range } from '~/utils'
 
 interface MarqueeProps {
   children: React.ReactNode

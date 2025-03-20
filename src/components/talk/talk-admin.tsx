@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
-import { cn } from '~/utils'
 import { api } from '~/trpc/react'
+import { cn } from '~/utils'
 import { Button } from '../base/button'
 import { Textarea } from '../base/textarea'
 import { toast } from '../base/toaster'
@@ -100,15 +100,15 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
           <div className="rounded-xl p-5 pt-[-5] flex-1 border">
             {talkText
               ? (
-                <TalkBox>
-                  {talkText}
-                </TalkBox>
-              )
+                  <TalkBox>
+                    {talkText}
+                  </TalkBox>
+                )
               : (
-                <div className="text-gray-500 text-sm">
-                  输入内容后预览将在此处显示
-                </div>
-              )}
+                  <div className="text-gray-500 text-sm">
+                    输入内容后预览将在此处显示
+                  </div>
+                )}
           </div>
         </div>
 

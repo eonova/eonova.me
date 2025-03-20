@@ -8,9 +8,9 @@ import { motion } from 'motion/react'
 import { useRef, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { Separator } from '~/components/base/separator'
-import { cn } from '~/utils'
-
 import { api } from '~/trpc/react'
+
+import { cn } from '~/utils'
 
 interface LikeButtonProps {
   slug: string
@@ -145,8 +145,8 @@ function LikeButton(props: LikeButtonProps) {
         {status === 'error' ? <div>错误</div> : null}
         {status === 'success'
           ? (
-            <NumberFlow willChange plugins={[continuous]} value={data.likes + cacheCount} />
-          )
+              <NumberFlow willChange plugins={[continuous]} value={data.likes + cacheCount} />
+            )
           : null}
       </motion.button>
     </div>
