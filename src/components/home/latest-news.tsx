@@ -97,7 +97,7 @@ function Card(props: CardProps) {
   const { articles, text = '文章', color = false } = props
   return (
     <div className="relative col-span-6 flex flex-col px-2">
-      <BackgroundFont className="text-5xl text-gray-500/50 dark:text-white/50 h-full! absolute z-1 top-[-15] right-0 opacity-25! dark:opacity-20!" lineHeight='1'>{text}</BackgroundFont>
+      <BackgroundFont className="text-5xl text-gray-500/50 dark:text-white/50 h-full! absolute z-1 top-[-18] right-0 opacity-30!" lineHeight='1'>{text}</BackgroundFont>
       <TimelineList className={color ? 'shiro-timeline-yellow' : ''}>
         {articles.map((child) => {
           const date = new Date(child.date)
@@ -113,7 +113,7 @@ function Card(props: CardProps) {
               >
                 {child.title}
               </Link>
-              <span className="meta ml-2">
+              <span className="meta ml-2 text-xs opacity-70">
                 {formatDate(date)}
               </span>
             </li>

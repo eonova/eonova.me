@@ -6,9 +6,6 @@ import { handleApiError } from '~/utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 function validateBangumiItem(raw: any): BangumiItem {
-  console.log('-------------------')
-  console.log(raw)
-  console.log('-------------------')
   return {
     title: raw.name_cn || raw.name,
     detailUrl: `https://bgm.tv/subject/${raw.id}`,
@@ -45,8 +42,7 @@ async function fetchAnimeCollection(
 
   const res = await fetch(endpoint.toString(), {
     headers: {
-      'User-Agent': 'BangumiTRPC/1.0',
-      ...(env.BANGUMI_APIKEY && { Authorization: `Bearer ${env.BANGUMI_APIKEY}` }),
+      'User-Agent': 'BangumiTRPC/1.0'
     },
   })
 
