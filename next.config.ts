@@ -75,6 +75,8 @@ const MyNextConfig: NextConfig = {
     reactCompiler: true,
   },
 
+  optimizeFonts: false,
+
   images: {
     remotePatterns: [
       {
