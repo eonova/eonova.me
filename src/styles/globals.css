@@ -3,7 +3,6 @@
 @import './shiki.css';
 @import './typography.css';
 @import './layer.css';
-@import 'cn-fontsource-ding-talk-jin-bu-ti-regular/font.css';
 
 @theme {
   --color-anchor: var(--anchor);

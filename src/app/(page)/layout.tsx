@@ -118,6 +118,7 @@ export default function RootLayout({
           <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         )}
       </head>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
       <body className="antialiased relative">
         {env.REACT_SCAN_MONITOR_API_KEY
           ? (
