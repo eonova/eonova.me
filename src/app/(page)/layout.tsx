@@ -117,18 +117,18 @@ export default function RootLayout({
         {env.NODE_ENV === 'development' && (
           <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         )}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
       </head>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
       <body className="antialiased relative">
         {env.REACT_SCAN_MONITOR_API_KEY
           ? (
-            <Monitoring
-              apiKey={env.REACT_SCAN_MONITOR_API_KEY}
-              url="https://monitoring.react-scan.com/api/v1/ingest"
-              commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
-              branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-            />
-          )
+              <Monitoring
+                apiKey={env.REACT_SCAN_MONITOR_API_KEY}
+                url="https://monitoring.react-scan.com/api/v1/ingest"
+                commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+                branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+              />
+            )
           : null}
         <Providers>
           <Hello />
