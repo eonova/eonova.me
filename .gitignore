@@ -2,8 +2,6 @@
 
 # Dependencies
 node_modules/
-.pnp/
-.pnp.*
 
 # testing
 playwright-report/
