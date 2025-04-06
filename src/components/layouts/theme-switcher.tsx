@@ -53,13 +53,13 @@ function ThemeSwitcher({ isHeader = true }: { isHeader?: boolean }) {
       ? (
           <Button
             variant="ghost"
-            className="size-9 p-0 rounded-full outline-0 focus-visible:outline-none border-0 cursor-pointer duration-200 relative"
+            className="size-8 sm:size-9 p-0 rounded-full outline-0 focus-visible:outline-none border-0 cursor-pointer duration-200 relative"
             aria-label="切换日夜间"
             data-testid="theme-toggle"
             onClick={handleToggle}
           >
-            <SunIcon className="size-4 dark:hidden transition-transform duration-300" />
-            <MoonIcon className="hidden size-4 dark:block transition-transform duration-300" />
+            <SunIcon className="size-5 sm:size-4 dark:hidden transition-transform duration-300" />
+            <MoonIcon className="hidden size-5 sm:size-4 dark:block transition-transform duration-300" />
           </Button>
         )
       : (

@@ -127,7 +127,7 @@ function CommandMenu() {
         onClick={() => setIsOpen(true)}
         aria-label="开启指令选单"
       >
-        <CommandIcon className="size-6 sm:size-4" />
+        <CommandIcon className="size-5 sm:size-4" />
       </Button>
 
       <CommandDialog open={isOpen} onOpenChange={setIsOpen} value={selectingValue} onValueChange={setSelectingValue}>
@@ -175,7 +175,7 @@ function CommandMenu() {
           }
         </CommandList>
         <CommandFooter>
-          <SvgLogo className=" size-6 justify-center items-center" />
+          <SvgLogo className="size-6 justify-center items-center" />
           <CommandFooterTrigger triggerKey={<Kbd keys={['enter']} className="py-0" />}>
             {isSelectingCommand ? '打开命令' : '打开链接'}
           </CommandFooterTrigger>

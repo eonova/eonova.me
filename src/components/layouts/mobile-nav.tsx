@@ -16,7 +16,7 @@ function MobileNav() {
         onClick={navStore.setIsVisible}
       >
         <span className="sr-only">Toggle menu</span>
-        <MenuIcon className="size-6" />
+        <MenuIcon className="size-5" />
       </Button>
     </>
 
