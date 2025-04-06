@@ -74,7 +74,7 @@ const MyNextConfig: NextConfig = {
     optimizePackageImports: ['shiki', 'lenis'],
     reactCompiler: true,
   },
-
+  serverExternalPackages: ['prettier'],
   images: {
     remotePatterns: [
       {
