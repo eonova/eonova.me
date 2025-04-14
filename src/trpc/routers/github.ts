@@ -65,6 +65,6 @@ export const githubRouter = createTRPCRouter({
       username: GITHUB_USERNAME,
     })
 
-    return repos.find(repo => repo.name === 'leostar.top')?.stargazers_count ?? 0
+    return repos.find(repo => repo.name === 'eonova.me')?.stargazers_count ?? 0
   }),
 })

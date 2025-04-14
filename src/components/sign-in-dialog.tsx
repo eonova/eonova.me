@@ -77,7 +77,7 @@ function SignInDialog() {
         <DialogHeader>
           <DialogTitle className="text-left text-2xl">登录</DialogTitle>
           <DialogDescription className="text-left">
-            以继续使用 leostar.top
+            以继续使用 eonova.me
           </DialogDescription>
         </DialogHeader>
         <div className="my-6 flex flex-col gap-4">
@@ -88,14 +88,14 @@ function SignInDialog() {
           >
             {isPending
               ? (
-                  <Loader2Icon className="animate-spin" />
-                )
+                <Loader2Icon className="animate-spin" />
+              )
               : (
-                  <>
-                    <SiGithub className="mr-3" />
-                    使用 Github 登录
-                  </>
-                )}
+                <>
+                  <SiGithub className="mr-3" />
+                  使用 Github 登录
+                </>
+              )}
           </Button>
           <Button
             className="h-10 rounded-xl border font-semibold"
@@ -105,14 +105,14 @@ function SignInDialog() {
           >
             {isPending
               ? (
-                  <Loader2Icon className="animate-spin" />
-                )
+                <Loader2Icon className="animate-spin" />
+              )
               : (
-                  <>
-                    <GoogleIcon />
-                    使用 Google 登录
-                  </>
-                )}
+                <>
+                  <GoogleIcon />
+                  使用 Google 登录
+                </>
+              )}
           </Button>
         </div>
       </DialogContent>

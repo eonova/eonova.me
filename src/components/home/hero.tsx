@@ -135,8 +135,8 @@ function Hero() {
         >
           <TiltedCard
             imageSrc="/images/home/avatar.webp"
-            altText="LeoStar"
-            captionText="LeoStar"
+            altText="Eonova"
+            captionText="Eonova"
             rotateAmplitude={18}
             scaleOnHover={1.2}
             showMobileWarning={false}

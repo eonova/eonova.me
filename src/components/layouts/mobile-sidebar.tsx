@@ -54,14 +54,14 @@ function MobileNavAside() {
           <div className="h-full overflow-y-auto">
             <div className="py-8 pt-16 flex gap-6 items-center">
               <Image
-                src="/favicon/apple-touch-icon.png"
+                src="/images/home/avatar.webp"
                 className="rounded-full"
                 width={70}
                 height={70}
-                alt="LeoStar"
+                alt="Eonova"
               />
               <div className="flex flex-col gap-2">
-                <h3 className="font-world text-3xl">LeoStar</h3>
+                <h3 className="font-world text-3xl">Eonova</h3>
                 <h4 className="text-gray-600/80 dark:text-white/50">一个爱捣鼓的前端</h4>
               </div>
             </div>

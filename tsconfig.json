@@ -21,7 +21,7 @@
       "@/*": [
         "./*"
       ],
-      "@ileostar/mdx-plugins": [
+      "@eonova/mdx-plugins": [
         "./src/plugins"
       ],
       "content-collections": [

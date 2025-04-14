@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    site: '@030leostar',
+    site: '@030Eonova',
     siteId: '1693931091722465280',
-    creator: '@030leostar',
+    creator: '@030Eonova',
     creatorId: '1693931091722465280',
     images: [
       {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     ],
   },
   keywords: SITE_KEYWORDS,
-  creator: 'leostar',
+  creator: 'eonova',
   openGraph: {
     url: SITE_URL,
     type: 'website',
@@ -122,13 +122,13 @@ export default function RootLayout({
       <body className="antialiased relative">
         {env.REACT_SCAN_MONITOR_API_KEY
           ? (
-              <Monitoring
-                apiKey={env.REACT_SCAN_MONITOR_API_KEY}
-                url="https://monitoring.react-scan.com/api/v1/ingest"
-                commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
-                branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-              />
-            )
+            <Monitoring
+              apiKey={env.REACT_SCAN_MONITOR_API_KEY}
+              url="https://monitoring.react-scan.com/api/v1/ingest"
+              commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+              branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+            />
+          )
           : null}
         <Providers>
           <Hello />

@@ -1,6 +1,6 @@
 'use client'
 
-import type { TOC } from '@ileostar/mdx-plugins'
+import type { TOC } from '@eonova/mdx-plugins'
 import { motion } from 'motion/react'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'

@@ -13,9 +13,9 @@ const IntroOne: React.FC = () => {
       >
         <div className="mt-3 font-world">
           <h2>你好，很高兴认识你👋</h2>
-          <p>我是 LeoStar</p>
+          <p>我是 Eonova</p>
         </div>
-        <BackgroundFont className=" absolute text-white/20 left-20 bottom-0 text-8xl sm:text-[130px]">LEOSTAR</BackgroundFont>
+        <BackgroundFont className=" absolute text-white/20 left-20 bottom-0 text-8xl sm:text-[130px]">EONOVA</BackgroundFont>
       </IntroCard>
       <div className="flex flex-col gap-5 justify-between col-span-1 md:col-span-2 lg:col-span-3">
         <IntroCard

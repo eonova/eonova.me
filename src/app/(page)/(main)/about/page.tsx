@@ -22,7 +22,7 @@ const IntroTwo = dynamic(() => import('~/components/about/intro-two'))
 const VelocityScroll = dynamic(() => import('~/components/about/scrollbasedvelocity').then(mod => mod.VelocityScroll))
 
 const title = '关于'
-const description = '👋 嗨！我是 LeoStar。'
+const description = '👋 嗨！我是 Eonova'
 const url = `${SITE_URL}/about`
 
 export async function generateMetadata(_props: any, parent: ResolvingMetadata): Promise<Metadata> {
@@ -102,7 +102,7 @@ async function Page() {
         <IntroFive />
         <VelocityScroll
           className="font-sans text-center text-3xl font-bold  text-black dark:text-white md:text-4xl"
-          text="KEEP GOING LEOSTAR.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+          text="KEEP GOING EONOVA.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
           default_velocity={5}
         />
         <IntroSix />

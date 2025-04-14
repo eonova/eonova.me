@@ -52,7 +52,7 @@ function Comment(props: CommentProps) {
       <Preview>
         New comment on the post "
         {post.title}
-        " on leostar.top
+        " on eonova.me
       </Preview>
       <Tailwind>
         <Body className="m-auto bg-white p-1">
@@ -108,8 +108,8 @@ Comment.PreviewProps = {
   comment:
     'This is exactly what I needed! The explanations are clear and concise. Thanks for sharing! 👏',
   commenter: {
-    name: 'LeoStar',
-    image: 'https://leostar.top/api/avatar/leostar',
+    name: 'Eonova',
+    image: 'https://eonova.me/api/avatar/eonova',
   },
   date: 'January 1, 2025',
   id: 'comment=1',

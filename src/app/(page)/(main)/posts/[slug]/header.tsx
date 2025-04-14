@@ -47,15 +47,15 @@ function Header() {
         <div className="grid grid-cols-2 text-sm max-md:gap-4 md:grid-cols-4">
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">作者</div>
-            <Link href="https://github.com/ileostar" className="flex items-center gap-2">
+            <Link href="https://github.com/eonova" className="flex items-center gap-2">
               <BlurImage
                 src="/images/home/avatar.webp"
                 className="rounded-full"
                 width={24}
                 height={24}
-                alt="LeoStar"
+                alt="Eonova"
               />
-              LeoStar
+              Eonova
             </Link>
           </div>
           <div className="space-y-1 md:mx-auto">
@@ -68,8 +68,8 @@ function Header() {
             {viewsCountQuery.status === 'error' ? '错误' : null}
             {viewsCountQuery.status === 'success'
               ? (
-                  <NumberFlow willChange plugins={[continuous]} value={viewsCountQuery.data.views} />
-                )
+                <NumberFlow willChange plugins={[continuous]} value={viewsCountQuery.data.views} />
+              )
               : null}
           </div>
           <div className="space-y-1 md:mx-auto">
@@ -78,8 +78,8 @@ function Header() {
             {commentsCountQuery.status === 'error' ? '错误' : null}
             {commentsCountQuery.status === 'success'
               ? (
-                  <NumberFlow willChange plugins={[continuous]} value={commentsCountQuery.data.comments} />
-                )
+                <NumberFlow willChange plugins={[continuous]} value={commentsCountQuery.data.comments} />
+              )
               : null}
           </div>
         </div>

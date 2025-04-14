@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
           {' '}
           {new Date().getFullYear() === 2025 ? new Date().getFullYear() : `2025-${new Date().getFullYear()}`}
           <Link href={SITE_GITHUB_URL} className="ml-1">
-            LeoStar
+            Eonova
           </Link>
         </div>
       </div>

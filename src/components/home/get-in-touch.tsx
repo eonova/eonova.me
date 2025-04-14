@@ -108,7 +108,7 @@ function GetInTouch() {
                 />
               </svg>
               <span className="relative left-4 rounded-3xl bg-red-500 px-2 py-0.5 text-xs text-white">
-                LeoStar
+                Eonova
               </span>
             </div>
           </div>
@@ -122,10 +122,10 @@ function GetInTouch() {
             </p>
             <div className="my-8">
               <a
-                href="mailto:hi@leostar.top"
+                href="mailto:hi@eonova.me"
                 className="bg-email-button rounded-full px-4 py-2 text-sm text-white"
               >
-                hi@leostar.top
+                hi@eonova.me
               </a>
             </div>
           </div>

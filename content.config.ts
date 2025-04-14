@@ -3,7 +3,7 @@ import type { Context, Meta } from '@content-collections/core'
 import { createHash } from 'node:crypto'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
-import { getTOC, rehypePlugins, remarkPlugins } from '@ileostar/mdx-plugins'
+import { getTOC, rehypePlugins, remarkPlugins } from '@eonova/mdx-plugins'
 import { CATEGORIES } from '~/config/posts'
 
 interface BaseDoc {

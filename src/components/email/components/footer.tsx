@@ -7,14 +7,14 @@ function Footer() {
       <Section>
         <Row className="mt-4" align="left" width="auto">
           <Column className="pr-6 align-middle">
-            <Link href="https://twitter.com/leostar" className="text-xl text-black">
-              <Img src="https://leostar.top/images/email/x.png" alt="X" width={22} height={22} />
+            <Link href="https://twitter.com/030Eonova" className="text-xl text-black">
+              <Img src="https://eonova.me/images/email/x.png" alt="X" width={22} height={22} />
             </Link>
           </Column>
           <Column className="align-middle">
-            <Link href="https://github.com/ileostar/leospark" className="text-xl text-black">
+            <Link href="https://github.com/eonova/eonova.me" className="text-xl text-black">
               <Img
-                src="https://leostar.top/images/email/github.png"
+                src="https://eonova.me/images/email/github.png"
                 alt="GitHub"
                 width={22}
                 height={22}
@@ -28,7 +28,7 @@ function Footer() {
         {' '}
         {new Date().getFullYear()}
         {' '}
-        LeoStar. All rights reserved.
+        Eonova. All rights reserved.
       </Text>
     </>
   )
