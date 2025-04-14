@@ -64,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       animate={!isVisible ? 'hidden' : 'visible'}
     >
       <Link className="h-full flex items-center" href="/" aria-label="回到首页" passHref>
-        <SvgLogo className="h-8 w-8 sm:h-9 sm:w-9 mr-5" />
+        <SvgLogo className="h-8 w-8 sm:h-9 sm:w-9 mr-5 hover:scale-105 duration-300 transform-cpu transform-view" />
       </Link>
 
       <div className="flex items-center gap-2 sm:gap-1">
