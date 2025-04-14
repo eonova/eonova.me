@@ -69,11 +69,11 @@ const TalkBox: React.FC<TalkBoxProps> = ({
             id
               ? <LikeButton initialLikes={0} talkId={id} />
               : (
-                <div className="flex items-center gap-1 cursor-pointer">
-                  <Heart className="h-3 w-3" />
-                  <span>0</span>
-                </div>
-              )
+                  <div className="flex items-center gap-1 cursor-pointer">
+                    <Heart className="h-3 w-3" />
+                    <span>0</span>
+                  </div>
+                )
           }
         </div>
       </div>

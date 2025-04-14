@@ -77,23 +77,23 @@ function DataTable<TData,>(props: DataTableProps<TData>) {
           <TableBody>
             {table.getRowModel().rows.length > 0
               ? (
-                table.getRowModel().rows.map(row => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-                    {row.getVisibleCells().map(cell => (
-                      <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              )
+                  table.getRowModel().rows.map(row => (
+                    <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                      {row.getVisibleCells().map(cell => (
+                        <TableCell key={cell.id}>
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                )
               : (
-                <TableRow>
-                  <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
+                  <TableRow>
+                    <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
+                      No results.
+                    </TableCell>
+                  </TableRow>
+                )}
           </TableBody>
         </Table>
       </div>
@@ -367,25 +367,25 @@ function DataTableFacetedFilter<TData, TValue>(props: DataTableFacetedFilterProp
               <div className="hidden space-x-1 lg:flex">
                 {selectedValues.size > 2
                   ? (
-                    <Badge variant="secondary" className="rounded-sm px-1 font-normal">
-                      {selectedValues.size}
-                      {' '}
-                      selected
-                    </Badge>
-                  )
+                      <Badge variant="secondary" className="rounded-sm px-1 font-normal">
+                        {selectedValues.size}
+                        {' '}
+                        selected
+                      </Badge>
+                    )
                   : (
-                    options
-                      .filter(option => selectedValues.has(option.value))
-                      .map(option => (
-                        <Badge
-                          variant="secondary"
-                          key={option.value}
-                          className="rounded-sm px-1 font-normal"
-                        >
-                          {option.label}
-                        </Badge>
-                      ))
-                  )}
+                      options
+                        .filter(option => selectedValues.has(option.value))
+                        .map(option => (
+                          <Badge
+                            variant="secondary"
+                            key={option.value}
+                            className="rounded-sm px-1 font-normal"
+                          >
+                            {option.label}
+                          </Badge>
+                        ))
+                    )}
               </div>
             </>
           )}
@@ -406,8 +406,8 @@ function DataTableFacetedFilter<TData, TValue>(props: DataTableFacetedFilterProp
           <ComboboxContent className="rounded-none border-0 bg-transparent p-1 shadow-none data-[state=closed]:!animate-none data-[state=open]:!animate-none">
             {collection.items.length === 0
               ? (
-                <div className="py-6 text-center text-sm">No results found.</div>
-              )
+                  <div className="py-6 text-center text-sm">No results found.</div>
+                )
               : null}
             {collection.items.map(item => (
               <ComboboxItem key={item.value} item={item}>
