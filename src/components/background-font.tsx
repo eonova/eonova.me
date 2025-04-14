@@ -5,12 +5,13 @@ interface BackgroundFontProps {
   children: React.ReactNode
   className?: string
   lineHeight?: string
+  isDefaultFont?: boolean
 }
 
-const BackgroundFont: React.FC<BackgroundFontProps> = ({ children, className, lineHeight = '1.1' }) => {
+const BackgroundFont: React.FC<BackgroundFontProps> = ({ children, className, lineHeight = '1.1', isDefaultFont = true }) => {
   return (
     <h6
-      className={cn('page-section-title font-world', className)}
+      className={cn('page-section-title ', isDefaultFont && 'font-world', className)}
       style={{
         lineHeight,
       }}
