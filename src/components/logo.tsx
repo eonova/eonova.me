@@ -2,8 +2,15 @@ type LogoProps = React.SVGAttributes<SVGElement>
 
 export function SvgLogo(props: LogoProps) {
   return (
-    <svg {...props} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 315 315" enable-background="new 0 0 315 315" xmlSpace="preserve">  <image id="image0" width="315" height="315" x="0" y="0"
-      xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATsAAAE7CAYAAACi3CbHAAAAIGNIUk0AAHomAACAhAAA+gAAAIDo
+    <svg {...props} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 315 315" enable-background="new 0 0 315 315" xmlSpace="preserve">
+      {' '}
+      <image
+        id="image0"
+        width="315"
+        height="315"
+        x="0"
+        y="0"
+        xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATsAAAE7CAYAAACi3CbHAAAAIGNIUk0AAHomAACAhAAA+gAAAIDo
 AAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAADsMAAA7DAcdv
 qGQAAIAASURBVHja7L13vCTXWeb/fc85VdXh5sl5RqNRzsmWMw44kb1gsoFdWOAH7BJ2lyWaxWTY
 BQzGRNsYME4YY8AZR8m2LCtZOUujkTSacHN3V9U55/39car73hlJxrYMIzT31ad17/TtcOp011tv
@@ -1662,7 +1669,8 @@ A9/PW60wGuuMdCfGR9c77WbX9/2ccybazWYvDIMobPip73mZ5/Hc93jicZ5QSl1ywAHAiZ3D4dgl
 0P/+EA6Hw7HzcWLncDh2BU7sHA7HrsCJncPh2BU4sXM4HLsCJ3YOh2NX4MTO4XDsCpzYORyOXcE/
 AJNDVS3Em2QqAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI1LTA0LTE0VDE4OjEyOjExKzAwOjAwlUAt
 2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNS0wNC0xNFQxODoxMjoxMSswMDowMOQdlWQAAAAodEVY
-dGRhdGU6dGltZXN0YW1wADIwMjUtMDQtMTRUMTg6MTI6MTErMDA6MDCzCLS7AAAAAElFTkSuQmCC" />
+dGRhdGU6dGltZXN0YW1wADIwMjUtMDQtMTRUMTg6MTI6MTErMDA6MDCzCLS7AAAAAElFTkSuQmCC"
+      />
     </svg>
 
   )
