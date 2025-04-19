@@ -2,7 +2,7 @@ type LogoProps = React.SVGAttributes<SVGElement>
 
 export function SvgLogo(props: LogoProps) {
   return (
-    <svg {...props} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 315 315" enable-background="new 0 0 315 315" xmlSpace="preserve">
+    <svg {...props} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 315 315" enableBackground="new 0 0 315 315" xmlSpace="preserve">
       {' '}
       <image
         id="image0"
