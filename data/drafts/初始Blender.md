@@ -2,7 +2,7 @@
 title: 初始Blender
 id: 4cd954a7-7815-42ea-8b4c-2cddb2d2aa9e
 date: 2023-12-02 19:22:26
-auther: leostar
+auther: eonova
 cover:
 excerpt: 【Kurt】Blender3.5零基础入门教程 | 中文区必看Blender教程！| 更新至粒子篇_哔哩哔哩_bilibili 初始Blender 下载与安装 可以从下面任意网站下载 blender.org - Home of the Blender project - Free and Open
 permalink: /archives/InIPejff

@@ -2,7 +2,7 @@
 title: Typora+Picgo实现自动上传图片
 id: fd062a69-8805-4114-b2c2-69afcd3eecf0
 date: 2023-12-02 17:53:14
-auther: leostar
+auther: eonova
 cover:
 excerpt: 在众多 md 编辑器中，Typora 是大家公认的体验较好的写作软件之一，它最大的特点就是：所见即所得，无须分屏预览，或者开启新页面预览。那么写博客的话，很多时候会用到外网链接的图片，每次都要手动上传图片，就太过麻烦了，那么Typora 中能不能直接粘贴图片后，就自动上传到图床呢？下面就来介绍如何配
 permalink: /archives/e9eCEHcJ

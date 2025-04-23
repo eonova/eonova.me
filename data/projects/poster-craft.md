@@ -2,7 +2,7 @@
 name: 'PosterCraft'
 description: 低代码全栈海报编辑器
 homepage: https://poster-craft.leostar.top/
-github: https://github.com/ileostar/PosterCraft
+github: https://github.com/eonova/PosterCraft
 date: '2025-01-22T00:00:00Z'
 techstack: ['Next.js','Nest.js','Turborepo','Drizzle-orm','Mysql']
 selected: true

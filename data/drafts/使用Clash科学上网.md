@@ -2,7 +2,7 @@
 title: 使用Clash科学上网
 id: 854c707d-f4f4-48b8-8266-aa8e7f84139a
 date: 2023-12-12 23:03:01
-auther: leostar
+auther: eonova
 cover:
 excerpt: clash科学上网食用指南 软件下载 中文版Clash下载地址：Clash.for.Windows.Setup.0.20.5.exe - 蓝奏云 (lanzoub.com) 购买节点 购买节点后才能配合软件开启代理，推荐按量订阅 按月订阅节点8元/月120g：https//sub.srayx.co
 permalink: /archives/zXloTVxX

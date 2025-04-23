@@ -2,7 +2,7 @@
 title: 使用Slidev做PPT
 id: b84a71f6-841f-4428-b956-7b966f4ddb17
 date: 2023-11-21 13:47:10
-auther: leostar
+auther: eonova
 cover:
 excerpt: 概念 官网：Slidev官网 Slidev (slide + dev, /slʌɪdɪv/) 是基于 Web 的幻灯片制作和演示工具。它旨在让开发者专注在 Markdown 中编写内容，同时拥有支持 HTML 和 Vue 组件的能力，并且能够呈现像素级完美的布局，还在你的演讲稿中内置了互动的演示样例
 permalink: /archives/B8yii4rj
