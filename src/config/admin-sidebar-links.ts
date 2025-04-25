@@ -5,27 +5,27 @@ export const ADMIN_SIDEBAR_LINKS = [
     titleKey: 'general',
     links: [
       {
-        titleKey: 'dashboard',
+        titleKey: '仪表盘',
         url: '/admin',
         icon: LayoutDashboardIcon,
       },
       {
-        titleKey: 'users',
+        titleKey: '用户',
         url: '/admin/users',
         icon: UsersIcon,
       },
       {
-        titleKey: 'comments',
+        titleKey: '评论',
         url: '/admin/comments',
         icon: MessagesSquareIcon,
       },
       {
-        titleKey: 'album',
+        titleKey: '相册',
         url: '/admin/album',
         icon: Album,
       },
       {
-        titleKey: 'talk',
+        titleKey: '碎碎念',
         url: '/admin/talk',
         icon: Podcast,
       },
