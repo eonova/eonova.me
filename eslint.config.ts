@@ -1,6 +1,6 @@
-import leostar from '@ileostar/eslint-config'
+import eonova from '@eonova/eslint-config'
 
-export default leostar({
+export default eonova({
   react: true,
   typescript: true,
   stylistic: true,

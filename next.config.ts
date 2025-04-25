@@ -28,6 +28,7 @@ const withPWA = createPWA({
   },
 })
 
+/** Secure Header */
 const NextConfigHeaders = [
   {
     source: '/(.*)',
@@ -64,7 +65,6 @@ const NextConfigHeaders = [
   },
 ]
 
-/** @type {import('next').NextConfig} */
 const MyNextConfig: NextConfig = {
   compress: true,
   reactStrictMode: true,
