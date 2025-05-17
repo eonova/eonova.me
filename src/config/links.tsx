@@ -87,6 +87,12 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     ],
   },
   {
+    icon: <UserCircleIcon className="size-5" />,
+    href: '/friends',
+    key: 'friends',
+    text: '友链',
+  },
+  {
     icon: <MessageSquareMore className="size-5" />,
     href: '/talk',
     key: 'talk',

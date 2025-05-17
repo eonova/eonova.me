@@ -1,6 +1,7 @@
 export * from './album'
 export * from './auth'
 export * from './comments'
+export * from './friends'
 export * from './guestbook'
 export * from './likes-sessions'
 export * from './posts'
