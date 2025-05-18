@@ -37,7 +37,7 @@ graph TD
     M --> P["TypeScript 编译器"]
     
     classDef framework fill:#2196F3,stroke:#1976D2;
-    classDef service fill:#FFC107,stroke:#FFA07A;
+    classDef service fill:#FFC107,stroke:#000;
     classDef build fill:#9C27B0,stroke:#7B1FA2;
     
     class A,F,D,E,L,N,M,O,P service;
