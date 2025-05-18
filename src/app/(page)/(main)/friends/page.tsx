@@ -2,9 +2,9 @@
 import { useState } from 'react'
 import AddFriendDialog from '~/components/add-friend-dialog'
 import { Button } from '~/components/base/button'
-import { DataTableSkeleton } from '~/components/base/data-table'
 import FriendCard from '~/components/friend-card'
 import PageTitle from '~/components/page-title'
+import { FriendSkeleton } from '~/components/skeleton/friend-skeleton'
 import { api } from '~/trpc/react'
 
 interface FriendsProps {
@@ -29,7 +29,15 @@ const Friends: React.FC<FriendsProps> = () => {
         description={description}
       />
       <div className="max-w-4xl mx-auto px-4 py-10">
-        {isLoading && <DataTableSkeleton columnCount={3} />}
+        {isLoading && (
+          <div className="w-full grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {
+              Array.from({ length: 9 }).map((_, index) => (
+                <FriendSkeleton key={index} />
+              ))
+            }
+          </div>
+        )}
         {isError && <div className="text-red-500 text-center">加载友链失败，请刷新重试</div>}
         {isSuccess && (
           data?.items.length
