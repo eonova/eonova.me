@@ -1,3 +1,4 @@
+'use client'
 import type { Column, Table as TanstackTable } from '@tanstack/react-table'
 import type { ComboboxInputValueChangeDetails, ComboboxValueChangeDetails } from './combobox'
 import { flexRender } from '@tanstack/react-table'

@@ -74,7 +74,6 @@ export const TRPCReactProvider = (props: TRPCReactProviderProps) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* eslint-disable-next-line @eslint-react/no-context-provider -- custom context */}
       <api.Provider client={trpcClient} queryClient={queryClient}>
         {children}
       </api.Provider>
