@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
-import AdminHeader from '~/components/admin/admin-header'
-import AdminSidebar from '~/components/admin/admin-sidebar'
 import { SidebarProvider } from '~/components/base'
+import AdminHeader from '~/components/pages/admin/admin-header'
+import AdminSidebar from '~/components/pages/admin/admin-sidebar'
 import { getSession } from '~/lib/auth'
 
 interface LayoutProps {

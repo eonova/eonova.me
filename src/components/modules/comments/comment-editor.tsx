@@ -1,8 +1,8 @@
 import { BoldIcon, ItalicIcon, StrikethroughIcon } from 'lucide-react'
 import { useRef } from 'react'
+import { Button } from '~/components/base/button'
+import { Textarea } from '~/components/base/textarea'
 import { cn } from '~/utils'
-import { Button } from '../base/button'
-import { Textarea } from '../base/textarea'
 
 interface Command {
   onModEnter?: () => void

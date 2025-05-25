@@ -1,8 +1,8 @@
 'use client'
 
-import AdminPageHeader from '~/components/admin/admin-page-header'
-import CommentsTable from '~/components/admin/comments/comments-table'
 import { DataTableSkeleton } from '~/components/base/data-table'
+import AdminPageHeader from '~/components/pages/admin/admin-page-header'
+import CommentsTable from '~/components/pages/admin/comments/comments-table'
 import { api } from '~/trpc/react'
 
 function Page() {

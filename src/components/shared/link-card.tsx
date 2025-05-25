@@ -1,6 +1,6 @@
 import Link from 'next/link'
+import { BlurImage } from '~/components/base/blur-image'
 import { cn } from '~/utils'
-import { BlurImage } from '../base/blur-image'
 import FadeContent from './fade-content'
 
 interface LinkCardProps {

@@ -14,9 +14,9 @@ import {
 
 import Image from 'next/image'
 import { useState } from 'react'
+import { Button } from '~/components/base/button'
+import { DataTable, DataTableColumnHeader, DataTableToolbar } from '~/components/base/data-table'
 import { useAlbumDialogsStore } from '~/stores/album'
-import { Button } from '../base'
-import { DataTable, DataTableColumnHeader, DataTableToolbar } from '../base/data-table'
 import DeleteAlbumDialog from './album-delete-dialog'
 import UpdateAlbumDialog from './album-update-dialog'
 

@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import AdminPageHeader from '~/components/admin/admin-page-header'
-import AddFriendDialog from '~/components/admin/friends/add-friend-dialog'
-import FriendsTable from '~/components/admin/friends/friends-table'
 import { DataTableSkeleton } from '~/components/base/data-table'
+import AdminPageHeader from '~/components/pages/admin/admin-page-header'
+import AddFriendDialog from '~/components/pages/admin/friends/add-friend-dialog'
+import FriendsTable from '~/components/pages/admin/friends/friends-table'
 import { api } from '~/trpc/react'
 
 function Page() {

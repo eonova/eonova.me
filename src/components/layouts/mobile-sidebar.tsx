@@ -4,11 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react' // 引入 useEffect
+import { Sheet, SheetContent, SheetTitle, VisuallyHidden } from '~/components/base'
+import { Separator } from '~/components/base/separator'
 import { HEADER_LINKS } from '~/config/links'
 import { useNav } from '~/stores/nav'
 import { cn } from '~/utils'
-import { Sheet, SheetContent, SheetTitle, VisuallyHidden } from '../base'
-import { Separator } from '../base/separator'
 
 function MobileNavAside() {
   const navStore = useNav()

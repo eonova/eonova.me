@@ -3,7 +3,7 @@
  */
 
 import Link from 'next/link'
-import { BlurImage } from '../base/blur-image'
+import { BlurImage } from '~/components/base/blur-image'
 
 type Items = Array<{
   image: string

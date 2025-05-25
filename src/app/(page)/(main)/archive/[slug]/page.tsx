@@ -5,10 +5,10 @@ import type { WebPage, WithContext } from 'schema-dts'
 import { allNotes, allPosts } from 'content-collections'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { BottomToUpTransitionView } from '~/components/modules/transition'
 import NoneContent from '~/components/shared/non-found'
 import PageTitle from '~/components/shared/page-title'
 import TimelineList from '~/components/shared/timeline-list'
-import { BottomToUpTransitionView } from '~/components/transition'
 import { SITE_URL } from '~/config/constants'
 
 interface PageProps {

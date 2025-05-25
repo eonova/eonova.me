@@ -1,5 +1,5 @@
+import { Button } from '~/components/base/button'
 import { useDialogsStore } from '~/stores/dialogs'
-import { Button } from '../base/button'
 
 function UnauthorizedOverlay() {
   const dialogStore = useDialogsStore()

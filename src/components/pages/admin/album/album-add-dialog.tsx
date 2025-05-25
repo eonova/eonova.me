@@ -11,9 +11,9 @@ import {
 } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
+import { toast } from '~/components/base/toaster'
 import { useAlbumDialogsStore } from '~/stores/album'
 import { api } from '~/trpc/react'
-import { toast } from '../base'
 
 const AddAlbumDialog: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string>('')

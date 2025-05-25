@@ -7,6 +7,8 @@ import { CommandIcon, LogInIcon, LogOutIcon } from 'lucide-react'
 
 import { Fragment, useCallback, useEffect, useState } from 'react'
 import { Button } from '~/components/base'
+import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '~/components/base/command'
+import { Kbd } from '~/components/base/kbd'
 import {
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
@@ -14,11 +16,9 @@ import {
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
 import { signOut, useSession } from '~/lib/auth-client'
+
 import { env, flags } from '~/lib/env'
 import { useDialogsStore } from '~/stores/dialogs'
-
-import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '../base/command'
-import { Kbd } from '../base/kbd'
 import { SvgLogo } from '../shared/logo'
 
 type Groups = Array<{

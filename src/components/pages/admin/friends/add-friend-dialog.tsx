@@ -9,8 +9,8 @@ import {
   DialogTitle,
 } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
+import { toast } from '~/components/base/toaster'
 import { api } from '~/trpc/react'
-import { toast } from './base/toaster'
 
 // 假设你有 createFriend 的 mutation hook
 // import { useCreateFriend } from '~/hooks/useCreateFriend'

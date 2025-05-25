@@ -13,7 +13,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { UserCogIcon, UserIcon } from 'lucide-react'
-import { DataTable, DataTableColumnHeader, DataTableToolbar } from '../base/data-table'
+import { DataTable, DataTableColumnHeader, DataTableToolbar } from '~/components/base/data-table'
 
 type User = GetUsersOutput['users'][number]
 

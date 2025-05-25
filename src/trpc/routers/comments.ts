@@ -5,7 +5,7 @@ import { TRPCError } from '@trpc/server'
 import { allPosts } from 'content-collections'
 import { Resend } from 'resend'
 import { z } from 'zod'
-import { Comment, Reply } from '~/components/email'
+import { Comment, Reply } from '~/components/modules/email'
 import { isProduction } from '~/config/constants'
 import {
   and,

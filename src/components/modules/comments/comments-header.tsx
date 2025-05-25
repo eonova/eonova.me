@@ -2,17 +2,17 @@ import type { GetInfiniteCommentsInput } from '~/trpc/routers/comments'
 
 import NumberFlow, { continuous, NumberFlowGroup } from '@number-flow/react'
 import { ListFilterIcon } from 'lucide-react'
-import { useCommentsContext } from '~/contexts/comments'
+import { Button } from '~/components/base/button'
 
-import { api } from '~/trpc/react'
-import { Button } from '../base/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from '../base/dropdown-menu'
+} from '~/components/base/dropdown-menu'
+import { useCommentsContext } from '~/contexts/comments'
+import { api } from '~/trpc/react'
 
 function CommentHeader() {
   const { slug, sort, setSort } = useCommentsContext()

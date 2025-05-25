@@ -1,6 +1,6 @@
 import { ExternalLinkIcon } from 'lucide-react'
 import Link from 'next/link'
-import { BlurImage } from '../base/blur-image'
+import { BlurImage } from '~/components/base/blur-image'
 
 interface LinkCardProps {
   href: string

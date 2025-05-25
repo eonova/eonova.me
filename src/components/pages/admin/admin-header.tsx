@@ -1,7 +1,7 @@
 'use client'
 
-import { SidebarTrigger } from '../base/sidebar'
-import ThemeSwitcher from '../layouts/theme-switcher'
+import ThemeSwitcher from '~/components//layouts/theme-switcher'
+import { SidebarTrigger } from '~/components/base/sidebar'
 
 import AdminProfileDropdown from './admin-profile-dropdown'
 

@@ -2,12 +2,12 @@
 
 import type { GetInfiniteCommentsInput } from '~/trpc/routers/comments'
 import { useState } from 'react'
+import { Button } from '~/components/base/button'
+import { toast } from '~/components/base/toaster'
 import { useCommentContext } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
 import { useSession } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
-import { Button } from '../base/button'
-import { toast } from '../base/toaster'
 import CommentEditor from './comment-editor'
 import UnauthorizedOverlay from './unauthorized-overlay'
 

@@ -5,7 +5,7 @@ import { allProjects } from 'content-collections'
 import { notFound } from 'next/navigation'
 
 import { BlurImage } from '~/components/base/blur-image'
-import Mdx from '~/components/mdx'
+import Mdx from '~/components/modules/mdx'
 
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import Header from './header'

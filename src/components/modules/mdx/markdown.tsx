@@ -2,7 +2,7 @@ import MarkdownToJSX from 'markdown-to-jsx'
 import Link from 'next/link'
 import { Fragment, memo } from 'react'
 
-import { TableCell, TableHead, TableHeader, TableRow } from '../base/table'
+import { TableCell, TableHead, TableHeader, TableRow } from '~/components/base/table'
 import CommentCodeBlock from '../comments/comment-code-block'
 import CommentTable from '../comments/comment-table'
 

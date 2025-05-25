@@ -5,11 +5,11 @@ import { Loader2Icon } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
+import { Button } from '~/components/base/button'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '~/components/base/dialog'
+import { toast } from '~/components/base/toaster'
 import { signIn } from '~/lib/auth-client'
 import { useDialogsStore } from '~/stores/dialogs'
-import { Button } from './base/button'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './base/dialog'
-import { toast } from './base/toaster'
 
 type Provider = 'github' | 'google'
 

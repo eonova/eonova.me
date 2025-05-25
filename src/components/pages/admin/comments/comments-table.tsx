@@ -14,7 +14,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useState } from 'react'
-import { DataTable, DataTableColumnHeader, DataTableToolbar } from '../../base/data-table'
+import { DataTable, DataTableColumnHeader, DataTableToolbar } from '~/components/base/data-table'
 
 type Comment = GetCommentsOutput['comments'][number]
 

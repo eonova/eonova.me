@@ -6,8 +6,7 @@ import { useCallback, useRef, useState } from 'react'
 
 import { CommentsProvider } from '~/contexts/comments'
 
-import { RatesProvider } from '../../contexts/rates'
-
+import { RatesProvider } from '~/contexts/rates'
 import CommentPost from './comment-post'
 import CommentsList from './comments-list'
 

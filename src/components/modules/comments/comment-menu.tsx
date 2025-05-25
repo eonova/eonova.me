@@ -1,13 +1,13 @@
 import { MoreVerticalIcon } from 'lucide-react'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '~/components/base/alert-dialog'
+import { Button, buttonVariants } from '~/components/base/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/components/base/dropdown-menu'
+import { toast } from '~/components/base/toaster'
 import { useCommentContext } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
 import { useCopyToClipboard } from '~/hooks/use-copy-to-clipboard'
 import { useSession } from '~/lib/auth-client'
 import { api } from '~/trpc/react'
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../base/alert-dialog'
-import { Button, buttonVariants } from '../base/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../base/dropdown-menu'
-import { toast } from '../base/toaster'
 
 function CommentMenu() {
   const { comment } = useCommentContext()

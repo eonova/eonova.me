@@ -2,10 +2,10 @@
 import type { DoubanDataResponse } from '~/types/douban'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { CardSkeleton } from '~/components/modules/skeleton/card-skeleton'
 import InfiniteScrollingLoading from '~/components/shared/infinite-scrolling-loading'
 import PageTitle from '~/components/shared/page-title'
 import RecreationCard from '~/components/shared/recreation-card'
-import { CardSkeleton } from '~/components/skeleton/card-skeleton'
 import { api } from '~/trpc/react'
 
 // 定义模式类型

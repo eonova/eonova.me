@@ -1,9 +1,9 @@
 'use client'
 
-import AdminPageHeader from '~/components/admin/admin-page-header'
-import AddAlbumDialog from '~/components/admin/album-add-dialog'
-import AlbumTable from '~/components/admin/album-table'
 import { DataTableSkeleton } from '~/components/base/data-table'
+import AdminPageHeader from '~/components/pages/admin/admin-page-header'
+import AddAlbumDialog from '~/components/pages/admin/album/album-add-dialog'
+import AlbumTable from '~/components/pages/admin/album/album-table'
 import { api } from '~/trpc/react'
 
 function Page() {

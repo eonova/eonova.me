@@ -1,7 +1,7 @@
 'use client'
 import type { SidebarGroup as SidebarGroupConfig } from '~/config/admin-sidebar-links'
 
-import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu } from '../base/sidebar'
+import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu } from '~/components/base/sidebar'
 import AdminNavLink from './admin-nav-link'
 
 type AdminNavGroupProps = SidebarGroupConfig

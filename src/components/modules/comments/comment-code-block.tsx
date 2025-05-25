@@ -1,8 +1,8 @@
 import type { BundledLanguage } from 'shiki'
 import { useEffect, useState } from 'react'
 import { bundledLanguages } from 'shiki'
+import { CodeBlock } from '~/components/base/code-block'
 import { useHighlighterStore } from '~/stores/highlighter'
-import { CodeBlock } from '../base/code-block'
 
 interface CommentCodeBlockProps {
   children: {

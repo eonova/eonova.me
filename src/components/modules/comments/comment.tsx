@@ -6,15 +6,15 @@ import type { GetInfiniteCommentsOutput } from '~/trpc/routers/comments'
 import Image from 'next/image'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import { Skeleton } from '~/components/base/skeleton'
+import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/base/tooltip'
 import { CommentProvider } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
 import { useClickOutside } from '~/hooks/use-click-outside'
+
 import { useCommentParams } from '~/hooks/use-comment-params'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
-
 import { cn } from '~/utils'
-import { Skeleton } from '../base/skeleton'
-import { Tooltip, TooltipContent, TooltipTrigger } from '../base/tooltip'
 import Markdown from '../mdx/markdown'
 import CommentActions from './comment-actions'
 import CommentMenu from './comment-menu'

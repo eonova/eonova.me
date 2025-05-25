@@ -5,7 +5,7 @@ import {
   TableHeader,
   TableRow,
   Table as UITable,
-} from '../base/table'
+} from '~/components/base/table'
 
 interface TableProps {
   headers: string[]
