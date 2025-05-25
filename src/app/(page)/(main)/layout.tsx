@@ -1,4 +1,4 @@
-import MainLayout from '~/components/main-layout'
+import MainLayout from '~/components/layouts/main-layout'
 
 interface LayoutProps {
   children: React.ReactNode

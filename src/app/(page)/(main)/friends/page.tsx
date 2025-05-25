@@ -1,10 +1,10 @@
 'use client'
 import { useState } from 'react'
-import AddFriendDialog from '~/components/add-friend-dialog'
+import AddFriendDialog from '~/components/admin/friends/add-friend-dialog'
 import { Button } from '~/components/base/button'
-import FriendCard from '~/components/friend-card'
+import { FriendSkeleton } from '~/components/modules/skeleton/friend-skeleton'
 import PageTitle from '~/components/page-title'
-import { FriendSkeleton } from '~/components/skeleton/friend-skeleton'
+import FriendCard from '~/components/pages/friends/friend-card'
 import { api } from '~/trpc/react'
 
 interface FriendsProps {

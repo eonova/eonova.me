@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import AddFriendDialog from '~/components/add-friend-dialog'
 import AdminPageHeader from '~/components/admin/admin-page-header'
-import FriendsTable from '~/components/admin/friends-table'
+import AddFriendDialog from '~/components/admin/friends/add-friend-dialog'
+import FriendsTable from '~/components/admin/friends/friends-table'
 import { DataTableSkeleton } from '~/components/base/data-table'
 import { api } from '~/trpc/react'
 

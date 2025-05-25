@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import { api } from '~/trpc/react'
 import { cn } from '~/utils'
-import { Button } from '../base/button'
-import { Textarea } from '../base/textarea'
-import { toast } from '../base/toaster'
-import TalkBox from './box'
-import TalkMdx from './mdx'
+import { Button } from '../../base/button'
+import { Textarea } from '../../base/textarea'
+import { toast } from '../../base/toaster'
+import TalkBox from '../../pages/talk/box'
+import TalkMdx from '../../pages/talk/mdx'
 
 interface TalkAdminProps {
   // 可添加 props 如初始数据等

@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import { useRef } from 'react'
 import { cn } from '~/utils'
-import { buttonVariants } from '../base/button'
+import { buttonVariants } from '../../base/button'
 import CodingHours from './coding-hours'
 import Connect from './connect'
 import FavoriteFramework from './favorite-framework'

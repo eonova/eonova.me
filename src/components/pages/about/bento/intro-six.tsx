@@ -1,6 +1,6 @@
 import { APPOINT_END_DATE, APPOINT_START_DATE } from '~/config/about-profiles'
-import BackgroundFont from '../background-font'
-import AppointProgress from './appoint-progress'
+import BackgroundFont from '../../../background-font'
+import AppointProgress from '../appoint-progress'
 import IntroCard from './intro-card'
 
 const IntroSix: React.FC = () => {

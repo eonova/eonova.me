@@ -1,5 +1,5 @@
 import AdminPageHeader from '~/components/admin/admin-page-header'
-import TalkAdmin from '~/components/talk/talk-admin'
+import TalkAdmin from '~/components/admin/talk/talk-admin'
 
 function Page() {
   return (

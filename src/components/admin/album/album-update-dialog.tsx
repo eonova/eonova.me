@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from '~/components/base'
 import { Button } from '~/components/base/button'
 import {
   Dialog,
@@ -12,7 +13,6 @@ import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
 import { useAlbumDialogsStore } from '~/stores/album'
 import { api } from '~/trpc/react'
-import { toast } from '../base'
 
 interface UpdateAlbumDialogProps {
   id: string

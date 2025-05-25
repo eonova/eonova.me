@@ -33,7 +33,7 @@ import {
   SiWakatime,
 } from '@icons-pack/react-simple-icons'
 import { ZapIcon } from 'lucide-react'
-import { Marquee } from '../base/marquee'
+import { Marquee } from '../../base/marquee'
 
 function StacksCard() {
   return (

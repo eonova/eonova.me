@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
 import { BlurImage } from '~/components/base/blur-image'
-import ImageZoom from '~/components/image-zoom'
+import ImageZoom from '~/components/pages/album/image-zoom'
 import { usePostContext } from '~/contexts/post'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { api } from '~/trpc/react'

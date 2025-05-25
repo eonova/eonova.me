@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '~/components/base/button'
-import MainLayout from '~/components/main-layout'
+import MainLayout from '~/components/layouts/main-layout'
 
 interface PageProps {
   error: Error & { digest?: string }

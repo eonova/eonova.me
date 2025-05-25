@@ -1,6 +1,6 @@
 import { cn } from '~/utils'
+import Video from '../video'
 import IntroCard from './intro-card'
-import Video from './video'
 
 const IntroThree: React.FC = () => {
   return (

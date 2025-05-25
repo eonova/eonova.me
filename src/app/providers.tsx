@@ -8,7 +8,7 @@ import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/page-progress'
 import { TRPCReactProvider } from '~/trpc/react'
 
-const SmoothScroll = dynamic(() => import('../components/lenis-provider').then(mod => mod.LenisProvider), {
+const SmoothScroll = dynamic(() => import('../components/layouts/lenis-provider').then(mod => mod.LenisProvider), {
   ssr: false, // 禁用 SSR
 })
 

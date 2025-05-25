@@ -5,13 +5,12 @@ import Link from 'next/link'
 import { BlurImage } from '../base/blur-image'
 import { CodeBlock } from '../base/code-block'
 import { Kbd } from '../base/kbd'
-import ImageZoom from '../image-zoom'
 import Logo from '../logo'
+import ImageZoom from '../pages/album/image-zoom'
 import Heading from './heading'
 import ItemGrid from './item-grid'
 import LinkCard from './link-card'
 import Table from './table'
-import TreeView from './tree-vew'
 import Video from './video'
 
 interface MdxProps {
@@ -54,11 +53,10 @@ const components = {
   Video,
   LinkCard,
   Logo,
-  TreeView,
   Kbd,
 }
 
-function Mdx(props: MdxProps) {
+function NoteMdx(props: MdxProps) {
   const { code } = props
   const MDXContent = useMDXComponent(code)
 
@@ -69,4 +67,4 @@ function Mdx(props: MdxProps) {
   )
 }
 
-export default Mdx
+export default NoteMdx

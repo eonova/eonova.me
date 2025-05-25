@@ -2,6 +2,7 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { AboutPage, WithContext } from 'schema-dts'
 import dynamic from 'next/dynamic'
 import PageTitle from '~/components/page-title'
+import Bento from '~/components/pages/about/bento'
 import {
   SITE_DESCRIPTION,
   SITE_GITHUB_URL,
@@ -12,14 +13,7 @@ import {
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
 
-const BounceCards = dynamic(() => import('~/components/about/bounce-cards'))
-const IntroFive = dynamic(() => import('~/components/about/intro-five'))
-const IntroFour = dynamic(() => import('~/components/about/intro-four'))
-const IntroOne = dynamic(() => import('~/components/about/intro-one'))
-const IntroSix = dynamic(() => import('~/components/about/intro-six'))
-const IntroThree = dynamic(() => import('~/components/about/intro-three'))
-const IntroTwo = dynamic(() => import('~/components/about/intro-two'))
-const VelocityScroll = dynamic(() => import('~/components/about/scrollbasedvelocity').then(mod => mod.VelocityScroll))
+const BounceCards = dynamic(() => import('~/components/pages/about/bounce-cards'))
 
 const title = '关于'
 const description = '👋 嗨！我是 Eonova'
@@ -94,19 +88,7 @@ async function Page() {
           'rotate(-5deg) translate(150px)',
         ]}
       />
-      <ul className="relative w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-5 mt-5">
-        <IntroOne />
-        <IntroTwo />
-        <IntroThree />
-        <IntroFour />
-        <IntroFive />
-        <VelocityScroll
-          className="font-sans text-center text-3xl font-bold  text-black dark:text-white md:text-4xl"
-          text="KEEP GOING EONOVA.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-          default_velocity={5}
-        />
-        <IntroSix />
-      </ul>
+      <Bento />
     </>
   )
 }
