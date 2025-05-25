@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { api } from '~/trpc/react'
-import InfiniteScrollingLoading from '../../infinite-scrolling-loading'
+import InfiniteScrollingLoading from '../../shared/infinite-scrolling-loading'
 import { TalkSkeleton } from '../../skeleton/talk-skeleton'
 import TalkBox from './box'
 

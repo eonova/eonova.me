@@ -1,5 +1,5 @@
 import { Skeleton } from '~/components/base/skeleton'
-import PageTitle from '~/components/page-title'
+import PageTitle from '~/components/shared/page-title'
 import Pinned from './pinned'
 
 function Loading() {

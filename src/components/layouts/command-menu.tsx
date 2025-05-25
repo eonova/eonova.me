@@ -17,9 +17,9 @@ import { signOut, useSession } from '~/lib/auth-client'
 import { env, flags } from '~/lib/env'
 import { useDialogsStore } from '~/stores/dialogs'
 
-import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from './base/command'
-import { Kbd } from './base/kbd'
-import { SvgLogo } from './logo'
+import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '../base/command'
+import { Kbd } from '../base/kbd'
+import { SvgLogo } from '../shared/logo'
 
 type Groups = Array<{
   name: string

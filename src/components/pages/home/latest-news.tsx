@@ -8,8 +8,8 @@ import Link from 'next/link'
 
 import { useRef } from 'react'
 import { formatDate } from '~/utils'
-import BackgroundFont from '../../background-font'
-import TimelineList from '../../timeline-list'
+import BackgroundFont from '../../shared/background-font'
+import TimelineList from '../../shared/timeline-list'
 
 const variants = {
   initial: {

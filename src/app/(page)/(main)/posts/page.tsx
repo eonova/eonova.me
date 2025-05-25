@@ -2,8 +2,8 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
 
 import { allPosts } from 'content-collections'
-import PageTitle from '~/components/page-title'
-import PostCards from '~/components/post-cards'
+import PageTitle from '~/components/shared/page-title'
+import PostCards from '~/components/shared/post-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 
 const title = '文章'

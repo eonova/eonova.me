@@ -1,8 +1,8 @@
 import Data from '@/data/links/index.json'
-import BackgroundFont from '~/components/background-font'
 import { Separator } from '~/components/base'
-import LinkCard from '~/components/link-card'
-import PageTitle from '~/components/page-title'
+import BackgroundFont from '~/components/shared/background-font'
+import LinkCard from '~/components/shared/link-card'
+import PageTitle from '~/components/shared/page-title'
 
 const Links: React.FC = () => {
   return (

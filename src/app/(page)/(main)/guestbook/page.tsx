@@ -1,7 +1,7 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 
-import PageTitle from '~/components/page-title'
+import PageTitle from '~/components/shared/page-title'
 import { SITE_URL } from '~/config/constants'
 import { getSession } from '~/lib/auth'
 

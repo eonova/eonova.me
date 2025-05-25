@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster } from '~/components/base/toaster'
 import { TooltipProvider } from '~/components/base/tooltip'
-import PageProgress from '~/components/page-progress'
+import PageProgress from '~/components/shared/page-progress'
 import { TRPCReactProvider } from '~/trpc/react'
 
 const SmoothScroll = dynamic(() => import('../components/layouts/lenis-provider').then(mod => mod.LenisProvider), {

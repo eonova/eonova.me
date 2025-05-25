@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Separator } from './base/separator'
+import { Separator } from '../base/separator'
 
 interface PageTitleProps {
   title: string

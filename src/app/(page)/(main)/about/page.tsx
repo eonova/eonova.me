@@ -1,8 +1,8 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { AboutPage, WithContext } from 'schema-dts'
 import dynamic from 'next/dynamic'
-import PageTitle from '~/components/page-title'
 import Bento from '~/components/pages/about/bento'
+import PageTitle from '~/components/shared/page-title'
 import {
   SITE_DESCRIPTION,
   SITE_GITHUB_URL,

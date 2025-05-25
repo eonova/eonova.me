@@ -2,9 +2,9 @@
 import { useState } from 'react'
 import AddFriendDialog from '~/components/admin/friends/add-friend-dialog'
 import { Button } from '~/components/base/button'
-import { FriendSkeleton } from '~/components/modules/skeleton/friend-skeleton'
-import PageTitle from '~/components/page-title'
+import { FriendSkeleton } from '~/components/features/skeleton/friend-skeleton'
 import FriendCard from '~/components/pages/friends/friend-card'
+import PageTitle from '~/components/shared/page-title'
 import { api } from '~/trpc/react'
 
 interface FriendsProps {

@@ -2,7 +2,7 @@
 
 import type { Project } from 'content-collections'
 import Link from 'next/link'
-import { BlurImage } from './base/blur-image'
+import { BlurImage } from '../base/blur-image'
 
 type ProjectCardProps = Project
 interface ProjectCardsProps {

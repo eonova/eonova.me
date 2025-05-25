@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { CATEGORIES } from '~/config/posts'
 import { api } from '~/trpc/react'
 import { formatDate } from '~/utils'
-import { BottomToUpTransitionView } from './modules/transition'
+import { BottomToUpTransitionView } from '../features/transition'
 
 interface PostCardsProps {
   posts: Post[]

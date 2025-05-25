@@ -2,8 +2,8 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
 
 import { allNotes, allPosts } from 'content-collections'
-import NoteCards from '~/components/note-cards'
-import PageTitle from '~/components/page-title'
+import NoteCards from '~/components/shared/note-cards'
+import PageTitle from '~/components/shared/page-title'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 
 const title = '手记'
