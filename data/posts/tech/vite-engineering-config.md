@@ -1,15 +1,10 @@
 ---
 title: Vite工程化配置
-id: aec03fac-8315-4620-8726-c5cb53e705db
-date: 2023-11-14 22:46:50
-auther: eonova
-cover:
-excerpt: 前置 工程化目的 工程化使项目开发更加规范化，利于后期维护修改和团队协作开发 用到的工具 🐶 husky | 🐶 husky (typicode.github.io) lint-staged 🚫💩 — Run linters on git staged files (github.com)
-permalink: /archives/0pD4byyq
-categories:
- - qian-duan-gong-cheng-hua
-tags:
- - vitegong-cheng-hua-pei-zhi
+date: '2023-11-14T00:00:00Z'
+modifiedTime: '2025-05-23T00:00:00Z'
+summary: '工程化使项目开发更加规范化，利于后期维护修改和团队协作开发'
+categories: ['tech']
+cover: 'https://img.leostar.top/upload/vite-engineering-config.png'
 ---
 
 ## 前置

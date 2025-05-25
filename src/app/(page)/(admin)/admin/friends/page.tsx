@@ -1,12 +1,14 @@
 'use client'
 
+import { useState } from 'react'
+import AddFriendDialog from '~/components/add-friend-dialog'
 import AdminPageHeader from '~/components/admin/admin-page-header'
-import AddFriendDialog from '~/components/admin/friend-add-dialog'
 import FriendsTable from '~/components/admin/friends-table'
 import { DataTableSkeleton } from '~/components/base/data-table'
 import { api } from '~/trpc/react'
 
 function Page() {
+  const [open, setOpen] = useState(false)
   const { status, data } = api.friend.getAllFriends.useQuery()
 
   const isSuccess = status === 'success'
@@ -34,7 +36,7 @@ function Page() {
 
       {isSuccess && (
         <>
-          <AddFriendDialog />
+          <AddFriendDialog open={open} onClose={() => setOpen(false)} />
           <FriendsTable data={(data?.items || []).map(friend => ({
             id: friend.id,
             name: friend.name,

@@ -14,7 +14,8 @@
   "ignorePaths": [
     "pnpm-lock.yaml",
     ".pnpm-store/",
-    "src/db/migrations/**"
+    "src/db/migrations/**",
+    "data/**"
   ],
   "ignoreRegExpList": [
     "apiKey='[a-zA-Z0-9-]{32}'"

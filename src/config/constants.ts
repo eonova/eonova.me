@@ -7,7 +7,7 @@ export const GITHUB_USERNAME = 'eonova'
 export const SITE_NAME = 'Eonova\'s Space'
 export const SITE_TITLE = 'Eonova - A Full Stack Developer'
 export const SITE_DESCRIPTION = 'Eonova • Full Stack Developer'
-export const SITE_KEYWORDS = ['Eonova', 'eonova', 'Next.js', 'React', 'TypeScript', 'Node.js']
+export const SITE_KEYWORDS = ['Eonova', 'eonova', 'Nova Eon', 'Next.js', 'React', 'TypeScript', 'Node.js']
 
 export const SITE_GITHUB_URL = 'https://github.com/eonova'
 export const SITE_INSTAGRAM_URL = 'https://www.instagram.com/030eonova'

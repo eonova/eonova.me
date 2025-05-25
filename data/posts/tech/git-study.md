@@ -1,7 +1,7 @@
 ---
 title: Git入门
-date: '2023-12-01T00:00:00Z'
-modifiedTime: '2023-12-03T00:00:00Z'
+date: '2023-01-01T00:00:00Z'
+modifiedTime: '2023-01-03T00:00:00Z'
 summary: Git安装及配置
 categories: ['tech']
 cover: 'https://img.leostar.top/study/51290772e02b0274af8e3b4a30356ffd.jpeg'

@@ -26,7 +26,7 @@ const UpdateFriendDialog: React.FC<UpdateFriendDialogProps> = ({
   const updateMutation = api.friend.updateFriend.useMutation({
     onSuccess: () => {
       friendDialogStore.setAddDialogs(false)
-      toast.success('友链添加成功')
+      toast.success('友链更新成功')
     },
     onError: error => toast.error(`添加失败：${error.message}`),
     onSettled: () => utils.friend.getAllFriends.invalidate(),

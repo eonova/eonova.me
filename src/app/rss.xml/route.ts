@@ -11,7 +11,7 @@ export function GET() {
     site_url: SITE_URL,
     feed_url: `${SITE_URL}/rss.xml`,
     language: 'en-US',
-    image_url: `${SITE_URL}/images/og.png`,
+    image_url: `${SITE_URL}/images/home/avatar.webp`,
   })
 
   const posts = allPosts

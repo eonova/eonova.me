@@ -4,7 +4,7 @@ import type { WebPage, WithContext } from 'schema-dts'
 import { allPosts } from 'content-collections'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import NoneContent from '~/components/none-content'
+import NonFound from '~/components/non-found'
 import PageTitle from '~/components/page-title'
 import TimelineList from '~/components/timeline-list'
 import { BottomToUpTransitionView } from '~/components/transition'
@@ -140,7 +140,7 @@ async function Page(props: PageProps) {
             )
           : (
               <div className="flex items-center justify-center h-[55vh]">
-                <NoneContent className="mx-auto w-md h-md md:w-[90%] md:h-[70vh]" />
+                <NonFound />
               </div>
             )
       }

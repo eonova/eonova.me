@@ -29,12 +29,12 @@ function LatestNews() {
     .toSorted((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
-    .slice(0, 5)
+    .slice(0, 3)
   const filteredNotes = allNotes
     .toSorted((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
-    .slice(0, 5)
+    .slice(0, 3)
 
   return (
     <motion.div
@@ -78,7 +78,7 @@ function LatestNews() {
         }}
       >
         <Card articles={filteredPosts} />
-        <div className="hidden sm:flex justify-center flex ">
+        <div className="hidden sm:flex justify-center ">
           <div className="h-full w-[1px] rounded-full bg-gray-500/20" />
         </div>
         <Card color text="手记" articles={filteredNotes} />

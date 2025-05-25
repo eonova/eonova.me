@@ -1,8 +1,8 @@
 ---
-title: RegExp学习
+title: RegExp笔记
 date: '2023-12-02T00:00:00Z'
 modifiedTime: '2023-12-02T00:00:00Z'
-summary: RegExp学习
+summary: RegExp笔记
 categories: ['tech']
 cover: 'https://img.leostar.top/blog/20250220024447904.png'
 ---
