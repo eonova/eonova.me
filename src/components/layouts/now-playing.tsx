@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { api } from '~/trpc/react'
-import ShinyText from '../shiny-text'
+import ShinyText from '../shared/shiny-text'
 
 function NowPlaying() {
   const { status, data } = api.spotify.get.useQuery(undefined, {
