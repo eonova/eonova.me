@@ -13,7 +13,7 @@ cover: 'https://media.licdn.com/dms/image/v2/D5612AQGIshAZ7H_dlQ/article-cover_i
 
 ## SPA
 
-我们先从大家最熟悉的 SPA 开始说起。引用 [MDN 对 SPA 的介绍](https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FGlossary%2FSPA "https://developer.mozilla.org/zh-CN/docs/Glossary/SPA")：
+我们先从大家最熟悉的 SPA 开始说起。引用 [MDN 对 SPA 的介绍](https://developer.mozilla.org/zh-CN/docs/Glossary/SPA)：
 
 > SPA（单页应用，Single-page application）是只加载一个单独网页的 Web 应用的实现。当需要显示不同的内容时，它通过 JavaScript API（例如 XMLHttpRequest 和 Fetch）更新主体内容。
 > 
@@ -23,10 +23,10 @@ cover: 'https://media.licdn.com/dms/image/v2/D5612AQGIshAZ7H_dlQ/article-cover_i
 
 SPA 是怎么实现的呢？这就要说到 Navigation。中文译为“导航”，也就是从一个 URL 跳转到另外一个 URL。
 
-Next.js 官网里的 Navigation 基本都是指客户端导航，也就是 JavaScript 拦截链接跳转，然后 fetch 获取目标路由的地址，并同时更新路由。我们在《[源码篇 | 手写 RSC（下）》](https://juejin.cn/book/7307859898316881957/section/7309116033020018697 "https://juejin.cn/book/7307859898316881957/section/7309116033020018697")实现过一个简易的客户端导航：
+Next.js 官网里的 Navigation 基本都是指客户端导航，也就是 JavaScript 拦截链接跳转，然后 fetch 获取目标路由的地址，并同时更新路由。实现一个简易的客户端导航：
 
 ```markdown
-tsx 体验AI代码助手 代码解读复制代码let currentPathname = window.location.pathname;
+let currentPathname = window.location.pathname;
 
 async function navigate(pathname) {
   currentPathname = pathname;
