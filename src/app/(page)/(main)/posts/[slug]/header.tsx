@@ -93,6 +93,7 @@ function Header() {
         <BlurImage
           src={images}
           className="rounded-lg"
+          unoptimized
           width={1200}
           height={630}
           lazy={false}

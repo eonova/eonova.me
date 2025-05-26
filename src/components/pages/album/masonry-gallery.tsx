@@ -2,6 +2,7 @@
 'use client'
 import { useState } from 'react'
 import { buttonVariants } from '~/components/base/button'
+import NonFound from '~/components/shared/non-found'
 import { api } from '~/trpc/react'
 import { cn } from '~/utils'
 import Lightbox from './lightbox'
@@ -51,7 +52,7 @@ function WaterfallGallery({
       {isLoading && <WhirlpoolLoader />}
       {isError && <div>无法获取用户数据。请刷新页面。</div>}
       {
-        isSuccess && (
+        isSuccess && items.length > 0 && (
           <div className="container mx-auto py-8">
             {/* 瀑布流布局 */}
             <Masonry
@@ -85,6 +86,11 @@ function WaterfallGallery({
               )
             }
           </div>
+        )
+      }
+      {
+        isSuccess && items.length === 0 && (
+          <NonFound />
         )
       }
     </>

@@ -1,17 +1,17 @@
 ---
 name: 'vscode-eonova-snippets'
 description: Eonova's Vscode Plugin
-homepage: https://poster-craft.leostar.top/
+homepage: https://marketplace.visualstudio.com/items?itemName=eonova.vscode-eonova-snippets
 github: https://github.com/eonova/vscode-eonova-snippets
 date: '2025-01-22T00:00:00Z'
-techstack: ['Next.js','Nest.js','Turborepo','Drizzle-orm','Mysql']
+techstack: ['TypeScript', '@vscode/vsce']
 selected: true
 
 ---
 
 # vscode-eonova-snippets
 
-![Snippets](https://img.leostar.top/upload/demo.gif)
+![Snippets](/images/projects/internal/demo.gif)
 
 <p align="center">eonova's vscode snippets🎞</p>
 
