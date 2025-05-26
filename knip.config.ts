@@ -4,12 +4,9 @@ const config: KnipConfig = {
   ignoreDependencies: [
     'cn-fontsource-ding-talk-jin-bu-ti-regular',
     '@tailwindcss/typography',
-    'content-collections',
     'sharp',
     'tailwindcss',
     'react-email',
-    'lint-staged',
-    'picocolors',
   ],
   entry: [
     'content.config.ts',
@@ -27,6 +24,9 @@ const config: KnipConfig = {
     '**/*.d.ts',
     './src/components/base/*',
     './src/plugins/*',
+    'src/components/modules/**/*.{ts,tsx}',
+    'src/components/shared/**/*.{ts,tsx}',
+    'src/utils/url-builder.ts',
   ],
 }
 

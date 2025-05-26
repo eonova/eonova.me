@@ -1,99 +1,108 @@
-'use client'
-
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from '~/components/base/button'
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '~/components/base/dialog'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
-import { Label } from '~/components/base/label'
 import { toast } from '~/components/base/toaster'
-import { useFriendDialogsStore } from '~/stores/friend'
 import { api } from '~/trpc/react'
 
-const AddFriendDialog: React.FC = () => {
+// 假设你有 createFriend 的 mutation hook
+// import { useCreateFriend } from '~/hooks/useCreateFriend'
+
+interface AddFriendDialogProps {
+  open: boolean
+  onClose: () => void
+}
+
+const AddFriendDialog: React.FC<AddFriendDialogProps> = ({
+  open,
+  onClose,
+}) => {
   const [name, setName] = useState('')
   const [url, setUrl] = useState('')
   const [avatar, setAvatar] = useState('')
   const [description, setDescription] = useState('')
-  const friendDialogStore = useFriendDialogsStore()
-  const utils = api.useUtils()
 
-  const createMutation = api.friend.createFriend.useMutation({
-    onSuccess: () => {
-      friendDialogStore.setAddDialogs(false)
-      toast.success('友链添加成功')
-    },
-    onError: error => toast.error(`添加失败：${error.message}`),
-    onSettled: () => utils.friend.getAllFriends.invalidate(),
-  })
-
-  const handleSubmit = () => {
-    createMutation.mutate({ name, url, avatar, description })
+  const handleClose = () => {
     setName('')
     setUrl('')
     setAvatar('')
     setDescription('')
+    onClose()
   }
 
+  const utils = api.useUtils()
+  const createFriendMutate = api.friend.createFriend.useMutation({
+    onSuccess: () => {
+      handleClose()
+      toast.success('好友添加成功')
+    },
+    onError: (error) => {
+      console.error('添加好友失败:', error)
+    },
+    onSettled: () => {
+      utils.friend.getAllFriends.invalidate()
+    },
+  })
+  const handleAdd = async () => {
+    createFriendMutate.mutate({
+      name: name.trim(),
+      url: url.trim(),
+      avatar: avatar.trim(),
+      description: description.trim(),
+    })
+    setName('')
+    setUrl('')
+    setAvatar('')
+    setDescription('')
+    onClose()
+  }
+  const canSubmit = name.trim() && url.trim()
+
   return (
-    <Dialog
-      open={friendDialogStore.addDialog}
-      onOpenChange={v => friendDialogStore.setAddDialogs(v)}
-    >
-      <DialogTrigger asChild>
-        <Button variant="outline">新增友链</Button>
-      </DialogTrigger>
-
-      <DialogContent className="sm:max-w-[425px]">
+    <Dialog open={open} onOpenChange={open => !open && handleClose()}>
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle>添加友链</DialogTitle>
+          <DialogTitle>添加好友</DialogTitle>
         </DialogHeader>
-
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">名称</Label>
-            <Input
-              id="name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              className="col-span-3"
-              required
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="url" className="text-right">链接</Label>
-            <Input
-              id="url"
-              type="url"
-              value={url}
-              onChange={e => setUrl(e.target.value)}
-              className="col-span-3"
-              required
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="avatar" className="text-right">头像</Label>
-            <Input
-              id="avatar"
-              type="url"
-              value={avatar}
-              onChange={e => setAvatar(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="avatar" className="text-right">描述</Label>
-            <Input
-              id="description"
-              type="url"
-              value={description}
-              onChange={e => setDescription(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
+        <div className="space-y-4 py-2">
+          <Input
+            autoFocus
+            placeholder="名称"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+          <Input
+            placeholder="URL"
+            value={url}
+            onChange={e => setUrl(e.target.value)}
+          />
+          <Input
+            placeholder="头像URL（可选）"
+            value={avatar}
+            onChange={e => setAvatar(e.target.value)}
+          />
+          <Input
+            placeholder="描述（可选）"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          />
         </div>
-
         <DialogFooter>
-          <Button type="button" onClick={handleSubmit}>保存</Button>
+          <DialogClose asChild>
+            <Button variant="outline" onClick={handleClose}>
+              取消
+            </Button>
+          </DialogClose>
+          <Button onClick={handleAdd} disabled={!canSubmit}>
+            添加
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

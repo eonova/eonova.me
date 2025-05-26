@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { DataTableSkeleton } from '~/components/base/data-table'
 import AdminPageHeader from '~/components/pages/admin/admin-page-header'
-import AddFriendDialog from '~/components/pages/admin/friends/add-friend-dialog'
+import AddFriendDialog from '~/components/pages/admin/friends/friend-add-dialog'
 import FriendsTable from '~/components/pages/admin/friends/friends-table'
 import { api } from '~/trpc/react'
 
