@@ -4,7 +4,7 @@ import PageTitle from '~/components/shared/page-title'
 const title = '碎碎念'
 const description = '谢谢你愿意听我诉说🎈'
 
-const Talk: React.FC = () => {
+function Page() {
   return (
     <>
       <PageTitle
@@ -16,4 +16,4 @@ const Talk: React.FC = () => {
   )
 }
 
-export default Talk
+export default Page

@@ -1,14 +1,10 @@
-import type { Note, Post } from 'content-collections'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 import type { WebPage, WithContext } from 'schema-dts'
 import { allNotes, allPosts } from 'content-collections'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { BottomToUpTransitionView } from '~/components/modules/transition'
-import NoneContent from '~/components/shared/non-found'
+import ArchiveContent from '~/components/pages/archive/content'
 import PageTitle from '~/components/shared/page-title'
-import TimelineList from '~/components/shared/timeline-list'
 import { SITE_DESCRIPTION, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_NAME, SITE_URL, SITE_X_URL, SITE_YOUTUBE_URL } from '~/config/constants'
 
 interface PageProps {
@@ -87,55 +83,7 @@ async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageTitle title={title} description={description} />
-      {
-        (articlesByYear && Object.keys(articlesByYear).length > 0)
-          ? (
-              <main className="mt-10 md:px-3 text-zinc-950/80 dark:text-zinc-50/80">
-                {
-                  Object.entries(articlesByYear).sort((a, b) => Number(b[0]) - Number(a[0])).map(([year, articles]) => {
-                    return (
-                      <ul key={year} className="mb-10">
-                        <BottomToUpTransitionView
-                          as="h4"
-                          delay={700}
-                          className="relative mb-4 ml-3 text-lg font-medium rounded-md before:content-auto before:absolute before:inset-y-[4px] before:-left-3 before:w-[2px] before:bg-accent"
-                        >
-                          {year}
-                        </BottomToUpTransitionView>
-                        <TimelineList>
-                          {(articles as (Post | Note)[]).map((child: Post | Note, i: number) => {
-                            return (
-                              <BottomToUpTransitionView
-                                key={child.slug}
-                                delay={700 + 50 * i}
-                                as="li"
-                                className="flex min-w-0 items-center justify-between leading-loose"
-                              >
-                                <Link
-                                  href={`/${child.type}/${child.slug}`}
-                                  className="min-w-0 truncate"
-                                >
-                                  {child.title}
-                                </Link>
-                                <span className="meta ml-2">
-                                  {child.type === 'posts' ? `${child.categoriesText}/文章` : `天气：${child.weather}/心情：${child.mood}/手记`}
-                                </span>
-                              </BottomToUpTransitionView>
-                            )
-                          })}
-                        </TimelineList>
-                      </ul>
-                    )
-                  })
-                }
-              </main>
-            )
-          : (
-              <div className="flex items-center justify-center h-[55vh]">
-                <NoneContent className="mx-auto w-md h-md md:w-[90%] md:h-[70vh]" />
-              </div>
-            )
-      }
+      <ArchiveContent articlesByYear={articlesByYear} />
     </>
   )
 }

@@ -7,14 +7,10 @@ import LinkCard from '~/components/shared/link-card'
 import PageTitle from '~/components/shared/page-title'
 import { api } from '~/trpc/react'
 
-interface FriendsProps {
-
-}
-
 const title = '友链'
 const description = '感谢你愿意和我做朋友🌈'
 
-const Friends: React.FC<FriendsProps> = () => {
+function Page() {
   const { status, data } = api.friend.getAllFriends.useQuery()
 
   const isSuccess = status === 'success'
@@ -75,4 +71,4 @@ const Friends: React.FC<FriendsProps> = () => {
   )
 }
 
-export default Friends
+export default Page

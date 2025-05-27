@@ -2,12 +2,9 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 
 import { allPosts } from 'content-collections'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { BottomToUpTransitionView } from '~/components/modules/transition'
-import NonFound from '~/components/shared/non-found'
+import CategoriesContent from '~/components/pages/categories/content'
 import PageTitle from '~/components/shared/page-title'
-import TimelineList from '~/components/shared/timeline-list'
 import { SITE_URL } from '~/config/constants'
 import { CATEGORIES } from '~/config/posts'
 
@@ -104,46 +101,7 @@ async function Page(props: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageTitle title={title} description="" />
-      {
-        posts.length > 0
-          ? (
-              <main className="mt-10 md:px-3 text-zinc-950/80 dark:text-zinc-50/80">
-                <TimelineList>
-                  {posts.map((child, i) => {
-                    const date = new Date(child.date)
-
-                    return (
-                      <BottomToUpTransitionView
-                        key={child.slug}
-                        delay={700 + 50 * i}
-                        as="li"
-                        className="flex min-w-0 items-center justify-between leading-loose"
-                      >
-                        <Link
-                          href={`/posts/${child.slug}`}
-                          className="min-w-0 truncate"
-                        >
-                          {child.title}
-                        </Link>
-                        <span className="meta ml-2">
-                          {(date.getMonth() + 1).toString().padStart(2, '0')}
-                          /
-                          {date.getDate().toString().padStart(2, '0')}
-                          /
-                          {date.getFullYear()}
-                        </span>
-                      </BottomToUpTransitionView>
-                    )
-                  })}
-                </TimelineList>
-              </main>
-            )
-          : (
-              <div className="flex items-center justify-center h-[55vh]">
-                <NonFound />
-              </div>
-            )
-      }
+      <CategoriesContent posts={posts} />
     </>
   )
 }

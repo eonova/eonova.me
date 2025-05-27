@@ -3,6 +3,7 @@ import type { AboutPage, WithContext } from 'schema-dts'
 import dynamic from 'next/dynamic'
 import Bento from '~/components/pages/about/bento'
 import PageTitle from '~/components/shared/page-title'
+import { BOUNCE_IMAGES } from '~/config/about-profiles'
 import {
   SITE_DESCRIPTION,
   SITE_GITHUB_URL,
@@ -43,14 +44,6 @@ export async function generateMetadata(_props: any, parent: ResolvingMetadata): 
   }
 }
 
-const images = [
-  '/images/about/intro-1.jpg',
-  '/images/about/intro-4.jpg',
-  '/images/about/intro-5.jpg',
-  '/images/about/intro-2.jpg',
-  '/images/about/intro-3.jpg',
-]
-
 async function Page() {
   const jsonLd: WithContext<AboutPage> = {
     '@context': 'https://schema.org',
@@ -76,7 +69,7 @@ async function Page() {
       <PageTitle title={title} description={description} />
       <BounceCards
         className="custom-class"
-        images={images}
+        images={BOUNCE_IMAGES}
         animationDelay={0.3}
         animationStagger={0.12}
         easeType="elastic.out(1, 0.5)"

@@ -4,7 +4,7 @@ import BackgroundFont from '~/components/shared/background-font'
 import LinkCard from '~/components/shared/link-card'
 import PageTitle from '~/components/shared/page-title'
 
-const Links: React.FC = () => {
+function Page() {
   return (
     <>
 
@@ -35,4 +35,4 @@ const Links: React.FC = () => {
   )
 }
 
-export default Links
+export default Page

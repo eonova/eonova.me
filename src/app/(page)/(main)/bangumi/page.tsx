@@ -20,7 +20,7 @@ const MODE_LABELS: Record<AnimeMode, string> = {
   abandon: '抛弃',
 }
 
-export default function BangumiPage() {
+function Page() {
   const { ref, inView } = useInView()
   const [selectedMode, setSelectedMode] = useState<AnimeMode>('watching')
   const limit = 16
@@ -108,3 +108,4 @@ export default function BangumiPage() {
     </div>
   )
 }
+export default Page

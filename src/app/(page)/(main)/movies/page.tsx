@@ -18,7 +18,7 @@ const MODE_LABELS: Record<MovieMode, string> = {
   collect: '看过',
 }
 
-const Movies: React.FC = () => {
+function Page() {
   const { ref, inView } = useInView({ threshold: 0.1 })
   const [selectedMode, setSelectedMode] = useState<MovieMode>('wish')
   const [loadedPages, setLoadedPages] = useState(1)
@@ -110,4 +110,4 @@ const Movies: React.FC = () => {
   )
 }
 
-export default Movies
+export default Page

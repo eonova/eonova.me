@@ -20,7 +20,7 @@ const MODE_LABELS: Record<MovieMode, string> = {
   collect: '看过',
 }
 
-const Books: React.FC = () => {
+const Page: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1 })
   const [selectedMode, setSelectedMode] = useState<MovieMode>('do')
   const [loadedPages, setLoadedPages] = useState(1)
@@ -111,4 +111,4 @@ const Books: React.FC = () => {
   )
 }
 
-export default Books
+export default Page
