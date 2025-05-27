@@ -1,9 +1,9 @@
 'use client'
 import { useState } from 'react'
 import { Button } from '~/components/base/button'
-import { FriendSkeleton } from '~/components/modules/skeleton/friend-skeleton'
+import { Separator } from '~/components/base/separator'
 import AddFriendDialog from '~/components/pages/admin/friends/friend-add-dialog'
-import FriendCard from '~/components/pages/friends/friend-card'
+import LinkCard from '~/components/shared/link-card'
 import PageTitle from '~/components/shared/page-title'
 import { api } from '~/trpc/react'
 
@@ -33,7 +33,7 @@ const Friends: React.FC<FriendsProps> = () => {
           <div className="w-full grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {
               Array.from({ length: 9 }).map((_, index) => (
-                <FriendSkeleton key={index} />
+                <Separator className="bg-gray-400/20 dark:bg-gray-600/20 rounded-2xl p-2 h-32" key={index} />
               ))
             }
           </div>
@@ -45,12 +45,15 @@ const Friends: React.FC<FriendsProps> = () => {
                 <div className="flex flex-col justify-center gap-10">
                   <div className="w-full grid gap-6 sm:grid-cols-2 md:grid-cols-3">
                     {data.items.map(friend => (
-                      <FriendCard
+                      <LinkCard
+                        className="p-6"
                         key={friend.id}
-                        name={friend.name}
-                        url={friend.url}
-                        avatar={friend.avatar || 'https://example.com/avatar.jpg'}
-                        description={friend.description || '暂无描述'}
+                        props={{
+                          images: friend.avatar || 'https://example.com/avatar.jpg',
+                          url: friend.url,
+                          title: friend.name,
+                          desc: friend.description || '这位朋友没有留下任何描述',
+                        }}
                       />
                     ))}
                   </div>
