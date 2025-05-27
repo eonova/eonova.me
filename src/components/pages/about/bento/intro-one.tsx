@@ -1,5 +1,5 @@
-import { DATE_BIRTH, PROFESSION } from '~/config/about-profiles'
 import BackgroundFont from '../../../shared/background-font'
+import DoubleCard from './double-card'
 import IntroCard from './intro-card'
 
 const IntroOne: React.FC = () => {
@@ -17,22 +17,7 @@ const IntroOne: React.FC = () => {
         </div>
         <BackgroundFont className=" absolute text-white/20 left-20 bottom-0 text-8xl sm:text-[130px]">EONOVA</BackgroundFont>
       </IntroCard>
-      <div className="flex flex-col gap-5 justify-between col-span-1 md:col-span-2 lg:col-span-3">
-        <IntroCard
-          className="h-[90px] w-full rounded-3xl bg-[#FDE047] backdrop-blur-xs flex items-center justify-between font-world text-white"
-          isColor
-        >
-          <h2 className="text-2xl">生于</h2>
-          <p className="text-[32px]">{DATE_BIRTH}</p>
-        </IntroCard>
-        <IntroCard
-          className="h-[90px] w-full rounded-3xl bg-[#FDBA74] backdrop-blur-xs flex items-center justify-between font-world text-white"
-          isColor
-        >
-          <h2 className="text-2xl">专业</h2>
-          <p className="text-[32px]">{PROFESSION}</p>
-        </IntroCard>
-      </div>
+      <DoubleCard className="flex flex-col gap-5 justify-between col-span-1 md:col-span-2 lg:col-span-3" />
     </>
   )
 }

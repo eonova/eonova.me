@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import Comments from '~/components/modules/comments'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
+import TableOfContents from '~/components/pages/notes/table-of-contents'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { flags } from '~/lib/env'
 import Footer from './footer'
@@ -120,16 +121,20 @@ async function Page(props: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
       <Providers note={note}>
-        <div className="my-16 mb-8 p-10 w-full overflow-visible flex flex-col justify-between gap-2 relative bg-white dark:bg-zinc-900/50 md:col-start-1 rounded-[0_6px_6px_0] border-zinc-200/70 dark:border-neutral-800 lg:border">
-          <Header />
-          <article className="">
+        <div className="my-16 mb-8 p-10 w-full overflow-visible flex flex-col justify-between relative lg:flex-row gap-2 bg-white dark:bg-zinc-900/50 md:col-start-1 rounded-[0_6px_6px_0] border-zinc-200/70 dark:border-neutral-800 lg:border">
+          <article className="w-full sm:px-4">
+            <Header />
             <NoteMdx code={code} />
-            <Footer />
           </article>
-          {toc.length > 0 && <MobileTableOfContents toc={toc} />}
+          <aside className="w-[0] lg:ml-[-15vw] xl:ml-[-20vw] hidden lg:block">
+            <div className="sticky ml-15 top-60 lg:min-w-[200px] lg:max-w-[200px]">
+              {toc.length > 0 && <TableOfContents toc={toc} />}
+            </div>
+          </aside>
         </div>
+        {toc.length > 0 && <MobileTableOfContents toc={toc} />}
+        <Footer />
       </Providers>
 
       {

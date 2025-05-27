@@ -120,12 +120,10 @@ async function Page(props: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
       <Providers post={post}>
         <Header />
-
         <div className="mt-8 w-full overflow-visible flex flex-col justify-between lg:flex-row gap-2">
-          <article className="w-full  sm:px-4">
+          <article className="w-full sm:px-4">
             <Mdx code={code} />
           </article>
           <aside className="w-[0] lg:ml-[-15vw] xl:ml-[-20vw] hidden lg:block">
@@ -138,7 +136,6 @@ async function Page(props: PageProps) {
         {toc.length > 0 && <MobileTableOfContents toc={toc} />}
         <Footer />
       </Providers>
-
       {
         flags.comment && (
           <Suspense>
