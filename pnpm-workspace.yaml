@@ -1,3 +1,6 @@
+packages:
+  - './*'
+
 catalogs:
   analysis:
     '@next/bundle-analyzer': ^15.4.0-canary.51
