@@ -6,7 +6,7 @@ const config: KnipConfig = {
     'sharp',
     'tailwindcss',
     'react-email',
-    'content-collections',
+    'picocolors',
   ],
   entry: [
     'content.config.ts',
