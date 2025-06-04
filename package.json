@@ -2,29 +2,28 @@
   "name": "eonova.me",
   "type": "module",
   "private": true,
-  "packageManager": "bun@1.2.14",
+  "packageManager": "pnpm@10.11.0",
   "description": "The personal portfolio of eonova",
   "author": "Nova Eon <hi@eonova.me> (https://github.com/eonova)",
   "license": "MIT",
   "engines": {
-    "node": ">=22",
-    "bun": ">=1"
+    "node": ">=22"
   },
   "scripts": {
-    "dev": "bun with-env next dev --turbo -p 3000",
-    "build": "bun with-env next build",
+    "dev": "pnpm with-env next dev --turbo -p 3000",
+    "build": "pnpm with-env next build",
     "build:mdx": "content-collections build",
-    "bundle-analyzer": "cross-env ANALYZE=true bun run build",
+    "bundle-analyzer": "cross-env ANALYZE=true pnpm run build",
     "clean": "rm -rf .next .content-collections .vercel",
-    "check:knip": "bun with-env knip",
+    "check:knip": "pnpm with-env knip",
     "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique",
     "start": "next start",
-    "db:check": "bun with-env drizzle-kit check",
-    "db:generate": "bun with-env drizzle-kit generate",
-    "db:migrate": "bun with-env drizzle-kit migrate",
-    "db:push": "bun with-env drizzle-kit push",
-    "db:seed": "bun with-env tsx ./src/db/seed.ts",
-    "db:studio": "bun with-env drizzle-kit studio",
+    "db:check": "pnpm with-env drizzle-kit check",
+    "db:generate": "pnpm with-env drizzle-kit generate",
+    "db:migrate": "pnpm with-env drizzle-kit migrate",
+    "db:push": "pnpm with-env drizzle-kit push",
+    "db:seed": "pnpm with-env tsx ./src/db/seed.ts",
+    "db:studio": "pnpm with-env drizzle-kit studio",
     "with-env": "dotenv -e .env.local -- bun",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --max-warnings 0 --fix",
@@ -167,8 +166,8 @@
     "prettier": "3.5.3"
   },
   "simple-git-hooks": {
-    "pre-commit": "bunx lint-staged",
-    "commit-msg": "bunx tsx ./scripts/verify-commit.ts"
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "pnpx tsx ./scripts/verify-commit.ts"
   },
   "lint-staged": {
     "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix"

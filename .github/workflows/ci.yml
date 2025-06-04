@@ -14,31 +14,28 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        bun_version: [1.2.2]
-        os: [ubuntu-latest]
+        node_version: [22.x]
+        os: [ubuntu-latest, windows-latest]
       fail-fast: false
 
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Set node version to ${{ matrix.node_version }}
+        uses: actions/setup-node@v4
         with:
-          bun-version: ${{ matrix.bun_version }}
-
-      - name: Cache Bun modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.bun/install/cache
-            node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          node-version: ${{ matrix.node_version }}
+          cache: pnpm
 
       - name: Install
-        run: bun install --frozen-lockfile
+        run: pnpm i
+
+      - name: Build
+        run: pnpm build
 
       - name: Lint
-        run: bun lint
+        run: pnpm lint
 
       - name: Knip
-        run: bun check:knip
+        run: pnpm check:knip

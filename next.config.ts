@@ -108,7 +108,7 @@ const MyNextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'img.leostar.top',
+        hostname: 'img.eonova.me',
         port: '',
         pathname: '/**',
         search: '',
