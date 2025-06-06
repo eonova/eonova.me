@@ -1,10 +1,14 @@
 <h1 align="center"> Eonova 💠</h1>
 
-![预览](/images/preview.webp)
+![预览](./public//images/preview.png)
 
-> "纪元（Eon）" + "Nova"（超新星），狮子座的宇宙级爆发
+<div align="center">
+  <a href="https://eonova.me">预览</a>
+</div>
 
 ## 🎉 项目介绍
+
+> "纪元（Eon）" + "Nova"（超新星），狮子座的宇宙级爆发
 
 基于现代化技术栈构建的高性能个人博客，集成技术文章展示、开源项目管理等能力
 
@@ -101,4 +105,6 @@ pnpm bundle-analyzer
 
 ## ☕️ 请我喝咖啡
 
-![赞赏码](/images/admire.webp)
+<div align="center">
+  <img src="./public//images/admire.jpg" alt="赞赏码" width="60%"/>
+</div>
