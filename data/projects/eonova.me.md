@@ -4,7 +4,7 @@ description: '基于现代化技术栈构建的高性能个人博客'
 homepage: 'https://eonova.me/'
 github: 'https://github.com/eonova/eonova.me'
 date: '2025-02-01T03:13:39.164Z'
-techstack: ['Next.js','Drizzle-ORM','Trpc','Shiki','TailwindCSS','Better-Auth','TypeScript']
+techstack: ['Next.js','TailwindCSS','Drizzle-ORM','Trpc','Shiki','Content-Collections','Better-Auth','TypeScript']
 selected: true
 ---
 

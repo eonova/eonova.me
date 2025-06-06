@@ -33,7 +33,7 @@ function ProjectCard(props: ProjectCardProps) {
         src={`/images/projects/${slug}.png`}
         width={600}
         height={450}
-        imageClassName="group-hover:scale-105 w-full"
+        imageClassName="group-hover:scale-105 w-full aspect-7/4"
         alt={name}
         className="rounded-lg"
       />

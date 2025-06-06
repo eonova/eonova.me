@@ -117,7 +117,7 @@ function Card(props: CardProps) {
         src={`/images/projects/${slug}.png`}
         alt={description}
         className="rounded-lg"
-        imageClassName="w-full"
+        imageClassName="w-full aspect-7/4"
         blurGlass
       />
       <div className="absolute bottom-6 left-7 flex flex-col transition-[left] ease-out group-hover:left-[30px] z-40">

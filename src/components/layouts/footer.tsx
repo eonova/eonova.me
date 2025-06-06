@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className="mt-20 flex items-center justify-between text-sm">
+      <div className="mt-20 flex items-center justify-between text-sm flex-col md:flex-row">
         <div>
           &copy;
           {' '}

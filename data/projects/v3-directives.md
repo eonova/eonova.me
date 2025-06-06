@@ -4,7 +4,7 @@ description: 'Vue3 自定义指令集'
 homepage: 'https://v3-directives.eonova.me/'
 github: 'https://github.com/eonova/v3-directives'
 date: '2024-03-22T00:00:00Z'
-techstack: ['Vue3', 'Vitepress', 'Tsup', 'Typescript']
+techstack: ['Vue3', 'Vitepress', 'Tsup', 'Typescript', 'Floating-UI']
 selected: true
 ---
 
