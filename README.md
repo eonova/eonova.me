@@ -1,5 +1,7 @@
 <h1 align="center"> Eonova 💠</h1>
 
+![预览](/images/preview.webp)
+
 > "纪元（Eon）" + "Nova"（超新星），狮子座的宇宙级爆发
 
 ## 🎉 项目介绍
@@ -99,4 +101,4 @@ pnpm bundle-analyzer
 
 ## ☕️ 请我喝咖啡
 
-![赞赏码](https://img.eonova.me/upload/821749047180_.pic.jpg)
+![赞赏码](/images/admire.webp)
