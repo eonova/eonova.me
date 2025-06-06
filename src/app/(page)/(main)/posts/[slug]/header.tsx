@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react'
 
 import { BlurImage } from '~/components/base/blur-image'
 import ImageZoom from '~/components/pages/album/image-zoom'
+import { RANDOMIMGAPI } from '~/config/posts'
 import { usePostContext } from '~/contexts/post'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { api } from '~/trpc/react'
@@ -18,7 +19,7 @@ function Header() {
     loading: '...',
   })
 
-  const images = cover !== '' ? cover : '/images/og-background.png'
+  const images = cover !== '' ? cover : RANDOMIMGAPI
 
   const incrementMutation = api.views.increment.useMutation({
     onSettled: () => utils.views.get.invalidate(),

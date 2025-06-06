@@ -5,7 +5,7 @@ homepage: https://marketplace.visualstudio.com/items?itemName=eonova.vscode-eono
 github: https://github.com/eonova/vscode-eonova-snippets
 date: '2025-01-22T00:00:00Z'
 techstack: ['TypeScript', '@vscode/vsce']
-selected: true
+selected: false
 
 ---
 

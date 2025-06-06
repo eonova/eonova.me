@@ -1,6 +1,6 @@
 <h1 align="center"> Eonova 💠</h1>
 
-![预览](./public//images/preview.png)
+![预览](./public//images/projects/eonova.me.png)
 
 <div align="center">
   <a href="https://eonova.me">预览</a>

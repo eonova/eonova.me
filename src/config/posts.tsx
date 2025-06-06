@@ -25,3 +25,5 @@ export const CATEGORIES: ICATEGORIES[] = [
     icon: <Palette className="size-5" />,
   },
 ]
+
+export const RANDOMIMGAPI = 'http://www.dmoe.cc/random.php'
