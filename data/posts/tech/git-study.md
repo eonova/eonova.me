@@ -4,7 +4,7 @@ date: '2023-01-01T00:00:00Z'
 modifiedTime: '2023-01-03T00:00:00Z'
 summary: Git安装及配置
 categories: ['tech']
-cover: 'https://img.leostar.top/study/51290772e02b0274af8e3b4a30356ffd.jpeg'
+cover: 'https://img.eonova.me/upload/51290772e02b0274af8e3b4a30356ffd.jpeg'
 ---
 
 ## Git安装及配置
@@ -13,7 +13,7 @@ Git 各平台安装包下载地址为：[http://git-scm.com/downloads](http://gi
 
 下载之后无脑下一步即可，安装完之后，桌面右键出现Git GUI、Git bash选项，说明已安装:
 
-![image.png](https://img.leostar.top/study/20231202175419.png)
+![image.png](https://img.eonova.me/upload/20231202175419.png)
 
 接着进行git环境配置
 
@@ -57,16 +57,16 @@ git config core.ignorecase  falsebash
 
 3. 执行完后到系统盘users目录(win: 'C:\Users\用户名\ .ssh\'），查看生成的ssh文件：
 
-![image.png](https://img.leostar.top/study/20231202175432.png)
+![image.png](https://img.eonova.me/upload/20231202175432.png)
 
 4. 将公钥（ id_rsa.pub），添加到Github或Gitee平台中，这里以Github为例：
 
    (1)Github登录成功后，点击个人账户>>Setting>>SSH and GPG Keys>>New SSH key；
 
    (2)将公钥（ id_rsa.pub）文件中的内容复制到key中，Title随便起，点击确定就配置完成啦。
-   ![](https://img.leostar.top/study/20231202175525.png)
+   ![](https://img.eonova.me/upload/20231202175525.png)
    (3)回到git bash窗口，输入 `ssh -T git@github.com`，如下所示，说明配置成功！
-   ![Uploading file...clh83](https://img.leostar.top/study/20231202175702.png)
+   ![Uploading file...clh83](https://img.eonova.me/upload/20231202175702.png)
 
 下面有几个问题：
 （1）为什么要配？
@@ -80,7 +80,7 @@ git config core.ignorecase  falsebash
 
 Git是一个开源的分布式版本控制系统，分布式相比集中式的最大区别是Git没有“中央版本库”，每一位开发者都可以通过克隆（git clone）远程代码库，在本地机器上初始化一个完整的代码版本，开发者可以把代码的修改提交到本地代码库，也可以把本地的代码库同步到远程的master代码库。常用的工作流程是：开发者通过git pull/fetch命令把远程的代码库和本地的master代码库（主分支）进行合并，解决冲突之后，把本地代码库推送（git push）到远程的master代码库。
 
-![img](https://img.leostar.top/study/v2-3bc9d5f2c49a713c776e69676d7d56c5_720w.webp)
+![img](https://img.eonova.me/upload/v2-3bc9d5f2c49a713c776e69676d7d56c5_720w.webp)
 
 - Remote：远程仓库
 - Repository：本地仓库

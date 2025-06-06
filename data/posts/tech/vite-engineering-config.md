@@ -4,7 +4,7 @@ date: '2023-11-14T00:00:00Z'
 modifiedTime: '2025-05-23T00:00:00Z'
 summary: '工程化使项目开发更加规范化，利于后期维护修改和团队协作开发'
 categories: ['tech']
-cover: 'https://img.leostar.top/upload/vite-engineering-config.png'
+cover: 'https://img.eonova.me/upload/vite-engineering-config.png'
 ---
 
 ## 前置
@@ -27,7 +27,7 @@ cover: 'https://img.leostar.top/upload/vite-engineering-config.png'
 >EditorConfig 有助于为不同 IDE 编辑器上处理同一项目的多个开发人员维护一致的代码风格。
 
 可以下载一个插件生成本地的编译器配置
-![image.png](https://img.leostar.top/study/20231114210936.png)
+![image.png](https://img.eonova.me/upload/20231114210936.png)
 
 ## ESlint优化代码质量
 >
@@ -121,7 +121,7 @@ module.exports = {
 ```
 
 - 下载插件Prettiter
-![image.png](https://img.leostar.top/study/20231114211718.png)
+![image.png](https://img.eonova.me/upload/20231114211718.png)
 
 ## Stylelint规范CSS风格
 >
@@ -154,7 +154,7 @@ pnpm add stylelint stylelint-config-standard -D
 ```
 
 - 安装stylelint拓展插件，并在.vscode/settings.json增加如下配置，按Ctrl+S后会自动触发对样式格式化
-![image.png](https://img.leostar.top/study/20231114221255.png)
+![image.png](https://img.eonova.me/upload/20231114221255.png)
 
 ```json
 // .vscode/settings.json
@@ -240,7 +240,7 @@ package.json中配置
 - 安装依赖
 - 启动 `hooks`， 生成 `.husky` 文件夹
 - 在 `package.json` 中生成 `prepare`指令
-![image.png](https://img.leostar.top/study/20231114224240.png)
+![image.png](https://img.eonova.me/upload/20231114224240.png)
 - 执行 `prepare`指令
 
 ```bash

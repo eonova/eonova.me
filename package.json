@@ -2,7 +2,7 @@
   "name": "eonova.me",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.7.1",
   "description": "The personal portfolio of eonova",
   "author": "Nova Eon <hi@eonova.me> (https://github.com/eonova)",
   "license": "MIT",

@@ -18,7 +18,7 @@ const IntroThree: React.FC = () => {
         >
           <Video
             className="min-w-[260px] w-full"
-            videoSrc="https://img.leostar.top/study/08512629bf6cd862577020adee823f71.mp4"
+            videoSrc="https://img.eonova.me/upload/life.mp4"
             videoSecondSrc="/videos/life.mp4"
             fallbackImageSrc="/images/about/life.jpg"
           />
@@ -34,7 +34,7 @@ const IntroThree: React.FC = () => {
         <div className={cn('absolute z-[-2] w-full h-full left-0 top-0')}>
           <Video
             className="min-w-[260px] w-full min-h-full"
-            videoSrc="https://img.leostar.top/study/02e691e904ec58bba00d690dbb457fd6.mp4"
+            videoSrc="https://img.eonova.me/upload/guitar.mp4"
             videoSecondSrc="/videos/guitar.mp4"
             fallbackImageSrc="/images/about/guitar.jpg"
           />

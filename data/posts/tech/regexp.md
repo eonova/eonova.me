@@ -4,7 +4,7 @@ date: '2023-12-02T00:00:00Z'
 modifiedTime: '2023-12-02T00:00:00Z'
 summary: RegExp笔记
 categories: ['tech']
-cover: 'https://img.leostar.top/blog/20250220024447904.png'
+cover: 'https://img.eonova.me/upload/20250220024447904.png'
 ---
 
 ## RegExp的创建
@@ -28,7 +28,7 @@ new RegExp(/ab+c/, 'i') // 首个参数为常规字面量的构造函数
 
 ## RegExp实例属性
 
-![image-20230721150410661](https://img.leostar.top/study/image-20230721150410661.png)
+![image-20230721150410661](https://img.eonova.me/upload/image-20230721150410661.png)
 
 RegExp实例属性包括：
 
@@ -68,7 +68,7 @@ regex.unicode = true
 
 ## RegExp实例方法
 
-![image-20230721150308904](https://img.leostar.top/study/image-20230721150308904.png)
+![image-20230721150308904](https://img.eonova.me/upload/image-20230721150308904.png)
 
 原型上的方法`exec()`、`test()`
 

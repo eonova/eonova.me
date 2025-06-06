@@ -40,7 +40,7 @@ tags:
 
 **EventLoop执行流程：**
 
-![image-20230701110718724](https://img.leostar.top/study/image-20230701110718724.png)
+![image-20230701110718724](https://img.eonova.me/upload/image-20230701110718724.png)
 
 **同步和异步任务分别进入不同的执行环境，同步的进入主线程，即主执行栈，异步的进入任务队列。主线程内的任务执行完毕为空，会去任务队列读取对应的任务，推入主线程执行。 上述过程的不断重复就是我们说的 Event Loop (事件循环)。**
 
@@ -78,13 +78,13 @@ console.log('3')
 
 其实上面的代码执行动图大致如下：
 
-![在这里插入图片描述](https://img.leostar.top/study/cc12e7db5eda437facc1a881f1349b3d.gif)
+![在这里插入图片描述](https://img.eonova.me/upload/cc12e7db5eda437facc1a881f1349b3d.gif)
 
 ## 宏任务和微任务
 
 >任务可以分为同步任务和异步任务，而异步任务又可以分为宏任务和微任务
 
-![](https://img.leostar.top/study/image-20230701121459452.png)
+![](https://img.eonova.me/upload/image-20230701121459452.png)
 
 **浏览器中常用的宏任务和微任务：**
 
@@ -125,7 +125,7 @@ console.log('5')
 
 其实上面得代码执行动图大致如下：
 
-![在这里插入图片描述](https://img.leostar.top/study/743f2f498ecb43b2bc7db0d3da8751e5.gif)
+![在这里插入图片描述](https://img.eonova.me/upload/743f2f498ecb43b2bc7db0d3da8751e5.gif)
 
 **执行机制过程如下：**
 
@@ -147,7 +147,7 @@ console.log('5')
 
 **Event Loop的执行顺序图：**
 
-<img src="https://img.leostar.top/study/v2-a38ad24f9109e1a4cb7b49cc1b90cafe_720w.webp" alt="img"  />
+<img src="https://img.eonova.me/upload/v2-a38ad24f9109e1a4cb7b49cc1b90cafe_720w.webp" alt="img"  />
 
 ## 练习
 
@@ -175,7 +175,7 @@ console.log('script end')
 
 **流程图：**
 
-<img src="https://img.leostar.top/study/v2-a3ac02a230c49c9aa8c45af46eae2e1c_720w.webp" alt="img"  />
+<img src="https://img.eonova.me/upload/v2-a3ac02a230c49c9aa8c45af46eae2e1c_720w.webp" alt="img"  />
 
 >参考文章：
 >

@@ -29,13 +29,13 @@ tags:
 
 ## 什么是原型链
 
-![image-20230428223917997](https://img.leostar.top/study/image-20230428223917997.png)
+![image-20230428223917997](https://img.eonova.me/upload/image-20230428223917997.png)
 
 ​	每个对象拥有一个原型对象，通过`proto`指针指向其原型对象，并从中继承方法和属性，同时原型对象也可能拥有原型，这样一层一层往上，最终指向null(`Object.prototype.__proto__`)。这种关系被称为原型链，通过原型链一个对象可以拥有其他对象中的属性和方法。
 
 原型链的尽头:
 
-![image-20230428223706173](https://img.leostar.top/study/image-20230428223706173.png)
+![image-20230428223706173](https://img.eonova.me/upload/image-20230428223706173.png)
 
 从上图可以看出原型链的尽头是Object,而`Object.prototype.__proto__`的值是null
 
