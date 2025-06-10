@@ -10,6 +10,7 @@ import { moviesRouter } from './routers/movies'
 import { ratesRouter } from './routers/rates'
 import { spotifyRouter } from './routers/spotify'
 import { talksRouter } from './routers/talks'
+import { upyunRouter } from './routers/upyun'
 import { usersRouter } from './routers/users'
 import { viewsRouter } from './routers/views'
 import { wakatimeRouter } from './routers/wakatime'
@@ -33,6 +34,7 @@ export const appRouter = createTRPCRouter({
   books: booksRouter,
   bangumi: bangumiRouter,
   friend: friendRouter,
+  upyun: upyunRouter,
 })
 
 export type AppRouter = typeof appRouter

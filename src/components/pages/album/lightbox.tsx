@@ -1,5 +1,6 @@
 // @ts-nocheck
 'use client'
+import { useMemo } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import 'yet-another-react-lightbox/styles.css'

@@ -14,6 +14,7 @@ import { Label } from '~/components/base/label'
 import { toast } from '~/components/base/toaster'
 import { useAlbumDialogsStore } from '~/stores/album'
 import { api } from '~/trpc/react'
+import FileUpload from '../../album/file-upload'
 
 const AddAlbumDialog: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string>('')
@@ -43,6 +44,13 @@ const AddAlbumDialog: React.FC = () => {
     })
   }
 
+  function reset() {
+    setImageUrl('')
+    setDescription('')
+    setWidth(300)
+    setHeight(200)
+  }
+
   return (
     <Dialog
       open={albumDialogStore.addDialog}
@@ -58,33 +66,39 @@ const AddAlbumDialog: React.FC = () => {
           <DialogTitle>添加图片</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
+          <FileUpload setImageUrl={setImageUrl} imageUrl={imageUrl} />
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="name" className="text-left">
               图片地址
             </Label>
-            <Input id="name" value={imageUrl} onChange={e => setImageUrl(e.target.value)} className="col-span-3" />
+            <Input id="name" disabled value={imageUrl} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="text-left">
               图片描述
             </Label>
             <Input id="username" value={description} onChange={e => setDescription(e.target.value)} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="text-left">
               宽度
             </Label>
             <Input id="width" value={width} onChange={e => setWidth(Number(e.target.value))} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="text-left">
               高度
             </Label>
             <Input id="height" value={height} onChange={e => setHeight(Number(e.target.value))} className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={addImage}>保存</Button>
+          <Button variant="outline" onClick={reset}>
+            重置
+          </Button>
+          <Button type="submit" onClick={addImage} disabled={!imageUrl}>
+            保存
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

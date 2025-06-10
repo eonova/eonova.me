@@ -2,7 +2,7 @@ import type { RouterOutputs } from '../react'
 import { TRPCError } from '@trpc/server'
 
 import { z } from 'zod'
-import { album, eq } from '~/db'
+import { album, desc, eq } from '~/db'
 import { ratelimit } from '~/lib/kv'
 import { getIp } from '~/utils'
 import { adminProcedure, createTRPCRouter, publicProcedure } from '../trpc'
@@ -28,6 +28,7 @@ export const albumRouter = createTRPCRouter({
           description: true,
           createdAt: true,
         },
+        orderBy: desc(album.createdAt),
       })
 
       return {
