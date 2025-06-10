@@ -149,7 +149,6 @@
     "eslint-plugin-react-hooks": "catalog:lint",
     "eslint-plugin-react-refresh": "catalog:lint",
     "lint-staged": "catalog:lint",
-    "next-rspack": "catalog:build",
     "picocolors": "catalog:script",
     "plop": "catalog:script",
     "postcss": "catalog:ui",
