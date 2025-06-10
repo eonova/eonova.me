@@ -11,9 +11,9 @@ catalogs:
   frontend:
     '@docsearch/react': ^3.9.0
     '@ducanh2912/next-pwa': ^10.2.9
-    '@hookform/resolvers': ^5.0.1
+    '@hookform/resolvers': ^5.1.1
     '@next/bundle-analyzer': ^15.4.0-canary.51
-    '@t3-oss/env-nextjs': ^0.13.6
+    '@t3-oss/env-nextjs': ^0.13.8
     class-variance-authority: ^0.7.1
     clsx: ^2.1.1
     cmdk: ^1.1.1
@@ -35,7 +35,7 @@ catalogs:
     react-textarea-autosize: ^8.5.9
     rss: ^1.2.2
     tinycolor2: ^1.6.0
-    use-debounce: ^10.0.4
+    use-debounce: ^10.0.5
     zustand: ^5.0.5
 
   backend:
@@ -54,7 +54,8 @@ catalogs:
 
   build:
     babel-plugin-react-compiler: 19.0.0-beta-714736e-20250131
-    next: ^15.2.4
+    next: 15.3.3
+    next-rspack: ^15.3.3
     sharp: ^0.34.2
     typescript: 5.7.3
 
@@ -77,14 +78,14 @@ catalogs:
     '@paralleldrive/cuid2': ^2.2.2
     dayjs: ^1.11.13
     superjson: ^2.2.2
-    zod: ^3.25.30
+    zod: ^3.25.57
 
   # 类型定义 (Type definitions)
   types:
     '@types/canvas-confetti': ^1.9.0
     '@types/hast': ^3.0.4
     '@types/mdast': ^4.0.4
-    '@types/node': ^22.15.30
+    '@types/node': ^24.0.0
     '@types/pg': ^8.15.4
     '@types/react': 19.0.2
     '@types/react-dom': 19.0.3
@@ -103,7 +104,7 @@ catalogs:
 
   lint:
     '@eonova/eslint-config': ^0.3.1
-    '@eslint-react/eslint-plugin': ^1.51.0
+    '@eslint-react/eslint-plugin': ^1.51.3
     eslint: ^9.28.0
     eslint-plugin-react-hooks: ^5.2.0
     eslint-plugin-react-refresh: ^0.4.20
@@ -113,10 +114,10 @@ catalogs:
     simple-git-hooks: ^2.13.0
 
   ui:
-    '@ark-ui/react': ^5.12.0
+    '@ark-ui/react': ^5.13.0
     '@tanstack/react-table': ^8.21.3
     '@icons-pack/react-simple-icons': 10.2.0
-    '@number-flow/react': ^0.5.9
+    '@number-flow/react': ^0.5.10
     '@radix-ui/react-alert-dialog': ^1.1.14
     '@radix-ui/react-aspect-ratio': ^1.1.7
     '@radix-ui/react-avatar': ^1.1.10
