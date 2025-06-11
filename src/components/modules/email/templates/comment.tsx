@@ -52,7 +52,7 @@ function CommentEmailTemplate(props: CommentEmailTemplateProps) {
       <Preview>
         New comment on the post "
         {post.title}
-        " on honghong.me
+        " on eonova.me
       </Preview>
       <Tailwind>
         <Body className="m-auto bg-white p-1">
@@ -113,7 +113,7 @@ CommentEmailTemplate.PreviewProps = {
     'This is exactly what I needed! The explanations are clear and concise. Thanks for sharing! 👏',
   commenter: {
     name: 'John Doe',
-    image: 'https://honghong.me/api/avatar/john-doe',
+    image: 'https://eonova.me/api/avatar/john-doe',
   },
   date: 'January 1, 2025',
   id: 'comment=1',

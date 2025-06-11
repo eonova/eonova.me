@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: eonova-postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=eonova
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - eonova-network
+  redis:
+    image: redis
+    container_name: eonova-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis:/data
+    networks:
+      - eonova-network
+
+  serverless-redis-http:
+    image: hiett/serverless-redis-http:latest
+    container_name: eonova-redis-http
+    ports:
+      - '8079:80'
+    environment:
+      SRH_MODE: env
+      SRH_TOKEN: eonova
+      SRH_CONNECTION_STRING: 'redis://redis:6379'
+    networks:
+      - eonova-network
+
+volumes:
+  db:
+  redis:
+
+networks:
+  eonova-network:
+    driver: bridge

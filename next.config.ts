@@ -2,7 +2,6 @@ import type { NextConfig } from 'next'
 import { createContentCollectionPlugin as createMDX } from '@content-collections/next'
 import createPWA from '@ducanh2912/next-pwa'
 import bundleAnalyzer from '@next/bundle-analyzer'
-import withRspack from 'next-rspack'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
 import './src/lib/env'
 
@@ -159,4 +158,4 @@ const MyNextConfig: NextConfig = {
   },
 }
 
-export default withRspack(withMDX(withBundleAnalyzer(withPWA(MyNextConfig))))
+export default withMDX(withBundleAnalyzer(withPWA(MyNextConfig)))

@@ -53,7 +53,7 @@ function ReplyEmailTemplate(props: ReplyEmailTemplateProps) {
       <Preview>
         New reply on the post "
         {post.title}
-        " on honghong.me
+        " on eonova.me
       </Preview>
       <Tailwind>
         <Body className="m-auto bg-white p-1">
@@ -119,7 +119,7 @@ ReplyEmailTemplate.PreviewProps = {
     'Thank you for your kind words! I\'m glad you found the article helpful. Let me know if you have any questions!',
   replier: {
     name: 'John Smith',
-    image: 'https://honghong.me/api/avatar/john-doe',
+    image: 'https://eonova.me/api/avatar/john-doe',
   },
   comment:
     'This is exactly what I needed! The explanations are clear and concise. Thanks for sharing! 👏',

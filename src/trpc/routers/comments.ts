@@ -379,7 +379,7 @@ export const commentsRouter = createTRPCRouter({
 
       const post = {
         title,
-        url: `https://honghong.me/blog/${input.slug}`,
+        url: `https://eonova.me/post/${input.slug}`,
       }
 
       await ctx.db.transaction(async (tx) => {
@@ -397,7 +397,7 @@ export const commentsRouter = createTRPCRouter({
             return
 
           await resend.emails.send({
-            from: 'Nelson Lai <me@honghong.me>',
+            from: 'Nova Eon <hi@eonova.me>',
             to: env.AUTHOR_EMAIL,
             subject: 'New comment on your blog post',
             react: CommentEmailTemplate({
@@ -424,7 +424,7 @@ export const commentsRouter = createTRPCRouter({
 
           if (parentComment && parentComment.user.email !== user.email) {
             await resend.emails.send({
-              from: 'Nelson Lai <me@honghong.me>',
+              from: 'Nova Eon <hi@eonova.me>',
               to: parentComment.user.email,
               subject: 'New reply to your comment',
               react: ReplyEmailTemplate({
