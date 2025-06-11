@@ -8,6 +8,7 @@ import { Button } from '~/components/base/button'
 import { Calendar } from '~/components/base/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/base/popover'
 import { Separator } from '~/components/base/separator'
+import { formatDate } from '~/lib/data-table'
 
 interface DateTableDateFilterProps<TData> {
   column: Column<TData>

@@ -1,5 +1,5 @@
 import type { Column } from '@tanstack/react-table'
-import type { ExtendedColumnSort } from '../data-table'
+import type { ExtendedColumnSort } from '~/components/modules/data-table'
 
 import { createParser } from 'nuqs/server'
 import { z } from 'zod'
