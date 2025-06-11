@@ -129,6 +129,7 @@
     "zustand": "catalog:frontend"
   },
   "devDependencies": {
+    "@axe-core/playwright": "catalog:test",
     "@content-collections/cli": "catalog:mdx",
     "@content-collections/core": "catalog:mdx",
     "@content-collections/mdx": "catalog:mdx",
