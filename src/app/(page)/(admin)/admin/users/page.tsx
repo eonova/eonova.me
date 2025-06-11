@@ -1,16 +1,21 @@
 'use client'
 
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { DataTableSkeleton } from '~/components/base/data-table'
 import AdminPageHeader from '~/components/pages/admin/admin-page-header'
 import UsersTable from '~/components/pages/admin/users/users-table'
-import { api } from '~/trpc/react'
 
 function Page() {
-  const { status, data } = api.users.getUsers.useQuery()
-
-  const isSuccess = status === 'success'
-  const isLoading = status === 'pending'
-  const isError = status === 'error'
+  const [params] = useAdminUsersParams()
+  const trpc = useTRPC()
+  const { data, isLoading, isError } = useQuery(
+    trpc.users.getUsers.queryOptions(
+      { ...params },
+      {
+        placeholderData: keepPreviousData,
+      },
+    ),
+  )
 
   return (
     <div className="space-y-6">

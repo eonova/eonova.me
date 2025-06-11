@@ -3,24 +3,22 @@
 # Dependencies
 node_modules/
 
-# testing
-playwright-report/
-test-results/
-/coverage
-
-# misc
+# Misc
 .DS_Store
 *.pem
 
-# debug
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
+# Local env files
+.env*.local
 .env
-.env.local
 
-# vercel
+# Vercel
 .vercel
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
 # typescript
 *.tsbuildinfo
@@ -34,6 +32,17 @@ dist/
 .eslint-config-inspector/
 
 # MDX
-.content-collections/
 data/drafts/
 
+# Content Collections
+.content-collections
+
+# Testing
+playwright-report/
+test-results/
+coverage/
+**/src/e2e/.auth/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

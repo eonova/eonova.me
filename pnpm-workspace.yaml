@@ -47,12 +47,14 @@ catalogs:
     '@upstash/ratelimit': ^2.0.5
     '@upstash/redis': ^1.35.0
     better-auth: ^1.2.8
+    better-call: ^1.0.9
     drizzle-orm: ^0.44.2
     js-sha512: ^0.9.0
     pg: ^8.16.0
     resend: ^4.5.2
 
   build:
+    '@vitejs/plugin-react': ^4.5.1
     babel-plugin-react-compiler: 19.0.0-beta-714736e-20250131
     next: 15.3.3
     sharp: ^0.34.2
@@ -96,6 +98,7 @@ catalogs:
     cross-env: ^7.0.3
     dotenv-cli: ^8.0.0
     drizzle-kit: ^0.31.1
+    fast-xml-parser: ^5.2.5
     plop: ^4.0.1
     taze: ^19.1.0
     tsx: ^4.19.4
@@ -143,3 +146,12 @@ catalogs:
     tailwind-merge: ^3.3.0
     tailwindcss: ^4.1.8
     yet-another-react-lightbox: ^3.23.2
+
+  test:
+    '@axe-core/playwright': ^4.10.2
+    '@playwright/test': ^1.52.0
+    '@testing-library/jest-dom': ^6.6.3
+    '@testing-library/react': ^16.3.0
+    '@vitest/coverage-v8': 3.2.1
+    '@vitest/ui': ^3.2.1
+    vitest: ^3.2.1

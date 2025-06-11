@@ -5,10 +5,6 @@ import AdminSidebar from '~/components/pages/admin/admin-sidebar'
 import { getSession } from '~/lib/auth'
 
 interface LayoutProps {
-  params: Promise<{
-    locale: string
-  }>
-  searchParams: Promise<Record<string, string | string[] | undefined>>
   children: React.ReactNode
 }
 

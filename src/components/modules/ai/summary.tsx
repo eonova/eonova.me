@@ -1,12 +1,11 @@
 'use client'
 
 import type { FC } from 'react'
-import { useQuery } from '@tanstack/react-query'
 
 import { Bot } from 'lucide-react'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { AutoResizeHeight } from '~/components/shared/auto-resize-height'
-import { SITE_URL } from '~/config/constants'
+import { api } from '~/trpc/react'
 import { cn } from '~/utils'
 import { isNoteModel, isPageModel, isPostModel } from '~/utils/url-builder'
 
@@ -84,23 +83,14 @@ export const AISummary: FC<AiSummaryProps> = (props) => {
 
     return payload
   }, [data])
-  const { data: response, isLoading } = useQuery<{
-    summary: string
-    source: string
-  }>({
-    queryKey: ['ai-summary', data.id, SITE_URL, data.modified],
-    queryFn: async () => {
-      const data = await fetch(
-        `/api/ai/summary?data=${encodeURIComponent(
-          JSON.stringify(payload),
-        )}&lang=${navigator.language}`,
-      ).then(res => res.json())
-      if (!data)
-        throw new Error('请求错误')
-      return data
-    },
-    retryDelay: 5000,
-  })
 
-  return <SummaryContainer isLoading={isLoading} summary={response?.summary} />
+  const { mutate, isPending } = api.ai.generate.useMutation()
+
+  useEffect(() => {
+    if (payload) {
+      mutate(payload)
+    }
+  }, [payload])
+
+  return <SummaryContainer isLoading={isPending} summary={data?.summary} />
 }
