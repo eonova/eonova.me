@@ -6,7 +6,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster } from '~/components/base/toaster'
 import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/shared/page-progress'
-import { TRPCReactProvider } from '~/trpc/react'
+import { TRPCReactProvider } from '~/trpc/client'
 
 const SmoothScroll = dynamic(() => import('../components/layouts/lenis-provider').then(mod => mod.LenisProvider), {
   ssr: false, // 禁用 SSR
@@ -20,8 +20,8 @@ function Providers(props: ProvidesProps) {
   const { children } = props
 
   return (
-    <NuqsAdapter>
-      <TRPCReactProvider>
+    <TRPCReactProvider>
+      <NuqsAdapter>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -43,8 +43,8 @@ function Providers(props: ProvidesProps) {
             <PageProgress />
           </TooltipProvider>
         </ThemeProvider>
-      </TRPCReactProvider>
-    </NuqsAdapter>
+      </NuqsAdapter>
+    </TRPCReactProvider>
   )
 }
 

@@ -1,12 +1,13 @@
 'use client'
 
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { useCommentContext } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
 import { useCommentParams } from '~/hooks/use-comment-params'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 import Comment from './comment'
 import CommentLoader from './comment-loader'
@@ -16,8 +17,9 @@ function CommentReplies() {
   const { slug } = useCommentsContext()
   const [params] = useCommentParams()
 
-  const { status, data, fetchNextPage, hasNextPage, isFetchingNextPage }
-    = api.comments.getInfiniteComments.useInfiniteQuery(
+  const trpc = useTRPC()
+  const { status, data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
+    trpc.comments.getInfiniteComments.infiniteQueryOptions(
       {
         slug,
         sort: 'oldest',
@@ -29,7 +31,8 @@ function CommentReplies() {
         getNextPageParam: lastPage => lastPage.nextCursor,
         enabled: isOpenReplies,
       },
-    )
+    ),
+  )
 
   const { ref, inView } = useInView()
 
@@ -39,9 +42,8 @@ function CommentReplies() {
   }, [fetchNextPage, hasNextPage, inView])
 
   useEffect(() => {
-    if (params.comment === comment.id) {
+    if (params.comment === comment.id)
       setIsOpenReplies(true)
-    }
   }, [comment.id, params.comment, setIsOpenReplies])
 
   const isSuccess = status === 'success'

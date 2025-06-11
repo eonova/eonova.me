@@ -1,5 +1,5 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
-import { toast } from '~/components/base'
 import { Button } from '~/components/base/button'
 import {
   Dialog,
@@ -11,8 +11,9 @@ import {
 } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
+import { toast } from '~/components/base/toaster'
 import { useAlbumDialogsStore } from '~/stores/album'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 interface UpdateAlbumDialogProps {
   id: string
@@ -34,17 +35,25 @@ const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
   const [updateHeight, setUpdateHeight] = useState<number>(height ?? 200)
   const [updateWidth, setUpdateWidth] = useState<number>(width ?? 300)
   const albumDialogStore = useAlbumDialogsStore()
-  const utils = api.useUtils()
+  const trpc = useTRPC()
+  const queryClient = useQueryClient()
 
-  const addImageMutate = api.album.updateImage.useMutation({
+  const addImageMutate = useMutation(trpc.album.updateImage.mutationOptions({
     onSuccess: async () => {
       albumDialogStore.setUpdateDialogs(false)
       toast.success('图片更新成功')
-      utils.album.getAllImages.invalidate()
+      queryClient.invalidateQueries({
+        queryKey: trpc.album.getAllImages.queryKey(),
+      })
     },
     onError: error => toast.error(error.message),
-    onSettled: () => utils.album.getAllImages.invalidate(),
-  })
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: trpc.album.getAllImages.queryKey(),
+      })
+    },
+  }),
+  )
 
   function updateImage() {
     addImageMutate.mutate({

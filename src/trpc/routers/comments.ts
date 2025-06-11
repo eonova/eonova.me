@@ -1,12 +1,11 @@
-import type { RouterInputs, RouterOutputs } from '../react'
-
+import type { RouterInputs, RouterOutputs } from '../client'
+import type { SQLWrapper } from '~/db'
 import { createId } from '@paralleldrive/cuid2'
 import { TRPCError } from '@trpc/server'
 import { allPosts } from 'content-collections'
-import { Resend } from 'resend'
 import { z } from 'zod'
-import { Comment, Reply } from '~/components/modules/email'
-import { isProduction } from '~/config/constants'
+import { CommentEmailTemplate, ReplyEmailTemplate } from '~/components/modules/email'
+import { COMMENT_TYPES, isProduction } from '~/config/constants'
 import {
   and,
   asc,
@@ -15,43 +14,135 @@ import {
   desc,
   eq,
   gt,
+  gte,
+  ilike,
   isNotNull,
   isNull,
   lt,
+  lte,
   ne,
+  or,
   rates,
 } from '~/db'
 import { env } from '~/lib/env'
 
 import { ratelimit } from '~/lib/kv'
-import { getDefaultUser, getIp } from '~/utils'
-import { adminProcedure, createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc'
+import { resend } from '~/lib/resend'
+import { getDefaultImage } from '~/utils/get-default-image'
+import { getIp } from '~/utils/get-ip'
 
-const resend = new Resend(env.RESEND_API_KEY)
+import { adminProcedure, createTRPCRouter, protectedProcedure, publicProcedure } from '../init'
 
 const getKey = (id: string) => `comments:${id}`
 
+function getParentIdFilter(parentId: Array<(typeof COMMENT_TYPES)[number]>) {
+  const conditions: SQLWrapper[] = []
+  if (parentId.includes('comment'))
+    conditions.push(isNull(comments.parentId))
+  if (parentId.includes('reply'))
+    conditions.push(isNotNull(comments.parentId))
+  return conditions.length > 0 ? or(...conditions) : void 0
+}
+
+function getDateFilter(from?: Date, to?: Date) {
+  const conditions: SQLWrapper[] = []
+  if (from)
+    conditions.push(gte(comments.createdAt, from))
+  if (to)
+    conditions.push(lte(comments.createdAt, to))
+  return conditions.length > 0 ? and(...conditions) : void 0
+}
+
 export const commentsRouter = createTRPCRouter({
-  getComments: adminProcedure.query(async ({ ctx }) => {
-    const query = await ctx.db.query.comments.findMany({
-      columns: {
-        id: true,
-        userId: true,
-        parentId: true,
-        body: true,
-        createdAt: true,
-      },
-    })
+  getComments: adminProcedure
+    .input(
+      z.object({
+        page: z.number().min(1).default(1),
+        perPage: z.number().min(1).default(10),
+        body: z.string(),
+        parentId: z.array(z.enum(COMMENT_TYPES)).default([]),
+        createdAt: z.array(z.coerce.date().optional()).default([]),
+        sort: z
+          .array(
+            z.object({
+              id: z.string() as z.ZodType<keyof typeof comments.$inferSelect>,
+              desc: z.boolean(),
+            }),
+          )
+          .default([{ id: 'createdAt', desc: true }]),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const offset = (input.page - 1) * input.perPage
 
-    const result = query.map(comment => ({
-      ...comment,
-      type: comment.parentId ? 'reply' : 'comment',
-    }))
+      const createdFrom = input.createdAt[0]
+      const createdTo = input.createdAt[1]
 
-    return {
-      comments: result,
-    }
-  }),
+      if (createdFrom)
+        createdFrom.setHours(0, 0, 0, 0)
+      if (createdTo)
+        createdTo.setHours(23, 59, 59, 999)
+
+      const orderBy
+        = input.sort.length > 0
+          ? input.sort.map(item => (item.desc ? desc(comments[item.id]) : asc(comments[item.id])))
+          : [asc(comments.createdAt)]
+
+      const query = await ctx.db.transaction(async (tx) => {
+        const data = await tx
+          .select()
+          .from(comments)
+          .limit(input.perPage)
+          .where(
+            and(
+              input.body ? ilike(comments.body, `%${input.body}%`) : undefined,
+              input.parentId.length > 0 ? getParentIdFilter(input.parentId) : undefined,
+              input.createdAt.length > 0 ? getDateFilter(createdFrom, createdTo) : undefined,
+            ),
+          )
+          .offset(offset)
+          .orderBy(...orderBy)
+
+        const total = await tx
+          .select({
+            count: count(),
+          })
+          .from(comments)
+          .execute()
+          .then(res => res[0]?.count ?? 0)
+
+        const typeCounts = await tx
+          .select({
+            parentId: comments.parentId,
+            count: count(),
+          })
+          .from(comments)
+          .groupBy(comments.parentId)
+          .then((res) => {
+            const result = {
+              comment: 0,
+              reply: 0,
+            }
+            for (const { parentId, count: typeCount } of res) {
+              if (parentId) {
+                result.reply += typeCount
+              }
+              else {
+                result.comment = typeCount
+              }
+            }
+            return result
+          })
+
+        return { data, total, typeCounts }
+      })
+
+      return {
+        comments: query.data,
+        pageCount: Math.ceil(query.total / input.perPage),
+        typeCounts: query.typeCounts,
+      }
+    }),
   getInfiniteComments: publicProcedure
     .input(
       z.object({
@@ -168,7 +259,7 @@ export const commentsRouter = createTRPCRouter({
             .from(rates)
             .where(and(eq(rates.commentId, comment.id), eq(rates.like, false)))
 
-          const { defaultImage, defaultName } = getDefaultUser(comment.user.id)
+          const defaultImage = getDefaultImage(comment.user.id)
 
           return {
             ...comment,
@@ -180,7 +271,7 @@ export const commentsRouter = createTRPCRouter({
             user: {
               ...comment.user,
               image: comment.user.image ?? defaultImage,
-              name: comment.user.name ?? defaultName,
+              name: comment.user.name,
             },
           }
         }),
@@ -191,7 +282,6 @@ export const commentsRouter = createTRPCRouter({
         nextCursor: result.at(-1)?.createdAt ?? null,
       }
     }),
-
   getTotalCommentsCount: publicProcedure
     .input(z.object({ slug: z.string().min(1) }))
     .query(async ({ ctx, input }) => {
@@ -213,7 +303,6 @@ export const commentsRouter = createTRPCRouter({
         comments: value[0]?.value ?? 0,
       }
     }),
-
   getCommentsCount: publicProcedure
     .input(z.object({ slug: z.string().min(1) }))
     .query(async ({ ctx, input }) => {
@@ -235,7 +324,6 @@ export const commentsRouter = createTRPCRouter({
         comments: value[0]?.value ?? 0,
       }
     }),
-
   getRepliesCount: publicProcedure
     .input(z.object({ slug: z.string().min(1) }))
     .query(async ({ ctx, input }) => {
@@ -282,16 +370,16 @@ export const commentsRouter = createTRPCRouter({
         throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' })
 
       const title = page.title
-      const { defaultImage, defaultName } = getDefaultUser(user.id)
+      const defaultImage = getDefaultImage(user.id)
 
       const userProfile = {
-        name: user.name ?? defaultName,
+        name: user.name,
         image: user.image ?? defaultImage,
       }
 
       const post = {
         title,
-        url: `https://eonova.me/posts/${input.slug}`,
+        url: `https://honghong.me/blog/${input.slug}`,
       }
 
       await ctx.db.transaction(async (tx) => {
@@ -305,14 +393,14 @@ export const commentsRouter = createTRPCRouter({
 
         // Notify the author of the blog post via email
         if (!input.parentId && user.role === 'user') {
-          if (!isProduction)
+          if (!isProduction || !resend)
             return
 
           await resend.emails.send({
-            from: 'eonova <hi@eonova.me>',
+            from: 'Nelson Lai <me@honghong.me>',
             to: env.AUTHOR_EMAIL,
             subject: 'New comment on your blog post',
-            react: Comment({
+            react: CommentEmailTemplate({
               comment: input.content,
               commenter: userProfile,
               id: `comment=${commentId}`,
@@ -324,7 +412,7 @@ export const commentsRouter = createTRPCRouter({
 
         // Notify the parent comment owner via email
         if (input.parentId) {
-          if (!isProduction)
+          if (!isProduction || !resend)
             return
 
           const parentComment = await tx.query.comments.findFirst({
@@ -336,10 +424,10 @@ export const commentsRouter = createTRPCRouter({
 
           if (parentComment && parentComment.user.email !== user.email) {
             await resend.emails.send({
-              from: 'eonova <hi@eonova.me>',
+              from: 'Nelson Lai <me@honghong.me>',
               to: parentComment.user.email,
               subject: 'New reply to your comment',
-              react: Reply({
+              react: ReplyEmailTemplate({
                 reply: input.content,
                 replier: userProfile,
                 comment: parentComment.body,

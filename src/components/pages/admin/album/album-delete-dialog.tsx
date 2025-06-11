@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import { memo } from 'react'
 import { toast } from 'sonner'
@@ -12,7 +13,7 @@ import {
   AlertDialogTitle,
 } from '~/components/base/alert-dialog'
 import { useAlbumDialogsStore } from '~/stores/album'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 const AlertDialogContentMemo = memo(AlertDialogContent)
 interface DeleteAlbumDialogProps {
@@ -25,15 +26,21 @@ const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({
   imageUrl,
 }) => {
   const albumDialogStore = useAlbumDialogsStore()
-  const utils = api.useUtils()
-  const albumMutation = api.album.deleteImage.useMutation({
+  const trpc = useTRPC()
+  const queryClient = useQueryClient()
+  const albumMutation = useMutation(trpc.album.deleteImage.mutationOptions({
     onSuccess: () => {
       albumDialogStore.setDeleteDialogs(false)
       toast.success('删除成功')
     },
     onError: error => toast.error(`删除图片失败：${error}`),
-    onSettled: () => utils.album.getAllImages.invalidate(),
-  })
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: trpc.album.getAllImages.queryKey(),
+      })
+    },
+  }),
+  )
 
   return (
     <AlertDialog

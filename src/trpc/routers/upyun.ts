@@ -4,7 +4,7 @@ import z from 'zod'
 import { env } from '~/lib/env'
 import { ratelimit } from '~/lib/kv'
 import { getIp } from '~/utils'
-import { createTRPCRouter, publicProcedure } from '../trpc'
+import { createTRPCRouter, publicProcedure } from '../init'
 
 // UPYUN 配置（从环境变量获取）
 const UPYUN_OPERATOR = env.UPYUN_OPERATOR // UPYUN 操作员名

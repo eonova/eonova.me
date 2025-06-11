@@ -1,33 +1,56 @@
 'use client'
 
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { SendIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button, toast } from '~/components/base'
 import { useCommentsContext } from '~/contexts/comments'
-
+import { useCommentParams } from '~/hooks/use-comment-params'
 import { useSession } from '~/lib/auth-client'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 import CommentEditor from './comment-editor'
 import UnauthorizedOverlay from './unauthorized-overlay'
 
 function CommentPost() {
-  const { slug } = useCommentsContext()
+  const { slug, sort } = useCommentsContext()
+  const [params] = useCommentParams()
   const [content, setContent] = useState('')
   const [isMounted, setIsMounted] = useState(false)
   const { data: session, isPending } = useSession()
-  const utils = api.useUtils()
+  const trpc = useTRPC()
+  const queryClient = useQueryClient()
 
-  const commentsMutation = api.comments.post.useMutation({
-    onSuccess: () => {
-      setContent('')
-      toast.success('评论已发布')
-    },
-    onError: error => toast.error(error.message),
-    onSettled: () => {
-      utils.comments.invalidate()
-    },
-  })
+  const commentsMutation = useMutation(
+    trpc.comments.post.mutationOptions({
+      onSuccess: () => {
+        setContent('')
+        toast.success('评论已发布')
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: trpc.comments.getInfiniteComments.infiniteQueryKey({
+            slug,
+            sort,
+            type: 'comments',
+            highlightedCommentId: params.comment ?? undefined,
+          }),
+        })
+        queryClient.invalidateQueries({
+          queryKey: trpc.comments.getCommentsCount.queryKey({ slug }),
+        })
+        queryClient.invalidateQueries({
+          queryKey: trpc.comments.getRepliesCount.queryKey({ slug }),
+        })
+        queryClient.invalidateQueries({
+          queryKey: trpc.comments.getTotalCommentsCount.queryKey({ slug }),
+        })
+      },
+    }),
+  )
 
   const submitComment = () => {
     if (!content) {
@@ -50,9 +73,7 @@ function CommentPost() {
   useEffect(() => {
     setIsMounted(true)
 
-    return () => {
-      setIsMounted(false)
-    }
+    return () => setIsMounted(false)
   }, [])
 
   if (isPending || !isMounted)

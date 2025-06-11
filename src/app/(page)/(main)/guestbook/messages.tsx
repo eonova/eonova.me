@@ -3,7 +3,7 @@
 import type { MessageContext } from '~/contexts/message'
 
 import type { GetInfiniteMessagesOutput } from '~/trpc/routers/guestbook'
-import { keepPreviousData } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import { useEffect, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from '~/components/base'
@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage, Skeleton } from '~/components/base
 import { MessageProvider } from '~/contexts/message'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { useSession } from '~/lib/auth-client'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 import DeleteButton from './delete-button'
 import MessagesLoader from './messages-loader'
@@ -38,15 +38,16 @@ function UpdatedDate(props: UpdatedDateProps) {
 }
 
 function Messages() {
-  const { status, data, fetchNextPage, hasNextPage, isFetchingNextPage }
-    = api.guestbook.getInfiniteMessages.useInfiniteQuery(
+  const trpc = useTRPC()
+  const { status, data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
+    trpc.guestbook.getInfiniteMessages.infiniteQueryOptions(
       {},
       {
         getNextPageParam: lastPage => lastPage.nextCursor,
         placeholderData: keepPreviousData,
       },
-    )
-
+    ),
+  )
   const { ref, inView } = useInView()
 
   useEffect(() => {

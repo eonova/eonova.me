@@ -1,9 +1,9 @@
 import type { GetInfiniteCommentsInput } from '~/trpc/routers/comments'
-
 import NumberFlow, { continuous, NumberFlowGroup } from '@number-flow/react'
+import { useQuery } from '@tanstack/react-query'
 import { ListFilterIcon } from 'lucide-react'
-import { Button } from '~/components/base/button'
 
+import { Button } from '~/components/base/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,14 +12,14 @@ import {
   DropdownMenuTrigger,
 } from '~/components/base/dropdown-menu'
 import { useCommentsContext } from '~/contexts/comments'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 function CommentHeader() {
   const { slug, sort, setSort } = useCommentsContext()
+  const trpc = useTRPC()
 
-  const commentsCountQuery = api.comments.getCommentsCount.useQuery({ slug })
-  const repliesCountQuery = api.comments.getRepliesCount.useQuery({ slug })
-
+  const commentsCountQuery = useQuery(trpc.comments.getCommentsCount.queryOptions({ slug }))
+  const repliesCountQuery = useQuery(trpc.comments.getRepliesCount.queryOptions({ slug }))
   return (
     <div className="flex items-center justify-between px-1">
       <NumberFlowGroup>

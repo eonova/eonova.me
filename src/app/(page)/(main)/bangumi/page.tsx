@@ -1,11 +1,12 @@
 'use client'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { CardSkeleton } from '~/components/modules/skeleton/card-skeleton'
 import InfiniteScrollingLoading from '~/components/shared/infinite-scrolling-loading'
 import PageTitle from '~/components/shared/page-title'
 import RecreationCard from '~/components/shared/recreation-card'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 // 定义模式类型
 const MODES = ['watching', 'watched', 'shelving', 'wish', 'abandon'] as const
@@ -21,6 +22,7 @@ const MODE_LABELS: Record<AnimeMode, string> = {
 }
 
 function Page() {
+  const trpc = useTRPC()
   const { ref, inView } = useInView()
   const [selectedMode, setSelectedMode] = useState<AnimeMode>('watching')
   const limit = 16
@@ -34,17 +36,19 @@ function Page() {
     isFetching,
     isLoading,
     isRefetching,
-  } = api.bangumi.getAnimeData.useInfiniteQuery(
-    {
-      types: [selectedMode],
-      config: {
-        contentConfig: { pagination: { limit } },
+  } = useInfiniteQuery(
+    trpc.bangumi.getAnimeData.infiniteQueryOptions(
+      {
+        types: [selectedMode],
+        config: {
+          contentConfig: { pagination: { limit } },
+        },
       },
-    },
-    {
-      getNextPageParam: lastPage => 'data' in lastPage ? lastPage.data?.nextCursor : undefined,
-      initialCursor: 0,
-    },
+      {
+        getNextPageParam: lastPage => 'data' in lastPage ? lastPage.data?.nextCursor : undefined,
+        initialCursor: 0,
+      },
+    ),
   )
 
   // 模式切换时重置数据

@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { env } from '~/lib/env'
 import { MovieActionSchema } from '~/types/douban'
 import { buildErrorResponse, fetchUser, getRateLevel, handleApiError, mapDoubanUser } from '~/utils'
-import { createTRPCRouter, publicProcedure } from '../trpc'
+import { createTRPCRouter, publicProcedure } from '../init'
 
 function validateMovieItem(raw: any): DoubanItem {
   return {

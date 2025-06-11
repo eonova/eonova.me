@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { MoreVerticalIcon } from 'lucide-react'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '~/components/base/alert-dialog'
 import { Button, buttonVariants } from '~/components/base/button'
@@ -7,22 +8,39 @@ import { useCommentContext } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
 import { useCopyToClipboard } from '~/hooks/use-copy-to-clipboard'
 import { useSession } from '~/lib/auth-client'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 function CommentMenu() {
   const { comment } = useCommentContext()
   const { slug } = useCommentsContext()
   const { data: session } = useSession()
-  const utils = api.useUtils()
+  const trpc = useTRPC()
+  const queryClient = useQueryClient()
   const [copy] = useCopyToClipboard()
-
-  const deleteCommentMutation = api.comments.delete.useMutation({
-    onSuccess: () => toast.success('已删除评论'),
-    onError: error => toast.error(error.message),
-    onSettled: () => {
-      utils.comments.invalidate()
-    },
-  })
+  const deleteCommentMutation = useMutation(
+    trpc.comments.delete.mutationOptions({
+      onSuccess: () => {
+        toast.success('评论已删除')
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: trpc.comments.getInfiniteComments.infiniteQueryKey(),
+        })
+        queryClient.invalidateQueries({
+          queryKey: trpc.comments.getCommentsCount.queryKey({ slug }),
+        })
+        queryClient.invalidateQueries({
+          queryKey: trpc.comments.getRepliesCount.queryKey({ slug }),
+        })
+        queryClient.invalidateQueries({
+          queryKey: trpc.comments.getTotalCommentsCount.queryKey({ slug }),
+        })
+      },
+    }),
+  )
 
   const {
     isDeleted,

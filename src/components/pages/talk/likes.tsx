@@ -1,9 +1,10 @@
 'use client'
 import NumberFlow, { continuous } from '@number-flow/react'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Heart } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useSession } from '~/lib/auth-client'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
 
 interface LikeButtonProps {
@@ -16,7 +17,7 @@ const MAX_LIKES_PER_USER = 3
 
 function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
   const { data: session } = useSession()
-  const utils = api.useUtils()
+  const trpc = useTRPC()
   const [optimisticLikes, setOptimisticLikes] = useState(initialLikes)
   const [userLikes, setUserLikes] = useState(0)
 
@@ -25,11 +26,11 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
     const storedLikes = localStorage.getItem(`talk-${talkId}-likes`)
     setUserLikes(storedLikes ? Math.min(Number(storedLikes), MAX_LIKES_PER_USER) : 0)
   }, [talkId])
-
+  const queryClient = useQueryClient()
   // 获取实时点赞数
-  const { data: realtimeData } = api.talks.getAllTalks.useQuery(undefined, {
-    select: data => data.items.find(t => t.id === talkId)?.likes,
-  })
+  const { data: realtimeData } = useQuery(
+    trpc.talks.getAllTalks.queryOptions(),
+  )
 
   // 同步后端数据到乐观状态
   useEffect(() => {
@@ -39,30 +40,36 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
   }, [realtimeData])
 
   // 点赞 mutation
-  const { mutate: incrementLike } = api.talks.incrementLikes.useMutation({
-    onMutate: async () => {
-      await utils.talks.getAllTalks.cancel()
+  const { mutate: incrementLike } = useMutation(
+    trpc.talks.incrementLikes.mutationOptions(
+      {
+        onMutate: async () => {
+          await trpc.talks.getAllTalks.queryOptions()
 
-      // 乐观更新直接使用最新值
-      setOptimisticLikes(prev => prev + 1)
+          // 乐观更新直接使用最新值
+          setOptimisticLikes(prev => prev + 1)
 
-      return { previousLikes: optimisticLikes }
-    },
-    onError: (_, __, context) => {
-      // 回滚到之前的值
-      setOptimisticLikes(context?.previousLikes ?? optimisticLikes)
-    },
-    onSuccess: () => {
-      // 更新用户点赞计数
-      setUserLikes((prev) => {
-        const newValue = prev + 1
-        localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
-        return newValue
-      })
-      // 主动刷新数据
-      utils.talks.getAllTalks.invalidate()
-    },
-  })
+          return { previousLikes: optimisticLikes }
+        },
+        onError: (_, __, context) => {
+          // 回滚到之前的值
+          setOptimisticLikes(context?.previousLikes ?? optimisticLikes)
+        },
+        onSuccess: () => {
+          // 更新用户点赞计数
+          setUserLikes((prev) => {
+            const newValue = prev + 1
+            localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
+            return newValue
+          })
+          // 主动刷新数据
+          queryClient.invalidateQueries({
+            queryKey: trpc.talks.getAllTalks.queryKey(),
+          })
+        },
+      },
+    ),
+  )
 
   const handleLike = () => {
     if (!session || userLikes >= MAX_LIKES_PER_USER)

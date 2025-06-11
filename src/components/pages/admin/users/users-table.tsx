@@ -2,87 +2,140 @@
 
 import type { ColumnDef } from '@tanstack/react-table'
 
-import type { DataTableFilterField } from '~/components/base'
 import type { GetUsersOutput } from '~/trpc/routers/users'
-import {
+import { CalendarIcon, CircleDashedIcon, UserIcon, UserLockIcon } from 'lucide-react'
+import { Checkbox } from '~/components/base/checkbox'
 
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
-import { UserCogIcon, UserIcon } from 'lucide-react'
-import { DataTable, DataTableColumnHeader, DataTableToolbar } from '~/components/base/data-table'
+import {
+  DataTable,
+  DataTableColumnHeader,
+  DataTableSortList,
+  DataTableToolbar,
+  formatDate,
+  useDataTable,
+} from '~/components/modules/data-table'
+import { USER_ROLES } from '~/config/constants'
 
 type User = GetUsersOutput['users'][number]
 
 interface UsersTableProps {
   data: User[]
+  pageCount: number
+  roleCounts: Record<string, number>
 }
 
-const roles = [
-  {
-    value: 'user',
-    label: 'User',
-    icon: UserIcon,
-  },
-  {
-    value: 'admin',
-    label: 'Admin',
-    icon: UserCogIcon,
-  },
-]
+function getRoleIcon(role: (typeof USER_ROLES)[number]) {
+  const roleIcons = {
+    user: UserIcon,
+    admin: UserLockIcon,
+  }
+
+  return roleIcons[role]
+}
 
 function UsersTable(props: UsersTableProps) {
-  const { data } = props
+  const { data, pageCount, roleCounts } = props
 
   const columns: Array<ColumnDef<User>> = [
     {
-      accessorKey: 'name',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="名称" />
+      id: 'select',
+      header: ({ table }) => (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected()
+            || (table.getIsSomePageRowsSelected() && 'indeterminate')
+          }
+          onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+        />
       ),
-    },
-    {
-      accessorKey: 'email',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="电子邮件" />
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={value => row.toggleSelected(!!value)}
+          aria-label="Select row"
+        />
       ),
+      enableSorting: false,
+      enableHiding: false,
+      size: 40,
     },
-    {
-      accessorKey: 'role',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="角色" />
-      ),
-    },
-  ]
-
-  const filterFields: Array<DataTableFilterField<User>> = [
     {
       id: 'name',
-      label: '名称',
-      placeholder: '过滤名称...',
+      accessorKey: 'name',
+      header: 'Name',
+      meta: {
+        label: 'Name',
+        placeholder: 'Search name...',
+        variant: 'text',
+        icon: UserIcon,
+      },
+      enableColumnFilter: true,
+    },
+    {
+      id: 'email',
+      accessorKey: 'email',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Email" />
+      ),
+      meta: {
+        label: 'Email',
+      },
     },
     {
       id: 'role',
-      label: '角色',
-      options: roles,
+      accessorKey: 'role',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Role" />
+      ),
+      meta: {
+        label: 'Role',
+        variant: 'multiSelect',
+        options: USER_ROLES.map(role => ({
+          label: role.charAt(0).toUpperCase() + role.slice(1),
+          value: role,
+          count: roleCounts[role],
+          icon: getRoleIcon(role),
+        })),
+        icon: CircleDashedIcon,
+      },
+      enableColumnFilter: true,
+    },
+    {
+      id: 'createdAt',
+      accessorKey: 'createdAt',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Created At" />
+      ),
+      cell: ({ row }) =>
+        formatDate(row.original.createdAt, {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        }),
+      meta: {
+        label: 'Created At',
+        variant: 'dateRange',
+        icon: CalendarIcon,
+      },
+      enableColumnFilter: true,
     },
   ]
 
-  const table = useReactTable({
+  const { table } = useDataTable({
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
+    pageCount,
+    initialState: {
+      sorting: [{ id: 'createdAt', desc: true }],
+    },
   })
 
   return (
     <DataTable table={table}>
-      <DataTableToolbar table={table} filterFields={filterFields} />
+      <DataTableToolbar table={table}>
+        <DataTableSortList table={table} align="end" />
+      </DataTableToolbar>
     </DataTable>
   )
 }

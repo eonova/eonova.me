@@ -1,3 +1,4 @@
+import { useMutation } from '@tanstack/react-query'
 import { memo } from 'react'
 import { toast } from 'sonner'
 import {
@@ -11,7 +12,7 @@ import {
   AlertDialogTitle,
 } from '~/components/base/alert-dialog'
 import { useFriendDialogsStore } from '~/stores/friend'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 const AlertDialogContentMemo = memo(AlertDialogContent)
 interface DeleteFriendDialogProps {
@@ -22,15 +23,17 @@ const DeleteFriendDialog: React.FC<DeleteFriendDialogProps> = ({
   id,
 }) => {
   const friendDialogStore = useFriendDialogsStore()
-  const utils = api.useUtils()
-  const friendMutation = api.friend.deleteFriend.useMutation({
-    onSuccess: () => {
-      friendDialogStore.setDeleteDialogs(false)
-      toast.success('删除成功')
+  const trpc = useTRPC()
+  const friendMutation = useMutation(trpc.friend.deleteFriend.mutationOptions(
+    {
+      onSuccess: () => {
+        friendDialogStore.setDeleteDialogs(false)
+        toast.success('删除成功')
+      },
+      onError: error => toast.error(`删除图片失败：${error}`),
+      onSettled: () => trpc.friend.getAllFriends.queryOptions(),
     },
-    onError: error => toast.error(`删除图片失败：${error}`),
-    onSettled: () => utils.friend.getAllFriends.invalidate(),
-  })
+  ))
 
   return (
     <AlertDialog

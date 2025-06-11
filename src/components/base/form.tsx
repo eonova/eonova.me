@@ -1,15 +1,19 @@
+// @ts-nocheck
+'use client'
+
 import type * as LabelPrimitive from '@radix-ui/react-label'
 
 import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 import { Slot } from '@radix-ui/react-slot'
-import { createContext, useContext, useId, useMemo } from 'react'
+import { createContext, use, useId, useMemo } from 'react'
 import {
   Controller,
 
   FormProvider,
   useFormContext,
+  useFormState,
 } from 'react-hook-form'
-import { cn } from '~/utils'
+import { cn } from '~/utils/cn'
 
 import { Label } from './label'
 
@@ -22,37 +26,34 @@ interface FormFieldContextValue<
   name: TName
 }
 
-interface FormItemContextValue {
-  id: string
-}
+const FormFieldContext = createContext<FormFieldContextValue>({} as FormFieldContextValue)
+FormFieldContext.displayName = 'FormFieldContext'
 
-const FormFieldContext = createContext<FormFieldContextValue | undefined>(undefined)
-const FormItemContext = createContext<FormItemContextValue | undefined>(undefined)
+type FormFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = ControllerProps<TFieldValues, TName>
 
 function FormField<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->(props: ControllerProps<TFieldValues, TName>) {
+>(props: FormFieldProps<TFieldValues, TName>) {
   const { name } = props
-
-  const context = useMemo(() => ({ name }), [name])
+  const value = useMemo(() => ({ name }), [name])
 
   return (
-    <FormFieldContext value={context}>
+    <FormFieldContext value={value}>
       <Controller {...props} />
     </FormFieldContext>
   )
 }
 
 function useFormField() {
-  const fieldContext = useContext(FormFieldContext)
-  const itemContext = useContext(FormItemContext)
-  const { getFieldState, formState } = useFormContext()
-
-  if (!fieldContext || !itemContext) {
-    throw new Error('useFormField must be used within a FormField and FormItem')
-  }
-
+  const fieldContext = use(FormFieldContext)
+  // eslint-disable-next-line ts/no-use-before-define
+  const itemContext = use(FormItemContext)
+  const { getFieldState } = useFormContext()
+  const formState = useFormState({ name: fieldContext.name })
   const fieldState = getFieldState(fieldContext.name, formState)
 
   const { id } = itemContext
@@ -67,17 +68,23 @@ function useFormField() {
   }
 }
 
+interface FormItemContextValue {
+  id: string
+}
+
+const FormItemContext = createContext<FormItemContextValue>({} as FormItemContextValue)
+FormItemContext.displayName = 'FormItemContext'
+
 type FormItemProps = React.ComponentProps<'div'>
 
 function FormItem(props: FormItemProps) {
   const { className, ...rest } = props
   const id = useId()
-
-  const context = useMemo(() => ({ id }), [id])
+  const value = useMemo(() => ({ id }), [id])
 
   return (
-    <FormItemContext value={context}>
-      <div className={cn('space-y-2', className)} {...rest} />
+    <FormItemContext value={value}>
+      <div data-slot="form-item" className={cn('grid gap-2', className)} {...rest} />
     </FormItemContext>
   )
 }
@@ -89,8 +96,13 @@ function FormLabel(props: FormLabelProps) {
   const { error, formItemId } = useFormField()
 
   return (
-    // @ts-ignore
-    <Label className={cn(error && 'text-destructive', className)} htmlFor={formItemId} {...rest} />
+    <Label
+      data-slot="form-label"
+      data-error={!!error}
+      className={cn('data-[error=true]:text-destructive', className)}
+      htmlFor={formItemId}
+      {...rest}
+    />
   )
 }
 
@@ -101,6 +113,7 @@ function FormControl(props: FormControlProps) {
 
   return (
     <Slot
+      data-slot="form-control"
       id={formItemId}
       aria-describedby={error ? `${formDescriptionId} ${formMessageId}` : formDescriptionId}
       aria-invalid={!!error}
@@ -117,6 +130,7 @@ function FormDescription(props: FormDescriptionProps) {
 
   return (
     <p
+      data-slot="form-description"
       id={formDescriptionId}
       className={cn('text-muted-foreground text-sm', className)}
       {...rest}
@@ -129,15 +143,17 @@ type FormMessageProps = React.ComponentProps<'p'>
 function FormMessage(props: FormMessageProps) {
   const { className, children, ...rest } = props
   const { error, formMessageId } = useFormField()
-  const body = error ? String(error.message) : children
+  const body = error ? String(error.message ?? '') : children
 
-  if (!body)
+  if (!body) {
     return null
+  }
 
   return (
     <p
+      data-slot="form-message"
       id={formMessageId}
-      className={cn('text-destructive text-sm font-medium', className)}
+      className={cn('text-destructive text-sm', className)}
       {...rest}
     >
       {body}
@@ -145,4 +161,13 @@ function FormMessage(props: FormMessageProps) {
   )
 }
 
-export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage }
+export {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useFormField,
+}

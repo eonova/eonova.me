@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { talks } from '~/db'
 import { ratelimit } from '~/lib/kv'
 import { getIp } from '~/utils'
-import { adminProcedure, createTRPCRouter, publicProcedure } from '../trpc'
+import { adminProcedure, createTRPCRouter, publicProcedure } from '../init'
 
 const getKey = (id: string) => `talks:${id}`
 

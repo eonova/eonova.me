@@ -1,3 +1,4 @@
+import { useMutation } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import { Button } from '~/components/base/button'
 import {
@@ -10,7 +11,7 @@ import {
 } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
 import { toast } from '~/components/base/toaster'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 // 假设你有 createFriend 的 mutation hook
 // import { useCreateFriend } from '~/hooks/useCreateFriend'
@@ -37,19 +38,19 @@ const AddFriendDialog: React.FC<AddFriendDialogProps> = ({
     onClose()
   }
 
-  const utils = api.useUtils()
-  const createFriendMutate = api.friend.createFriend.useMutation({
-    onSuccess: () => {
-      handleClose()
-      toast.success('好友添加成功')
-    },
-    onError: (error) => {
-      console.error('添加好友失败:', error)
-    },
-    onSettled: () => {
-      utils.friend.getAllFriends.invalidate()
-    },
-  })
+  const trpc = useTRPC()
+  const createFriendMutate = useMutation(
+    trpc.friend.createFriend.mutationOptions(
+      {
+        onSuccess: () => {
+          handleClose()
+          toast.success('好友添加成功')
+        },
+        onError: error => toast.error(`添加好友失败：${error}`),
+        onSettled: () => trpc.friend.getAllFriends.queryOptions(),
+      },
+    ),
+  )
   const handleAdd = async () => {
     createFriendMutate.mutate({
       name: name.trim(),

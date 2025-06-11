@@ -1,12 +1,13 @@
 'use client'
 import type { DoubanDataResponse } from '~/types/douban'
+import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { CardSkeleton } from '~/components/modules/skeleton/card-skeleton'
 import InfiniteScrollingLoading from '~/components/shared/infinite-scrolling-loading'
 import PageTitle from '~/components/shared/page-title'
 import RecreationCard from '~/components/shared/recreation-card'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { getFlatArrLength } from '~/utils'
 
 // 定义模式类型
@@ -21,13 +22,14 @@ const MODE_LABELS: Record<MovieMode, string> = {
 }
 
 const Page: React.FC = () => {
+  const trpc = useTRPC()
   const { ref, inView } = useInView({ threshold: 0.1 })
   const [selectedMode, setSelectedMode] = useState<MovieMode>('do')
   const [loadedPages, setLoadedPages] = useState(1)
   const pageSize = 16
 
   // 数据查询
-  const { data, status, isRefetching } = api.books.getBookData.useQuery({
+  const { data, status, isRefetching } = useQuery(trpc.books.getBookData.queryOptions({
     actions: ['do', 'wish', 'collect'],
     config: {
       contentConfig: {
@@ -40,7 +42,7 @@ const Page: React.FC = () => {
         showQuote: false,
       },
     },
-  })
+  }))
   // 获取当前选项卡数据
   const currentCollection = (data as DoubanDataResponse)?.data?.collections?.find(c => c.action === selectedMode)
   const allItems = currentCollection?.items?.flat() || []

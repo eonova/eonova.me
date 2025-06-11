@@ -1,11 +1,12 @@
 'use client'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Button } from '~/components/base/button'
 import { Textarea } from '~/components/base/textarea'
 import { toast } from '~/components/base/toaster'
 import TalkBox from '~/components/pages/talk/box'
 import TalkMdx from '~/components/pages/talk/mdx'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
 
 interface TalkAdminProps {
@@ -15,26 +16,28 @@ interface TalkAdminProps {
 const TalkAdmin: React.FC<TalkAdminProps> = () => {
   const [talkText, setTalkText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const { data: talks } = api.talks.getAllTalks.useQuery()
-  const utils = api.useUtils()
+  const trpc = useTRPC()
+  const { data: talks } = useQuery(trpc.talks.getAllTalks.queryOptions())
 
   // 初始化 tRPC 创建动态的 mutation
-  const { mutate: createTalk } = api.talks.createTalk.useMutation({
-    onMutate: () => {
-      setIsLoading(true)
+  const { mutate: createTalk } = useMutation(trpc.talks.createTalk.mutationOptions(
+    {
+      onMutate: () => {
+        setIsLoading(true)
+      },
+      onSuccess: () => {
+        toast.success('动态发布成功!')
+        setTalkText('')
+      },
+      onError: (error: any) => {
+        toast.error(`动态发布失败${error.data}`)
+      },
+      onSettled: () => {
+        trpc.talks.getAllTalks.queryOptions()
+        setIsLoading(false)
+      },
     },
-    onSuccess: () => {
-      toast.success('动态发布成功!')
-      setTalkText('')
-    },
-    onError: (error) => {
-      toast.error(`动态发布失败${error.data}`)
-    },
-    onSettled: () => {
-      utils.talks.getAllTalks.invalidate()
-      setIsLoading(false)
-    },
-  })
+  ))
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -52,18 +55,20 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
 
   // 拿到所有动态数据
   // 刪除动态
-  const talkMutation = api.talks.deleteTalk.useMutation({
-    onSuccess: () => {
-      toast.success('删除成功')
+  const talkMutation = useMutation(trpc.talks.deleteTalk.mutationOptions(
+    {
+      onSuccess: () => {
+        toast.success('删除成功')
+      },
+      onError: (error: any) => {
+        toast.error(`删除失败${error.data}`)
+      },
+      onSettled: () => {
+        trpc.talks.getAllTalks.queryOptions()
+        setIsLoading(false)
+      },
     },
-    onError: (error) => {
-      toast.error(`删除失败${error.data}`)
-    },
-    onSettled: () => {
-      utils.talks.getAllTalks.invalidate()
-      setIsLoading(false)
-    },
-  })
+  ))
 
   return (
     <div className="grid sm:grid-cols-2 gap-5 w-full flex-1">
@@ -115,7 +120,7 @@ const TalkAdmin: React.FC<TalkAdminProps> = () => {
       </form>
       <div className="bg-gray-200/20 dark:bg-gray-200/10 rounded-xl flex flex-col gap-2 text-xs h-full max-h-[75vh] overflow-y-auto">
         {
-          talks?.items?.map(talk => (
+          talks?.items?.map((talk: { id: string, content: string, createdAt: Date, likes: number }) => (
             <div key={talk.id} className="flex flex-col gap-2 p-2 ">
               <div
                 className={cn(

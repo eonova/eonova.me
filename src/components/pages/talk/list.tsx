@@ -1,9 +1,10 @@
 'use client'
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TalkSkeleton } from '~/components/modules/skeleton/talk-skeleton'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import InfiniteScrollingLoading from '../../shared/infinite-scrolling-loading'
 import TalkBox from './box'
 
@@ -11,7 +12,8 @@ interface TalkListProps {
   pageSize?: number
 }
 
-const TalkList: React.FC<TalkListProps> = ({ pageSize = 10 }) => {
+const TalkList: React.FC<TalkListProps> = () => {
+  const trpc = useTRPC()
   const {
     data,
     isLoading,
@@ -20,9 +22,14 @@ const TalkList: React.FC<TalkListProps> = ({ pageSize = 10 }) => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = api.talks.getAllTalks.useInfiniteQuery(
-    { limit: pageSize },
-    { getNextPageParam: lastPage => lastPage.nextCursor },
+  } = useInfiniteQuery(
+    trpc.talks.getAllTalks.infiniteQueryOptions(
+      {},
+      {
+        getNextPageParam: lastPage => lastPage.nextCursor,
+        placeholderData: keepPreviousData,
+      },
+    ),
   )
 
   const { ref, inView } = useInView({ threshold: 0.1 })

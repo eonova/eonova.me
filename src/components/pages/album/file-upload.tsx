@@ -1,10 +1,11 @@
 'use client'
 
+import { useMutation } from '@tanstack/react-query'
 import Image from 'next/image'
 import { Input } from '~/components/base/input'
 import { toast } from '~/components/base/toaster'
 import { UPYUN_DOMAIN, UPYUN_UPLOAD_PATH } from '~/config/album'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
 
 interface FileUploadProps {
@@ -19,7 +20,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   className,
   setImageUrl,
 }) => {
-  const utils = api.useUtils()
+  const trpc = useTRPC()
   const uploadPath = UPYUN_UPLOAD_PATH.replace(/^[/\\]+|[/\\]+$/g, '')
 
   function handleImageUrl(path: string) {
@@ -28,19 +29,23 @@ const FileUpload: React.FC<FileUploadProps> = ({
     return `${domain}/${path}`
   }
 
-  const { mutate } = api.upyun?.upload?.useMutation({
-    onSuccess: (data) => {
-      const url = handleImageUrl(data.path)
-      console.log('=======url======', url)
-      setImageUrl(url)
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-    onSettled: () => {
-      utils.album.getAllImages.invalidate()
-    },
-  })
+  const { mutate } = useMutation(
+    trpc.upyun.upload.mutationOptions(
+      {
+        onSuccess: (data) => {
+          const url = handleImageUrl(data.path)
+          console.log('=======url======', url)
+          setImageUrl(url)
+        },
+        onError: (error: any) => {
+          toast.error(error.message)
+        },
+        onSettled: () => {
+          trpc.album.getAllImages.queryOptions()
+        },
+      },
+    ),
+  )
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file)

@@ -1,17 +1,19 @@
 'use client'
+import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Button } from '~/components/base/button'
 import { Separator } from '~/components/base/separator'
 import AddFriendDialog from '~/components/pages/admin/friends/friend-add-dialog'
 import LinkCard from '~/components/shared/link-card'
 import PageTitle from '~/components/shared/page-title'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 const title = '友链'
 const description = '感谢你愿意和我做朋友🌈'
 
 function Page() {
-  const { status, data } = api.friend.getAllFriends.useQuery()
+  const trpc = useTRPC()
+  const { status, data } = useQuery(trpc.friend.getAllFriends.queryOptions())
 
   const isSuccess = status === 'success'
   const isLoading = status === 'pending'

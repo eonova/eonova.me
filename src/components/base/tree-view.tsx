@@ -1,9 +1,6 @@
-'use client'
-
-import type { TreeCollection } from '@ark-ui/react'
-import { TreeView as TreeViewPrimitive } from '@ark-ui/react'
+import { TreeView as TreeViewPrimitive } from '@ark-ui/react/tree-view'
 import { ChevronRightIcon, FileIcon, FolderIcon } from 'lucide-react'
-import { cn } from '~/utils'
+import { cn } from '~/utils/cn'
 
 interface Node {
   id: string
@@ -12,17 +9,17 @@ interface Node {
 }
 
 type TreeViewProps = {
-  collection: TreeCollection<Node>
   label?: string
-} & Omit<React.ComponentProps<typeof TreeViewPrimitive.Root>, 'collection'>
+} & React.ComponentProps<typeof TreeViewPrimitive.Root<Node>>
 
 function TreeView(props: TreeViewProps) {
   const { collection, className, label = 'Tree View', ...rest } = props
 
   return (
     <TreeViewPrimitive.Root
+      data-slot="tree-view"
       collection={collection}
-      className={cn('bg-card rounded-lg border p-2', className)}
+      className={cn('bg-card rounded-md border p-2', className)}
       {...rest}
     >
       <TreeViewPrimitive.Label className="sr-only">{label}</TreeViewPrimitive.Label>
@@ -41,11 +38,16 @@ function TreeViewNode(props: TreeViewNodeProps) {
   const { node, indexPath } = props
 
   return (
-    <TreeViewPrimitive.NodeProvider key={node.id} node={node} indexPath={indexPath}>
+    <TreeViewPrimitive.NodeProvider
+      data-slot="tree-view-node"
+      key={node.id}
+      node={node}
+      indexPath={indexPath}
+    >
       {node.children
         ? (
             <TreeViewPrimitive.Branch>
-              <TreeViewPrimitive.BranchControl className="hover:bg-accent hover:text-accent-foreground flex items-center justify-between rounded-md px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm">
+              <TreeViewPrimitive.BranchControl className="hover:bg-accent hover:text-accent-foreground flex items-center justify-between rounded-sm px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm">
                 <TreeViewPrimitive.BranchText className="flex items-center gap-2">
                   <FolderIcon className="size-4" />
                   {' '}
@@ -64,7 +66,7 @@ function TreeViewNode(props: TreeViewNodeProps) {
             </TreeViewPrimitive.Branch>
           )
         : (
-            <TreeViewPrimitive.Item className="hover:bg-accent hover:text-accent-foreground data-[selected]:bg-accent relative rounded-md px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm">
+            <TreeViewPrimitive.Item className="hover:bg-accent hover:text-accent-foreground data-selected:bg-accent relative rounded-sm px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm">
               <TreeViewPrimitive.ItemText className="flex items-center gap-2">
                 <FileIcon className="size-4" />
                 {node.name}
@@ -76,3 +78,4 @@ function TreeViewNode(props: TreeViewNodeProps) {
 }
 
 export { type Node, TreeView, TreeViewNode }
+export { createTreeCollection } from '@ark-ui/react/tree-view'

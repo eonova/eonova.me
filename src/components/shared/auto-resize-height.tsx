@@ -44,6 +44,8 @@ export const AutoResizeHeight: React.FC<AnimateChangeInHeightProps> = ({
         resizeObserver.disconnect()
       }
     }
+    // 兜底 return，确保所有路径都有返回值
+    return void 0
   }, [])
 
   return (

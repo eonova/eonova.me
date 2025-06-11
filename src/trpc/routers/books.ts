@@ -3,7 +3,7 @@ import type { DoubanItem, DoubanPluginConfig } from '~/types/douban'
 import { z } from 'zod'
 import { env } from '~/lib/env'
 import { buildErrorResponse, fetchUser, getRateLevel, handleApiError, mapDoubanUser } from '~/utils'
-import { createTRPCRouter, publicProcedure } from '../trpc'
+import { createTRPCRouter, publicProcedure } from '../init'
 
 const BookActionSchema = z.enum(['do', 'wish', 'collect'])
 type BookAction = z.infer<typeof BookActionSchema>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Button } from '~/components/base/button'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '~/components/base/dialog'
@@ -7,7 +8,7 @@ import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
 import { toast } from '~/components/base/toaster'
 import { useFriendDialogsStore } from '~/stores/friend'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 interface UpdateFriendDialogProps {
   id: string
@@ -21,16 +22,20 @@ const UpdateFriendDialog: React.FC<UpdateFriendDialogProps> = ({
   const [avatar, setAvatar] = useState('')
   const [description, setDescription] = useState('')
   const friendDialogStore = useFriendDialogsStore()
-  const utils = api.useUtils()
+  const trpc = useTRPC()
 
-  const updateMutation = api.friend.updateFriend.useMutation({
-    onSuccess: () => {
-      friendDialogStore.setAddDialogs(false)
-      toast.success('友链更新成功')
-    },
-    onError: error => toast.error(`添加失败：${error.message}`),
-    onSettled: () => utils.friend.getAllFriends.invalidate(),
-  })
+  const updateMutation = useMutation(
+    trpc.friend.updateFriend.mutationOptions(
+      {
+        onSuccess: () => {
+          friendDialogStore.setAddDialogs(false)
+          toast.success('友链更新成功')
+        },
+        onError: error => toast.error(`添加失败：${error.message}`),
+        onSettled: () => trpc.friend.getAllFriends.queryOptions(),
+      },
+    ),
+  )
 
   const handleSubmit = () => {
     updateMutation.mutate({

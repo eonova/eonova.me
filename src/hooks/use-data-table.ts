@@ -1,7 +1,7 @@
 import type { ColumnFiltersState, PaginationState, RowSelectionState, SortingState, TableOptions, TableState, Updater, VisibilityState } from '@tanstack/react-table'
 import type { Parser, UseQueryStateOptions } from 'nuqs'
 import type { TransitionStartFunction } from 'react'
-import type { ExtendedColumnSort } from '~/lib/data-table'
+import type { ExtendedColumnSort } from '~/components/modules/data-table'
 
 import {
   getCoreRowModel,
@@ -25,9 +25,10 @@ import {
 } from 'nuqs'
 
 import { useCallback, useMemo, useState } from 'react'
+import { DEFAULT_PAGE_SIZE_OPTIONS } from '~/components/modules/data-table'
 
 import { useDebouncedCallback } from '~/hooks/use-debounced-callback'
-import { DEFAULT_PAGE_SIZE_OPTIONS, getSortingStateParser } from '~/lib/data-table'
+import { getSortingStateParser } from '~/lib/data-table'
 
 const PAGE_KEY = 'page'
 const PER_PAGE_KEY = 'perPage'

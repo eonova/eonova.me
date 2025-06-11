@@ -4,11 +4,13 @@
  * Inspired by: https://framer.university/resources/like-button-component
  */
 import NumberFlow, { continuous } from '@number-flow/react'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { motion } from 'motion/react'
 import { useRef, useState } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
+import { toast } from '~/components/base'
 import { Separator } from '~/components/base/separator'
-import { api } from '~/trpc/react'
+import { useDebouncedCallback } from '~/hooks/use-debounced-callback'
+import { useTRPC } from '~/trpc/client'
 
 import { cn } from '~/utils'
 
@@ -21,37 +23,42 @@ function LikeButton(props: LikeButtonProps) {
   const { slug, className } = props
   const [cacheCount, setCacheCount] = useState(0)
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const utils = api.useUtils()
-
+  const trpc = useTRPC()
+  const queryClient = useQueryClient()
   const queryKey = { slug }
 
-  const { status, data } = api.likes.get.useQuery(queryKey)
-  const likesMutation = api.likes.patch.useMutation({
-    onMutate: async (newData) => {
-      await utils.likes.get.cancel(queryKey)
+  const { status, data } = useQuery(trpc.likes.get.queryOptions(queryKey))
+  const likesMutation = useMutation(
+    trpc.likes.patch.mutationOptions({
+      onMutate: async (newData) => {
+        await queryClient.cancelQueries({
+          queryKey: trpc.likes.get.queryKey(queryKey),
+        })
 
-      const previousData = utils.likes.get.getData(queryKey)
+        const previousData = queryClient.getQueryData(trpc.likes.get.queryKey(queryKey))
 
-      utils.likes.get.setData(queryKey, (old) => {
-        if (!old)
-          return old
-
-        return {
-          ...old,
-          likes: old.likes + newData.value,
-          currentUserLikes: old.currentUserLikes + newData.value,
+        queryClient.setQueryData(trpc.likes.get.queryKey(queryKey), (old) => {
+          if (!old)
+            return old
+          return {
+            ...old,
+            likes: old.likes + newData.value,
+            currentUserLikes: old.currentUserLikes + newData.value,
+          }
+        })
+        return { previousData }
+      },
+      onError: (_, __, ctx) => {
+        if (ctx?.previousData) {
+          queryClient.setQueryData(trpc.likes.get.queryKey(queryKey), ctx.previousData)
         }
-      })
-
-      return { previousData }
-    },
-    onError: (_, __, ctx) => {
-      if (ctx?.previousData) {
-        utils.likes.get.setData(queryKey, ctx.previousData)
-      }
-    },
-    onSettled: () => utils.likes.get.invalidate(),
-  })
+      },
+      onSettled: () =>
+        queryClient.invalidateQueries({
+          queryKey: trpc.likes.get.queryKey(queryKey),
+        }),
+    }),
+  )
 
   const showConfettiAnimation = async () => {
     const { clientWidth, clientHeight } = document.documentElement
@@ -82,8 +89,12 @@ function LikeButton(props: LikeButtonProps) {
   }, 1000)
 
   const handleLikeButtonClick = () => {
-    if (status === 'pending' || !data || data.currentUserLikes + cacheCount >= 3)
+    if (status === 'pending' || !data)
       return
+    if (data.currentUserLikes + cacheCount >= 3) {
+      toast.error('Like limit reached')
+      return
+    }
 
     const value = cacheCount === 3 ? cacheCount : cacheCount + 1
     setCacheCount(value)
@@ -94,12 +105,11 @@ function LikeButton(props: LikeButtonProps) {
 
     return onLikeSaving(value)
   }
-
   return (
     <div className={cn('mt-10 flex justify-center', className)}>
       <motion.button
         ref={buttonRef}
-        className="flex items-center gap-2.5 rounded-full border-[#f2eaead2] dark:border-0 bg-[#f2eaead2] shadow border backdrop-blur-lg dark:bg-zinc-900 px-2.5 py-1.5 text-sm text-black dark:text-white"
+        className="flex items-center gap-2.5 rounded-full border-[#f2eaead2] border-solid dark:border-0 bg-[#f2eaead2] shadow border backdrop-blur-lg dark:bg-zinc-900 px-2.5 py-1.5 text-sm text-black dark:text-white"
         onClick={handleLikeButtonClick}
         aria-label="喜欢这个文章"
         whileTap={{ scale: 0.96 }}

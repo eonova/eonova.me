@@ -1,9 +1,10 @@
 // @ts-nocheck
 'use client'
+import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { buttonVariants } from '~/components/base/button'
 import NonFound from '~/components/shared/non-found'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
 import Lightbox from './lightbox'
 import Masonry from './masonry'
@@ -24,11 +25,9 @@ interface WaterfallGalleryProps {
 function WaterfallGallery({
   itemsPerPage = 12,
 }: WaterfallGalleryProps) {
-  const { status, data } = api.album.getAllImages.useQuery()
+  const trpc = useTRPC()
+  const { data, isLoading, isError } = useQuery(trpc.album.getAllImages.queryOptions())
   const items: ImageItem[] = data?.images ?? []
-  const isSuccess = status === 'success'
-  const isError = status === 'error'
-  const isLoading = status === 'pending'
   const [currentPage, setCurrentPage] = useState(1)
   const [isOpen, setIsOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -52,7 +51,7 @@ function WaterfallGallery({
       {isLoading && <WhirlpoolLoader />}
       {isError && <div>无法获取用户数据。请刷新页面。</div>}
       {
-        isSuccess && items.length > 0 && (
+        !isLoading && !isError && items.length > 0 && (
           <div className="container mx-auto py-8">
             {/* 瀑布流布局 */}
             <Masonry
@@ -89,7 +88,7 @@ function WaterfallGallery({
         )
       }
       {
-        isSuccess && items.length === 0 && (
+        !isLoading && !isError && items.length === 0 && (
           <NonFound />
         )
       }

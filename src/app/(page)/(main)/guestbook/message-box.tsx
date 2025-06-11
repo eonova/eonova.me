@@ -2,6 +2,7 @@
 
 import type { User } from '~/lib/auth-client'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import {
@@ -19,7 +20,7 @@ import {
   toast,
 } from '~/components/base'
 import { signOut } from '~/lib/auth-client'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { getDefaultImage } from '~/utils'
 
 interface FormProps {
@@ -28,7 +29,7 @@ interface FormProps {
 
 function MessageBox(props: FormProps) {
   const { user } = props
-  const utils = api.useUtils()
+  const trpc = useTRPC()
 
   const guestbookFormSchema = z.object({
     message: z.string().min(1, {
@@ -42,15 +43,18 @@ function MessageBox(props: FormProps) {
       message: '',
     },
   })
-
-  const guestbookMutation = api.guestbook.create.useMutation({
+  const queryClient = useQueryClient()
+  const guestbookMutation = useMutation(trpc.guestbook.create.mutationOptions({
     onSuccess: () => {
       form.reset()
       toast.success('成功发布留言')
     },
-    onSettled: () => utils.guestbook.invalidate(),
+    onSettled: () => queryClient.invalidateQueries({
+      queryKey: trpc.guestbook.getInfiniteMessages.infiniteQueryKey(),
+    }),
     onError: error => toast.error(error.message),
-  })
+  }),
+  )
 
   const onSubmit = (values: z.infer<typeof guestbookFormSchema>) => {
     guestbookMutation.mutate({

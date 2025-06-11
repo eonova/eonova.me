@@ -2,10 +2,11 @@
 
 import type { Post } from 'content-collections'
 
+import { useQuery } from '@tanstack/react-query'
 import { ChartColumnStacked, Clock, Eye, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { CATEGORIES } from '~/config/posts'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { formatDate } from '~/utils'
 import { BottomToUpTransitionView } from '../modules/transition'
 
@@ -17,7 +18,6 @@ type PostCardProps = Post
 
 function PostCards(props: PostCardsProps) {
   const { posts } = props
-
   return (
     <ul className="flex flex-col gap-5">
       {posts.map((post, idx) => (
@@ -29,14 +29,14 @@ function PostCards(props: PostCardsProps) {
 
 function PostCard(props: PostCardProps) {
   const { slug, title, categories, date, idx } = props
-
-  const viewsQuery = api.views.get.useQuery({
+  const trpc = useTRPC()
+  const viewsQuery = useQuery(trpc.views.get.queryOptions({
     slug,
-  })
+  }))
 
-  const likesQuery = api.likes.get.useQuery({
+  const likesQuery = useQuery(trpc.likes.get.queryOptions({
     slug,
-  })
+  }))
 
   return (
     <BottomToUpTransitionView

@@ -1,14 +1,16 @@
 'use client'
 
+import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import ShinyText from '../shared/shiny-text'
 
 function NowPlaying() {
-  const { status, data } = api.spotify.get.useQuery(undefined, {
+  const trpc = useTRPC()
+  const { status, data } = useQuery(trpc.spotify.get.queryOptions(undefined, {
     staleTime: 1000 * 60,
-  })
+  }))
   const isPlaying = status === 'success' && data.isPlaying && data.songUrl
   const notListening = status === 'success' && (!data.isPlaying || !data.songUrl)
   const [text, setText] = useState<string>('')

@@ -12,6 +12,7 @@ const config: KnipConfig = {
     'content.config.ts',
     '*.config.mjs',
     '*.config.ts',
+    'src/e2e/**/*.{setup,teardown}.ts',
   ],
   project: [
     'src/**/*.{ts,tsx}',

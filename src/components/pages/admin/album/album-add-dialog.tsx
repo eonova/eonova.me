@@ -1,4 +1,5 @@
 'use client'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Button } from '~/components/base/button'
 import {
@@ -13,7 +14,7 @@ import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
 import { toast } from '~/components/base/toaster'
 import { useAlbumDialogsStore } from '~/stores/album'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import FileUpload from '../../album/file-upload'
 
 const AddAlbumDialog: React.FC = () => {
@@ -22,18 +23,21 @@ const AddAlbumDialog: React.FC = () => {
   const [height, setHeight] = useState<number>(200)
   const [width, setWidth] = useState<number>(300)
   const albumDialogStore = useAlbumDialogsStore()
-  const utils = api.useUtils()
-
-  const addImageMutate = api.album.addImage.useMutation({
+  const trpc = useTRPC()
+  const queryClient = useQueryClient()
+  const addImageMutate = useMutation(trpc.album.addImage.mutationOptions({
     onSuccess: async () => {
       albumDialogStore.setAddDialogs(false)
       toast.success('图片上传成功')
     },
     onError: error => toast.error(error.message),
     onSettled: () => {
-      utils.album.getAllImages.invalidate()
+      queryClient.invalidateQueries({
+        queryKey: trpc.album.getAllImages.queryKey(),
+      })
     },
-  })
+  }),
+  )
 
   function addImage() {
     addImageMutate.mutate({

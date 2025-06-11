@@ -2,10 +2,11 @@
 
 import type { FC } from 'react'
 
+import { useMutation } from '@tanstack/react-query'
 import { Bot } from 'lucide-react'
 import { useEffect, useMemo } from 'react'
 import { AutoResizeHeight } from '~/components/shared/auto-resize-height'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
 import { isNoteModel, isPageModel, isPostModel } from '~/utils/url-builder'
 
@@ -84,7 +85,8 @@ export const AISummary: FC<AiSummaryProps> = (props) => {
     return payload
   }, [data])
 
-  const { mutate, isPending } = api.ai.generate.useMutation()
+  const trpc = useTRPC()
+  const { mutate, isPending } = useMutation(trpc.ai.generate.mutationOptions())
 
   useEffect(() => {
     if (payload) {

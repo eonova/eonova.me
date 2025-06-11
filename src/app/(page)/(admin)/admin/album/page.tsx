@@ -1,17 +1,18 @@
 'use client'
 
-import { DataTableSkeleton } from '~/components/base/data-table'
+import { useQuery } from '@tanstack/react-query'
+import { DataTableSkeleton } from '~/components/modules/data-table/data-table-skeleton'
 import AdminPageHeader from '~/components/pages/admin/admin-page-header'
 import AddAlbumDialog from '~/components/pages/admin/album/album-add-dialog'
 import AlbumTable from '~/components/pages/admin/album/album-table'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 function Page() {
-  const { status, data } = api.album.getAllImages.useQuery()
+  const trpc = useTRPC()
+  const { data, isLoading, isError } = useQuery(trpc.album.getAllImages.queryOptions())
 
-  const isSuccess = status === 'success'
-  const isLoading = status === 'pending'
-  const isError = status === 'error'
+  const isInitialLoading = isLoading && !data
+
   return (
     <div className="space-y-6">
       <AdminPageHeader
@@ -20,11 +21,11 @@ function Page() {
       />
       {isLoading
         ? (
-            <DataTableSkeleton columnCount={3} searchableColumnsCount={1} filterableColumnCount={1} />
+            <DataTableSkeleton columnCount={3} rowCount={10} filterCount={1} />
           )
         : null}
       {isError ? <div>无法获取用户数据。请刷新页面。</div> : null}
-      {isSuccess && (
+      {!isInitialLoading && data && (
         <>
           <AddAlbumDialog />
           <AlbumTable data={data.images} />

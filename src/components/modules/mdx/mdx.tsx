@@ -11,7 +11,7 @@ import Heading from './heading'
 import ItemGrid from './item-grid'
 import LinkCard from './link-card'
 import Table from './table'
-import TreeView from './tree-vew'
+import TreeView from './tree-view'
 import Video from './video'
 
 interface MdxProps {

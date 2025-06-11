@@ -1,11 +1,11 @@
-import type { RouterOutputs } from '../react'
+import type { RouterOutputs } from '../client'
 import { TRPCError } from '@trpc/server'
 
 import { z } from 'zod'
 import { album, desc, eq } from '~/db'
 import { ratelimit } from '~/lib/kv'
 import { getIp } from '~/utils'
-import { adminProcedure, createTRPCRouter, publicProcedure } from '../trpc'
+import { adminProcedure, createTRPCRouter, publicProcedure } from '../init'
 
 const getKey = (id: string) => `album:${id}`
 

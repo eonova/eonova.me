@@ -2,10 +2,11 @@
 
 import type { Note } from 'content-collections'
 
+import { useQuery } from '@tanstack/react-query'
 import { Clock, Cloud, Eye, Sticker, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { BottomToUpTransitionView } from '~/components/modules/transition'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 import { formatDate } from '~/utils'
 
 interface NoteCardsProps {
@@ -28,14 +29,16 @@ function NoteCards(props: NoteCardsProps) {
 
 function NoteCard(props: NoteCardProps) {
   const { slug, title, mood, weather, date, idx } = props
-
-  const viewsQuery = api.views.get.useQuery({
+  const trpc = useTRPC()
+  const viewsQuery = useQuery(trpc.views.get.queryOptions({
     slug,
-  })
+  }),
+  )
 
-  const likesQuery = api.likes.get.useQuery({
+  const likesQuery = useQuery(trpc.likes.get.queryOptions({
     slug,
-  })
+  }),
+  )
 
   return (
     <BottomToUpTransitionView

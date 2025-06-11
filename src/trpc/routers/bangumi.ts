@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { env } from '~/lib/env'
 import { AnimeActionSchema, AnimeType } from '~/types/bangumi'
 import { handleApiError } from '~/utils'
-import { createTRPCRouter, publicProcedure } from '../trpc'
+import { createTRPCRouter, publicProcedure } from '../init'
 
 function validateBangumiItem(raw: any): BangumiItem {
   return {

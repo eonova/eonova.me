@@ -7,7 +7,6 @@ export default eonova({
   ignores: [
     'README.md',
     'components/base/*',
-    'src/trpc/react.tsx',
     'data/*',
     'public/*',
     '.github/*',

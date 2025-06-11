@@ -1,6 +1,7 @@
 'use client'
 
 import NumberFlow, { continuous } from '@number-flow/react'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
@@ -9,11 +10,11 @@ import ImageZoom from '~/components/pages/album/image-zoom'
 import { RANDOMIMGAPI } from '~/config/posts'
 import { usePostContext } from '~/contexts/post'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
-import { api } from '~/trpc/react'
+import { useTRPC } from '~/trpc/client'
 
 function Header() {
   const { cover, date, title, slug } = usePostContext()
-  const utils = api.useUtils()
+  const trpc = useTRPC()
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
     loading: '...',
@@ -21,16 +22,18 @@ function Header() {
 
   const images = cover !== '' ? cover : RANDOMIMGAPI
 
-  const incrementMutation = api.views.increment.useMutation({
-    onSettled: () => utils.views.get.invalidate(),
-  })
-  const viewsCountQuery = api.views.get.useQuery({
+  const incrementMutation = useMutation(trpc.views.increment.mutationOptions({
+    onSettled: () => trpc.views.get.queryOptions({
+      slug,
+    }),
+  }))
+  const viewsCountQuery = useQuery(trpc.views.get.queryOptions({
     slug,
-  })
+  }))
 
-  const commentsCountQuery = api.comments.getTotalCommentsCount.useQuery({
+  const commentsCountQuery = useQuery(trpc.comments.getTotalCommentsCount.queryOptions({
     slug,
-  })
+  }))
   const incremented = useRef(false)
 
   useEffect(() => {

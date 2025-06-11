@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { eq, posts, sql, sum } from '~/db'
 import { ratelimit, redis, redisKeys } from '~/lib/kv'
 import { getIp } from '~/utils'
-import { createTRPCRouter, publicProcedure } from '../trpc'
+import { createTRPCRouter, publicProcedure } from '../init'
 
 const getKey = (id: string) => `views:${id}`
 

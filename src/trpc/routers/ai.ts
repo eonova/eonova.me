@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { createTRPCRouter, protectedProcedure } from '../trpc'
+import { createTRPCRouter, protectedProcedure } from '../init'
 
 export const aiRouter = createTRPCRouter({
   generate: protectedProcedure
