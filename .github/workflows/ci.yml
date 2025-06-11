@@ -39,3 +39,6 @@ jobs:
 
       - name: Knip
         run: pnpm check:knip
+
+      - name: Typecheck
+        run: pnpm typecheck
