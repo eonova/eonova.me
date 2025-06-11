@@ -13,7 +13,6 @@ const withMDX = createMDX({
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
-  openAnalyzer: false,
 })
 
 const withPWA = createPWA({
@@ -71,8 +70,13 @@ const MyNextConfig: NextConfig = {
   reactStrictMode: true,
 
   experimental: {
+    reactCompiler: true,
     optimizePackageImports: ['shiki', 'lenis', 'three'],
     esmExternals: true,
+    staticGenerationRetryCount: 1,
+    staticGenerationMaxConcurrency: 8,
+    staticGenerationMinPagesPerWorker: 25,
+    typedRoutes: true,
   },
 
   serverExternalPackages: ['prettier'],
@@ -116,8 +120,6 @@ const MyNextConfig: NextConfig = {
         search: '',
       },
     ],
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: 'default-src \'self\'; script-src \'none\'; sandbox;',
   },
 
   eslint: {
@@ -155,11 +157,6 @@ const MyNextConfig: NextConfig = {
   webpack: (c) => {
     if (process.env.REACT_SCAN_MONITOR_API_KEY) {
       c.plugins.push(ReactComponentName({}))
-    }
-    c.cache = {
-      type: 'filesystem', // 启用文件系统缓存
-      compression: 'brotli', // 使用 Brotli 压缩减少体积
-      allowCollectingMemory: true,
     }
     return c
   },
