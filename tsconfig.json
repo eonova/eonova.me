@@ -62,9 +62,10 @@
     "**/*.ts",
     "**/*.tsx",
     "eslint.config.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".next/types/*.ts"
   ]
 }
