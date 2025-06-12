@@ -106,7 +106,6 @@
     "merge-refs": "catalog:frontend",
     "motion": "catalog:frontend",
     "next": "catalog:build",
-    "next-rspack": "^15.3.3",
     "next-themes": "catalog:frontend",
     "nuqs": "catalog:frontend",
     "pg": "catalog:backend",
