@@ -1,4 +1,5 @@
 import { createTRPCRouter } from './init'
+import { aiRouter } from './routers/ai'
 import { albumRouter } from './routers/album'
 import { bangumiRouter } from './routers/bangumi'
 import { booksRouter } from './routers/books'
@@ -35,6 +36,7 @@ export const appRouter = createTRPCRouter({
   bangumi: bangumiRouter,
   friend: friendRouter,
   upyun: upyunRouter,
+  ai: aiRouter,
 })
 
 export type AppRouter = typeof appRouter
