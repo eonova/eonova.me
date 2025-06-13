@@ -1,5 +1,6 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Note, Post } from 'content-collections'
 
+import type { Metadata, ResolvingMetadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 import { allNotes, allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
@@ -43,9 +44,9 @@ export async function generateMetadata(_: PageProps, parent: ResolvingMetadata):
 }
 
 async function Page() {
-  const articles = allPosts.concat(allNotes).sort((a, b) => {
+  const articles = [...allPosts, ...allNotes].sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime()
-  })
+  }) as (Post | Note)[]
 
   // 做成对象数组：键为年份，值为文章数组
   const articlesByYear = articles.reduce((acc, article) => {
@@ -55,7 +56,7 @@ async function Page() {
     }
     acc[year].push(article)
     return acc
-  }, {} as Record<string, typeof articles>)
+  }, {} as Record<string, (Post | Note)[]>)
 
   if (!articles) {
     notFound()

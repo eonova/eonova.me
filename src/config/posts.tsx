@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { CodeIcon, Lightbulb, Palette } from 'lucide-react'
 import React from 'react'
 
-interface ICATEGORIES {
+export interface ICATEGORIES {
   name: string
   label: string
   icon?: ReactNode

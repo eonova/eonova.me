@@ -44,7 +44,9 @@ const ArchiveContent: React.FC<ArchiveContentProps> = ({
                                   {child.title}
                                 </Link>
                                 <span className="meta ml-2">
-                                  {child.type === 'posts' ? `${child.categoriesText}/文章` : `天气：${child.weather}/心情：${child.mood}/手记`}
+                                  {child.type === 'posts'
+                                    ? `${child.categoriesText ?? ''}/文章`
+                                    : `天气：${(child as Note).weather ?? ''}/心情：${(child as Note).mood ?? ''}/手记`}
                                 </span>
                               </BottomToUpTransitionView>
                             )

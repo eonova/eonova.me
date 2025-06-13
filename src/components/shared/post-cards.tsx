@@ -27,7 +27,7 @@ function PostCards(props: PostCardsProps) {
   )
 }
 
-function PostCard(props: PostCardProps) {
+function PostCard(props: PostCardProps & { idx: number }) {
   const { slug, title, categories, date, idx } = props
   const trpc = useTRPC()
   const viewsQuery = useQuery(trpc.views.get.queryOptions({

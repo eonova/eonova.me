@@ -27,7 +27,7 @@ function NoteCards(props: NoteCardsProps) {
   )
 }
 
-function NoteCard(props: NoteCardProps) {
+function NoteCard(props: NoteCardProps & { idx: number }) {
   const { slug, title, mood, weather, date, idx } = props
   const trpc = useTRPC()
   const viewsQuery = useQuery(trpc.views.get.queryOptions({

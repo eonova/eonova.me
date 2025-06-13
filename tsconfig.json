@@ -67,6 +67,7 @@
   ],
   "exclude": [
     "node_modules",
-    ".next/types/*.ts"
+    ".next/types/*.ts",
+    "test-results"
   ]
 }

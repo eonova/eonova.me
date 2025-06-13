@@ -1,5 +1,6 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Note, Post } from 'content-collections'
 
+import type { Metadata, ResolvingMetadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 import { allNotes, allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
@@ -51,7 +52,7 @@ async function Page(props: PageProps) {
     }
     acc[year].push(article)
     return acc
-  }, {} as Record<string, typeof articles>)
+  }, {} as Record<string, (Post | Note)[]>)
   const url = `${SITE_URL}/archive/${slug}`
 
   if (!articles) {

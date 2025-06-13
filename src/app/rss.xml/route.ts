@@ -24,19 +24,19 @@ export function GET() {
       title,
       url: `${SITE_URL}/posts/${slug}`,
       date,
-      description: summary,
+      description: summary ?? '',
       author: SITE_NAME,
     })
   }
 
   for (const note of notes) {
-    const { title, summary, date, slug } = note
+    const { title, date, slug, summary } = note
 
     feed.item({
       title,
       url: `${SITE_URL}/notes/${slug}`,
       date,
-      description: summary,
+      description: summary ?? '',
       author: SITE_NAME,
     })
   }

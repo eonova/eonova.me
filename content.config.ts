@@ -1,9 +1,9 @@
-// @ts-nocheck
 import type { Context, Meta } from '@content-collections/core'
 import { createHash } from 'node:crypto'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { getTOC, rehypePlugins, remarkPlugins } from '@eonova/mdx-plugins'
+import { z } from 'zod'
 import { CATEGORIES } from '~/config/posts'
 
 interface BaseDoc {
@@ -54,7 +54,14 @@ function generateSlug(str: string, length: number): string {
   return str
 }
 
-async function transform<D extends BaseDoc>(document: D, context: Context) {
+async function transform<D extends BaseDoc>(document: D, context: Context): Promise<D & {
+  code: string
+  categories?: string | undefined
+  categoriesText?: string | undefined
+  slug: string
+  type: string
+  toc: any
+}> {
   const code = await compileMDX(context, document, {
     remarkPlugins,
     rehypePlugins,
@@ -76,7 +83,7 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     code,
     ...{
       categories: isPost ? validateCategory(path) : void 0,
-      categoriesText: isPost ? CATEGORIES[validateCategory(path)] : void 0,
+      categoriesText: isPost ? String(CATEGORIES[validateCategory(path) as keyof typeof CATEGORIES]) : void 0,
     },
     slug: validateSlug(slug),
     type: context.collection.name,
@@ -88,7 +95,7 @@ const posts = defineCollection({
   name: 'posts',
   directory: './data/posts',
   include: '**/*.md',
-  schema: z => ({
+  schema: z.object({
     title: z.string(),
     date: z.string(),
     modifiedTime: z.string(),
@@ -102,9 +109,10 @@ const notes = defineCollection({
   name: 'notes',
   directory: './data/notes',
   include: '**/*.md',
-  schema: z => ({
+  schema: z.object({
     title: z.string(),
     date: z.string(),
+    summary: z.string().optional(),
     mood: z.string(),
     weather: z.string(),
     cover: z.string(),
@@ -116,7 +124,7 @@ const projects = defineCollection({
   name: 'projects',
   directory: './data/projects',
   include: '**/*.md',
-  schema: z => ({
+  schema: z.object({
     name: z.string(),
     date: z.string(),
     description: z.string(),

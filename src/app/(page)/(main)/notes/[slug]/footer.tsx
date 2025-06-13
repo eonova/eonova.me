@@ -9,9 +9,9 @@ function editURL(slug: string) {
 }
 
 function Footer() {
-  const { title, modifiedTime } = useNoteContext()
+  const { title, date } = useNoteContext()
 
-  const formattedDate = useFormattedDate(modifiedTime, {
+  const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
     loading: '...',
   })
