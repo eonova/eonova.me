@@ -7,12 +7,12 @@ import { Suspense } from 'react'
 import TableOfContents from '~/components/layouts/table-of-contents'
 import Comments from '~/components/modules/comments'
 import Mdx from '~/components/modules/mdx'
+import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { flags } from '~/lib/env'
 import Footer from './footer'
 import Header from './header'
 import LikeButton from './like-button'
-import MobileTableOfContents from './mobile-table-of-contents'
 import Providers from './providers'
 
 interface PageProps {

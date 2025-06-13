@@ -7,11 +7,11 @@ import { Suspense } from 'react'
 import Comments from '~/components/modules/comments'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
 import TableOfContents from '~/components/pages/notes/table-of-contents'
+import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
 import { flags } from '~/lib/env'
 import Footer from './footer'
 import Header from './header'
-import MobileTableOfContents from './mobile-table-of-contents'
 import Providers from './providers'
 
 interface PageProps {
