@@ -1,0 +1,29 @@
+[
+  {
+    "path": "/*",
+    "resourceSizes": [
+      {
+        "resourceType": "total",
+        "budget": 1200
+      }
+    ]
+  },
+  {
+    "path": "/about",
+    "resourceSizes": [
+      {
+        "resourceType": "total",
+        "budget": 1200
+      }
+    ]
+  },
+  {
+    "path": "/guestbook",
+    "resourceSizes": [
+      {
+        "resourceType": "total",
+        "budget": 1200
+      }
+    ]
+  }
+]

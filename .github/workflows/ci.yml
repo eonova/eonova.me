@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  Lint:
+  lint:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
@@ -31,9 +31,6 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
-      - name: Build
-        run: pnpm build
-
       - name: Lint
         run: pnpm lint
 
@@ -42,3 +39,24 @@ jobs:
 
       - name: Typecheck
         run: pnpm typecheck
+
+      - name: Unit Test
+        run: pnpm test:unit
+
+      - name: Build
+        run: pnpm build
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://eonova.me/
+            https://eonova.me/about
+            https://eonova.me/guestbook
+          budgetPath: ./.github/budget.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
