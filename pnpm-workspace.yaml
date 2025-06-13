@@ -21,7 +21,7 @@ catalogs:
     cva: 1.0.0-beta.3
     geist: ^1.4.2
     merge-refs: ^2.0.0
-    motion: ^12.17.0
+    motion: ^12.17.3
     next: ^15.2.4
     next-themes: ^0.4.6
     nuqs: ^2.4.3
@@ -42,9 +42,9 @@ catalogs:
     '@octokit/rest': ^22.0.0
     '@tanstack/react-query': ^5.80.7
     '@tanstack/react-query-devtools': ^5.80.7
-    '@trpc/client': ^11.3.1
-    '@trpc/server': ^11.3.1
-    '@trpc/tanstack-react-query': ^11.3.1
+    '@trpc/client': ^11.4.0
+    '@trpc/server': ^11.4.0
+    '@trpc/tanstack-react-query': ^11.4.0
     '@upstash/ratelimit': ^2.0.5
     '@upstash/redis': ^1.35.0
     better-auth: ^1.2.9
@@ -80,7 +80,7 @@ catalogs:
     '@paralleldrive/cuid2': ^2.2.2
     dayjs: ^1.11.13
     superjson: ^2.2.2
-    zod: ^3.25.63
+    zod: ^3.25.64
 
   # 类型定义 (Type definitions)
   types:

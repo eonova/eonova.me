@@ -26,14 +26,14 @@ catalogs:
       specifier: ^5.80.7
       version: 5.80.7
     '@trpc/client':
-      specifier: ^11.3.1
-      version: 11.3.1
+      specifier: ^11.4.0
+      version: 11.4.0
     '@trpc/server':
-      specifier: ^11.3.1
-      version: 11.3.1
+      specifier: ^11.4.0
+      version: 11.4.0
     '@trpc/tanstack-react-query':
-      specifier: ^11.3.1
-      version: 11.3.1
+      specifier: ^11.4.0
+      version: 11.4.0
     '@upstash/ratelimit':
       specifier: ^2.0.5
       version: 2.0.5
@@ -109,8 +109,8 @@ catalogs:
       specifier: ^2.0.0
       version: 2.0.0
     motion:
-      specifier: ^12.17.0
-      version: 12.17.0
+      specifier: ^12.17.3
+      version: 12.17.3
     next-themes:
       specifier: ^0.4.6
       version: 0.4.6
@@ -232,8 +232,8 @@ catalogs:
       specifier: ^2.2.2
       version: 2.2.2
     zod:
-      specifier: ^3.25.63
-      version: 3.25.63
+      specifier: ^3.25.64
+      version: 3.25.64
   script:
     cross-env:
       specifier: ^7.0.3
@@ -524,7 +524,7 @@ importers:
         version: 3.6.0
       '@t3-oss/env-nextjs':
         specifier: catalog:frontend
-        version: 0.13.8(typescript@5.7.3)(zod@3.25.63)
+        version: 0.13.8(typescript@5.7.3)(zod@3.25.64)
       '@tanstack/react-query':
         specifier: catalog:backend
         version: 5.80.7(react@19.0.0)
@@ -533,13 +533,13 @@ importers:
         version: 8.21.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@trpc/client':
         specifier: catalog:backend
-        version: 11.3.1(@trpc/server@11.3.1(typescript@5.7.3))(typescript@5.7.3)
+        version: 11.4.0(@trpc/server@11.4.0(typescript@5.7.3))(typescript@5.7.3)
       '@trpc/server':
         specifier: catalog:backend
-        version: 11.3.1(typescript@5.7.3)
+        version: 11.4.0(typescript@5.7.3)
       '@trpc/tanstack-react-query':
         specifier: catalog:backend
-        version: 11.3.1(@tanstack/react-query@5.80.7(react@19.0.0))(@trpc/client@11.3.1(@trpc/server@11.3.1(typescript@5.7.3))(typescript@5.7.3))(@trpc/server@11.3.1(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
+        version: 11.4.0(@tanstack/react-query@5.80.7(react@19.0.0))(@trpc/client@11.4.0(@trpc/server@11.4.0(typescript@5.7.3))(typescript@5.7.3))(@trpc/server@11.4.0(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
       '@upstash/ratelimit':
         specifier: catalog:backend
         version: 2.0.5(@upstash/redis@1.35.0)
@@ -617,7 +617,7 @@ importers:
         version: 2.0.0(@types/react@19.0.2)
       motion:
         specifier: catalog:frontend
-        version: 12.17.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 12.17.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next:
         specifier: catalog:build
         version: 15.3.3(@babel/core@7.27.4)(@playwright/test@1.53.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -698,7 +698,7 @@ importers:
         version: 3.23.2(@types/react-dom@19.0.3(@types/react@19.0.2))(@types/react@19.0.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       zod:
         specifier: catalog:prod
-        version: 3.25.63
+        version: 3.25.64
       zustand:
         specifier: catalog:frontend
         version: 5.0.5(@types/react@19.0.2)(react@19.0.0)(use-sync-external-store@1.5.0(react@19.0.0))
@@ -4387,23 +4387,23 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@trpc/client@11.3.1':
-    resolution: {integrity: sha512-UlLsUN7x8qD07FaGzdz/FG3K+kpaYowZkmVZ8R4Nlx1Yj01Kgr1Y+cGjtBdRpd+0l7uVylwDPmHA1OxYE6zHgA==}
+  '@trpc/client@11.4.0':
+    resolution: {integrity: sha512-AI+qThLuR52ALsMN/oEjgmw101c54YV6XoXSRyVGzO29kLUgo7PUBnvdq51x2rl57z7tg4AG8U2CvkDWdn00vw==}
     peerDependencies:
-      '@trpc/server': 11.3.1
+      '@trpc/server': 11.4.0
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.3.1':
-    resolution: {integrity: sha512-5Rjigjqwl9ieXL91ebZ1M4FPFXQJ5qipRyZuBoNzvqkq7Qlig+2F4WwLELyiTSNk2bGzdJTXJMKLhRE9Z56D8w==}
+  '@trpc/server@11.4.0':
+    resolution: {integrity: sha512-ubE5LgMQuVH5PKcaFq0JJaHbAT3bBV8m1rdlLYEDjJG85zGrYak+6YkXIzUct/LYYXNg/FgyGrqOTM2FyzAlhQ==}
     peerDependencies:
       typescript: '>=5.7.2'
 
-  '@trpc/tanstack-react-query@11.3.1':
-    resolution: {integrity: sha512-Vi+L5f8efodhpfGi9IrXelDI2JCLWgDUDp0YdgwPHZmHosRMLwztspucAhnaEenoEJO9sYshfZ9dANE13ga3Mg==}
+  '@trpc/tanstack-react-query@11.4.0':
+    resolution: {integrity: sha512-Bo7uT5thVQxrKg1ivlMyZ93drpGqAUZR4M4HMKnzeXYBR4B4thk10oM9R53/Kya1UWepvC0i2IehHS4kRwc0rA==}
     peerDependencies:
       '@tanstack/react-query': ^5.80.3
-      '@trpc/client': 11.3.1
-      '@trpc/server': 11.3.1
+      '@trpc/client': 11.4.0
+      '@trpc/server': 11.4.0
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
       typescript: '>=5.7.2'
@@ -6931,8 +6931,8 @@ packages:
     resolution: {integrity: sha512-GMBAbW9antB8iZRHLoGw0b3HANt57diZYFO/HL1JGIC1MjKrdmhxvrJbupnVvpys0zsz7yBApXdQyfepKly2kA==}
     engines: {node: '>=0.10.0'}
 
-  framer-motion@12.17.0:
-    resolution: {integrity: sha512-2hISKgDk49yCLStwG1wf4Kdy/D6eBw9/eRNaWFIYoI9vMQ/Mqd1Fz+gzVlEtxJmtQ9y4IWnXm19/+UXD3dAYAA==}
+  framer-motion@12.17.3:
+    resolution: {integrity: sha512-+1GMxQvZGUu20clzYdUWQY+iUWGBFc6UmpxvZBJjWu++rPdj7imXcQITzVs+QLKyjOpLoPOOar2KAOeYL88YQg==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -8509,14 +8509,14 @@ packages:
   mlly@1.7.4:
     resolution: {integrity: sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==}
 
-  motion-dom@12.17.0:
-    resolution: {integrity: sha512-FA6/c70R9NKs3g41XDVONzmUUrEmyaifLVGCWtAmHP0usDnX9W+RN/tmbC4EUl0w6yLGvMTOwnWCFVgA5luhRg==}
+  motion-dom@12.17.3:
+    resolution: {integrity: sha512-nJrH4O9Z6lBSgllD5t+2lF1O8LkBxOq9QSUUmygHJVzHiTLaYpZRgd+U70919IL0CMbFBaFGEJ8hDSwnrmcyZw==}
 
   motion-utils@12.12.1:
     resolution: {integrity: sha512-f9qiqUHm7hWSLlNW8gS9pisnsN7CRFRD58vNjptKdsqFLpkVnX00TNeD6Q0d27V9KzT7ySFyK1TZ/DShfVOv6w==}
 
-  motion@12.17.0:
-    resolution: {integrity: sha512-04K87lcwuA1vK3CLpKegncbBq6y2dmQjUsp9iPz0SxFACdBtEHB3V120k0G/t1blHATFuoqMrrLELRljUdQCeg==}
+  motion@12.17.3:
+    resolution: {integrity: sha512-zf4+ppV5HE2bvaGZDWK6oySvS7uig/9eniq0JX/JuM0G9LqrLGxtFUF7b8CUMJ/0bo2ReID6yGWbS0LUxKzYZQ==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -11128,8 +11128,8 @@ packages:
     peerDependencies:
       zod: ^3.24.4
 
-  zod@3.25.63:
-    resolution: {integrity: sha512-3ttCkqhtpncYXfP0f6dsyabbYV/nEUW+Xlu89jiXbTBifUfjaSqXOG6JnQPLtqt87n7KAmnMqcjay6c0Wq0Vbw==}
+  zod@3.25.64:
+    resolution: {integrity: sha512-hbP9FpSZf7pkS7hRVUrOjhwKJNyampPgtXKc3AN6DsWtoHsg2Sb4SQaS4Tcay380zSwd2VPo9G9180emBACp5g==}
 
   zustand@5.0.5:
     resolution: {integrity: sha512-mILtRfKW9xM47hqxGIxCv12gXusoY/xTSHBYApXozR0HmQv299whhBeeAcRy+KrPPybzosvJBCOmVjq6x12fCg==}
@@ -12182,7 +12182,7 @@ snapshots:
       tinyglobby: 0.2.14
       typescript: 5.7.3
       yaml: 2.8.0
-      zod: 3.25.63
+      zod: 3.25.64
 
   '@content-collections/integrations@0.2.1(@content-collections/core@0.9.0(typescript@5.7.3))':
     dependencies:
@@ -12889,7 +12889,7 @@ snapshots:
       '@eslint-react/eff': 1.52.2
       '@typescript-eslint/utils': 8.34.0(eslint@9.28.0(jiti@2.4.2))(typescript@5.7.3)
       ts-pattern: 5.7.1
-      zod: 3.25.63
+      zod: 3.25.64
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -12901,7 +12901,7 @@ snapshots:
       '@eslint-react/kit': 1.52.2(eslint@9.28.0(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/utils': 8.34.0(eslint@9.28.0(jiti@2.4.2))(typescript@5.7.3)
       ts-pattern: 5.7.1
-      zod: 3.25.63
+      zod: 3.25.64
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -14617,17 +14617,17 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@t3-oss/env-core@0.13.8(typescript@5.7.3)(zod@3.25.63)':
+  '@t3-oss/env-core@0.13.8(typescript@5.7.3)(zod@3.25.64)':
     optionalDependencies:
       typescript: 5.7.3
-      zod: 3.25.63
+      zod: 3.25.64
 
-  '@t3-oss/env-nextjs@0.13.8(typescript@5.7.3)(zod@3.25.63)':
+  '@t3-oss/env-nextjs@0.13.8(typescript@5.7.3)(zod@3.25.64)':
     dependencies:
-      '@t3-oss/env-core': 0.13.8(typescript@5.7.3)(zod@3.25.63)
+      '@t3-oss/env-core': 0.13.8(typescript@5.7.3)(zod@3.25.64)
     optionalDependencies:
       typescript: 5.7.3
-      zod: 3.25.63
+      zod: 3.25.64
 
   '@tailwindcss/node@4.1.10':
     dependencies:
@@ -14763,20 +14763,20 @@ snapshots:
       '@types/react': 19.0.2
       '@types/react-dom': 19.0.3(@types/react@19.0.2)
 
-  '@trpc/client@11.3.1(@trpc/server@11.3.1(typescript@5.7.3))(typescript@5.7.3)':
+  '@trpc/client@11.4.0(@trpc/server@11.4.0(typescript@5.7.3))(typescript@5.7.3)':
     dependencies:
-      '@trpc/server': 11.3.1(typescript@5.7.3)
+      '@trpc/server': 11.4.0(typescript@5.7.3)
       typescript: 5.7.3
 
-  '@trpc/server@11.3.1(typescript@5.7.3)':
+  '@trpc/server@11.4.0(typescript@5.7.3)':
     dependencies:
       typescript: 5.7.3
 
-  '@trpc/tanstack-react-query@11.3.1(@tanstack/react-query@5.80.7(react@19.0.0))(@trpc/client@11.3.1(@trpc/server@11.3.1(typescript@5.7.3))(typescript@5.7.3))(@trpc/server@11.3.1(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)':
+  '@trpc/tanstack-react-query@11.4.0(@tanstack/react-query@5.80.7(react@19.0.0))(@trpc/client@11.4.0(@trpc/server@11.4.0(typescript@5.7.3))(typescript@5.7.3))(@trpc/server@11.4.0(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)':
     dependencies:
       '@tanstack/react-query': 5.80.7(react@19.0.0)
-      '@trpc/client': 11.3.1(@trpc/server@11.3.1(typescript@5.7.3))(typescript@5.7.3)
-      '@trpc/server': 11.3.1(typescript@5.7.3)
+      '@trpc/client': 11.4.0(@trpc/server@11.4.0(typescript@5.7.3))(typescript@5.7.3)
+      '@trpc/server': 11.4.0(typescript@5.7.3)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       typescript: 5.7.3
@@ -16133,7 +16133,7 @@ snapshots:
       jose: 5.10.0
       kysely: 0.28.2
       nanostores: 0.11.4
-      zod: 3.25.63
+      zod: 3.25.64
 
   better-call@1.0.9:
     dependencies:
@@ -18102,9 +18102,9 @@ snapshots:
       map-cache: 0.2.2
     optional: true
 
-  framer-motion@12.17.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  framer-motion@12.17.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      motion-dom: 12.17.0
+      motion-dom: 12.17.3
       motion-utils: 12.12.1
       tslib: 2.8.1
     optionalDependencies:
@@ -19131,8 +19131,8 @@ snapshots:
       smol-toml: 1.3.4
       strip-json-comments: 5.0.2
       typescript: 5.7.3
-      zod: 3.25.63
-      zod-validation-error: 3.4.1(zod@3.25.63)
+      zod: 3.25.64
+      zod-validation-error: 3.4.1(zod@3.25.64)
 
   konva@9.3.20: {}
 
@@ -20162,15 +20162,15 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.1
 
-  motion-dom@12.17.0:
+  motion-dom@12.17.3:
     dependencies:
       motion-utils: 12.12.1
 
   motion-utils@12.12.1: {}
 
-  motion@12.17.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  motion@12.17.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      framer-motion: 12.17.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.17.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       tslib: 2.8.1
     optionalDependencies:
       react: 19.0.0
@@ -23277,11 +23277,11 @@ snapshots:
 
   zdog@1.1.3: {}
 
-  zod-validation-error@3.4.1(zod@3.25.63):
+  zod-validation-error@3.4.1(zod@3.25.64):
     dependencies:
-      zod: 3.25.63
+      zod: 3.25.64
 
-  zod@3.25.63: {}
+  zod@3.25.64: {}
 
   zustand@5.0.5(@types/react@19.0.2)(react@19.0.0)(use-sync-external-store@1.5.0(react@19.0.0)):
     optionalDependencies:
