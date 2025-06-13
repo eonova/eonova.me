@@ -63,9 +63,7 @@
     ".next/types/**/*.tsx",
     "eslint.config.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "src/tests/**/*.ts",
-    "src/tests/**/**/*.tsx"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
