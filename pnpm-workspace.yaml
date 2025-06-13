@@ -161,4 +161,5 @@ catalogs:
     '@testing-library/react': ^16.3.0
     '@vitest/coverage-v8': 3.2.1
     '@vitest/ui': ^3.2.3
+    jsdom: ^26.1.0
     vitest: ^3.2.3

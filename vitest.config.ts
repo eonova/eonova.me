@@ -11,6 +11,7 @@ export default defineConfig({
     globals: true,
     include: ['src/tests/**/*.test.{ts,tsx}'],
     exclude: ['**/node_modules/**', '**/e2e/**'],
+    environment: 'jsdom',
     coverage: {
       reporter: ['lcov', 'html'],
       all: true,
@@ -27,7 +28,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve('./src'),
+      '~': resolve('./src'),
     },
   },
 })
