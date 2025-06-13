@@ -17,7 +17,7 @@ const description = '有任何问题可以给我留言'
 const url = '/guestbook'
 
 export async function generateMetadata(
-  _props: any,
+  _props: unknown,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}

@@ -8,5 +8,5 @@ export function getRateLevel(rate: number): RateLevel {
     4: '佳作',
     5: '封神',
   }
-  return mapping[rate] || '较好'
+  return mapping[rate] ?? '较好'
 }

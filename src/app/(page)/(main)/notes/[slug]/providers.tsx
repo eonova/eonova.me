@@ -8,7 +8,7 @@ interface ProvidersProps {
   note: Note
 }
 
-function Providers(props: ProvidersProps) {
+function Providers(props: Readonly<ProvidersProps>) {
   const { children, note } = props
 
   return <NoteProvider value={note}>{children}</NoteProvider>

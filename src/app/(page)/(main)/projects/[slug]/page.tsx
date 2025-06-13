@@ -18,7 +18,7 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: Readonly<PageProps>, parent: ResolvingMetadata): Promise<Metadata> {
   const { slug } = await props.params
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}

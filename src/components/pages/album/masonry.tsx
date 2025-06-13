@@ -24,7 +24,7 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      const containerWidth = ref.current?.offsetWidth || 0
+      const containerWidth = ref.current?.offsetWidth ?? 0
       if (containerWidth === prevContainerWidth.current)
         return
 
@@ -116,7 +116,7 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
               src={item.imageUrl}
               height={item.height}
               width={item.width}
-              alt={item.description || ''}
+              alt={item.description ?? ''}
               className="w-full h-full object-cover"
             />
           </a.div>

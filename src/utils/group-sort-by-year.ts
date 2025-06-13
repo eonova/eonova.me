@@ -6,9 +6,7 @@ export function groupAndSortByYear(data: Project[]) {
     const year = date.getUTCFullYear().toString()
 
     // 如果年份不在当前的分组中，初始化一个空数组
-    if (!acc[year]) {
-      acc[year] = []
-    }
+    acc[year] ??= []
 
     // 将当前对象添加到对应年份的数组中
     acc[year].push(current)

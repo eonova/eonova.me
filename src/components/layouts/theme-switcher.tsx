@@ -9,8 +9,8 @@ function ThemeSwitcher() {
 
   const handleToggle = (e: React.MouseEvent) => {
     const willDark = resolvedTheme !== 'dark'
-    const x = e?.clientX || window.innerWidth // 默认从右上角开始
-    const y = e?.clientY || 0
+    const x = e?.clientX ?? window.innerWidth // 默认从右上角开始
+    const y = e?.clientY ?? 0
 
     // 兼容不支持 View Transitions API 的情况
     if (!document.startViewTransition || isReducedMotion()) {

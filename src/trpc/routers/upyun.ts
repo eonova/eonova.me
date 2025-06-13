@@ -57,7 +57,7 @@ export const upyunRouter = createTRPCRouter({
         const text = await response.text()
         throw new TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
-          message: `UPYUN 上传失败: ${text || response.statusText}`,
+          message: `UPYUN 上传失败: ${text ?? response.statusText}`,
         })
       }
       // upyun 上传成功无 json 返回，直接拼接 url

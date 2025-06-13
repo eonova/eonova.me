@@ -47,10 +47,10 @@ function Page() {
                         className="p-6"
                         key={friend.id}
                         props={{
-                          images: friend.avatar || 'https://example.com/avatar.jpg',
+                          images: friend.avatar ?? 'https://example.com/avatar.jpg',
                           url: friend.url,
                           title: friend.name,
-                          desc: friend.description || '这位朋友没有留下任何描述',
+                          desc: friend.description ?? '这位朋友没有留下任何描述',
                         }}
                       />
                     ))}

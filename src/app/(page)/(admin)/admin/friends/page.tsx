@@ -35,7 +35,7 @@ function Page() {
         <>
           <AddFriendDialog open={open} onClose={() => setOpen(false)} />
           <FriendsTable
-            data={(data.items || []).map((friend: { id: string, name: string, avatar: string | null, url: string, description: string | null }) => ({
+            data={(data.items ?? []).map((friend: { id: string, name: string, avatar: string | null, url: string, description: string | null }) => ({
               id: friend.id,
               name: friend.name,
               avatar: friend.avatar ?? '',

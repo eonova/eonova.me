@@ -27,7 +27,7 @@ interface FormProps {
   user: User
 }
 
-function MessageBox(props: FormProps) {
+function MessageBox(props: Readonly<FormProps>) {
   const { user } = props
   const trpc = useTRPC()
 
@@ -92,9 +92,7 @@ function MessageBox(props: FormProps) {
           <div className="mt-4 flex justify-end gap-2">
             <Button
               variant="outline"
-              onClick={() => {
-                void signOut()
-              }}
+              onClick={() => signOut()}
               data-testid="guestbook-logout-button"
             >
               登出

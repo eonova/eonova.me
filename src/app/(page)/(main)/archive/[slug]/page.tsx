@@ -16,7 +16,7 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata(pageProps: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(pageProps: Readonly<PageProps>, parent: ResolvingMetadata): Promise<Metadata> {
   const { slug } = await pageProps.params
   const title = `归档-${slug === 'posts' ? '文章' : '手记'}`
   const url = `${SITE_URL}/archive/${slug}`
@@ -40,16 +40,14 @@ export async function generateMetadata(pageProps: PageProps, parent: ResolvingMe
   }
 }
 
-async function Page(props: PageProps) {
+async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 
   const articles = slug === 'posts' ? allPosts : allNotes
   // 做成对象数组：键为年份，值为文章数组
   const articlesByYear = articles.reduce((acc, article) => {
     const year = new Date(article.date).getFullYear()
-    if (!acc[year]) {
-      acc[year] = []
-    }
+    acc[year] ??= []
     acc[year].push(article)
     return acc
   }, {} as Record<string, (Post | Note)[]>)

@@ -8,8 +8,7 @@ interface LayoutProps {
   children: React.ReactNode
 }
 
-async function Layout(props: LayoutProps) {
-  const { children } = props
+async function Layout({ children }: Readonly<LayoutProps>) {
   const session = await getSession()
 
   if (!session || session.user.role !== 'admin') {

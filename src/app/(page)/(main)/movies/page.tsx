@@ -44,7 +44,7 @@ function Page() {
 
   // 获取当前选项卡数据
   const currentCollection = (data as DoubanDataResponse)?.data?.collections?.find(c => c.action === selectedMode)
-  const allItems = currentCollection?.items?.flat() || []
+  const allItems = currentCollection?.items?.flat() ?? []
   const totalItems = allItems.length
   const displayedItems = allItems.slice(0, loadedPages * pageSize)
   const hasMore = displayedItems.length < totalItems
@@ -78,7 +78,7 @@ function Page() {
             >
               {MODE_LABELS[mode]}
               {' '}
-              {(data as DoubanDataResponse)?.data?.user?.stats?.movie?.[mode] || 0}
+              {(data as DoubanDataResponse)?.data?.user?.stats?.movie?.[mode] ?? 0}
             </button>
           ))}
         </div>

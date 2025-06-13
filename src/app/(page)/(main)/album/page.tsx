@@ -8,7 +8,7 @@ const title = '相册'
 const description = '记录生活点点滴滴✨'
 const url = '/album'
 
-export async function generateMetadata(_props: any, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(_: unknown, parent: ResolvingMetadata): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
   return {
@@ -32,7 +32,7 @@ export async function generateMetadata(_props: any, parent: ResolvingMetadata): 
   }
 }
 
-const Album: React.FC = () => {
+function Album() {
   const jsonLd: WithContext<WebPage> = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',

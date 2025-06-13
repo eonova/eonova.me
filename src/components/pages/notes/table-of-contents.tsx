@@ -26,7 +26,7 @@ function TableOfContents(props: TableOfContentsProps) {
   )
 
   useEffect(() => {
-    setActiveId(activeIdFromScrollspy || null)
+    setActiveId(activeIdFromScrollspy ?? null)
   }, [activeIdFromScrollspy])
 
   const getActiveIds = (activeId: string) => {

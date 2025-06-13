@@ -19,7 +19,7 @@ const title = '归档'
 const description = '回望过往，方知自己的成长。'
 const url = `${SITE_URL}/archive`
 
-export async function generateMetadata(_: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(_: Readonly<PageProps>, parent: ResolvingMetadata): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
   return {
@@ -46,14 +46,12 @@ export async function generateMetadata(_: PageProps, parent: ResolvingMetadata):
 async function Page() {
   const articles = [...allPosts, ...allNotes].sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime()
-  }) as (Post | Note)[]
+  })
 
   // 做成对象数组：键为年份，值为文章数组
   const articlesByYear = articles.reduce((acc, article) => {
     const year = new Date(article.date).getFullYear()
-    if (!acc[year]) {
-      acc[year] = []
-    }
+    acc[year] ??= []
     acc[year].push(article)
     return acc
   }, {} as Record<string, (Post | Note)[]>)

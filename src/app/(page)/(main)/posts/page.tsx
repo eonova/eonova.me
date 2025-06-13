@@ -11,7 +11,7 @@ const url = '/blog'
 const description = '分享我的编程学习笔记、生活小思考，希望能网友们一起共同成长。'
 
 export async function generateMetadata(
-  _props: any,
+  _props: unknown,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}

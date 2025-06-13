@@ -22,7 +22,7 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: Readonly<PageProps>, parent: ResolvingMetadata): Promise<Metadata> {
   const { slug } = await props.params
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
@@ -81,7 +81,7 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
   }
 }
 
-async function Page(props: PageProps) {
+async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 
   const note = allNotes.find(p => p.slug === slug)
@@ -122,7 +122,7 @@ async function Page(props: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Providers note={note}>
-        <div className="my-16 mb-8 p-10 w-full overflow-visible flex flex-col justify-between relative lg:flex-row gap-2 bg-white dark:bg-zinc-900/50 md:col-start-1 rounded-[0_6px_6px_0] border-zinc-200/70 dark:border-neutral-800 lg:border">
+        <div className="my-16 mb-8 p-10 w-full overflow-visible flex flex-col justify-between relative lg:flex-row gap-2 bg-white dark:bg-zinc-900/50 md:col-start-1 rounded-[0_6px_6px_0] border-zinc-200/70 border-solid dark:border-neutral-800 lg:border">
           <article className="w-full sm:px-4">
             <Header />
             <NoteMdx code={code} />

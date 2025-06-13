@@ -56,8 +56,8 @@ function generateSlug(str: string, length: number): string {
 
 async function transform<D extends BaseDoc>(document: D, context: Context): Promise<D & {
   code: string
-  categories?: string | undefined
-  categoriesText?: string | undefined
+  categories?: string
+  categoriesText?: string
   slug: string
   type: string
   toc: any
@@ -76,7 +76,7 @@ async function transform<D extends BaseDoc>(document: D, context: Context): Prom
   const isPost = context.collection.name === 'posts'
   const isNote = context.collection.name === 'notes'
   const pathStr = removeTrim(path)
-  const slug = (isPost || isNote) ? generateSlug(pathStr ?? '', 10) : pathStr
+  const slug = (isPost ?? isNote) ? generateSlug(pathStr ?? '', 10) : pathStr
 
   return {
     ...document,

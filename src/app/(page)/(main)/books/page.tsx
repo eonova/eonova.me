@@ -21,7 +21,7 @@ const MODE_LABELS: Record<MovieMode, string> = {
   collect: '看过',
 }
 
-const Page: React.FC = () => {
+function Page() {
   const trpc = useTRPC()
   const { ref, inView } = useInView({ threshold: 0.1 })
   const [selectedMode, setSelectedMode] = useState<MovieMode>('do')
@@ -45,7 +45,7 @@ const Page: React.FC = () => {
   }))
   // 获取当前选项卡数据
   const currentCollection = (data as DoubanDataResponse)?.data?.collections?.find(c => c.action === selectedMode)
-  const allItems = currentCollection?.items?.flat() || []
+  const allItems = currentCollection?.items?.flat() ?? []
   const totalItems = allItems.length
   const displayedItems = allItems.slice(0, loadedPages * pageSize)
   const hasMore = displayedItems.length < totalItems

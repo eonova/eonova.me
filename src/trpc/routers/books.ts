@@ -37,7 +37,7 @@ export const booksRouter = createTRPCRouter({
       try {
         const userRes = await fetchUser(env.DOUBAN_ID, input.config.httpHeaders?.referer)
         if (!userRes.success) {
-          return buildErrorResponse(userRes.msg || '用户验证失败')
+          return buildErrorResponse(userRes.msg ?? '用户验证失败')
         }
 
         const actionsData = await Promise.all(
@@ -55,8 +55,8 @@ export const booksRouter = createTRPCRouter({
               items: data.items.map(validateBookItem),
             })),
             pagination: {
-              pageSize: input.config.contentConfig?.pagination.defaultPageSize || 10,
-              maxVisibleLines: input.config.contentConfig?.pagination.maxVisibleLines || 4,
+              pageSize: input.config.contentConfig?.pagination.defaultPageSize ?? 10,
+              maxVisibleLines: input.config.contentConfig?.pagination.maxVisibleLines ?? 4,
             },
           },
         }
@@ -75,6 +75,6 @@ async function fetchBookAction(userId: string, action: BookAction, config: Parti
   const data = await res.json()
   return {
     action,
-    items: data.result?.comment || [],
+    items: data.result?.comment ?? [],
   }
 }

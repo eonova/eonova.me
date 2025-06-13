@@ -14,7 +14,7 @@ interface MobileTableOfContentsProps {
   toc: TOC[]
 }
 
-function MobileTableOfContents(props: MobileTableOfContentsProps) {
+function MobileTableOfContents(props: Readonly<MobileTableOfContentsProps>) {
   const { toc } = props
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()

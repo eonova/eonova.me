@@ -23,7 +23,7 @@ const animation = {
 
 type HeaderProps = Project
 
-function Header(props: HeaderProps) {
+function Header(props: Readonly<HeaderProps>) {
   const { name, description, homepage, github } = props
 
   const repo = github.split('/').pop()

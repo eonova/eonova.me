@@ -9,7 +9,7 @@ interface ProvidersProps {
   post: Post
 }
 
-function Providers(props: ProvidersProps) {
+function Providers(props: Readonly<ProvidersProps>) {
   const { children, post } = props
 
   return <PostProvider value={post}>{children}</PostProvider>

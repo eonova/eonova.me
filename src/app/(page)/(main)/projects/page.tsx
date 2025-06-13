@@ -14,7 +14,7 @@ const description = '我的项目清单。所有东西都是用 ❤️ 制作'
 const url = '/projects'
 
 export async function generateMetadata(
-  _props: any,
+  _props: unknown,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}

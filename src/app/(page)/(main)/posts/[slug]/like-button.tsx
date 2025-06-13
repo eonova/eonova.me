@@ -19,7 +19,7 @@ interface LikeButtonProps {
   className?: string
 }
 
-function LikeButton(props: LikeButtonProps) {
+function LikeButton(props: Readonly<LikeButtonProps>) {
   const { slug, className } = props
   const [cacheCount, setCacheCount] = useState(0)
   const buttonRef = useRef<HTMLButtonElement>(null)

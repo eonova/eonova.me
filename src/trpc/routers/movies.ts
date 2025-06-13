@@ -32,7 +32,7 @@ async function fetchMovieAction(userId: string, action: MovieAction, config: Par
   const data = await res.json()
   return {
     action,
-    items: data.result?.comment || [],
+    items: data.result?.comment ?? [],
   }
 }
 
@@ -47,7 +47,7 @@ export const moviesRouter = createTRPCRouter({
         // 1. 验证用户有效性
         const userRes = await fetchUser(env.DOUBAN_ID, input.config.httpHeaders?.referer)
         if (!userRes.success) {
-          return buildErrorResponse(userRes.msg || '用户验证失败')
+          return buildErrorResponse(userRes.msg ?? '用户验证失败')
         }
 
         // 2. 并行获取各动作数据
@@ -67,8 +67,8 @@ export const moviesRouter = createTRPCRouter({
               items: data.items.map(validateMovieItem),
             })),
             pagination: {
-              pageSize: input.config.contentConfig?.pagination.defaultPageSize || 10,
-              maxVisibleLines: input.config.contentConfig?.pagination.maxVisibleLines || 4,
+              pageSize: input.config.contentConfig?.pagination.defaultPageSize ?? 10,
+              maxVisibleLines: input.config.contentConfig?.pagination.maxVisibleLines ?? 4,
             },
           },
         }

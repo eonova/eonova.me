@@ -20,7 +20,7 @@ const title = '关于'
 const description = '👋 嗨！我是 Eonova'
 const url = `${SITE_URL}/about`
 
-export async function generateMetadata(_props: any, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(_: unknown, parent: ResolvingMetadata): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
   return {

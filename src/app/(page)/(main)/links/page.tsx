@@ -7,7 +7,6 @@ import PageTitle from '~/components/shared/page-title'
 function Page() {
   return (
     <>
-
       <PageTitle
         title="收藏夹"
         description="我收藏的一些宝藏网站"

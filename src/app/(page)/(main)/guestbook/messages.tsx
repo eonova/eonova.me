@@ -24,7 +24,7 @@ interface MessageProps {
   message: GetInfiniteMessagesOutput['messages'][number]
 }
 
-function UpdatedDate(props: UpdatedDateProps) {
+function UpdatedDate(props: Readonly<UpdatedDateProps>) {
   const { date } = props
   const formattedDate = useFormattedDate(date, {
     format: 'YYYY-MM-DD',
@@ -87,7 +87,7 @@ function Messages() {
   )
 }
 
-function Message(props: MessageProps) {
+function Message(props: Readonly<MessageProps>) {
   const { message } = props
   const { data } = useSession()
 

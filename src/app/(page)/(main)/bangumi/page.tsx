@@ -64,7 +64,7 @@ function Page() {
   }, [inView, hasNextPage, isFetching])
 
   // 合并所有数据项
-  const allItems = data?.pages.flatMap(page => 'data' in page ? page.data?.items ?? [] : []) || []
+  const allItems = data?.pages.flatMap(page => 'data' in page ? page.data?.items ?? [] : []) ?? []
 
   return (
     <div className="container mx-auto">
@@ -91,11 +91,11 @@ function Page() {
       {/* 内容区域 */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-8">
         {/* 首次加载或模式切换时的骨架屏 */}
-        {(isLoading || isRefetching)
+        {(isLoading ?? isRefetching)
           && Array.from({ length: limit }).fill(0).map((_, i) => <CardSkeleton key={`skeleton-${i}`} />)}
 
         {/* 正常数据展示 */}
-        {!(isLoading || isRefetching) && allItems.map((item, index) => (
+        {!(isLoading ?? isRefetching) && allItems.map((item, index) => (
           <RecreationCard
             key={`${item.detailUrl}-${index}`}
             {...item}
