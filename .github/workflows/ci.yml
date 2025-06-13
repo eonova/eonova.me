@@ -34,17 +34,21 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Knip
-        run: pnpm check:knip
+      - name: CSpell
+        run: pnpm check:spelling
 
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Build
+        run: pnpm build
+
+      - name: Knip
+        run: pnpm check:knip
+
       - name: Unit Test
         run: pnpm test:unit
 
-      - name: Build
-        run: pnpm build
 
   lighthouse:
     runs-on: ubuntu-latest
