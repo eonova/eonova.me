@@ -2,6 +2,7 @@
 import type { DoubanDataResponse } from '~/types/douban'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { getFlatArrLength } from '~/utils/get-flat-arr-length'
 import { CardSkeleton } from '../modules/skeleton/card-skeleton'
 import InfiniteScrollingLoading from '../shared/infinite-scrolling-loading'
 import RecreationCard from '../shared/recreation-card'
@@ -18,6 +19,7 @@ interface DoubanLayoutProps {
   status: 'pending' | 'success' | 'error'
   isRefetching: boolean
   pageSize?: number
+  isFlat?: boolean
 }
 
 function DoubanLayout(props: Readonly<DoubanLayoutProps>) {
@@ -27,6 +29,7 @@ function DoubanLayout(props: Readonly<DoubanLayoutProps>) {
     status,
     isRefetching,
     pageSize = 16,
+    isFlat = false,
   } = props
 
   const { ref, inView } = useInView({ threshold: 0.1 })
@@ -64,7 +67,11 @@ function DoubanLayout(props: Readonly<DoubanLayoutProps>) {
           >
             {MODE_LABELS[mode] ?? ''}
             {' '}
-            {(data as DoubanDataResponse)?.data?.user?.stats?.movie?.[mode] ?? 0}
+            {
+              isFlat
+                ? (data?.data?.user?.stats?.movie?.[mode] ?? 0)
+                : (getFlatArrLength(data?.data?.collections.find(c => c.action === mode)?.items ?? []) ?? 0)
+            }
           </button>
         ))}
       </div>

@@ -8,7 +8,6 @@ import { useTRPC } from '~/trpc/client'
 function Page() {
   const trpc = useTRPC()
 
-  // 数据查询
   const { data, status, isRefetching } = useQuery(trpc.books.getBookData.queryOptions({
     actions: ['do', 'wish', 'collect'],
     config: {
@@ -35,6 +34,7 @@ function Page() {
         data={data as DoubanDataResponse}
         status={status}
         isRefetching={isRefetching}
+        isFlat
       />
     </>
   )

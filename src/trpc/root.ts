@@ -9,6 +9,7 @@ import { githubRouter } from './routers/github'
 import { guestbookRouter } from './routers/guestbook'
 import { likesRouter } from './routers/likes'
 import { moviesRouter } from './routers/movies'
+import { neodbRouter } from './routers/neodb'
 import { ratesRouter } from './routers/rates'
 import { spotifyRouter } from './routers/spotify'
 import { talksRouter } from './routers/talks'
@@ -37,6 +38,7 @@ export const appRouter = createTRPCRouter({
   friend: friendRouter,
   upyun: upyunRouter,
   ai: aiRouter,
+  neodb: neodbRouter,
 })
 
 export type AppRouter = typeof appRouter
