@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'motion/react'
+import { easeIn, easeOut, motion } from 'motion/react'
 import Link from 'next/link'
 import { memo } from 'react'
 import { Separator } from '~/components/base/separator'
@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       opacity: 0,
       transition: {
         duration: 0.3,
-        ease: 'easeIn',
+        ease: easeIn,
       },
     },
     visible: {
@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       top: '16px',
       transition: {
         duration: 0.4,
-        ease: 'easeIn',
+        ease: easeIn,
       },
     },
     hidden: {
@@ -46,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       top: '-50px',
       transition: {
         duration: 0.3,
-        ease: 'easeOut',
+        ease: easeOut,
       },
     },
   }

@@ -1,8 +1,7 @@
 'use client'
 
-import type { Spring } from 'motion/react'
 import type * as React from 'react'
-import { m } from 'motion/react'
+import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { cn } from '~/utils'
 
@@ -20,9 +19,9 @@ export const AutoResizeHeight: React.FC<AnimateChangeInHeightProps> = ({
   duration = 0.6,
   spring = false,
 }) => {
-  const softSpringPreset: Spring = {
+  const softSpringPreset = {
     duration: 0.35,
-    type: 'spring',
+    type: 'spring' as const,
     stiffness: 120,
     damping: 20,
   }
@@ -49,7 +48,7 @@ export const AutoResizeHeight: React.FC<AnimateChangeInHeightProps> = ({
   }, [])
 
   return (
-    <m.div
+    <motion.div
       className={cn('overflow-hidden', className)}
       style={{ height }}
       initial={false}
@@ -57,6 +56,6 @@ export const AutoResizeHeight: React.FC<AnimateChangeInHeightProps> = ({
       transition={spring ? softSpringPreset : { duration }}
     >
       <div ref={containerRef}>{children}</div>
-    </m.div>
+    </motion.div>
   )
 }
