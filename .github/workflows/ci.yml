@@ -37,11 +37,11 @@ jobs:
       - name: CSpell
         run: pnpm check:spelling
 
-      - name: Typecheck
-        run: pnpm typecheck
-
       - name: Build
         run: pnpm build
+
+      - name: Typecheck
+        run: pnpm typecheck
 
       - name: Knip
         run: pnpm check:knip
