@@ -50,10 +50,12 @@ jobs:
         run: pnpm test:unit
 
   lighthouse:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
+    needs: lint
     steps:
     - uses: actions/checkout@master
     - name: Lighthouse
       uses: foo-software/lighthouse-check-action@master
       with:
         urls: 'https://eonova.me'
+        timeout: 60000
