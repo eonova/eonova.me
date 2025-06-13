@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes'
 import { Button } from '~/components/base'
 import '~/styles/page/theme-switcher.css'
 
-function ThemeSwitcher({ isHeader = true }: { isHeader?: boolean }) {
+function ThemeSwitcher() {
   const { resolvedTheme, setTheme } = useTheme()
   const isReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -49,33 +49,16 @@ function ThemeSwitcher({ isHeader = true }: { isHeader?: boolean }) {
   }
 
   return (
-    isHeader
-      ? (
-          <Button
-            variant="ghost"
-            className="size-8 sm:size-9 p-0 rounded-full outline-0 focus-visible:outline-none border-0 cursor-pointer duration-200 relative"
-            aria-label="切换日夜间"
-            data-testid="theme-toggle"
-            onClick={handleToggle}
-          >
-            <SunIcon className="size-5 sm:size-4 dark:hidden transition-transform duration-300" />
-            <MoonIcon className="hidden size-5 sm:size-4 dark:block transition-transform duration-300" />
-          </Button>
-        )
-      : (
-          <div
-            className="w-full h-full"
-            data-testid="theme-toggle"
-            onClick={handleToggle}
-          >
-            <SunIcon
-              className="size-5 dark:hidden"
-            />
-            <MoonIcon
-              className="hidden size-5 dark:block"
-            />
-          </div>
-        )
+    <Button
+      variant="ghost"
+      className="size-8 sm:size-9 p-0 rounded-full outline-0 focus-visible:outline-none border-0 cursor-pointer duration-200 relative"
+      aria-label="切换日夜间"
+      data-testid="theme-toggle"
+      onClick={handleToggle}
+    >
+      <SunIcon data-testid="theme-light-button" className="size-5 sm:size-4 dark:hidden transition-transform duration-300" />
+      <MoonIcon data-testid="theme-dark-button" className="hidden size-5 sm:size-4 dark:block transition-transform duration-300" />
+    </Button>
   )
 }
 

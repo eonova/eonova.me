@@ -79,8 +79,6 @@ const MyNextConfig: NextConfig = {
     typedRoutes: true,
   },
 
-  serverExternalPackages: ['prettier'],
-
   images: {
     remotePatterns: [
       {

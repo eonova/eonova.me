@@ -11,7 +11,7 @@ import { SvgLogo } from '../shared/logo'
 import CommandMenu from './command-menu'
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
-import ThemeToggle from './theme-switcher'
+import ThemeSwitcher from './theme-switcher'
 import '~/styles/page/header.css'
 
 interface HeaderProps {
@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       <div className="flex items-center gap-2 sm:gap-1">
         <Navbar />
         <Separator orientation="vertical" className={cn('h-6 mx-1 sm:block hidden')} />
-        <ThemeToggle />
+        <ThemeSwitcher />
         <CommandMenu />
         <MobileNav />
       </div>

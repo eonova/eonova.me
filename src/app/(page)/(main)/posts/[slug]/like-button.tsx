@@ -155,7 +155,7 @@ function LikeButton(props: LikeButtonProps) {
         {status === 'error' ? <div>错误</div> : null}
         {status === 'success'
           ? (
-              <NumberFlow willChange plugins={[continuous]} value={data.likes + cacheCount} />
+              <NumberFlow willChange plugins={[continuous]} value={data.likes + cacheCount} data-testid="like-count" />
             )
           : null}
       </motion.button>

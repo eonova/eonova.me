@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { getTOC, rehypePlugins, remarkPlugins } from '@eonova/mdx-plugins'
+import { z } from 'zod'
 import { CATEGORIES } from '~/config/posts'
 
 interface BaseDoc {
@@ -94,7 +95,7 @@ const posts = defineCollection({
   name: 'posts',
   directory: './data/posts',
   include: '**/*.md',
-  schema: z => ({
+  schema: z.object({
     title: z.string(),
     date: z.string(),
     modifiedTime: z.string(),
@@ -108,7 +109,7 @@ const notes = defineCollection({
   name: 'notes',
   directory: './data/notes',
   include: '**/*.md',
-  schema: z => ({
+  schema: z.object({
     title: z.string(),
     date: z.string(),
     mood: z.string(),
@@ -122,7 +123,7 @@ const projects = defineCollection({
   name: 'projects',
   directory: './data/projects',
   include: '**/*.md',
-  schema: z => ({
+  schema: z.object({
     name: z.string(),
     date: z.string(),
     description: z.string(),

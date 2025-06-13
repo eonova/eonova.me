@@ -25,7 +25,7 @@ function DeleteButton() {
   const guestbookMutation = useMutation(
     trpc.guestbook.delete.mutationOptions({
       onSuccess: () => {
-        toast.success('评论删除成功')
+        toast.success('留言删除成功')
       },
       onSettled: () =>
         queryClient.invalidateQueries({
@@ -49,11 +49,12 @@ function DeleteButton() {
             variant="destructive"
             disabled={guestbookMutation.isPending}
             aria-disabled={guestbookMutation.isPending}
+            data-testid="guestbook-delete-button"
           >
             删除
           </Button>
         </AlertDialogTrigger>
-        <AlertDialogContent>
+        <AlertDialogContent data-testid="guestbook-dialog">
           <AlertDialogHeader>
             <AlertDialogTitle>删除评论</AlertDialogTitle>
             <AlertDialogDescription>
@@ -67,6 +68,7 @@ function DeleteButton() {
                 handleDeleteMessage(message.id)
               }}
               className={buttonVariants({ variant: 'destructive' })}
+              data-testid="guestbook-dialog-delete-button"
             >
               删除
             </AlertDialogAction>

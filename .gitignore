@@ -36,7 +36,7 @@ data/drafts/
 .content-collections
 
 # Testing
-src/e2e/data/test/
+data/posts/_test/
 playwright-report/
 test-results/
 coverage/

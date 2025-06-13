@@ -16,7 +16,7 @@ test.describe('guestbook page', () => {
     await page.getByTestId('guestbook-submit-button').click()
 
     await expect(page.getByTestId('guestbook-messages-list').getByText(message)).toBeVisible()
-    await expect(page.locator('li[data-sonner-toast]')).toContainText('Create message successfully')
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('成功发布留言')
 
     // Remove the message
     await db.delete(guestbook).where(eq(guestbook.body, message))
@@ -38,7 +38,7 @@ test.describe('guestbook page', () => {
     await deleteDialog.getByTestId('guestbook-dialog-delete-button').click()
 
     await expect(messageBlock).toBeHidden()
-    await expect(page.locator('li[data-sonner-toast]')).toContainText('Delete message successfully')
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('留言删除成功')
 
     // Remove the message
     await db.delete(guestbook).where(eq(guestbook.id, id))

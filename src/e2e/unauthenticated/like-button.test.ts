@@ -4,7 +4,7 @@ import { getNumberFlow } from '../utils/number-flow'
 
 test.describe('like button', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/blog/test-like')
+    await page.goto('/posts/test-like')
   })
 
   test('should be able to like a post', async ({ page }) => {

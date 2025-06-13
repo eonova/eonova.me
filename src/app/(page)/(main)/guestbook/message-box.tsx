@@ -79,7 +79,11 @@ function MessageBox(props: FormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea placeholder="留言" {...field} />
+                  <Textarea
+                    placeholder="留言"
+                    data-testid="guestbook-textarea"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,6 +95,7 @@ function MessageBox(props: FormProps) {
               onClick={() => {
                 void signOut()
               }}
+              data-testid="guestbook-logout-button"
             >
               登出
             </Button>
@@ -98,6 +103,7 @@ function MessageBox(props: FormProps) {
               type="submit"
               disabled={guestbookMutation.isPending}
               aria-disabled={guestbookMutation.isPending}
+              data-testid="guestbook-submit-button"
             >
               提交
             </Button>

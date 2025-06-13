@@ -80,7 +80,7 @@ catalogs:
     '@paralleldrive/cuid2': ^2.2.2
     dayjs: ^1.11.13
     superjson: ^2.2.2
-    zod: ^3.25.62
+    zod: ^3.25.63
 
   # 类型定义 (Type definitions)
   types:
@@ -102,16 +102,16 @@ catalogs:
     fast-xml-parser: ^5.2.5
     plop: ^4.0.1
     taze: ^19.1.0
-    tsx: ^4.20.1
+    tsx: ^4.20.2
     picocolors: ^1.1.1
 
   lint:
     '@eonova/eslint-config': ^0.3.1
-    '@eslint-react/eslint-plugin': ^1.52.1
+    '@eslint-react/eslint-plugin': ^1.52.2
     eslint: ^9.28.0
     eslint-plugin-react-hooks: ^5.2.0
     eslint-plugin-react-refresh: ^0.4.20
-    knip: ^5.60.2
+    knip: ^5.61.0
     cspell: ^9.0.2
     lint-staged: ^16.1.0
     simple-git-hooks: ^2.13.0

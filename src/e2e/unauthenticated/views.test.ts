@@ -4,7 +4,7 @@ import { getNumberFlow } from '../utils/number-flow'
 
 test.describe('views', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/blog/test-view')
+    await page.goto('/posts/test-view')
   })
 
   test('should be able to view a post', async ({ page }) => {

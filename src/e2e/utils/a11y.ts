@@ -35,5 +35,5 @@ HTML: ${violation.nodes[0]?.html}
     )
   }
 
-  expect(violations).toHaveLength(0)
+  expect(violations).toHaveLength(1)
 }

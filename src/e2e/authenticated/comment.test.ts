@@ -9,7 +9,7 @@ test.describe('comment page', () => {
   test('should be able to submit a comment', async ({ page }) => {
     const commentText = `comment-${createId()}`
 
-    await page.goto('/blog/test-submit')
+    await page.goto('/posts/test-submit')
 
     await page.getByTestId('comment-textarea-post').fill(commentText)
     await page.getByTestId('comment-submit-button').click()
@@ -32,7 +32,7 @@ test.describe('comment page', () => {
       userId: TEST_USER.id,
     })
 
-    await page.goto('/blog/test-delete')
+    await page.goto('/posts/test-delete')
 
     const commentBlock = page.getByTestId(`comment-${commentId}`)
     await commentBlock.getByTestId('comment-menu-button').click()
@@ -61,7 +61,7 @@ test.describe('comment page', () => {
       userId: TEST_USER.id,
     })
 
-    await page.goto('/blog/test-reply')
+    await page.goto('/posts/test-reply')
 
     const parentCommentBlock = page.getByTestId(`comment-${parentId}`)
 
@@ -102,7 +102,7 @@ test.describe('comment page', () => {
       parentId,
     })
 
-    await page.goto('/blog/test-delete-reply')
+    await page.goto('/posts/test-delete-reply')
 
     const parentCommentBlock = page.getByTestId(`comment-${parentId}`)
     const expandButton = parentCommentBlock.getByTestId('comment-replies-expand-button')
