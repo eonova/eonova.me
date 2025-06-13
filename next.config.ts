@@ -155,9 +155,10 @@ const MyNextConfig: NextConfig = {
   },
 
   webpack: (c) => {
-    if (process.env.REACT_SCAN_MONITOR_API_KEY) {
+    if (process.env.REACT_SCAN_MONITOR_API_KEY)
       c.plugins.push(ReactComponentName({}))
-    }
+    if (c.name === 'server')
+      c.optimization.concatenateModules = false
     return c
   },
 }

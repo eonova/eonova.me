@@ -3,16 +3,16 @@
 ![预览](./public//images/projects/eonova.me.png)
 
 <div align="center">
-  <a href="./README_CN.md"> 🇨🇳 简体中文</a>
+  <a href="./README.md"> 🇺🇸 English</a>
   |
-  <a href="https://eonova.me"> 👀 preview</a>
+  <a href="https://eonova.me"> 👀 预览</a>
 </div>
 
-## 🎉 Introduction
+## 🎉 项目介绍
 
-A personal blog built with modern technology stack, integrating technical article display, open source project management, and more.
+基于现代化技术栈构建的高性能个人博客，集成技术文章展示、开源项目管理等能力
 
-## 🌌 Features
+## 🌌 核心特性
 
 - Comments system
 - Like functionality
@@ -22,7 +22,7 @@ A personal blog built with modern technology stack, integrating technical articl
 - Sitemap
 - PWA
 
-## ✨ Tech Stack
+## ✨ 技术栈
 
 ```mermaid
 graph TD
@@ -49,58 +49,58 @@ graph TD
     class B,C,G,H,I,J,K build;
 ```
 
-## 🚀 Quick Start
+## 🚀 快速部署
 
-### Vercel One-Click Deployment
+### Vercel 一键部署
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=[https%3A%2F%2Fgithub.com%2Fhamster1963%2Fnextme&env=SITE_URL,SITE_AUTHOR](https://github.com/eonova/eonova.me))
 
-### Docker Compose Deployment
+### Docker Compose 部署
 
 ```bash
 docker compose up -d
 ```
 
-## 🖥️ Local Development
+## 🖥️ 本地启动
 
-Local development setup
+本地运行准备
 
 ```bash
-# Install all dependencies
+# 安装全部依赖
 pnpm i
 
-# Start development server (with 3000 processes in parallel)
+# 启动开发服务器（带3000进程并行）
 pnpm dev --p 3000
 
-# Build production version
+# 构建生产版本
 pnpm build
 
-# Database initialization
+# 数据库初始化
 pnpm db:migrate
 pnpm db:seed
 ```
 
-Key scripts
+关键脚本说明
 
 ```bash
-# Update dependencies
+# 依赖更新
 pnpm deps:up
 
-# Check dependencies
+# 依赖检查
 pnpm check:knip
 
-# Code quality check
+# 代码质量检查
 pnpm lint
 
-# Database operations
-pnpm db:studio # Database management
+# 数据库操作
+pnpm db:studio # 图形化数据库管理
 
-# Analyze build package
+# 分析构建包
 pnpm bundle-analyzer
 ```
 
-## ☕️ Buy me a coffee
+## ☕️ 请我喝咖啡
 
 <div align="center">
-  <img src="./public//images/admire.jpg" alt="Admire" width="70%"/>
+  <img src="./public//images/admire.jpg" alt="赞赏码" width="70%"/>
 </div>

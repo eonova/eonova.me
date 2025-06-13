@@ -4,15 +4,14 @@ import type { FC } from 'react'
 
 import { useMutation } from '@tanstack/react-query'
 import { Bot } from 'lucide-react'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { AutoResizeHeight } from '~/components/shared/auto-resize-height'
 import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
-import { isNoteModel, isPageModel, isPostModel } from '~/utils/url-builder'
 
 export interface AiSummaryProps {
-  data: any
   className?: string
+  [key: string]: unknown
 }
 
 function SummaryContainer(props: {
@@ -54,45 +53,21 @@ function SummaryContainer(props: {
 }
 
 export const AISummary: FC<AiSummaryProps> = (props) => {
-  const { data } = props
-
-  const payload = useMemo(() => {
-    let payload: any
-
-    if (isPostModel(data)) {
-      payload = {
-        category: data.category.slug,
-        slug: data.slug,
-        type: 'post',
-      }
-    }
-    else if (isNoteModel(data)) {
-      payload = {
-        nid: data.nid,
-        type: 'note',
-      }
-    }
-    else if (isPageModel(data)) {
-      payload = {
-        slug: data.slug,
-        type: 'page',
-      }
-    }
-    else {
-      throw new Error('未知类型')
-    }
-
-    return payload
-  }, [data])
-
   const trpc = useTRPC()
-  const { mutate, isPending } = useMutation(trpc.ai.generate.mutationOptions())
+  const { data: aiSummary, isPending, mutate } = useMutation(trpc.ai.generate.mutationOptions())
+  const content = props.content as string
 
   useEffect(() => {
-    if (payload) {
-      mutate(payload)
+    if (content) {
+      mutate({ content })
     }
-  }, [payload])
+  }, [props.content, mutate])
 
-  return <SummaryContainer isLoading={isPending} summary={data?.summary} />
+  // 优先展示 props.summary，其次展示 aiSummary
+  let summary: string | undefined = props.summary as string | undefined
+  if (!summary && aiSummary) {
+    summary = typeof aiSummary === 'string' ? aiSummary : aiSummary.summary
+  }
+
+  return <SummaryContainer isLoading={isPending} summary={summary} className={props.className} />
 }

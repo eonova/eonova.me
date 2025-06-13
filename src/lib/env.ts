@@ -79,6 +79,7 @@ export const env = createEnv({
     UPYUN_OPERATOR: z.string().min(1),
     UPYUN_PASSWORD: z.string().min(1),
     UPYUN_BUCKET: z.string().min(1),
+    DEEPSEEK_API_KEY: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_FLAG_COMMENT: z.string().min(1).optional(),

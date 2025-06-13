@@ -34,7 +34,7 @@ setup('setup blog', async () => {
 
     // Only works in dev mode since content-collections will build the test post
     // In CI, we have a GitHub Action to write the test post before building the apps
-    const testPostPath = path.join(process.cwd(), `src/content/blog/en/${post.slug}.mdx`)
+    const testPostPath = path.join(process.cwd(), `./src/e2e/data/test/${post.slug}.md`)
     await fs.writeFile(testPostPath, createTestPost(post.title))
   }
 })

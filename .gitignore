@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # Dependencies
 node_modules/
 
@@ -38,6 +36,7 @@ data/drafts/
 .content-collections
 
 # Testing
+src/e2e/data/test/
 playwright-report/
 test-results/
 coverage/
