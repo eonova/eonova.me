@@ -4,18 +4,11 @@ import { createHash } from 'node:crypto'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { getTOC, rehypePlugins, remarkPlugins } from '@eonova/mdx-plugins'
-import { z } from 'zod'
 import { CATEGORIES } from '~/config/posts'
 
 interface BaseDoc {
   _meta: Meta
   content: string
-}
-
-enum CATEGORIES {
-  tech = '技术',
-  summary = '总结',
-  design = '设计',
 }
 
 function removeTrim(str: string): string {
@@ -26,10 +19,10 @@ function removeTrim(str: string): string {
 
 function validateCategory(category: string): string {
   if (category.includes('/')) {
-    return category.split('/')[0]
+    return category.split('/')[0] as string
   }
   else if (category.includes('\\')) {
-    return category.split('\\')[0]
+    return category.split('\\')[0] as string
   }
   return category
 }
@@ -95,7 +88,7 @@ const posts = defineCollection({
   name: 'posts',
   directory: './data/posts',
   include: '**/*.md',
-  schema: z.object({
+  schema: z => ({
     title: z.string(),
     date: z.string(),
     modifiedTime: z.string(),
@@ -109,7 +102,7 @@ const notes = defineCollection({
   name: 'notes',
   directory: './data/notes',
   include: '**/*.md',
-  schema: z.object({
+  schema: z => ({
     title: z.string(),
     date: z.string(),
     mood: z.string(),
@@ -123,7 +116,7 @@ const projects = defineCollection({
   name: 'projects',
   directory: './data/projects',
   include: '**/*.md',
-  schema: z.object({
+  schema: z => ({
     name: z.string(),
     date: z.string(),
     description: z.string(),
