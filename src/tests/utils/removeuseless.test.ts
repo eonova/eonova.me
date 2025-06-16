@@ -7,4 +7,16 @@ describe('removeuseless', () => {
     const res = extractPlainTextFromMarkdown(content).replace(/\n/g, '')
     expect(res).toBe(`test demo test2  font`)
   })
+
+  it('should remove links', () => {
+    const content = `[test](https://eonova.me)`
+    const res = extractPlainTextFromMarkdown(content).replace(/\n/g, '')
+    expect(res).toBe('test')
+  })
+
+  it('should remove code blocks', () => {
+    const content = '```test```'
+    const res = extractPlainTextFromMarkdown(content).replace(/\n/g, '')
+    expect(res).toBe('')
+  })
 })
