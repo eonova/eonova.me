@@ -37,7 +37,6 @@ export const appRouter = createTRPCRouter({
   friend: friendRouter,
   upyun: upyunRouter,
   ai: aiRouter,
-  neodb: neodbRouter,
 })
 
 export type AppRouter = typeof appRouter
