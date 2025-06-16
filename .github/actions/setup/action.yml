@@ -45,4 +45,5 @@ runs:
         NEXT_PUBLIC_FLAG_STATS=true
         NEXT_PUBLIC_FLAG_SPOTIFY=true
         NEXT_PUBLIC_FLAG_LIKE_BUTTON=true
+        OPENAI_API_KEY=sk-fake-api-key
         EOF
