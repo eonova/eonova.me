@@ -109,6 +109,7 @@
     "next": "catalog:build",
     "next-themes": "catalog:frontend",
     "nuqs": "catalog:frontend",
+    "openai": "catalog:backend",
     "pg": "catalog:backend",
     "react": "catalog:frontend",
     "react-day-picker": "catalog:frontend",

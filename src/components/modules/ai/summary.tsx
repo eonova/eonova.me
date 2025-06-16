@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { AutoResizeHeight } from '~/components/shared/auto-resize-height'
 import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
+import { extractPlainTextFromMarkdown } from '~/utils/removeuseless'
 
 export interface AiSummaryProps {
   className?: string
@@ -52,21 +53,31 @@ function SummaryContainer(props: {
   )
 }
 
-export const AISummary: FC<AiSummaryProps> = (props) => {
+export const AISummary: FC<AiSummaryProps> = (props: any) => {
   const trpc = useTRPC()
-  const { data: aiSummary, isPending, mutate } = useMutation(trpc.ai.generate.mutationOptions())
-  const content = props.content as string
+  const { data: aiSummary, isPending, mutate } = useMutation(trpc.ai.generate.mutationOptions({
+    onSuccess: (data) => {
+      console.log('data', data)
+    },
+    onError: (error) => {
+      console.log('error', error)
+    },
+  }))
+  const content = props.data.content as string
+  const slug = props.data.slug as string
 
   useEffect(() => {
     if (content) {
-      mutate({ content })
+      const handleContent = extractPlainTextFromMarkdown(content)
+      console.log('handleContent', handleContent)
+      mutate({ content: handleContent, slug })
     }
-  }, [props.content, mutate])
+  }, [props.content, props.slug, mutate])
 
   // 优先展示 props.summary，其次展示 aiSummary
   let summary: string | undefined = props.summary as string | undefined
   if (!summary && aiSummary) {
-    summary = typeof aiSummary === 'string' ? aiSummary : aiSummary.summary
+    summary = typeof aiSummary === 'string' ? aiSummary : aiSummary?.summary ?? undefined
   }
 
   return <SummaryContainer isLoading={isPending} summary={summary} className={props.className} />

@@ -26,4 +26,4 @@ export const CATEGORIES: ICATEGORIES[] = [
   },
 ]
 
-export const RANDOMIMGAPI = 'http://www.dmoe.cc/random.php'
+// export const RANDOMIMGAPI = 'http://www.dmoe.cc/random.php'

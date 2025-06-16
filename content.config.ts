@@ -53,6 +53,9 @@ function generateSlug(str: string, length: number): string {
   }
   return str
 }
+function getCategoryText(category: string): string {
+  return String(CATEGORIES.find(i => i.label === category)?.name)
+}
 
 async function transform<D extends BaseDoc>(document: D, context: Context): Promise<D & {
   code: string
@@ -75,15 +78,16 @@ async function transform<D extends BaseDoc>(document: D, context: Context): Prom
 
   const isPost = context.collection.name === 'posts'
   const isNote = context.collection.name === 'notes'
+
   const pathStr = removeTrim(path)
-  const slug = (isPost ?? isNote) ? generateSlug(pathStr ?? '', 10) : pathStr
+  const slug = (isPost || isNote) ? generateSlug(pathStr ?? '', 10) : pathStr
 
   return {
     ...document,
     code,
     ...{
       categories: isPost ? validateCategory(path) : void 0,
-      categoriesText: isPost ? String(CATEGORIES[validateCategory(path) as keyof typeof CATEGORIES]) : void 0,
+      categoriesText: isPost ? getCategoryText(validateCategory(path)) : void 0,
     },
     slug: validateSlug(slug),
     type: context.collection.name,

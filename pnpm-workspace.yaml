@@ -21,7 +21,7 @@ catalogs:
     cva: 1.0.0-beta.3
     geist: ^1.4.2
     merge-refs: ^2.0.0
-    motion: ^12.17.3
+    motion: ^12.18.1
     next: ^15.2.4
     next-themes: ^0.4.6
     nuqs: ^2.4.3
@@ -29,7 +29,7 @@ catalogs:
     react-day-picker: ^9.7.0
     react-dom: 19.0.0
     react-email: 4.0.3
-    react-hook-form: ^7.57.0
+    react-hook-form: ^7.58.0
     react-intersection-observer: ^9.16.0
     react-medium-image-zoom: ^5.2.14
     react-spring: ^10.0.1
@@ -42,17 +42,18 @@ catalogs:
     '@octokit/rest': ^22.0.0
     '@tanstack/react-query': ^5.80.7
     '@tanstack/react-query-devtools': ^5.80.7
-    '@trpc/client': ^11.4.0
-    '@trpc/server': ^11.4.0
-    '@trpc/tanstack-react-query': ^11.4.0
+    '@trpc/client': ^11.4.1
+    '@trpc/server': ^11.4.1
+    '@trpc/tanstack-react-query': ^11.4.1
     '@upstash/ratelimit': ^2.0.5
     '@upstash/redis': ^1.35.0
     better-auth: ^1.2.9
     better-call: ^1.0.9
     drizzle-orm: ^0.44.2
     js-sha512: ^0.9.0
+    openai: ^5.3.0
     pg: ^8.16.0
-    resend: ^4.5.2
+    resend: ^4.6.0
 
   build:
     '@vitejs/plugin-react': ^4.5.2
@@ -63,12 +64,12 @@ catalogs:
 
   mdx:
     '@content-collections/cli': ^0.1.6
-    '@content-collections/core': ^0.9.0
+    '@content-collections/core': ^0.9.1
     '@content-collections/mdx': ^0.2.2
     '@content-collections/next': ^0.2.6
     '@shikijs/rehype': ^3.6.0
     '@shikijs/transformers': ^3.6.0
-    markdown-to-jsx: ^7.7.6
+    markdown-to-jsx: ^7.7.7
     github-slugger: ^2.0.0
     remark: ^15.0.1
     remark-gfm: ^4.0.1
@@ -87,7 +88,7 @@ catalogs:
     '@types/canvas-confetti': ^1.9.0
     '@types/hast': ^3.0.4
     '@types/mdast': ^4.0.4
-    '@types/node': ^24.0.1
+    '@types/node': ^24.0.2
     '@types/pg': ^8.15.4
     '@types/react': 19.0.2
     '@types/react-dom': 19.0.3
@@ -102,18 +103,18 @@ catalogs:
     fast-xml-parser: ^5.2.5
     plop: ^4.0.1
     taze: ^19.1.0
-    tsx: ^4.20.2
+    tsx: ^4.20.3
     picocolors: ^1.1.1
 
   lint:
     '@eonova/eslint-config': ^0.3.1
     '@eslint-react/eslint-plugin': ^1.52.2
-    eslint: ^9.28.0
+    eslint: ^9.29.0
     eslint-plugin-react-hooks: ^5.2.0
     eslint-plugin-react-refresh: ^0.4.20
     knip: ^5.61.0
-    cspell: ^9.0.2
-    lint-staged: ^16.1.0
+    cspell: ^9.1.1
+    lint-staged: ^16.1.2
     simple-git-hooks: ^2.13.0
 
   ui:
@@ -146,13 +147,13 @@ catalogs:
     canvas-confetti: ^1.9.3
     gsap: ^3.13.0
     lenis: ^1.3.4
-    lucide-react: ^0.514.0
+    lucide-react: ^0.515.0
     postcss: ^8.5.5
     postcss-load-config: ^6.0.1
     sonner: ^2.0.5
     tailwind-merge: ^3.3.1
     tailwindcss: ^4.1.10
-    yet-another-react-lightbox: ^3.23.2
+    yet-another-react-lightbox: ^3.23.3
 
   test:
     '@axe-core/playwright': ^4.10.2

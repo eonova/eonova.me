@@ -68,7 +68,7 @@ function DoubanLayout(props: Readonly<DoubanLayoutProps>) {
             {MODE_LABELS[mode] ?? ''}
             {' '}
             {
-              isFlat
+              !isFlat
                 ? (data?.data?.user?.stats?.movie?.[mode] ?? 0)
                 : (getFlatArrLength(data?.data?.collections.find(c => c.action === mode)?.items ?? []) ?? 0)
             }

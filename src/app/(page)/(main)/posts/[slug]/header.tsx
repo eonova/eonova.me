@@ -6,21 +6,18 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
 import { BlurImage } from '~/components/base/blur-image'
-import ImageZoom from '~/components/pages/album/image-zoom'
-import { RANDOMIMGAPI } from '~/config/posts'
+import { AISummary } from '~/components/modules/ai/summary'
 import { usePostContext } from '~/contexts/post'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { useTRPC } from '~/trpc/client'
 
 function Header() {
-  const { cover, date, title, slug } = usePostContext()
+  const { cover, date, title, slug, ...postData } = usePostContext()
   const trpc = useTRPC()
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
     loading: '...',
   })
-
-  const images = cover !== '' ? cover : RANDOMIMGAPI
 
   const incrementMutation = useMutation(trpc.views.increment.mutationOptions({
     onSettled: () => trpc.views.get.queryOptions({
@@ -48,7 +45,6 @@ function Header() {
         <h1 className="bg-gradient-to-b from-black via-black/90 to-black/70 to-[90%] bg-clip-text text-center text-4xl font-bold text-transparent md:text-5xl md:leading-[64px] dark:from-white dark:via-white/90 dark:to-white/70">
           {title}
         </h1>
-        {/* <AISummary data={{ ...postData, title, slug }} className="max-w-2xl mx-auto" /> */}
         <div className="grid grid-cols-2 text-sm max-md:gap-4 md:grid-cols-4">
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">作者</div>
@@ -89,22 +85,7 @@ function Header() {
           </div>
         </div>
       </div>
-      <ImageZoom
-        zoomImg={{
-          src: images,
-          alt: title,
-        }}
-      >
-        <BlurImage
-          src={images}
-          className="rounded-lg"
-          unoptimized
-          width={1200}
-          height={630}
-          lazy={false}
-          alt={title}
-        />
-      </ImageZoom>
+      <AISummary data={{ ...postData, title, slug }} className=" mx-auto" />
     </div>
   )
 }
