@@ -24,7 +24,9 @@ const CommentModal: React.FC<CommentDialogProps> = ({
           <DialogTitle>评论</DialogTitle>
         </DialogHeader>
         <div>
-          🚧 施工 ing
+          <div className="mb-5">
+            🚧 施工 ing
+          </div>
           <Suspense>
             <Comments slug="demo" />
           </Suspense>
