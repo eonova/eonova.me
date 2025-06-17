@@ -81,8 +81,8 @@ const TalkBox: React.FC<TalkBoxProps> = ({
                   )
             }
           </div>
-          <div className="flex items-center gap-1 cursor-pointer">
-            <MessageCircle onClick={() => setIsOpenCommentDialog(true)} className="h-3 w-3" />
+          <div className="flex items-center gap-1 cursor-pointer" onClick={() => setIsOpenCommentDialog(true)}>
+            <MessageCircle className="h-3 w-3" />
             <span>0</span>
           </div>
         </div>
