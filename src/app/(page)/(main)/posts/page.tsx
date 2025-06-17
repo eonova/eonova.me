@@ -8,7 +8,7 @@ import { SITE_NAME, SITE_URL } from '~/config/constants'
 
 const title = '文章'
 const url = '/blog'
-const description = '分享我的编程学习笔记、生活小思考，希望能网友们一起共同成长。'
+const description = '分享我的编程学习笔记、生活小思考，希望能和网友们一起共同成长。'
 
 export async function generateMetadata(
   _props: unknown,

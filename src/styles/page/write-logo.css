@@ -29,8 +29,8 @@
   width: 105px;
   display: inline-block;
   fill: none;
-  stroke: black;
-  stroke-width: 4;
+  stroke: #1d2c4c;
+  stroke-width: 3.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }

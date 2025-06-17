@@ -65,17 +65,17 @@ function NoteCard(props: NoteCardProps & { idx: number }) {
           <li className="text-black/55 dark:text-white/55 flex gap-1 items-center">
             <Eye className="size-3" />
             <span className="text-sm">
-              {likesQuery.status === 'pending' && '--'}
-              {likesQuery.status === 'error' && '错误'}
-              {likesQuery.status === 'success' && likesQuery.data.likes}
+              {viewsQuery.status === 'pending' && '--'}
+              {viewsQuery.status === 'error' && '错误'}
+              {viewsQuery.status === 'success' && viewsQuery.data.views}
             </span>
           </li>
           <li className="text-black/55 dark:text-white/55 flex gap-1 items-center">
             <ThumbsUp className="size-3" />
             <span className="text-sm">
-              {viewsQuery.status === 'pending' && '--'}
-              {viewsQuery.status === 'error' && '错误'}
-              {viewsQuery.status === 'success' && viewsQuery.data.views}
+              {likesQuery.status === 'pending' && '--'}
+              {likesQuery.status === 'error' && '错误'}
+              {likesQuery.status === 'success' && likesQuery.data.likes}
             </span>
           </li>
         </ul>

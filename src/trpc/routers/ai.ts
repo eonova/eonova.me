@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { eq, posts } from '~/db'
 import { env } from '~/lib/env'
 import { extractPlainTextFromMarkdown } from '~/utils/removeuseless'
-import { createTRPCRouter, protectedProcedure } from '../init'
+import { createTRPCRouter, publicProcedure } from '../init'
 
 const openai = new OpenAI({
   baseURL: 'https://api.deepseek.com',
@@ -11,7 +11,7 @@ const openai = new OpenAI({
 })
 
 export const aiRouter = createTRPCRouter({
-  generate: protectedProcedure
+  generate: publicProcedure
     .input(z.object({
       content: z.string().min(50),
       slug: z.string().min(1),

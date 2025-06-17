@@ -4,9 +4,11 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TalkSkeleton } from '~/components/modules/skeleton/talk-skeleton'
+import { useTalkStore } from '~/stores/talk'
 import { useTRPC } from '~/trpc/client'
 import InfiniteScrollingLoading from '../../shared/infinite-scrolling-loading'
 import TalkBox from './box'
+import CommentDialog from './comment-modal'
 
 interface TalkListProps {
   pageSize?: number
@@ -59,6 +61,8 @@ const TalkList: React.FC<TalkListProps> = () => {
     exit: { opacity: 0, scale: 0.5 },
   }
 
+  const { isOpenCommentDialog } = useTalkStore()
+
   return (
     <div className="space-y-4">
       {/* 加载状态 */}
@@ -96,6 +100,7 @@ const TalkList: React.FC<TalkListProps> = () => {
                 <TalkBox
                   id={talk.id}
                   time={talk.createdAt}
+                  likes={talk.likes}
                 >
                   {talk.content}
                 </TalkBox>
@@ -112,6 +117,8 @@ const TalkList: React.FC<TalkListProps> = () => {
       >
         <InfiniteScrollingLoading status={status} hasNextPage={isFetchingNextPage} totalItems={talks.length} />
       </div>
+
+      <CommentDialog isVisible={isOpenCommentDialog} />
     </div>
   )
 }

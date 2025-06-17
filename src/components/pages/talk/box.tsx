@@ -1,6 +1,7 @@
-import { Heart } from 'lucide-react'
+import { Heart, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 import { dayjs } from '~/lib/dayjs'
+import { useTalkStore } from '~/stores/talk'
 import { cn } from '~/utils'
 import LikeButton from './likes'
 import TalkMdx from './mdx'
@@ -11,6 +12,7 @@ interface TalkBoxProps {
   images?: string
   time?: Date
   children: string
+  likes?: number
 }
 
 const TalkBox: React.FC<TalkBoxProps> = ({
@@ -19,7 +21,9 @@ const TalkBox: React.FC<TalkBoxProps> = ({
   images = '/images/home/avatar.webp',
   name = 'Eonova',
   time = Date.now(),
+  likes = 0,
 }) => {
+  const { setIsOpenCommentDialog } = useTalkStore()
   return (
     <li className="flex flex-col sm:flex-row mt-[50px] gap-2 sm:gap-4 space-y-2">
       <div className="flex sm:hidden gap-3 sm:w-[40px]">
@@ -64,17 +68,23 @@ const TalkBox: React.FC<TalkBoxProps> = ({
             </TalkMdx>
           </div>
         </div>
-        <div className="flex items-center text-xs text-gray-500 dark:text-color-500/80 gap-4 w-full">
-          {
-            id
-              ? <LikeButton initialLikes={0} talkId={id} />
-              : (
-                  <div className="flex items-center gap-1 cursor-pointer">
-                    <Heart className="h-3 w-3" />
-                    <span>0</span>
-                  </div>
-                )
-          }
+        <div className="flex items-center text-xs text-gray-500 dark:text-color-500/80 gap-4 sm:gap-12 w-full">
+          <div>
+            {
+              id
+                ? <LikeButton initialLikes={likes} talkId={id} />
+                : (
+                    <div className="flex items-center gap-1 cursor-pointer">
+                      <Heart className="h-3 w-3" />
+                      <span>0</span>
+                    </div>
+                  )
+            }
+          </div>
+          <div className="flex items-center gap-1 cursor-pointer">
+            <MessageCircle onClick={() => setIsOpenCommentDialog(true)} className="h-3 w-3" />
+            <span>0</span>
+          </div>
         </div>
       </div>
     </li>

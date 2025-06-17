@@ -1,6 +1,6 @@
 'use client'
 import NumberFlow, { continuous } from '@number-flow/react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Heart } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useSession } from '~/lib/auth-client'
@@ -27,17 +27,6 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
     setUserLikes(storedLikes ? Math.min(Number(storedLikes), MAX_LIKES_PER_USER) : 0)
   }, [talkId])
   const queryClient = useQueryClient()
-  // 获取实时点赞数
-  const { data: realtimeData } = useQuery(
-    trpc.talks.getAllTalks.queryOptions(),
-  )
-
-  // 同步后端数据到乐观状态
-  useEffect(() => {
-    if (typeof realtimeData === 'number') {
-      setOptimisticLikes(realtimeData)
-    }
-  }, [realtimeData])
 
   // 点赞 mutation
   const { mutate: incrementLike } = useMutation(
@@ -79,9 +68,6 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
     incrementLike({ talkId })
   }
 
-  // 直接显示乐观更新值
-  const displayLikes = optimisticLikes
-
   return (
     <div
       className={cn(
@@ -101,17 +87,19 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
       <div className="flex items-center gap-1">
         <NumberFlow
           willChange
-          value={displayLikes}
+          value={optimisticLikes}
           plugins={[continuous]}
           className="font-medium text-sm text-gray-900 dark:text-gray-100"
         />
-        {userLikes > 0 && (
-          <span className="text-xs text-gray-500">
-            (+
-            {Math.min(userLikes, MAX_LIKES_PER_USER)}
-            )
-          </span>
-        )}
+        {
+          userLikes > 0 && (
+            <span className="text-xs text-gray-500">
+              (+
+              {Math.min(userLikes, MAX_LIKES_PER_USER)}
+              )
+            </span>
+          )
+        }
       </div>
     </div>
   )
