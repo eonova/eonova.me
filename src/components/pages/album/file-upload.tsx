@@ -34,7 +34,6 @@ const FileUpload: React.FC<FileUploadProps> = ({
       {
         onSuccess: (data) => {
           const url = handleImageUrl(data.path)
-          console.log('=======url======', url)
           setImageUrl(url)
         },
         onError: (error: any) => {

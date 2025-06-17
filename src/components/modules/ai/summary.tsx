@@ -69,7 +69,6 @@ export const AISummary: FC<AiSummaryProps> = (props: any) => {
   useEffect(() => {
     if (content) {
       const handleContent = extractPlainTextFromMarkdown(content)
-      console.log('handleContent', handleContent)
       mutate({ content: handleContent, slug })
     }
   }, [props.content, props.slug, mutate])

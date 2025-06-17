@@ -43,7 +43,6 @@ export async function GET(_: Request, props: OGRouteProps) {
     const roboto = fs.readFileSync(
       path.join(process.cwd(), 'src/app/og/[id]/RobotoCondensed-Bold.ttf'),
     )
-    console.log('SITE_URL:', SITE_URL)
 
     const post = await db
       .select({
@@ -182,7 +181,6 @@ export async function GET(_: Request, props: OGRouteProps) {
       },
     )
 
-    console.log('img:', img)
     return img
   }
   catch (error) {

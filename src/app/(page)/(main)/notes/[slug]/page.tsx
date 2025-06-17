@@ -29,8 +29,6 @@ export async function generateMetadata(props: Readonly<PageProps>, parent: Resol
 
   const note = allNotes.find(p => p.slug === slug)
 
-  console.log('note', note)
-
   if (!note)
     return {}
 
