@@ -1,6 +1,7 @@
 import { createId } from '@paralleldrive/cuid2'
-import { sql } from 'drizzle-orm'
+import { relations, sql } from 'drizzle-orm'
 import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+import { comments } from './comments'
 
 export const talks = pgTable('talk', {
   id: text('id').primaryKey().$defaultFn(createId),
@@ -10,3 +11,7 @@ export const talks = pgTable('talk', {
     .notNull()
     .default(sql`CURRENT_TIMESTAMP(3)`),
 })
+
+export const talksRelations = relations(talks, ({ many }) => ({
+  comments: many(comments),
+}))

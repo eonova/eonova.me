@@ -28,7 +28,8 @@ test.describe('comment page', () => {
     await db.insert(comments).values({
       id: commentId,
       body: 'Test Comment',
-      postId: 'test-delete',
+      contentId: 'test-delete',
+      contentType: 'post',
       userId: TEST_USER.id,
     })
 
@@ -57,7 +58,8 @@ test.describe('comment page', () => {
     await db.insert(comments).values({
       id: parentId,
       body: 'Parent Comment',
-      postId: 'test-reply',
+      contentId: 'test-reply',
+      contentType: 'post',
       userId: TEST_USER.id,
     })
 
@@ -90,14 +92,16 @@ test.describe('comment page', () => {
     await db.insert(comments).values({
       id: parentId,
       body: 'Parent Comment',
-      postId: 'test-delete-reply',
+      contentId: 'test-delete-reply',
+      contentType: 'post',
       userId: TEST_USER.id,
     })
 
     await db.insert(comments).values({
       id: replyId,
       body: 'Reply comment',
-      postId: 'test-delete-reply',
+      contentId: 'test-delete-reply',
+      contentType: 'post',
       userId: TEST_USER.id,
       parentId,
     })

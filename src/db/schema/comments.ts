@@ -1,8 +1,12 @@
 import { relations, sql } from 'drizzle-orm'
-import { boolean, pgTable, primaryKey, text, timestamp } from 'drizzle-orm/pg-core'
+import { boolean, pgEnum, pgTable, primaryKey, text, timestamp } from 'drizzle-orm/pg-core'
 
 import { users } from './auth'
+import { notes } from './notes' // 新增笔记模型
 import { posts } from './posts'
+import { talks } from './talks' // 新增碎碎念模型
+
+export const contentTypeEnum = pgEnum('content_type', ['post', 'note', 'talk'])
 
 export const comments = pgTable('comment', {
   id: text('id').primaryKey(),
@@ -16,9 +20,11 @@ export const comments = pgTable('comment', {
   updatedAt: timestamp('updated_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP(3)`),
-  postId: text('post_id')
-    .notNull()
-    .references(() => posts.slug),
+
+  // 多态关联核心字段
+  contentId: text('content_id').notNull(),
+  contentType: contentTypeEnum('content_type').notNull(),
+
   parentId: text('parent_id'),
   isDeleted: boolean('is_deleted').notNull().default(false),
 })
@@ -42,10 +48,24 @@ export const commentsRelations = relations(comments, ({ one, many }) => ({
     fields: [comments.userId],
     references: [users.id],
   }),
+
+  // 动态关联不同目标类型
   post: one(posts, {
-    fields: [comments.postId],
+    fields: [comments.contentId], // `contentId` maps to `posts.slug`
     references: [posts.slug],
+    // Drizzle doesn't support conditional joins directly in relations definition.
+    // The condition (e.g., `comments.contentType === 'post'`) is handled in your queries.
   }),
+  note: one(notes, {
+    fields: [comments.contentId], // `contentId` maps to `notes.id`
+    references: [notes.id],
+  }),
+  talk: one(talks, {
+    fields: [comments.contentId], // `contentId` maps to `talks.id`
+    references: [talks.id],
+  }),
+
+  // 自引用关系保持不变
   parent: one(comments, {
     fields: [comments.parentId],
     references: [comments.id],

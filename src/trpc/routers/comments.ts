@@ -175,7 +175,7 @@ export const commentsRouter = createTRPCRouter({
 
       const query = await ctx.db.query.comments.findMany({
         where: and(
-          eq(comments.postId, input.slug),
+          eq(comments.contentId, input.slug),
           input.parentId ? eq(comments.parentId, input.parentId) : isNull(comments.parentId),
           input.type === 'comments' ? isNull(comments.parentId) : isNotNull(comments.parentId),
           getCursorFilter(),
@@ -297,7 +297,7 @@ export const commentsRouter = createTRPCRouter({
           value: count(),
         })
         .from(comments)
-        .where(eq(comments.postId, input.slug))
+        .where(eq(comments.contentId, input.slug))
 
       return {
         comments: value[0]?.value ?? 0,
@@ -318,7 +318,7 @@ export const commentsRouter = createTRPCRouter({
           value: count(),
         })
         .from(comments)
-        .where(and(eq(comments.postId, input.slug), isNull(comments.parentId)))
+        .where(and(eq(comments.contentId, input.slug), isNull(comments.parentId)))
 
       return {
         comments: value[0]?.value ?? 0,
@@ -339,7 +339,7 @@ export const commentsRouter = createTRPCRouter({
           value: count(),
         })
         .from(comments)
-        .where(and(eq(comments.postId, input.slug), isNotNull(comments.parentId)))
+        .where(and(eq(comments.contentId, input.slug), isNotNull(comments.parentId)))
 
       return {
         replies: value[0]?.value ?? 0,
@@ -387,7 +387,8 @@ export const commentsRouter = createTRPCRouter({
           id: commentId,
           body: input.content,
           userId: user.id,
-          postId: input.slug,
+          contentId: input.slug,
+          contentType: 'post',
           parentId: input.parentId,
         })
 
@@ -434,6 +435,198 @@ export const commentsRouter = createTRPCRouter({
                 id: `comment=${input.parentId}&reply=${commentId}`,
                 date: input.date,
                 post,
+              }),
+            })
+          }
+        }
+      })
+    }),
+  note: protectedProcedure
+    .input(
+      z.object({
+        id: z.string().min(1),
+        content: z.string().min(1),
+        date: z.string().min(1),
+        parentId: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const user = ctx.session.user
+
+      const { success } = await ratelimit.limit(getKey(`post:${user.id}`))
+
+      if (!success)
+        throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
+
+      const commentId = createId()
+
+      const page = allPosts.find(post => post.slug === input.id)
+
+      if (!page)
+        throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' })
+
+      const title = page.title
+      const defaultImage = getDefaultImage(user.id)
+
+      const userProfile = {
+        name: user.name,
+        image: user.image ?? defaultImage,
+      }
+
+      const note = {
+        title,
+        url: `https://eonova.me/note/${input.id}`,
+      }
+
+      await ctx.db.transaction(async (tx) => {
+        await tx.insert(comments).values({
+          id: commentId,
+          body: input.content,
+          userId: user.id,
+          contentId: input.id,
+          contentType: 'note',
+          parentId: input.parentId,
+        })
+
+        // Notify the author of the blog note via email
+        if (!input.parentId && user.role === 'user') {
+          if (!isProduction || !resend)
+            return
+
+          await resend.emails.send({
+            from: 'Nova Eon <hi@eonova.me>',
+            to: env.AUTHOR_EMAIL,
+            subject: 'New comment on your blog note',
+            react: CommentEmailTemplate({
+              comment: input.content,
+              commenter: userProfile,
+              id: `comment=${commentId}`,
+              date: input.date,
+              post: note,
+            }),
+          })
+        }
+
+        // Notify the parent comment owner via email
+        if (input.parentId) {
+          if (!isProduction || !resend)
+            return
+
+          const parentComment = await tx.query.comments.findFirst({
+            where: eq(comments.id, input.parentId),
+            with: {
+              user: true,
+            },
+          })
+
+          if (parentComment && parentComment.user.email !== user.email) {
+            await resend.emails.send({
+              from: 'Nova Eon <hi@eonova.me>',
+              to: parentComment.user.email,
+              subject: 'New reply to your comment',
+              react: ReplyEmailTemplate({
+                reply: input.content,
+                replier: userProfile,
+                comment: parentComment.body,
+                id: `comment=${input.parentId}&reply=${commentId}`,
+                date: input.date,
+                post: note,
+              }),
+            })
+          }
+        }
+      })
+    }),
+  talk: protectedProcedure
+    .input(
+      z.object({
+        id: z.string().min(1),
+        content: z.string().min(1),
+        date: z.string().min(1),
+        parentId: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const user = ctx.session.user
+
+      const { success } = await ratelimit.limit(getKey(`post:${user.id}`))
+
+      if (!success)
+        throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
+
+      const commentId = createId()
+
+      const page = allPosts.find(post => post.slug === input.id)
+
+      if (!page)
+        throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' })
+
+      const title = page.title
+      const defaultImage = getDefaultImage(user.id)
+
+      const userProfile = {
+        name: user.name,
+        image: user.image ?? defaultImage,
+      }
+
+      const talk = {
+        title,
+        url: `https://eonova.me/talk`,
+      }
+
+      await ctx.db.transaction(async (tx) => {
+        await tx.insert(comments).values({
+          id: commentId,
+          body: input.content,
+          userId: user.id,
+          contentId: input.id,
+          contentType: 'talk',
+          parentId: input.parentId,
+        })
+
+        // Notify the author of the blog talk via email
+        if (!input.parentId && user.role === 'user') {
+          if (!isProduction || !resend)
+            return
+
+          await resend.emails.send({
+            from: 'Nova Eon <hi@eonova.me>',
+            to: env.AUTHOR_EMAIL,
+            subject: 'New comment on your blog note',
+            react: CommentEmailTemplate({
+              comment: input.content,
+              commenter: userProfile,
+              id: `comment=${commentId}`,
+              date: input.date,
+              post: talk,
+            }),
+          })
+        }
+
+        // Notify the parent comment owner via email
+        if (input.parentId) {
+          if (!isProduction || !resend)
+            return
+
+          const parentComment = await tx.query.comments.findFirst({
+            where: eq(comments.id, input.parentId),
+            with: {
+              user: true,
+            },
+          })
+
+          if (parentComment && parentComment.user.email !== user.email) {
+            await resend.emails.send({
+              from: 'Nova Eon <hi@eonova.me>',
+              to: parentComment.user.email,
+              subject: 'New reply to your comment',
+              react: ReplyEmailTemplate({
+                reply: input.content,
+                replier: userProfile,
+                comment: parentComment.body,
+                id: `comment=${input.parentId}&reply=${commentId}`,
+                date: input.date,
+                post: talk,
               }),
             })
           }
