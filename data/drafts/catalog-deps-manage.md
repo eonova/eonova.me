@@ -1,5 +1,5 @@
 ---
-title: Catalog 依赖管理
+title: Pnpm Catalog 依赖管理
 date: '2025-05-27T05:52:13.730Z'
 modifiedTime: '2025-05-27T05:52:13.733Z'
 summary: ''

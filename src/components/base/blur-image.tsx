@@ -11,6 +11,8 @@ type ImageProps = {
   imageClassName?: string
   lazy?: boolean
   blurGlass?: boolean
+  optimized?: boolean
+  webpFallback?: boolean
 } & React.ComponentProps<typeof NextImage>
 
 function BlurImage(props: ImageProps) {
@@ -28,7 +30,10 @@ function BlurImage(props: ImageProps) {
         alt={alt}
         loading={lazy ? 'lazy' : undefined}
         priority={!lazy}
-        quality={100}
+        quality={rest.quality || 85} // 降低默认质量以减少文件大小
+        sizes={rest.sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'} // 响应式尺寸
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         onLoad={() => {
           setIsLoading(false)
         }}

@@ -71,15 +71,35 @@ const MyNextConfig: NextConfig = {
 
   experimental: {
     reactCompiler: true,
-    optimizePackageImports: ['shiki', 'lenis', 'three'],
+    optimizePackageImports: [
+      'shiki',
+      'lenis',
+      'three',
+      'lucide-react',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      'react-hook-form',
+      'zod',
+    ],
     esmExternals: true,
     staticGenerationRetryCount: 1,
     staticGenerationMaxConcurrency: 8,
     staticGenerationMinPagesPerWorker: 25,
     typedRoutes: true,
+    // 启用更激进的代码分割
+    serverComponentsExternalPackages: ['sharp', 'canvas'],
   },
 
   images: {
+    // 启用图片优化
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1年缓存
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+
     remotePatterns: [
       {
         protocol: 'https',

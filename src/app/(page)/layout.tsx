@@ -7,6 +7,7 @@ import { Monitoring } from 'react-scan/monitoring/next'
 import Dock from '~/components/layouts/dock'
 import SignInDialog from '~/components/layouts/sign-in-dialog'
 import Hello from '~/components/shared/hello'
+import { ErrorBoundaryMonitor, PerformanceMonitor } from '~/components/shared/performance-monitor'
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
 import { env } from '~/lib/env'
 import { cn } from '~/utils'
@@ -132,7 +133,8 @@ export default function RootLayout({
           : null}
         <Providers>
           <Hello />
-          {children}
+          <PerformanceMonitor />
+          <ErrorBoundaryMonitor children={children} />
           <SignInDialog />
           <Dock />
         </Providers>
