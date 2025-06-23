@@ -1,5 +1,4 @@
 import { motion } from 'motion/react'
-import React from 'react'
 
 function WhirlpoolLoader() {
   const segments = 50

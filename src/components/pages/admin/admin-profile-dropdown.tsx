@@ -1,6 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/base/avatar'
 import { Button } from '~/components/base/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '~/components/base/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '~/components/base/dropdown-menu'
 import { Skeleton } from '~/components/base/skeleton'
 import { useSession } from '~/lib/auth-client'
 import { useDialogsStore } from '~/stores/dialogs'

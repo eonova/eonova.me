@@ -6,7 +6,7 @@ function Pinned() {
     <Card className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/50 to-rose-50/30 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-rose-900/10" />
 
-      <div className="absolute right-4 top-4">
+      <div className="absolute top-4 right-4">
         <PinIcon className="text-muted-foreground/50 size-5 rotate-45" />
       </div>
 
@@ -16,10 +16,10 @@ function Pinned() {
             <MessageCircleIcon className="text-primary size-5" />
           </div>
           <div className="space-y-4">
-            <h2 className="text-foreground text-xl font-semibold">
-              嗨！ 👋
-            </h2>
-            <p className="text-muted-foreground">感谢您造访我的网站。如果您有时间，我很乐意听取您对我作品的看法。请使用您的账户登入以留下评论。谢谢！</p>
+            <h2 className="text-foreground text-xl font-semibold">嗨！ 👋</h2>
+            <p className="text-muted-foreground">
+              感谢您造访我的网站。如果您有时间，我很乐意听取您对我作品的看法。请使用您的账户登入以留下评论。谢谢！
+            </p>
           </div>
         </div>
       </div>

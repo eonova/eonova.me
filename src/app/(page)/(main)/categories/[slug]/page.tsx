@@ -16,7 +16,10 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata(props: Readonly<PageProps>, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: Readonly<PageProps>,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { slug } = await props.params
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
@@ -76,7 +79,9 @@ export async function generateMetadata(props: Readonly<PageProps>, parent: Resol
 async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 
-  const posts = allPosts.filter(p => p.categories?.includes(slug)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const posts = allPosts
+    .filter(p => p.categories?.includes(slug))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   const url = `${SITE_URL}/categories/${slug}`
 
   if (!posts) {

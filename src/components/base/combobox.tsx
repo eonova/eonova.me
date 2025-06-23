@@ -37,7 +37,7 @@ function ComboboxInput(props: ComboboxInputProps) {
       className={cn(
         'border-input bg-background ring-offset-background flex h-10 w-full items-center justify-between rounded-lg border px-3 py-2 text-sm',
         'placeholder:text-muted-foreground',
-        'focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+        'focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         'disabled:cursor-not-allowed disabled:opacity-50',
         className,
       )}
@@ -53,7 +53,7 @@ function ComboboxLabel(props: ComboboxLabelProps) {
 
   return (
     <ComboboxPrimitive.Label
-      className={cn('text-sm font-medium leading-none', className)}
+      className={cn('text-sm leading-none font-medium', className)}
       {...rest}
     />
   )
@@ -98,7 +98,7 @@ function ComboboxItem(props: ComboboxItemProps) {
   return (
     <ComboboxPrimitive.Item
       className={cn(
-        'relative flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm outline-none transition-colors',
+        'relative flex cursor-default items-center rounded-md px-2 py-1.5 text-sm transition-colors outline-none select-none',
         'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground',
         'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
         className,
@@ -108,6 +108,7 @@ function ComboboxItem(props: ComboboxItemProps) {
   )
 }
 
+export { createListCollection } from '@ark-ui/react/combobox'
 export {
   Combobox,
   ComboboxClearTrigger,
@@ -131,4 +132,3 @@ export {
   ComboboxTrigger,
   type ComboboxValueChangeDetails,
 }
-export { createListCollection } from '@ark-ui/react/combobox'

@@ -11,10 +11,13 @@ const getKey = (id: string) => `friend:${id}`
 export const friendRouter = createTRPCRouter({
   getAllFriends: publicProcedure
     .input(
-      z.object({
-        limit: z.number().min(1).max(100).default(10),
-        cursor: z.date().optional(),
-      }).optional().default({}),
+      z
+        .object({
+          limit: z.number().min(1).max(100).default(10),
+          cursor: z.date().optional(),
+        })
+        .optional()
+        .default({}),
     )
     .query(async ({ ctx, input = {} }) => {
       const ip = getIp(ctx.headers)
@@ -59,12 +62,15 @@ export const friendRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const [newFriend] = await ctx.db.insert(friend).values({
-        name: input.name,
-        url: input.url,
-        avatar: input.avatar,
-        description: input.description,
-      }).returning()
+      const [newFriend] = await ctx.db
+        .insert(friend)
+        .values({
+          name: input.name,
+          url: input.url,
+          avatar: input.avatar,
+          description: input.description,
+        })
+        .returning()
       return newFriend
     }),
 
@@ -85,7 +91,8 @@ export const friendRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const [updatedFriend] = await ctx.db.update(friend)
+      const [updatedFriend] = await ctx.db
+        .update(friend)
         .set({
           name: input.name,
           url: input.url,

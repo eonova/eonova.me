@@ -13,9 +13,7 @@ const VideoCard: React.FC<VideoCardProps> = ({
   const scaleRadio = heightRadio! / widthRadio!
 
   return (
-    <div
-      className="w-screen max-w-full"
-    >
+    <div className="w-screen max-w-full">
       <div className="flex justify-center p-2">
         <div
           className="relative h-0 w-full shadow-lg"

@@ -13,13 +13,20 @@ function validateBangumiItem(raw: any): BangumiItem {
     metaInfo: [
       raw.type === 2 ? '动画' : '其他媒体',
       `导演: ${raw.staff?.find((s: any) => s.role === '导演')?.name ?? '未知'}`,
-      `声优: ${raw.cast?.slice(0, 3).map((c: any) => c.name).join('/') ?? '暂无'}`,
+      `声优: ${
+        raw.cast
+          ?.slice(0, 3)
+          .map((c: any) => c.name)
+          .join('/') ?? '暂无'
+      }`,
       `制作: ${raw.production?.join('/') ?? '未知'}`,
-    ].filter(Boolean).join(' | '),
+    ]
+      .filter(Boolean)
+      .join(' | '),
     publishDate: raw.date,
-    collectionInfo: [
-      raw.updated && new Date(raw.updated).toLocaleDateString(),
-    ].filter(Boolean).join(' · '),
+    collectionInfo: [raw.updated && new Date(raw.updated).toLocaleDateString()]
+      .filter(Boolean)
+      .join(' · '),
     score: raw.score,
     comment: raw.comment?.replace(/\\n/g, '\n'),
     episodesInfo: raw.eps ? `全${raw.eps}话` : undefined,
@@ -48,21 +55,24 @@ async function fetchAnimeCollection(
 
   const data = await res.json()
   return {
-    items: data.data?.map((item: any) => ({
-      ...item.subject,
-      comment: item.comment,
-    })) ?? [],
+    items:
+      data.data?.map((item: any) => ({
+        ...item.subject,
+        comment: item.comment,
+      })) ?? [],
     total: data.total ?? 0,
   }
 }
 
 export const bangumiRouter = createTRPCRouter({
   getAnimeData: publicProcedure
-    .input(z.object({
-      types: z.array(AnimeActionSchema),
-      config: z.custom<Partial<BangumiPluginConfig>>(),
-      cursor: z.number().optional().default(0),
-    }))
+    .input(
+      z.object({
+        types: z.array(AnimeActionSchema),
+        config: z.custom<Partial<BangumiPluginConfig>>(),
+        cursor: z.number().optional().default(0),
+      }),
+    )
     .query(async ({ input }) => {
       try {
         const { items, total } = await fetchAnimeCollection(

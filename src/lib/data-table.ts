@@ -9,7 +9,9 @@ interface GetCommonPinningStylesOptions<TData> {
   withBorder?: boolean
 }
 
-export function getCommonPinningStyles<TData>(options: GetCommonPinningStylesOptions<TData>): React.CSSProperties {
+export function getCommonPinningStyles<TData>(
+  options: GetCommonPinningStylesOptions<TData>,
+): React.CSSProperties {
   const { column, withBorder = false } = options
   const isPinned = column.getIsPinned()
   const isLastLeftPinnedColumn = isPinned === 'left' && column.getIsLastColumn('left')
@@ -38,7 +40,10 @@ export function getCommonPinningStyles<TData>(options: GetCommonPinningStylesOpt
   }
 }
 
-export function formatDate(date: Date | string | number | undefined, opts: Intl.DateTimeFormatOptions = {}) {
+export function formatDate(
+  date: Date | string | number | undefined,
+  opts: Intl.DateTimeFormatOptions = {},
+) {
   if (!date)
     return ''
 

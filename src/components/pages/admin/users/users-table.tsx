@@ -75,9 +75,7 @@ function UsersTable(props: UsersTableProps) {
     {
       id: 'email',
       accessorKey: 'email',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Email" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="Email" />,
       meta: {
         label: 'Email',
       },
@@ -85,9 +83,7 @@ function UsersTable(props: UsersTableProps) {
     {
       id: 'role',
       accessorKey: 'role',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Role" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="Role" />,
       meta: {
         label: 'Role',
         variant: 'multiSelect',
@@ -104,9 +100,7 @@ function UsersTable(props: UsersTableProps) {
     {
       id: 'createdAt',
       accessorKey: 'createdAt',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Created At" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="Created At" />,
       cell: ({ row }) =>
         formatDate(row.original.createdAt, {
           month: 'short',

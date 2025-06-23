@@ -11,8 +11,10 @@ export default async function (plop: NodePlopAPI) {
     return text.replace(/\s+/g, '-').toLowerCase()
   })
 
-  plop.setHelper('arrayFormat', (items: string[]) =>
-    `[${items.map(item => `'${item}'`).join(', ')}]`)
+  plop.setHelper(
+    'arrayFormat',
+    (items: string[]) => `[${items.map(item => `'${item}'`).join(', ')}]`,
+  )
 
   /** 文章生成器 */
   plop.setGenerator('post', {
@@ -32,13 +34,15 @@ export default async function (plop: NodePlopAPI) {
         default: CATEGORIES[0]?.label,
       },
     ],
-    actions: [{
-      type: 'add',
-      path: `data/posts/{{category}}/{{dashCase title}}.md`,
-      templateFile: './src/templates/post.hbs',
-      // 自动跳过已存在文件
-      skipIfExists: true,
-    }],
+    actions: [
+      {
+        type: 'add',
+        path: `data/posts/{{category}}/{{dashCase title}}.md`,
+        templateFile: './src/templates/post.hbs',
+        // 自动跳过已存在文件
+        skipIfExists: true,
+      },
+    ],
   })
 
   /** 手记生成器 */
@@ -66,11 +70,13 @@ export default async function (plop: NodePlopAPI) {
         default: WEATHER[0]?.text,
       },
     ],
-    actions: [{
-      type: 'add',
-      path: 'data/notes/{{dashCase topic}}.md',
-      templateFile: './src/templates/note.hbs',
-    }],
+    actions: [
+      {
+        type: 'add',
+        path: 'data/notes/{{dashCase topic}}.md',
+        templateFile: './src/templates/note.hbs',
+      },
+    ],
   })
 
   /** 项目生成器 */
@@ -117,10 +123,12 @@ export default async function (plop: NodePlopAPI) {
         default: false,
       },
     ],
-    actions: [{
-      type: 'add',
-      path: 'data/projects/{{dashCase name}}.md',
-      templateFile: './src/templates/project.hbs',
-    }],
+    actions: [
+      {
+        type: 'add',
+        path: 'data/projects/{{dashCase name}}.md',
+        templateFile: './src/templates/project.hbs',
+      },
+    ],
   })
 }

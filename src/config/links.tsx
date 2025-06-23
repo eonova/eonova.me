@@ -1,13 +1,7 @@
 import type { IconType } from '@icons-pack/react-simple-icons'
 import type { ReactNode } from 'react'
 
-import {
-  SiGithub,
-  SiInstagram,
-  SiRss,
-  SiX,
-  SiYoutube,
-} from '@icons-pack/react-simple-icons'
+import { SiGithub, SiInstagram, SiRss, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
 import {
   Archive,
   BellElectric,

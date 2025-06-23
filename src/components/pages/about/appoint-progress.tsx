@@ -27,12 +27,14 @@ const AppointProgress: React.FC<AppointProgressProps> = ({ startDate, endDate, c
   const progress = calculateProgress()
 
   return (
-    <div className={cn('w-full h-4 bg-gray-200/80 dark:bg-black/50 rounded-2xl overflow-hidden relative', className)}>
+    <div
+      className={cn(
+        'relative h-4 w-full overflow-hidden rounded-2xl bg-gray-200/80 dark:bg-black/50',
+        className,
+      )}
+    >
       {/* 进度条背景 */}
-      <div
-        className="h-full bg-blue-500  rounded-2xl"
-        style={{ width: `${progress}%` }}
-      />
+      <div className="h-full rounded-2xl bg-blue-500" style={{ width: `${progress}%` }} />
       {/* 进度文本 */}
       <div className="absolute inset-0 flex items-center justify-center text-sm text-gray-700 dark:text-gray-400/70">
         {progress}

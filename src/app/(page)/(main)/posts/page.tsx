@@ -38,10 +38,9 @@ export async function generateMetadata(
 }
 
 async function Page() {
-  const posts = allPosts
-    .toSorted((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime()
-    })
+  const posts = allPosts.toSorted((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  })
 
   const jsonLd: WithContext<Blog> = {
     '@context': 'https://schema.org',
@@ -71,13 +70,7 @@ async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageTitle title={title} description={description} />
-      {posts.length === 0
-        ? (
-            <div className="my-24 text-center text-xl">
-              暂无结果
-            </div>
-          )
-        : null}
+      {posts.length === 0 ? <div className="my-24 text-center text-xl">暂无结果</div> : null}
       <PostCards posts={posts} />
     </>
   )

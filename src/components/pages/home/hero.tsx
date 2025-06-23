@@ -117,12 +117,10 @@ function Hero() {
               </div>
             </div>
           </h1>
-          <div className="text-muted-foreground text-sm">
-            广东 • UTC/GMT +8
-          </div>
+          <div className="text-muted-foreground text-sm">广东 • UTC/GMT +8</div>
         </motion.div>
         <motion.div
-          className="relative hidden size-28 mt-3 md:block"
+          className="relative mt-3 hidden size-28 md:block"
           initial={{
             scale: 0,
           }}
@@ -143,7 +141,7 @@ function Hero() {
             showTooltip
             displayOverlayContent
             overlayContent={(
-              <p className="rounded-full backdrop-blur-[10px] items-center justify-center h-7.5 p-2.5 bg-white/70 dark:bg-white/30 md:flex hidden">
+              <p className="hidden h-7.5 items-center justify-center rounded-full bg-white/70 p-2.5 backdrop-blur-[10px] md:flex dark:bg-white/30">
                 Hi
               </p>
             )}

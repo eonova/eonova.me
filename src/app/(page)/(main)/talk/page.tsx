@@ -7,10 +7,7 @@ const description = '谢谢你愿意听我诉说🎈'
 function Page() {
   return (
     <>
-      <PageTitle
-        title={title}
-        description={description}
-      />
+      <PageTitle title={title} description={description} />
       <TalkList />
     </>
   )

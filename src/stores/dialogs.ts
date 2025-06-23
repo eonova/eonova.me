@@ -7,7 +7,8 @@ interface DialogsState {
 
 export const useDialogsStore = create<DialogsState>(set => ({
   isSignInOpen: false,
-  setIsSignInOpen: (value: boolean) => set({
-    isSignInOpen: value,
-  }),
+  setIsSignInOpen: (value: boolean) =>
+    set({
+      isSignInOpen: value,
+    }),
 }))

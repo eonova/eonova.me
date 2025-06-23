@@ -19,21 +19,19 @@ interface DeleteFriendDialogProps {
   id: string
 }
 
-const DeleteFriendDialog: React.FC<DeleteFriendDialogProps> = ({
-  id,
-}) => {
+const DeleteFriendDialog: React.FC<DeleteFriendDialogProps> = ({ id }) => {
   const friendDialogStore = useFriendDialogsStore()
   const trpc = useTRPC()
-  const friendMutation = useMutation(trpc.friend.deleteFriend.mutationOptions(
-    {
+  const friendMutation = useMutation(
+    trpc.friend.deleteFriend.mutationOptions({
       onSuccess: () => {
         friendDialogStore.setDeleteDialogs(false)
         toast.success('删除成功')
       },
       onError: error => toast.error(`删除图片失败：${error}`),
       onSettled: () => trpc.friend.getAllFriends.queryOptions(),
-    },
-  ))
+    }),
+  )
 
   return (
     <AlertDialog
@@ -45,9 +43,7 @@ const DeleteFriendDialog: React.FC<DeleteFriendDialogProps> = ({
       <AlertDialogContentMemo>
         <AlertDialogHeader>
           <AlertDialogTitle>删除</AlertDialogTitle>
-          <AlertDialogDescription>
-            你确定要删除这个好友吗?
-          </AlertDialogDescription>
+          <AlertDialogDescription>你确定要删除这个好友吗?</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>取消</AlertDialogCancel>

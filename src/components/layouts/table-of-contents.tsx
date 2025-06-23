@@ -86,57 +86,53 @@ function TableOfContents(props: TableOfContentsProps) {
   }
 
   return (
-    <div className="hidden lg:block lg:min-w-[150px] lg:min-h-70">
+    <div className="hidden lg:block lg:min-h-70 lg:min-w-[150px]">
       <div>
-        {
-          toc.map((item) => {
-            const { title, url, depth } = item
+        {toc.map((item) => {
+          const { title, url, depth } = item
 
-            return (
-              <Link
-                key={url}
-                href={`#${url}`}
-                className={
-                  cn(
-                    'text-muted-foreground hover:text-foreground block py-2.5 pr-2.5 text-sm leading-[1.2] transition-colors',
-                    allActiveIds.includes(url) && 'text-foreground',
-                  )
-                }
-                style={{
-                  paddingLeft: 14,
-                }}
-                onMouseEnter={() => handleMouseEnter(url)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <div className="flex items-center">
-                  <div style={{
-                    width: 10 * (maxDepth),
+          return (
+            <Link
+              key={url}
+              href={`#${url}`}
+              className={cn(
+                'text-muted-foreground hover:text-foreground block py-2.5 pr-2.5 text-sm leading-[1.2] transition-colors',
+                allActiveIds.includes(url) && 'text-foreground',
+              )}
+              style={{
+                paddingLeft: 14,
+              }}
+              onMouseEnter={() => handleMouseEnter(url)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="flex items-center">
+                <div
+                  style={{
+                    width: 10 * maxDepth,
                   }}
-                  >
-                    <span
-                      className="rounded-full"
-                      style={{
-                        width: `${8 * (maxDepth - depth + 1)}px`,
-                        background: getColor(allActiveIds.includes(url), url),
-                        display: 'inline-block',
-                        height: '5px',
-                      }}
-                    />
-                  </div>
-                  <motion.div
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: allActiveIds.includes(url) || HoverUrl ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className={cn('truncate', depth === minDepth ? 'font-bold' : '')}
-                  >
-                    {title}
-                  </motion.div>
+                >
+                  <span
+                    className="rounded-full"
+                    style={{
+                      width: `${8 * (maxDepth - depth + 1)}px`,
+                      background: getColor(allActiveIds.includes(url), url),
+                      display: 'inline-block',
+                      height: '5px',
+                    }}
+                  />
                 </div>
-              </Link>
-            )
-          },
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: allActiveIds.includes(url) || HoverUrl ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className={cn('truncate', depth === minDepth ? 'font-bold' : '')}
+                >
+                  {title}
+                </motion.div>
+              </div>
+            </Link>
           )
-        }
+        })}
       </div>
     </div>
   )

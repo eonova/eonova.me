@@ -13,19 +13,22 @@ cover: 'https://img.eonova.me/picgo/20250529195625450.png'
 
 ## 配置 Vercel
 
-在 Vercel 上创建一个新的项目，连接到刚才创建的 `image-hosting` 仓库。Vercel 会自动检测到仓库中的代码并进行部署。
+在 Vercel 上创建一个新的项目，连接到刚才创建的 `image-hosting`
+仓库。Vercel 会自动检测到仓库中的代码并进行部署。
 
 ![](https://img.eonova.me/picgo/CleanShot%202025-05-29%20at%2019.17.56%402x.png)
 
 ### 配置 Domain
 
-在 Vercel 的项目设置中，添加一个自定义域名，例如 `img.eonova.me`。确保这个域名已经解析到 Vercel 的服务器。
+在 Vercel 的项目设置中，添加一个自定义域名，例如
+`img.eonova.me`。确保这个域名已经解析到 Vercel 的服务器。
 
 ![](https://img.eonova.me/picgo/eonova-05-29-19-32-21%402x.png)
 
 ## 配置 picgo
 
-在本地安装 [PicGo](https://picgo.github.io/PicGo-Doc/zh/), 并配置上传到 Vercel 的图床。
+在本地安装
+[PicGo](https://picgo.github.io/PicGo-Doc/zh/), 并配置上传到 Vercel 的图床。
 
 1. 打开 PicGo，进入设置界面。
 
@@ -33,10 +36,10 @@ cover: 'https://img.eonova.me/picgo/20250529195625450.png'
 
 在“图床”选项卡中，选择“Github”, 根据要求填写相应信息。
 
-
 ### 获取 GitHub Token
 
-在 [GitHub](https://github.com/settings/tokens) 上生成一个新的 Personal Access Token，确保勾选了 `repo` 权限。
+在 [GitHub](https://github.com/settings/tokens) 上生成一个新的 Personal Access
+Token，确保勾选了 `repo` 权限。
 
 ![](https://img.eonova.me/picgo/CleanShot%202025-05-29%20at%2019.23.24%402x.png)
 
@@ -51,4 +54,3 @@ cover: 'https://img.eonova.me/picgo/20250529195625450.png'
 ![](https://img.eonova.me/picgo/eonova-05-29-19-39-33%402x.png)
 
 上传完了后，可以到 Github 仓库中查看上传的图片。
-

@@ -21,10 +21,7 @@ interface AddFriendDialogProps {
   onClose: () => void
 }
 
-const AddFriendDialog: React.FC<AddFriendDialogProps> = ({
-  open,
-  onClose,
-}) => {
+const AddFriendDialog: React.FC<AddFriendDialogProps> = ({ open, onClose }) => {
   const [name, setName] = useState('')
   const [url, setUrl] = useState('')
   const [avatar, setAvatar] = useState('')
@@ -40,16 +37,14 @@ const AddFriendDialog: React.FC<AddFriendDialogProps> = ({
 
   const trpc = useTRPC()
   const createFriendMutate = useMutation(
-    trpc.friend.createFriend.mutationOptions(
-      {
-        onSuccess: () => {
-          handleClose()
-          toast.success('好友添加成功')
-        },
-        onError: error => toast.error(`添加好友失败：${error}`),
-        onSettled: () => trpc.friend.getAllFriends.queryOptions(),
+    trpc.friend.createFriend.mutationOptions({
+      onSuccess: () => {
+        handleClose()
+        toast.success('好友添加成功')
       },
-    ),
+      onError: error => toast.error(`添加好友失败：${error}`),
+      onSettled: () => trpc.friend.getAllFriends.queryOptions(),
+    }),
   )
   const handleAdd = async () => {
     createFriendMutate.mutate({
@@ -79,11 +74,7 @@ const AddFriendDialog: React.FC<AddFriendDialogProps> = ({
             value={name}
             onChange={e => setName(e.target.value)}
           />
-          <Input
-            placeholder="URL"
-            value={url}
-            onChange={e => setUrl(e.target.value)}
-          />
+          <Input placeholder="URL" value={url} onChange={e => setUrl(e.target.value)} />
           <Input
             placeholder="头像URL（可选）"
             value={avatar}

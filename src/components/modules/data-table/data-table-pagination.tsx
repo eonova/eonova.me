@@ -8,7 +8,13 @@ import {
 } from 'lucide-react'
 
 import { Button } from '~/components/base/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/base/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '~/components/base/select'
 import { cn } from '~/utils'
 
 type DataTablePaginationProps<TData> = {
@@ -18,7 +24,7 @@ type DataTablePaginationProps<TData> = {
 
 export const DEFAULT_PAGE_SIZE_OPTIONS = [10, 20, 30, 40, 50] as const
 
-function DataTablePagination<TData,>(props: DataTablePaginationProps<TData>) {
+function DataTablePagination<TData>(props: DataTablePaginationProps<TData>) {
   const { table, className, pageSizeOptions = DEFAULT_PAGE_SIZE_OPTIONS, ...rest } = props
 
   return (
@@ -29,7 +35,7 @@ function DataTablePagination<TData,>(props: DataTablePaginationProps<TData>) {
       )}
       {...rest}
     >
-      <div className="text-muted-foreground flex-1 whitespace-nowrap text-sm">
+      <div className="text-muted-foreground flex-1 text-sm whitespace-nowrap">
         {table.getFilteredSelectedRowModel().rows.length}
         {' '}
         of
@@ -40,14 +46,14 @@ function DataTablePagination<TData,>(props: DataTablePaginationProps<TData>) {
       </div>
       <div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8">
         <div className="flex items-center space-x-2">
-          <p className="whitespace-nowrap text-sm font-medium">Rows per page</p>
+          <p className="text-sm font-medium whitespace-nowrap">Rows per page</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value))
             }}
           >
-            <SelectTrigger className="w-18 h-8 [&[data-size]]:h-8">
+            <SelectTrigger className="h-8 w-18 [&[data-size]]:h-8">
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">

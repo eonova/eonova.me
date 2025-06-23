@@ -4,12 +4,21 @@ description: '基于现代化技术栈构建的高性能个人博客'
 homepage: 'https://eonova.me/'
 github: 'https://github.com/eonova/eonova.me'
 date: '2025-02-01T03:13:39.164Z'
-techstack: ['Next.js','TailwindCSS','Drizzle-ORM','Trpc','Shiki','Content-Collections','Better-Auth','TypeScript']
+techstack:
+  [
+    'Next.js',
+    'TailwindCSS',
+    'Drizzle-ORM',
+    'Trpc',
+    'Shiki',
+    'Content-Collections',
+    'Better-Auth',
+    'TypeScript',
+  ]
 selected: true
 ---
 
 # eonova.me
-
 
 ## 🎉 项目介绍
 
@@ -33,7 +42,7 @@ selected: true
 
 ### Vercel 一键部署
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=[https%3A%2F%2Fgithub.com%2Fhamster1963%2Fnextme&env=SITE_URL,SITE_AUTHOR](https://github.com/eonova/eonova.me))
+[![Deploy with Vercel](https://vercel.com/button)](<https://vercel.com/new/clone?repository-url=[https%3A%2F%2Fgithub.com%2Fhamster1963%2Fnextme&env=SITE_URL,SITE_AUTHOR](https://github.com/eonova/eonova.me)>)
 
 ## 🖥️ 本地启动
 

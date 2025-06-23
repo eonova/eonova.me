@@ -1,5 +1,5 @@
-// src/trpc/routers/movies.ts
 import type { DoubanItem, DoubanPluginConfig, MovieAction } from '~/types/douban'
+// src/trpc/routers/movies.ts
 import { z } from 'zod'
 import { env } from '~/lib/env'
 import { MovieActionSchema } from '~/types/douban'
@@ -16,7 +16,9 @@ function validateMovieItem(raw: any): DoubanItem {
       `导演: ${raw.item.director}`,
       `编剧: ${raw.item.writer}`,
       `主演: ${raw.item.actor}`,
-    ].filter(Boolean).join(' | '),
+    ]
+      .filter(Boolean)
+      .join(' | '),
     publishDate: raw.item.publish_date,
     markInfo: [raw.mark_date, raw.label].filter(Boolean).join(' · '),
     rate: raw.rate ? getRateLevel(raw.rate) : undefined,
@@ -24,7 +26,11 @@ function validateMovieItem(raw: any): DoubanItem {
   }
 }
 
-async function fetchMovieAction(userId: string, action: MovieAction, config: Partial<DoubanPluginConfig>) {
+async function fetchMovieAction(
+  userId: string,
+  action: MovieAction,
+  config: Partial<DoubanPluginConfig>,
+) {
   const res = await fetch(
     `https://mouban.mythsman.com/guest/user_movie?action=${action}&id=${userId}`,
     { headers: config.httpHeaders },
@@ -38,10 +44,12 @@ async function fetchMovieAction(userId: string, action: MovieAction, config: Par
 
 export const moviesRouter = createTRPCRouter({
   getMovieData: publicProcedure
-    .input(z.object({
-      actions: z.array(MovieActionSchema),
-      config: z.custom<Partial<DoubanPluginConfig>>(),
-    }))
+    .input(
+      z.object({
+        actions: z.array(MovieActionSchema),
+        config: z.custom<Partial<DoubanPluginConfig>>(),
+      }),
+    )
     .query(async ({ input }) => {
       try {
         // 1. 验证用户有效性
@@ -52,9 +60,7 @@ export const moviesRouter = createTRPCRouter({
 
         // 2. 并行获取各动作数据
         const actionsData = await Promise.all(
-          input.actions.map(action =>
-            fetchMovieAction(env.DOUBAN_ID, action, input.config),
-          ),
+          input.actions.map(action => fetchMovieAction(env.DOUBAN_ID, action, input.config)),
         )
 
         // 3. 构建标准化响应

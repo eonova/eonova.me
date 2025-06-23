@@ -77,5 +77,5 @@ function TreeViewNode(props: TreeViewNodeProps) {
   )
 }
 
-export { type Node, TreeView, TreeViewNode }
 export { createTreeCollection } from '@ark-ui/react/tree-view'
+export { type Node, TreeView, TreeViewNode }

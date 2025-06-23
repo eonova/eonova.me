@@ -25,18 +25,19 @@ const AddAlbumDialog: React.FC = () => {
   const albumDialogStore = useAlbumDialogsStore()
   const trpc = useTRPC()
   const queryClient = useQueryClient()
-  const addImageMutate = useMutation(trpc.album.addImage.mutationOptions({
-    onSuccess: async () => {
-      albumDialogStore.setAddDialogs(false)
-      toast.success('图片上传成功')
-    },
-    onError: error => toast.error(error.message),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: trpc.album.getAllImages.queryKey(),
-      })
-    },
-  }),
+  const addImageMutate = useMutation(
+    trpc.album.addImage.mutationOptions({
+      onSuccess: async () => {
+        albumDialogStore.setAddDialogs(false)
+        toast.success('图片上传成功')
+      },
+      onError: error => toast.error(error.message),
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: trpc.album.getAllImages.queryKey(),
+        })
+      },
+    }),
   )
 
   function addImage() {
@@ -63,7 +64,9 @@ const AddAlbumDialog: React.FC = () => {
       }}
     >
       <DialogTrigger asChild>
-        <Button variant="outline" onClick={() => albumDialogStore.setAddDialogs(true)}>添加图片</Button>
+        <Button variant="outline" onClick={() => albumDialogStore.setAddDialogs(true)}>
+          添加图片
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -81,19 +84,34 @@ const AddAlbumDialog: React.FC = () => {
             <Label htmlFor="username" className="text-left">
               图片描述
             </Label>
-            <Input id="username" value={description} onChange={e => setDescription(e.target.value)} className="col-span-3" />
+            <Input
+              id="username"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              className="col-span-3"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-left">
               宽度
             </Label>
-            <Input id="width" value={width} onChange={e => setWidth(Number(e.target.value))} className="col-span-3" />
+            <Input
+              id="width"
+              value={width}
+              onChange={e => setWidth(Number(e.target.value))}
+              className="col-span-3"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-left">
               高度
             </Label>
-            <Input id="height" value={height} onChange={e => setHeight(Number(e.target.value))} className="col-span-3" />
+            <Input
+              id="height"
+              value={height}
+              onChange={e => setHeight(Number(e.target.value))}
+              className="col-span-3"
+            />
           </div>
         </div>
         <DialogFooter>

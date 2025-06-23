@@ -10,9 +10,7 @@ interface DockProps {
   className?: string
 }
 
-const Dock: React.FC<DockProps> = ({
-  className,
-}) => {
+const Dock: React.FC<DockProps> = ({ className }) => {
   const [isVisible, setIsVisible] = useState(false)
   const pathname = usePathname()
 
@@ -46,32 +44,27 @@ const Dock: React.FC<DockProps> = ({
   return (
     <>
       <motion.div
-        className={
-          cn('fixed right-3 bottom-25 rounded-full text-slate-700 dark:text-white bg-black/5 dark:bg-gray-300/10 duration-200 hidden lg:block', !isVisible && 'opacity-0', className)
-        }
+        className={cn(
+          'fixed right-3 bottom-25 hidden rounded-full bg-black/5 text-slate-700 duration-200 lg:block dark:bg-gray-300/10 dark:text-white',
+          !isVisible && 'opacity-0',
+          className,
+        )}
         initial={{ x: '120%' }}
         animate={{ x: isVisible ? '0%' : '120%' }}
         transition={{ duration: 0.3 }}
       >
-        <ul className="flex flex-col justify-between items-center w-full h-full p-1.5 gap-1">
-          <li
-            className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
-            onClick={scrollToTop}
-          >
+        <ul className="flex h-full w-full flex-col items-center justify-between gap-1 p-1.5">
+          <li className="cursor-pointer rounded-full p-1.5 dark:bg-white/10" onClick={scrollToTop}>
             <ArrowUp className="size-5" />
           </li>
-          {
-            pathname.match(/\/posts\//g)?.length === 1 && (
-              <li
-                className="dark:bg-white/10 cursor-pointer rounded-full p-1.5"
-                onClick={goToCommentSection}
-              >
-                <MessageCircle
-                  className="size-5"
-                />
-              </li>
-            )
-          }
+          {pathname.match(/\/posts\//g)?.length === 1 && (
+            <li
+              className="cursor-pointer rounded-full p-1.5 dark:bg-white/10"
+              onClick={goToCommentSection}
+            >
+              <MessageCircle className="size-5" />
+            </li>
+          )}
         </ul>
       </motion.div>
     </>

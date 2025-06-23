@@ -106,4 +106,4 @@ export interface DoubanDataResponse {
   success: boolean
   data: DoubanResponseType
   error?: string
-};
+}

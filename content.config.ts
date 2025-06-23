@@ -12,9 +12,7 @@ interface BaseDoc {
 }
 
 function removeTrim(str: string): string {
-  return str.includes('\\')
-    ? str.slice(str.lastIndexOf('\\') + 1)
-    : str
+  return str.includes('\\') ? str.slice(str.lastIndexOf('\\') + 1) : str
 }
 
 function validateCategory(category: string): string {
@@ -45,9 +43,7 @@ function generateSlug(str: string, length: number): string {
   const chinesePattern = /[\u4E00-\u9FA5\u3400-\u4DBF\uF900-\uFAFF]/
 
   if (chinesePattern.test(trimmed)) {
-    const hash = createHash('sha256')
-      .update(str.normalize('NFKC'))
-      .digest('hex')
+    const hash = createHash('sha256').update(str.normalize('NFKC')).digest('hex')
 
     return hash.slice(0, Math.min(length, 64))
   }
@@ -57,14 +53,19 @@ function getCategoryText(category: string): string {
   return String(CATEGORIES.find(i => i.label === category)?.name)
 }
 
-async function transform<D extends BaseDoc>(document: D, context: Context): Promise<D & {
-  code: string
-  categories?: string
-  categoriesText?: string
-  slug: string
-  type: string
-  toc: any
-}> {
+async function transform<D extends BaseDoc>(
+  document: D,
+  context: Context,
+): Promise<
+  D & {
+    code: string
+    categories?: string
+    categoriesText?: string
+    slug: string
+    type: string
+    toc: any
+  }
+  > {
   const code = await compileMDX(context, document, {
     remarkPlugins,
     rehypePlugins,
@@ -80,7 +81,7 @@ async function transform<D extends BaseDoc>(document: D, context: Context): Prom
   const isNote = context.collection.name === 'notes'
 
   const pathStr = removeTrim(path)
-  const slug = (isPost || isNote) ? generateSlug(pathStr ?? '', 10) : pathStr
+  const slug = isPost || isNote ? generateSlug(pathStr ?? '', 10) : pathStr
 
   return {
     ...document,

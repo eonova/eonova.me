@@ -6,7 +6,13 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
 import { Button } from '~/components/base/button'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '~/components/base/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '~/components/base/dialog'
 import { toast } from '~/components/base/toaster'
 import { signIn } from '~/lib/auth-client'
 import { useDialogsStore } from '~/stores/dialogs'
@@ -76,9 +82,7 @@ function SignInDialog() {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="text-left text-2xl">登录</DialogTitle>
-          <DialogDescription className="text-left">
-            以继续使用 eonova.me
-          </DialogDescription>
+          <DialogDescription className="text-left">以继续使用 eonova.me</DialogDescription>
         </DialogHeader>
         <div className="my-6 flex flex-col gap-4">
           <Button

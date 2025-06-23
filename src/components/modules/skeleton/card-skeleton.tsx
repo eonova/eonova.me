@@ -6,9 +6,9 @@ export function CardSkeleton() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="bg-white dark:bg-[#1E2939]/80 rounded-xl shadow-md overflow-hidden"
+      className="overflow-hidden rounded-xl bg-white shadow-md dark:bg-[#1E2939]/80"
     >
-      <Skeleton className="w-full h-72 sm:h-80 bg-gray-200 dark:bg-black/80 animate-pulse" />
+      <Skeleton className="h-72 w-full animate-pulse bg-gray-200 sm:h-80 dark:bg-black/80" />
     </motion.div>
   )
 }

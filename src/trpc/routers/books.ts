@@ -1,5 +1,5 @@
-// src/trpc/routers/books.ts
 import type { DoubanItem, DoubanPluginConfig } from '~/types/douban'
+// src/trpc/routers/books.ts
 import { z } from 'zod'
 import { env } from '~/lib/env'
 import { buildErrorResponse, fetchUser, getRateLevel, handleApiError, mapDoubanUser } from '~/utils'
@@ -18,10 +18,12 @@ function validateBookItem(raw: any): DoubanItem {
       raw.item.translator && `译者: ${raw.item.translator}`,
       raw.item.press && `出版社: ${raw.item.press}`,
       raw.item.producer && `出品方: ${raw.item.producer}`,
-    ].filter(Boolean).join(' | '),
+    ]
+      .filter(Boolean)
+      .join(' | '),
     publishDate: raw.item.publish_date,
     markInfo: [raw.mark_date, raw.label].filter(Boolean).join(' · '),
-    rate: (raw.rate ? getRateLevel(raw.rate) : undefined),
+    rate: raw.rate ? getRateLevel(raw.rate) : undefined,
     comment: raw.comment,
   }
 }
@@ -29,10 +31,12 @@ function validateBookItem(raw: any): DoubanItem {
 // 共享函数和类型与movies.ts类似，主要差异在数据处理部分
 export const booksRouter = createTRPCRouter({
   getBookData: publicProcedure
-    .input(z.object({
-      actions: z.array(BookActionSchema),
-      config: z.custom<Partial<DoubanPluginConfig>>(),
-    }))
+    .input(
+      z.object({
+        actions: z.array(BookActionSchema),
+        config: z.custom<Partial<DoubanPluginConfig>>(),
+      }),
+    )
     .query(async ({ input }) => {
       try {
         const userRes = await fetchUser(env.DOUBAN_ID, input.config.httpHeaders?.referer)
@@ -41,9 +45,7 @@ export const booksRouter = createTRPCRouter({
         }
 
         const actionsData = await Promise.all(
-          input.actions.map(action =>
-            fetchBookAction(env.DOUBAN_ID, action, input.config),
-          ),
+          input.actions.map(action => fetchBookAction(env.DOUBAN_ID, action, input.config)),
         )
 
         return {
@@ -67,7 +69,11 @@ export const booksRouter = createTRPCRouter({
     }),
 })
 
-async function fetchBookAction(userId: string, action: BookAction, config: Partial<DoubanPluginConfig>) {
+async function fetchBookAction(
+  userId: string,
+  action: BookAction,
+  config: Partial<DoubanPluginConfig>,
+) {
   const res = await fetch(
     `https://mouban.mythsman.com/guest/user_book?action=${action}&id=${userId}`,
     { headers: config.httpHeaders },

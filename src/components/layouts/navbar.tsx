@@ -28,7 +28,9 @@ function Navbar() {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (activeSubMenu) {
-        const isInside = e.target && (e.target as HTMLElement).closest(`.menu-popover[data-key="${activeSubMenu}"]`)
+        const isInside
+          = e.target
+            && (e.target as HTMLElement).closest(`.menu-popover[data-key="${activeSubMenu}"]`)
         if (!isInside) {
           setActiveSubMenu(null)
         }
@@ -89,7 +91,7 @@ function Navbar() {
                     'cursor-default': hasSubMenu && link.href === '#',
                   },
                 )}
-                href={(hasSubMenu && link.href === '#') ? '#' : link.href}
+                href={hasSubMenu && link.href === '#' ? '#' : link.href}
               >
                 {link.text}
               </Link>
@@ -104,10 +106,10 @@ function Navbar() {
               {hasSubMenu && (
                 <div
                   className={cn(
-                    'absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 transform transition-all duration-200 ease-out',
+                    'absolute top-full left-1/2 z-50 mt-2 -translate-x-1/2 transform transition-all duration-200 ease-out',
                     activeSubMenu === link.key
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-2 pointer-events-none',
+                      ? 'translate-y-0 opacity-100'
+                      : 'pointer-events-none translate-y-2 opacity-0',
                   )}
                   data-key={link.key}
                   onMouseEnter={() => hoverTimeout && clearTimeout(hoverTimeout)}

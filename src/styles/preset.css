@@ -228,7 +228,7 @@
     -moz-text-size-adjust: 100% !important;
     -ms-text-size-adjust: 100% !important;
     text-size-adjust: 100% !important;
-    font-size: 14px
+    font-size: 14px;
   }
 
   body {

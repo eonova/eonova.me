@@ -23,7 +23,6 @@ function Footer() {
       </Link>
       <div className="text-muted-foreground">
         最后更新于
-        {' '}
         {formattedDate}
       </div>
     </div>

@@ -22,26 +22,24 @@ function Page() {
 
   return (
     <>
-      <PageTitle
-        title={title}
-        description={description}
-      />
-      <div className="max-w-4xl mx-auto px-4 py-10">
+      <PageTitle title={title} description={description} />
+      <div className="mx-auto max-w-4xl px-4 py-10">
         {isLoading && (
-          <div className="w-full grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-            {
-              Array.from({ length: 9 }).map((_, index) => (
-                <Separator className="bg-gray-400/20 dark:bg-gray-600/20 rounded-2xl p-2 h-32" key={index} />
-              ))
-            }
+          <div className="grid w-full gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {Array.from({ length: 9 }).map((_, index) => (
+              <Separator
+                className="h-32 rounded-2xl bg-gray-400/20 p-2 dark:bg-gray-600/20"
+                key={index}
+              />
+            ))}
           </div>
         )}
-        {isError && <div className="text-red-500 text-center">加载友链失败，请刷新重试</div>}
-        {isSuccess && (
-          data?.items.length
+        {isError && <div className="text-center text-red-500">加载友链失败，请刷新重试</div>}
+        {isSuccess
+          && (data?.items.length
             ? (
                 <div className="flex flex-col justify-center gap-10">
-                  <div className="w-full grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+                  <div className="grid w-full gap-6 sm:grid-cols-2 md:grid-cols-3">
                     {data.items.map(friend => (
                       <LinkCard
                         className="p-6"
@@ -55,18 +53,17 @@ function Page() {
                       />
                     ))}
                   </div>
-                  <Button className="mx-auto" onClick={() => setOpen(true)}>添加你的友链</Button>
+                  <Button className="mx-auto" onClick={() => setOpen(true)}>
+                    添加你的友链
+                  </Button>
                 </div>
               )
             : (
-                <div className="flex flex-col items-center justify-center h-64">
-                  <div className="text-center text-gray-500 py-12">
-                    暂无友链，欢迎成为第一个朋友！
-                  </div>
+                <div className="flex h-64 flex-col items-center justify-center">
+                  <div className="py-12 text-center text-gray-500">暂无友链，欢迎成为第一个朋友！</div>
                   <Button onClick={() => setOpen(true)}>添加你的友链</Button>
                 </div>
-              )
-        )}
+              ))}
         <AddFriendDialog open={open} onClose={() => setOpen(false)} />
       </div>
     </>

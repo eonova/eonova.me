@@ -7,17 +7,10 @@ const config: KnipConfig = {
     'tailwindcss',
     'react-email',
     'picocolors',
+    'critters', // Required by Next.js build process
   ],
-  entry: [
-    'content.config.ts',
-    '*.config.mjs',
-    '*.config.ts',
-    'src/e2e/**/*.{setup,teardown}.ts',
-  ],
-  project: [
-    'src/**/*.{ts,tsx}',
-    'scripts/*.ts',
-  ],
+  entry: ['content.config.ts', '*.config.mjs', '*.config.ts', 'src/e2e/**/*.{setup,teardown}.ts'],
+  project: ['src/**/*.{ts,tsx}', 'scripts/*.ts'],
   ignore: [
     './scripts/verify-commit.ts',
     './src/db/seed.ts',
@@ -28,6 +21,8 @@ const config: KnipConfig = {
     'src/components/modules/**/*.{ts,tsx}',
     'src/components/shared/**/*.{ts,tsx}',
     'src/utils/url-builder.ts',
+    './src/hooks/use-intersection-observer.ts',
+    './src/lib/seo-utils.ts',
   ],
 }
 

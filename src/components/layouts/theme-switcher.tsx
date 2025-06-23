@@ -28,10 +28,7 @@ function ThemeSwitcher() {
     )
 
     transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-      ]
+      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
 
       document.documentElement.animate(
         {
@@ -40,9 +37,7 @@ function ThemeSwitcher() {
         {
           duration: 500,
           easing: 'ease-in',
-          pseudoElement: willDark
-            ? '::view-transition-new(root)'
-            : '::view-transition-old(root)',
+          pseudoElement: willDark ? '::view-transition-new(root)' : '::view-transition-old(root)',
         },
       )
     })
@@ -51,13 +46,19 @@ function ThemeSwitcher() {
   return (
     <Button
       variant="ghost"
-      className="size-8 sm:size-9 p-0 rounded-full outline-0 focus-visible:outline-none border-0 cursor-pointer duration-200 relative"
+      className="relative size-8 cursor-pointer rounded-full border-0 p-0 outline-0 duration-200 focus-visible:outline-none sm:size-9"
       aria-label="切换日夜间"
       data-testid="theme-toggle"
       onClick={handleToggle}
     >
-      <SunIcon data-testid="theme-light-button" className="size-5 sm:size-4 dark:hidden transition-transform duration-300" />
-      <MoonIcon data-testid="theme-dark-button" className="hidden size-5 sm:size-4 dark:block transition-transform duration-300" />
+      <SunIcon
+        data-testid="theme-light-button"
+        className="size-5 transition-transform duration-300 sm:size-4 dark:hidden"
+      />
+      <MoonIcon
+        data-testid="theme-dark-button"
+        className="hidden size-5 transition-transform duration-300 sm:size-4 dark:block"
+      />
     </Button>
   )
 }

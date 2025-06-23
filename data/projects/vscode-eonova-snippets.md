@@ -6,7 +6,6 @@ github: https://github.com/eonova/vscode-eonova-snippets
 date: '2025-01-22T00:00:00Z'
 techstack: ['TypeScript', '@vscode/vsce']
 selected: false
-
 ---
 
 # vscode-eonova-snippets
@@ -31,4 +30,3 @@ selected: false
 - [x] vitest
 - [x] jest
 - [x] regex
-

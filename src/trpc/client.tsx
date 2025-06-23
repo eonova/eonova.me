@@ -50,14 +50,28 @@ export function TRPCReactProvider(props: TRPCReactProviderProps) {
   const [trpcClient] = useState(() =>
     createTRPCClient<AppRouter>({
       links: [
-        httpBatchLink({
-          transformer: SuperJSON,
-          url: `${getBaseUrl()}/api/trpc`,
-        }),
         loggerLink({
           enabled: opts =>
             process.env.NODE_ENV === 'development'
             || (opts.direction === 'down' && opts.result instanceof Error),
+        }),
+        httpBatchLink({
+          transformer: SuperJSON,
+          url: `${getBaseUrl()}/api/trpc`,
+          // 批处理配置
+          maxURLLength: 2048,
+          // 请求头优化
+          headers: () => ({
+            'Content-Type': 'application/json',
+            'Accept-Encoding': 'gzip, deflate, br',
+          }),
+          // 请求超时
+          fetch: (url, options) => {
+            return fetch(url, {
+              ...options,
+              signal: AbortSignal.timeout(30000), // 30秒超时
+            })
+          },
         }),
       ],
     }),

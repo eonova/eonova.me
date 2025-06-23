@@ -11,10 +11,13 @@ const getKey = (id: string) => `talks:${id}`
 export const talksRouter = createTRPCRouter({
   getAllTalks: publicProcedure
     .input(
-      z.object({
-        limit: z.number().min(1).max(100).default(10),
-        cursor: z.date().optional(),
-      }).optional().default({}),
+      z
+        .object({
+          limit: z.number().min(1).max(100).default(10),
+          cursor: z.date().optional(),
+        })
+        .optional()
+        .default({}),
     )
     .query(async ({ ctx, input }) => {
       const ip = getIp(ctx.headers)
@@ -50,15 +53,16 @@ export const talksRouter = createTRPCRouter({
   createTalk: adminProcedure
     .input(
       z.object({
-        content: z.string()
-          .min(1, '内容不能为空')
-          .max(500, '内容长度不能超过500字符'),
+        content: z.string().min(1, '内容不能为空').max(500, '内容长度不能超过500字符'),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const [newTalk] = await ctx.db.insert(talks).values({
-        content: input.content,
-      }).returning()
+      const [newTalk] = await ctx.db
+        .insert(talks)
+        .values({
+          content: input.content,
+        })
+        .returning()
       return newTalk
     }),
 
@@ -72,13 +76,12 @@ export const talksRouter = createTRPCRouter({
     .input(
       z.object({
         id: z.string().nonempty(),
-        content: z.string()
-          .min(1, '内容不能为空')
-          .max(500, '内容长度不能超过500字符'),
+        content: z.string().min(1, '内容不能为空').max(500, '内容长度不能超过500字符'),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const [updatedTalk] = await ctx.db.update(talks)
+      const [updatedTalk] = await ctx.db
+        .update(talks)
         .set({ content: input.content })
         .where(eq(talks.id, input.id))
         .returning()
@@ -88,7 +91,8 @@ export const talksRouter = createTRPCRouter({
   incrementLikes: publicProcedure
     .input(z.object({ talkId: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const [updatedTalk] = await ctx.db.update(talks)
+      const [updatedTalk] = await ctx.db
+        .update(talks)
         .set({ likes: sql`${talks.likes} + 1` })
         .where(eq(talks.id, input.talkId))
         .returning()

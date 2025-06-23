@@ -21,25 +21,23 @@ interface DeleteAlbumDialogProps {
   imageUrl: string
 }
 
-const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({
-  id,
-  imageUrl,
-}) => {
+const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({ id, imageUrl }) => {
   const albumDialogStore = useAlbumDialogsStore()
   const trpc = useTRPC()
   const queryClient = useQueryClient()
-  const albumMutation = useMutation(trpc.album.deleteImage.mutationOptions({
-    onSuccess: () => {
-      albumDialogStore.setDeleteDialogs(false)
-      toast.success('删除成功')
-    },
-    onError: error => toast.error(`删除图片失败：${error}`),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: trpc.album.getAllImages.queryKey(),
-      })
-    },
-  }),
+  const albumMutation = useMutation(
+    trpc.album.deleteImage.mutationOptions({
+      onSuccess: () => {
+        albumDialogStore.setDeleteDialogs(false)
+        toast.success('删除成功')
+      },
+      onError: error => toast.error(`删除图片失败：${error}`),
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: trpc.album.getAllImages.queryKey(),
+        })
+      },
+    }),
   )
 
   return (
@@ -59,7 +57,7 @@ const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({
               alt="Image preview"
               width={100}
               height={80}
-              className="object-cover w-50 h-50 my-2 rounded-2xl"
+              className="my-2 h-50 w-50 rounded-2xl object-cover"
               loading="lazy"
             />
           </AlertDialogDescription>

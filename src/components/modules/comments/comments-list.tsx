@@ -80,9 +80,7 @@ function CommentsList() {
         {isError
           ? (
               <div className="flex min-h-20 items-center justify-center">
-                <p className="text-muted-foreground text-sm">
-                  无法载入评论。请刷新页面。
-                </p>
+                <p className="text-muted-foreground text-sm">无法载入评论。请刷新页面。</p>
               </div>
             )
           : null}

@@ -58,7 +58,7 @@ export default function BounceCards({
 
   return (
     <div
-      className={`mx-auto relative flex h-[180px] sm:h-[300px] justify-center items-center w-full ${className}`}
+      className={`relative mx-auto flex h-[180px] w-full items-center justify-center sm:h-[300px] ${className}`}
     >
       {images.map((src, idx) => (
         <div
@@ -66,10 +66,10 @@ export default function BounceCards({
           ref={(el) => {
             cardRefs.current[idx] = el
           }}
-          className="bounce-card card absolute w-[120px] sm:w-[200px] aspect-square border-4 sm:border-8 border-white dark:border-gray-700/60 rounded-[15px] sm:rounded-[30px] overflow-hidden shadow-md shadow-gray-200 dark:shadow-white/20"
+          className="bounce-card card absolute aspect-square w-[120px] overflow-hidden rounded-[15px] border-4 border-white shadow-md shadow-gray-200 sm:w-[200px] sm:rounded-[30px] sm:border-8 dark:border-gray-700/60 dark:shadow-white/20"
         >
           <Image
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
             src={src}
             alt={`card-${idx}`}
             width={160}

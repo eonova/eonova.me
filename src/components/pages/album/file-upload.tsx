@@ -15,11 +15,7 @@ interface FileUploadProps {
 }
 
 /** 图片上传 */
-const FileUpload: React.FC<FileUploadProps> = ({
-  imageUrl,
-  className,
-  setImageUrl,
-}) => {
+const FileUpload: React.FC<FileUploadProps> = ({ imageUrl, className, setImageUrl }) => {
   const trpc = useTRPC()
   const uploadPath = UPYUN_UPLOAD_PATH.replace(/^[/\\]+|[/\\]+$/g, '')
 
@@ -30,20 +26,18 @@ const FileUpload: React.FC<FileUploadProps> = ({
   }
 
   const { mutate } = useMutation(
-    trpc.upyun.upload.mutationOptions(
-      {
-        onSuccess: (data) => {
-          const url = handleImageUrl(data.path)
-          setImageUrl(url)
-        },
-        onError: (error: any) => {
-          toast.error(error.message)
-        },
-        onSettled: () => {
-          trpc.album.getAllImages.queryOptions()
-        },
+    trpc.upyun.upload.mutationOptions({
+      onSuccess: (data) => {
+        const url = handleImageUrl(data.path)
+        setImageUrl(url)
       },
-    ),
+      onError: (error: any) => {
+        toast.error(error.message)
+      },
+      onSettled: () => {
+        trpc.album.getAllImages.queryOptions()
+      },
+    }),
   )
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -65,13 +59,18 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
   return (
     <>
-      {
-        imageUrl
-          ? <Image src={imageUrl} alt="image" width={100} height={100} />
-          : <Input className={cn('cursor-pointer size-full min-h-50', className)} type="file" onChange={handleUpload} />
-      }
+      {imageUrl
+        ? (
+            <Image src={imageUrl} alt="image" width={100} height={100} />
+          )
+        : (
+            <Input
+              className={cn('size-full min-h-50 cursor-pointer', className)}
+              type="file"
+              onChange={handleUpload}
+            />
+          )}
     </>
-
   )
 }
 

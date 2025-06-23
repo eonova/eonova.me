@@ -7,29 +7,27 @@ import PageTitle from '~/components/shared/page-title'
 function Page() {
   return (
     <>
-      <PageTitle
-        title="收藏夹"
-        description="我收藏的一些宝藏网站"
-      />
-      {
-        Data.categories.map((item, idx) => {
-          return (
-            <div className="mt-8" key={item.categoryName}>
-              <BackgroundFont className="text-7xl text-gray-500/50 dark:text-white/50" lineHeight="1.2">{item.categoryName}</BackgroundFont>
-              <div className=" text-gray-600 pb-10">
-                <div className="mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-x-5">
-                  {
-                    item.websites.map(i => (
-                      <LinkCard props={i} key={i.title} className="p-6" />
-                    ))
-                  }
-                </div>
+      <PageTitle title="收藏夹" description="我收藏的一些宝藏网站" />
+      {Data.categories.map((item, idx) => {
+        return (
+          <div className="mt-8" key={item.categoryName}>
+            <BackgroundFont
+              className="text-7xl text-gray-500/50 dark:text-white/50"
+              lineHeight="1.2"
+            >
+              {item.categoryName}
+            </BackgroundFont>
+            <div className="pb-10 text-gray-600">
+              <div className="mx-auto grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-5">
+                {item.websites.map(i => (
+                  <LinkCard props={i} key={i.title} className="p-6" />
+                ))}
               </div>
-              {Data.categories.length - 1 !== idx && <Separator />}
             </div>
-          )
-        })
-      }
+            {Data.categories.length - 1 !== idx && <Separator />}
+          </div>
+        )
+      })}
     </>
   )
 }

@@ -87,13 +87,13 @@ export default function TiltedCard({
     <figure
       id="figure"
       ref={ref}
-      className="relative w-full h-full [perspective:800px] flex flex-col items-center justify-center"
+      className="relative flex h-full w-full flex-col items-center justify-center [perspective:800px]"
       onMouseMove={handleMouse}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {showMobileWarning && (
-        <div className="absolute top-4 text-center text-sm block sm:hidden">
+        <div className="absolute top-4 block text-center text-sm sm:hidden">
           This effect is not optimized for mobile. Check on desktop.
         </div>
       )}
@@ -110,13 +110,11 @@ export default function TiltedCard({
         <motion.img
           src={imageSrc}
           alt={altText}
-          className="absolute top-0 left-0 object-cover rounded-full will-change-transform border-solid border shadow [transform:translateZ(0)]"
+          className="absolute top-0 left-0 [transform:translateZ(0)] rounded-full border border-solid object-cover shadow will-change-transform"
         />
 
         {displayOverlayContent && overlayContent && (
-          <motion.div
-            className="absolute top-0 left-0 z-[2] will-change-transform [transform:translateZ(30px)]"
-          >
+          <motion.div className="absolute top-0 left-0 z-[2] [transform:translateZ(30px)] will-change-transform">
             {overlayContent}
           </motion.div>
         )}
@@ -124,7 +122,7 @@ export default function TiltedCard({
 
       {showTooltip && (
         <motion.figcaption
-          className="pointer-events-none absolute left-0 top-0 rounded-[4px] bg-white px-[10px] py-[4px] text-[10px] text-[#2d2d2d] opacity-0 z-[3] hidden sm:block"
+          className="pointer-events-none absolute top-0 left-0 z-[3] hidden rounded-[4px] bg-white px-[10px] py-[4px] text-[10px] text-[#2d2d2d] opacity-0 sm:block"
           style={{
             x,
             y,

@@ -3,11 +3,8 @@ import TalkAdmin from '~/components/pages/admin/talk/talk-admin'
 
 function Page() {
   return (
-    <div className="space-y-6 flex-1 flex flex-col">
-      <AdminPageHeader
-        title="说说"
-        description="我的碎碎念"
-      />
+    <div className="flex flex-1 flex-col space-y-6">
+      <AdminPageHeader title="说说" description="我的碎碎念" />
       <TalkAdmin />
     </div>
   )

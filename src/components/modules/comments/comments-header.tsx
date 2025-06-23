@@ -26,31 +26,25 @@ function CommentHeader() {
         <div>
           {commentsCountQuery.status === 'pending' && `评论 --`}
           {commentsCountQuery.status === 'error' ? '错误' : null}
-          {
-            commentsCountQuery.status === 'success'
-            && (
-              <NumberFlow
-                willChange
-                plugins={[continuous]}
-                value={commentsCountQuery.data.comments}
-                suffix="&nbsp;评论"
-              />
-            )
-          }
+          {commentsCountQuery.status === 'success' && (
+            <NumberFlow
+              willChange
+              plugins={[continuous]}
+              value={commentsCountQuery.data.comments}
+              suffix="&nbsp;评论"
+            />
+          )}
           {' · '}
           {repliesCountQuery.status === 'pending' && '回复 --'}
           {repliesCountQuery.status === 'error' && '错误'}
-          {
-            repliesCountQuery.status === 'success'
-            && (
-              <NumberFlow
-                willChange
-                plugins={[continuous]}
-                value={repliesCountQuery.data.replies}
-                suffix="&nbsp;回复"
-              />
-            )
-          }
+          {repliesCountQuery.status === 'success' && (
+            <NumberFlow
+              willChange
+              plugins={[continuous]}
+              value={repliesCountQuery.data.replies}
+              suffix="&nbsp;回复"
+            />
+          )}
         </div>
       </NumberFlowGroup>
       <DropdownMenu>
@@ -67,12 +61,8 @@ function CommentHeader() {
               setSort(value as GetInfiniteCommentsInput['sort'])
             }}
           >
-            <DropdownMenuRadioItem value="newest">
-              最新
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="oldest">
-              最旧
-            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="newest">最新</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="oldest">最旧</DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>
       </DropdownMenu>

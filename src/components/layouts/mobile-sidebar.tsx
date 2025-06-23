@@ -52,7 +52,7 @@ function MobileNavAside() {
             <X className="text-3xl" />
           </button>
           <div className="h-full overflow-y-auto">
-            <div className="py-8 pt-16 flex gap-6 items-center">
+            <div className="flex items-center gap-6 py-8 pt-16">
               <Image
                 src="/images/home/avatar.webp"
                 className="rounded-full"
@@ -66,7 +66,7 @@ function MobileNavAside() {
               </div>
             </div>
             <Separator className="mx-auto" />
-            <ul className="w-full my-5 flex flex-col gap-5 ">
+            <ul className="my-5 flex w-full flex-col gap-5">
               {HEADER_LINKS.map((link) => {
                 const isActive = link.href === pathname
 
@@ -77,7 +77,7 @@ function MobileNavAside() {
                   >
                     <Link
                       className={cn(
-                        'w-full bg-white/10 dark:bg-transparent font-medium transition-colors flex items-center text-[15px] gap-3',
+                        'flex w-full items-center gap-3 bg-white/10 text-[15px] font-medium transition-colors dark:bg-transparent',
                         {
                           'text-muted-foreground hover:text-foreground': !isActive,
                         },
@@ -91,39 +91,34 @@ function MobileNavAside() {
                       {link.icon}
                       {link.text}
                     </Link>
-                    {
-                      link.subMenu && (
-                        <ul className="grid grid-cols-2 gap-7 w-full rounded-md overflow-hidden">
-                          {link.subMenu.map((subLink) => {
-                            const isSubActive = subLink.href === pathname
+                    {link.subMenu && (
+                      <ul className="grid w-full grid-cols-2 gap-7 overflow-hidden rounded-md">
+                        {link.subMenu.map((subLink) => {
+                          const isSubActive = subLink.href === pathname
 
-                            return (
-                              <li
-                                key={subLink.key}
-                                className="relative"
+                          return (
+                            <li key={subLink.key} className="relative">
+                              <Link
+                                className={cn(
+                                  'flex w-full items-center gap-7 text-[15px] font-medium transition-colors',
+                                  {
+                                    'text-muted-foreground hover:text-foreground': !isSubActive,
+                                  },
+                                  {
+                                    'text-foreground': isSubActive,
+                                  },
+                                )}
+                                href={subLink.href}
+                                onClick={handleLinkClick} // 点击链接时关闭侧边栏
                               >
-                                <Link
-                                  className={cn(
-                                    'w-full font-medium transition-colors flex items-center text-[15px] gap-7',
-                                    {
-                                      'text-muted-foreground hover:text-foreground': !isSubActive,
-                                    },
-                                    {
-                                      'text-foreground': isSubActive,
-                                    },
-                                  )}
-                                  href={subLink.href}
-                                  onClick={handleLinkClick} // 点击链接时关闭侧边栏
-                                >
-                                  {/* {subLink.icon} */}
-                                  {subLink.text}
-                                </Link>
-                              </li>
-                            )
-                          })}
-                        </ul>
-                      )
-                    }
+                                {/* {subLink.icon} */}
+                                {subLink.text}
+                              </Link>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    )}
                   </li>
                 )
               })}

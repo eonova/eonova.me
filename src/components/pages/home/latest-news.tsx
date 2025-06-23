@@ -78,7 +78,7 @@ function LatestNews() {
         }}
       >
         <Card articles={filteredPosts} />
-        <div className="hidden sm:flex justify-center ">
+        <div className="hidden justify-center sm:flex">
           <div className="h-full w-[1px] rounded-full bg-gray-500/20" />
         </div>
         <Card color text="手记" articles={filteredNotes} />
@@ -97,7 +97,12 @@ function Card(props: CardProps) {
   const { articles, text = '文章', color = false } = props
   return (
     <div className="relative col-span-6 flex flex-col px-2">
-      <BackgroundFont className="text-5xl text-gray-500/50 dark:text-white/50 !h-full absolute z-[1] top-[-20] right-0 !opacity-30" lineHeight="1">{text}</BackgroundFont>
+      <BackgroundFont
+        className="absolute top-[-20] right-0 z-[1] !h-full text-5xl text-gray-500/50 !opacity-30 dark:text-white/50"
+        lineHeight="1"
+      >
+        {text}
+      </BackgroundFont>
       <TimelineList className={color ? 'shiro-timeline-yellow' : ''}>
         {articles.map((child) => {
           const date = new Date(child.date)
@@ -105,27 +110,19 @@ function Card(props: CardProps) {
           return (
             <li
               key={child.slug}
-              className="flex min-w-0 items-center justify-between leading-loose after:bg-[]"
+              className="after:bg-[] flex min-w-0 items-center justify-between leading-loose"
             >
-              <Link
-                href={`/${child.type}/${child.slug}`}
-                className="min-w-0 truncate"
-              >
+              <Link href={`/${child.type}/${child.slug}`} className="min-w-0 truncate">
                 {child.title}
               </Link>
-              <span className="meta ml-2 text-xs opacity-70">
-                {formatDate(date)}
-              </span>
+              <span className="meta ml-2 text-xs opacity-70">{formatDate(date)}</span>
             </li>
           )
         })}
       </TimelineList>
-      <div className="flex items-center justify-end gap-2  dark:text-gray-400 hover:text-[#FF6467] dark:hover:text-[#FF6467] transition-colors duration-100 text-xs">
+      <div className="flex items-center justify-end gap-2 text-xs transition-colors duration-100 hover:text-[#FF6467] dark:text-gray-400 dark:hover:text-[#FF6467]">
         <ArrowRight className="size-3" />
-        <Link
-          href={text === '文章' ? '/posts' : '/notes'}
-          className="rounded-xl"
-        >
+        <Link href={text === '文章' ? '/posts' : '/notes'} className="rounded-xl">
           查看所有
           {text}
         </Link>

@@ -14,7 +14,7 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-world: "DingTalk JinBuTi";
+  --font-world: 'DingTalk JinBuTi';
 }
 
 @layer base {
@@ -44,7 +44,6 @@
   }
 }
 
-
 /* 全局隐藏滚动条（综合方案） */
 /* WebKit浏览器 */
 ::-webkit-scrollbar {
@@ -69,4 +68,3 @@
 * {
   -ms-overflow-style: none;
 }
-

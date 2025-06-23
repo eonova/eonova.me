@@ -30,10 +30,28 @@ const NormalCard: React.FC<NormalCardProps> = ({
           background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
         }}
       />
-      {subheading && <p className={cn('text-black/50 dark:text-white/60 text-sm', isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{subheading}</p>}
-      {title && <p className=" text-4xl mt-5">{title}</p>}
+      {subheading && (
+        <p
+          className={cn(
+            'text-sm text-black/50 dark:text-white/60',
+            isColor ? 'text-white' : 'text-black/50 dark:text-white/80',
+          )}
+        >
+          {subheading}
+        </p>
+      )}
+      {title && <p className="mt-5 text-4xl">{title}</p>}
       {children}
-      {desc && <p className={cn('absolute bottom-6', isColor ? 'text-white' : 'text-black/50 dark:text-white/80')}>{desc}</p>}
+      {desc && (
+        <p
+          className={cn(
+            'absolute bottom-6',
+            isColor ? 'text-white' : 'text-black/50 dark:text-white/80',
+          )}
+        >
+          {desc}
+        </p>
+      )}
     </>
   )
 }

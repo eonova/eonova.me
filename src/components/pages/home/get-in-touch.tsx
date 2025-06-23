@@ -63,7 +63,7 @@ function GetInTouch() {
               src={me}
               width={500}
               height={500}
-              className="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              className="absolute top-1/2 left-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full"
               alt="Call Me"
             />
             <div
@@ -74,19 +74,19 @@ function GetInTouch() {
             </div>
             <div
               id="react-js"
-              className="absolute left-2 top-20 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
+              className="absolute top-20 left-2 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
             >
               生活
             </div>
             <div
               id="typescript"
-              className="absolute bottom-20 right-1 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
+              className="absolute right-1 bottom-20 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
             >
               学习
             </div>
             <div
               id="javascript"
-              className="absolute right-8 top-10 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
+              className="absolute top-10 right-8 rounded-3xl border bg-gradient-to-b from-zinc-50 to-zinc-100 px-2 py-1.5 text-xs opacity-40 dark:from-zinc-800 dark:to-zinc-900"
             >
               技术
             </div>
@@ -117,9 +117,7 @@ function GetInTouch() {
             <p className="mb-2 bg-gradient-to-r from-black to-black/70 bg-clip-text text-3xl font-semibold text-transparent dark:from-zinc-100 dark:to-zinc-400">
               欢迎大家来找我交流
             </p>
-            <p className="text-zinc-800 dark:text-zinc-300">
-              期待ing (✧∀✧)
-            </p>
+            <p className="text-zinc-800 dark:text-zinc-300">期待ing (✧∀✧)</p>
             <div className="my-8">
               <a
                 href="mailto:hi@eonova.me"

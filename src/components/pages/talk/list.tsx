@@ -16,23 +16,16 @@ interface TalkListProps {
 
 const TalkList: React.FC<TalkListProps> = () => {
   const trpc = useTRPC()
-  const {
-    data,
-    isLoading,
-    status,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery(
-    trpc.talks.getAllTalks.infiniteQueryOptions(
-      {},
-      {
-        getNextPageParam: lastPage => lastPage.nextCursor,
-        placeholderData: keepPreviousData,
-      },
-    ),
-  )
+  const { data, isLoading, status, error, fetchNextPage, hasNextPage, isFetchingNextPage }
+    = useInfiniteQuery(
+      trpc.talks.getAllTalks.infiniteQueryOptions(
+        {},
+        {
+          getNextPageParam: lastPage => lastPage.nextCursor,
+          placeholderData: keepPreviousData,
+        },
+      ),
+    )
 
   const { ref, inView } = useInView({ threshold: 0.1 })
 
@@ -66,7 +59,10 @@ const TalkList: React.FC<TalkListProps> = () => {
   return (
     <div className="space-y-4">
       {/* 加载状态 */}
-      {isLoading && Array.from({ length: 2 }).fill(0).map((_, i) => <TalkSkeleton key={`skeleton-${i}`} />)}
+      {isLoading
+        && Array.from({ length: 2 })
+          .fill(0)
+          .map((_, i) => <TalkSkeleton key={`skeleton-${i}`} />)}
 
       {/* 错误状态 */}
       {error && (
@@ -97,11 +93,7 @@ const TalkList: React.FC<TalkListProps> = () => {
                 transition={{ type: 'spring', stiffness: 100 }}
                 viewport={{ once: true, margin: '0px 0px -50px 0px' }}
               >
-                <TalkBox
-                  id={talk.id}
-                  time={talk.createdAt}
-                  likes={talk.likes}
-                >
+                <TalkBox id={talk.id} time={talk.createdAt} likes={talk.likes}>
                   {talk.content}
                 </TalkBox>
               </motion.div>
@@ -111,11 +103,12 @@ const TalkList: React.FC<TalkListProps> = () => {
       </AnimatePresence>
 
       {/* 加载更多指示器 */}
-      <div
-        ref={ref}
-        className="text-center text-sm text-gray-500"
-      >
-        <InfiniteScrollingLoading status={status} hasNextPage={isFetchingNextPage} totalItems={talks.length} />
+      <div ref={ref} className="text-center text-sm text-gray-500">
+        <InfiniteScrollingLoading
+          status={status}
+          hasNextPage={isFetchingNextPage}
+          totalItems={talks.length}
+        />
       </div>
 
       <CommentDialog isVisible={isOpenCommentDialog} />

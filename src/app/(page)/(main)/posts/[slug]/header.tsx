@@ -19,18 +19,25 @@ function Header() {
     loading: '...',
   })
 
-  const incrementMutation = useMutation(trpc.views.increment.mutationOptions({
-    onSettled: () => trpc.views.get.queryOptions({
+  const incrementMutation = useMutation(
+    trpc.views.increment.mutationOptions({
+      onSettled: () =>
+        trpc.views.get.queryOptions({
+          slug,
+        }),
+    }),
+  )
+  const viewsCountQuery = useQuery(
+    trpc.views.get.queryOptions({
       slug,
     }),
-  }))
-  const viewsCountQuery = useQuery(trpc.views.get.queryOptions({
-    slug,
-  }))
+  )
 
-  const commentsCountQuery = useQuery(trpc.comments.getTotalCommentsCount.queryOptions({
-    slug,
-  }))
+  const commentsCountQuery = useQuery(
+    trpc.comments.getTotalCommentsCount.queryOptions({
+      slug,
+    }),
+  )
   const incremented = useRef(false)
 
   useEffect(() => {
@@ -79,13 +86,17 @@ function Header() {
             {commentsCountQuery.status === 'error' ? '错误' : null}
             {commentsCountQuery.status === 'success'
               ? (
-                  <NumberFlow willChange plugins={[continuous]} value={commentsCountQuery.data.comments} />
+                  <NumberFlow
+                    willChange
+                    plugins={[continuous]}
+                    value={commentsCountQuery.data.comments}
+                  />
                 )
               : null}
           </div>
         </div>
       </div>
-      <AISummary data={{ ...postData, title, slug }} className=" mx-auto" />
+      <AISummary data={{ ...postData, title, slug }} className="mx-auto" />
     </div>
   )
 }

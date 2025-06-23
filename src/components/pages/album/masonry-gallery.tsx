@@ -22,9 +22,7 @@ interface WaterfallGalleryProps {
   itemsPerPage?: number // 每页显示的图片数量
 }
 
-function WaterfallGallery({
-  itemsPerPage = 12,
-}: WaterfallGalleryProps) {
+function WaterfallGallery({ itemsPerPage = 12 }: WaterfallGalleryProps) {
   const trpc = useTRPC()
   const { data, isLoading, isError } = useQuery(trpc.album.getAllImages.queryOptions())
   const items: ImageItem[] = data?.images ?? []
@@ -50,48 +48,40 @@ function WaterfallGallery({
     <>
       {isLoading && <WhirlpoolLoader />}
       {isError && <div>无法获取用户数据。请刷新页面。</div>}
-      {
-        !isLoading && !isError && items.length > 0 && (
-          <div className="container mx-auto py-8">
-            {/* 瀑布流布局 */}
-            <Masonry
-              data={visibleItems}
-              onImageClick={handleImageClick}
-            />
+      {!isLoading && !isError && items.length > 0 && (
+        <div className="container mx-auto py-8">
+          {/* 瀑布流布局 */}
+          <Masonry data={visibleItems} onImageClick={handleImageClick} />
 
-            {/* 加载更多按钮 */}
-            {visibleItems.length < items.length && (
-              <div className="text-center my-8">
-                <button
-                  type="button"
-                  onClick={() => setCurrentPage(p => p + 1)}
-                  className={cn('px-6 py-2 transition-colors cursor-pointer rounded-xl', buttonVariants({
+          {/* 加载更多按钮 */}
+          {visibleItems.length < items.length && (
+            <div className="my-8 text-center">
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => p + 1)}
+                className={cn(
+                  'cursor-pointer rounded-xl px-6 py-2 transition-colors',
+                  buttonVariants({
                     variant: 'outline',
-                  }))}
-                >
-                  加载更多
-                </button>
-              </div>
-            )}
+                  }),
+                )}
+              >
+                加载更多
+              </button>
+            </div>
+          )}
 
-            {/* 图片预览 Lightbox */}
-            {
-              isOpen && (
-                <Lightbox
-                  items={items}
-                  selectedIndex={selectedIndex}
-                  onLightboxClose={handleCloseLightbox}
-                />
-              )
-            }
-          </div>
-        )
-      }
-      {
-        !isLoading && !isError && items.length === 0 && (
-          <NonFound />
-        )
-      }
+          {/* 图片预览 Lightbox */}
+          {isOpen && (
+            <Lightbox
+              items={items}
+              selectedIndex={selectedIndex}
+              onLightboxClose={handleCloseLightbox}
+            />
+          )}
+        </div>
+      )}
+      {!isLoading && !isError && items.length === 0 && <NonFound />}
     </>
   )
 }

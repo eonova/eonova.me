@@ -1,6 +1,10 @@
 import { useCallback } from 'react'
 
-function composeEventHandlers<E>(originalEventHandler?: (event: E) => void, ourEventHandler?: (event: E) => void, { checkForDefaultPrevented = true } = {}) {
+function composeEventHandlers<E>(
+  originalEventHandler?: (event: E) => void,
+  ourEventHandler?: (event: E) => void,
+  { checkForDefaultPrevented = true } = {},
+) {
   return (event: E) => {
     originalEventHandler?.(event)
 

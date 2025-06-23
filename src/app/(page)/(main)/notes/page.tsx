@@ -10,10 +10,7 @@ const title = '手记'
 const url = '/notes'
 const description = '记录我的生活琐事，希望能帮助到你。'
 
-export async function generateMetadata(
-  _props: any,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(_props: any, parent: ResolvingMetadata): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
 
@@ -38,10 +35,9 @@ export async function generateMetadata(
 }
 
 async function Page() {
-  const notes = allNotes
-    .toSorted((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime()
-    })
+  const notes = allNotes.toSorted((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  })
 
   const jsonLd: WithContext<Blog> = {
     '@context': 'https://schema.org',
@@ -71,13 +67,7 @@ async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageTitle title={title} description={description} />
-      {notes.length === 0
-        ? (
-            <div className="my-24 text-center text-xl">
-              暂无结果
-            </div>
-          )
-        : null}
+      {notes.length === 0 ? <div className="my-24 text-center text-xl">暂无结果</div> : null}
       <NoteCards notes={notes} />
     </>
   )

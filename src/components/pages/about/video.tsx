@@ -38,13 +38,7 @@ const VideoFallback: React.FC<VideoFallbackProps> = ({
   if (isVideoError) {
     return (
       <div className="fallback-image">
-        <Image
-          src={fallbackImageSrc}
-          alt="Fallback Image"
-          width={600}
-          height={400}
-          priority
-        />
+        <Image src={fallbackImageSrc} alt="Fallback Image" width={600} height={400} priority />
       </div>
     )
   }

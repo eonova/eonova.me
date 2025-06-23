@@ -5,7 +5,10 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '~/config/constants'
 /**
  * 生成结构化数据
  */
-export function generateStructuredData(type: 'article' | 'website' | 'person' | 'organization', data: any) {
+export function generateStructuredData(
+  type: 'article' | 'website' | 'person' | 'organization',
+  data: any,
+) {
   const baseStructuredData = {
     '@context': 'https://schema.org',
   }
@@ -125,7 +128,8 @@ export function generateMetadata({
       ],
       locale: 'zh_CN',
       type: type === 'article' ? 'article' : 'website',
-      ...(type === 'article' && publishedAt && {
+      ...(type === 'article'
+        && publishedAt && {
         publishedTime: publishedAt,
         modifiedTime: modifiedAt || publishedAt,
         authors: [author || SITE_NAME],
@@ -165,7 +169,9 @@ export function generateMetadata({
 /**
  * 生成面包屑导航结构化数据
  */
-export function generateBreadcrumbStructuredData(breadcrumbs: Array<{ name: string, url: string }>) {
+export function generateBreadcrumbStructuredData(
+  breadcrumbs: Array<{ name: string, url: string }>,
+) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -220,7 +226,9 @@ export const performanceUtils = {
       const observer = new PerformanceObserver((list) => {
         const entries = list.getEntries()
         const lastEntry = entries[entries.length - 1]
-        console.log('LCP:', lastEntry.startTime)
+        if (lastEntry) {
+          console.log('LCP:', lastEntry.startTime)
+        }
       })
       observer.observe({ entryTypes: ['largest-contentful-paint'] })
     }
@@ -232,8 +240,10 @@ export const performanceUtils = {
       let clsValue = 0
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          if (!entry.hadRecentInput) {
-            clsValue += entry.value
+          // Type assertion for layout shift entries
+          const layoutShiftEntry = entry as any
+          if (!layoutShiftEntry.hadRecentInput) {
+            clsValue += layoutShiftEntry.value
           }
         }
         console.log('CLS:', clsValue)

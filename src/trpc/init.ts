@@ -5,6 +5,7 @@ import { SuperJSON } from 'superjson'
 import { ZodError } from 'zod'
 import { db } from '~/db'
 import { getSession } from '~/lib/auth'
+import { cacheManager } from '~/lib/cache-manager'
 
 export const createTRPCContext = cache(async () => {
   const session = await getSession()
@@ -31,7 +32,8 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
 
 export const createTRPCRouter = t.router
 
-const timingMiddleware = t.middleware(async ({ next, path }) => {
+// 性能监控中间件
+const performanceMiddleware = t.middleware(async ({ next, path, type }) => {
   const start = Date.now()
 
   if (t._config.isDev) {
@@ -43,12 +45,50 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
   const result = await next()
 
   const end = Date.now()
-  console.log(`[TRPC] ${path} took ${end - start}ms to execute`)
+  const duration = end - start
+
+  // 记录性能指标
+  console.log(`[TRPC] ${type} ${path} took ${duration}ms`)
+
+  // 如果响应时间过长，记录警告
+  if (duration > 5000) {
+    console.warn(`[TRPC] Slow query detected: ${path} took ${duration}ms`)
+  }
 
   return result
 })
 
-export const publicProcedure = t.procedure.use(timingMiddleware)
+// 缓存中间件
+const cacheMiddleware = t.middleware(async ({ next, path, type, input }) => {
+  // 只对查询启用缓存
+  if (type !== 'query') {
+    return next()
+  }
+
+  // 生成缓存键
+  const cacheKey = `trpc:${path}:${JSON.stringify(input)}`
+
+  // 执行查询并缓存结果
+  const result = await next()
+
+  if (result.ok) {
+    await cacheManager.set(cacheKey, result.data)
+  }
+
+  return result
+})
+
+// 限流中间件
+const rateLimitMiddleware = t.middleware(async ({ next, ctx: _ctx, path: _path }) => {
+  // 这里可以添加更细粒度的限流逻辑
+  // 暂时使用现有的 ratelimit
+  return next()
+})
+
+export const publicProcedure = t.procedure
+  .use(performanceMiddleware)
+  .use(rateLimitMiddleware)
+  .use(cacheMiddleware)
 
 export const protectedProcedure = publicProcedure.use(({ ctx, next }) => {
   if (!ctx.session?.user) {

@@ -27,8 +27,12 @@ const DoubleCard: React.FC<DoubleCardProps> = ({
   const [opacity, setOpacity] = useState(0)
 
   return (
-    <UpMotion className={cn(className, 'p-0 border-none shadow-none')} setPosition={setPosition} setOpacity={setOpacity}>
-      <div className="h-[90px] w-full rounded-3xl backdrop-blur-xs flex items-center justify-between font-world relative p-6 transition-all duration-500 shadow-feature-card border dark:border-white/10 border-black/5 dark:shadow-feature-card-dark bg-[#FDE047]">
+    <UpMotion
+      className={cn(className, 'border-none p-0 shadow-none')}
+      setPosition={setPosition}
+      setOpacity={setOpacity}
+    >
+      <div className="font-world shadow-feature-card dark:shadow-feature-card-dark relative flex h-[90px] w-full items-center justify-between rounded-3xl border border-black/5 bg-[#FDE047] p-6 backdrop-blur-xs transition-all duration-500 dark:border-white/10">
         <NormalCard
           title={title}
           subheading={subheading}
@@ -42,7 +46,7 @@ const DoubleCard: React.FC<DoubleCardProps> = ({
           <p className="text-[32px]">{DATE_BIRTH}</p>
         </NormalCard>
       </div>
-      <div className="h-[90px] w-full rounded-3xl bg-[#FDBA74] backdrop-blur-xs flex items-center justify-between font-world text-white relative p-6 shadow-lg transition-all duration-500">
+      <div className="font-world relative flex h-[90px] w-full items-center justify-between rounded-3xl bg-[#FDBA74] p-6 text-white shadow-lg backdrop-blur-xs transition-all duration-500">
         <NormalCard
           title={title}
           subheading={subheading}

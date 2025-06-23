@@ -7,7 +7,17 @@ import { CommandIcon, LogInIcon, LogOutIcon } from 'lucide-react'
 
 import { Fragment, useCallback, useEffect, useState } from 'react'
 import { Button } from '~/components/base'
-import { CommandDialog, CommandEmpty, CommandFooter, CommandFooterTrigger, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '~/components/base/command'
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandFooter,
+  CommandFooterTrigger,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from '~/components/base/command'
 import { Kbd } from '~/components/base/kbd'
 import {
   SITE_GITHUB_URL,
@@ -36,9 +46,7 @@ function CommandMenu() {
   const { data: session } = useSession()
   const dialogStore = useDialogsStore()
 
-  const isSelectingCommand = ['登出', '复制链接'].includes(
-    selectingValue,
-  )
+  const isSelectingCommand = ['登出', '复制链接'].includes(selectingValue)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -123,14 +131,19 @@ function CommandMenu() {
     <div>
       <Button
         variant="ghost"
-        className="size-8 sm:size-9 p-0 flex justify-center items-center rounded-full cursor-pointer duration-200"
+        className="flex size-8 cursor-pointer items-center justify-center rounded-full p-0 duration-200 sm:size-9"
         onClick={() => setIsOpen(true)}
         aria-label="开启指令选单"
       >
         <CommandIcon className="size-5 sm:size-4" />
       </Button>
 
-      <CommandDialog open={isOpen} onOpenChange={setIsOpen} value={selectingValue} onValueChange={setSelectingValue}>
+      <CommandDialog
+        open={isOpen}
+        onOpenChange={setIsOpen}
+        value={selectingValue}
+        onValueChange={setSelectingValue}
+      >
         <CommandInput
           placeholder="输入指令或搜寻"
           onValueChange={value => setSelectingValue(value)}
@@ -158,24 +171,22 @@ function CommandMenu() {
           ))}
 
           {/* 搜索功能分组 */}
-          {
-            flags.search && (
-              <CommandGroup heading="搜索">
-                <DocSearch
-                  appId={env.ALGOLIA_APP_ID}
-                  apiKey={env.ALGOLIA_SEARCH_ONLY_API_KEY}
-                  indexName="your_index_name"
-                  placeholder="搜索文档"
-                  searchParameters={{
-                    facetFilters: [['version:1.0.0']],
-                  }}
-                />
-              </CommandGroup>
-            )
-          }
+          {flags.search && (
+            <CommandGroup heading="搜索">
+              <DocSearch
+                appId={env.ALGOLIA_APP_ID}
+                apiKey={env.ALGOLIA_SEARCH_ONLY_API_KEY}
+                indexName="your_index_name"
+                placeholder="搜索文档"
+                searchParameters={{
+                  facetFilters: [['version:1.0.0']],
+                }}
+              />
+            </CommandGroup>
+          )}
         </CommandList>
         <CommandFooter>
-          <SvgLogo className="size-6 justify-center items-center" />
+          <SvgLogo className="size-6 items-center justify-center" />
           <CommandFooterTrigger triggerKey={<Kbd keys={['enter']} className="py-0" />}>
             {isSelectingCommand ? '打开命令' : '打开链接'}
           </CommandFooterTrigger>

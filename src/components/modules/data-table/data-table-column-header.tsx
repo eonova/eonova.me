@@ -53,7 +53,7 @@ function DataTableColumnHeader<TData, TValue>(props: DataTableColumnHeaderProps<
         {column.getCanSort() && (
           <>
             <DropdownMenuCheckboxItem
-              className="[&_svg]:text-muted-foreground relative pl-2 pr-8 [&>span:first-child]:left-auto [&>span:first-child]:right-2"
+              className="[&_svg]:text-muted-foreground relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto"
               checked={column.getIsSorted() === 'asc'}
               onClick={() => column.toggleSorting(false)}
             >
@@ -61,7 +61,7 @@ function DataTableColumnHeader<TData, TValue>(props: DataTableColumnHeaderProps<
               Asc
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
-              className="[&_svg]:text-muted-foreground relative pl-2 pr-8 [&>span:first-child]:left-auto [&>span:first-child]:right-2"
+              className="[&_svg]:text-muted-foreground relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto"
               checked={column.getIsSorted() === 'desc'}
               onClick={() => column.toggleSorting(true)}
             >
@@ -81,7 +81,7 @@ function DataTableColumnHeader<TData, TValue>(props: DataTableColumnHeaderProps<
         )}
         {column.getCanHide() && (
           <DropdownMenuCheckboxItem
-            className="[&_svg]:text-muted-foreground relative pl-2 pr-8 [&>span:first-child]:left-auto [&>span:first-child]:right-2"
+            className="[&_svg]:text-muted-foreground relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto"
             checked={!column.getIsVisible()}
             onClick={() => column.toggleVisibility(false)}
           >

@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef } from 'react'
 
-export function useCallbackRef<T extends (...args: never[]) => unknown>(callback: T | undefined): T {
+export function useCallbackRef<T extends (...args: never[]) => unknown>(
+  callback: T | undefined,
+): T {
   const callbackRef = useRef(callback)
 
   useEffect(() => {

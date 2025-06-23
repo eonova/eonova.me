@@ -15,11 +15,7 @@ export interface AiSummaryProps {
   [key: string]: unknown
 }
 
-function SummaryContainer(props: {
-  isLoading: boolean
-  summary?: string
-  className?: string
-}) {
+function SummaryContainer(props: { isLoading: boolean, summary?: string, className?: string }) {
   const { className, isLoading, summary } = props
   return (
     <div
@@ -35,7 +31,7 @@ function SummaryContainer(props: {
       </div>
 
       <AutoResizeHeight duration={0.3}>
-        <div className="!m-0 text-sm leading-loose text-base-content/85">
+        <div className="text-base-content/85 !m-0 text-sm leading-loose">
           {isLoading
             ? (
                 <div className="space-y-2">
@@ -55,14 +51,20 @@ function SummaryContainer(props: {
 
 export const AISummary: FC<AiSummaryProps> = (props: any) => {
   const trpc = useTRPC()
-  const { data: aiSummary, isPending, mutate } = useMutation(trpc.ai.generate.mutationOptions({
-    onSuccess: (data) => {
-      console.log('data', data)
-    },
-    onError: (error) => {
-      console.log('error', error)
-    },
-  }))
+  const {
+    data: aiSummary,
+    isPending,
+    mutate,
+  } = useMutation(
+    trpc.ai.generate.mutationOptions({
+      onSuccess: (data) => {
+        console.log('data', data)
+      },
+      onError: (error) => {
+        console.log('error', error)
+      },
+    }),
+  )
   const content = props.data.content as string
   const slug = props.data.slug as string
 
@@ -76,7 +78,7 @@ export const AISummary: FC<AiSummaryProps> = (props: any) => {
   // 优先展示 props.summary，其次展示 aiSummary
   let summary: string | undefined = props.summary as string | undefined
   if (!summary && aiSummary) {
-    summary = typeof aiSummary === 'string' ? aiSummary : aiSummary?.summary ?? undefined
+    summary = typeof aiSummary === 'string' ? aiSummary : (aiSummary?.summary ?? undefined)
   }
 
   return <SummaryContainer isLoading={isPending} summary={summary} className={props.className} />

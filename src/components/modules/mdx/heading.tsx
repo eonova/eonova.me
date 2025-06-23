@@ -12,7 +12,7 @@ function Heading<T extends Types = 'h1'>(props: HeadingProps<T>) {
 
   return (
     <Component className={cn('scroll-m-32', className)} id={id} {...rest}>
-      <a href={`#${id}`} className="font-bold no-underline group">
+      <a href={`#${id}`} className="group font-bold no-underline">
         {children}
         <LinkIcon
           aria-label="连结至章节"

@@ -10,7 +10,8 @@
 
 ## 🎉 Introduction
 
-A personal blog built with modern technology stack, integrating technical article display, open source project management, and more.
+A personal blog built with modern technology stack, integrating technical
+article display, open source project management, and more.
 
 ## 🌌 Features
 
@@ -53,7 +54,7 @@ graph TD
 
 ### Vercel One-Click Deployment
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=[https%3A%2F%2Fgithub.com%2Fhamster1963%2Fnextme&env=SITE_URL,SITE_AUTHOR](https://github.com/eonova/eonova.me))
+[![Deploy with Vercel](https://vercel.com/button)](<https://vercel.com/new/clone?repository-url=[https%3A%2F%2Fgithub.com%2Fhamster1963%2Fnextme&env=SITE_URL,SITE_AUTHOR](https://github.com/eonova/eonova.me)>)
 
 ### Docker Compose Deployment
 

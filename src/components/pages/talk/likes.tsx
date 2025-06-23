@@ -30,34 +30,32 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
 
   // 点赞 mutation
   const { mutate: incrementLike } = useMutation(
-    trpc.talks.incrementLikes.mutationOptions(
-      {
-        onMutate: async () => {
-          await trpc.talks.getAllTalks.queryOptions()
+    trpc.talks.incrementLikes.mutationOptions({
+      onMutate: async () => {
+        await trpc.talks.getAllTalks.queryOptions()
 
-          // 乐观更新直接使用最新值
-          setOptimisticLikes(prev => prev + 1)
+        // 乐观更新直接使用最新值
+        setOptimisticLikes(prev => prev + 1)
 
-          return { previousLikes: optimisticLikes }
-        },
-        onError: (_, __, context) => {
-          // 回滚到之前的值
-          setOptimisticLikes(context?.previousLikes ?? optimisticLikes)
-        },
-        onSuccess: () => {
-          // 更新用户点赞计数
-          setUserLikes((prev) => {
-            const newValue = prev + 1
-            localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
-            return newValue
-          })
-          // 主动刷新数据
-          queryClient.invalidateQueries({
-            queryKey: trpc.talks.getAllTalks.queryKey(),
-          })
-        },
+        return { previousLikes: optimisticLikes }
       },
-    ),
+      onError: (_, __, context) => {
+        // 回滚到之前的值
+        setOptimisticLikes(context?.previousLikes ?? optimisticLikes)
+      },
+      onSuccess: () => {
+        // 更新用户点赞计数
+        setUserLikes((prev) => {
+          const newValue = prev + 1
+          localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
+          return newValue
+        })
+        // 主动刷新数据
+        queryClient.invalidateQueries({
+          queryKey: trpc.talks.getAllTalks.queryKey(),
+        })
+      },
+    }),
   )
 
   const handleLike = () => {
@@ -78,10 +76,11 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
       )}
       onClick={handleLike}
     >
-      <Heart className={cn(
-        'h-3 w-3 transition-colors',
-        userLikes > 0 ? 'fill-red-500 text-red-500' : 'text-gray-400',
-      )}
+      <Heart
+        className={cn(
+          'h-3 w-3 transition-colors',
+          userLikes > 0 ? 'fill-red-500 text-red-500' : 'text-gray-400',
+        )}
       />
 
       <div className="flex items-center gap-1">
@@ -89,17 +88,15 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
           willChange
           value={optimisticLikes}
           plugins={[continuous]}
-          className="font-medium text-sm text-gray-900 dark:text-gray-100"
+          className="text-sm font-medium text-gray-900 dark:text-gray-100"
         />
-        {
-          userLikes > 0 && (
-            <span className="text-xs text-gray-500">
-              (+
-              {Math.min(userLikes, MAX_LIKES_PER_USER)}
-              )
-            </span>
-          )
-        }
+        {userLikes > 0 && (
+          <span className="text-xs text-gray-500">
+            (+
+            {Math.min(userLikes, MAX_LIKES_PER_USER)}
+            )
+          </span>
+        )}
       </div>
     </div>
   )

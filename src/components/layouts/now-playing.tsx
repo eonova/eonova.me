@@ -8,9 +8,11 @@ import ShinyText from '../shared/shiny-text'
 
 function NowPlaying() {
   const trpc = useTRPC()
-  const { status, data } = useQuery(trpc.spotify.get.queryOptions(undefined, {
-    staleTime: 1000 * 60,
-  }))
+  const { status, data } = useQuery(
+    trpc.spotify.get.queryOptions(undefined, {
+      staleTime: 1000 * 60,
+    }),
+  )
   const isPlaying = status === 'success' && data.isPlaying && data.songUrl
   const notListening = status === 'success' && (!data.isPlaying || !data.songUrl)
   const [text, setText] = useState<string>('')
@@ -46,15 +48,15 @@ function NowPlaying() {
       </svg>
 
       <div className="inline-flex w-full items-center justify-center gap-1 text-sm md:justify-start">
-        {
-          !isPlaying
-            ? <ShinyText text={text} disabled speed={3} className="custom-class" />
-            : (
-                <Link target="black" href={data?.songUrl ?? ''}>
-                  <ShinyText text={text} disabled speed={3} className="custom-class" />
-                </Link>
-              )
-        }
+        {!isPlaying
+          ? (
+              <ShinyText text={text} disabled speed={3} className="custom-class" />
+            )
+          : (
+              <Link target="black" href={data?.songUrl ?? ''}>
+                <ShinyText text={text} disabled speed={3} className="custom-class" />
+              </Link>
+            )}
       </div>
     </div>
   )

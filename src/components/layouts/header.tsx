@@ -55,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     <motion.header
       variants={headerVariants}
       className={cn(
-        'bg-background/30 inset-x-0 top-4 z-50 flex h-[50px] sm:h-[60px] max-w-[820px] items-center justify-between rounded-full px-5 sm:px-8 mx-4 sm:mx-auto shadow-xs backdrop-blur-[10px] transition-colors fixed dark:border dark:border-solid dark:border-slate-600/50 during-300',
+        'bg-background/30 during-300 fixed inset-x-0 top-4 z-50 mx-4 flex h-[50px] max-w-[820px] items-center justify-between rounded-full px-5 shadow-xs backdrop-blur-[10px] transition-colors sm:mx-auto sm:h-[60px] sm:px-8 dark:border dark:border-solid dark:border-slate-600/50',
         isScrolled && 'bg-background/80',
         className,
       )}
@@ -63,13 +63,13 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       initial="initial"
       animate={!isVisible ? 'hidden' : 'visible'}
     >
-      <Link className="h-full flex items-center" href="/" aria-label="回到首页" passHref>
-        <SvgLogo className="h-8 w-8 sm:h-9 sm:w-9 mr-5 hover:scale-105 duration-300 transform-cpu transform-view" />
+      <Link className="flex h-full items-center" href="/" aria-label="回到首页" passHref>
+        <SvgLogo className="mr-5 h-8 w-8 transform-cpu duration-300 transform-view hover:scale-105 sm:h-9 sm:w-9" />
       </Link>
 
       <div className="flex items-center gap-2 sm:gap-1">
         <Navbar />
-        <Separator orientation="vertical" className={cn('h-6 mx-1 sm:block hidden')} />
+        <Separator orientation="vertical" className={cn('mx-1 hidden h-6 sm:block')} />
         <ThemeSwitcher />
         <CommandMenu />
         <MobileNav />

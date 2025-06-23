@@ -4,13 +4,7 @@ export default eonova({
   react: true,
   typescript: true,
   stylistic: true,
-  ignores: [
-    'README.md',
-    'components/base/*',
-    'data/*',
-    'public/*',
-    '.github/*',
-  ],
+  ignores: ['README.md', 'components/base/*', 'data/*', 'public/*', '.github/*'],
   rules: {
     'import/no-anonymous-default-export': 'off',
     'react-refresh/only-export-components': 'off',

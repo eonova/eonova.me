@@ -19,7 +19,7 @@ type DataTableViewOptionsProps<TData> = {
   table: Table<TData>
 } & React.ComponentProps<'button'>
 
-function DataTableViewOptions<TData,>(props: DataTableViewOptionsProps<TData>) {
+function DataTableViewOptions<TData>(props: DataTableViewOptionsProps<TData>) {
   const { table, className, ...rest } = props
   const [open, setOpen] = useState(false)
   const id = useId()

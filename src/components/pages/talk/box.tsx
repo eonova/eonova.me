@@ -25,63 +25,64 @@ const TalkBox: React.FC<TalkBoxProps> = ({
 }) => {
   const { setIsOpenCommentDialog } = useTalkStore()
   return (
-    <li className="flex flex-col sm:flex-row mt-[50px] gap-2 sm:gap-4 space-y-2">
-      <div className="flex sm:hidden gap-3 sm:w-[40px]">
+    <li className="mt-[50px] flex flex-col gap-2 space-y-2 sm:flex-row sm:gap-4">
+      <div className="flex gap-3 sm:hidden sm:w-[40px]">
         <Image
-          className="size-[32px] sm:size-[40px] ring-2 ring-slate-200 dark:ring-zinc-800 rounded-full"
+          className="size-[32px] rounded-full ring-2 ring-slate-200 sm:size-[40px] dark:ring-zinc-800"
           src={images}
           alt="avatar"
           width={200}
           height={200}
         />
         <div className="flex flex-col items-center self-start md:flex-row md:gap-2">
-          <span className="self-start text-sm sm:text-lg font-medium md:self-auto">{name}</span>
+          <span className="self-start text-sm font-medium sm:text-lg md:self-auto">{name}</span>
           <span className="text-xs opacity-80 md:-translate-y-1 md:self-end">
             {dayjs(time).format('YYYY 年 M 月 D 日 dddd')}
           </span>
         </div>
       </div>
       <Image
-        className="hidden sm:block size-[32px] sm:size-[40px] ring-2 ring-slate-200 dark:ring-zinc-800 rounded-full"
+        className="hidden size-[32px] rounded-full ring-2 ring-slate-200 sm:block sm:size-[40px] dark:ring-zinc-800"
         src={images}
         alt="avatar"
         width={200}
         height={200}
       />
-      <div className="min-w-0 max-w-full flex flex-col gap-2 sm:gap-3 pl-3 sm:pl-0">
-        <div className="hidden sm:flex flex-col items-center self-start md:flex-row md:gap-2">
+      <div className="flex max-w-full min-w-0 flex-col gap-2 pl-3 sm:gap-3 sm:pl-0">
+        <div className="hidden flex-col items-center self-start sm:flex md:flex-row md:gap-2">
           <span className="self-start text-lg font-medium md:self-auto">{name}</span>
           <span className="text-xs opacity-80 md:-translate-y-1 md:self-end">
             {dayjs(time).format('YYYY 年 M 月 D 日 dddd')}
           </span>
         </div>
-        <div className="relative w-full sm:w-auto min-w-0 grow">
+        <div className="relative w-full min-w-0 grow sm:w-auto">
           <div
             className={cn(
-              'relative inline-block rounded-xl p-3 font-world text-zinc-800 dark:text-zinc-200',
+              'font-world relative inline-block rounded-xl p-3 text-zinc-800 dark:text-zinc-200',
               'rounded-tl-sm bg-zinc-600/5 dark:bg-zinc-500/20',
               'max-w-full overflow-auto',
             )}
           >
-            <TalkMdx>
-              {children}
-            </TalkMdx>
+            <TalkMdx>{children}</TalkMdx>
           </div>
         </div>
-        <div className="flex items-center text-xs text-gray-500 dark:text-color-500/80 gap-4 sm:gap-12 w-full">
+        <div className="dark:text-color-500/80 flex w-full items-center gap-4 text-xs text-gray-500 sm:gap-12">
           <div>
-            {
-              id
-                ? <LikeButton initialLikes={likes} talkId={id} />
-                : (
-                    <div className="flex items-center gap-1 cursor-pointer">
-                      <Heart className="h-3 w-3" />
-                      <span>0</span>
-                    </div>
-                  )
-            }
+            {id
+              ? (
+                  <LikeButton initialLikes={likes} talkId={id} />
+                )
+              : (
+                  <div className="flex cursor-pointer items-center gap-1">
+                    <Heart className="h-3 w-3" />
+                    <span>0</span>
+                  </div>
+                )}
           </div>
-          <div className="flex items-center gap-1 cursor-pointer" onClick={() => setIsOpenCommentDialog(true)}>
+          <div
+            className="flex cursor-pointer items-center gap-1"
+            onClick={() => setIsOpenCommentDialog(true)}
+          >
             <MessageCircle className="h-3 w-3" />
             <span>0</span>
           </div>

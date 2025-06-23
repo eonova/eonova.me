@@ -2,7 +2,10 @@ import { useCallback, useEffect, useRef } from 'react'
 
 import { useCallbackRef } from './use-callback-ref'
 
-export function useDebouncedCallback<T extends (...args: never[]) => unknown>(callback: T, delay: number) {
+export function useDebouncedCallback<T extends (...args: never[]) => unknown>(
+  callback: T,
+  delay: number,
+) {
   const handleCallback = useCallbackRef(callback)
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null)
   useEffect(

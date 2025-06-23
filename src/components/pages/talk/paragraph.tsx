@@ -1,5 +1,4 @@
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
-import * as React from 'react'
 import { cn } from '~/utils'
 
 export const MParagraph: FC<

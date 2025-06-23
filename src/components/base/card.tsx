@@ -26,9 +26,7 @@ type CardTitleProps = React.ComponentProps<'h3'>
 function CardTitle(props: CardTitleProps) {
   const { className, ...rest } = props
 
-  return (
-    <h3 className={cn('text-2xl font-semibold', className)} {...rest} />
-  )
+  return <h3 className={cn('text-2xl font-semibold', className)} {...rest} />
 }
 
 type CardDescriptionProps = React.ComponentProps<'p'>

@@ -44,7 +44,8 @@ export const redisKeys = {
   // 第三方API缓存
   doubanMovies: (userId: string, action: string) => `douban:movies:${userId}:${action}`,
   doubanBooks: (userId: string, action: string) => `douban:books:${userId}:${action}`,
-  bangumiAnime: (username: string, type: string, cursor: number) => `bangumi:anime:${username}:${type}:${cursor}`,
+  bangumiAnime: (username: string, type: string, cursor: number) =>
+    `bangumi:anime:${username}:${type}:${cursor}`,
   githubStats: (username: string) => `github:stats:${username}`,
   spotifyNowPlaying: (userId: string) => `spotify:now-playing:${userId}`,
 }
@@ -53,15 +54,19 @@ export const redisKeys = {
 export const cacheTTL = {
   // 内容缓存 - 较长时间，因为内容不经常变化
   content: 3600, // 1小时
+  contentLong: 86400, // 24小时，用于很少变化的内容
 
   // 列表缓存 - 中等时间
   lists: 1800, // 30分钟
+  listsShort: 600, // 10分钟，用于频繁更新的列表
 
   // 统计数据 - 中等时间
   stats: 900, // 15分钟
+  statsLong: 3600, // 1小时，用于不常变化的统计
 
   // 用户数据 - 较短时间
   user: 600, // 10分钟
+  userSession: 1800, // 30分钟，用户会话数据
 
   // 第三方API - 根据API特性设置
   douban: 7200, // 2小时，豆瓣数据变化不频繁
@@ -71,4 +76,12 @@ export const cacheTTL = {
 
   // 实时数据 - 很短时间
   realtime: 30, // 30秒
+
+  // 页面缓存
+  page: 300, // 5分钟
+  pageStatic: 3600, // 1小时，静态页面
+
+  // 搜索缓存
+  search: 1800, // 30分钟
+  searchPopular: 3600, // 1小时，热门搜索
 }

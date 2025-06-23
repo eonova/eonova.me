@@ -14,8 +14,20 @@ import {
   CommandList,
 } from '~/components/base/command'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/base/popover'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/base/select'
-import { Sortable, SortableContent, SortableItem, SortableItemHandle, SortableOverlay } from '~/components/base/sortable'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '~/components/base/select'
+import {
+  Sortable,
+  SortableContent,
+  SortableItem,
+  SortableItemHandle,
+  SortableOverlay,
+} from '~/components/base/sortable'
 import { dataTableConfig } from '~/lib/data-table'
 import { cn } from '~/utils'
 
@@ -26,7 +38,7 @@ type DataTableSortListProps<TData> = {
   table: Table<TData>
 } & React.ComponentProps<typeof PopoverContent>
 
-function DataTableSortList<TData,>(props: DataTableSortListProps<TData>) {
+function DataTableSortList<TData>(props: DataTableSortListProps<TData>) {
   const { table, ...rest } = props
   const id = useId()
   const labelId = useId()
@@ -148,7 +160,7 @@ function DataTableSortList<TData,>(props: DataTableSortListProps<TData>) {
           {...rest}
         >
           <div className="flex flex-col gap-1">
-            <h4 id={labelId} className="font-medium leading-none">
+            <h4 id={labelId} className="leading-none font-medium">
               {sorting.length > 0 ? 'Sort by' : 'No sorting applied'}
             </h4>
             <p

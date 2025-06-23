@@ -42,7 +42,7 @@ function parseAsDate(timestamp: number | string | undefined): Date | undefined {
   return Number.isNaN(date.getTime()) ? undefined : date
 }
 
-function DataTableDateFilter<TData,>(props: DateTableDateFilterProps<TData>) {
+function DataTableDateFilter<TData>(props: DateTableDateFilterProps<TData>) {
   const { column, title, multiple } = props
   const columnFilterValue = column.getFilterValue()
 
@@ -151,7 +151,7 @@ function DataTableDateFilter<TData,>(props: DateTableDateFilterProps<TData>) {
                       onReset()
                     }
                   }}
-                  className="focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-1"
+                  className="focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:outline-none"
                 >
                   <XCircleIcon />
                 </div>

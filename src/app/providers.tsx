@@ -8,9 +8,12 @@ import { TooltipProvider } from '~/components/base/tooltip'
 import PageProgress from '~/components/shared/page-progress'
 import { TRPCReactProvider } from '~/trpc/client'
 
-const SmoothScroll = dynamic(() => import('../components/layouts/lenis-provider').then(mod => mod.LenisProvider), {
-  ssr: false, // 禁用 SSR
-})
+const SmoothScroll = dynamic(
+  () => import('../components/layouts/lenis-provider').then(mod => mod.LenisProvider),
+  {
+    ssr: false, // 禁用 SSR
+  },
+)
 
 interface ProvidesProps {
   children: React.ReactNode
@@ -30,9 +33,7 @@ function Providers(props: ProvidesProps) {
           disableTransitionOnChange
         >
           <TooltipProvider>
-            <SmoothScroll>
-              {children}
-            </SmoothScroll>
+            <SmoothScroll>{children}</SmoothScroll>
             <Toaster
               toastOptions={{
                 duration: 2500,

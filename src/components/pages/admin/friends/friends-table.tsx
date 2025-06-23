@@ -1,7 +1,13 @@
 'use client'
 
 import type { ColumnDef } from '@tanstack/react-table'
-import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
+import {
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from '@tanstack/react-table'
 import { useState } from 'react'
 import { Button } from '~/components/base/button'
 import { DataTable, DataTableColumnHeader, DataTableToolbar } from '~/components/modules/data-table'
@@ -39,7 +45,7 @@ function FriendsTable(props: FriendsTableProps) {
         <img
           src={row.original.avatar}
           alt={row.original.name}
-          className="w-8 h-8 rounded-full object-cover"
+          className="h-8 w-8 rounded-full object-cover"
         />
       ),
     },
@@ -50,7 +56,11 @@ function FriendsTable(props: FriendsTableProps) {
     {
       accessorKey: 'url',
       header: ({ column }) => <DataTableColumnHeader column={column} title="链接" />,
-      cell: ({ row }) => <a href={row.original.url} target="_blank" className="text-blue-600">{row.original.url}</a>,
+      cell: ({ row }) => (
+        <a href={row.original.url} target="_blank" className="text-blue-600">
+          {row.original.url}
+        </a>
+      ),
     },
     {
       accessorKey: 'description',

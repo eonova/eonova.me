@@ -38,21 +38,22 @@ const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
   const trpc = useTRPC()
   const queryClient = useQueryClient()
 
-  const addImageMutate = useMutation(trpc.album.updateImage.mutationOptions({
-    onSuccess: async () => {
-      albumDialogStore.setUpdateDialogs(false)
-      toast.success('图片更新成功')
-      queryClient.invalidateQueries({
-        queryKey: trpc.album.getAllImages.queryKey(),
-      })
-    },
-    onError: error => toast.error(error.message),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: trpc.album.getAllImages.queryKey(),
-      })
-    },
-  }),
+  const addImageMutate = useMutation(
+    trpc.album.updateImage.mutationOptions({
+      onSuccess: async () => {
+        albumDialogStore.setUpdateDialogs(false)
+        toast.success('图片更新成功')
+        queryClient.invalidateQueries({
+          queryKey: trpc.album.getAllImages.queryKey(),
+        })
+      },
+      onError: error => toast.error(error.message),
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: trpc.album.getAllImages.queryKey(),
+        })
+      },
+    }),
   )
 
   function updateImage() {
@@ -75,38 +76,58 @@ const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            {id}
-          </DialogDescription>
+          <DialogDescription>{id}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               图片地址
             </Label>
-            <Input id="imageUrl" value={updateImageUrl} onChange={e => setUpdateImageUrl(e.target.value)} className="col-span-3" />
+            <Input
+              id="imageUrl"
+              value={updateImageUrl}
+              onChange={e => setUpdateImageUrl(e.target.value)}
+              className="col-span-3"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               图片描述
             </Label>
-            <Input id="username" value={updateDescription} onChange={e => setUpdateDescription(e.target.value)} className="col-span-3" />
+            <Input
+              id="username"
+              value={updateDescription}
+              onChange={e => setUpdateDescription(e.target.value)}
+              className="col-span-3"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               宽度
             </Label>
-            <Input id="width" value={updateWidth} onChange={e => setUpdateWidth(Number(e.target.value))} className="col-span-3" />
+            <Input
+              id="width"
+              value={updateWidth}
+              onChange={e => setUpdateWidth(Number(e.target.value))}
+              className="col-span-3"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
               高度
             </Label>
-            <Input id="height" value={updateHeight} onChange={e => setUpdateHeight(Number(e.target.value))} className="col-span-3" />
+            <Input
+              id="height"
+              value={updateHeight}
+              onChange={e => setUpdateHeight(Number(e.target.value))}
+              className="col-span-3"
+            />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={updateImage}>保存</Button>
+          <Button type="submit" onClick={updateImage}>
+            保存
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -14,7 +14,13 @@ type CommentEditorProps = {
 } & Command &
 React.ComponentProps<typeof Textarea>
 
-function setRangeText(textarea: HTMLTextAreaElement, replacement: string, start: number, end: number, selectionMode?: SelectionMode) {
+function setRangeText(
+  textarea: HTMLTextAreaElement,
+  replacement: string,
+  start: number,
+  end: number,
+  selectionMode?: SelectionMode,
+) {
   textarea.setRangeText(replacement, start, end, selectionMode)
   // Trigger input event to update the value
   textarea.dispatchEvent(new Event('input', { bubbles: true }))
@@ -84,7 +90,10 @@ function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>, command:
   }
 }
 
-function decorateText(textarea: HTMLTextAreaElement | null, type: 'bold' | 'italic' | 'strikethrough') {
+function decorateText(
+  textarea: HTMLTextAreaElement | null,
+  type: 'bold' | 'italic' | 'strikethrough',
+) {
   if (!textarea)
     return
 
@@ -120,7 +129,7 @@ function CommentEditor(props: CommentEditorProps) {
     <div
       className={cn(
         'bg-background ring-offset-background focus-within:ring-ring rounded-lg border pb-1',
-        'focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2',
+        'focus-within:ring-2 focus-within:ring-offset-2 focus-within:outline-none',
         'aria-disabled:cursor-not-allowed aria-disabled:opacity-80',
       )}
     >

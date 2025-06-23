@@ -63,7 +63,7 @@ function ReplyEmailTemplate(props: ReplyEmailTemplateProps) {
               <Text className="m-0 p-0 text-xl font-semibold text-gray-900">
                 Reply to Your Comment
               </Text>
-              <Text className="mx-0 mb-0 mt-2 p-0 text-base font-normal text-gray-500">
+              <Text className="mx-0 mt-2 mb-0 p-0 text-base font-normal text-gray-500">
                 {replier.name}
                 {' '}
                 replied to your comment on
@@ -85,10 +85,10 @@ function ReplyEmailTemplate(props: ReplyEmailTemplateProps) {
                   />
                 </Column>
                 <Column>
-                  <Text className="m-0 py-0 pl-3 pr-0 text-base font-medium text-gray-900">
+                  <Text className="m-0 py-0 pr-0 pl-3 text-base font-medium text-gray-900">
                     {replier.name}
                   </Text>
-                  <Text className="m-0 py-0 pl-3 pr-0 text-sm font-normal text-gray-500">
+                  <Text className="m-0 py-0 pr-0 pl-3 text-sm font-normal text-gray-500">
                     {date}
                   </Text>
                 </Column>
@@ -96,7 +96,7 @@ function ReplyEmailTemplate(props: ReplyEmailTemplateProps) {
               <Section className="mt-4 rounded-r-lg border-l-4 border-solid border-[#e5e5e5] bg-gray-100 px-3 py-4">
                 <Text className="m-0 p-0 text-sm font-normal text-gray-500">{comment}</Text>
               </Section>
-              <Text className="mx-0 mb-0 mt-4 p-0 text-base font-normal text-gray-700">
+              <Text className="mx-0 mt-4 mb-0 p-0 text-base font-normal text-gray-700">
                 {reply}
               </Text>
             </Section>

@@ -27,7 +27,7 @@ function Slider(props: SliderProps) {
       min={min}
       max={max}
       className={cn(
-        'relative flex w-full touch-none select-none items-center',
+        'relative flex w-full touch-none items-center select-none',
         'data-[disabled]:opacity-50',
         'data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col',
         className,
@@ -56,9 +56,9 @@ function Slider(props: SliderProps) {
           data-slot="slider-thumb"
           key={index}
           className={cn(
-            'border-primary bg-background ring-ring/50 block size-4 shrink-0 rounded-full border shadow-sm transition-color transition-box-shadow',
+            'border-primary bg-background ring-ring/50 transition-color transition-box-shadow block size-4 shrink-0 rounded-full border shadow-sm',
             'hover:ring-4',
-            'focus-visible:outline-hidden focus-visible:ring-4',
+            'focus-visible:ring-4 focus-visible:outline-hidden',
             'disabled:pointer-events-none disabled:opacity-50',
           )}
         />

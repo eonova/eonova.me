@@ -109,7 +109,7 @@ function LikeButton(props: Readonly<LikeButtonProps>) {
     <div className={cn('mt-10 flex justify-center', className)}>
       <motion.button
         ref={buttonRef}
-        className="flex items-center gap-2.5 rounded-full border-[#f2eaead2] border-solid dark:border-0 bg-[#f2eaead2] shadow border backdrop-blur-lg dark:bg-zinc-900 px-2.5 py-1.5 text-sm text-black dark:text-white"
+        className="flex items-center gap-2.5 rounded-full border border-solid border-[#f2eaead2] bg-[#f2eaead2] px-2.5 py-1.5 text-sm text-black shadow backdrop-blur-lg dark:border-0 dark:bg-zinc-900 dark:text-white"
         onClick={handleLikeButtonClick}
         aria-label="喜欢这个文章"
         whileTap={{ scale: 0.96 }}
@@ -155,7 +155,12 @@ function LikeButton(props: Readonly<LikeButtonProps>) {
         {status === 'error' ? <div>错误</div> : null}
         {status === 'success'
           ? (
-              <NumberFlow willChange plugins={[continuous]} value={data.likes + cacheCount} data-testid="like-count" />
+              <NumberFlow
+                willChange
+                plugins={[continuous]}
+                value={data.likes + cacheCount}
+                data-testid="like-count"
+              />
             )
           : null}
       </motion.button>

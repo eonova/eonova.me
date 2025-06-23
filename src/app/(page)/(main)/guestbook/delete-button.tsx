@@ -57,9 +57,7 @@ function DeleteButton() {
         <AlertDialogContent data-testid="guestbook-dialog">
           <AlertDialogHeader>
             <AlertDialogTitle>删除评论</AlertDialogTitle>
-            <AlertDialogDescription>
-              您确定要删除此评论吗？此操作无法撤销。
-            </AlertDialogDescription>
+            <AlertDialogDescription>您确定要删除此评论吗？此操作无法撤销。</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>取消</AlertDialogCancel>

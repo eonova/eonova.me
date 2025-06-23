@@ -28,7 +28,7 @@ const MenuPopover = memo(({ link, isOpen }: MenuPopoverProps) => {
       transition={{ duration: 0.3 }}
       id="nav"
       className={cn(
-        'rounded-full bg-background/30 absolute left-1/2 top-full z-50 -translate-x-1/2 transition-colors backdrop-blur-[10px] shadow-sm during-300 dark:border dark:border-solid dark:border-slate-600/50',
+        'bg-background/30 during-300 absolute top-full left-1/2 z-50 -translate-x-1/2 rounded-full shadow-sm backdrop-blur-[10px] transition-colors dark:border dark:border-solid dark:border-slate-600/50',
         isScrolled && 'bg-background/80',
       )}
     >
@@ -37,10 +37,10 @@ const MenuPopover = memo(({ link, isOpen }: MenuPopoverProps) => {
           <Link
             key={subItem.key}
             href={subItem.href}
-            className="hover:bg-gray-400/20 dark:hover:bg-accent hover:text-accent-foreground w-full flex items-center gap-4 rounded-full px-3 py-2 duration-200"
+            className="dark:hover:bg-accent hover:text-accent-foreground flex w-full items-center gap-4 rounded-full px-3 py-2 duration-200 hover:bg-gray-400/20"
           >
             {subItem.icon}
-            <p className="flex-1 whitespace-nowrap text-sm">{subItem.text}</p>
+            <p className="flex-1 text-sm whitespace-nowrap">{subItem.text}</p>
           </Link>
         ))}
       </div>

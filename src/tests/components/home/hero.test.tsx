@@ -5,9 +5,7 @@ import Hero from '~/components/pages/home/hero'
 
 describe('<Hero />', () => {
   it('should have a hero image', () => {
-    render(
-      <Hero />,
-    )
+    render(<Hero />)
     expect(screen.getByAltText('Eonova')).toBeInTheDocument()
   })
 })

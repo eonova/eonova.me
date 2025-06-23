@@ -14,15 +14,13 @@ function Layout(props: LayoutProps) {
   return (
     <>
       <Header />
-      <main className="mx-auto mb-16 w-full max-w-[820px] px-6 py-24 sm:px-8">
-        {children}
-      </main>
+      <main className="mx-auto mb-16 w-full max-w-[820px] px-6 py-24 sm:px-8">{children}</main>
       <MobileNavAside />
       <Footer />
       <Image
         width={1512}
         height={550}
-        className="absolute left-1/2 top-0 -z-10 -translate-x-1/2"
+        className="absolute top-0 left-1/2 -z-10 -translate-x-1/2"
         src="/images/gradient-background-top.png"
         alt=""
         role="presentation"

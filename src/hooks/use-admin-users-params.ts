@@ -1,6 +1,12 @@
 import type { GetUsersOutput } from '~/trpc/routers/users'
 
-import { parseAsArrayOf, parseAsInteger, parseAsString, parseAsTimestamp, useQueryStates } from 'nuqs'
+import {
+  parseAsArrayOf,
+  parseAsInteger,
+  parseAsString,
+  parseAsTimestamp,
+  useQueryStates,
+} from 'nuqs'
 import { z } from 'zod'
 
 import { USER_ROLES } from '~/config/constants'

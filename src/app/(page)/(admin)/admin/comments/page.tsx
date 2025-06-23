@@ -22,10 +22,7 @@ function Page() {
   const isInitialLoading = isLoading && !data
   return (
     <div className="space-y-6">
-      <AdminPageHeader
-        title="评论"
-        description="管理用户的评论"
-      />
+      <AdminPageHeader title="评论" description="管理用户的评论" />
       {isLoading && <DataTableSkeleton columnCount={4} rowCount={10} filterCount={3} />}
       {isError ? <div>无法获取评论数据。请刷新页面。</div> : null}
       {!isInitialLoading && data && (

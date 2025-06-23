@@ -18,7 +18,8 @@
 
 ## 拉取请求
 
-我们欢迎通过拉取请求（Pull Request）进行贡献！如果你正在修复 bug、开发新功能或做出改进，请按照以下步骤操作：
+我们欢迎通过拉取请求（Pull
+Request）进行贡献！如果你正在修复 bug、开发新功能或做出改进，请按照以下步骤操作：
 
 1. Fork 本仓库。
 2. 创建一个有描述性的分支。
@@ -42,7 +43,8 @@ cd eonova.me
 
 3. 复制 `.env.example` 文件为 `.env.local`：
 
-   大多数功能默认关闭，所以你不需要配置所有环境变量即可运行项目。如果你想使用某个特定功能，可以在 `.env.local` 文件中设置所需的环境变量，并将[功能开关](#flags)设为 true。
+   大多数功能默认关闭，所以你不需要配置所有环境变量即可运行项目。如果你想使用某个特定功能，可以在
+   `.env.local` 文件中设置所需的环境变量，并将[功能开关](#flags)设为 true。
 
 ```bash
 cp .env.example .env.local
@@ -91,15 +93,15 @@ pnpm dev:docs # 只运行文档应用
 
 各服务的访问地址如下：
 
-| 服务                     | URL                |
-| ------------------------ | ------------------ |
-| 应用（App）              | `localhost:3000`   |
-| React Email              | `localhost:3001`   |
-| 文档（Docs）             | `localhost:3002`   |
-| ESLint 配置检查           | `localhost:7777`   |
-| 数据库（Database）        | `localhost:5432`   |
-| Redis                    | `localhost:6379`   |
-| Redis serverless         | `localhost:8079`   |
+| 服务               | URL              |
+| ------------------ | ---------------- |
+| 应用（App）        | `localhost:3000` |
+| React Email        | `localhost:3001` |
+| 文档（Docs）       | `localhost:3002` |
+| ESLint 配置检查    | `localhost:7777` |
+| 数据库（Database） | `localhost:5432` |
+| Redis              | `localhost:6379` |
+| Redis serverless   | `localhost:8079` |
 
 ## 功能开关（Flags）
 
@@ -115,7 +117,8 @@ pnpm dev:docs # 只运行文档应用
 
 ## 规范化提交
 
-我们遵循 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) 规范，这有助于我们维护清晰有序的提交历史。你的提交信息应如下格式：
+我们遵循 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+规范，这有助于我们维护清晰有序的提交历史。你的提交信息应如下格式：
 
 ```
 <type>(<scope>): <description>

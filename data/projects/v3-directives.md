@@ -35,8 +35,8 @@ app.use(VueDirectives)
 
 ## 🧩Directives
 
-| Directive                                                                             | Description                                       |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| Directive                                                                           | Description                                       |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------- |
 | [v-backtop](https://v3-directives.eonova.me/zh/directives/v-backtop.html)           | Add a return to top function for an element       |
 | [v-clickOutside](https://v3-directives.eonova.me/zh/directives/v-clickOutside.html) | Event when clicking outside the element triggers  |
 | [v-copy](https://v3-directives.eonova.me/zh/directives/v-copy.html)                 | Copy the passed value to the clipboard            |
@@ -65,4 +65,5 @@ app.use(VueDirectives)
 
 ## 💖Contributors
 
-Contributions are welcome, PR is welcome, More references [Participate in Open source](https://v3-directives.eonova.me/en/about/contribution.html)
+Contributions are welcome, PR is welcome, More references
+[Participate in Open source](https://v3-directives.eonova.me/en/about/contribution.html)

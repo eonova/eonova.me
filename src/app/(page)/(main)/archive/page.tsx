@@ -6,7 +6,15 @@ import { allNotes, allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
 import ArchiveContent from '~/components/pages/archive/content'
 import PageTitle from '~/components/shared/page-title'
-import { SITE_DESCRIPTION, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_NAME, SITE_URL, SITE_X_URL, SITE_YOUTUBE_URL } from '~/config/constants'
+import {
+  SITE_DESCRIPTION,
+  SITE_GITHUB_URL,
+  SITE_INSTAGRAM_URL,
+  SITE_NAME,
+  SITE_URL,
+  SITE_X_URL,
+  SITE_YOUTUBE_URL,
+} from '~/config/constants'
 
 interface PageProps {
   params: Promise<{
@@ -19,7 +27,10 @@ const title = '归档'
 const description = '回望过往，方知自己的成长。'
 const url = `${SITE_URL}/archive`
 
-export async function generateMetadata(_: Readonly<PageProps>, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  _: Readonly<PageProps>,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
   return {
@@ -49,12 +60,15 @@ async function Page() {
   })
 
   // 做成对象数组：键为年份，值为文章数组
-  const articlesByYear = articles.reduce((acc, article) => {
-    const year = new Date(article.date).getFullYear()
-    acc[year] ??= []
-    acc[year].push(article)
-    return acc
-  }, {} as Record<string, (Post | Note)[]>)
+  const articlesByYear = articles.reduce(
+    (acc, article) => {
+      const year = new Date(article.date).getFullYear()
+      acc[year] ??= []
+      acc[year].push(article)
+      return acc
+    },
+    {} as Record<string, (Post | Note)[]>,
+  )
 
   if (!articles) {
     notFound()

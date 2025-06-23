@@ -1,4 +1,13 @@
-import type { ColumnFiltersState, PaginationState, RowSelectionState, SortingState, TableOptions, TableState, Updater, VisibilityState } from '@tanstack/react-table'
+import type {
+  ColumnFiltersState,
+  PaginationState,
+  RowSelectionState,
+  SortingState,
+  TableOptions,
+  TableState,
+  Updater,
+  VisibilityState,
+} from '@tanstack/react-table'
 import type { Parser, UseQueryStateOptions } from 'nuqs'
 import type { TransitionStartFunction } from 'react'
 import type { ExtendedColumnSort } from '~/components/modules/data-table'
@@ -11,18 +20,9 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-
   useReactTable,
 } from '@tanstack/react-table'
-import {
-  parseAsArrayOf,
-  parseAsInteger,
-  parseAsString,
-
-  useQueryState,
-
-  useQueryStates,
-} from 'nuqs'
+import { parseAsArrayOf, parseAsInteger, parseAsString, useQueryState, useQueryStates } from 'nuqs'
 
 import { useCallback, useMemo, useState } from 'react'
 import { DEFAULT_PAGE_SIZE_OPTIONS } from '~/components/modules/data-table'

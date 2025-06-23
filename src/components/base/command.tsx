@@ -71,7 +71,7 @@ function CommandList(props: CommandListProps) {
   return (
     <CommandPrimitive.List
       className={cn(
-        'max-h-[50vh] overflow-y-auto overflow-x-hidden px-2 [&>[cmdk-list-sizer]]:py-2',
+        'max-h-[50vh] overflow-x-hidden overflow-y-auto px-2 [&>[cmdk-list-sizer]]:py-2',
         className,
       )}
       {...rest}
@@ -121,7 +121,7 @@ function CommandItem(props: CommandItemProps) {
   return (
     <CommandPrimitive.Item
       className={cn(
-        'flex h-10 cursor-default select-none items-center rounded-lg px-2 text-sm outline-none [&:not(:first-child)]:mt-1',
+        'flex h-10 cursor-default items-center rounded-lg px-2 text-sm outline-none select-none [&:not(:first-child)]:mt-1',
         '[&_svg]:pointer-events-none [&_svg]:mr-2 [&_svg]:size-3.5',
         'aria-[selected=true]:bg-accent',
         'data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',

@@ -93,11 +93,7 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
   })
 
   return (
-    <div
-      ref={ref}
-      className="relative w-full h-full"
-      style={{ height: Math.max(...heights) }}
-    >
+    <div ref={ref} className="relative h-full w-full" style={{ height: Math.max(...heights) }}>
       {transitions((style, item) => {
         if (!item)
           return null
@@ -105,7 +101,7 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
           <a.div
             key={item.id}
             style={style}
-            className="absolute p-1 [will-change:transform,width,height,opacity] overflow-hidden cursor-pointer"
+            className="absolute cursor-pointer overflow-hidden p-1 [will-change:transform,width,height,opacity]"
             onClick={() => {
               if (onImageClick) {
                 onImageClick(item.index)
@@ -117,7 +113,7 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
               height={item.height}
               width={item.width}
               alt={item.description ?? ''}
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </a.div>
         )

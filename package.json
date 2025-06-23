@@ -27,6 +27,7 @@
     "with-env": "dotenv -e .env.local --",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --max-warnings 0 --fix",
+    "format": "prettier --write . --config prettier.config.ts",
     "test:unit": "vitest --ui",
     "test:e2e": "cross-env NODE_ENV=test pnpm with-env playwright test",
     "test:e2e:inspector": "cross-env NODE_ENV=test pnpm with-env playwright test $1 --debug",
@@ -163,6 +164,7 @@
     "@vitejs/plugin-react": "catalog:build",
     "@vitest/coverage-v8": "catalog:test",
     "@vitest/ui": "catalog:test",
+    "critters": "catalog:build",
     "dotenv-cli": "catalog:script",
     "drizzle-kit": "catalog:script",
     "eslint": "catalog:lint",
@@ -175,6 +177,9 @@
     "plop": "catalog:script",
     "postcss": "catalog:ui",
     "postcss-load-config": "catalog:ui",
+    "prettier": "catalog:lint",
+    "prettier-plugin-organize-imports": "catalog:lint",
+    "prettier-plugin-tailwindcss": "catalog:lint",
     "schema-dts": "catalog:types",
     "sharp": "catalog:build",
     "simple-git-hooks": "catalog:lint",
@@ -183,9 +188,6 @@
     "tsx": "catalog:script",
     "typescript": "catalog:build",
     "vitest": "catalog:test"
-  },
-  "resolutions": {
-    "prettier": "3.5.3"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",

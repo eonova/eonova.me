@@ -22,7 +22,11 @@ function createThemeTest(theme: 'light' | 'dark') {
   })
 }
 
-function createSystemThemeTest(path: string, preferredColorScheme: 'light' | 'dark', expectedTheme: string) {
+function createSystemThemeTest(
+  path: string,
+  preferredColorScheme: 'light' | 'dark',
+  expectedTheme: string,
+) {
   test(`should render ${expectedTheme} theme if preferred-colorscheme is ${preferredColorScheme}`, async ({
     browser,
     baseURL,

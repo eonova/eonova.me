@@ -126,9 +126,7 @@ function Comment(props: CommentProps) {
 
             {isDeleted
               ? (
-                  <p className="text-muted-foreground my-3 ml-0.5 text-sm">
-                    [此评论已被删除]
-                  </p>
+                  <p className="text-muted-foreground my-3 ml-0.5 text-sm">[此评论已被删除]</p>
                 )
               : (
                   <Markdown>{body}</Markdown>

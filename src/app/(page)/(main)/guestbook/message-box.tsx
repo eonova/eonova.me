@@ -44,16 +44,18 @@ function MessageBox(props: Readonly<FormProps>) {
     },
   })
   const queryClient = useQueryClient()
-  const guestbookMutation = useMutation(trpc.guestbook.create.mutationOptions({
-    onSuccess: () => {
-      form.reset()
-      toast.success('成功发布留言')
-    },
-    onSettled: () => queryClient.invalidateQueries({
-      queryKey: trpc.guestbook.getInfiniteMessages.infiniteQueryKey(),
+  const guestbookMutation = useMutation(
+    trpc.guestbook.create.mutationOptions({
+      onSuccess: () => {
+        form.reset()
+        toast.success('成功发布留言')
+      },
+      onSettled: () =>
+        queryClient.invalidateQueries({
+          queryKey: trpc.guestbook.getInfiniteMessages.infiniteQueryKey(),
+        }),
+      onError: error => toast.error(error.message),
     }),
-    onError: error => toast.error(error.message),
-  }),
   )
 
   const onSubmit = (values: z.infer<typeof guestbookFormSchema>) => {
@@ -79,11 +81,7 @@ function MessageBox(props: Readonly<FormProps>) {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea
-                    placeholder="留言"
-                    data-testid="guestbook-textarea"
-                    {...field}
-                  />
+                  <Textarea placeholder="留言" data-testid="guestbook-textarea" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

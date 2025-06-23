@@ -1,5 +1,12 @@
 import { Skeleton } from '~/components/base/skeleton'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/base/table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '~/components/base/table'
 import { cn } from '~/utils'
 
 type DataTableSkeletonProps = {

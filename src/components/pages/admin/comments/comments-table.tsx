@@ -67,9 +67,7 @@ function CommentsTable(props: CommentsTableProps) {
     {
       id: 'userId',
       accessorKey: 'userId',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="User ID" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="User ID" />,
       meta: {
         label: 'User ID',
       },
@@ -77,9 +75,7 @@ function CommentsTable(props: CommentsTableProps) {
     {
       id: 'body',
       accessorKey: 'body',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Body" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="Body" />,
       meta: {
         label: 'Body',
         placeholder: 'Search body...',
@@ -90,9 +86,7 @@ function CommentsTable(props: CommentsTableProps) {
     {
       id: 'parentId',
       accessorKey: 'parentId',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Type" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="Type" />,
       cell: ({ row }) => {
         return row.original.parentId ? 'reply' : 'comment'
       },
@@ -112,9 +106,7 @@ function CommentsTable(props: CommentsTableProps) {
     {
       id: 'createdAt',
       accessorKey: 'createdAt',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Created At" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="Created At" />,
       cell: ({ row }) =>
         formatDate(row.original.createdAt, {
           month: 'short',

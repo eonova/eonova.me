@@ -28,9 +28,7 @@ interface CardProps {
 function SelectedProjects() {
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
-  const filteredProjects = allProjects.filter(
-    project => project.selected,
-  )
+  const filteredProjects = allProjects.filter(project => project.selected)
 
   return (
     <motion.div
@@ -120,7 +118,7 @@ function Card(props: CardProps) {
         imageClassName="w-full aspect-7/4"
         blurGlass
       />
-      <div className="absolute bottom-6 left-7 flex flex-col transition-[left] ease-out group-hover:left-[30px] z-40">
+      <div className="absolute bottom-6 left-7 z-40 flex flex-col transition-[left] ease-out group-hover:left-[30px]">
         <h3 className="text-2xl font-semibold text-white">{name}</h3>
         <p className="dark:text-muted-foreground mt-2 text-zinc-100">{description}</p>
       </div>

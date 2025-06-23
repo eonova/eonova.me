@@ -9,7 +9,12 @@ export const Tooltip = TooltipPrimitive.Root
 
 export const TooltipTrigger = TooltipPrimitive.Trigger
 
-export function TooltipContent({ ref, ...props }: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> & { ref?: React.RefObject<React.ElementRef<typeof TooltipPrimitive.Content> | null> }) {
+export function TooltipContent({
+  ref,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> & {
+  ref?: React.RefObject<React.ElementRef<typeof TooltipPrimitive.Content> | null>
+}) {
   const { className, sideOffset = 4, ...rest } = props
 
   return (

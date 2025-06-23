@@ -23,15 +23,17 @@ cover: 'https://img.eonova.me/upload/vite-engineering-config.png'
 - [cz-emoji git commit emoji Message](https://github.com/ngryman/cz-emoji)
 
 ## Editorconfig统一编译器配置风格
->
->EditorConfig 有助于为不同 IDE 编辑器上处理同一项目的多个开发人员维护一致的代码风格。
+
+> EditorConfig 有助于为不同 IDE 编辑器上处理同一项目的多个开发人员维护一致的代码风格。
 
 可以下载一个插件生成本地的编译器配置
 ![image.png](https://img.eonova.me/upload/20231114210936.png)
 
 ## ESlint优化代码质量
->
->ESLint 是一款用于查找并报告代码中问题的工具，并且支持部分问题自动修复。其核心是通过对代码解析得到的 AST（Abstract Syntax Tree 抽象语法树）进行模式匹配，来分析代码达到检查代码质量和风格问题的能力。
+
+> ESLint 是一款用于查找并报告代码中问题的工具，并且支持部分问题自动修复。其核心是通过对代码解析得到的 AST（Abstract
+> Syntax
+> Tree 抽象语法树）进行模式匹配，来分析代码达到检查代码质量和风格问题的能力。
 
 官网： [eslint.org](https://eslint.org/)
 
@@ -41,7 +43,7 @@ cover: 'https://img.eonova.me/upload/vite-engineering-config.png'
 npx eslint --init
 ```
 
-ESLint 会询问一系列问题，根据你的回答生成对应的.eslintrc.*配置文件。
+ESLint 会询问一系列问题，根据你的回答生成对应的.eslintrc.\*配置文件。
 
 ```bash
 /*
@@ -82,8 +84,8 @@ $ npx eslint --init
 - 至此，便可以使用 ESlint 来检查、修复代码中的问题了
 
 ## Prettier美化代码风格
->
->Prettier 是一款强大的代码格式化工具，支持JavaScript、Typescript、Css、Scss、Less、JSX、Angular、Vue、GraphQL、JSON、Markdown等，基本上前端能用到的文件格式都可以搞定，是当下最流行的格式化工具。
+
+> Prettier 是一款强大的代码格式化工具，支持JavaScript、Typescript、Css、Scss、Less、JSX、Angular、Vue、GraphQL、JSON、Markdown等，基本上前端能用到的文件格式都可以搞定，是当下最流行的格式化工具。
 
 官网：[prettier.io/](https://link.juejin.cn?target=https%3A%2F%2Fprettier.io%2F)
 
@@ -93,8 +95,7 @@ $ npx eslint --init
 pnpm add prettier -D
 ```
 
-- 创建 Prettier 配置文件Prettier 支持多种格式的配置文件，比如 .json、.yml、yaml、.js等。 在根目录下创建 .prettierrc 文件
-.prettierrc.js
+- 创建 Prettier 配置文件Prettier 支持多种格式的配置文件，比如 .json、.yml、yaml、.js等。 在根目录下创建 .prettierrc 文件 .prettierrc.js
 
 ```js
 // 此处的规则供参考，其中多半其实都是默认值，可以根据个人习惯改写
@@ -121,11 +122,12 @@ module.exports = {
 ```
 
 - 下载插件Prettiter
-![image.png](https://img.eonova.me/upload/20231114211718.png)
+  ![image.png](https://img.eonova.me/upload/20231114211718.png)
 
 ## Stylelint规范CSS风格
->
->`StyleLint` 是『一个强大的、现代化的 CSS 检测工具』, 与 ESLint 类似, 是通过定义一系列的编码风格规则帮助我们避免在样式表中出现错误.
+
+> `StyleLint`
+> 是『一个强大的、现代化的 CSS 检测工具』, 与 ESLint 类似, 是通过定义一系列的编码风格规则帮助我们避免在样式表中出现错误.
 
 - 安装stylelint、[stylelint-config-standard](https://link.segmentfault.com/?url=https%3A%2F%2Fgithub.com%2Fstylelint%2Fstylelint-config-standard)，stylelint-config-standard继承stylelint-config-recommended，提供一些常用的CSS规则，是stylelint推荐的配置
 
@@ -154,7 +156,7 @@ pnpm add stylelint stylelint-config-standard -D
 ```
 
 - 安装stylelint拓展插件，并在.vscode/settings.json增加如下配置，按Ctrl+S后会自动触发对样式格式化
-![image.png](https://img.eonova.me/upload/20231114221255.png)
+  ![image.png](https://img.eonova.me/upload/20231114221255.png)
 
 ```json
 // .vscode/settings.json
@@ -165,8 +167,10 @@ pnpm add stylelint stylelint-config-standard -D
 ```
 
 ## Commitizen规范git提交信息
->
->commitizen 仓库名为 [cz-cli](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fcommitizen%2Fcz-cli) ，它提供了一个 git cz 的指令用于代替 git commit，从而对 Git 提交进行规范化处理
+
+> commitizen 仓库名为
+> [cz-cli](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fcommitizen%2Fcz-cli)
+> ，它提供了一个 git cz 的指令用于代替 git commit，从而对 Git 提交进行规范化处理
 
 - 全局安装
 
@@ -196,8 +200,7 @@ commitizen init cz-conventional-changelog --save --save-exact
 }
 ```
 
-- 中文包或者emoji表情包（选择一个即可）
-中文包安装
+- 中文包或者emoji表情包（选择一个即可）中文包安装
 
 ```bash
 pnpm i cz-conventional-changelog-zh
@@ -234,13 +237,14 @@ package.json中配置
 ```
 
 ## Husky推送检查
->
->Husky可以在项目中植入你设定的 git hooks，在 git 提交代码的前后，你预设的 git hooks 可以得到执行，以对代码、文件等进行预设的检查，一旦检查不通过，就可以阻止当前的代码提交，避免了不规范的代码和 git 提交出现在项目中。
+
+> Husky可以在项目中植入你设定的 git hooks，在 git 提交代码的前后，你预设的 git
+> hooks 可以得到执行，以对代码、文件等进行预设的检查，一旦检查不通过，就可以阻止当前的代码提交，避免了不规范的代码和 git 提交出现在项目中。
 
 - 安装依赖
 - 启动 `hooks`， 生成 `.husky` 文件夹
 - 在 `package.json` 中生成 `prepare`指令
-![image.png](https://img.eonova.me/upload/20231114224240.png)
+  ![image.png](https://img.eonova.me/upload/20231114224240.png)
 - 执行 `prepare`指令
 
 ```bash
@@ -254,8 +258,8 @@ npx husky add .husky/pre-commit "npx eslint --ext .js,.jsx,.ts,.tsx"
 ```
 
 ## lint-staged提交前格式化
->
-> `lint-staged` 是一个专门用于在通过 `git` 提交代码之前，对暂存区的代码执行一系列的格式化。
+
+>  `lint-staged` 是一个专门用于在通过 `git` 提交代码之前，对暂存区的代码执行一系列的格式化。
 
 - 安装
 

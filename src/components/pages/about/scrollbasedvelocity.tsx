@@ -47,11 +47,7 @@ export const VelocityScroll: React.FC<VelocityScrollProps> = ({
   className,
 }) => {
   // eslint-disable-next-line react/no-nested-components
-  const ParallaxText: React.FC<ParallaxProps> = ({
-    children,
-    baseVelocity = 100,
-    className,
-  }) => {
+  const ParallaxText: React.FC<ParallaxProps> = ({ children, baseVelocity = 100, className }) => {
     const baseX = useMotionValue(0)
     const { scrollY } = useScroll()
     const scrollVelocity = useVelocity(scrollY)
@@ -103,10 +99,7 @@ export const VelocityScroll: React.FC<VelocityScrollProps> = ({
     })
 
     return (
-      <div
-        className="w-full overflow-hidden whitespace-nowrap"
-        ref={containerRef}
-      >
+      <div className="w-full overflow-hidden whitespace-nowrap" ref={containerRef}>
         <motion.div className={cn('inline-block', className)} style={{ x }}>
           {Array.from({ length: repetitions }).map((_, i) => (
             <span key={i} ref={i === 0 ? textRef : null}>
@@ -123,7 +116,7 @@ export const VelocityScroll: React.FC<VelocityScrollProps> = ({
   const isInView = useInView(locaityRef, { once: true, margin: '-100px' })
   return (
     <motion.div
-      className="relative py-4 shadow-feature-card overflow-hidden flex flex-col justify-between border-solid border-1 rounded-2xl col-span-1 md:col-span-4 lg:col-span-8"
+      className="shadow-feature-card relative col-span-1 flex flex-col justify-between overflow-hidden rounded-2xl border-1 border-solid py-4 md:col-span-4 lg:col-span-8"
       initial="initial"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}

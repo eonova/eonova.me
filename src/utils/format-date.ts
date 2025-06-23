@@ -14,6 +14,8 @@ export function formatDate(date: string | number | Date) {
       month: 'long',
       day: 'numeric',
       weekday: 'long',
-    }).format(new Date(date)).replace('星期', ' 星期')
+    })
+      .format(new Date(date))
+      .replace('星期', ' 星期')
   }
 }

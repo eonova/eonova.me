@@ -17,18 +17,22 @@ interface AlbumDialogsState {
 export const useAlbumDialogsStore = create<AlbumDialogsState>(set => ({
   AllImages: [],
   addDialog: false,
-  setAddDialogs: (value: boolean) => set({
-    addDialog: value,
-  }),
+  setAddDialogs: (value: boolean) =>
+    set({
+      addDialog: value,
+    }),
   updateDialog: false,
-  setUpdateDialogs: (value: boolean) => set({
-    updateDialog: value,
-  }),
+  setUpdateDialogs: (value: boolean) =>
+    set({
+      updateDialog: value,
+    }),
   deleteDialog: false,
-  setDeleteDialogs: (value: boolean) => set({
-    deleteDialog: value,
-  }),
-  setAllImages: (value: Image[]) => set({
-    AllImages: value,
-  }),
+  setDeleteDialogs: (value: boolean) =>
+    set({
+      deleteDialog: value,
+    }),
+  setAllImages: (value: Image[]) =>
+    set({
+      AllImages: value,
+    }),
 }))

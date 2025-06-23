@@ -15,15 +15,8 @@ function Page() {
 
   return (
     <div className="space-y-6">
-      <AdminPageHeader
-        title="相册管理"
-        description="分享日常生活"
-      />
-      {isLoading
-        ? (
-            <DataTableSkeleton columnCount={3} rowCount={10} filterCount={1} />
-          )
-        : null}
+      <AdminPageHeader title="相册管理" description="分享日常生活" />
+      {isLoading ? <DataTableSkeleton columnCount={3} rowCount={10} filterCount={1} /> : null}
       {isError ? <div>无法获取用户数据。请刷新页面。</div> : null}
       {!isInitialLoading && data && (
         <>

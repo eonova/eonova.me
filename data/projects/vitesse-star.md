@@ -4,7 +4,7 @@ description: 'Vue3 起手模版'
 homepage: 'https://vitesse-star.netlify.app/'
 github: 'https://github.com/eonova/vitesse-star'
 date: '2023-06-06T03:40:55.002Z'
-techstack: ['Vite','Vue','UnoCSS','Alova','Pinia','TypeScript']
+techstack: ['Vite', 'Vue', 'UnoCSS', 'Alova', 'Pinia', 'TypeScript']
 selected: false
 ---
 
@@ -178,7 +178,8 @@ pnpm dev
 
 该项目使用 Pinia 进行状态管理。你可以在 src/stores 目录下创建自己的状态模块，并在需要的组件中引入并使用它们。
 
-这里使用了 [pinia-auto-refs](https://github.com/Allen-1998/pinia-auto-refs) 插件简化引入
+这里使用了 [pinia-auto-refs](https://github.com/Allen-1998/pinia-auto-refs)
+插件简化引入
 
 **使用插件前：**
 
@@ -199,4 +200,3 @@ const { name, token, fullName, updateName } = useStore('user')
 ## 🐛运行测试
 
 该项目集成了 Vitest 单元测试工具。你可以在 test 目录下编写和运行测试用例。详细的使用方法请参考 Vitest 文档。
-

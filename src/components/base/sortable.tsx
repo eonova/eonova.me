@@ -1,6 +1,14 @@
 'use client'
 
-import type { Announcements, DndContextProps, DragEndEvent, DraggableSyntheticListeners, DropAnimation, ScreenReaderInstructions, UniqueIdentifier } from '@dnd-kit/core'
+import type {
+  Announcements,
+  DndContextProps,
+  DragEndEvent,
+  DraggableSyntheticListeners,
+  DropAnimation,
+  ScreenReaderInstructions,
+  UniqueIdentifier,
+} from '@dnd-kit/core'
 import type { SortableContextProps } from '@dnd-kit/sortable'
 import {
   closestCenter,
@@ -23,7 +31,6 @@ import {
   arrayMove,
   horizontalListSortingStrategy,
   SortableContext,
-
   sortableKeyboardCoordinates,
   useSortable,
   verticalListSortingStrategy,
@@ -103,7 +110,7 @@ type SortableProps<T> = DndContextProps & {
   flatCursor?: boolean
 } & (T extends object ? GetItemValue<T> : Partial<GetItemValue<T>>)
 
-function Sortable<T,>(props: SortableProps<T>) {
+function Sortable<T>(props: SortableProps<T>) {
   const {
     value,
     onValueChange,
@@ -389,7 +396,7 @@ function SortableItem(props: SortableItemProps) {
         ref={composedRef}
         style={composedStyle}
         className={cn(
-          'focus-visible:ring-ring focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-offset-1',
+          'focus-visible:ring-ring focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-hidden',
           {
             'touch-none select-none': asHandle,
             'cursor-default': context.flatCursor,
@@ -440,7 +447,7 @@ function SortableItemHandle(props: SortableItemHandleProps) {
       className={cn(
         'select-none',
         'disabled:pointer-events-none disabled:opacity-50',
-        context.flatCursor ? 'cursor-default' : 'data-dragging:cursor-grabbing cursor-grab',
+        context.flatCursor ? 'cursor-default' : 'cursor-grab data-dragging:cursor-grabbing',
         className,
       )}
       disabled={isDisabled}

@@ -1,8 +1,23 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { MoreVerticalIcon } from 'lucide-react'
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '~/components/base/alert-dialog'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '~/components/base/alert-dialog'
 import { Button, buttonVariants } from '~/components/base/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/components/base/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '~/components/base/dropdown-menu'
 import { toast } from '~/components/base/toaster'
 import { useCommentContext } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
@@ -57,12 +72,7 @@ function CommentMenu() {
     <AlertDialog>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="size-8"
-            aria-label="开启选单"
-          >
+          <Button variant="ghost" size="icon" className="size-8" aria-label="开启选单">
             <MoreVerticalIcon className="size-5" />
           </Button>
         </DropdownMenuTrigger>
@@ -94,9 +104,7 @@ function CommentMenu() {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>删除评论</AlertDialogTitle>
-          <AlertDialogDescription>
-            您确定要删除此评论吗？此动作无法复原。
-          </AlertDialogDescription>
+          <AlertDialogDescription>您确定要删除此评论吗？此动作无法复原。</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>取消</AlertDialogCancel>

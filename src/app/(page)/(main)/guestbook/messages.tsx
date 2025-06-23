@@ -130,7 +130,7 @@ function Message(props: Readonly<MessageProps>) {
             <UpdatedDate date={updatedAt} />
           </div>
         </div>
-        <div className="break-words pl-[52px]">{body}</div>
+        <div className="pl-[52px] break-words">{body}</div>
         {isAuthor ? <DeleteButton /> : null}
       </div>
     </MessageProvider>

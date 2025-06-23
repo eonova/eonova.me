@@ -2,13 +2,20 @@ import type { Metadata, Viewport } from 'next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import Head from 'next/head'
 import Script from 'next/script'
 import { Monitoring } from 'react-scan/monitoring/next'
 import Dock from '~/components/layouts/dock'
 import SignInDialog from '~/components/layouts/sign-in-dialog'
 import Hello from '~/components/shared/hello'
 import { ErrorBoundaryMonitor, PerformanceMonitor } from '~/components/shared/performance-monitor'
-import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
+import {
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+} from '~/config/constants'
 import { env } from '~/lib/env'
 import { cn } from '~/utils'
 import Providers from '../providers'
@@ -114,13 +121,16 @@ export default function RootLayout({
       className={cn(GeistSans.variable, GeistMono.variable, 'scroll-smooth')}
       suppressHydrationWarning
     >
-      <head>
+      <Head>
         {env.NODE_ENV === 'development' && (
           <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         )}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"></link>
-      </head>
-      <body className="antialiased relative">
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"
+        />
+      </Head>
+      <body className="relative antialiased">
         {env.REACT_SCAN_MONITOR_API_KEY
           ? (
               <Monitoring

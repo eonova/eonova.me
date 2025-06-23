@@ -1,13 +1,9 @@
 export function isPostModel(model: any) {
-  return (
-    isDefined(model.title) && isDefined(model.slug) && !isDefined(model.order)
-  )
+  return isDefined(model.title) && isDefined(model.slug) && !isDefined(model.order)
 }
 
 export function isPageModel(model: any) {
-  return (
-    isDefined(model.title) && isDefined(model.slug) && isDefined(model.order)
-  )
+  return isDefined(model.title) && isDefined(model.slug) && isDefined(model.order)
 }
 
 export function isNoteModel(model: any) {

@@ -23,7 +23,10 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata(props: Readonly<PageProps>, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: Readonly<PageProps>,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { slug } = await props.params
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
@@ -122,12 +125,12 @@ async function Page(props: Readonly<PageProps>) {
       />
       <Providers post={post}>
         <Header />
-        <div className="mt-8 w-full overflow-visible flex flex-col justify-between lg:flex-row gap-2">
+        <div className="mt-8 flex w-full flex-col justify-between gap-2 overflow-visible lg:flex-row">
           <article className="w-full sm:px-4">
             <Mdx code={code} />
           </article>
-          <aside className="w-[0] lg:ml-[-15vw] xl:ml-[-20vw] hidden lg:block">
-            <div className="sticky ml-5 top-32 lg:min-w-[200px] lg:max-w-[200px]">
+          <aside className="hidden w-[0] lg:ml-[-15vw] lg:block xl:ml-[-20vw]">
+            <div className="sticky top-32 ml-5 lg:max-w-[200px] lg:min-w-[200px]">
               {toc.length > 0 && <TableOfContents toc={toc} />}
               {flags.likeButton && <LikeButton className="ml-5 justify-start" slug={slug} />}
             </div>
@@ -136,13 +139,11 @@ async function Page(props: Readonly<PageProps>) {
         {toc.length > 0 && <MobileTableOfContents toc={toc} />}
         <Footer />
       </Providers>
-      {
-        flags.comment && (
-          <Suspense>
-            <Comments slug={slug} />
-          </Suspense>
-        )
-      }
+      {flags.comment && (
+        <Suspense>
+          <Comments slug={slug} />
+        </Suspense>
+      )}
     </>
   )
 }

@@ -32,19 +32,17 @@ function AlbumTable(props: AlbumTableProps) {
   const columns: Array<ColumnDef<Image>> = [
     {
       accessorKey: 'imagePreView',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="图片地址" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="图片地址" />,
       cell: ({ row }) => {
         const image = row.original // 获取当前行的数据
         return (
-          <div className="w-24 h-20">
+          <div className="h-20 w-24">
             <Image
               src={image.imageUrl} // 假设 imageUrl 是图片的地址
               alt="Image preview"
               width={100}
               height={80}
-              className="object-cover w-full h-full"
+              className="h-full w-full object-cover"
             />
           </div>
         )
@@ -52,54 +50,71 @@ function AlbumTable(props: AlbumTableProps) {
     },
     {
       accessorKey: 'imageUrl',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="图片地址" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="图片地址" />,
       cell: ({ row }) => {
         const rowData = row.original // 获取当前行的数据
-        return <p className="truncate w-50" title={rowData.imageUrl}>{rowData.imageUrl}</p>
+        return (
+          <p className="w-50 truncate" title={rowData.imageUrl}>
+            {rowData.imageUrl}
+          </p>
+        )
       },
     },
     {
       accessorKey: 'description',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="描述" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="描述" />,
     },
     {
       accessorKey: 'WidthHeight',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="描述" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="描述" />,
       cell: ({ row }) => {
         const rowData = row.original // 获取当前行的数据
-        return <p className="truncate w-50" title={`${rowData.width}*${rowData.height}`}>{`${rowData.width}*${rowData.height}`}</p>
+        return (
+          <p
+            className="w-50 truncate"
+            title={`${rowData.width}*${rowData.height}`}
+          >
+            {`${rowData.width}*${rowData.height}`}
+          </p>
+        )
       },
     },
     {
       accessorKey: 'createdAt',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="创建时间" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="创建时间" />,
     },
     {
       accessorKey: 'update',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="更新" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="更新" />,
       cell: ({ row }) => {
         const rowData = row.original // 获取当前行的数据
-        return <Button variant="secondary" type="button" aria-details="更新图片" onClick={() => openUpdateDialog(rowData)}>更新</Button>
+        return (
+          <Button
+            variant="secondary"
+            type="button"
+            aria-details="更新图片"
+            onClick={() => openUpdateDialog(rowData)}
+          >
+            更新
+          </Button>
+        )
       },
     },
     {
       accessorKey: 'delete',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="删除" />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title="删除" />,
       cell: ({ row }) => {
         const rowData = row.original // 获取当前行的数据
-        return <Button variant="destructive" type="button" aria-details="删除图片" onClick={() => openDeleteDialog(rowData)}>删除</Button>
+        return (
+          <Button
+            variant="destructive"
+            type="button"
+            aria-details="删除图片"
+            onClick={() => openDeleteDialog(rowData)}
+          >
+            删除
+          </Button>
+        )
       },
     },
   ]

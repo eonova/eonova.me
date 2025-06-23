@@ -13,10 +13,7 @@ const title = '项目'
 const description = '我的项目清单。所有东西都是用 ❤️ 制作'
 const url = '/projects'
 
-export async function generateMetadata(
-  _: unknown,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(_: unknown, parent: ResolvingMetadata): Promise<Metadata> {
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
 
@@ -72,16 +69,20 @@ async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageTitle
-        title={title}
-        description={description}
-      />
-      {Object.entries(groupedData).reverse().map(([year, projects], idx) => (
-        <div className={idx !== 0 ? 'mt-5' : ''} key={year + idx}>
-          <BackgroundFont className="text-7xl text-gray-500/50 dark:text-white/50" lineHeight="1.1">{year}</BackgroundFont>
-          <ProjectCards projects={projects} />
-        </div>
-      ))}
+      <PageTitle title={title} description={description} />
+      {Object.entries(groupedData)
+        .reverse()
+        .map(([year, projects], idx) => (
+          <div className={idx !== 0 ? 'mt-5' : ''} key={year + idx}>
+            <BackgroundFont
+              className="text-7xl text-gray-500/50 dark:text-white/50"
+              lineHeight="1.1"
+            >
+              {year}
+            </BackgroundFont>
+            <ProjectCards projects={projects} />
+          </div>
+        ))}
     </>
   )
 }

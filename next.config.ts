@@ -25,6 +25,39 @@ const withPWA = createPWA({
     cleanupOutdatedCaches: true,
     skipWaiting: true,
     clientsClaim: true,
+    maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // 15MB limit
+    exclude: [
+      /\.map$/,
+      /manifest$/,
+      /\.htaccess$/,
+      /service-worker\.js$/,
+      /sw\.js$/,
+      /workbox-.*\.js$/,
+    ],
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'google-fonts-cache',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60 * 24 * 365, // 365 days
+          },
+        },
+      },
+      {
+        urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'google-fonts-cache',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60 * 24 * 365, // 365 days
+          },
+        },
+      },
+    ],
   },
 })
 
@@ -63,6 +96,39 @@ const NextConfigHeaders = [
       },
     ],
   },
+  // API 路由缓存和压缩
+  {
+    source: '/api/(.*)',
+    headers: [
+      {
+        key: 'Cache-Control',
+        value: 'public, max-age=300, s-maxage=600, stale-while-revalidate=86400',
+      },
+      {
+        key: 'Content-Encoding',
+        value: 'gzip',
+      },
+    ],
+  },
+  // 静态资源缓存
+  {
+    source: '/images/(.*)',
+    headers: [
+      {
+        key: 'Cache-Control',
+        value: 'public, max-age=31536000, immutable',
+      },
+    ],
+  },
+  {
+    source: '/_next/static/(.*)',
+    headers: [
+      {
+        key: 'Cache-Control',
+        value: 'public, max-age=31536000, immutable',
+      },
+    ],
+  },
 ]
 
 const MyNextConfig: NextConfig = {
@@ -80,15 +146,28 @@ const MyNextConfig: NextConfig = {
       '@radix-ui/react-dropdown-menu',
       'react-hook-form',
       'zod',
+      '@tanstack/react-query',
+      'framer-motion',
+      'react-spring',
+      'gsap',
+      'motion',
+      'canvas-confetti',
+      'react-medium-image-zoom',
+      'yet-another-react-lightbox',
+      'sharp',
+      'canvas',
+      'pg',
+      'drizzle-orm',
+      'better-auth',
     ],
-    esmExternals: true,
     staticGenerationRetryCount: 1,
     staticGenerationMaxConcurrency: 8,
     staticGenerationMinPagesPerWorker: 25,
     typedRoutes: true,
-    // 启用更激进的代码分割
-    serverComponentsExternalPackages: ['sharp', 'canvas'],
+    optimizeCss: true,
   },
+
+  serverExternalPackages: ['prettier'],
 
   images: {
     // 启用图片优化
@@ -98,7 +177,7 @@ const MyNextConfig: NextConfig = {
     minimumCacheTTL: 31536000, // 1年缓存
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: 'default-src \'self\'; script-src \'none\'; sandbox;',
 
     remotePatterns: [
       {
@@ -172,12 +251,125 @@ const MyNextConfig: NextConfig = {
     return NextConfigHeaders
   },
 
-  webpack: (c) => {
-    if (process.env.REACT_SCAN_MONITOR_API_KEY)
-      c.plugins.push(ReactComponentName({}))
-    if (c.name === 'server')
-      c.optimization.concatenateModules = false
-    return c
+  webpack: (config, { dev, isServer }) => {
+    // 禁用 webpack 缓存警告
+    config.infrastructureLogging = {
+      level: 'error',
+    }
+
+    // 禁用 webpack 缓存序列化警告
+    if (config.cache && typeof config.cache === 'object') {
+      config.cache.compression = false
+    }
+
+    // 添加自定义插件来过滤警告
+    config.plugins.push({
+      apply: (compiler: any) => {
+        compiler.hooks.done.tap('FilterWarningsPlugin', (stats: any) => {
+          stats.compilation.warnings = stats.compilation.warnings.filter((warning: any) => {
+            // 过滤掉 PostCSS calc 和缓存序列化警告
+            const message = warning.message || warning.toString()
+            return (
+              !message.includes('postcss-calc')
+              && !message.includes('No serializer registered')
+              && !message.includes('PackFileCacheStrategy')
+            )
+          })
+        })
+      },
+    })
+
+    // React Scan 监控
+    if (process.env.REACT_SCAN_MONITOR_API_KEY) {
+      config.plugins.push(ReactComponentName({}))
+    }
+
+    // 服务端优化
+    if (isServer) {
+      config.optimization.concatenateModules = false
+    }
+
+    // CSS 模块优化
+    config.module.rules.forEach((rule: any) => {
+      if (rule.test && rule.test.toString().includes('css')) {
+        if (rule.use && Array.isArray(rule.use)) {
+          rule.use.forEach((use: any) => {
+            if (use.loader && use.loader.includes('postcss-loader')) {
+              use.options = {
+                ...use.options,
+                postcssOptions: {
+                  ...use.options?.postcssOptions,
+                  hideNothingWarning: true,
+                },
+              }
+            }
+          })
+        }
+      }
+    })
+
+    // 客户端优化
+    if (!isServer && !dev) {
+      // 优化代码分割
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          // 框架代码
+          framework: {
+            chunks: 'all',
+            name: 'framework',
+            test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
+            priority: 40,
+            enforce: true,
+          },
+          // UI 库
+          ui: {
+            name: 'ui',
+            test: /[\\/]node_modules[\\/](@radix-ui|lucide-react|class-variance-authority|clsx|tailwind-merge)[\\/]/,
+            priority: 30,
+            enforce: true,
+          },
+          // 动画库
+          animations: {
+            name: 'animations',
+            test: /[\\/]node_modules[\\/](framer-motion|motion|gsap|lenis|react-spring)[\\/]/,
+            priority: 25,
+            enforce: true,
+          },
+          // 数据处理
+          data: {
+            name: 'data',
+            test: /[\\/]node_modules[\\/](@tanstack|@trpc|zod|superjson)[\\/]/,
+            priority: 20,
+            enforce: true,
+          },
+          // 工具库
+          utils: {
+            name: 'utils',
+            test: /[\\/]node_modules[\\/](dayjs|markdown-to-jsx|remark|unified|shiki)[\\/]/,
+            priority: 15,
+            enforce: true,
+          },
+          // 默认 vendor
+          vendor: {
+            name: 'vendor',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 10,
+            enforce: true,
+          },
+        },
+      }
+
+      // 优化模块解析
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        // 减少包大小
+        'react/jsx-runtime': 'react/jsx-runtime',
+        'react/jsx-dev-runtime': 'react/jsx-dev-runtime',
+      }
+    }
+
+    return config
   },
 }
 

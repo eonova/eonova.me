@@ -31,7 +31,7 @@ interface DataTableSliderFilterProps<TData> {
   title?: string
 }
 
-function DataTableSliderFilter<TData,>(props: DataTableSliderFilterProps<TData>) {
+function DataTableSliderFilter<TData>(props: DataTableSliderFilterProps<TData>) {
   const { column, title } = props
 
   const id = useId()
@@ -160,7 +160,7 @@ function DataTableSliderFilter<TData,>(props: DataTableSliderFilterProps<TData>)
                   role="button"
                   aria-label={`Clear ${title} filter`}
                   tabIndex={0}
-                  className="focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-1"
+                  className="focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:outline-none"
                   onClick={onReset}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -195,7 +195,7 @@ function DataTableSliderFilter<TData,>(props: DataTableSliderFilterProps<TData>)
       </PopoverTrigger>
       <PopoverContent align="start" className="flex w-auto flex-col gap-4">
         <div className="flex flex-col gap-3">
-          <p className="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          <p className="leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             {title}
           </p>
           <div className="flex items-center gap-4">
@@ -222,7 +222,7 @@ function DataTableSliderFilter<TData,>(props: DataTableSliderFilterProps<TData>)
                 aria-valuetext={`${range[0]}${unit ?? ''}`}
               />
               {unit && (
-                <span className="bg-accent text-muted-foreground absolute bottom-0 right-0 top-0 flex items-center rounded-r-md px-2 text-sm">
+                <span className="bg-accent text-muted-foreground absolute top-0 right-0 bottom-0 flex items-center rounded-r-md px-2 text-sm">
                   {unit}
                 </span>
               )}
@@ -250,7 +250,7 @@ function DataTableSliderFilter<TData,>(props: DataTableSliderFilterProps<TData>)
                 aria-valuetext={`${range[1]}${unit ?? ''}`}
               />
               {unit && (
-                <span className="bg-accent text-muted-foreground absolute bottom-0 right-0 top-0 flex items-center rounded-r-md px-2 text-sm">
+                <span className="bg-accent text-muted-foreground absolute top-0 right-0 bottom-0 flex items-center rounded-r-md px-2 text-sm">
                   {unit}
                 </span>
               )}

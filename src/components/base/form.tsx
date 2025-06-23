@@ -6,13 +6,7 @@ import type * as LabelPrimitive from '@radix-ui/react-label'
 import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 import { Slot } from '@radix-ui/react-slot'
 import { createContext, use, useId, useMemo } from 'react'
-import {
-  Controller,
-
-  FormProvider,
-  useFormContext,
-  useFormState,
-} from 'react-hook-form'
+import { Controller, FormProvider, useFormContext, useFormState } from 'react-hook-form'
 import { cn } from '~/utils/cn'
 
 import { Label } from './label'

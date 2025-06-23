@@ -9,7 +9,11 @@ import { useEffect } from 'react'
 export function PerformanceMonitor() {
   useEffect(() => {
     // 只在生产环境和支持 PerformanceObserver 的浏览器中运行
-    if (process.env.NODE_ENV !== 'production' || typeof window === 'undefined' || !('PerformanceObserver' in window)) {
+    if (
+      process.env.NODE_ENV !== 'production'
+      || typeof window === 'undefined'
+      || !('PerformanceObserver' in window)
+    ) {
       return
     }
 
@@ -39,7 +43,10 @@ export function PerformanceMonitor() {
     const observeFID = () => {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          const fidEntry = entry as PerformanceEntry & { processingStart: number, startTime: number }
+          const fidEntry = entry as PerformanceEntry & {
+            processingStart: number
+            startTime: number
+          }
           const fid = fidEntry.processingStart - fidEntry.startTime
 
           if (typeof gtag !== 'undefined') {
@@ -130,13 +137,7 @@ export function PerformanceMonitor() {
     }
 
     // 启动所有观察器
-    const observers = [
-      observeLCP(),
-      observeFID(),
-      observeCLS(),
-      observeFCP(),
-      observeTTFB(),
-    ]
+    const observers = [observeLCP(), observeFID(), observeCLS(), observeFCP(), observeTTFB()]
 
     // 清理函数
     return () => {
@@ -151,7 +152,9 @@ export function PerformanceMonitor() {
 
     const handleLoad = () => {
       // 获取导航时间
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
+      const navigation = performance.getEntriesByType(
+        'navigation',
+      )[0] as PerformanceNavigationTiming
 
       if (navigation) {
         const metrics = {
@@ -199,11 +202,11 @@ export function PerformanceMonitor() {
     // 页面加载完成后执行
     if (document.readyState === 'complete') {
       handleLoad()
+      // No cleanup needed for immediate execution
+      return void 0
     }
-    else {
-      window.addEventListener('load', handleLoad)
-      return () => window.removeEventListener('load', handleLoad)
-    }
+    window.addEventListener('load', handleLoad)
+    return () => window.removeEventListener('load', handleLoad)
   }, [])
 
   return null // 这是一个无UI的监控组件
@@ -248,6 +251,124 @@ export function ErrorBoundaryMonitor({ children }: { children: React.ReactNode }
   }, [])
 
   return <>{children}</>
+}
+
+/**
+ * 高级性能监控组件
+ */
+export function AdvancedPerformanceMonitor() {
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'production' || typeof window === 'undefined') {
+      return
+    }
+
+    // 监控内存使用
+    const monitorMemory = () => {
+      if ('memory' in performance) {
+        const memory = (performance as any).memory
+        const memoryInfo = {
+          usedJSHeapSize: memory.usedJSHeapSize,
+          totalJSHeapSize: memory.totalJSHeapSize,
+          jsHeapSizeLimit: memory.jsHeapSizeLimit,
+        }
+
+        // 内存使用率超过 80% 时警告
+        const usageRatio = memory.usedJSHeapSize / memory.jsHeapSizeLimit
+        if (usageRatio > 0.8) {
+          console.warn('High memory usage detected:', memoryInfo)
+
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'high_memory_usage', {
+              event_category: 'Performance',
+              value: Math.round(usageRatio * 100),
+              non_interaction: true,
+            })
+          }
+        }
+      }
+    }
+
+    // 监控长任务
+    const observeLongTasks = () => {
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            console.warn('Long task detected:', {
+              duration: entry.duration,
+              startTime: entry.startTime,
+            })
+
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'long_task', {
+                event_category: 'Performance',
+                value: Math.round(entry.duration),
+                non_interaction: true,
+              })
+            }
+          })
+        })
+
+        try {
+          observer.observe({ entryTypes: ['longtask'] })
+          return observer
+        }
+        catch (error) {
+          console.warn('Long task observer not supported', error)
+          return undefined
+        }
+      }
+      return undefined
+    }
+
+    // 监控网络状态
+    const monitorNetworkStatus = () => {
+      if ('connection' in navigator) {
+        const connection = (navigator as any).connection
+
+        const logNetworkInfo = () => {
+          const networkInfo = {
+            effectiveType: connection.effectiveType,
+            downlink: connection.downlink,
+            rtt: connection.rtt,
+            saveData: connection.saveData,
+          }
+
+          console.log('Network status:', networkInfo)
+
+          // 慢网络警告
+          if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'slow_network', {
+                event_category: 'Performance',
+                value: connection.downlink,
+                non_interaction: true,
+              })
+            }
+          }
+        }
+
+        logNetworkInfo()
+        connection.addEventListener('change', logNetworkInfo)
+
+        return () => connection.removeEventListener('change', logNetworkInfo)
+      }
+      return undefined // Return undefined if connection API is not available
+    }
+
+    // 启动监控
+    const memoryInterval = setInterval(monitorMemory, 30000) // 每30秒检查内存
+    const longTaskObserver = observeLongTasks()
+    const networkCleanup = monitorNetworkStatus()
+
+    // 清理函数
+    return () => {
+      clearInterval(memoryInterval)
+      longTaskObserver?.disconnect()
+      networkCleanup?.()
+    }
+  }, [])
+
+  return null
 }
 
 // 类型声明
