@@ -6,12 +6,13 @@ import { memo } from 'react'
 import { Separator } from '~/components/base/separator'
 import useIsScroll from '~/hooks/use-is-scroll'
 import useScrollDirection from '~/hooks/use-scroll-direction'
+import { flags } from '~/lib/env'
 import '~/styles/page/header.css'
 import { cn } from '~/utils'
 import { SvgLogo } from '../shared/logo'
-import CommandMenu from './command-menu'
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
+import Search from './search'
 import ThemeSwitcher from './theme-switcher'
 import UserAuth from './user-auth'
 
@@ -72,9 +73,9 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         <Navbar />
         <Separator orientation="vertical" className={cn('mx-1 hidden h-6 sm:block')} />
         <ThemeSwitcher />
-        <CommandMenu />
-        <UserAuth />
+        {flags.search && <Search />}
         <MobileNav />
+        <UserAuth />
       </div>
     </motion.header>
   )

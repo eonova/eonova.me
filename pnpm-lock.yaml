@@ -53,7 +53,7 @@ catalogs:
       specifier: ^0.9.0
       version: 0.9.0
     openai:
-      specifier: ^5.6.0
+      specifier: ^5.7.0
       version: 5.7.0
     pg:
       specifier: ^8.16.2
@@ -63,7 +63,7 @@ catalogs:
       version: 4.6.0
   build:
     '@vitejs/plugin-react':
-      specifier: ^4.5.2
+      specifier: ^4.6.0
       version: 4.6.0
     babel-plugin-react-compiler:
       specifier: 19.0.0-beta-714736e-20250131
@@ -115,7 +115,7 @@ catalogs:
       specifier: ^2.0.0
       version: 2.0.0
     motion:
-      specifier: ^12.18.1
+      specifier: ^12.19.1
       version: 12.19.1
     next-themes:
       specifier: ^0.4.6
@@ -167,7 +167,7 @@ catalogs:
       specifier: ^1.52.2
       version: 1.52.2
     cspell:
-      specifier: ^9.1.1
+      specifier: ^9.1.2
       version: 9.1.2
     eslint:
       specifier: ^9.29.0
@@ -185,8 +185,8 @@ catalogs:
       specifier: ^16.1.2
       version: 16.1.2
     prettier:
-      specifier: ^3.5.3
-      version: 3.5.3
+      specifier: ^3.6.0
+      version: 3.6.0
     prettier-plugin-organize-imports:
       specifier: ^4.1.0
       version: 4.1.0
@@ -257,15 +257,8 @@ catalogs:
       specifier: ^8.0.0
       version: 8.0.0
     drizzle-kit:
-      specifier: ^0.31.1
-<<<<<<< HEAD
+      specifier: ^0.31.2
       version: 0.31.2
-    fast-xml-parser:
-      specifier: ^5.2.5
-      version: 5.2.5
-=======
-      version: 0.31.1
->>>>>>> b8e7324 (✨ add search features & add test)
     picocolors:
       specifier: ^1.1.1
       version: 1.1.1
@@ -336,7 +329,7 @@ catalogs:
       version: 1.1.5
   ui:
     '@ark-ui/react':
-      specifier: ^5.14.2
+      specifier: ^5.15.1
       version: 5.15.1
     '@dnd-kit/core':
       specifier: ^6.3.1
@@ -423,8 +416,8 @@ catalogs:
       specifier: ^1.3.4
       version: 1.3.4
     lucide-react:
-      specifier: ^0.522.0
-      version: 0.522.0
+      specifier: ^0.523.0
+      version: 0.523.0
     postcss:
       specifier: ^8.5.6
       version: 8.5.6
@@ -624,7 +617,7 @@ importers:
         version: 1.3.4(react@19.0.0)
       lucide-react:
         specifier: catalog:ui
-        version: 0.522.0(react@19.0.0)
+        version: 0.523.0(react@19.0.0)
       markdown-to-jsx:
         specifier: catalog:mdx
         version: 7.7.8(react@19.0.0)
@@ -841,13 +834,13 @@ importers:
         version: 6.0.1(jiti@2.4.2)(postcss@8.5.6)(tsx@4.20.3)(yaml@2.8.0)
       prettier:
         specifier: catalog:lint
-        version: 3.5.3
+        version: 3.6.0
       prettier-plugin-organize-imports:
         specifier: catalog:lint
-        version: 4.1.0(prettier@3.5.3)(typescript@5.7.3)
+        version: 4.1.0(prettier@3.6.0)(typescript@5.7.3)
       prettier-plugin-tailwindcss:
         specifier: catalog:lint
-        version: 0.6.13(prettier-plugin-organize-imports@4.1.0(prettier@3.5.3)(typescript@5.7.3))(prettier@3.5.3)
+        version: 0.6.13(prettier-plugin-organize-imports@4.1.0(prettier@3.6.0)(typescript@5.7.3))(prettier@3.6.0)
       schema-dts:
         specifier: catalog:types
         version: 1.1.5
@@ -898,56 +891,56 @@ packages:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
 
-  '@algolia/client-abtesting@5.25.0':
-    resolution: {integrity: sha512-1pfQulNUYNf1Tk/svbfjfkLBS36zsuph6m+B6gDkPEivFmso/XnRgwDvjAx80WNtiHnmeNjIXdF7Gos8+OLHqQ==}
+  '@algolia/client-abtesting@5.29.0':
+    resolution: {integrity: sha512-AM/6LYMSTnZvAT5IarLEKjYWOdV+Fb+LVs8JRq88jn8HH6bpVUtjWdOZXqX1hJRXuCAY8SdQfb7F8uEiMNXdYQ==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-analytics@5.25.0':
-    resolution: {integrity: sha512-AFbG6VDJX/o2vDd9hqncj1B6B4Tulk61mY0pzTtzKClyTDlNP0xaUiEKhl6E7KO9I/x0FJF5tDCm0Hn6v5x18A==}
+  '@algolia/client-analytics@5.29.0':
+    resolution: {integrity: sha512-La34HJh90l0waw3wl5zETO8TuukeUyjcXhmjYZL3CAPLggmKv74mobiGRIb+mmBENybiFDXf/BeKFLhuDYWMMQ==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-common@5.25.0':
-    resolution: {integrity: sha512-il1zS/+Rc6la6RaCdSZ2YbJnkQC6W1wiBO8+SH+DE6CPMWBU6iDVzH0sCKSAtMWl9WBxoN6MhNjGBnCv9Yy2bA==}
+  '@algolia/client-common@5.29.0':
+    resolution: {integrity: sha512-T0lzJH/JiCxQYtCcnWy7Jf1w/qjGDXTi2npyF9B9UsTvXB97GRC6icyfXxe21mhYvhQcaB1EQ/J2575FXxi2rA==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-insights@5.25.0':
-    resolution: {integrity: sha512-blbjrUH1siZNfyCGeq0iLQu00w3a4fBXm0WRIM0V8alcAPo7rWjLbMJMrfBtzL9X5ic6wgxVpDADXduGtdrnkw==}
+  '@algolia/client-insights@5.29.0':
+    resolution: {integrity: sha512-A39F1zmHY9aev0z4Rt3fTLcGN5AG1VsVUkVWy6yQG5BRDScktH+U5m3zXwThwniBTDV1HrPgiGHZeWb67GkR2Q==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-personalization@5.25.0':
-    resolution: {integrity: sha512-aywoEuu1NxChBcHZ1pWaat0Plw7A8jDMwjgRJ00Mcl7wGlwuPt5dJ/LTNcg3McsEUbs2MBNmw0ignXBw9Tbgow==}
+  '@algolia/client-personalization@5.29.0':
+    resolution: {integrity: sha512-ibxmh2wKKrzu5du02gp8CLpRMeo+b/75e4ORct98CT7mIxuYFXowULwCd6cMMkz/R0LpKXIbTUl15UL5soaiUQ==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-query-suggestions@5.25.0':
-    resolution: {integrity: sha512-a/W2z6XWKjKjIW1QQQV8PTTj1TXtaKx79uR3NGBdBdGvVdt24KzGAaN7sCr5oP8DW4D3cJt44wp2OY/fZcPAVA==}
+  '@algolia/client-query-suggestions@5.29.0':
+    resolution: {integrity: sha512-VZq4/AukOoJC2WSwF6J5sBtt+kImOoBwQc1nH3tgI+cxJBg7B77UsNC+jT6eP2dQCwGKBBRTmtPLUTDDnHpMgA==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-search@5.25.0':
-    resolution: {integrity: sha512-9rUYcMIBOrCtYiLX49djyzxqdK9Dya/6Z/8sebPn94BekT+KLOpaZCuc6s0Fpfq7nx5J6YY5LIVFQrtioK9u0g==}
+  '@algolia/client-search@5.29.0':
+    resolution: {integrity: sha512-cZ0Iq3OzFUPpgszzDr1G1aJV5UMIZ4VygJ2Az252q4Rdf5cQMhYEIKArWY/oUjMhQmosM8ygOovNq7gvA9CdCg==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/ingestion@1.25.0':
-    resolution: {integrity: sha512-jJeH/Hk+k17Vkokf02lkfYE4A+EJX+UgnMhTLR/Mb+d1ya5WhE+po8p5a/Nxb6lo9OLCRl6w3Hmk1TX1e9gVbQ==}
+  '@algolia/ingestion@1.29.0':
+    resolution: {integrity: sha512-scBXn0wO5tZCxmO6evfa7A3bGryfyOI3aoXqSQBj5SRvNYXaUlFWQ/iKI70gRe/82ICwE0ICXbHT/wIvxOW7vw==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/monitoring@1.25.0':
-    resolution: {integrity: sha512-Ls3i1AehJ0C6xaHe7kK9vPmzImOn5zBg7Kzj8tRYIcmCWVyuuFwCIsbuIIz/qzUf1FPSWmw0TZrGeTumk2fqXg==}
+  '@algolia/monitoring@1.29.0':
+    resolution: {integrity: sha512-FGWWG9jLFhsKB7YiDjM2dwQOYnWu//7Oxrb2vT96N7+s+hg1mdHHfHNRyEudWdxd4jkMhBjeqNA21VbTiOIPVg==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/recommend@5.25.0':
-    resolution: {integrity: sha512-79sMdHpiRLXVxSjgw7Pt4R1aNUHxFLHiaTDnN2MQjHwJ1+o3wSseb55T9VXU4kqy3m7TUme3pyRhLk5ip/S4Mw==}
+  '@algolia/recommend@5.29.0':
+    resolution: {integrity: sha512-xte5+mpdfEARAu61KXa4ewpjchoZuJlAlvQb8ptK6hgHlBHDnYooy1bmOFpokaAICrq/H9HpoqNUX71n+3249A==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/requester-browser-xhr@5.25.0':
-    resolution: {integrity: sha512-JLaF23p1SOPBmfEqozUAgKHQrGl3z/Z5RHbggBu6s07QqXXcazEsub5VLonCxGVqTv6a61AAPr8J1G5HgGGjEw==}
+  '@algolia/requester-browser-xhr@5.29.0':
+    resolution: {integrity: sha512-og+7Em75aPHhahEUScq2HQ3J7ULN63Levtd87BYMpn6Im5d5cNhaC4QAUsXu6LWqxRPgh4G+i+wIb6tVhDhg2A==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/requester-fetch@5.25.0':
-    resolution: {integrity: sha512-rtzXwqzFi1edkOF6sXxq+HhmRKDy7tz84u0o5t1fXwz0cwx+cjpmxu/6OQKTdOJFS92JUYHsG51Iunie7xbqfQ==}
+  '@algolia/requester-fetch@5.29.0':
+    resolution: {integrity: sha512-JCxapz7neAy8hT/nQpCvOrI5JO8VyQ1kPvBiaXWNC1prVq0UMYHEL52o1BsPvtXfdQ7BVq19OIq6TjOI06mV/w==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/requester-node-http@5.25.0':
-    resolution: {integrity: sha512-ZO0UKvDyEFvyeJQX0gmZDQEvhLZ2X10K+ps6hViMo1HgE2V8em00SwNsQ+7E/52a+YiBkVWX61pJJJE44juDMQ==}
+  '@algolia/requester-node-http@5.29.0':
+    resolution: {integrity: sha512-lVBD81RBW5VTdEYgnzCz7Pf9j2H44aymCP+/eHGJu4vhU+1O8aKf3TVBgbQr5UM6xoe8IkR/B112XY6YIG2vtg==}
     engines: {node: '>= 14.0.0'}
 
   '@alloc/quick-lru@5.2.0':
@@ -971,8 +964,8 @@ packages:
     peerDependencies:
       ajv: '>=8'
 
-  '@ark-ui/react@5.14.2':
-    resolution: {integrity: sha512-8/gMH6FmKir+08xUvgDz8bre5/wr0zhikyYfsfshONj+LYL5og7/SJFMONGxKtkSYTXN9EdnW6NwQsq8YWyyvA==}
+  '@ark-ui/react@5.15.1':
+    resolution: {integrity: sha512-PhWUhjjWGxw1EsC4NBJyTjxzwEsEKhqgrRB0R/oCSQUBoofSwuJJ3Xi6fPRaZHTFzSv7BQj4SkAT943PGC9Rhw==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -1583,15 +1576,6 @@ packages:
   '@bundled-es-modules/tough-cookie@0.1.6':
     resolution: {integrity: sha512-dvMHbL464C0zI+Yqxbz6kZ5TOEp7GLW+pry/RWndAR8MJQAXZ2rPmIs8tziTZjeIyhSNZgZbCePtfSbdWqStJw==}
 
-  '@bundled-es-modules/cookie@2.0.1':
-    resolution: {integrity: sha512-8o+5fRPLNbjbdGRRmJj3h6Hh1AQJf2dk3qQ/5ZFb+PXkRNiSoMGGUKlsgLfrxneb72axVJyIYji64E2+nNfYyw==}
-
-  '@bundled-es-modules/statuses@1.0.1':
-    resolution: {integrity: sha512-yn7BklA5acgcBr+7w064fGV+SGIFySjCKpqjcWgBAIfrAkY+4GQTJJHQMeT3V/sgz23VTEVV8TtOmkvJAhFVfg==}
-
-  '@bundled-es-modules/tough-cookie@0.1.6':
-    resolution: {integrity: sha512-dvMHbL464C0zI+Yqxbz6kZ5TOEp7GLW+pry/RWndAR8MJQAXZ2rPmIs8tziTZjeIyhSNZgZbCePtfSbdWqStJw==}
-
   '@clack/core@0.3.5':
     resolution: {integrity: sha512-5cfhQNH+1VQ2xLQlmzXMqUoiaH0lRBq9/CLW9lTyMbuKLC3+xEK01tHVvyut++mLOn5urSHmkm6I0Lg9MaJSTQ==}
 
@@ -1656,28 +1640,28 @@ packages:
       '@content-collections/core': 0.x
       next: ^12 || ^13 || ^14 || ^15
 
-  '@cspell/cspell-bundled-dicts@9.1.1':
-    resolution: {integrity: sha512-AbaIez18Puo9SbnhYsZnzG90ohelWWFQVbEIdtwMmRRItoIevF8wcNkQrFeFCXINs+FZH+aDGkt7oA1dwKgJFA==}
+  '@cspell/cspell-bundled-dicts@9.1.2':
+    resolution: {integrity: sha512-mdhxj7j1zqXYKO/KPx2MgN3RPAvqoWvncxz2dOMFBcuUteZPt58NenUoi0VZXEhV/FM2V80NvhHZZafaIcxVjQ==}
     engines: {node: '>=20'}
 
-  '@cspell/cspell-json-reporter@9.1.1':
-    resolution: {integrity: sha512-bvbBXr77yz0xu/6GckWMWoUyjSL5MqF86y7g0DkGnNpB5Bu5fCNAltR5yNo1xlBCtbUwB0zrlPENSSxRmNpPCA==}
+  '@cspell/cspell-json-reporter@9.1.2':
+    resolution: {integrity: sha512-sSva/ACXDJd9LufzecR9LC+lNWUuGWNtVHdVj0orJxOIZjHUCNBXwVSgL2fmMg7jNQS6qoJFJ7F/QPXdwITijg==}
     engines: {node: '>=20'}
 
-  '@cspell/cspell-pipe@9.1.1':
-    resolution: {integrity: sha512-WFh6+Fig//8Ev8mxBHjKiKhYfJHez5JyI2ioWBgh16EL08k5kfqIsANX8/ij+k0QvfObA4J4LRJ6RUoExvD+4g==}
+  '@cspell/cspell-pipe@9.1.2':
+    resolution: {integrity: sha512-/pIhsf4SI4Q/kvehq9GsGKLgbQsRhiDgthQIgO6YOrEa761wOI2hVdRyc0Tgc1iAGiJEedDaFsAhabVRJBeo2g==}
     engines: {node: '>=20'}
 
-  '@cspell/cspell-resolver@9.1.1':
-    resolution: {integrity: sha512-nnHE6ZA4tGA0jU1Yco6OuXUwPvFqHrWqMwvbmOHRLPZRLrtbqKUQGxUuSHlM3aGLHBfaPZSZqBl5rvGyj2EX1Q==}
+  '@cspell/cspell-resolver@9.1.2':
+    resolution: {integrity: sha512-dNDx7yMl2h1Ousk08lizTou+BUvce4RPSnPXrQPB7B7CscgZloSyuP3Yyj1Zt81pHNpggrym4Ezx6tMdyPjESw==}
     engines: {node: '>=20'}
 
-  '@cspell/cspell-service-bus@9.1.1':
-    resolution: {integrity: sha512-0eFZe4dsEaETsNsqcFilWwfi2VRHRxldSkNZFGXf/QbamSK89VNf0X/q9CtAU90PVgJAzYevV2r6uyWX2poZpQ==}
+  '@cspell/cspell-service-bus@9.1.2':
+    resolution: {integrity: sha512-YOsUctzCMzEJbKdzNyvPkyMen/i7sGO3Xgcczn848GJPlRsJc50QwsoU67SY7zEARz6y2WS0tv5F5RMrRO4idw==}
     engines: {node: '>=20'}
 
-  '@cspell/cspell-types@9.1.1':
-    resolution: {integrity: sha512-xouQmxgAuEz+jnmyzQV6LoAKzwTt/wF1xjRgVW1ssMFDlRGPtvEOmfk3yk79Ror0AnHmA5O1xXpFQ/VgFU56MQ==}
+  '@cspell/cspell-types@9.1.2':
+    resolution: {integrity: sha512-bSDDjoQi4pbh1BULEA596XCo1PMShTpTb4J2lj8jVYqYgXYQNjSmQFA1fj4NHesC84JpK1um4ybzXBcqtniC7Q==}
     engines: {node: '>=20'}
 
   '@cspell/dict-ada@4.1.0':
@@ -1808,8 +1792,8 @@ packages:
   '@cspell/dict-node@5.0.7':
     resolution: {integrity: sha512-ZaPpBsHGQCqUyFPKLyCNUH2qzolDRm1/901IO8e7btk7bEDF56DN82VD43gPvD4HWz3yLs/WkcLa01KYAJpnOw==}
 
-  '@cspell/dict-npm@5.2.6':
-    resolution: {integrity: sha512-VGEY1ZjE8c8JCA+dic1IdYmVTNfVtWAw7V2n4TXO1+mKfRL+BsPsqEoH8iR0OMutC9QXjVNh32rzMh4D3E+Lxw==}
+  '@cspell/dict-npm@5.2.7':
+    resolution: {integrity: sha512-YtJ4UBq+42oJGyJWo13XZ+SCNbiT2QCarkljKyURZgYc45XMBl6cbTNwIoYtyPijxSOWuIx0bQm7M/826isVig==}
 
   '@cspell/dict-php@4.0.14':
     resolution: {integrity: sha512-7zur8pyncYZglxNmqsRycOZ6inpDoVd4yFfz1pQRe5xaRWMiK3Km4n0/X/1YMWhh3e3Sl/fQg5Axb2hlN68t1g==}
@@ -1838,8 +1822,8 @@ packages:
   '@cspell/dict-shell@1.1.0':
     resolution: {integrity: sha512-D/xHXX7T37BJxNRf5JJHsvziFDvh23IF/KvkZXNSh8VqcRdod3BAz9VGHZf6VDqcZXr1VRqIYR3mQ8DSvs3AVQ==}
 
-  '@cspell/dict-software-terms@5.1.0':
-    resolution: {integrity: sha512-8zsOVzcHpb4PAaKtOWAIJRbpaNINaUZRsHzqFb3K9hQIC6hxmet/avLlCeKdnmBVZkn3TmRN5caxTJamJvbXww==}
+  '@cspell/dict-software-terms@5.1.1':
+    resolution: {integrity: sha512-POivtvsmbmkYWw7RAQQPwu3gw72SDCeZXA+2IPoGXLlgkYk17taTDTLDA0gV5N8HpdC8SeOBX4cUY4rc2Y1ksA==}
 
   '@cspell/dict-sql@2.2.0':
     resolution: {integrity: sha512-MUop+d1AHSzXpBvQgQkCiok8Ejzb+nrzyG16E8TvKL2MQeDwnIvMe3bv90eukP6E1HWb+V/MA/4pnq0pcJWKqQ==}
@@ -1859,20 +1843,20 @@ packages:
   '@cspell/dict-vue@3.0.4':
     resolution: {integrity: sha512-0dPtI0lwHcAgSiQFx8CzvqjdoXROcH+1LyqgROCpBgppommWpVhbQ0eubnKotFEXgpUCONVkeZJ6Ql8NbTEu+w==}
 
-  '@cspell/dynamic-import@9.1.1':
-    resolution: {integrity: sha512-jcg5Wti4kcPh4Deds009MEZvuN3tViUft079MTsdSpNPNhRf/gKwSIQnkda9g4ppsVPh5mxkE0nUZLxfZRZYMg==}
+  '@cspell/dynamic-import@9.1.2':
+    resolution: {integrity: sha512-Kg22HCx5m0znVPLea2jRrvMnzHZAAzqcDr5g6Dbd4Pizs5b3SPQuRpFmYaDvKo26JNZnfRqA9eweiuE5aQAf2A==}
     engines: {node: '>=20'}
 
-  '@cspell/filetypes@9.1.1':
-    resolution: {integrity: sha512-kQ1mD+hPxh8KRbDtPvCb6nuODwJV26W43sC77I5Vpk+IDXZqxEhkTCXB6OefnfplOl6+wU0e/EAw+7XYtlKjfg==}
+  '@cspell/filetypes@9.1.2':
+    resolution: {integrity: sha512-j+6kDz3GbeYwwtlzVosqVaSiFGMhf0u3y8eAP3IV2bTelhP2ZiOLD+yNbAyYGao7p10/Sqv+Ri0yT7IsGLniww==}
     engines: {node: '>=20'}
 
-  '@cspell/strong-weak-map@9.1.1':
-    resolution: {integrity: sha512-D9dDws2MmE24zxkT9TcxYzOAiZncllgcfAGVswklM+dpQeHyZgRDPpdjVhz+nrYrwVwTbdWlRNJ9RiwzRN+jpA==}
+  '@cspell/strong-weak-map@9.1.2':
+    resolution: {integrity: sha512-6X9oXnklvdt1pd0x0Mh6qXaaIRxjt0G50Xz5ZGm3wpAagv0MFvTThdmYVFfBuZ91x7fDT3u77y3d1uqdGQW1CA==}
     engines: {node: '>=20'}
 
-  '@cspell/url@9.1.1':
-    resolution: {integrity: sha512-/RL/QTcaFBr0UGl6uLc9d2kPCEpqWHmBs8uFRnBottJ3I5tMOiaVtkEKFTx5FIxrlWTjZwW3rWaIUspNX5ejUw==}
+  '@cspell/url@9.1.2':
+    resolution: {integrity: sha512-PMJBuLYQIdFnEfPHQXaVE5hHUkbbOxOIRmHyZwWEc9+79tIaIkiwLpjZvbm8p6f9WXAaESqXs/uK2tUC/bjwmw==}
     engines: {node: '>=20'}
 
   '@csstools/color-helpers@5.0.2':
@@ -2877,15 +2861,6 @@ packages:
       '@types/node':
         optional: true
 
-  '@inquirer/type@3.0.7':
-    resolution: {integrity: sha512-PfunHQcjwnju84L+ycmcMKB/pTPIngjUJvfnRhKY6FKPuYXlM4aQCb/nIdTFR6BEhMjFvngzvng/vBAJMZpLSA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
   '@internationalized/date@3.8.2':
     resolution: {integrity: sha512-/wENk7CbvLbkUvX1tu0mwq49CVkkWpkXubGel6birjRPyo6uQ4nQpnq5xZu823zRCwwn82zgHrvgF1vZyvmVgA==}
 
@@ -2967,10 +2942,6 @@ packages:
 
   '@mdx-js/mdx@3.1.0':
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
-
-  '@mswjs/interceptors@0.39.2':
-    resolution: {integrity: sha512-RuzCup9Ct91Y7V79xwCb146RaBRHZ7NBbrIUySumd1rpKqHL5OonaqrGIbug5hNwP/fRyxFMA6ISgw4FTtYFYg==}
-    engines: {node: '>=18'}
 
   '@mswjs/interceptors@0.39.2':
     resolution: {integrity: sha512-RuzCup9Ct91Y7V79xwCb146RaBRHZ7NBbrIUySumd1rpKqHL5OonaqrGIbug5hNwP/fRyxFMA6ISgw4FTtYFYg==}
@@ -3160,15 +3131,6 @@ packages:
 
   '@octokit/types@14.1.0':
     resolution: {integrity: sha512-1y6DgTy8Jomcpu33N+p5w58l6xyt55Ar2I91RPiIA0xCJBXyUAhXCcmZaDWSANiha7R9a6qJJ2CRomGPZ6f46g==}
-
-  '@open-draft/deferred-promise@2.2.0':
-    resolution: {integrity: sha512-CecwLWx3rhxVQF6V4bAgPS5t+So2sTbPgAzafKkVizyi7tlwpcFpdFqq+wqF2OwNBmqFuu6tOyouTuxgpMfzmA==}
-
-  '@open-draft/logger@0.3.0':
-    resolution: {integrity: sha512-X2g45fzhxH238HKO4xbSr7+wBS8Fvw6ixhTDuvLd5mqh6bJJCFAPwU9mPDxbcrRtfxv4u5IHCEH77BmxvXmmxQ==}
-
-  '@open-draft/until@2.1.0':
-    resolution: {integrity: sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==}
 
   '@open-draft/deferred-promise@2.2.0':
     resolution: {integrity: sha512-CecwLWx3rhxVQF6V4bAgPS5t+So2sTbPgAzafKkVizyi7tlwpcFpdFqq+wqF2OwNBmqFuu6tOyouTuxgpMfzmA==}
@@ -4095,8 +4057,8 @@ packages:
       react-native:
         optional: true
 
-  '@rolldown/pluginutils@1.0.0-beta.11':
-    resolution: {integrity: sha512-L/gAA/hyCSuzTF1ftlzUSI/IKr2POHsv1Dd78GfqkR83KMNuswWD61JxGV2L7nRwBBBSDr6R1gCkdTmoN7W4ag==}
+  '@rolldown/pluginutils@1.0.0-beta.19':
+    resolution: {integrity: sha512-3FL3mnMbPu0muGOCaKAhhFEYmqv9eTfPSJRJmANrCwtgK8VuxpsZDGK+m0LYAGoyO8+0j5uRe4PeyPDK1yA/hA==}
 
   '@rollup/plugin-babel@5.3.1':
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
@@ -4552,9 +4514,6 @@ packages:
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
-  '@types/cookie@0.6.0':
-    resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
-
   '@types/cors@2.8.18':
     resolution: {integrity: sha512-nX3d0sxJW41CqQvfOzVG1NCTXfFDrDWIghCZncpHeWlVFd81zxB/DLhg7avFg6eHLCRX7ckBmoIIcqa++upvJA==}
 
@@ -4654,9 +4613,6 @@ packages:
   '@types/statuses@2.0.6':
     resolution: {integrity: sha512-xMAgYwceFhRA2zY+XbEA7mxYbA093wdiW8Vu6gZPGWy9cmOyU9XesH1tNcEWsKFd5Vzrqx5T3D38PWx1FIIXkA==}
 
-  '@types/statuses@2.0.6':
-    resolution: {integrity: sha512-xMAgYwceFhRA2zY+XbEA7mxYbA093wdiW8Vu6gZPGWy9cmOyU9XesH1tNcEWsKFd5Vzrqx5T3D38PWx1FIIXkA==}
-
   '@types/text-table@0.2.5':
     resolution: {integrity: sha512-hcZhlNvMkQG/k1vcZ6yHOl6WAYftQ2MLfTHcYRZ2xYZFD8tGVnE3qFV0lj1smQeDSR7/yY0PyuUalauf33bJeA==}
 
@@ -4665,9 +4621,6 @@ packages:
 
   '@types/tinycolor2@1.4.6':
     resolution: {integrity: sha512-iEN8J0BoMnsWBqjVbWH/c0G0Hh7O21lpR2/+PrvAVgWdzL7eexIFm4JN/Wn10PTcmNdtS6U67r499mlWMXOxNw==}
-
-  '@types/tough-cookie@4.0.5':
-    resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
 
   '@types/tough-cookie@4.0.5':
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
@@ -4916,8 +4869,8 @@ packages:
       vue-router:
         optional: true
 
-  '@vitejs/plugin-react@4.5.2':
-    resolution: {integrity: sha512-QNVT3/Lxx99nMQWJWF7K4N6apUEuT0KlZA3mx/mVaoGj3smm/8rc8ezz15J1pcbcjDK0V15rpHetVfya08r76Q==}
+  '@vitejs/plugin-react@4.6.0':
+    resolution: {integrity: sha512-5Kgff+m8e2PB+9j51eGHEpn5kUzRKH2Ry0qGoe8ItJg7pqnkPrYPkDQZGgGmTa0EGarHrkjLvOdU3b1fzI8otQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0-beta.0
@@ -4992,215 +4945,215 @@ packages:
   '@vue/shared@3.5.16':
     resolution: {integrity: sha512-c/0fWy3Jw6Z8L9FmTyYfkpM5zklnqqa9+a6dz3DvONRKW2NEbh46BP0FHuLFSWi2TnQEtp91Z6zOWNrU6QiyPg==}
 
-  '@zag-js/accordion@1.15.7':
-    resolution: {integrity: sha512-a6DwFqfha4xGvQUO1VIy9D1+bwxPIMRdE+/Ii43fSiJbtmLMazMZl/G3I9KXcbPh2L4FmQ5kRc9fLP40S1KJMQ==}
+  '@zag-js/accordion@1.17.0':
+    resolution: {integrity: sha512-naNXyBfnAFsYM0w6qdHFrIeM+GzWIHQiAulAlM41UggALf6OknCSmcLg1CmOR2yNfi2R1I6em1b/HnatUQnRIA==}
 
-  '@zag-js/anatomy@1.15.7':
-    resolution: {integrity: sha512-kh1y7l+wtrMLX2/7SpoFDOu7pdVWADOD+Eta/ZmGG5UjTVzuhQExXZSqxIefJ6LwXU9ylFrl+1u3Ok6wovT44g==}
+  '@zag-js/anatomy@1.17.0':
+    resolution: {integrity: sha512-ADw07oAUg/R88HmLNu6pkNXRA+AyJrozR+Eb8Z+ypUuBuBJ6AbT+C0CFYY+Cgg7nMy1W225Wugv7g+TMlMWgTw==}
 
-  '@zag-js/angle-slider@1.15.7':
-    resolution: {integrity: sha512-2/IRcY3UYxUKKfOflpLSbO3EOfBljYoi3LGlyzPVVM41L57L5UjU2EYbqdhF2hfEFrwPswBTlbXAxyUIGfmy4A==}
+  '@zag-js/angle-slider@1.17.0':
+    resolution: {integrity: sha512-Vdjm7CfT235hwNc190i3X+qCCVeHCg66ba4WZe+e9w/HXPES5qtcdBw0Bt/gJ8W9HF6OS2a9jqrQpFnK1TqPkw==}
 
-  '@zag-js/aria-hidden@1.15.7':
-    resolution: {integrity: sha512-UaSSHAPNZYR0C1vAXFOylcG4X4Bt6pSB9hvbWbSxZk22s7voxSBr1edr9XSyuba54Q2Huq1rJxtGsNAK7dfwdg==}
+  '@zag-js/aria-hidden@1.17.0':
+    resolution: {integrity: sha512-d4jStipaGnvRJUAqbDOdBXdL7zdVDThsIyXsbouV/78MmctCHLcp3yxuoGiaCHR3vOnL3VMBfZOsOmtWNA4IjA==}
 
-  '@zag-js/auto-resize@1.15.7':
-    resolution: {integrity: sha512-F421ZPQjPXCiXQq+Ul5YXOTaMyipy8VAqOddWC60BtMo0wqnpLzTzz9idihLbc8hmH5WoIGlMQnrY0v3I23dlA==}
+  '@zag-js/auto-resize@1.17.0':
+    resolution: {integrity: sha512-yPDDMVqncHFJKKNW/LRw+VxTybcbvwJxBb/4S+sB0bh2GYIR2duIpAXzoay87Egfl9IRLRZUcQOyM+D45KEKQw==}
 
-  '@zag-js/avatar@1.15.7':
-    resolution: {integrity: sha512-nGO1n0x7gImDWQqxqley9Sekhtb8GRPpOYhwcvtcjP25s+6GpLmYOhrVAr/imPZH7rcV44patr7kOSZwaIkHUQ==}
+  '@zag-js/avatar@1.17.0':
+    resolution: {integrity: sha512-Kn/qvfX6RNHOtfiF9GQwlOBaKplaPGBw7Dl30Tcr4W4hhwYwzlRxpVHLR6i6SVQhXtb4Q0p8WfbZudmu3STNng==}
 
-  '@zag-js/carousel@1.15.7':
-    resolution: {integrity: sha512-+pKGXyxvkdJ4FoU3hGUopjzbFBlbKWNqDj+1H4GAv2Fndlrl6pjwVDXvpn7FNE7zkGBRY40zE/KbPQkzEsU4hg==}
+  '@zag-js/carousel@1.17.0':
+    resolution: {integrity: sha512-xXR6nV3uUUTzrzeOj0QTTfEw+FRRPGmmP8O44YnxLdnuzRaW0TllbynbbVZcdm+7yNQrebWsvSoSI4YNcGCxvQ==}
 
-  '@zag-js/checkbox@1.15.7':
-    resolution: {integrity: sha512-jqdmwy/3NtYqOSh9bADZHq6MQwwGtEARp+Vl5TY6EdhphV575Wf2CV+TbqaHNS06rQSTN2cWcE1mraACd0Jukw==}
+  '@zag-js/checkbox@1.17.0':
+    resolution: {integrity: sha512-Busa91wTJIdOU8sDqe961lqIMtlg2BCbGfmMAfMhN6jDZaJfqM2S5vQvDdW7GfwxqkO5jIbA/pGFPZblkhoEBg==}
 
-  '@zag-js/clipboard@1.15.7':
-    resolution: {integrity: sha512-1n9zwz5y4ZLGgtSjLS24TFiUqH7qMlZh+k4OYCja/uoxz5KfX20q8LnhIsN8EXJT38scNEqpc+ZQPzYAqTVcwg==}
+  '@zag-js/clipboard@1.17.0':
+    resolution: {integrity: sha512-l8q/NeV6xoQ8KoGIBHrtNmDpbEbsV6HUjOVOxHSdJIvUY6QPidUngsQU3CrpI1tkqKjORijJEY6835H6t+Ohpg==}
 
-  '@zag-js/collapsible@1.15.7':
-    resolution: {integrity: sha512-s+Gvws21qjC1SyVMxeMekAp4QHN0iYiNDX/s9NpYym66SqsJBkhK83MiO427buk2d+Tt5IF2X0J9BkEyYJ1Wxw==}
+  '@zag-js/collapsible@1.17.0':
+    resolution: {integrity: sha512-bn3dKoPAbDGx88O2A/P9h/zMrIrHpDq3GvNKs5sNjaCrL9LbppH+I/7WAcAVauNK3HwW8OQHKJeKIvj9JHfl4g==}
 
-  '@zag-js/collection@1.15.7':
-    resolution: {integrity: sha512-5uHBAKWDxDW6SS3RwvpEy7SSwrhwQIuNO3oobKZfk1/EqFjMhuO58aLukIIMEKrSIkjvugNJ43HTr05z7mAvOQ==}
+  '@zag-js/collection@1.17.0':
+    resolution: {integrity: sha512-GGZkgcxKnJxCxwoOh+/eHWwvgRO6bxjY66nwH/oF1JvOc0c/Wt7UyGYX5Gys+zPI0dPUeYpKZLLOaGKMAeLS5w==}
 
-  '@zag-js/color-picker@1.15.7':
-    resolution: {integrity: sha512-SoyNhmUtpmehZNkF+oO1JGzX9v2CT0dGpHynGMEBL/v91s+c+ja60XSig0wqPt2tslZANomopUe1QBpJjZtyTA==}
+  '@zag-js/color-picker@1.17.0':
+    resolution: {integrity: sha512-SJy9zNyuxmVUkeTCsKnCSmmyp0NELTky6rZ5DzVUNpIOpS2IH26Bw5atpczpMQ5/+rJvfcM8f5ex/T9sKJ7kZg==}
 
-  '@zag-js/color-utils@1.15.7':
-    resolution: {integrity: sha512-FpIS5x1/jbvw1bouGN89Ton9neKUOKeEVIceipRmT2VaZxpofUYGBvHDJzvmUj6Od9jdKztZSq/RYWqhWwt5iw==}
+  '@zag-js/color-utils@1.17.0':
+    resolution: {integrity: sha512-XNFFFlBSfCHZW0kEF96A9+sPK9MGfS86fBV5dHyKbCXHxN0yY7jxSRTFO9gQzV9b4W2aS7WycBY0ElHjvEgiSw==}
 
-  '@zag-js/combobox@1.15.7':
-    resolution: {integrity: sha512-qVJM+LpRBb/uuqmMmOqt4LV3Ib8LguS/Qn83Y0K9ruKiUJxkfdm9jLOP1rhWTyUJFVHPcmiyaLvczJUlT/yHxA==}
+  '@zag-js/combobox@1.17.0':
+    resolution: {integrity: sha512-BqoVR4PzFMQw218mpbKBxB3U0q3hY4MD4Y6u79PciQ8u5Vnd6kKdjmWL5A0JTdqkKuK6jMCDquEZvDtmLWkjOA==}
 
-  '@zag-js/core@1.15.7':
-    resolution: {integrity: sha512-CCKe4RdDVKKIkeLfR/jhPVysjWuqI4JbPSxN7Glt+galePZQFJKavKqV3QpwqYo0+JfO7F8wktYBmtp73wtQqw==}
+  '@zag-js/core@1.17.0':
+    resolution: {integrity: sha512-ry15clwuRDiXPGsxIMl+3XM9KrgkuaLslmpHcZHA6HjQd5wzjdGAuAteJgsbVK1kDMH45JqOVcFMUgxPTnkajw==}
 
-  '@zag-js/date-picker@1.15.7':
-    resolution: {integrity: sha512-UfrrUny9IJiw9TgyYnHNxK4d3fPGVoFUxjW0eLOyg+BPvKkRFx3RJCei6BmK/PLrSCAFUXxx1zylADAISXAZZA==}
+  '@zag-js/date-picker@1.17.0':
+    resolution: {integrity: sha512-ZCZr3ZG6yuw+OaaZHR0iY/C94dI1dlaIuaTqKwaJik86oGEx25GAROCTh9ESs2s+B328kTNqiGAnw+NHqfVzNQ==}
     peerDependencies:
       '@internationalized/date': '>=3.0.0'
 
-  '@zag-js/date-utils@1.15.7':
-    resolution: {integrity: sha512-rL1jwbo/9i0hNHZ9sPZ8KXybdfqxCjENX3S+X7MF8BmWMkELR7vE63gZ5c0yEhZ89Pvm0UTaTApV+Mxw92TVOg==}
+  '@zag-js/date-utils@1.17.0':
+    resolution: {integrity: sha512-05q60BjwLmrY/gVNmK8G+QgWXoWMN4EB7ioKirVueDoK5Y4G22CuF54lY/Vkks6cgPWa8YMWSHK4yjzWps3phw==}
     peerDependencies:
       '@internationalized/date': '>=3.0.0'
 
-  '@zag-js/dialog@1.15.7':
-    resolution: {integrity: sha512-JWaaHmEYKHuOKOg+9kskzz71K5lnNmgv+z7Mq48iiZdHi8OODRXyzw/wjwXp6AgL/1sriq6yqaMxIMR7miYqHg==}
+  '@zag-js/dialog@1.17.0':
+    resolution: {integrity: sha512-d3WjpBXDgzKfkMFs7FK1JlDFUoZ817Ym8AMfp4wHBH0snTJcj3zdCItWmpHIbWRHTUWVsuL6GzEYGfY/YoZicA==}
 
-  '@zag-js/dismissable@1.15.7':
-    resolution: {integrity: sha512-Hot5seqEHI3iJkSqOEkTeqYw8bJNhSfzcv4+KT2P0uq5P2knSNNmT59r3ywN48nCTyk5EZ98GxP5aEK8hU47Ng==}
+  '@zag-js/dismissable@1.17.0':
+    resolution: {integrity: sha512-GowKux0PDrdvC2grVsLSegG6ECPzRpeHCNV7hzB48VwMwzo9ftMGx8dWWEhtCNrzUmKSRgpsYla/mCn4ziAAKQ==}
 
-  '@zag-js/dom-query@1.15.7':
-    resolution: {integrity: sha512-EDGICVzJ5Rh+hPYFG3UUARrF6q+VrjJgGVULMQ3moVI6M4/VMWyp6vN61hIxlUALBTyQtvqiSlzz11JRztAaNQ==}
+  '@zag-js/dom-query@1.17.0':
+    resolution: {integrity: sha512-lkmbwUAYnebxaygR0gZdNJ8NL8r+cNo5ZHOeFtp12WzAEqJMNtRzQZh3yL2c5kbEN4Aj1WgmYZ6SccoG0beA8g==}
 
-  '@zag-js/editable@1.15.7':
-    resolution: {integrity: sha512-L+IM2VmAg2jV4NoY+3FPxfJC+MCvwQKG5NTBpmCW68RM2Qg9/ukX9gij3ivimwCU/ArRSL4UGRrdxEFUhErWlQ==}
+  '@zag-js/editable@1.17.0':
+    resolution: {integrity: sha512-yp6q8/PxLMUIakKojVlz1LCrSZDtZevlfQKst3BG/ajtEUBUCCLg/p5BNSRfWD3NU7+is+3Fgu9V1tOPNRFtNg==}
 
-  '@zag-js/file-upload@1.15.7':
-    resolution: {integrity: sha512-is2vnvfiZyYykwegDAJC2di7cSdOy6ye3QlZz4YpGsmJVNpmRvO5Yc8jvrf1rceDSVIMwkC2U97QPWah02EhNQ==}
+  '@zag-js/file-upload@1.17.0':
+    resolution: {integrity: sha512-iq4dkI4dpoJ3vmR2+0bgtQXSyOKaVhhXhohBv+vPExyE+CoHIiK2fjmcQIPVmFtRGZPkDlwH2W+KgqzyM+4sdA==}
 
-  '@zag-js/file-utils@1.15.7':
-    resolution: {integrity: sha512-W4REoYiq2PfwF0ia8yyhXHK1x+OGrbF12XLwlS5sJEGHwMB3Xea2rHOd/ncSXksnEI1t4rb1HmNMbaQ49e6O7Q==}
+  '@zag-js/file-utils@1.17.0':
+    resolution: {integrity: sha512-4NMbWNjSOpVt8SIwsR9mWHZlGhCa2zO13Ftf9JO+c3qg4gBwq/ht+b/Hlmju9KUaIgLSj+pl+3afGwO5Bx4yyg==}
 
-  '@zag-js/floating-panel@1.15.7':
-    resolution: {integrity: sha512-AODnLfHkskAuT8tXBqKtG+mNYNm6F7zJgijbr5yylplv9FYcv70sx2L3oL5ybyL9ysYbFJGKNSkZUwLrD1SsLg==}
+  '@zag-js/floating-panel@1.17.0':
+    resolution: {integrity: sha512-jmDGJaY2COVhG49k4CF6AHc2vyD9349uhUcN8tvaNyhGs34PKC06q2E9BJ0EhvddIKcOT/myxEXro7caZ3i9Yg==}
 
-  '@zag-js/focus-trap@1.15.7':
-    resolution: {integrity: sha512-Aq2Zs0M+iznKegwYfU37x6HagURx5K0sJdlkrWEp00BTtUbt4v85FyGwJK1xi253q4APp6aP705kMpv8koLQ/Q==}
+  '@zag-js/focus-trap@1.17.0':
+    resolution: {integrity: sha512-gf050sRpDEbx0khEvGUChtXTWpftse771sCM1DA7Ee6+niA6CUcBqtF5Bl4g4XTbXXaZZnlATZRHGaIl3oemdQ==}
 
-  '@zag-js/focus-visible@1.15.7':
-    resolution: {integrity: sha512-7/B4fZKYIbfBLA9oRloJnK8AiCR+1p7/L9PnQgWQCPo0WHAPV+raNRSsd48CJpoJQq39VxoI87E5GDbn8g++Cw==}
+  '@zag-js/focus-visible@1.17.0':
+    resolution: {integrity: sha512-kvp7KQ5YA9kxpywIHKc+7fGe+CgIqXtMCFm6wAFCU9A8T5knmMmAV8xQvDqH8O5W7dJzFHbGN3rj4FihipJkGQ==}
 
-  '@zag-js/highlight-word@1.15.7':
-    resolution: {integrity: sha512-hsPaPSW+5BX9xCAloEXOImKi+/u4HdMSxyxTy49vbXf3NvJcx82MD6BNxceQ+W4mIRffytlaZCGV4SBnZSmfsA==}
+  '@zag-js/highlight-word@1.17.0':
+    resolution: {integrity: sha512-xtRZR2i9FrI2wxZJSkfvsvgBlZC6qEmreYSChUbkp8oId+idrcfo5XxBbyB4rjcYeD4KElOwpw5DQ/yAvJh8HQ==}
 
-  '@zag-js/hover-card@1.15.7':
-    resolution: {integrity: sha512-C852g94A7BiF+GLzxKdxdt+T9ERXqLklaNaZAwe/2B5zUbuGG/oeHtu3qE1wD+yt0yFSoD0Sx/u43UJPBsfGoA==}
+  '@zag-js/hover-card@1.17.0':
+    resolution: {integrity: sha512-oFeD67ME+to7olUfhw1PWquIDGdmNhsatjHvlr8pSTA103XWOZUygT3QIdJYxUpuPQSn4IbKJPZUpLIfV3OArQ==}
 
-  '@zag-js/i18n-utils@1.15.7':
-    resolution: {integrity: sha512-dVVaPKTXaBE9F5Al6qA3IDTfK5BdDgT6375BVyAw/gD5CdFrjH2IWuV7Di65eLPrnQQCt2MsjBp+FQELuADQBA==}
+  '@zag-js/i18n-utils@1.17.0':
+    resolution: {integrity: sha512-4eKYg3r7P9BJbPyjjGLLH8YJ9BGwXAt+xJ/Ml2JiJK/fr8Gpvb4XWKhdP/EBWNcOp7VrJIMMzdWZA3pjmC/DUg==}
 
-  '@zag-js/interact-outside@1.15.7':
-    resolution: {integrity: sha512-QSvyfjsySau2O1r+96+ErX1nqgPL40lLJlXFtbw1Ih6dWn+0UJiVv1EkWjawTRE6NQZtxX1fvivi3ciR6YbyDQ==}
+  '@zag-js/interact-outside@1.17.0':
+    resolution: {integrity: sha512-v+nQV1LXBtwPWMqnjKBYP5F49AecvKhJj66zhAI8GknWW3m+vsVcJzM6LsplwH6LZ2BtLZ0whHRkYpP502BCCQ==}
 
-  '@zag-js/listbox@1.15.7':
-    resolution: {integrity: sha512-b77yv7qR6KM+aCzOVR3vv2QgYHwOVaLWf8Ew2z1tGyMzsUyLSoIDV4w5SZu3AbvZYuwW/RS6fet5xVDZwibEyQ==}
+  '@zag-js/listbox@1.17.0':
+    resolution: {integrity: sha512-IPjFp3ox7hISM+nAy9Qd1u44kfH5x5WuwSJ3oSrMVVwgYsdZrnBshYjuU8gfF0DpqhEvzAhMZA9tm1qRiZvebA==}
 
-  '@zag-js/live-region@1.15.7':
-    resolution: {integrity: sha512-EKSJT75Q3uJmpcDSnhTOadrOOSLUQIhUqmMIIVXUnQaZ0ic+DQyFILTLPU8T/B2caQpF09RwDu1jhgqRCk+m3Q==}
+  '@zag-js/live-region@1.17.0':
+    resolution: {integrity: sha512-finSFq+QKCKv1Q9Zb08/gn55RMiltbrbBxdBcAV2R2TGMmg23gqSuNr4DcEGaF46j5iZp6R8b5nriYBW23Y4+A==}
 
-  '@zag-js/menu@1.15.7':
-    resolution: {integrity: sha512-jT5n9MK2CZGz9mPtmqzeDUIUJFXVciaxlSH0hu7YOo6Xc/dZldp7GC7F0xVHQAgvKttYjmDqeOOAyMKmWSlMrQ==}
+  '@zag-js/menu@1.17.0':
+    resolution: {integrity: sha512-VwZLRvaRG4ijAYfbrsr/Pj7NkRXNCYzv1zALXlxwc9c/RF4hQWj8V0F9BSfPssL2idTATCDDBSasfWSAXZ4YZg==}
 
-  '@zag-js/number-input@1.15.7':
-    resolution: {integrity: sha512-a5WVApRzaauCT9zT3a3ESuLyTx+o32/X/TpWkZRZs4tSAoJhLJPkh84L8aa7buXMFgbni6hRLpC5NA2XV0bqTg==}
+  '@zag-js/number-input@1.17.0':
+    resolution: {integrity: sha512-5kKDP8Y6rriQNd5UP+4svMAKXMWj7Kzmut/YjQZ8viS0lSpN9mMeu7wuwD6BP1zFp0vDf2oDub34mUyFPD8GEw==}
 
-  '@zag-js/pagination@1.15.7':
-    resolution: {integrity: sha512-zVt+d1rnB6dC36y5aRFlbKVDe5jdAQ8QmWmheFGCd+FLLdch4qg4eo9Bx87I/n2ue/fMb47++nZM6p84nhEOFg==}
+  '@zag-js/pagination@1.17.0':
+    resolution: {integrity: sha512-jUiaoyBd7FUD10+WTwM1bcqfv71nC37KyALzGrcQg6xZaIqBbE5pHIj0J4admFLi+SU3E35MZ6XkGg5D8XWyGw==}
 
-  '@zag-js/password-input@1.15.7':
-    resolution: {integrity: sha512-FD7qiB+X5Bn2xAaNpAI3nSBghPBKR+DmQu+xlAtQvTtpiry9MOm+3kKDxqZTmyU78YkOWMZ1cKRhpy9BZNh/1Q==}
+  '@zag-js/password-input@1.17.0':
+    resolution: {integrity: sha512-P/CsMVigYAMzbhxojb+YkaG62wHQzIRk26t6oqxutlP2pN0vjixSTbHzub87eWwMzJ/ncwSmuPwGavbV2A15pQ==}
 
-  '@zag-js/pin-input@1.15.7':
-    resolution: {integrity: sha512-iVJmsh/bUBPAW8WDbsJsJ7MpOKPS52SURDT5503aRc/asb/PmlW5yW08m/ZtYXhp7wXSuSZ5Igqh3ERPdohB1A==}
+  '@zag-js/pin-input@1.17.0':
+    resolution: {integrity: sha512-X/BoarU/+H+qjyG5rXiUwxuh5M/njFZj28+i1gsj6mU50bTOmk5AeyJQcYZHm1ay1cvI4FT2c22mdRSS4yvyKg==}
 
-  '@zag-js/popover@1.15.7':
-    resolution: {integrity: sha512-yGGGXDs2p+t35O2WUtNsODFJkRvcxY5eX86UQ7N3B9sbBDQ63xz9BvLwxJxX4xoUUuKvF3Gb+q2d/3GOUQK6TA==}
+  '@zag-js/popover@1.17.0':
+    resolution: {integrity: sha512-JfTdAqrMhmWL8D6MDA743IdMdar7NibJRhMTxFVLyMp4A5Y9A2MRmXxyVkaDLhuhA6fUelXRu+xGi/3nvA8feQ==}
 
-  '@zag-js/popper@1.15.7':
-    resolution: {integrity: sha512-1v351nvi4jC3Fsocv75KFpUQbysJ0slzqL+MB/kHq6LLzHEBi7ACWgb18mEKHfn/6gp5gZaiOF7Snrv5WPgcwA==}
+  '@zag-js/popper@1.17.0':
+    resolution: {integrity: sha512-7s/Q6YeFU41OnAF364EgrjMn7ch7KlYrXdx6AdOw9HwHnPs/Mvh3IUZ9l4DTrzWoDXGyymQ4EteLnrq2tF+h5w==}
 
-  '@zag-js/presence@1.15.7':
-    resolution: {integrity: sha512-sVkAKdkUDUWqrI5J+bpOusgEle8L+r+mxiSHtesR5YpRX2HU63XBOMwg4l2hAHiIZXy26wpPpX/7VM1AwNYD0Q==}
+  '@zag-js/presence@1.17.0':
+    resolution: {integrity: sha512-LdHqJarlpyoUl1QvzCXTssArdVppdyV8X8cc+Wmfy3q7hdALGNeaxELP6vy61ZUG+cR5jvV9kCMoTI0A5biWYw==}
 
-  '@zag-js/progress@1.15.7':
-    resolution: {integrity: sha512-sPkXDCbq4I53EFduF85iU1WTIyn11vZ2ZNXnqEFWEsuX1tRVGJ3zzERtVfnTLXmvr2rkxqJQWksFqu7lAbvvBg==}
+  '@zag-js/progress@1.17.0':
+    resolution: {integrity: sha512-HxWxDTVvCMu/nZPPEWVluZVI/mDebHF6ZVL1qx0SiTkFGyoJ7UtXDo8WiRWByDKK7DGk/2EGiOPbsWtgJSSwvQ==}
 
-  '@zag-js/qr-code@1.15.7':
-    resolution: {integrity: sha512-/VJU+sVfKJ0XL4OTqUo/bdi42hjWg61C/P9Hhtd6FmU/2dIzD+YZP5s5S+ULQL1IG1Mwv6gD6p060cYzUsiB4g==}
+  '@zag-js/qr-code@1.17.0':
+    resolution: {integrity: sha512-Acik8KbIHt6c06rdbBcEqnT3zEJu2t5MD1nK96qOE9h11WNOWcw0g+xzGVDvLbyOaLPgX4oO+pJLfy5uexpwOg==}
 
-  '@zag-js/radio-group@1.15.7':
-    resolution: {integrity: sha512-iiK2RsXMYo8guM6vrA6pUervmASKCdnlnyLo5ZWLS/jbNpde8pyzWLXvApxIimRxI2Y6pCpaO8CWO/ZlCVo0FQ==}
+  '@zag-js/radio-group@1.17.0':
+    resolution: {integrity: sha512-4csK5gjc2wadNiei/qw61D2W6lrSWKxkUAtDLXizPM/gx72O3UWM20eM2KGxBlwO6AKLo5lJQMGeiTLHyvyKIw==}
 
-  '@zag-js/rating-group@1.15.7':
-    resolution: {integrity: sha512-ZCEK/8gM6IiZvvLRMCUbvEXzSjIANp0wdtDGXoNB79NPF8pSYsurvCYuTjM5+SLIlSHgU3UgrCViJ7FIkuV9Bg==}
+  '@zag-js/rating-group@1.17.0':
+    resolution: {integrity: sha512-UwHDDplfqAv5i6NE/2bGqP6GMWBvvOskcmQX6mUOx+PvHrsJkIb+f2RAQ2Vh1nxEb24tsFrx6ud1ZokF4k9tIg==}
 
-  '@zag-js/react@1.15.7':
-    resolution: {integrity: sha512-JaUZ9VyIVtDsTuNd5HeB+NZrutPZ4pV9sBAkgsxiRgoHsjsWOXCi3Dvk9D9WmXyr0pTLGQ3ejJJV2toqGZoLLw==}
+  '@zag-js/react@1.17.0':
+    resolution: {integrity: sha512-tuLmoVowDWGwv6WCITvREyjtHMimzfVye4CKP/lXNnaGV0j/SJDaylZl+4yDtI5r0uA0KVDqt55caWJUYaPOoA==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
 
-  '@zag-js/rect-utils@1.15.7':
-    resolution: {integrity: sha512-XC8AtgS/4xRpd/bioLJKAWrPqCe5mgWE+MXmuLVLX9ljm9kL6OZdwxcV2bHvEc+X4vu5vYYAWL9yfiGb+fmg6g==}
+  '@zag-js/rect-utils@1.17.0':
+    resolution: {integrity: sha512-ffnb/vsCOnPgllCj3Qe+vRkXWLgsutLCioWmuMIS0P3lmP0gJUt1eazmMPeldmuS8WA/z3P8aMgvRy/AHv+AMQ==}
 
-  '@zag-js/remove-scroll@1.15.7':
-    resolution: {integrity: sha512-7ImyqFdozQXL2fD6OjN29Atbodon2qMV8KV5ZAuIPGTR5eU5foJsqOZgoAjOOEEFvtj2XC8TxYtV447Rls20Yw==}
+  '@zag-js/remove-scroll@1.17.0':
+    resolution: {integrity: sha512-dN9zj7s5qyf2SAzpl6S8qXKunKLBd0RgonZLSYzOhV/EFvqhm5PLOYhj9n6FIT2SMgLMel3IpJRD+NMXNQYZdg==}
 
-  '@zag-js/scroll-snap@1.15.7':
-    resolution: {integrity: sha512-Hd8Wi1RIWUN0YzSDIZo0rjCz4jRIbkssfmdWRF+MNY2uqaAK7azCcTEX/M2bX3cX+MMmFTyVfLSOLIcaB6ALpg==}
+  '@zag-js/scroll-snap@1.17.0':
+    resolution: {integrity: sha512-H4mIUqtYNPygqyTpdz6KsOjKBf14splzGKrqzNr7+wbYO2iFOF+6OBK0Wxj3ShGR2MC7+lAUIFdx1i40qlzhgg==}
 
-  '@zag-js/select@1.15.7':
-    resolution: {integrity: sha512-bEblXbVM+PdZhDb4vaBaBrokgWreeP23yFpwNEs2hq2imGgqNBQe1viKvFc6UKIbgvtRSW9K9JuuLRurfSGOsA==}
+  '@zag-js/select@1.17.0':
+    resolution: {integrity: sha512-BdUGvvGNYUDc9x+DfuZI19X2mtERYY0SRQMqlvdDa/CQNjTE187L8Z1m3e38ljd2cNUIfqHXlgFj0pg0UIgUqA==}
 
-  '@zag-js/signature-pad@1.15.7':
-    resolution: {integrity: sha512-zAofZLLEKd7TeiDo75rW88z9plWwFJigXrXCok7BhcOXwe6wy9aYKKIbULyPpSwVqqP8YG1mEfOUPvXKSNMokg==}
+  '@zag-js/signature-pad@1.17.0':
+    resolution: {integrity: sha512-S3+uYtLf56NH1zIJs2YXuBG3UhoJFF7DJ15jSr6I6FRtckPI878xzHVG5T42W52+2lVBsEcXPbLuo8ZeIDtkvA==}
 
-  '@zag-js/slider@1.15.7':
-    resolution: {integrity: sha512-MAdq5zQN0F5oXVSsqAh3q9wYG2yxpZatGtRvmPEqYxXjFvqD7iMv9HOSvOOUHbdgJUIMtNkpf/GJVGD55prQtw==}
+  '@zag-js/slider@1.17.0':
+    resolution: {integrity: sha512-TOy4jZcDKK9jkQdLl71Rjh29su8ZezLmCJGi8iOQs3o+OZ9mJso1y5Y99XBxfS6ZK0zyz9Qq8Hc3+wwkMDHRrA==}
 
-  '@zag-js/splitter@1.15.7':
-    resolution: {integrity: sha512-mZL+or6ZPYc/ix3hhvVxv2uNe2wnYoHemmgQJoCwOjXHH9QABn37LTwFfu70nceqwgy0GYyJsIGSaPzsr1/hQw==}
+  '@zag-js/splitter@1.17.0':
+    resolution: {integrity: sha512-AzuTFZo9/ZAMvriphVJo1A+ahXv+Qwmwqe6GwXqbluHOHmyYP9P/9m6j4806+/QOks9Ljq5MTDcsUnx5w1KeSQ==}
 
-  '@zag-js/steps@1.15.7':
-    resolution: {integrity: sha512-IBmXgAG09P7mxVc2JwVjpafbol2hx7P5dXdDsuZMbB7lE8D0PdddC0PZ8Z2IzclKpZr8qOtYyV6B77Q2NTMOtw==}
+  '@zag-js/steps@1.17.0':
+    resolution: {integrity: sha512-jvLPM7+Mngvsa7RmjUgmTVMEWEpTpfbwuwlWHE9L2UjIpEyoT4TNu+/3oMaRPiMCuJsJIHpUZuFGzyUmBpuJVA==}
 
-  '@zag-js/store@1.15.7':
-    resolution: {integrity: sha512-Z7vLUlITaHUaEACSPWfePEryG0C7htjj9uYkxXLYOwJTGWG7LGiyrrz6BMqL6RVXPT64l8dQV4k9+bLDKjslsQ==}
+  '@zag-js/store@1.17.0':
+    resolution: {integrity: sha512-pX/dYJjZ9EKahOwMhCjp63J2LfSKxDxk+qCp0tu5mcVxqG3qpGZVapnPRkK/k/F0SgviChwGAWQuzI5R9fp3Tw==}
 
-  '@zag-js/switch@1.15.7':
-    resolution: {integrity: sha512-0jDGyOEind6lEwW8T/TWcRlpX1vEbP+50/fXGEpKngOKrDfIllAiykpFCVPMYJIxE5gfyhd013VPp992OLtFiQ==}
+  '@zag-js/switch@1.17.0':
+    resolution: {integrity: sha512-jsgHfxqofHY/E6/yt3lQVVh4Vl2GhHfjUTK/AMDYsOcOMOfXrx3T2D9MLkH+7YX93M1BPv4ij3LQGSnowoLWcA==}
 
-  '@zag-js/tabs@1.15.7':
-    resolution: {integrity: sha512-yUxqmeH/6b2b1FjeRKsmFlzFx8bJznZBOqrurBNZQ1PDihDRFANSG6CfLwYZXt7LFOb7xl384rt3k+gdzW/F9g==}
+  '@zag-js/tabs@1.17.0':
+    resolution: {integrity: sha512-iqMKQZg7ipngafg0/TJa9cbJmC0EodcTXkQXfdepmSJLl931G37MNwrl/ZBoXs765bs+b+KPRJpqmQcPxR1kQg==}
 
-  '@zag-js/tags-input@1.15.7':
-    resolution: {integrity: sha512-6vVDF27FsNuWndwsneaG5t13d+3csBTvRcot7nkc94fd3G/JodYf95aWyWLNp4AvMSFtzVqDKiBLFKSdsMiYyQ==}
+  '@zag-js/tags-input@1.17.0':
+    resolution: {integrity: sha512-x2K1d4miMNvej9VChJxJ4+orKa/IxaK2FgBPjiZNAP+9zawLAmUuTZhi2tsw3A3Qu3WDSsq3i1pGvRtR2Okl0w==}
 
-  '@zag-js/time-picker@1.15.7':
-    resolution: {integrity: sha512-ln0dfMKhmjl3L/noUyrm7kwqMQ1ItVAXQs7cu8WIYAh+uhfYUadiafUI0qNwMyiFB/uVgqNuwn0uq2OKZGc7+g==}
+  '@zag-js/time-picker@1.17.0':
+    resolution: {integrity: sha512-V8zZ+ebAwA9mYbKGHQ4xe/pkiHnAv4hpMNmUHoaSLO069Bt4lB5SZM7Ba1qRbb2LC9zRjxCKKwifUgxASrbfww==}
     peerDependencies:
       '@internationalized/date': '>=3.0.0'
 
-  '@zag-js/timer@1.15.7':
-    resolution: {integrity: sha512-c9yCWFX7+j+bkinwOmW5mHoxr6AgVkopqlDwibFRE3ECu3xp7Trx7MDP0sYRL4oHXH0Cia+7D4xPUSEiPKPd8A==}
+  '@zag-js/timer@1.17.0':
+    resolution: {integrity: sha512-tW/4M76OEaeTnwVTeSUxVUDprErWfna+41kIur5PQt8xeUEtoAgYTmwns0uOoHGjJGtjV8mzf45LCN6qHVn9Aw==}
 
-  '@zag-js/toast@1.15.7':
-    resolution: {integrity: sha512-wX16ikbZG7TL9DHvTWR7vkbC6ONkXZ87poIRBu00AsQf10xW1q/J0Z/dRAJxlno5bCBULbykjx/IJ6umxj+hhg==}
+  '@zag-js/toast@1.17.0':
+    resolution: {integrity: sha512-+0jcUWR4NQsyLM5ewFNTvUrXyI6QIYXTaOp6nWxxdkfMCCzQ+ADlAHBc9lJjU0wz//EmaQa7+eIdTvTLaereEg==}
 
-  '@zag-js/toggle-group@1.15.7':
-    resolution: {integrity: sha512-Em3ROuqGM9RvFhIEjnr4Cdra5ni8VzG721iYUaJzCxwI3fmF+gF9RCL9nPJGWAAjYBjStVD5XfyeaTJrBFXDrw==}
+  '@zag-js/toggle-group@1.17.0':
+    resolution: {integrity: sha512-X8ElxpizEyOqRQOieYRxd0fH+StsV3Jtr6zhLjkR/PqLCXquQ3RTTjn7S+Nu7Iy4g666tHPx3k459beeGUbAFQ==}
 
-  '@zag-js/toggle@1.15.7':
-    resolution: {integrity: sha512-dudq/2Y+SuvgIqMSjskd9MzyvRgHz2pl9ytQAj/DYM6gWnV1TUfYjbN9zXhnk/lo8C1XTgMvXv26qP1hW5snXg==}
+  '@zag-js/toggle@1.17.0':
+    resolution: {integrity: sha512-AxP7dwdwRLSxqPFpWbpve+0bsB7XLWEaQ4upLQBnJln3dl93FWgpElecKXQyw2FrTinBf8ZppTXv65iqaQIGWg==}
 
-  '@zag-js/tooltip@1.15.7':
-    resolution: {integrity: sha512-d3scHFXcpaF7SSIkBgl8Q9POLk+xaT/qWFlFM8zkIv6x0Ay9t60ScwsmtBQDhf/fenEhVCDS66voA2F96tPQVQ==}
+  '@zag-js/tooltip@1.17.0':
+    resolution: {integrity: sha512-et92OLgXN+g0u2LLD2XQR6wbVCqzX3YCHsiBRCBhHtoey6GlGDTpldWhAsmMOFsNZBBGH/kuDNs4tDbvcUQpPg==}
 
-  '@zag-js/tour@1.15.7':
-    resolution: {integrity: sha512-2M7929lu8Mk3L5ziAMUJ85IezF9R9D8Tmyv1eiCR75qO4u2GdP75qjjdLr1WS60APlUCPWuUyNKly4R4LqHJzQ==}
+  '@zag-js/tour@1.17.0':
+    resolution: {integrity: sha512-aM7W9ZulJv+l/ATwD3ZywwCjcHmfs6StZeOj5VPnbjLN8Bnz72tUGiFuUOdrXZ09KnTxaLEY45pvlqtoVi69vA==}
 
-  '@zag-js/tree-view@1.15.7':
-    resolution: {integrity: sha512-/uwHsow7REhzAW9yxdoKEES7U4KYjgLRp8or0x/ZHlk4TTqZ4ADgm3UMNYoCMHq1s9inOz+MVyiNLmr2y1VX+g==}
+  '@zag-js/tree-view@1.17.0':
+    resolution: {integrity: sha512-XVE9dJ0qxAXTevb4GilVIgx/ok2YiHv8q+vErTO0YPfJBLT2kGi/5OD85ds0SooFVOl2Vp+PHldNbBwe7Y0FKg==}
 
-  '@zag-js/types@1.15.7':
-    resolution: {integrity: sha512-kTsL/F1ebTYyzdyPZgGRc/KJC878vegjFRqidwxGLmnYy+TRNK1abnY+nczfHsuQHOzNfPrFPr+7JH9wBQFJKw==}
+  '@zag-js/types@1.17.0':
+    resolution: {integrity: sha512-KwbTmJbO8b+u6ZX5is90wUxx6TIxuYsTLya4ms/ntPD5SguY3XGQ0ufqnqpIX+cpkjwdce8ZkLkNABwPvfxNGg==}
 
-  '@zag-js/utils@1.15.7':
-    resolution: {integrity: sha512-fa5uZ8odfFqgU8cV+wKey+Iw3W/cTWHXjVqjtxL39jdaXqY34rb+ILez5QuxNpHJKSsGH5EDJLXsx1+G6pJiZQ==}
+  '@zag-js/utils@1.17.0':
+    resolution: {integrity: sha512-WaJsSNHqrIQ0MECgVAE7Yes8FDRhoa4m4E+t/pu+6DoLb/VMC6Ge4VrqW7ZqWeleUfsWLYLqV44ldCFN70Vo9A==}
 
   abort-controller@3.0.0:
     resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
@@ -5262,8 +5215,8 @@ packages:
   ajv@8.17.1:
     resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
 
-  algoliasearch@5.25.0:
-    resolution: {integrity: sha512-n73BVorL4HIwKlfJKb4SEzAYkR3Buwfwbh+MYxg2mloFph2fFGV58E90QTzdbfzWrLn4HE5Czx/WTjI8fcHaMg==}
+  algoliasearch@5.29.0:
+    resolution: {integrity: sha512-E2l6AlTWGznM2e7vEE6T6hzObvEyXukxMOlBmVlMyixZyK1umuO/CiVc6sDBbzVH0oEviCE5IfVY1oZBmccYPQ==}
     engines: {node: '>= 14.0.0'}
 
   align-text@0.1.4:
@@ -5994,42 +5947,42 @@ packages:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
     engines: {node: '>=8'}
 
-  cspell-config-lib@9.1.1:
-    resolution: {integrity: sha512-fi/ohH5mIeba416Jl0DREm+A4QssC3OCY8wjze7hAZ9lOzFuuBmyjoo5OD/J48stkCt1pf2TIAAU3up5o/oaBw==}
+  cspell-config-lib@9.1.2:
+    resolution: {integrity: sha512-QvHHGUuMI5h3ymU6O/Qz8zfhMhvPTuopT1FgebYRBB1cyggl4KnEJKU9m7wy/SQ1IGSlFDtQp6rCy70ujTfavQ==}
     engines: {node: '>=20'}
 
-  cspell-dictionary@9.1.1:
-    resolution: {integrity: sha512-VobPhTE/+hMsI5qppKsuljdDkG23av16bNRBR0hA0O/pG07SXZ6nzwWIwdPoKSjiWSGTmmCGXv45W0sn20ahbA==}
+  cspell-dictionary@9.1.2:
+    resolution: {integrity: sha512-Osn5f9ugkX/zA3PVtSmYKRer3gZX3YqVB0UH0wVNzi8Ryl/1RUuYLIcvd0SDEhiVW56WKxFLfZ5sggTz/l9cDA==}
     engines: {node: '>=20'}
 
-  cspell-gitignore@9.1.1:
-    resolution: {integrity: sha512-8gx61lyxdAMLulL7Mtb10jOBzL/e3rU34YW0kaTT3LkHBb/LGapmOFKRiJyt2bA/UA6kJkR/wPLmsjUfRJwOmA==}
-    engines: {node: '>=20'}
-    hasBin: true
-
-  cspell-glob@9.1.1:
-    resolution: {integrity: sha512-f274mlln/QG/wj12xF/SnvfdUAx0pGjIxnNOYGwRXS1MbaH0B4F9pkhkMqY0GwqAsvPxT6NzJybAoivS4Icvzg==}
-    engines: {node: '>=20'}
-
-  cspell-grammar@9.1.1:
-    resolution: {integrity: sha512-IBOOzmj1z4IWHSis6iGZNbE0syEiT0Rz4NbbHwscCMc30jgbotupscn6T8PhqmDwmlXCW81C4vGSMzqQh0UaLQ==}
+  cspell-gitignore@9.1.2:
+    resolution: {integrity: sha512-dbi7xPYYNT79gci9C3G/tldp13cvhuNXnIOSXJ5lXSDhinZFfrpFc0bOj195nn3HTL/EvlQ9Ga1a1+jOIZNVBQ==}
     engines: {node: '>=20'}
     hasBin: true
 
-  cspell-io@9.1.1:
-    resolution: {integrity: sha512-LMzoBvbWqVokrkrnLrdnCzX8Sf77Q42nvj7Q36G4sqZaB3Lr/ih+iZ4t5l90Wlsnst5flrQmIy0YNtndAWzp2A==}
+  cspell-glob@9.1.2:
+    resolution: {integrity: sha512-l7Mqirn5h2tilTXgRamRIqqnzeA7R5iJEtJkY/zHDMEBeLWTR/5ai7dBp2+ooe8gIebpDtvv4938IXa5/75E6g==}
     engines: {node: '>=20'}
 
-  cspell-lib@9.1.1:
-    resolution: {integrity: sha512-On2m0/UFtsKenEHTfvNA5EoKI5YcnOzgGQF3yX4CllvtGQXCewB5U1TBCqTR/0wckw5q94iqZJDF2oY3GBGBAg==}
+  cspell-grammar@9.1.2:
+    resolution: {integrity: sha512-vUcnlUqJKK0yhwYHfGC71zjGyEn918l64U/NWb1ijn1VXrL6gsh3w8Acwdo++zbpOASd9HTAuuZelveDJKLLgA==}
+    engines: {node: '>=20'}
+    hasBin: true
+
+  cspell-io@9.1.2:
+    resolution: {integrity: sha512-oLPxbteI+uFV9ZPcJjII7Lr/C/gVXpdmDLlAMwR8/7LHGnEfxXR0lqYu5GZVEvZ7riX9whCUOsQWQQqr2u2Fzw==}
     engines: {node: '>=20'}
 
-  cspell-trie-lib@9.1.1:
-    resolution: {integrity: sha512-eULMGTTbvmuOWpAM34wodpbAM3dXscLL26WOn9/9uyQJ36dZ0u8B+ctrYf17Ij/wcpGzLqwTNspJN2fkbiXkBQ==}
+  cspell-lib@9.1.2:
+    resolution: {integrity: sha512-OFCssgfp6Z2gd1K8j2FsYr9YGoA/C6xXlcUwgU75Ut/XMZ/S44chdA9fUupGd4dUOw+CZl0qKzSP21J6kYObIw==}
     engines: {node: '>=20'}
 
-  cspell@9.1.1:
-    resolution: {integrity: sha512-srPIS39EzbgRLncBIbsJy3GzYWxrSm0mbXj24XLxZgVBjMps+/uxpVo0aXEFy4JClUSNBoYxhCb+vSHZUoqu3w==}
+  cspell-trie-lib@9.1.2:
+    resolution: {integrity: sha512-TkIQaknRRusUznqy+HwpqKCETCAznrzPJJHRHi8m6Zo3tAMsnIpaBQPRN8xem6w8/r/yJqFhLrsLSma0swyviQ==}
+    engines: {node: '>=20'}
+
+  cspell@9.1.2:
+    resolution: {integrity: sha512-XtFNCt2ZCvdSAbtntlYBumShdDsSbKdgPhwx/PfEL42uhXWR1owQPTxhtHz3nBF2SR11iDI3LDMMGDp8Fw0Gdg==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -6262,8 +6215,8 @@ packages:
     resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
     engines: {node: '>=12'}
 
-  drizzle-kit@0.31.1:
-    resolution: {integrity: sha512-PUjYKWtzOzPtdtQlTHQG3qfv4Y0XT8+Eas6UbxCmxTj7qgMf+39dDujf1BP1I+qqZtw9uzwTh8jYtkMuCq+B0Q==}
+  drizzle-kit@0.31.2:
+    resolution: {integrity: sha512-Z2Uqxvu4HNFzlDkG3NQ2BYpII8SlOMkpjsC5XFh9TsYP2nYhfVamVjQ8spiMFXH3vGOyUt1cQ5FZ1JSgl6+8QQ==}
     hasBin: true
 
   drizzle-orm@0.44.2:
@@ -7086,8 +7039,8 @@ packages:
     resolution: {integrity: sha512-GMBAbW9antB8iZRHLoGw0b3HANt57diZYFO/HL1JGIC1MjKrdmhxvrJbupnVvpys0zsz7yBApXdQyfepKly2kA==}
     engines: {node: '>=0.10.0'}
 
-  framer-motion@12.18.1:
-    resolution: {integrity: sha512-6o4EDuRPLk4LSZ1kRnnEOurbQ86MklVk+Y1rFBUKiF+d2pCdvMjWVu0ZkyMVCTwl5UyTH2n/zJEJx+jvTYuxow==}
+  framer-motion@12.19.1:
+    resolution: {integrity: sha512-nq9hwWAEKf4gzprbOZzKugLV5OVKF7zrNDY6UOVu+4D3ZgIkg8L9Jy6AMrpBM06fhbKJ6LEG6UY5+t7Eq6wNlg==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -7275,10 +7228,6 @@ packages:
     resolution: {integrity: sha512-mS1lbMsxgQj6hge1XZ6p7GPhbrtFwUFYi3wRzXAC/FmYnyXMTvvI3td3rjmQ2u8ewXueaSvRPWaEcgVVOT9Jnw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
-  graphql@16.11.0:
-    resolution: {integrity: sha512-mS1lbMsxgQj6hge1XZ6p7GPhbrtFwUFYi3wRzXAC/FmYnyXMTvvI3td3rjmQ2u8ewXueaSvRPWaEcgVVOT9Jnw==}
-    engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
-
   gray-matter@4.0.3:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
@@ -7370,9 +7319,6 @@ packages:
 
   header-case@2.0.4:
     resolution: {integrity: sha512-H/vuk5TEEVZwrR0lp2zed9OCo1uAILMlx0JEMgC26rzyJJ3N1v6XkwHHXJQdR2doSjcGPM6OKPYoJgf0plJ11Q==}
-
-  headers-polyfill@4.0.3:
-    resolution: {integrity: sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==}
 
   headers-polyfill@4.0.3:
     resolution: {integrity: sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==}
@@ -7698,9 +7644,6 @@ packages:
   is-negative-zero@2.0.3:
     resolution: {integrity: sha512-5KoIu2Ngpyek75jXodFvnafB6DJgr3u8uuK0LEZJjrU19DrMD3EVERaR8sjz8CCGgpZvxPl9SuE1GMVPFHx1mw==}
     engines: {node: '>= 0.4'}
-
-  is-node-process@1.2.0:
-    resolution: {integrity: sha512-Vg4o6/fqPxIjtxgUH5QLJhwZ7gW5diGCVlXpuUfELC62CuxM1iHcRe51f2W1FDy04Ai4KJkagKjx3XaqyfRKXw==}
 
   is-node-process@1.2.0:
     resolution: {integrity: sha512-Vg4o6/fqPxIjtxgUH5QLJhwZ7gW5diGCVlXpuUfELC62CuxM1iHcRe51f2W1FDy04Ai4KJkagKjx3XaqyfRKXw==}
@@ -8264,8 +8207,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.522.0:
-    resolution: {integrity: sha512-jnJbw974yZ7rQHHEFKJOlWAefG3ATSCZHANZxIdx8Rk/16siuwjgA4fBULpXEAWx/RlTs3FzmKW/udWUuO0aRw==}
+  lucide-react@0.523.0:
+    resolution: {integrity: sha512-rUjQoy7egZT9XYVXBK1je9ckBnNp7qzRZOhLQx5RcEp2dCGlXo+mv6vf7Am4LimEcFBJIIZzSGfgTqc9QCrPSw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -8687,14 +8630,14 @@ packages:
   mlly@1.7.4:
     resolution: {integrity: sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==}
 
-  motion-dom@12.18.1:
-    resolution: {integrity: sha512-dR/4EYT23Snd+eUSLrde63Ws3oXQtJNw/krgautvTfwrN/2cHfCZMdu6CeTxVfRRWREW3Fy1f5vobRDiBb/q+w==}
+  motion-dom@12.19.0:
+    resolution: {integrity: sha512-m96uqq8VbwxFLU0mtmlsIVe8NGGSdpBvBSHbnnOJQxniPaabvVdGgxSamhuDwBsRhwX7xPxdICgVJlOpzn/5bw==}
 
-  motion-utils@12.18.1:
-    resolution: {integrity: sha512-az26YDU4WoDP0ueAkUtABLk2BIxe28d8NH1qWT8jPGhPyf44XTdDUh8pDk9OPphaSrR9McgpcJlgwSOIw/sfkA==}
+  motion-utils@12.19.0:
+    resolution: {integrity: sha512-BuFTHINYmV07pdWs6lj6aI63vr2N4dg0vR+td0rtrdpWOhBzIkEklZyLcvKBoEtwSqx8Jg06vUB5RS0xDiUybw==}
 
-  motion@12.18.1:
-    resolution: {integrity: sha512-w1ns2hWQ4COhOvnZf4rg4mW0Pl36mzcShpgt0fSfI6qJxKUbi3kHho/HSKeJFRoY0TO1m5/7C8lG1+Li0uC9Fw==}
+  motion@12.19.1:
+    resolution: {integrity: sha512-OhoHWrht+zwDPccr2wGltJdwgz2elFBBt/sLei2g0hwICvy2hOBFUkA4Ylup3VnDgz+vUtecf694EV7bJK4XjA==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -8731,23 +8674,9 @@ packages:
       typescript:
         optional: true
 
-  msw@2.10.2:
-    resolution: {integrity: sha512-RCKM6IZseZQCWcSWlutdf590M8nVfRHG1ImwzOtwz8IYxgT4zhUO0rfTcTvDGiaFE0Rhcc+h43lcF3Jc9gFtwQ==}
-    engines: {node: '>=18'}
-    hasBin: true
-    peerDependencies:
-      typescript: '>= 4.8.x'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-
   mute-stream@1.0.0:
     resolution: {integrity: sha512-avsJQhyd+680gKXyG/sQc0nXaC6rBkPOfyHYcFb9+hdkqQkR9bdnkJ0AMZhke0oesPqIO+mFFJ+IdBc7mst4IA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
-
-  mute-stream@2.0.0:
-    resolution: {integrity: sha512-WWdIxpyjEn+FhQJQQv9aQAYlHoNVdzIzUySNV1gHUPDSdZJ3yZn7pAAbQcV7B56Mvu881q9FZV+0Vx2xC44VWA==}
-    engines: {node: ^18.17.0 || >=20.5.0}
 
   mute-stream@2.0.0:
     resolution: {integrity: sha512-WWdIxpyjEn+FhQJQQv9aQAYlHoNVdzIzUySNV1gHUPDSdZJ3yZn7pAAbQcV7B56Mvu881q9FZV+0Vx2xC44VWA==}
@@ -8990,8 +8919,8 @@ packages:
     resolution: {integrity: sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==}
     engines: {node: '>=8'}
 
-  openai@5.6.0:
-    resolution: {integrity: sha512-jNH5z+hYAdOMZXyEt0yZ7246s+UZjg2AwFQqkAhZIPPjxNtHHO5mykOefau6FkOqj16aC94MOdJl/rZBcKj/cQ==}
+  openai@5.7.0:
+    resolution: {integrity: sha512-zXWawZl6J/P5Wz57/nKzVT3kJQZvogfuyuNVCdEp4/XU2UNrjL7SsuNpWAyLZbo6HVymwmnfno9toVzBhelygA==}
     hasBin: true
     peerDependencies:
       ws: ^8.18.0
@@ -9028,9 +8957,6 @@ packages:
   os-tmpdir@1.0.2:
     resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}
     engines: {node: '>=0.10.0'}
-
-  outvariant@1.4.3:
-    resolution: {integrity: sha512-+Sl2UErvtsoajRDKCE5/dBz4DIvHXQQnAxtQTF04OJxY0+DyZXSo5P5Bb7XYWOh81syohlYL24hbDwxedPUJCA==}
 
   outvariant@1.4.3:
     resolution: {integrity: sha512-+Sl2UErvtsoajRDKCE5/dBz4DIvHXQQnAxtQTF04OJxY0+DyZXSo5P5Bb7XYWOh81syohlYL24hbDwxedPUJCA==}
@@ -9203,9 +9129,6 @@ packages:
   path-scurry@1.11.1:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
-
-  path-to-regexp@6.3.0:
-    resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
 
   path-to-regexp@6.3.0:
     resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
@@ -9475,8 +9398,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prettier@3.5.3:
-    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+  prettier@3.6.0:
+    resolution: {integrity: sha512-ujSB9uXHJKzM/2GBuE0hBOUgC77CN3Bnpqa+g80bkv3T3A93wL/xlzDATHhnhkzifz/UE2SNOvmbTz5hSkDlHw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -9524,9 +9447,6 @@ packages:
   psl@1.15.0:
     resolution: {integrity: sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==}
 
-  psl@1.15.0:
-    resolution: {integrity: sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==}
-
   public-encrypt@4.0.3:
     resolution: {integrity: sha512-zVpa8oKZSz5bTMTFClc1fQOnyyEzpl5ozpi1B5YcvBrdohMjH2rfsBtyXcuNuwjsDIXmBYlF2N5FlJYhR29t8Q==}
 
@@ -9554,9 +9474,6 @@ packages:
   querystring-es3@0.2.1:
     resolution: {integrity: sha512-773xhDQnZBMFobEiztv8LIl70ch5MSF/jUQVlhwFyBILqq96anmoctVIYz+ZRp0qbCKATTn6ev02M3r7Ga5vqA==}
     engines: {node: '>=0.4.x'}
-
-  querystringify@2.2.0:
-    resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
 
   querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
@@ -9908,9 +9825,6 @@ packages:
 
   require-main-filename@1.0.1:
     resolution: {integrity: sha512-IqSUtOVP4ksd1C/ej5zeEh/BIP2ajqpn8c5x+q99gvcIG/Qf0cud5raVnE/Dwd0ua9TXYDoDc0RE5hBSdz22Ug==}
-
-  requires-port@1.0.0:
-    resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
 
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
@@ -10385,9 +10299,6 @@ packages:
   strict-event-emitter@0.5.1:
     resolution: {integrity: sha512-vMgjE/GGEPEFnhFub6pa4FmJBRBVOLpIII2hvCZ8Kzb7K0hlHo7mQv6xYrBvCL2LtAIBwFUK8wvuJgTVSQ5MFQ==}
 
-  strict-event-emitter@0.5.1:
-    resolution: {integrity: sha512-vMgjE/GGEPEFnhFub6pa4FmJBRBVOLpIII2hvCZ8Kzb7K0hlHo7mQv6xYrBvCL2LtAIBwFUK8wvuJgTVSQ5MFQ==}
-
   string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
     engines: {node: '>=0.6.19'}
@@ -10689,10 +10600,6 @@ packages:
     resolution: {integrity: sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag==}
     engines: {node: '>=6'}
 
-  tough-cookie@4.1.4:
-    resolution: {integrity: sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag==}
-    engines: {node: '>=6'}
-
   tough-cookie@5.1.2:
     resolution: {integrity: sha512-FVDYdxtnj0G6Qm/DhNPSb8Ju59ULcup3tuJxkFb5K8Bv2pUXILbf0xZWU8PX8Ov19OXljbUyveOFwRMwkXzO+A==}
     engines: {node: '>=16'}
@@ -10888,10 +10795,6 @@ packages:
 
   universal-user-agent@7.0.3:
     resolution: {integrity: sha512-TmnEAEAsBJVZM/AADELsK76llnwcf9vMKuPz8JflO1frO8Lchitr0fNaN9d+Ap0BjKtqWqd/J17qeDnXh8CL2A==}
-
-  universalify@0.2.0:
-    resolution: {integrity: sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==}
-    engines: {node: '>= 4.0.0'}
 
   universalify@0.2.0:
     resolution: {integrity: sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==}
@@ -14640,7 +14543,7 @@ snapshots:
   '@react-email/render@1.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       html-to-text: 9.0.5
-      prettier: 3.5.3
+      prettier: 3.6.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       react-promise-suspense: 0.3.4
@@ -19818,7 +19721,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.522.0(react@19.0.0):
+  lucide-react@0.523.0(react@19.0.0):
     dependencies:
       react: 19.0.0
 
@@ -21382,20 +21285,20 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-organize-imports@4.1.0(prettier@3.5.3)(typescript@5.7.3):
+  prettier-plugin-organize-imports@4.1.0(prettier@3.6.0)(typescript@5.7.3):
     dependencies:
-      prettier: 3.5.3
+      prettier: 3.6.0
       typescript: 5.7.3
 
-  prettier-plugin-tailwindcss@0.6.13(prettier-plugin-organize-imports@4.1.0(prettier@3.5.3)(typescript@5.7.3))(prettier@3.5.3):
+  prettier-plugin-tailwindcss@0.6.13(prettier-plugin-organize-imports@4.1.0(prettier@3.6.0)(typescript@5.7.3))(prettier@3.6.0):
     dependencies:
-      prettier: 3.5.3
+      prettier: 3.6.0
     optionalDependencies:
-      prettier-plugin-organize-imports: 4.1.0(prettier@3.5.3)(typescript@5.7.3)
+      prettier-plugin-organize-imports: 4.1.0(prettier@3.6.0)(typescript@5.7.3)
 
   prettier@3.4.2: {}
 
-  prettier@3.5.3: {}
+  prettier@3.6.0: {}
 
   pretty-bytes@5.6.0: {}
 

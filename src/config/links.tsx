@@ -16,7 +16,6 @@ import {
   MessageSquareMore,
   Notebook,
   PencilIcon,
-  SearchIcon,
   UserCircleIcon,
 } from 'lucide-react'
 import {
@@ -98,12 +97,6 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     href: '/guestbook',
     key: 'guestbook',
     text: '留言板',
-  },
-  {
-    icon: <SearchIcon className="size-5" />,
-    href: '/search',
-    key: 'search',
-    text: '搜索',
   },
   {
     icon: <BellElectric className="size-5" />,

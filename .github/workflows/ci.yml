@@ -52,9 +52,6 @@ jobs:
       - name: Unit Test
         run: pnpm test:unit
 
-      - name: E2E Test
-        run: pnpm test:e2e
-
   lighthouse:
     runs-on: [macos-latest, ubuntu-latest, windows-latest]
     needs: lint

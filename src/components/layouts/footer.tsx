@@ -39,14 +39,8 @@ const Footer: React.FC = () => {
         <Link href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">
           <div className="flex items-center text-sm">
             本网站由 &nbsp;
-            <Image
-              src="/images/upyun-logo.png"
-              className="aspect-[5/12]"
-              width={50}
-              height={12}
-              alt="upyun logo"
-            />{' '}
-            &nbsp; 提供CDN 加速/云存储服务
+            <Image src="/images/upyun-logo.png" width={50} height={12} alt="upyun logo" /> &nbsp;
+            提供CDN 加速/云存储服务
           </div>
         </Link>
       </div>

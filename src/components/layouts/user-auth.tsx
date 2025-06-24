@@ -14,10 +14,11 @@ import {
 import { Skeleton } from '~/components/base/skeleton'
 import { signOut, useSession } from '~/lib/auth-client'
 import { useDialogsStore } from '~/stores/dialogs'
-import { getAvatarAbbreviation, getDefaultImage } from '~/utils'
+import { getDefaultImage } from '~/utils'
 
 function UserAuth() {
   const { data: session, isPending } = useSession()
+  console.log(session)
   const dialogStore = useDialogsStore()
 
   const handleSignOut = async () => {
@@ -39,10 +40,11 @@ function UserAuth() {
       <Button
         size="sm"
         variant="ghost"
+        className="flex size-8 cursor-pointer items-center justify-center rounded-full p-0 duration-200 sm:size-9"
         onClick={() => dialogStore.setIsSignInOpen(true)}
         data-testid="sign-in-button"
       >
-        登录
+        <UserIcon className="size-5 sm:size-4" />
       </Button>
     )
   }
@@ -53,12 +55,20 @@ function UserAuth() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="size-8 rounded-full p-0" variant="ghost" data-testid="user-menu">
-          <Avatar className="size-8" data-testid="user-avatar">
-            <AvatarImage className="size-8" src={image ?? defaultImage} />
-            <AvatarFallback>{getAvatarAbbreviation(name)}</AvatarFallback>
-          </Avatar>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            className="ml-1 size-7 cursor-pointer rounded-full p-0"
+            variant="ghost"
+            data-testid="user-menu"
+          >
+            <Avatar className="size-7" data-testid="user-avatar">
+              <AvatarImage className="size-7" alt="user" src={image ?? defaultImage} />
+              <AvatarFallback className="bg-transparent">
+                <Skeleton className="size-7 rounded-full" />
+              </AvatarFallback>
+            </Avatar>
+          </Button>
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuLabel>
@@ -68,7 +78,7 @@ function UserAuth() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem className="cursor-pointer" asChild>
           <a href="/admin" className="flex items-center gap-2">
             <UserIcon className="size-4" />
             管理后台
@@ -77,7 +87,7 @@ function UserAuth() {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={handleSignOut}
-          className="flex items-center gap-2 text-red-600 focus:text-red-600"
+          className="flex cursor-pointer items-center gap-2 text-red-600 focus:text-red-600"
           data-testid="logout-button"
         >
           <LogOutIcon className="size-4" />
