@@ -8,7 +8,7 @@ import './src/lib/env'
 process.title = 'Eonova (NextJS)'
 
 const withMDX = createMDX({
-  configPath: './content-collections.ts',
+  configPath: './content.config.ts',
 })
 
 const withBundleAnalyzer = bundleAnalyzer({
