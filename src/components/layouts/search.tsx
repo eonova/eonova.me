@@ -40,7 +40,7 @@ function CommandMenu() {
 
   const transformedSearchResults: SearchResult[] = useMemo(
     () =>
-      searchResults.map((result) => ({
+      searchResults.map(result => ({
         id: result.id,
         title: result.title,
         type: result.type,
@@ -63,21 +63,22 @@ function CommandMenu() {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
-        setIsOpen((value) => !value)
+        setIsOpen(value => !value)
       }
       if (e.key === '/' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
         window.location.href = '/search'
       }
-      if (!isOpen) return
+      if (!isOpen)
+        return
 
       if (e.key === 'ArrowDown') {
         e.preventDefault()
-        setSelectedIndex((i) => (i < transformedSearchResults.length - 1 ? i + 1 : 0))
+        setSelectedIndex(i => (i < transformedSearchResults.length - 1 ? i + 1 : 0))
       }
       if (e.key === 'ArrowUp') {
         e.preventDefault()
-        setSelectedIndex((i) => (i > 0 ? i - 1 : transformedSearchResults.length - 1))
+        setSelectedIndex(i => (i > 0 ? i - 1 : transformedSearchResults.length - 1))
       }
       if (e.key === 'Enter' && transformedSearchResults[selectedIndex]) {
         e.preventDefault()
@@ -125,7 +126,7 @@ function CommandMenu() {
               ref={inputRef}
               className="h-12 border-transparent p-3 px-4 text-base shadow-none focus-visible:ring-0"
               placeholder="搜索文章、笔记、项目..."
-              onChange={(e) => debouncedSearch(e.target.value)}
+              onChange={e => debouncedSearch(e.target.value)}
             />
           </div>
 

@@ -14,8 +14,10 @@ vi.mock('next/navigation', () => ({
   }),
   useSearchParams: () => ({
     get: vi.fn((key: string) => {
-      if (key === 'q') return 'test query'
-      if (key === 'type') return 'all'
+      if (key === 'q')
+        return 'test query'
+      if (key === 'type')
+        return 'all'
       return null
     }),
   }),
@@ -61,7 +63,7 @@ vi.mock('@tanstack/react-query', async () => {
 
 // Mock components
 vi.mock('~/components/shared/page-title', () => ({
-  default: ({ title, description }: { title: string; description: string }) => (
+  default: ({ title, description }: { title: string, description: string }) => (
     <div>
       <h1>{title}</h1>
       <p>{description}</p>
@@ -75,8 +77,8 @@ vi.mock('~/components/modules/search', () => ({
       <input
         data-testid="search-input"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && onSearch(value)}
+        onChange={e => onChange(e.target.value)}
+        onKeyDown={e => e.key === 'Enter' && onSearch(value)}
       />
       <button type="button" onClick={() => onSearch(value)}>
         Search

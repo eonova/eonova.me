@@ -1,5 +1,5 @@
-import { like, sql } from 'drizzle-orm'
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres'
+import { like, sql } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { Pool } from 'pg'
 import * as schema from '~/db/schema'
@@ -88,7 +88,8 @@ export async function cleanupTestData() {
     })
 
     console.log('[Test Database]: Test data cleaned up successfully')
-  } catch (error) {
+  }
+  catch (error) {
     console.error('[Test Database]: Error cleaning up test data:', error)
     throw error
   }
@@ -100,7 +101,8 @@ export async function checkTestDbConnection(): Promise<boolean> {
     const db = createTestDb()
     await db.execute(sql`SELECT 1`)
     return true
-  } catch (error) {
+  }
+  catch (error) {
     console.error('[Test Database]: Database connection check failed:', error)
     return false
   }

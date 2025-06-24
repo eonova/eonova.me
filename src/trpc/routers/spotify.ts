@@ -21,7 +21,7 @@ async function getAccessToken() {
     const response = await fetch(TOKEN_ENDPOINT, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${BASIC}`,
+        'Authorization': `Basic ${BASIC}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
@@ -39,7 +39,8 @@ async function getAccessToken() {
 
     const data = await response.json()
     return data.access_token as string
-  } catch (error) {
+  }
+  catch (error) {
     clearTimeout(timeoutId)
 
     if (error instanceof Error && error.name === 'AbortError') {
@@ -58,7 +59,8 @@ export const spotifyRouter = createTRPCRouter({
 
     const { success } = await ratelimit.limit(getKey(ip))
 
-    if (!success) throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
+    if (!success)
+      throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
 
     try {
       const accessToken = await getAccessToken()
@@ -103,7 +105,8 @@ export const spotifyRouter = createTRPCRouter({
               ?.map((artist: { name: string }) => artist.name)
               .join(', ') as string) || null,
         }
-      } catch (error) {
+      }
+      catch (error) {
         clearTimeout(timeoutId)
 
         if (error instanceof Error && error.name === 'AbortError') {
@@ -115,7 +118,8 @@ export const spotifyRouter = createTRPCRouter({
 
         throw error
       }
-    } catch {
+    }
+    catch {
       throw new TRPCError({
         code: 'INTERNAL_SERVER_ERROR',
         message: 'Failed to fetch Spotify data',

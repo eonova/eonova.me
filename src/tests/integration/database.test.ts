@@ -34,7 +34,8 @@ describe('database Integration Tests', () => {
       if (!isConnected) {
         console.warn('Database connection failed, some tests may be skipped')
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.warn('Database connection check failed:', error)
     }
   })
@@ -44,7 +45,8 @@ describe('database Integration Tests', () => {
     if (!shouldSkipDatabaseTests) {
       try {
         await cleanupTestData()
-      } catch (error) {
+      }
+      catch (error) {
         console.warn('Failed to cleanup test data:', error)
       }
     }
@@ -56,7 +58,8 @@ describe('database Integration Tests', () => {
       try {
         await cleanupTestData()
         await closeTestDb()
-      } catch (error) {
+      }
+      catch (error) {
         console.warn('Failed to cleanup database:', error)
       }
     }
@@ -82,7 +85,8 @@ describe('database Integration Tests', () => {
 
   describe('database Transactions', () => {
     it('should commit successful transactions', async () => {
-      if (skipIfNoDatabaseUrl()) return
+      if (skipIfNoDatabaseUrl())
+        return
 
       const testUserId = 'test-user-transaction-commit'
 
@@ -108,7 +112,8 @@ describe('database Integration Tests', () => {
     })
 
     it('should rollback failed transactions', async () => {
-      if (skipIfNoDatabaseUrl()) return
+      if (skipIfNoDatabaseUrl())
+        return
 
       const testUserId = 'test-user-transaction-rollback'
 
@@ -126,7 +131,8 @@ describe('database Integration Tests', () => {
           // 故意抛出错误来触发回滚
           throw new Error('Intentional error for rollback test')
         })
-      } catch (error) {
+      }
+      catch (error) {
         expect(error instanceof Error && error.message).toBe('Intentional error for rollback test')
       }
 
@@ -202,7 +208,8 @@ describe('database Integration Tests', () => {
       })
 
       it('should delete user successfully', async () => {
-        if (skipIfNoDatabaseUrl()) return
+        if (skipIfNoDatabaseUrl())
+          return
 
         const db = createTestDb()
         const testUserId = 'test-user-delete'
@@ -230,7 +237,8 @@ describe('database Integration Tests', () => {
 
     describe('posts Table', () => {
       it('should handle post operations', async () => {
-        if (skipIfNoDatabaseUrl()) return
+        if (skipIfNoDatabaseUrl())
+          return
 
         const db = createTestDb()
         const testSlug = 'test-post-operations'
@@ -258,7 +266,8 @@ describe('database Integration Tests', () => {
 
   describe('database Constraints', () => {
     it('should enforce unique constraints', async () => {
-      if (skipIfNoDatabaseUrl()) return
+      if (skipIfNoDatabaseUrl())
+        return
 
       const db = createTestDb()
       const testUserId = 'test-user-unique'
@@ -287,7 +296,8 @@ describe('database Integration Tests', () => {
     })
 
     it('should handle foreign key constraints', async () => {
-      if (skipIfNoDatabaseUrl()) return
+      if (skipIfNoDatabaseUrl())
+        return
 
       const db = createTestDb()
       const testUserId = 'test-user-fk'
@@ -307,7 +317,8 @@ describe('database Integration Tests', () => {
 
   describe('database Performance', () => {
     it('should handle bulk operations efficiently', async () => {
-      if (skipIfNoDatabaseUrl()) return
+      if (skipIfNoDatabaseUrl())
+        return
 
       const db = createTestDb()
       const start = Date.now()

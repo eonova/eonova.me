@@ -52,7 +52,7 @@ describe('getAvatarAbbreviation', () => {
   })
 
   it('should handle special characters in names', () => {
-    expect(getAvatarAbbreviation("John O'Connor")).toBe('JO')
+    expect(getAvatarAbbreviation('John O\'Connor')).toBe('JO')
     expect(getAvatarAbbreviation('Jean-Pierre Dupont')).toBe('JD')
     expect(getAvatarAbbreviation('Mary-Jane Watson')).toBe('MW')
   })

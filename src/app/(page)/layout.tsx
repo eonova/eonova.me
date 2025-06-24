@@ -1,7 +1,7 @@
+import type { Metadata, Viewport } from 'next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Monitoring } from 'react-scan/monitoring/next'
 import Dock from '~/components/layouts/dock'
@@ -16,9 +16,9 @@ import {
   SITE_URL,
 } from '~/config/constants'
 import { env } from '~/lib/env'
-import '~/styles/globals.css'
 import { cn } from '~/utils'
 import Providers from '../providers'
+import '~/styles/globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
     googleBot: {
-      index: true,
-      follow: true,
+      'index': true,
+      'follow': true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -130,14 +130,16 @@ export default function RootLayout({
         />
       </head>
       <body className="relative antialiased">
-        {env.REACT_SCAN_MONITOR_API_KEY ? (
-          <Monitoring
-            apiKey={env.REACT_SCAN_MONITOR_API_KEY}
-            url="https://monitoring.react-scan.com/api/v1/ingest"
-            commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
-            branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-          />
-        ) : null}
+        {env.REACT_SCAN_MONITOR_API_KEY
+          ? (
+              <Monitoring
+                apiKey={env.REACT_SCAN_MONITOR_API_KEY}
+                url="https://monitoring.react-scan.com/api/v1/ingest"
+                commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+                branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+              />
+            )
+          : null}
         <Providers>
           <Hello />
           <PerformanceMonitor />

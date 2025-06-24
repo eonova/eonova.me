@@ -32,9 +32,9 @@ export async function waitForPageStability(
     .waitForFunction(
       () => {
         return (
-          (window as any).fetch === undefined ||
-          !(window as any).pendingRequests ||
-          (window as any).pendingRequests === 0
+          (window as any).fetch === undefined
+          || !(window as any).pendingRequests
+          || (window as any).pendingRequests === 0
         )
       },
       { timeout: 5000 },

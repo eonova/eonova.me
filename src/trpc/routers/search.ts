@@ -158,15 +158,16 @@ export const searchRouter = createTRPCRouter({
 
       // Get title suggestions from all content
       const allContent = [
-        ...allPosts.map((p) => p.title),
-        ...allNotes.map((n) => n.title),
-        ...allProjects.map((p) => p.name),
+        ...allPosts.map(p => p.title),
+        ...allNotes.map(n => n.title),
+        ...allProjects.map(p => p.name),
       ]
 
       for (const title of allContent) {
         if (title.toLowerCase().includes(query.toLowerCase()) && !suggestions.includes(title)) {
           suggestions.push(title)
-          if (suggestions.length >= limit) break
+          if (suggestions.length >= limit)
+            break
         }
       }
 

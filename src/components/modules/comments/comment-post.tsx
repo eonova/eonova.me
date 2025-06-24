@@ -76,7 +76,8 @@ function CommentPost() {
     return () => setIsMounted(false)
   }, [])
 
-  if (isPending || !isMounted) return null
+  if (isPending || !isMounted)
+    return null
 
   const disabled = session === null || commentsMutation.isPending
 

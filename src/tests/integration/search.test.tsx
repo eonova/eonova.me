@@ -35,8 +35,8 @@ describe('searchIntegrationTests', () => {
       // Should find React-related content in posts and projects
       expect(result.length).toBeGreaterThan(0)
 
-      const reactPost = result.find((r) => r.title.includes('React Hooks'))
-      const reactProject = result.find((r) => r.title.includes('React Component'))
+      const reactPost = result.find(r => r.title.includes('React Hooks'))
+      const reactProject = result.find(r => r.title.includes('React Component'))
 
       expect(reactPost).toBeDefined()
       expect(reactProject).toBeDefined()
@@ -55,7 +55,7 @@ describe('searchIntegrationTests', () => {
         limit: 10,
       })
 
-      const asyncPost = result.find((r) => r.title.includes('JavaScript Async'))
+      const asyncPost = result.find(r => r.title.includes('JavaScript Async'))
       expect(asyncPost).toBeDefined()
       expect(asyncPost?.type).toBe('post')
     })
@@ -75,8 +75,8 @@ describe('searchIntegrationTests', () => {
         limit: 10,
       })
 
-      expect(postsOnly.every((r) => r.type === 'post')).toBe(true)
-      expect(notesOnly.every((r) => r.type === 'note')).toBe(true)
+      expect(postsOnly.every(r => r.type === 'post')).toBe(true)
+      expect(notesOnly.every(r => r.type === 'note')).toBe(true)
     })
 
     it('should provide relevant suggestions', async () => {
@@ -150,7 +150,7 @@ describe('searchIntegrationTests', () => {
         limit: 10,
       })
 
-      const hookPost = result.find((r) => r.title.includes('React Hooks'))
+      const hookPost = result.find(r => r.title.includes('React Hooks'))
       expect(hookPost?.score).toBeGreaterThan(100)
     })
 
@@ -164,7 +164,7 @@ describe('searchIntegrationTests', () => {
       })
 
       // Project with TypeScript in techstack should be found
-      const tsProject = result.find((r) => r.techstack?.includes('TypeScript'))
+      const tsProject = result.find(r => r.techstack?.includes('TypeScript'))
       expect(tsProject).toBeDefined()
     })
   })
@@ -242,9 +242,9 @@ describe('searchIntegrationTests', () => {
         limit: 10,
       })
 
-      const post = result.find((r) => r.type === 'post')
-      const note = result.find((r) => r.type === 'note')
-      const project = result.find((r) => r.type === 'project')
+      const post = result.find(r => r.type === 'post')
+      const note = result.find(r => r.type === 'note')
+      const project = result.find(r => r.type === 'project')
 
       if (post) {
         expect(post).toHaveProperty('categories')

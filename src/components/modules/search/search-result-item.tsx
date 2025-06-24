@@ -48,19 +48,22 @@ function getTypeLabel(type: 'post' | 'note' | 'project') {
 }
 
 function highlightText(text: string, query: string) {
-  if (!query) return text
+  if (!query)
+    return text
 
   const regex = new RegExp(`(${query})`, 'gi')
   const parts = text.split(regex)
 
   return parts.map((part, index) =>
-    regex.test(part) ? (
-      <mark key={index} className="rounded bg-yellow-200 px-0.5 dark:bg-yellow-800">
-        {part}
-      </mark>
-    ) : (
-      part
-    ),
+    regex.test(part)
+      ? (
+          <mark key={index} className="rounded bg-yellow-200 px-0.5 dark:bg-yellow-800">
+            {part}
+          </mark>
+        )
+      : (
+          part
+        ),
   )
 }
 

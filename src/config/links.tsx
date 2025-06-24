@@ -47,7 +47,7 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     href: '/posts',
     key: 'posts',
     text: '文章',
-    subMenu: CATEGORIES.map((category) => ({
+    subMenu: CATEGORIES.map(category => ({
       text: category.name,
       icon: category.icon,
       href: `${SITE_URL}/categories/${category.label}`,

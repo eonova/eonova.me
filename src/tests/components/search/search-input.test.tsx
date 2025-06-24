@@ -8,8 +8,8 @@ function MockSearchInput({ value, onChange, onSearch, placeholder }: any) {
       <input
         data-testid="search-input"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && onSearch?.(value)}
+        onChange={e => onChange(e.target.value)}
+        onKeyDown={e => e.key === 'Enter' && onSearch?.(value)}
         placeholder={placeholder}
       />
       <button type="button" onClick={() => onSearch?.(value)} disabled={!value.trim()}>

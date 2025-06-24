@@ -10,9 +10,9 @@ describe('search Functionality Integration', () => {
     // Mock search function
     const mockSearch = (query: string, items: any[]) => {
       return items.filter(
-        (item) =>
-          item.title?.toLowerCase().includes(query.toLowerCase()) ||
-          item.content?.toLowerCase().includes(query.toLowerCase()),
+        item =>
+          item.title?.toLowerCase().includes(query.toLowerCase())
+          || item.content?.toLowerCase().includes(query.toLowerCase()),
       )
     }
 
@@ -29,7 +29,7 @@ describe('search Functionality Integration', () => {
 
   it('should perform case-insensitive search', () => {
     const mockSearch = (query: string, items: any[]) => {
-      return items.filter((item) => item.title?.toLowerCase().includes(query.toLowerCase()))
+      return items.filter(item => item.title?.toLowerCase().includes(query.toLowerCase()))
     }
 
     const testItems = [{ title: 'React Guide' }, { title: 'Vue Tutorial' }]
@@ -44,8 +44,9 @@ describe('search Functionality Integration', () => {
 
   it('should handle empty search queries', () => {
     const mockSearch = (query: string, items: any[]) => {
-      if (!query.trim()) return []
-      return items.filter((item) => item.title?.toLowerCase().includes(query.toLowerCase()))
+      if (!query.trim())
+        return []
+      return items.filter(item => item.title?.toLowerCase().includes(query.toLowerCase()))
     }
 
     const testItems = [{ title: 'React Guide' }, { title: 'Vue Tutorial' }]
@@ -56,7 +57,7 @@ describe('search Functionality Integration', () => {
 
   it('should return empty array for no matches', () => {
     const mockSearch = (query: string, items: any[]) => {
-      return items.filter((item) => item.title?.toLowerCase().includes(query.toLowerCase()))
+      return items.filter(item => item.title?.toLowerCase().includes(query.toLowerCase()))
     }
 
     const testItems = [{ title: 'React Guide' }, { title: 'Vue Tutorial' }]
@@ -69,7 +70,7 @@ describe('search Functionality Integration', () => {
     const mockSearch = (query: string, items: any[]) => {
       const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
       const regex = new RegExp(escapedQuery, 'i')
-      return items.filter((item) => regex.test(item.title))
+      return items.filter(item => regex.test(item.title))
     }
 
     const testItems = [

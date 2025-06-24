@@ -61,7 +61,8 @@ export const adminRouter = createTRPCRouter({
         recentComments: recentCommentsResult[0]?.count ?? 0,
         recentTalks: recentTalksResult[0]?.count ?? 0,
       }
-    } catch (error) {
+    }
+    catch (error) {
       throw new TRPCError({
         code: 'INTERNAL_SERVER_ERROR',
         message: `获取统计数据失败${error}`,
@@ -103,7 +104,7 @@ export const adminRouter = createTRPCRouter({
             type: sql<'talk'>`'talk'`,
             content: talks.content,
             createdAt: talks.createdAt,
-            user: sql<{ name: string; image: string | null }>`NULL`,
+            user: sql<{ name: string, image: string | null }>`NULL`,
           })
           .from(talks)
           .orderBy(desc(talks.createdAt))
@@ -131,7 +132,8 @@ export const adminRouter = createTRPCRouter({
         )
 
         return allActivities.slice(0, input.limit)
-      } catch (error) {
+      }
+      catch (error) {
         throw new TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
           message: `获取最近活动失败${error}`,
@@ -156,7 +158,8 @@ export const adminRouter = createTRPCRouter({
         .orderBy(sql`DATE(${users.createdAt})`)
 
       return growthData
-    } catch (error) {
+    }
+    catch (error) {
       throw new TRPCError({
         code: 'INTERNAL_SERVER_ERROR',
         message: `获取用户增长趋势失败${error}`,
@@ -177,7 +180,8 @@ export const adminRouter = createTRPCRouter({
         .groupBy(comments.contentType)
 
       return commentsByType
-    } catch (error) {
+    }
+    catch (error) {
       throw new TRPCError({
         code: 'INTERNAL_SERVER_ERROR',
         message: `获取内容统计失败${error}`,

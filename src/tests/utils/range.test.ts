@@ -53,13 +53,13 @@ describe('range utility function', () => {
 
   it('should be useful for iteration patterns', () => {
     // Test common use case: creating elements for rendering
-    const elements = range(3).map((i) => `item-${i}`)
+    const elements = range(3).map(i => `item-${i}`)
     expect(elements).toEqual(['item-0', 'item-1', 'item-2'])
   })
 
   it('should work with forEach pattern', () => {
     const results: number[] = []
-    range(4).forEach((i) => results.push(i * 2))
+    range(4).forEach(i => results.push(i * 2))
     expect(results).toEqual([0, 2, 4, 6])
   })
 
@@ -69,12 +69,12 @@ describe('range utility function', () => {
   })
 
   it('should work with filter pattern', () => {
-    const evenNumbers = range(10).filter((i) => i % 2 === 0)
+    const evenNumbers = range(10).filter(i => i % 2 === 0)
     expect(evenNumbers).toEqual([0, 2, 4, 6, 8])
   })
 
   it('should work with find pattern', () => {
-    const found = range(10).find((i) => i > 5)
+    const found = range(10).find(i => i > 5)
     expect(found).toBe(6)
   })
 

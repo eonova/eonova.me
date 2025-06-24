@@ -25,18 +25,19 @@ teardown('teardown global', async () => {
 
       console.log('[E2E Teardown]: Database cleanup completed')
       break // 成功则退出循环
-    } catch (error) {
+    }
+    catch (error) {
       console.error(`[E2E Teardown]: Database cleanup attempt ${attempt} failed:`, error)
 
-      const isNetworkError =
-        error instanceof Error &&
-        (error.message.includes('ENOTFOUND') ||
-          error.message.includes('Connection terminated') ||
-          error.message.includes('timeout'))
+      const isNetworkError
+        = error instanceof Error
+          && (error.message.includes('ENOTFOUND')
+            || error.message.includes('Connection terminated')
+            || error.message.includes('timeout'))
 
       if (isNetworkError && attempt < maxRetries) {
         console.log(`[E2E Teardown]: Network error detected, retrying in ${attempt * 2}s...`)
-        await new Promise((resolve) => setTimeout(resolve, attempt * 2000))
+        await new Promise(resolve => setTimeout(resolve, attempt * 2000))
         continue
       }
 
@@ -54,12 +55,14 @@ teardown('teardown global', async () => {
     for (const post of TEST_POSTS) {
       try {
         await fs.rm(path.join(process.cwd(), 'data/posts/tech', `${post.slug}.md`))
-      } catch (error) {
+      }
+      catch (error) {
         console.warn(`[E2E Teardown]: Failed to delete test post file: ${post.slug}.md`, error)
       }
     }
     console.log('[E2E Teardown]: File cleanup completed')
-  } catch (error) {
+  }
+  catch (error) {
     console.warn('[E2E Teardown]: File cleanup failed:', error)
   }
 
@@ -68,7 +71,8 @@ teardown('teardown global', async () => {
     console.log('[E2E Teardown]: Cleaning cache...')
     await redis.flushall()
     console.log('[E2E Teardown]: Cache cleanup completed')
-  } catch (error) {
+  }
+  catch (error) {
     console.warn('[E2E Teardown]: Cache cleanup failed:', error)
   }
 

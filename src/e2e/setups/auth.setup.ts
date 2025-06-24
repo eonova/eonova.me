@@ -90,13 +90,14 @@ setup('setup authenticated', async ({ page }) => {
     await page.context().storageState({ path: authenticatedStoragePath })
 
     console.log('[E2E Setup]: Authenticated setup completed successfully')
-  } catch (error) {
+  }
+  catch (error) {
     console.error('[E2E Setup]: Authenticated setup failed:', error)
 
     // 如果是连接超时，尝试重试一次
     if (
-      error instanceof Error &&
-      (error.message?.includes('timeout') || error.message?.includes('Connection terminated'))
+      error instanceof Error
+      && (error.message?.includes('timeout') || error.message?.includes('Connection terminated'))
     ) {
       console.log('[E2E Setup]: Retrying authenticated setup due to connection issue...')
 
@@ -125,11 +126,13 @@ setup('setup authenticated', async ({ page }) => {
         await page.goto('http://localhost:3000/')
         await page.context().storageState({ path: authenticatedStoragePath })
         console.log('[E2E Setup]: Authenticated setup retry completed')
-      } catch (retryError) {
+      }
+      catch (retryError) {
         console.error('[E2E Setup]: Authenticated setup retry failed:', retryError)
         throw retryError
       }
-    } else {
+    }
+    else {
       throw error
     }
   }

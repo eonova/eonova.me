@@ -13,7 +13,7 @@ describe('useIsMobile', () => {
     mockAddEventListener = vi.fn()
     mockRemoveEventListener = vi.fn()
 
-    mockMatchMedia.mockImplementation((query) => ({
+    mockMatchMedia.mockImplementation(query => ({
       matches: false,
       media: query,
       onchange: null,

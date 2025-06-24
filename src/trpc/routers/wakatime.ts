@@ -12,7 +12,8 @@ export const wakatimeRouter = createTRPCRouter({
 
     const { success } = await ratelimit.limit(getKey(ip))
 
-    if (!success) throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
+    if (!success)
+      throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
 
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 5000) // 5秒超时
@@ -39,7 +40,8 @@ export const wakatimeRouter = createTRPCRouter({
       return {
         seconds: (data?.data?.total_seconds as number) || 0,
       }
-    } catch (error) {
+    }
+    catch (error) {
       clearTimeout(timeoutId)
 
       if (error instanceof Error && error.name === 'AbortError') {

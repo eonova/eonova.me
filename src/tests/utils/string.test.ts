@@ -101,7 +101,7 @@ describe('string utility functions', () => {
             '<': '&lt;',
             '>': '&gt;',
             '"': '&quot;',
-            "'": '&#39;',
+            '\'': '&#39;',
           }
           return escapeMap[match] || match
         })
@@ -110,7 +110,7 @@ describe('string utility functions', () => {
         '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;',
       )
       expect(escapeHtml('Hello & World')).toBe('Hello &amp; World')
-      expect(escapeHtml("It's a test")).toBe('It&#39;s a test')
+      expect(escapeHtml('It\'s a test')).toBe('It&#39;s a test')
     })
   })
 

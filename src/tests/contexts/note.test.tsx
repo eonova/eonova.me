@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
 import type { Note } from 'content-collections'
+import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { NoteProvider, useNoteContext } from '~/contexts/note'
 
@@ -255,8 +255,11 @@ describe('noteContext', () => {
         <div>
           {note.toc.map((item: any) => (
             <div key={item.id} data-testid={`toc-${item.id}`}>
-              {item.text} (Level
-              {item.level})
+              {item.text}
+              {' '}
+              (Level
+              {item.level}
+              )
             </div>
           ))}
         </div>

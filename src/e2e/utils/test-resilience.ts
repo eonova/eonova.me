@@ -19,7 +19,7 @@ interface RecoveryStrategy {
 const RECOVERY_STRATEGIES: RecoveryStrategy[] = [
   {
     name: 'Page Reload',
-    condition: (error) => error.message.includes('Navigation') || error.message.includes('timeout'),
+    condition: error => error.message.includes('Navigation') || error.message.includes('timeout'),
     action: async (context) => {
       console.log('🔄 Attempting page reload recovery...')
       await context.page.reload({ waitUntil: 'domcontentloaded' })
@@ -28,7 +28,7 @@ const RECOVERY_STRATEGIES: RecoveryStrategy[] = [
   },
   {
     name: 'Clear Storage',
-    condition: (error) =>
+    condition: error =>
       error.message.includes('storage') || error.message.includes('localStorage'),
     action: async (context) => {
       console.log('🧹 Attempting storage clear recovery...')
@@ -64,7 +64,8 @@ async function attemptRecovery(
         await strategy.action(context)
         console.log(`✅ Recovery strategy "${strategy.name}" succeeded`)
         return true
-      } catch (recoveryError) {
+      }
+      catch (recoveryError) {
         console.log(`❌ Recovery strategy "${strategy.name}" failed:`, recoveryError)
       }
     }
@@ -91,7 +92,8 @@ export async function resilientTest<T>(
     try {
       const fullContext: TestContext = { ...context, retryCount, maxRetries }
       return await testFn(fullContext)
-    } catch (error) {
+    }
+    catch (error) {
       lastError = error as Error
 
       if (retryCount === maxRetries) {

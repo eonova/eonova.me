@@ -53,7 +53,8 @@ setup('setup blog', async () => {
 
         try {
           await fs.writeFile(testPostPath, createTestPost(post.title))
-        } catch (error) {
+        }
+        catch (error) {
           console.warn(`Failed to create test post file: ${testPostPath}`, error)
           // 不要因为文件创建失败而中断测试
         }
@@ -61,20 +62,21 @@ setup('setup blog', async () => {
 
       console.log('[E2E Setup]: Blog setup completed successfully')
       return // 成功则退出
-    } catch (error) {
+    }
+    catch (error) {
       lastError = error as Error
       console.error(`[E2E Setup]: Blog setup attempt ${attempt} failed:`, error)
 
       // 检查是否是网络相关错误
-      const isNetworkError =
-        error instanceof Error &&
-        (error.message.includes('ENOTFOUND') ||
-          error.message.includes('Connection terminated') ||
-          error.message.includes('timeout'))
+      const isNetworkError
+        = error instanceof Error
+          && (error.message.includes('ENOTFOUND')
+            || error.message.includes('Connection terminated')
+            || error.message.includes('timeout'))
 
       if (isNetworkError && attempt < maxRetries) {
         console.log(`[E2E Setup]: Network error detected, retrying in ${attempt * 2}s...`)
-        await new Promise((resolve) => setTimeout(resolve, attempt * 2000))
+        await new Promise(resolve => setTimeout(resolve, attempt * 2000))
         continue
       }
 
@@ -91,7 +93,8 @@ setup('setup blog', async () => {
             const testPostPath = path.join(process.cwd(), `./data/posts/tech/${post.slug}.md`)
             try {
               await fs.writeFile(testPostPath, createTestPost(post.title))
-            } catch (fileError) {
+            }
+            catch (fileError) {
               console.warn(`Failed to create test post file: ${testPostPath}`, fileError)
             }
           }

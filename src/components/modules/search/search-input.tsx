@@ -54,7 +54,8 @@ export function SearchInput({
   useEffect(() => {
     if (value) {
       debouncedSetQuery(value)
-    } else {
+    }
+    else {
       setDebouncedQuery('')
     }
   }, [value, debouncedSetQuery])
@@ -76,7 +77,8 @@ export function SearchInput({
       e.preventDefault()
       setIsOpen(false)
       onSearch?.(value)
-    } else if (e.key === 'Escape') {
+    }
+    else if (e.key === 'Escape') {
       setIsOpen(false)
       inputRef.current?.blur()
     }

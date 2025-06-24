@@ -1,7 +1,7 @@
+import type { NextConfig } from 'next'
 import { createContentCollectionPlugin as createMDX } from '@content-collections/next'
 import createPWA from '@ducanh2912/next-pwa'
 import bundleAnalyzer from '@next/bundle-analyzer'
-import type { NextConfig } from 'next'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
 import './src/lib/env'
 
@@ -163,7 +163,7 @@ const MyNextConfig: NextConfig = {
     minimumCacheTTL: 31536000, // 1年缓存
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: 'default-src \'self\'; script-src \'none\'; sandbox;',
 
     remotePatterns: [
       {
@@ -260,9 +260,9 @@ const MyNextConfig: NextConfig = {
               // 过滤掉 PostCSS calc 和缓存序列化警告
               const message = warning.message || warning.toString()
               return (
-                !message.includes('postcss-calc') &&
-                !message.includes('No serializer registered') &&
-                !message.includes('PackFileCacheStrategy')
+                !message.includes('postcss-calc')
+                && !message.includes('No serializer registered')
+                && !message.includes('PackFileCacheStrategy')
               )
             })
           })

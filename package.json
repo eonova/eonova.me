@@ -195,12 +195,8 @@
     "commit-msg": "pnpx tsx scripts/verify-commit.ts"
   },
   "lint-staged": {
-    "*.{js,json}": [
-      "prettier --write"
-    ],
-    "*.{cjs,mjs,jsx,cts,mts,ts,tsx}": [
-      "eslint --fix",
-      "prettier --parser=typescript --write"
+    "*.{cjs,mjs,js,json,jsx,cts,mts,ts,tsx}": [
+      "eslint . --max-warnings 0 --fix"
     ]
   },
   "browserslist": [

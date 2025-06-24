@@ -20,8 +20,10 @@ export default function SearchPage() {
   // Update URL when search parameters change
   useEffect(() => {
     const params = new URLSearchParams()
-    if (query) params.set('q', query)
-    if (selectedType !== 'all') params.set('type', selectedType)
+    if (query)
+      params.set('q', query)
+    if (selectedType !== 'all')
+      params.set('type', selectedType)
 
     const newUrl = params.toString() ? `/search?${params.toString()}` : '/search'
     router.replace(newUrl, { scroll: false })

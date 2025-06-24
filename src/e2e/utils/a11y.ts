@@ -1,5 +1,5 @@
-import { AxeBuilder } from '@axe-core/playwright'
 import type { Page } from '@playwright/test'
+import { AxeBuilder } from '@axe-core/playwright'
 import { expect } from '@playwright/test'
 
 import { A11Y_TAGS } from '../constants'

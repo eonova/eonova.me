@@ -7,7 +7,6 @@ import { Separator } from '~/components/base/separator'
 import useIsScroll from '~/hooks/use-is-scroll'
 import useScrollDirection from '~/hooks/use-scroll-direction'
 import { flags } from '~/lib/env'
-import '~/styles/page/header.css'
 import { cn } from '~/utils'
 import { SvgLogo } from '../shared/logo'
 import MobileNav from './mobile-nav'
@@ -15,6 +14,7 @@ import Navbar from './navbar'
 import Search from './search'
 import ThemeSwitcher from './theme-switcher'
 import UserAuth from './user-auth'
+import '~/styles/page/header.css'
 
 interface HeaderProps {
   className?: string

@@ -269,7 +269,8 @@ test.describe('Navigation', () => {
       // If no specific logo found, just click home link
       if (!logoFound) {
         await page.locator('a[href="/"]').first().click()
-      } else {
+      }
+      else {
         await page.locator('a[href="/"]').first().click()
       }
 

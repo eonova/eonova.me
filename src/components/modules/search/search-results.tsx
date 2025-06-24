@@ -53,15 +53,16 @@ export function SearchResults({
   const displayResults = showAll ? results : results.slice(0, 10)
 
   const getTypeCount = (type: 'all' | 'posts' | 'notes' | 'projects') => {
-    if (type === 'all') return results.length
-    return results.filter((result) => result.type === type.slice(0, -1)).length
+    if (type === 'all')
+      return results.length
+    return results.filter(result => result.type === type.slice(0, -1)).length
   }
 
   if (isLoading) {
     return (
       <div className="space-y-4">
         <div className="flex flex-wrap gap-2">
-          {typeFilters.map((filter) => (
+          {typeFilters.map(filter => (
             <Skeleton key={filter.value} className="h-8 w-16" />
           ))}
         </div>
@@ -139,7 +140,7 @@ export function SearchResults({
 
       {/* Results */}
       <div className="space-y-3">
-        {displayResults.map((result) => (
+        {displayResults.map(result => (
           <SearchResultItem key={result.id} result={result} query={query} />
         ))}
       </div>
@@ -148,14 +149,23 @@ export function SearchResults({
       {results.length > 10 && !showAll && (
         <div className="text-center">
           <Button variant="outline" onClick={() => setShowAll(true)}>
-            显示更多结果 ({results.length - 10} 个)
+            显示更多结果 (
+            {results.length - 10}
+            {' '}
+            个)
           </Button>
         </div>
       )}
 
       {/* Results Summary */}
       <div className="text-muted-foreground text-center text-sm">
-        找到 {results.length} 个结果，搜索关键词: "{query}"
+        找到
+        {' '}
+        {results.length}
+        {' '}
+        个结果，搜索关键词: "
+        {query}
+        "
       </div>
     </div>
   )

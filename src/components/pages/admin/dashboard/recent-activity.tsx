@@ -102,19 +102,21 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
           return (
             <div key={activity.id} className="flex items-start space-x-3">
               <div className="relative">
-                {activity.user ? (
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage
-                      src={activity.user.image ?? defaultImage ?? undefined}
-                      alt={activity.user.name}
-                    />
-                    <AvatarFallback>{getAvatarAbbreviation(activity.user.name)}</AvatarFallback>
-                  </Avatar>
-                ) : (
-                  <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-full">
-                    <Icon className={`h-4 w-4 ${iconColor}`} />
-                  </div>
-                )}
+                {activity.user
+                  ? (
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage
+                          src={activity.user.image ?? defaultImage ?? undefined}
+                          alt={activity.user.name}
+                        />
+                        <AvatarFallback>{getAvatarAbbreviation(activity.user.name)}</AvatarFallback>
+                      </Avatar>
+                    )
+                  : (
+                      <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-full">
+                        <Icon className={`h-4 w-4 ${iconColor}`} />
+                      </div>
+                    )}
                 <div className="bg-background border-background absolute -right-1 -bottom-1 flex h-4 w-4 items-center justify-center rounded-full border-2">
                   <Icon className={`h-2.5 w-2.5 ${iconColor}`} />
                 </div>

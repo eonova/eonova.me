@@ -16,7 +16,8 @@ describe('uRL utility functions', () => {
           // eslint-disable-next-line no-new
           new URL(url)
           expect(true).toBe(true) // URL is valid
-        } catch {
+        }
+        catch {
           expect(false).toBe(true) // Should not reach here
         }
       })
@@ -34,7 +35,8 @@ describe('uRL utility functions', () => {
         try {
           // eslint-disable-next-line no-new
           new URL(url)
-        } catch {
+        }
+        catch {
           expect(true).toBe(true) // Invalid URL caught
         }
       })
