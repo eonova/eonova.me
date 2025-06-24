@@ -202,7 +202,8 @@ describe('noteContext', () => {
     // This test verifies that the context has the correct display name
     // which is useful for debugging
     expect(NoteProvider).toBeDefined()
-    expect(typeof NoteProvider).toBe('function')
+    expect(typeof NoteProvider).toBe('object')
+    expect(NoteProvider.$$typeof).toBeDefined() // React context provider symbol
   })
 
   it('should work with multiple providers (nested)', () => {

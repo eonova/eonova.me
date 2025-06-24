@@ -52,7 +52,6 @@
     "@dnd-kit/modifiers": "catalog:ui",
     "@dnd-kit/sortable": "catalog:ui",
     "@dnd-kit/utilities": "catalog:ui",
-    "@docsearch/react": "catalog:frontend",
     "@ducanh2912/next-pwa": "catalog:frontend",
     "@hookform/resolvers": "catalog:frontend",
     "@icons-pack/react-simple-icons": "catalog:ui",

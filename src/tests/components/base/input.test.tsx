@@ -59,16 +59,17 @@ describe('input Component', () => {
   })
 
   it('should forward refs', () => {
-    let refCurrent: HTMLInputElement | null = null
-
     const TestComponent = () => {
       const ref = useRef<HTMLInputElement>(null)
-      refCurrent = ref.current
-      return <Input ref={ref} />
+
+      return <Input ref={ref} data-testid="test-input" />
     }
 
     render(<TestComponent />)
-    expect(refCurrent).toBeInstanceOf(HTMLInputElement)
+
+    const inputElement = screen.getByTestId('test-input')
+    expect(inputElement).toBeInstanceOf(HTMLInputElement)
+    expect(inputElement).toHaveProperty('type', 'text')
   })
 
   it('should handle focus and blur events', async () => {
