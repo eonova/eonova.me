@@ -7,8 +7,9 @@ const config: KnipConfig = {
     'tailwindcss',
     'react-email',
     'picocolors',
-    'critters', // Required by Next.js build process
+    'critters',
   ],
+  ignoreBinaries: ['only-allow'],
   entry: ['content.config.ts', '*.config.mjs', '*.config.ts', 'src/e2e/**/*.{setup,teardown}.ts'],
   project: ['src/**/*.{ts,tsx}', 'scripts/*.ts'],
   ignore: [

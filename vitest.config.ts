@@ -29,6 +29,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~': resolve('./src'),
+      'content-collections': resolve('./src/tests/__mocks__/content-collections.ts'),
     },
   },
 })

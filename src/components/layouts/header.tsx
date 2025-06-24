@@ -6,13 +6,14 @@ import { memo } from 'react'
 import { Separator } from '~/components/base/separator'
 import useIsScroll from '~/hooks/use-is-scroll'
 import useScrollDirection from '~/hooks/use-scroll-direction'
+import '~/styles/page/header.css'
 import { cn } from '~/utils'
 import { SvgLogo } from '../shared/logo'
 import CommandMenu from './command-menu'
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
 import ThemeSwitcher from './theme-switcher'
-import '~/styles/page/header.css'
+import UserAuth from './user-auth'
 
 interface HeaderProps {
   className?: string
@@ -72,6 +73,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         <Separator orientation="vertical" className={cn('mx-1 hidden h-6 sm:block')} />
         <ThemeSwitcher />
         <CommandMenu />
+        <UserAuth />
         <MobileNav />
       </div>
     </motion.header>

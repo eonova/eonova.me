@@ -1,14 +1,14 @@
-import type { NextConfig } from 'next'
 import { createContentCollectionPlugin as createMDX } from '@content-collections/next'
 import createPWA from '@ducanh2912/next-pwa'
 import bundleAnalyzer from '@next/bundle-analyzer'
+import type { NextConfig } from 'next'
 import ReactComponentName from 'react-scan/react-component-name/webpack'
 import './src/lib/env'
 
 process.title = 'Eonova (NextJS)'
 
 const withMDX = createMDX({
-  configPath: './content.config.ts',
+  configPath: './content-collections.ts',
 })
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -96,20 +96,6 @@ const NextConfigHeaders = [
       },
     ],
   },
-  // API 路由缓存和压缩
-  {
-    source: '/api/(.*)',
-    headers: [
-      {
-        key: 'Cache-Control',
-        value: 'public, max-age=300, s-maxage=600, stale-while-revalidate=86400',
-      },
-      {
-        key: 'Content-Encoding',
-        value: 'gzip',
-      },
-    ],
-  },
   // 静态资源缓存
   {
     source: '/images/(.*)',
@@ -177,7 +163,7 @@ const MyNextConfig: NextConfig = {
     minimumCacheTTL: 31536000, // 1年缓存
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
-    contentSecurityPolicy: 'default-src \'self\'; script-src \'none\'; sandbox;',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
 
     remotePatterns: [
       {
@@ -252,64 +238,71 @@ const MyNextConfig: NextConfig = {
   },
 
   webpack: (config, { dev, isServer }) => {
-    // 禁用 webpack 缓存警告
-    config.infrastructureLogging = {
-      level: 'error',
-    }
+    // Check if we're using Rspack - if so, skip some webpack-specific optimizations
+    const isRspack = config.name === 'rspack' || process.env.NEXT_RSPACK === 'true'
 
-    // 禁用 webpack 缓存序列化警告
-    if (config.cache && typeof config.cache === 'object') {
-      config.cache.compression = false
-    }
+    if (!isRspack) {
+      // 禁用 webpack 缓存警告
+      config.infrastructureLogging = {
+        level: 'error',
+      }
 
-    // 添加自定义插件来过滤警告
-    config.plugins.push({
-      apply: (compiler: any) => {
-        compiler.hooks.done.tap('FilterWarningsPlugin', (stats: any) => {
-          stats.compilation.warnings = stats.compilation.warnings.filter((warning: any) => {
-            // 过滤掉 PostCSS calc 和缓存序列化警告
-            const message = warning.message || warning.toString()
-            return (
-              !message.includes('postcss-calc')
-              && !message.includes('No serializer registered')
-              && !message.includes('PackFileCacheStrategy')
-            )
+      // 禁用 webpack 缓存序列化警告
+      if (config.cache && typeof config.cache === 'object') {
+        config.cache.compression = false
+      }
+
+      // 添加自定义插件来过滤警告
+      config.plugins.push({
+        apply: (compiler: any) => {
+          compiler.hooks.done.tap('FilterWarningsPlugin', (stats: any) => {
+            stats.compilation.warnings = stats.compilation.warnings.filter((warning: any) => {
+              // 过滤掉 PostCSS calc 和缓存序列化警告
+              const message = warning.message || warning.toString()
+              return (
+                !message.includes('postcss-calc') &&
+                !message.includes('No serializer registered') &&
+                !message.includes('PackFileCacheStrategy')
+              )
+            })
           })
-        })
-      },
-    })
+        },
+      })
+    }
 
-    // React Scan 监控
+    // React Scan 监控 - safe for both webpack and rspack
     if (process.env.REACT_SCAN_MONITOR_API_KEY) {
       config.plugins.push(ReactComponentName({}))
     }
 
-    // 服务端优化
-    if (isServer) {
+    // 服务端优化 - safe for both
+    if (isServer && !isRspack) {
       config.optimization.concatenateModules = false
     }
 
-    // CSS 模块优化
-    config.module.rules.forEach((rule: any) => {
-      if (rule.test && rule.test.toString().includes('css')) {
-        if (rule.use && Array.isArray(rule.use)) {
-          rule.use.forEach((use: any) => {
-            if (use.loader && use.loader.includes('postcss-loader')) {
-              use.options = {
-                ...use.options,
-                postcssOptions: {
-                  ...use.options?.postcssOptions,
-                  hideNothingWarning: true,
-                },
+    // CSS 模块优化 - only for webpack
+    if (!isRspack) {
+      config.module.rules.forEach((rule: any) => {
+        if (rule.test && rule.test.toString().includes('css')) {
+          if (rule.use && Array.isArray(rule.use)) {
+            rule.use.forEach((use: any) => {
+              if (use.loader && use.loader.includes('postcss-loader')) {
+                use.options = {
+                  ...use.options,
+                  postcssOptions: {
+                    ...use.options?.postcssOptions,
+                    hideNothingWarning: true,
+                  },
+                }
               }
-            }
-          })
+            })
+          }
         }
-      }
-    })
+      })
+    }
 
-    // 客户端优化
-    if (!isServer && !dev) {
+    // 客户端优化 - only for webpack
+    if (!isServer && !dev && !isRspack) {
       // 优化代码分割
       config.optimization.splitChunks = {
         chunks: 'all',
@@ -373,4 +366,12 @@ const MyNextConfig: NextConfig = {
   },
 }
 
-export default withMDX(withBundleAnalyzer(withPWA(MyNextConfig)))
+// Apply plugins without Rspack for now due to compatibility issues
+// Rspack doesn't fully support Next.js metadata routes (manifest.ts, robots.ts, sitemap.ts)
+// See: https://github.com/vercel/next.js/discussions/77800
+const config = [withPWA, withBundleAnalyzer, withMDX].reduce(
+  (acc, plugin) => plugin(acc),
+  MyNextConfig,
+)
+
+export default config

@@ -9,11 +9,11 @@ export const flags = {
   spotify: process.env.NEXT_PUBLIC_FLAG_SPOTIFY === 'true',
   guestbookNotification: process.env.NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION === 'true',
   likeButton: process.env.NEXT_PUBLIC_FLAG_LIKE_BUTTON === 'true',
-  search: process.env.NEXT_PUBLIC_FLAG_ALGOLIA === 'true',
+  search: process.env.NEXT_PUBLIC_FLAG_SEARCH === 'true',
 }
 
 export const env = createEnv({
-  skipValidation: !!process.env.CI,
+  skipValidation: !!process.env.CI || process.env.NODE_ENV === 'test',
   extends: [vercel()],
 
   shared: {

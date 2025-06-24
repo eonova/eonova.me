@@ -76,8 +76,7 @@ function CommentPost() {
     return () => setIsMounted(false)
   }, [])
 
-  if (isPending || !isMounted)
-    return null
+  if (isPending || !isMounted) return null
 
   const disabled = session === null || commentsMutation.isPending
 
@@ -97,6 +96,7 @@ function CommentPost() {
           onModEnter={submitComment}
           placeholder="留下评论"
           disabled={disabled}
+          data-testid="comment-textarea-post"
         />
         <Button
           variant="ghost"
@@ -106,6 +106,7 @@ function CommentPost() {
           disabled={disabled || !content}
           aria-label="发送评论"
           aria-disabled={disabled || !content}
+          data-testid="comment-submit-button"
         >
           <SendIcon className="size-4" />
         </Button>

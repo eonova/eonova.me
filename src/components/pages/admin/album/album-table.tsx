@@ -70,10 +70,7 @@ function AlbumTable(props: AlbumTableProps) {
       cell: ({ row }) => {
         const rowData = row.original // 获取当前行的数据
         return (
-          <p
-            className="w-50 truncate"
-            title={`${rowData.width}*${rowData.height}`}
-          >
+          <p className="w-50 truncate" title={`${rowData.width}*${rowData.height}`}>
             {`${rowData.width}*${rowData.height}`}
           </p>
         )

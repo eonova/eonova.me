@@ -1,10 +1,15 @@
 import type { Context, Meta } from '@content-collections/core'
-import { createHash } from 'node:crypto'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { getTOC, rehypePlugins, remarkPlugins } from '@eonova/mdx-plugins'
+import { createHash } from 'node:crypto'
 import { z } from 'zod'
-import { CATEGORIES } from '~/config/posts'
+// Simple categories for content config (without React components)
+const CATEGORIES = [
+  { name: '技术', label: 'tech' },
+  { name: '总结', label: 'summary' },
+  { name: '设计', label: 'design' },
+]
 
 interface BaseDoc {
   _meta: Meta
@@ -18,8 +23,7 @@ function removeTrim(str: string): string {
 function validateCategory(category: string): string {
   if (category.includes('/')) {
     return category.split('/')[0] as string
-  }
-  else if (category.includes('\\')) {
+  } else if (category.includes('\\')) {
     return category.split('\\')[0] as string
   }
   return category
@@ -28,8 +32,7 @@ function validateCategory(category: string): string {
 function validateSlug(slug: string): string {
   if (slug.includes('/')) {
     return slug.slice(slug.lastIndexOf('/') + 1)
-  }
-  else if (slug.includes('\\')) {
+  } else if (slug.includes('\\')) {
     return slug.slice(slug.lastIndexOf('\\') + 1)
   }
   return slug
@@ -37,8 +40,7 @@ function validateSlug(slug: string): string {
 
 function generateSlug(str: string, length: number): string {
   const trimmed = str.trim()
-  if (!trimmed)
-    return ''
+  if (!trimmed) return ''
 
   const chinesePattern = /[\u4E00-\u9FA5\u3400-\u4DBF\uF900-\uFAFF]/
 
@@ -50,7 +52,7 @@ function generateSlug(str: string, length: number): string {
   return str
 }
 function getCategoryText(category: string): string {
-  return String(CATEGORIES.find(i => i.label === category)?.name)
+  return String(CATEGORIES.find((i) => i.label === category)?.name)
 }
 
 async function transform<D extends BaseDoc>(
@@ -65,7 +67,7 @@ async function transform<D extends BaseDoc>(
     type: string
     toc: any
   }
-  > {
+> {
   const code = await compileMDX(context, document, {
     remarkPlugins,
     rehypePlugins,

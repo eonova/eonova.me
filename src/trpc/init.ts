@@ -35,11 +35,14 @@ export const createTRPCRouter = t.router
 // 性能监控中间件
 const performanceMiddleware = t.middleware(async ({ next, path, type }) => {
   const start = Date.now()
+  const isTestEnv = process.env.NODE_ENV === 'test'
+  const isDev = process.env.NODE_ENV === 'development'
 
-  if (t._config.isDev) {
+  // 只在开发环境添加人工延迟，测试环境不添加
+  if (isDev && !isTestEnv) {
     // artificial delay in dev
     const waitMs = Math.floor(Math.random() * 400) + 100
-    await new Promise(resolve => setTimeout(resolve, waitMs))
+    await new Promise((resolve) => setTimeout(resolve, waitMs))
   }
 
   const result = await next()
@@ -47,11 +50,14 @@ const performanceMiddleware = t.middleware(async ({ next, path, type }) => {
   const end = Date.now()
   const duration = end - start
 
-  // 记录性能指标
-  console.log(`[TRPC] ${type} ${path} took ${duration}ms`)
+  // 在测试环境中减少日志输出
+  if (!isTestEnv) {
+    console.log(`[TRPC] ${type} ${path} took ${duration}ms`)
+  }
 
-  // 如果响应时间过长，记录警告
-  if (duration > 5000) {
+  // 调整慢查询阈值 - 测试环境更严格
+  const slowQueryThreshold = isTestEnv ? 2000 : 5000
+  if (duration > slowQueryThreshold) {
     console.warn(`[TRPC] Slow query detected: ${path} took ${duration}ms`)
   }
 

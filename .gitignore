@@ -41,6 +41,11 @@ playwright-report/
 test-results/
 coverage/
 **/src/e2e/.auth/
+**/src/e2e/visual/
+!**/src/e2e/visual/visual.config.ts
+!**/src/e2e/visual/homepage.visual.test.ts
+!**/src/e2e/visual/posts.visual.test.ts
+!**/src/e2e/visual/components.visual.test.ts
 
 # TypeScript
 *.tsbuildinfo

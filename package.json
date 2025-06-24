@@ -29,11 +29,14 @@
     "lint:fix": "eslint . --max-warnings 0 --fix",
     "format": "prettier --write . --config prettier.config.ts",
     "test:unit": "vitest --ui",
+    "test:unit:coverage": "vitest run --coverage",
     "test:e2e": "cross-env NODE_ENV=test pnpm with-env playwright test",
+    "test:e2e:fast": "cross-env NODE_ENV=test pnpm with-env playwright test --project=unauthenticated --project=authenticated",
     "test:e2e:inspector": "cross-env NODE_ENV=test pnpm with-env playwright test $1 --debug",
     "test:e2e:ui": "cross-env NODE_ENV=test pnpm with-env playwright test --ui",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "simple-git-hooks",
     "deps:up": "taze",
     "plop": "cross-env NODE_OPTIONS='--import tsx' plop --plopfile=plop.config.ts"
   },
@@ -152,6 +155,7 @@
     "@tanstack/react-query-devtools": "catalog:backend",
     "@testing-library/jest-dom": "catalog:test",
     "@testing-library/react": "catalog:test",
+    "@testing-library/user-event": "^14.6.1",
     "@types/canvas-confetti": "catalog:types",
     "@types/hast": "catalog:types",
     "@types/mdast": "catalog:types",
@@ -170,7 +174,6 @@
     "eslint": "catalog:lint",
     "eslint-plugin-react-hooks": "catalog:lint",
     "eslint-plugin-react-refresh": "catalog:lint",
-    "fast-xml-parser": "catalog:script",
     "jsdom": "catalog:test",
     "lint-staged": "catalog:lint",
     "picocolors": "catalog:script",
@@ -190,11 +193,17 @@
     "vitest": "catalog:test"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged",
-    "commit-msg": "pnpx tsx ./scripts/verify-commit.ts"
+    "pre-commit": "pnpm lint-staged && pnpm typecheck",
+    "commit-msg": "pnpx tsx scripts/verify-commit.ts"
   },
   "lint-staged": {
-    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix"
+    "*.{js,json}": [
+      "prettier --write"
+    ],
+    "*.{cjs,mjs,jsx,cts,mts,ts,tsx}": [
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
   },
   "browserslist": [
     "chrome 89",

@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
     <footer className="bg-background/30 relative mx-4 mb-6 flex max-w-[820px] flex-col rounded-2xl p-8 shadow-sm saturate-100 backdrop-blur-[10px] sm:w-full md:mx-auto">
       {flags.spotify ? <NowPlaying /> : null}
       <div className="mt-12 grid grid-cols-2 sm:grid-cols-3">
-        {FOOTER_LINKS.map(list => (
+        {FOOTER_LINKS.map((list) => (
           <div key={list.id} className="mb-10 flex flex-col items-start gap-4 pr-4">
             {list.links.map((link) => {
               const { href, key } = link
@@ -28,8 +28,7 @@ const Footer: React.FC = () => {
       </div>
       <div className="mt-20 flex flex-col items-center justify-between text-sm md:flex-row">
         <div>
-          &copy;
-          {' '}
+          &copy;{' '}
           {new Date().getFullYear() === 2025
             ? new Date().getFullYear()
             : `2025-${new Date().getFullYear()}`}
@@ -40,10 +39,14 @@ const Footer: React.FC = () => {
         <Link href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">
           <div className="flex items-center text-sm">
             本网站由 &nbsp;
-            <Image src="/images/upyun-logo.png" width={50} height={12} alt="upyun logo" />
-            {' '}
-&nbsp;
-            提供CDN 加速/云存储服务
+            <Image
+              src="/images/upyun-logo.png"
+              className="aspect-[5/12]"
+              width={50}
+              height={12}
+              alt="upyun logo"
+            />{' '}
+            &nbsp; 提供CDN 加速/云存储服务
           </div>
         </Link>
       </div>
