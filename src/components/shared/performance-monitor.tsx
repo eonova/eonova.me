@@ -65,32 +65,6 @@ export function PerformanceMonitor() {
       return observer
     }
 
-    // 监控 Cumulative Layout Shift (CLS)
-    const observeCLS = () => {
-      let clsValue = 0
-      const observer = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          const clsEntry = entry as PerformanceEntry & { hadRecentInput: boolean, value: number }
-          if (!clsEntry.hadRecentInput) {
-            clsValue += clsEntry.value
-          }
-        }
-
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'CLS', {
-            event_category: 'Web Vitals',
-            value: Math.round(clsValue * 1000),
-            non_interaction: true,
-          })
-        }
-
-        console.log('CLS:', clsValue)
-      })
-
-      observer.observe({ entryTypes: ['layout-shift'] })
-      return observer
-    }
-
     // 监控 First Contentful Paint (FCP)
     const observeFCP = () => {
       const observer = new PerformanceObserver((list) => {
@@ -137,7 +111,7 @@ export function PerformanceMonitor() {
     }
 
     // 启动所有观察器
-    const observers = [observeLCP(), observeFID(), observeCLS(), observeFCP(), observeTTFB()]
+    const observers = [observeLCP(), observeFID(), observeFCP(), observeTTFB()]
 
     // 清理函数
     return () => {

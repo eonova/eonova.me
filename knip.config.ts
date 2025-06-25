@@ -23,7 +23,6 @@ const config: KnipConfig = {
     'src/components/shared/**/*.{ts,tsx}',
     'src/utils/url-builder.ts',
     './src/hooks/use-intersection-observer.ts',
-    './src/lib/seo-utils.ts',
   ],
 }
 
