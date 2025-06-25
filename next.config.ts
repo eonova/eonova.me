@@ -97,24 +97,24 @@ const NextConfigHeaders = [
     ],
   },
   // 静态资源缓存
-  {
-    source: '/images/(.*)',
-    headers: [
-      {
-        key: 'Cache-Control',
-        value: 'public, max-age=31536000, immutable',
-      },
-    ],
-  },
-  {
-    source: '/_next/static/(.*)',
-    headers: [
-      {
-        key: 'Cache-Control',
-        value: 'public, max-age=31536000, immutable',
-      },
-    ],
-  },
+  // {
+  //   source: '/images/(.*)',
+  //   headers: [
+  //     {
+  //       key: 'Cache-Control',
+  //       value: 'public, max-age=31536000, immutable',
+  //     },
+  //   ],
+  // },
+  // {
+  //   source: '/_next/static/(.*)',
+  //   headers: [
+  //     {
+  //       key: 'Cache-Control',
+  //       value: 'public, max-age=31536000, immutable',
+  //     },
+  //   ],
+  // },
 ]
 
 const MyNextConfig: NextConfig = {

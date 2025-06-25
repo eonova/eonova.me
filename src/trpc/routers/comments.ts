@@ -2,7 +2,7 @@ import type { RouterInputs, RouterOutputs } from '../client'
 import type { SQLWrapper } from '~/db'
 import { createId } from '@paralleldrive/cuid2'
 import { TRPCError } from '@trpc/server'
-import { allPosts } from 'content-collections'
+import { allNotes, allPosts } from 'content-collections'
 import { z } from 'zod'
 import { CommentEmailTemplate, ReplyEmailTemplate } from '~/components/modules/email'
 import { COMMENT_TYPES, isProduction } from '~/config/constants'
@@ -345,13 +345,14 @@ export const commentsRouter = createTRPCRouter({
         replies: value[0]?.value ?? 0,
       }
     }),
-  post: protectedProcedure
+  send: protectedProcedure
     .input(
       z.object({
         slug: z.string().min(1),
         content: z.string().min(1),
         date: z.string().min(1),
         parentId: z.string().optional(),
+        type: z.enum(['post', 'note', 'talk']).default('post'),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -361,15 +362,31 @@ export const commentsRouter = createTRPCRouter({
 
       if (!success)
         throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
+      const { type, slug, content, parentId, date } = input
 
       const commentId = createId()
+      let title, url
+      if (type === 'post') {
+        const page = allPosts.find(post => post.slug === input.slug)
 
-      const page = allPosts.find(post => post.slug === input.slug)
+        if (!page)
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' })
+        title = page.title
+        url = `https://eonova.me/post/${slug}`
+      }
+      else if (type === 'note') {
+        const page = allNotes.find(note => note.slug === input.slug)
 
-      if (!page)
-        throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' })
+        if (!page)
+          throw new TRPCError({ code: 'NOT_FOUND', message: 'Note post not found' })
+        title = page.title
+        url = `https://eonova.me/note/${slug}`
+      }
+      else {
+        title = slug
+        url = 'https://eonova.me/talk'
+      }
 
-      const title = page.title
       const defaultImage = getDefaultImage(user.id)
 
       const userProfile = {
@@ -379,21 +396,21 @@ export const commentsRouter = createTRPCRouter({
 
       const post = {
         title,
-        url: `https://eonova.me/post/${input.slug}`,
+        url,
       }
 
       await ctx.db.transaction(async (tx) => {
         await tx.insert(comments).values({
           id: commentId,
-          body: input.content,
+          body: content,
           userId: user.id,
-          contentId: input.slug,
-          contentType: 'post',
-          parentId: input.parentId,
+          contentId: slug,
+          contentType: type,
+          parentId,
         })
 
         // Notify the author of the blog post via email
-        if (!input.parentId && user.role === 'user') {
+        if (!parentId && user.role === 'user') {
           if (!isProduction || !resend)
             return
 
@@ -402,22 +419,22 @@ export const commentsRouter = createTRPCRouter({
             to: env.AUTHOR_EMAIL,
             subject: 'New comment on your blog post',
             react: CommentEmailTemplate({
-              comment: input.content,
+              comment: content,
               commenter: userProfile,
               id: `comment=${commentId}`,
-              date: input.date,
+              date,
               post,
             }),
           })
         }
 
         // Notify the parent comment owner via email
-        if (input.parentId) {
+        if (parentId) {
           if (!isProduction || !resend)
             return
 
           const parentComment = await tx.query.comments.findFirst({
-            where: eq(comments.id, input.parentId),
+            where: eq(comments.id, parentId),
             with: {
               user: true,
             },
@@ -429,204 +446,12 @@ export const commentsRouter = createTRPCRouter({
               to: parentComment.user.email,
               subject: 'New reply to your comment',
               react: ReplyEmailTemplate({
-                reply: input.content,
+                reply: content,
                 replier: userProfile,
                 comment: parentComment.body,
-                id: `comment=${input.parentId}&reply=${commentId}`,
-                date: input.date,
+                id: `comment=${parentId}&reply=${commentId}`,
+                date,
                 post,
-              }),
-            })
-          }
-        }
-      })
-    }),
-  note: protectedProcedure
-    .input(
-      z.object({
-        id: z.string().min(1),
-        content: z.string().min(1),
-        date: z.string().min(1),
-        parentId: z.string().optional(),
-      }),
-    )
-    .mutation(async ({ ctx, input }) => {
-      const user = ctx.session.user
-
-      const { success } = await ratelimit.limit(getKey(`post:${user.id}`))
-
-      if (!success)
-        throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
-
-      const commentId = createId()
-
-      const page = allPosts.find(post => post.slug === input.id)
-
-      if (!page)
-        throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' })
-
-      const title = page.title
-      const defaultImage = getDefaultImage(user.id)
-
-      const userProfile = {
-        name: user.name,
-        image: user.image ?? defaultImage,
-      }
-
-      const note = {
-        title,
-        url: `https://eonova.me/note/${input.id}`,
-      }
-
-      await ctx.db.transaction(async (tx) => {
-        await tx.insert(comments).values({
-          id: commentId,
-          body: input.content,
-          userId: user.id,
-          contentId: input.id,
-          contentType: 'note',
-          parentId: input.parentId,
-        })
-
-        // Notify the author of the blog note via email
-        if (!input.parentId && user.role === 'user') {
-          if (!isProduction || !resend)
-            return
-
-          await resend.emails.send({
-            from: 'Nova Eon <hi@eonova.me>',
-            to: env.AUTHOR_EMAIL,
-            subject: 'New comment on your blog note',
-            react: CommentEmailTemplate({
-              comment: input.content,
-              commenter: userProfile,
-              id: `comment=${commentId}`,
-              date: input.date,
-              post: note,
-            }),
-          })
-        }
-
-        // Notify the parent comment owner via email
-        if (input.parentId) {
-          if (!isProduction || !resend)
-            return
-
-          const parentComment = await tx.query.comments.findFirst({
-            where: eq(comments.id, input.parentId),
-            with: {
-              user: true,
-            },
-          })
-
-          if (parentComment && parentComment.user.email !== user.email) {
-            await resend.emails.send({
-              from: 'Nova Eon <hi@eonova.me>',
-              to: parentComment.user.email,
-              subject: 'New reply to your comment',
-              react: ReplyEmailTemplate({
-                reply: input.content,
-                replier: userProfile,
-                comment: parentComment.body,
-                id: `comment=${input.parentId}&reply=${commentId}`,
-                date: input.date,
-                post: note,
-              }),
-            })
-          }
-        }
-      })
-    }),
-  talk: protectedProcedure
-    .input(
-      z.object({
-        id: z.string().min(1),
-        content: z.string().min(1),
-        date: z.string().min(1),
-        parentId: z.string().optional(),
-      }),
-    )
-    .mutation(async ({ ctx, input }) => {
-      const user = ctx.session.user
-
-      const { success } = await ratelimit.limit(getKey(`post:${user.id}`))
-
-      if (!success)
-        throw new TRPCError({ code: 'TOO_MANY_REQUESTS' })
-
-      const commentId = createId()
-
-      const page = allPosts.find(post => post.slug === input.id)
-
-      if (!page)
-        throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' })
-
-      const title = page.title
-      const defaultImage = getDefaultImage(user.id)
-
-      const userProfile = {
-        name: user.name,
-        image: user.image ?? defaultImage,
-      }
-
-      const talk = {
-        title,
-        url: `https://eonova.me/talk`,
-      }
-
-      await ctx.db.transaction(async (tx) => {
-        await tx.insert(comments).values({
-          id: commentId,
-          body: input.content,
-          userId: user.id,
-          contentId: input.id,
-          contentType: 'talk',
-          parentId: input.parentId,
-        })
-
-        // Notify the author of the blog talk via email
-        if (!input.parentId && user.role === 'user') {
-          if (!isProduction || !resend)
-            return
-
-          await resend.emails.send({
-            from: 'Nova Eon <hi@eonova.me>',
-            to: env.AUTHOR_EMAIL,
-            subject: 'New comment on your blog note',
-            react: CommentEmailTemplate({
-              comment: input.content,
-              commenter: userProfile,
-              id: `comment=${commentId}`,
-              date: input.date,
-              post: talk,
-            }),
-          })
-        }
-
-        // Notify the parent comment owner via email
-        if (input.parentId) {
-          if (!isProduction || !resend)
-            return
-
-          const parentComment = await tx.query.comments.findFirst({
-            where: eq(comments.id, input.parentId),
-            with: {
-              user: true,
-            },
-          })
-
-          if (parentComment && parentComment.user.email !== user.email) {
-            await resend.emails.send({
-              from: 'Nova Eon <hi@eonova.me>',
-              to: parentComment.user.email,
-              subject: 'New reply to your comment',
-              react: ReplyEmailTemplate({
-                reply: input.content,
-                replier: userProfile,
-                comment: parentComment.body,
-                id: `comment=${input.parentId}&reply=${commentId}`,
-                date: input.date,
-                post: talk,
               }),
             })
           }

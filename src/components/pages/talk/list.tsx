@@ -1,9 +1,11 @@
 'use client'
+import type { Talk } from './box'
 import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import { AnimatePresence, motion } from 'motion/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TalkSkeleton } from '~/components/modules/skeleton/talk-skeleton'
+import { flags } from '~/lib/env'
 import { useTalkStore } from '~/stores/talk'
 import { useTRPC } from '~/trpc/client'
 import InfiniteScrollingLoading from '../../shared/infinite-scrolling-loading'
@@ -55,6 +57,7 @@ const TalkList: React.FC<TalkListProps> = () => {
   }
 
   const { isOpenCommentDialog } = useTalkStore()
+  const [currentTalk, setCurrentTalk] = useState<Talk>()
 
   return (
     <div className="space-y-4">
@@ -93,7 +96,7 @@ const TalkList: React.FC<TalkListProps> = () => {
                 transition={{ type: 'spring', stiffness: 100 }}
                 viewport={{ once: true, margin: '0px 0px -50px 0px' }}
               >
-                <TalkBox id={talk.id} time={talk.createdAt} likes={talk.likes}>
+                <TalkBox id={talk.id} setTalkId={(data: Talk) => setCurrentTalk(data)} time={talk.createdAt} likes={talk.likes}>
                   {talk.content}
                 </TalkBox>
               </motion.div>
@@ -111,7 +114,7 @@ const TalkList: React.FC<TalkListProps> = () => {
         />
       </div>
 
-      <CommentDialog isVisible={isOpenCommentDialog} />
+      {flags.comment && currentTalk && <CommentDialog talk={currentTalk!} isVisible={isOpenCommentDialog} />}
     </div>
   )
 }

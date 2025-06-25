@@ -12,8 +12,8 @@ import { useTRPC } from '~/trpc/client'
 import CommentEditor from './comment-editor'
 import UnauthorizedOverlay from './unauthorized-overlay'
 
-function CommentPost() {
-  const { slug, sort } = useCommentsContext()
+function CommentContent() {
+  const { slug, sort, type } = useCommentsContext()
   const [params] = useCommentParams()
   const [content, setContent] = useState('')
   const [isMounted, setIsMounted] = useState(false)
@@ -22,7 +22,7 @@ function CommentPost() {
   const queryClient = useQueryClient()
 
   const commentsMutation = useMutation(
-    trpc.comments.post.mutationOptions({
+    trpc.comments.send.mutationOptions({
       onSuccess: () => {
         setContent('')
         toast.success('评论已发布')
@@ -67,6 +67,7 @@ function CommentPost() {
         month: 'long',
         day: 'numeric',
       }),
+      type,
     })
   }
 
@@ -111,10 +112,10 @@ function CommentPost() {
         >
           <SendIcon className="size-4" />
         </Button>
-        {status === 'unauthenticated' ? <UnauthorizedOverlay /> : null}
+        {session === null && <UnauthorizedOverlay />}
       </div>
     </form>
   )
 }
 
-export default CommentPost
+export default CommentContent

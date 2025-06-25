@@ -2,7 +2,7 @@ import { MessageSquare, Podcast, UserPlus } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/base/avatar'
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/base/card'
 import { Skeleton } from '~/components/base/skeleton'
-import { getAvatarAbbreviation, getDefaultImage } from '~/utils'
+import { cn, getAvatarAbbreviation, getDefaultImage } from '~/utils'
 import { formatDate } from '~/utils/format-date'
 
 interface ActivityItem {
@@ -19,6 +19,7 @@ interface ActivityItem {
 interface RecentActivityProps {
   activities: ActivityItem[]
   loading?: boolean
+  className?: string
 }
 
 function getActivityIcon(type: ActivityItem['type']) {
@@ -59,14 +60,14 @@ function ActivitySkeleton() {
   )
 }
 
-export function RecentActivity({ activities, loading = false }: RecentActivityProps) {
+export function RecentActivity({ className, activities, loading = false }: RecentActivityProps) {
   if (loading) {
     return (
       <Card>
         <CardHeader>
           <CardTitle>最近活动</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className={cn('space-y-4', className)}>
           {Array.from({ length: 5 }).map((_, i) => (
             <ActivitySkeleton key={i} />
           ))}
@@ -89,7 +90,7 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
   }
 
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader>
         <CardTitle>最近活动</CardTitle>
       </CardHeader>

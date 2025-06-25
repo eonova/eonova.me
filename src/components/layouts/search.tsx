@@ -147,8 +147,7 @@ function CommandMenu() {
                   <Button
                     key={result.id}
                     variant="ghost"
-                    className={`w-full justify-start rounded-none transition-colors ${
-                      index === selectedIndex ? 'bg-accent/50' : ''
+                    className={`w-full justify-start rounded-none transition-colors ${index === selectedIndex ? 'bg-accent/50' : ''
                     }`}
                     onClick={() => navigateToResult(result.url)}
                   >

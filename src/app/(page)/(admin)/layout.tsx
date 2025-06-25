@@ -20,7 +20,7 @@ async function Layout({ children }: Readonly<LayoutProps>) {
       <AdminSidebar />
       <div className="flex w-full flex-col overflow-x-hidden px-4">
         <AdminHeader />
-        <main className="py-6">{children}</main>
+        <main className="py-6 flex-1">{children}</main>
       </div>
     </SidebarProvider>
   )

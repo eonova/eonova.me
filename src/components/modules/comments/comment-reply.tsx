@@ -16,7 +16,7 @@ function CommentReply() {
   const [content, setContent] = useState('')
   const { data: session } = useSession()
   const { comment, setIsReplying } = useCommentContext()
-  const { slug, sort } = useCommentsContext()
+  const { slug, sort, type } = useCommentsContext()
   const [params] = useCommentParams()
   const trpc = useTRPC()
   const queryClient = useQueryClient()
@@ -29,7 +29,7 @@ function CommentReply() {
   } as const
 
   const commentsMutation = useMutation(
-    trpc.comments.post.mutationOptions({
+    trpc.comments.send.mutationOptions({
       onMutate: async () => {
         await queryClient.cancelQueries({
           queryKey: trpc.comments.getInfiniteComments.infiniteQueryKey(queryKey),
@@ -119,6 +119,7 @@ function CommentReply() {
         month: 'long',
         day: 'numeric',
       }),
+      type,
     })
   }
 

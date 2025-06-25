@@ -65,34 +65,37 @@ function Page() {
   ]
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 flex flex-col w-full h-full">
       <h1 className="text-2xl font-bold">Blog 管理面板</h1>
-      <RecentActivity activities={recentActivity ?? []} />
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {isLoading && (
-          <div className="col-span-1">
-            <StatsCard title="Total Users" value={1000} icon={UsersIcon} loading />
-          </div>
-        )}
-        {isError && (
-          <div className="col-span-1">
-            <StatsCard title="Total Users" value={1000} icon={UsersIcon} loading />
-          </div>
-        )}
-        {!isLoading && !isError && data && (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {stats.map(stat => (
-              <StatsCard
-                key={stat.title}
-                title={stat.title}
-                value={stat.value ?? 0}
-                change={stat.change}
-                changeLabel="Last 7 days"
-                icon={UsersIcon}
-              />
-            ))}
-          </div>
-        )}
+      <div className="flex gap-5 w-full h-full flex-1">
+
+        <RecentActivity className="min-w-80 max-w-90" activities={recentActivity ?? []} />
+        <div className="flex-1 grid gap-6">
+          {isLoading && (
+            <div className="col-span-1">
+              <StatsCard title="Total Users" value={1000} icon={UsersIcon} loading />
+            </div>
+          )}
+          {isError && (
+            <div className="col-span-1">
+              <StatsCard title="Total Users" value={1000} icon={UsersIcon} loading />
+            </div>
+          )}
+          {!isLoading && !isError && data && (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {stats.map(stat => (
+                <StatsCard
+                  key={stat.title}
+                  title={stat.title}
+                  value={stat.value ?? 0}
+                  change={stat.change}
+                  changeLabel="Last 7 days"
+                  icon={UsersIcon}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

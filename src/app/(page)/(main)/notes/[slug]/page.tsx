@@ -138,11 +138,13 @@ async function Page(props: Readonly<PageProps>) {
         <Footer />
       </Providers>
 
-      {flags.comment && (
-        <Suspense>
-          <Comments slug={slug} />
-        </Suspense>
-      )}
+      {
+        flags.comment && (
+          <Suspense>
+            <Comments slug={slug} type="note" />
+          </Suspense>
+        )
+      }
     </>
   )
 }

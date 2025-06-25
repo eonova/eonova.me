@@ -81,28 +81,22 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     ],
   },
   {
-    icon: <UserCircleIcon className="size-5" />,
-    href: '/friends',
-    key: 'friends',
-    text: '友链',
-  },
-  {
     icon: <MessageSquareMore className="size-5" />,
     href: '/talk',
     key: 'talk',
-    text: '碎碎念',
+    text: '说说',
   },
   {
     icon: <MessageCircleIcon className="size-5" />,
     href: '/guestbook',
     key: 'guestbook',
-    text: '留言板',
+    text: '留言',
   },
   {
     icon: <BellElectric className="size-5" />,
     href: '#',
     key: 'recreation',
-    text: '书影番',
+    text: '书架',
     subMenu: [
       {
         icon: <Book className="size-5" />,
@@ -147,6 +141,12 @@ export const HEADER_LINKS: IHeaderMenu[] = [
         href: '/links',
         key: 'links',
         text: '收藏',
+      },
+      {
+        icon: <UserCircleIcon className="size-5" />,
+        href: '/friends',
+        key: 'friends',
+        text: '朋友',
       },
     ],
   },

@@ -7,15 +7,16 @@ import { useCallback, useRef, useState } from 'react'
 import { CommentsProvider } from '~/contexts/comments'
 
 import { RatesProvider } from '~/contexts/rates'
-import CommentPost from './comment-post'
+import CommentContent from './comment-content'
 import CommentsList from './comments-list'
 
 interface CommentsProps {
   slug: string
+  type?: 'post' | 'note' | 'talk'
 }
 
 function Comments(props: CommentsProps) {
-  const { slug } = props
+  const { slug, type = 'post' } = props
   const mutationCount = useRef(0)
   const [sort, setSort] = useState<GetInfiniteCommentsInput['sort']>('newest')
 
@@ -36,10 +37,11 @@ function Comments(props: CommentsProps) {
           slug,
           sort,
           setSort,
+          type,
         }}
       >
         <div id="comment" className="space-y-6">
-          <CommentPost />
+          <CommentContent />
           <CommentsList />
         </div>
       </CommentsProvider>

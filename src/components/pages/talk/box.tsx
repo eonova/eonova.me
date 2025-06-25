@@ -1,10 +1,19 @@
+'use client'
+import NumberFlow, { continuous } from '@number-flow/react'
+import { useQuery } from '@tanstack/react-query'
 import { Heart, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 import { dayjs } from '~/lib/dayjs'
 import { useTalkStore } from '~/stores/talk'
+import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
 import LikeButton from './likes'
 import TalkMdx from './mdx'
+
+export interface Talk {
+  id: string
+  content: string
+}
 
 interface TalkBoxProps {
   id?: string
@@ -13,6 +22,7 @@ interface TalkBoxProps {
   time?: Date
   children: string
   likes?: number
+  setTalkId?: (data: Talk) => void
 }
 
 const TalkBox: React.FC<TalkBoxProps> = ({
@@ -22,8 +32,16 @@ const TalkBox: React.FC<TalkBoxProps> = ({
   name = 'Eonova',
   time = Date.now(),
   likes = 0,
+  setTalkId,
 }) => {
+  const trpc = useTRPC()
   const { setIsOpenCommentDialog } = useTalkStore()
+
+  const commentsCountQuery = useQuery(
+    trpc.comments.getTotalCommentsCount.queryOptions({
+      slug: id ?? '',
+    }),
+  )
   return (
     <li className="mt-[50px] flex flex-col gap-2 space-y-2 sm:flex-row sm:gap-4">
       <div className="flex gap-3 sm:hidden sm:w-[40px]">
@@ -67,6 +85,32 @@ const TalkBox: React.FC<TalkBoxProps> = ({
           </div>
         </div>
         <div className="dark:text-color-500/80 flex w-full items-center gap-4 text-xs text-gray-500 sm:gap-12">
+          <div
+            className="flex cursor-pointer items-center gap-1"
+            onClick={() => {
+              setIsOpenCommentDialog(true)
+              setTalkId && setTalkId({
+                id: id ?? '',
+                content: children,
+              })
+            }}
+          >
+            <MessageCircle className="h-3 w-3 text-gray-400" />
+            <div className="flex items-center gap-1">
+              {commentsCountQuery.status === 'pending' ? '--' : null}
+              {commentsCountQuery.status === 'error' ? '错误' : null}
+              {commentsCountQuery.status === 'success'
+                ? (
+                    <NumberFlow
+                      willChange
+                      plugins={[continuous]}
+                      value={commentsCountQuery.data.comments}
+                      className="text-sm font-medium text-gray-900 dark:text-gray-100"
+                    />
+                  )
+                : null}
+            </div>
+          </div>
           <div>
             {id
               ? (
@@ -78,13 +122,6 @@ const TalkBox: React.FC<TalkBoxProps> = ({
                     <span>0</span>
                   </div>
                 )}
-          </div>
-          <div
-            className="flex cursor-pointer items-center gap-1"
-            onClick={() => setIsOpenCommentDialog(true)}
-          >
-            <MessageCircle className="h-3 w-3" />
-            <span>0</span>
           </div>
         </div>
       </div>

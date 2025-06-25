@@ -6,6 +6,7 @@ interface CommentsContext {
   slug: string
   sort: GetInfiniteCommentsInput['sort']
   setSort: (sort: GetInfiniteCommentsInput['sort']) => void
+  type: 'post' | 'note' | 'talk'
 }
 
 const Context = createContext<CommentsContext | undefined>(undefined)

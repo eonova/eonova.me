@@ -199,7 +199,7 @@ function CommentActions() {
                 })}
               />
               <NumberFlow willChange plugins={[continuous]} value={comment.replies} />
-              {`回复 ${{ count: comment.replies }}`}
+              {`回复 `}
             </Button>
           )
         : null}
