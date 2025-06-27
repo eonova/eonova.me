@@ -8,7 +8,7 @@ import { CommentsProvider } from '~/contexts/comments'
 
 import { RatesProvider } from '~/contexts/rates'
 import CommentContent from './comment-content'
-import CommentsList from './comments-list'
+import CommentsList from './comment-list'
 
 interface CommentsProps {
   slug: string

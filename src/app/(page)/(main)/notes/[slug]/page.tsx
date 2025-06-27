@@ -124,7 +124,7 @@ async function Page(props: Readonly<PageProps>) {
       />
       <Providers note={note}>
         <div className="relative my-16 mb-8 flex w-full flex-col justify-between gap-2 overflow-visible rounded-[0_6px_6px_0] border-solid border-zinc-200/70 bg-white p-10 md:col-start-1 lg:flex-row lg:border dark:border-neutral-800 dark:bg-zinc-900/50">
-          <article className="w-full sm:px-4">
+          <article className="w-full sm:px-4 pb-10">
             <Header />
             <NoteMdx code={code} />
           </article>

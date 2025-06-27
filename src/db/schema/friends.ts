@@ -1,6 +1,6 @@
 import { createId } from '@paralleldrive/cuid2'
 import { sql } from 'drizzle-orm'
-import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+import { index, integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const friend = pgTable('friend', {
   id: text('id').primaryKey().$defaultFn(createId),
@@ -15,4 +15,7 @@ export const friend = pgTable('friend', {
   updatedAt: timestamp('updated_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP(3)`),
-})
+}, table => [
+  // Index for performance optimization
+  index('idx_friend_order').on(table.order),
+])

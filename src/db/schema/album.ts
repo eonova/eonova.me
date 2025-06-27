@@ -1,6 +1,6 @@
 import { createId } from '@paralleldrive/cuid2'
 import { sql } from 'drizzle-orm'
-import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+import { index, integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const album = pgTable('album', {
   id: text('id').primaryKey().$defaultFn(createId),
@@ -14,4 +14,7 @@ export const album = pgTable('album', {
   updatedAt: timestamp('updated_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP(3)`),
-})
+}, table => [
+  // Index for performance optimization
+  index('idx_album_created').on(table.createdAt.desc()),
+])

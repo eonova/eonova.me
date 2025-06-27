@@ -7,16 +7,17 @@ import { getSingletonHighlighterCore } from 'shiki'
 import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
 import githubDarkDefault from 'shiki/themes/github-dark-default.mjs'
 import githubLightDefault from 'shiki/themes/github-light-default.mjs'
+
 import { useCommentsContext } from '~/contexts/comments'
 import { useCommentParams } from '~/hooks/use-comment-params'
 import { useHighlighterStore } from '~/stores/highlighter'
 import { useTRPC } from '~/trpc/client'
 
 import Comment from './comment'
+import CommentHeader from './comment-header'
 import CommentLoader from './comment-loader'
-import CommentHeader from './comments-header'
 
-function CommentsList() {
+function CommentList() {
   const { slug, sort } = useCommentsContext()
   const [params] = useCommentParams()
   const { highlighter, setHighlighter } = useHighlighterStore()
@@ -91,4 +92,4 @@ function CommentsList() {
   )
 }
 
-export default CommentsList
+export default CommentList

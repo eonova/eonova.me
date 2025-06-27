@@ -60,7 +60,7 @@ const TalkList: React.FC<TalkListProps> = () => {
   const [currentTalk, setCurrentTalk] = useState<Talk>()
 
   return (
-    <div className="space-y-4">
+    <div className="lg:px-12 lg:mt-[-30]">
       {/* 加载状态 */}
       {isLoading
         && Array.from({ length: 2 })

@@ -6,11 +6,13 @@ import { useEffect, useRef } from 'react'
 
 import { useNoteContext } from '~/contexts/note'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
+import { useTRPCInvalidator } from '~/lib/trpc-invalidator'
 import { useTRPC } from '~/trpc/client'
 
 function Header() {
   const { date, title, slug } = useNoteContext()
   const trpc = useTRPC()
+  const invalidator = useTRPCInvalidator()
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
     loading: '...',
@@ -18,23 +20,15 @@ function Header() {
 
   const incrementMutation = useMutation(
     trpc.views.increment.mutationOptions({
-      onSettled: () =>
-        trpc.views.get.queryOptions({
-          slug,
-        }),
-    }),
-  )
-  const viewsCountQuery = useQuery(
-    trpc.views.get.queryOptions({
-      slug,
+      onSettled: async () => {
+        await invalidator.views.invalidateBySlug(slug)
+      },
     }),
   )
 
-  const commentsCountQuery = useQuery(
-    trpc.comments.getTotalCommentsCount.queryOptions({
-      slug,
-    }),
-  )
+  const viewCountQuery = useQuery(trpc.views.get.queryOptions({ slug }))
+
+  const commentCountQuery = useQuery(trpc.comments.getTotalCommentCount.queryOptions({ slug }))
   const incremented = useRef(false)
 
   useEffect(() => {
@@ -55,24 +49,24 @@ function Header() {
         </div>
         <div className="flex items-center gap-3">
           <span className="text-muted-foreground">浏览</span>
-          {viewsCountQuery.status === 'pending' ? '--' : null}
-          {viewsCountQuery.status === 'error' ? '错误' : null}
-          {viewsCountQuery.status === 'success'
+          {viewCountQuery.status === 'pending' ? '--' : null}
+          {viewCountQuery.status === 'error' ? '错误' : null}
+          {viewCountQuery.status === 'success'
             ? (
-                <NumberFlow willChange plugins={[continuous]} value={viewsCountQuery.data.views} />
+                <NumberFlow willChange plugins={[continuous]} value={viewCountQuery.data.views} />
               )
             : null}
         </div>
         <div className="flex items-center gap-3">
           <span className="text-muted-foreground">评论数</span>
-          {commentsCountQuery.status === 'pending' ? '--' : null}
-          {commentsCountQuery.status === 'error' ? '错误' : null}
-          {commentsCountQuery.status === 'success'
+          {commentCountQuery.status === 'pending' ? '--' : null}
+          {commentCountQuery.status === 'error' ? '错误' : null}
+          {commentCountQuery.status === 'success'
             ? (
                 <NumberFlow
                   willChange
                   plugins={[continuous]}
-                  value={commentsCountQuery.data.comments}
+                  value={commentCountQuery.data.comments}
                 />
               )
             : null}

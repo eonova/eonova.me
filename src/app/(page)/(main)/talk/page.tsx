@@ -8,6 +8,7 @@ function Page() {
   return (
     <>
       <PageTitle title={title} description={description} />
+      <div className="mb-1 h-1 hidden lg:block"></div>
       <TalkList />
     </>
   )

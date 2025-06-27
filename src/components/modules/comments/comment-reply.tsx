@@ -8,6 +8,8 @@ import { useCommentContext } from '~/contexts/comment'
 import { useCommentsContext } from '~/contexts/comments'
 import { useCommentParams } from '~/hooks/use-comment-params'
 import { useSession } from '~/lib/auth-client'
+import { useTRPCInvalidator } from '~/lib/trpc-invalidator'
+import { createTRPCQueryKeys } from '~/lib/trpc-query-helpers'
 import { useTRPC } from '~/trpc/client'
 import CommentEditor from './comment-editor'
 import UnauthorizedOverlay from './unauthorized-overlay'
@@ -20,54 +22,39 @@ function CommentReply() {
   const [params] = useCommentParams()
   const trpc = useTRPC()
   const queryClient = useQueryClient()
+  const invalidator = useTRPCInvalidator()
 
-  const queryKey = {
+  const queryKeys = createTRPCQueryKeys(trpc)
+  const infiniteCommentsParams = {
     slug,
     sort,
-    type: 'comments',
+    type: 'comments' as const,
     highlightedCommentId: params.comment ?? undefined,
-  } as const
+  }
 
   const commentsMutation = useMutation(
     trpc.comments.send.mutationOptions({
       onMutate: async () => {
-        await queryClient.cancelQueries({
-          queryKey: trpc.comments.getInfiniteComments.infiniteQueryKey(queryKey),
+        const queryKey = queryKeys.comments.infiniteComments(infiniteCommentsParams)
+
+        await queryClient.cancelQueries({ queryKey })
+        const previousData = queryClient.getQueryData(queryKey)
+
+        // 樂觀更新
+        queryClient.setQueryData(queryKey, (oldData) => {
+          if (!oldData)
+            return { pages: [], pageParams: [] }
+
+          return {
+            ...oldData,
+            pages: oldData.pages.map(page => ({
+              ...page,
+              comments: page.comments.map(c =>
+                c.id === comment.id ? { ...c, replies: c.replies + 1 } : c,
+              ),
+            })),
+          }
         })
-
-        const previousData = queryClient.getQueryData(
-          trpc.comments.getInfiniteComments.infiniteQueryKey(queryKey),
-        )
-
-        queryClient.setQueryData(
-          trpc.comments.getInfiniteComments.infiniteQueryKey(queryKey),
-          (oldData) => {
-            if (!oldData) {
-              return {
-                pages: [],
-                pageParams: [],
-              }
-            }
-
-            return {
-              ...oldData,
-              pages: oldData.pages.map((page) => {
-                return {
-                  ...page,
-                  comments: page.comments.map((c) => {
-                    if (c.id === comment.id) {
-                      return {
-                        ...c,
-                        replies: c.replies + 1,
-                      }
-                    }
-                    return c
-                  }),
-                }
-              }),
-            }
-          },
-        )
 
         return { previousData }
       },
@@ -78,24 +65,18 @@ function CommentReply() {
       onError: (error, _, ctx) => {
         if (ctx?.previousData) {
           queryClient.setQueryData(
-            trpc.comments.getInfiniteComments.infiniteQueryKey(queryKey),
+            queryKeys.comments.infiniteComments(infiniteCommentsParams),
             ctx.previousData,
           )
         }
         toast.error(error.message)
       },
-      onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: trpc.comments.getInfiniteComments.infiniteQueryKey(queryKey),
-        })
-        queryClient.invalidateQueries({
-          queryKey: trpc.comments.getCommentsCount.queryKey({ slug }),
-        })
-        queryClient.invalidateQueries({
-          queryKey: trpc.comments.getRepliesCount.queryKey({ slug }),
-        })
-        queryClient.invalidateQueries({
-          queryKey: trpc.comments.getTotalCommentsCount.queryKey({ slug }),
+      onSettled: async () => {
+        await invalidator.comments.invalidateAfterReply({
+          slug,
+          parentCommentId: comment.id,
+          mainCommentsParams: infiniteCommentsParams,
+          replyHighlightedId: params.reply ?? void 0,
         })
       },
     }),

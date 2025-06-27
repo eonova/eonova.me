@@ -1,9 +1,26 @@
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-  "dictionaries": ["software-terms", "npm", "fullstack", "redis"],
-  "files": ["**", ".vscode/**", ".github/**"],
-  "ignorePaths": ["pnpm-lock.yaml", ".pnpm-store/", "src/db/migrations/**", "data/**", "public/**"],
-  "ignoreRegExpList": ["apiKey='[a-zA-Z0-9-]{32}'"],
+  "dictionaries": [
+    "software-terms",
+    "npm",
+    "fullstack",
+    "redis"
+  ],
+  "files": [
+    "**",
+    ".vscode/**",
+    ".github/**"
+  ],
+  "ignorePaths": [
+    "pnpm-lock.yaml",
+    ".pnpm-store/",
+    "src/db/migrations/**",
+    "data/**",
+    "public/**"
+  ],
+  "ignoreRegExpList": [
+    "apiKey='[a-zA-Z0-9-]{32}'"
+  ],
   "useGitignore": true,
   "version": "0.2",
   "words": [
@@ -28,6 +45,7 @@
     "dashoffset",
     "dbaeumer",
     "deepseek",
+    "domcontentloaded",
     "dongman",
     "Douban",
     "drei",
@@ -39,6 +57,7 @@
     "Eonova",
     "Excalidraw",
     "flushall",
+    "François",
     "googleusercontent",
     "gsap",
     "gstatic",
@@ -50,6 +69,7 @@
     "ilike",
     "innerhtml",
     "Inspira",
+    "José",
     "kuaikanshijieti",
     "kuaileshijie",
     "lerp",
@@ -59,13 +79,17 @@
     "locaity",
     "Logto",
     "longtask",
+    "María",
     "maxage",
     "MBTI",
     "mdast",
     "micromessenger",
     "Millis",
+    "Müller",
     "mythsman",
     "Neodb",
+    "networkidle",
+    "NEXTAUTH",
     "Nextdotjs",
     "Nodedotjs",
     "nonexistentcontent12345",
@@ -102,6 +126,7 @@
     "Threedotjs",
     "Tldraw",
     "treosh",
+    "tsvector",
     "ttfb",
     "TTFB",
     "turbopack",
@@ -118,13 +143,6 @@
     "widthduration",
     "worldfont",
     "xyznonexistentquery",
-    "ylnx",
-    "domcontentloaded",
-    "networkidle",
-    "NEXTAUTH",
-    "José",
-    "María",
-    "François",
-    "Müller"
+    "ylnx"
   ]
 }

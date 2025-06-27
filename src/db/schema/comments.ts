@@ -1,5 +1,5 @@
 import { relations, sql } from 'drizzle-orm'
-import { boolean, pgEnum, pgTable, primaryKey, text, timestamp } from 'drizzle-orm/pg-core'
+import { boolean, index, integer, pgEnum, pgTable, primaryKey, text, timestamp } from 'drizzle-orm/pg-core'
 
 import { users } from './auth'
 import { notes } from './notes' // 新增笔记模型
@@ -27,7 +27,26 @@ export const comments = pgTable('comment', {
 
   parentId: text('parent_id'),
   isDeleted: boolean('is_deleted').notNull().default(false),
-})
+
+  // Denormalized columns for performance
+  replyCount: integer('reply_count').notNull().default(0),
+  likeCount: integer('like_count').notNull().default(0),
+  dislikeCount: integer('dislike_count').notNull().default(0),
+}, table => [
+  // Indexes for performance optimization
+  index('idx_comment_content_id').on(table.contentId),
+  index('idx_comment_parent_id').on(table.parentId),
+  index('idx_comment_user_id').on(table.userId),
+  // Composite indexes for common query patterns
+  index('idx_comment_content_created')
+    .on(table.contentId, table.createdAt.desc())
+    .where(sql`${table.parentId} IS NULL`),
+  index('idx_comment_parent_created')
+    .on(table.parentId, table.createdAt.desc())
+    .where(sql`${table.parentId} IS NOT NULL`),
+  // Full-text search index
+  index('idx_comment_body_search').using('gin', sql`to_tsvector('english', ${table.body})`),
+])
 
 export const rates = pgTable(
   'rate',
@@ -40,7 +59,12 @@ export const rates = pgTable(
       .references(() => comments.id, { onDelete: 'cascade' }),
     like: boolean('like').notNull(),
   },
-  rate => [primaryKey({ columns: [rate.userId, rate.commentId] })],
+  rate => [
+    primaryKey({ columns: [rate.userId, rate.commentId] }),
+    // Indexes for performance optimization
+    index('idx_rate_comment_like').on(rate.commentId, rate.like),
+    index('idx_rate_user_comment').on(rate.userId, rate.commentId),
+  ],
 )
 
 export const commentsRelations = relations(comments, ({ one, many }) => ({
@@ -53,8 +77,6 @@ export const commentsRelations = relations(comments, ({ one, many }) => ({
   post: one(posts, {
     fields: [comments.contentId], // `contentId` maps to `posts.slug`
     references: [posts.slug],
-    // Drizzle doesn't support conditional joins directly in relations definition.
-    // The condition (e.g., `comments.contentType === 'post'`) is handled in your queries.
   }),
   note: one(notes, {
     fields: [comments.contentId], // `contentId` maps to `notes.id`

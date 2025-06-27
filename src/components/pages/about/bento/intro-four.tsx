@@ -8,7 +8,7 @@ const IntroFour: React.FC<IntroFourProps> = () => {
   return (
     <>
       <IntroCard
-        className="col-span-1 h-56 rounded-3xl text-white backdrop-blur-xs md:col-span-2 lg:col-span-4 lg:h-64"
+        className="col-span-1 h-56 rounded-3xl text-white backdrop-blur-xs md:col-span-2 lg:col-span-4 lg:h-72"
         subheading="番剧"
         title="Charlotte"
         desc="友利奈绪"
@@ -23,7 +23,7 @@ const IntroFour: React.FC<IntroFourProps> = () => {
         />
       </IntroCard>
       <IntroCard
-        className="col-span-1 h-60 rounded-3xl text-white backdrop-blur-xs md:col-span-1 lg:col-span-2 lg:h-64"
+        className="col-span-1 h-60 rounded-3xl text-white backdrop-blur-xs md:col-span-1 lg:col-span-2 lg:h-72"
         subheading="运动"
         title="Sport"
         desc="羽毛球"
@@ -38,7 +38,7 @@ const IntroFour: React.FC<IntroFourProps> = () => {
         />
       </IntroCard>
       <IntroCard
-        className="font-world col-span-1 h-60 overflow-hidden rounded-3xl text-white backdrop-blur-xs md:col-span-1 lg:col-span-2 lg:h-64"
+        className="font-world col-span-1 h-60 overflow-hidden rounded-3xl text-white backdrop-blur-xs md:col-span-1 lg:col-span-2 lg:h-72"
         subheading="音乐"
         title="Music"
         desc={LINK_MUSIC}

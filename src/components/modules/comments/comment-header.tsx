@@ -18,30 +18,30 @@ function CommentHeader() {
   const { slug, sort, setSort } = useCommentsContext()
   const trpc = useTRPC()
 
-  const commentsCountQuery = useQuery(trpc.comments.getCommentsCount.queryOptions({ slug }))
-  const repliesCountQuery = useQuery(trpc.comments.getRepliesCount.queryOptions({ slug }))
+  const commentCountQuery = useQuery(trpc.comments.getCommentCount.queryOptions({ slug }))
+  const replyCountQuery = useQuery(trpc.comments.getReplyCount.queryOptions({ slug }))
   return (
     <div className="flex items-center justify-between px-1">
       <NumberFlowGroup>
         <div>
-          {commentsCountQuery.status === 'pending' && `评论 --`}
-          {commentsCountQuery.status === 'error' ? '错误' : null}
-          {commentsCountQuery.status === 'success' && (
+          {commentCountQuery.status === 'pending' && `评论 --`}
+          {commentCountQuery.status === 'error' ? '错误' : null}
+          {commentCountQuery.status === 'success' && (
             <NumberFlow
               willChange
               plugins={[continuous]}
-              value={commentsCountQuery.data.comments}
+              value={commentCountQuery.data.comments}
               suffix="&nbsp;评论"
             />
           )}
           {' · '}
-          {repliesCountQuery.status === 'pending' && '回复 --'}
-          {repliesCountQuery.status === 'error' && '错误'}
-          {repliesCountQuery.status === 'success' && (
+          {replyCountQuery.status === 'pending' && '回复 --'}
+          {replyCountQuery.status === 'error' && '错误'}
+          {replyCountQuery.status === 'success' && (
             <NumberFlow
               willChange
               plugins={[continuous]}
-              value={repliesCountQuery.data.replies}
+              value={replyCountQuery.data.replies}
               suffix="&nbsp;回复"
             />
           )}

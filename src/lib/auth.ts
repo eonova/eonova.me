@@ -2,13 +2,16 @@ import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { headers } from 'next/headers'
 import { db } from '~/db'
-import { env } from '~/lib/env'
+import { getBaseUrl } from '~/utils/get-base-url'
+import { env } from './env'
 
 export const auth = betterAuth({
+  baseURL: getBaseUrl(),
   database: drizzleAdapter(db, {
     provider: 'pg',
     usePlural: true,
   }),
+  trustedOrigins: [getBaseUrl()],
   socialProviders: {
     google: {
       clientId: env.GOOGLE_CLIENT_ID,

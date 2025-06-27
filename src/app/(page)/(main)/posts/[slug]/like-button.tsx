@@ -10,6 +10,8 @@ import { useRef, useState } from 'react'
 import { toast } from '~/components/base'
 import { Separator } from '~/components/base/separator'
 import { useDebouncedCallback } from '~/hooks/use-debounced-callback'
+import { useTRPCInvalidator } from '~/lib/trpc-invalidator'
+import { createTRPCQueryKeys } from '~/lib/trpc-query-helpers'
 import { useTRPC } from '~/trpc/client'
 
 import { cn } from '~/utils'
@@ -25,19 +27,21 @@ function LikeButton(props: Readonly<LikeButtonProps>) {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const trpc = useTRPC()
   const queryClient = useQueryClient()
+  const invalidator = useTRPCInvalidator()
+
+  const queryKeys = createTRPCQueryKeys(trpc)
   const queryKey = { slug }
 
   const { status, data } = useQuery(trpc.likes.get.queryOptions(queryKey))
   const likesMutation = useMutation(
     trpc.likes.patch.mutationOptions({
       onMutate: async (newData) => {
-        await queryClient.cancelQueries({
-          queryKey: trpc.likes.get.queryKey(queryKey),
-        })
+        const likesQueryKey = queryKeys.likes.get(slug)
+        await queryClient.cancelQueries({ queryKey: likesQueryKey })
 
-        const previousData = queryClient.getQueryData(trpc.likes.get.queryKey(queryKey))
+        const previousData = queryClient.getQueryData(likesQueryKey)
 
-        queryClient.setQueryData(trpc.likes.get.queryKey(queryKey), (old) => {
+        queryClient.setQueryData(likesQueryKey, (old) => {
           if (!old)
             return old
           return {
@@ -50,13 +54,11 @@ function LikeButton(props: Readonly<LikeButtonProps>) {
       },
       onError: (_, __, ctx) => {
         if (ctx?.previousData) {
-          queryClient.setQueryData(trpc.likes.get.queryKey(queryKey), ctx.previousData)
+          queryClient.setQueryData(queryKeys.likes.get(slug), ctx.previousData)
         }
       },
-      onSettled: () =>
-        queryClient.invalidateQueries({
-          queryKey: trpc.likes.get.queryKey(queryKey),
-        }),
+      onSettled: async () =>
+        await invalidator.likes.invalidateBySlug(slug),
     }),
   )
 

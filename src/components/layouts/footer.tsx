@@ -9,7 +9,7 @@ import NowPlaying from './now-playing'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-background/30 relative mx-4 mb-6 flex max-w-[820px] flex-col rounded-2xl p-8 shadow-sm saturate-100 backdrop-blur-[10px] sm:w-full md:mx-auto">
+    <footer className="bg-background/30 relative mx-4 mb-6 flex max-w-[900px] flex-col rounded-2xl p-8 shadow-sm saturate-100 backdrop-blur-[10px] sm:w-full md:mx-auto">
       {flags.spotify ? <NowPlaying /> : null}
       <div className="mt-12 grid grid-cols-2 sm:grid-cols-3">
         {FOOTER_LINKS.map(list => (
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
             本网站由 &nbsp;
             <Image src="/images/upyun-logo.png" width={50} height={12} alt="upyun logo" />
             {' '}
-&nbsp;
+            &nbsp;
             提供CDN 加速/云存储服务
           </div>
         </Link>

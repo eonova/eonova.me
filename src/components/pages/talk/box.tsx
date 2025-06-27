@@ -38,7 +38,7 @@ const TalkBox: React.FC<TalkBoxProps> = ({
   const { setIsOpenCommentDialog } = useTalkStore()
 
   const commentsCountQuery = useQuery(
-    trpc.comments.getTotalCommentsCount.queryOptions({
+    trpc.comments.getTotalCommentCount.queryOptions({
       slug: id ?? '',
     }),
   )
