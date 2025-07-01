@@ -1,4 +1,4 @@
-# AI 助手指南 - eonova.me
+# AI 助手指南 - eonova.me - 2025
 
 本文档为 AI 助手提供了全面的指导,帮助理解 eonova.me 代码库的项目结构、约定和要求。
 
@@ -9,32 +9,53 @@ eonova.me 是一个基于 Next.js 的个人博客项目,使用 TypeScript、Reac
 ## 项目结构
 
 ```
-eonova-me/
-├── src/                    # 源代码目录
-│   ├── app/               # Next.js App Router 页面和布局
-│   ├── components/        # React 组件
-│   ├── lib/              # 核心工具和配置
-│   ├── hooks/            # 自定义 React hooks
-│   ├── store/            # 状态管理 (Zustand)
-│   ├── styles/           # 全局样式
-│   └── types/            # TypeScript 类型定义
-├── public/                # 静态资源
-├── content/               # 内容目录
+eonova.me/
+├── .cursor/              # Cursor 配置文件
+├── .github/              # Github 配置
+├── .vscode/              # VSCode 配置
+├── public/               # 静态资源
+├── data/                 # 内容目录
+│   ├── links/            # 博客文章 (MDX)
+│   ├── notes/            # 博客文章 (MDX)
 │   ├── posts/            # 博客文章 (MDX)
 │   └── projects/         # 项目展示
-└── prisma/               # 数据库模型和迁移
+├── scripts/              # 脚本文件
+├── src/                  # 源代码目录
+│   ├── app/              # Next.js App Router 页面和布局
+│   ├── components/       # React 组件
+│   ├── config/           # 配置文件
+│   ├── contexts/         # 自定义 React Context
+│   ├── db/               # 数据库模型
+│   ├── e2e/              # 端到端测试
+│   ├── hooks/            # 自定义 React hooks
+│   ├── lib/              # 核心工具和配置
+│   ├── plugins/          # MDX 插件
+│   ├── stores/           # 状态管理 (Zustand)
+│   ├── styles/           # 全局样式
+│   ├── templates/        # 模板
+│   ├── tests/            # 单元测试
+│   ├── trpc/             # tRPC API
+│   ├── types/            # TypeScript 类型定义
+│   └── utils/            # 工具函数
+├── .env.example          # 环境变量示例
+├── .eslintrc.mjs         # ESLint 配置
+├── .prettierrc.mjs       # Prettier 配置
+├── pnpm-lock.yaml        # pnpm 依赖锁文件
+├── tsconfig.json         # TypeScript 配置
+├── README.md             # 项目说明
+└── package.json          # 项目依赖
 ```
 
 ## 技术栈
 
 ### 核心技术
 
-- **框架**: Next.js 14+ (App Router)
+- **框架**: Next.js 15+ (App Router)
 - **语言**: TypeScript
 - **样式**: Tailwind CSS
-- **数据库**: PostgreSQL + Prisma
-- **认证**: NextAuth.js
-- **内容**: MDX + Contentlayer
+- **数据库**: PostgreSQL + Drizzle ORM
+- **认证**: Better-Auth
+- **内容**: MDX + Content-Collections
 - **测试**: Vitest
 - **包管理**: pnpm
 
@@ -137,21 +158,21 @@ describe('ComponentName', () => {
 
 修改数据库模式时:
 
-1. 编辑 `prisma/schema.prisma`
-2. 生成迁移: `pnpm prisma migrate dev`
-3. 更新类型: `pnpm prisma generate`
+1. 编辑 `src/db/schema.ts`
+2. 生成迁移: `pnpm db:migrate`
+3. 更新类型: `pnpm db:generate`
 
 ### 数据库命令
 
 ```bash
 # 生成迁移
-pnpm prisma migrate dev
+pnpm db:migrate
 
-# 应用迁移
-pnpm prisma migrate deploy
+# 推送迁移
+pnpm db:push
 
-# 打开 Prisma Studio
-pnpm prisma studio
+# 打开 Drizzle Studio
+pnpm db:studio
 ```
 
 ## 环境变量
@@ -219,7 +240,7 @@ pnpm type-check
 pnpm check
 
 # 数据库
-pnpm prisma studio
+pnpm db:studio
 
 # 测试
 pnpm test
@@ -232,7 +253,7 @@ pnpm test
 ```typescript
 // 服务器组件
 const ServerComponent = async () => {
-  const data = await prisma.post.findMany()
+  const data = await db.post.findMany()
   return <div>{/* 渲染数据 */}</div>
 }
 

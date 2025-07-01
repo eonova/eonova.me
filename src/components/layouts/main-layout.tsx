@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Footer from '~/components/layouts/footer'
 import Header from '~/components/layouts/header'
 import MobileNavAside from '~/components/layouts/mobile-sidebar'
+import Dia from './dia'
+import Dock from './dock'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -17,6 +19,8 @@ function Layout(props: LayoutProps) {
       <main className="mx-auto mb-16 w-full max-w-[900px] px-6 py-24 sm:px-8">{children}</main>
       <MobileNavAside />
       <Footer />
+      <Dock />
+      <Dia />
       <Image
         width={1512}
         height={550}

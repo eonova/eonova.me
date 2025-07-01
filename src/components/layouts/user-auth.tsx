@@ -18,7 +18,6 @@ import { getDefaultImage } from '~/utils'
 
 function UserAuth() {
   const { data: session, isPending } = useSession()
-  console.log(session)
   const dialogStore = useDialogsStore()
 
   const handleSignOut = async () => {

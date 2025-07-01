@@ -4,7 +4,6 @@ import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import Script from 'next/script'
 import { Monitoring } from 'react-scan/monitoring/next'
-import Dock from '~/components/layouts/dock'
 import SignInDialog from '~/components/layouts/sign-in-dialog'
 import Hello from '~/components/shared/hello'
 import { ErrorBoundaryMonitor, PerformanceMonitor } from '~/components/shared/performance-monitor'
@@ -145,7 +144,6 @@ export default function RootLayout({
           <PerformanceMonitor />
           <ErrorBoundaryMonitor children={children} />
           <SignInDialog />
-          <Dock />
         </Providers>
         <SpeedInsights />
       </body>

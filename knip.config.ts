@@ -8,6 +8,7 @@ const config: KnipConfig = {
     'react-email',
     'picocolors',
     'critters',
+    'execa',
   ],
   ignoreBinaries: ['only-allow'],
   entry: ['content.config.ts', '*.config.mjs', '*.config.ts', 'src/e2e/**/*.{setup,teardown}.ts'],
@@ -15,6 +16,7 @@ const config: KnipConfig = {
   ignore: [
     './scripts/verify-commit.ts',
     './src/db/seed.ts',
+    './src/db/reset.ts',
     './src/config/notes.ts',
     '**/*.d.ts',
     './src/components/base/*',

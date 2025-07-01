@@ -87,12 +87,6 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     text: '说说',
   },
   {
-    icon: <MessageCircleIcon className="size-5" />,
-    href: '/guestbook',
-    key: 'guestbook',
-    text: '留言',
-  },
-  {
     icon: <BellElectric className="size-5" />,
     href: '#',
     key: 'recreation',
@@ -149,6 +143,12 @@ export const HEADER_LINKS: IHeaderMenu[] = [
         text: '朋友',
       },
     ],
+  },
+  {
+    icon: <MessageCircleIcon className="size-5" />,
+    href: '/guestbook',
+    key: 'guestbook',
+    text: '留言',
   },
   {
     icon: <UserCircleIcon className="size-5" />,

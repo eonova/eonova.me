@@ -10,6 +10,7 @@ import { githubRouter } from './routers/github'
 import { guestbookRouter } from './routers/guestbook'
 import { likesRouter } from './routers/likes'
 import { moviesRouter } from './routers/movies'
+import { musicRouter } from './routers/music'
 import { ratesRouter } from './routers/rates'
 import { searchRouter } from './routers/search'
 import { spotifyRouter } from './routers/spotify'
@@ -41,6 +42,7 @@ export const appRouter = createTRPCRouter({
   upyun: upyunRouter,
   ai: aiRouter,
   search: searchRouter,
+  music: musicRouter,
 })
 
 export type AppRouter = typeof appRouter
