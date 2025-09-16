@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     ":disableDependencyDashboard",
     ":automergeMinor",
     ":separateMajorReleases",
@@ -20,9 +20,13 @@
   "commitMessageTopic": "{{{depName}}}",
   "commitMessage": "📦 update {{{depName}}} to v{{{newVersion}}}",
   "npmrc": ".npmrc",
-  "baseBranches": ["main"],
+  "baseBranchPatterns": [
+    "main"
+  ],
   "lockFileMaintenance": {
     "enabled": true,
-    "extends": ["schedule:weekly"]
+    "extends": [
+      "schedule:weekly"
+    ]
   }
 }
