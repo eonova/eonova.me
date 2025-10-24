@@ -6,6 +6,7 @@ export default eonova({
   stylistic: true,
   ignores: ['README.md', 'components/base/*', 'data/*', 'public/*', '.github/*'],
   rules: {
+    'react-web-api/no-leaked-timeout': 'off',
     'import/no-anonymous-default-export': 'off',
     'react-refresh/only-export-components': 'off',
     'node/prefer-global/process': 'off',

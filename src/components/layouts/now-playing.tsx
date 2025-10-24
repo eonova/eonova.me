@@ -27,7 +27,7 @@ function NowPlaying() {
         break
     }
     if (isPlaying)
-      setText(`${data.name} - ${data.artist}`)
+      setText(`${data.name} - ${data.author}`)
     if (notListening)
       setText('未在收听 - Spotify')
   }, [status, isPlaying, notListening])

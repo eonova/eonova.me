@@ -1,10 +1,12 @@
-import type { comments } from '~/db'
+import type { SingleParser } from 'nuqs'
 
+import type { comments } from '~/db'
 import {
   parseAsArrayOf,
   parseAsInteger,
   parseAsString,
   parseAsTimestamp,
+
   useQueryStates,
 } from 'nuqs'
 import { z } from 'zod'
@@ -17,7 +19,7 @@ export function useAdminCommentsParams() {
     page: parseAsInteger.withDefault(1),
     perPage: parseAsInteger.withDefault(10),
     body: parseAsString.withDefault(''),
-    parentId: parseAsArrayOf(z.enum(COMMENT_TYPES)).withDefault([]),
+    parentId: parseAsArrayOf(z.enum(COMMENT_TYPES) as unknown as SingleParser<'comment' | 'reply'>).withDefault([]),
     createdAt: parseAsArrayOf(parseAsTimestamp).withDefault([]),
     sort: getSortingStateParser<typeof comments.$inferSelect>().withDefault([
       { id: 'createdAt', desc: true },

@@ -16,8 +16,7 @@ export const friendRouter = createTRPCRouter({
           limit: z.number().min(1).max(100).default(10),
           cursor: z.date().optional(),
         })
-        .optional()
-        .default({}),
+        .optional(),
     )
     .query(async ({ ctx, input = {} }) => {
       const ip = getIp(ctx.headers)

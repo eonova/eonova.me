@@ -10,6 +10,7 @@ interface DiaState {
     tips?: { [key: string]: { selector: string, text: string | string[] } }
   }
   initializeBot: (configs: DiaConfig) => void
+  activateMotion: (leftEye: HTMLElement, rightEye: HTMLElement, eyesEl: HTMLElement) => void
 }
 
 export const useDiaStore = create<DiaState>((_set, get) => ({
@@ -22,5 +23,9 @@ export const useDiaStore = create<DiaState>((_set, get) => ({
     const { dia } = get()
     dia.installSoftware(configs)
     dia.on()
+  },
+  activateMotion: (leftEye: HTMLElement, rightEye: HTMLElement, eyesEl: HTMLElement) => {
+    const { dia } = get()
+    dia.activateMotion(leftEye, rightEye, eyesEl)
   },
 }))

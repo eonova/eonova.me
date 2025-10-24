@@ -1,10 +1,12 @@
-import type { GetUsersOutput } from '~/trpc/routers/users'
+import type { SingleParser } from 'nuqs'
 
+import type { GetUsersOutput } from '~/trpc/routers/users'
 import {
   parseAsArrayOf,
   parseAsInteger,
   parseAsString,
   parseAsTimestamp,
+
   useQueryStates,
 } from 'nuqs'
 import { z } from 'zod'
@@ -19,7 +21,7 @@ export function useAdminUsersParams() {
     page: parseAsInteger.withDefault(1),
     perPage: parseAsInteger.withDefault(10),
     name: parseAsString.withDefault(''),
-    role: parseAsArrayOf(z.enum(USER_ROLES)).withDefault([]),
+    role: parseAsArrayOf(z.enum(USER_ROLES) as unknown as SingleParser<'user' | 'admin'>).withDefault([]),
     createdAt: parseAsArrayOf(parseAsTimestamp).withDefault([]),
     sort: getSortingStateParser<User>().withDefault([{ id: 'createdAt', desc: true }]),
   })

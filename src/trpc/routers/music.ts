@@ -19,7 +19,7 @@ async function queryPlaylistSongs(config: MusicPlaylist[]) {
     config.map(async (playlist) => {
       const playlistSongs = await Promise.all(
         playlist.list.map(async (url) => {
-          const requestUrl = `${MUSIC_API}?type=playlist&id=${url.split('=')[1] ?? url.split('/')[5]}`
+          const requestUrl = `${MUSIC_API}api?server=netease&type=playlist&id=${url.split('=')[1] ?? url.split('/')[5]}`
           const res = await fetch(requestUrl)
 
           if (!res.ok)

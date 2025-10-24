@@ -11,6 +11,7 @@ export class AuroraDia {
 
   software = new AuroraBotSoftware()
   eyesAnimationTimer: number | undefined = undefined
+
   installSoftware(configs: DiaConfig): void {
     if (configs) {
       this.configs.tips = configs.tips
@@ -25,28 +26,24 @@ export class AuroraDia {
 
   on(): void {
     this.software.load()
-    this.activateMotion()
   }
 
-  activateMotion(): void {
-    const leftEye = document.getElementById('Aurora-Dia--left-eye')
-    const rightEye = document.getElementById('Aurora-Dia--right-eye')
-    const eyesEl = document.getElementById('Aurora-Dia--eyes')
-    if (leftEye instanceof HTMLElement && rightEye instanceof HTMLElement && eyesEl instanceof HTMLElement) {
-      document.addEventListener('mousemove', (evt) => {
-        clearTimeout(this.eyesAnimationTimer)
-        eyesEl.classList.add('moving')
-        const x = -(eyesEl.getBoundingClientRect().left - evt.clientX) / 100
-        const y = -(eyesEl.getBoundingClientRect().top - evt.clientY) / 120
-        leftEye.style.transform = `translateY(${y}px) translateX(${x}px)`
-        rightEye.style.transform = `translateY(${y}px) translateX(${x}px)`
-        this.eyesAnimationTimer = <any>setTimeout(() => {
-          leftEye.style.transform = `translateY(0) translateX(0)`
-          rightEye.style.transform = `translateY(0) translateX(0)`
-          eyesEl.classList.remove('moving')
-        }, 2000)
-      })
-    }
+  // 修改方法签名，直接传入元素引用
+  activateMotion(leftEye: HTMLElement, rightEye: HTMLElement, eyesEl: HTMLElement): void {
+    document.addEventListener('mousemove', (evt) => {
+      clearTimeout(this.eyesAnimationTimer)
+      eyesEl.classList.add('moving')
+      const x = -(eyesEl.getBoundingClientRect().left - evt.clientX) / 100
+      const y = -(eyesEl.getBoundingClientRect().top - evt.clientY) / 120
+      // 使用setProperty并添加!important
+      leftEye.style.setProperty('transform', `translateY(${y}px) translateX(${x}px)`, 'important')
+      rightEye.style.setProperty('transform', `translateY(${y}px) translateX(${x}px)`, 'important')
+      this.eyesAnimationTimer = <any>setTimeout(() => {
+        leftEye.style.setProperty('transform', `translateY(0) translateX(0)`, 'important')
+        rightEye.style.setProperty('transform', `translateY(0) translateX(0)`, 'important')
+        eyesEl.classList.remove('moving')
+      }, 2000)
+    })
   }
 }
 interface ABConfig {

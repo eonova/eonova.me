@@ -16,8 +16,7 @@ export const talksRouter = createTRPCRouter({
           limit: z.number().min(1).max(100).default(10),
           cursor: z.date().optional(),
         })
-        .optional()
-        .default({}),
+        .optional(),
     )
     .query(async ({ ctx, input }) => {
       const ip = getIp(ctx.headers)
@@ -34,12 +33,12 @@ export const talksRouter = createTRPCRouter({
           createdAt: true,
         },
         orderBy: (talks, { desc }) => [desc(talks.createdAt)],
-        where: input.cursor ? lt(talks.createdAt, input.cursor) : undefined,
-        limit: input.limit + 1,
+        where: input!.cursor ? lt(talks.createdAt, input!.cursor) : undefined,
+        limit: input!.limit + 1,
       })
 
       let nextCursor: Date | undefined
-      if (items.length > input.limit) {
+      if (items.length > input!.limit) {
         const nextItem = items.pop() // 移除多余的最后一项
         nextCursor = nextItem?.createdAt
       }

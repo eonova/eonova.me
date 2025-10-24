@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
-import MusicPlaying from './music-playing'
+import MusicPlaying from './music-player'
 
 interface DockProps {
   className?: string
@@ -76,11 +76,8 @@ const Dock: React.FC<DockProps> = ({ className }) => {
       <motion.ul
         className={cn(
           'fixed right-5 bottom-5 hidden rounded-lg text-slate-700 duration-200 lg:flex items-center gap-1 py-1.5 flex-col dark:bg-[#222427]/30 dark:text-white bg-white backdrop-blur-[20px] shadow-lg w-9',
-          !isVisible && 'opacity-0',
           className,
         )}
-        initial={{ x: '120%' }}
-        animate={{ x: isVisible ? '0%' : '120%' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
         <li
@@ -113,19 +110,23 @@ const Dock: React.FC<DockProps> = ({ className }) => {
             <MessageCircle className="size-5" />
           </li>
         )}
-        <li
-          className="cursor-pointer p-1.5 rounded-md transition-colors relative group flex flex-col gap-0.5 items-center hover:text-black dark:hover:text-white text-[#7D4854]"
-          onClick={scrollToTop}
-          title="回到顶部"
-        >
-          <ArrowUp className="size-5" />
-          <span className="text-[0.625rem] text-center font-medium">
-            {scrollPercentage}
-            %
-          </span>
-        </li>
+        {
+          isVisible && (
+            <li
+              className="cursor-pointer p-1.5 rounded-md transition-colors relative group flex flex-col gap-0.5 items-center hover:text-black dark:hover:text-white text-[#7D4854]"
+              onClick={scrollToTop}
+              title="回到顶部"
+            >
+              <ArrowUp className="size-5" />
+              <span className="text-[0.625rem] text-center font-medium">
+                {scrollPercentage}
+                %
+              </span>
+            </li>
+          )
+        }
       </motion.ul>
-      <MusicPlaying isVisible={isPlayerVisible && isVisible} songs={songs} />
+      <MusicPlaying onClose={() => setPlayerIsVisible(false)} isVisible={isPlayerVisible} songs={songs} />
     </>
   )
 }

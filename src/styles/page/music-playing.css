@@ -1,0 +1,139 @@
+#music-img::after {
+    content: "";
+    position: absolute;
+    background: url(/images/play_disc.png) no-repeat center / contain;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* 定义旋转动画 */
+@keyframes recordRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 应用到唱片封面元素 */
+.animate-spin-custom {
+  animation: recordRotate 60s linear infinite; /* 合成动画属性 */
+  animation-fill-mode: forwards; /* 动画结束后保持状态 */
+  animation-play-state: paused; /* 默认设置为暂停状态 */
+}
+
+/* 播放时，将状态改为 running */
+.animate-spin-custom.playing {
+  animation-play-state: running;
+}
+
+/* 音乐播放器容器样式 */
+.player-info {
+  backdrop-filter: blur(20px);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 歌词容器样式 */
+.lyrics-container {
+  scrollbar-width: none;
+}
+
+.lyrics-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.lyrics-container::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+/* 当前歌词高亮效果 */
+.lyric-line-active {
+  text-shadow: 0 0 10px rgba(255, 100, 100, 0.8);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+/* 播放器控制器样式 */
+.controller button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.controller button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.controller button:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.controller button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.playlist::-webkit-scrollbar {
+  width: 8px;
+}
+
+.playlist::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 0!important;
+}
+
+.playlist::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 0!important;
+  transition: background-color 0.2s ease;
+}
+
+.playlist::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.8);
+}
+
+/* 针对Firefox的滚动条样式 */
+@supports (scrollbar-color: red blue) {
+  .playlist {
+  border-radius: 0!important;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+}
+
+/* 滚动条轨道悬停效果 */
+.playlist:hover::-webkit-scrollbar-thumb {
+  border-radius: 0!important;
+  background: rgba(156, 163, 175, 0.7);
+}
+
+/* 确保滚动条不占用内容空间 */
+.playlist {
+  scrollbar-width: thin;
+  border-radius: 0!important;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  padding-right: -4px;
+  margin-right: -6px;
+}

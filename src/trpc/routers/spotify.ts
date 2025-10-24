@@ -83,7 +83,7 @@ export const spotifyRouter = createTRPCRouter({
             isPlaying: false,
             songUrl: null,
             name: null,
-            artist: null,
+            author: null,
           }
         }
 
@@ -100,9 +100,9 @@ export const spotifyRouter = createTRPCRouter({
           isPlaying: song.is_playing as boolean,
           songUrl: (song.item?.external_urls?.spotify as string) || null,
           name: (song.item?.name as string) || null,
-          artist:
-            (song.item?.artists
-              ?.map((artist: { name: string }) => artist.name)
+          author:
+            (song.item?.authors
+              ?.map((author: { name: string }) => author.name)
               .join(', ') as string) || null,
         }
       }
