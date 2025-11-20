@@ -35,7 +35,7 @@ const Playlist: React.FC<PlaylistProps> = ({
   return (
     <ol
       ref={playlistScrollContainerRef}
-      className="max-h-64 overflow-y-scroll playlist"
+      className="max-h-64 min-h-64 overflow-y-scroll playlist"
       onWheel={(e) => {
         e.stopPropagation()
         // 确保只在有内容可滚动时阻止冒泡

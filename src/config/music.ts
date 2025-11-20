@@ -16,9 +16,15 @@ export const musicConfig: MusicPlaylist[] = [
     ],
   },
   {
-    title: '纯音乐',
+    title: '造梦',
     list: [
       'https://music.163.com/#/playlist?id=8156201047',
+    ],
+  },
+  {
+    title: '空の物语',
+    list: [
+      'https://music.163.com/#/playlist?id=14465506795',
     ],
   },
 ]
