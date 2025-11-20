@@ -4,17 +4,29 @@
     "incremental": true,
     "tsBuildInfoFile": ".tsbuildinfo",
     "target": "ESNext",
-    "jsx": "preserve",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "moduleDetection": "force",
     "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./*"],
-      "@eonova/mdx-plugins": ["./src/plugins"],
-      "content-collections": ["./.content-collections/generated"]
+      "~/*": [
+        "./src/*"
+      ],
+      "@/*": [
+        "./*"
+      ],
+      "@eonova/mdx-plugins": [
+        "./src/plugins"
+      ],
+      "content-collections": [
+        "./.content-collections/generated"
+      ]
     },
     "resolveJsonModule": true,
     "allowJs": true,
@@ -51,7 +63,12 @@
     ".next/types/**/*.tsx",
     "eslint.config.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".next/types/*.ts", "test-results"]
+  "exclude": [
+    "node_modules",
+    ".next/types/*.ts",
+    "test-results"
+  ]
 }

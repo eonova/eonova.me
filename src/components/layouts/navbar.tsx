@@ -91,7 +91,7 @@ function Navbar() {
                     'cursor-default': hasSubMenu && link.href === '#',
                   },
                 )}
-                href={hasSubMenu && link.href === '#' ? '#' : link.href}
+                href={hasSubMenu && link.href === '#' ? '#' : (link.href as any)}
               >
                 {link.text}
               </Link>
@@ -99,7 +99,7 @@ function Navbar() {
               {isActive && (
                 <>
                   <div className="bg-nav-link-indicator dark:bg-nav-link-indicator-dark absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2" />
-                  <div className="absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-[4px] bg-[rgb(255_122_151)] blur dark:bg-[rgb(223_29_72)]" />
+                  <div className="absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-lg bg-[rgb(255_122_151)] blur dark:bg-[rgb(223_29_72)]" />
                 </>
               )}
 

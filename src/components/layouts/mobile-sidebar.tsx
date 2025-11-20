@@ -85,7 +85,7 @@ function MobileNavAside() {
                           'text-foreground': isActive,
                         },
                       )}
-                      href={link.href}
+                      href={link.href as any}
                       onClick={handleLinkClick} // 点击链接时关闭侧边栏
                     >
                       {link.icon}
@@ -108,7 +108,7 @@ function MobileNavAside() {
                                     'text-foreground': isSubActive,
                                   },
                                 )}
-                                href={subLink.href}
+                                href={subLink.href as any}
                                 onClick={handleLinkClick} // 点击链接时关闭侧边栏
                               >
                                 {/* {subLink.icon} */}

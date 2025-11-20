@@ -26,7 +26,7 @@ export default function SearchPage() {
       params.set('type', selectedType)
 
     const newUrl = params.toString() ? `/search?${params.toString()}` : '/search'
-    router.replace(newUrl, { scroll: false })
+    router.replace(newUrl as any, { scroll: false })
   }, [query, selectedType, router])
 
   // Keyboard shortcuts

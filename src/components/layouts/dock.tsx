@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
-import MusicPlaying from './music-player'
+import MusicPlayer from './music-player'
 
 interface DockProps {
   className?: string
@@ -126,7 +126,14 @@ const Dock: React.FC<DockProps> = ({ className }) => {
           )
         }
       </motion.ul>
-      <MusicPlaying onClose={() => setPlayerIsVisible(false)} isVisible={isPlayerVisible} songs={songs} />
+      <MusicPlayer
+        onClose={() => {
+          console.log('触发')
+          setPlayerIsVisible(false)
+        }}
+        isVisible={isPlayerVisible}
+        songs={songs}
+      />
     </>
   )
 }

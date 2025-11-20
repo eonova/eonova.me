@@ -72,11 +72,11 @@ export function SearchResultItem({ result, query }: SearchResultItemProps) {
 
   return (
     <Link
-      href={result.url}
+      href={result.url as any}
       className="border-border hover:bg-accent/50 block rounded-lg border p-4 transition-colors duration-200"
     >
       <div className="flex items-start gap-3">
-        <div className="mt-1 flex-shrink-0">{getTypeIcon(result.type)}</div>
+        <div className="mt-1 shrink-0">{getTypeIcon(result.type)}</div>
 
         <div className="min-w-0 flex-1">
           <div className="mb-1 flex items-center gap-2">

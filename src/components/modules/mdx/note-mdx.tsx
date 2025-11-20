@@ -1,5 +1,4 @@
-import type { Url } from 'next/dist/shared/lib/router/router'
-
+import type { UrlObject } from 'node:url'
 import { useMDXComponent } from '@content-collections/mdx/react'
 import Link from 'next/link'
 import { BlurImage } from '~/components/base/blur-image'
@@ -30,7 +29,7 @@ const components = {
     return (
       <Link
         className="hover:text-foreground text-anchor no-underline transition-colors"
-        {...(rest as { href: Url })}
+        {...(rest as unknown as { href: UrlObject })}
       >
         {children}
       </Link>

@@ -48,13 +48,13 @@ function Header(props: Readonly<HeaderProps>) {
       >
         {homepage
           ? (
-              <Link href={homepage} className={cn(buttonVariants(), 'group')}>
+              <Link href={{ pathname: homepage }} className={cn(buttonVariants(), 'group')}>
                 前往网站
                 <ArrowUpRightIcon className="ml-2 size-5 transition-transform group-hover:-rotate-12" />
               </Link>
             )
           : null}
-        <Link href={github} className={cn(buttonVariants(), 'group')}>
+        <Link href={{ pathname: github }} className={cn(buttonVariants(), 'group')}>
           {GITHUB_USERNAME}
           /
           {repo}

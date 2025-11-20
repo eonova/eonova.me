@@ -122,7 +122,6 @@ const MyNextConfig: NextConfig = {
   reactStrictMode: true,
 
   experimental: {
-    reactCompiler: true,
     optimizePackageImports: [
       'shiki',
       'lenis',
@@ -149,7 +148,6 @@ const MyNextConfig: NextConfig = {
     staticGenerationRetryCount: 1,
     staticGenerationMaxConcurrency: 8,
     staticGenerationMinPagesPerWorker: 25,
-    typedRoutes: true,
     optimizeCss: true,
   },
 
@@ -203,10 +201,6 @@ const MyNextConfig: NextConfig = {
         search: '',
       },
     ],
-  },
-
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 
   typescript: {
@@ -366,12 +360,4 @@ const MyNextConfig: NextConfig = {
   },
 }
 
-// Apply plugins without Rspack for now due to compatibility issues
-// Rspack doesn't fully support Next.js metadata routes (manifest.ts, robots.ts, sitemap.ts)
-// See: https://github.com/vercel/next.js/discussions/77800
-const config = [withPWA, withBundleAnalyzer, withMDX].reduce(
-  (acc, plugin) => plugin(acc),
-  MyNextConfig,
-)
-
-export default config
+export default withMDX(withBundleAnalyzer(withPWA(MyNextConfig)))

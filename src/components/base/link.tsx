@@ -21,7 +21,7 @@ function Link(props: LinkProps) {
 
   if (href.startsWith('/')) {
     return (
-      <NextLink className={cn(linkVariants({ variant, className }))} href={href} {...rest}>
+      <NextLink className={cn(linkVariants({ variant, className }))} href={href as any} {...rest}>
         {children}
       </NextLink>
     )

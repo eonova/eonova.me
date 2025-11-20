@@ -18,7 +18,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ props, className }) => {
   return (
     <FadeContent blur duration={300} easing="ease-out" initialOpacity={0}>
       <Link
-        href={url}
+        href={url as any}
         className={cn(
           'group shadow-feature-card during-300 flex h-32 gap-3 rounded-2xl border border-solid border-black/5 p-2 hover:bg-gray-200/20 dark:border-white/10 dark:bg-[#1d1e22]/30 dark:shadow-inner dark:shadow-white/5 dark:hover:bg-[#1d1e22]/10',
           className,
