@@ -14,7 +14,7 @@ export const auth = betterAuth({
     provider: 'pg',
     usePlural: true,
   }),
-  trustedOrigins: [getBaseUrl()],
+  trustedOrigins: [getBaseUrl(), 'https://eonova.me', 'https://www.eonova.me'],
   socialProviders: {
     ...(!!env.GOOGLE_CLIENT_ID
       && !!env.GOOGLE_CLIENT_SECRET && {
