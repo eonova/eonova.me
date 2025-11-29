@@ -44,7 +44,7 @@ const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => 
       <Image
         width={300}
         height={500}
-        src={item.coverUrl}
+        src={`/api/image-proxy?url=${encodeURIComponent(item.coverUrl)}`}
         alt={item.metaInfo}
         unoptimized
         className="during-300 h-72 w-full object-cover transition-transform will-change-transform hover:scale-103 sm:h-80"
