@@ -5,6 +5,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster } from '~/components/base/sonner'
 import { TooltipProvider } from '~/components/base/tooltip'
 import { PHProvider } from '~/components/layouts/posthog-provider'
+import { MusicToast } from '~/components/shared/music-toast'
 import PageProgress from '~/components/shared/page-progress'
 import { ORPCQueryProvider } from '~/orpc/tanstack-query/client'
 
@@ -35,6 +36,7 @@ function Providers(props: ProvidesProps) {
           >
             <TooltipProvider>
               <SmoothScroll>{children}</SmoothScroll>
+              <MusicToast />
               <Toaster
                 toastOptions={{
                   duration: 2500,

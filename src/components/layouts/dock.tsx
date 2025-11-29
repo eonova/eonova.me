@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { usePlaylistSongs } from '~/hooks/queries/music.query'
+import { useMusicPlay } from '~/hooks/use-music-play'
 import { cn } from '~/utils'
 import MusicPlayer from './music-player'
 
@@ -15,7 +16,7 @@ interface DockProps {
 
 const Dock: React.FC<DockProps> = ({ className }) => {
   const [scrollPercentage, setScrollPercentage] = useState(0)
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const { isPlaying, setIsPlaying } = useMusicPlay()
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const [isPlayerVisible, setPlayerIsVisible] = useState<boolean>(false)
   const pathname = usePathname()
@@ -60,16 +61,6 @@ const Dock: React.FC<DockProps> = ({ className }) => {
     }
   }
 
-  const toggleMusic = () => {
-    setPlayerIsVisible(!isPlayerVisible)
-  }
-
-  const toggleVideo = () => {
-    setIsVideoPlaying(!isVideoPlaying)
-    // TODO: 实现视频播放逻辑
-    console.log('Video playing:', !isVideoPlaying)
-  }
-
   return (
     <>
       <motion.ul
@@ -83,7 +74,7 @@ const Dock: React.FC<DockProps> = ({ className }) => {
           className={cn(
             'cursor-pointer p-1.5 rounded-md transition-colors text-[#7D4854] hover:text-black dark:hover:text-white',
           )}
-          onClick={toggleMusic}
+          onClick={() => setPlayerIsVisible(!isPlayerVisible)}
         >
           <Music className="size-5 text-[#7D4854]" />
         </li>
@@ -91,9 +82,9 @@ const Dock: React.FC<DockProps> = ({ className }) => {
           className={cn(
             'cursor-pointer p-1.5 rounded-md transition-colors text-[#7D4854] hover:text-black dark:hover:text-white',
           )}
-          onClick={toggleVideo}
+          onClick={() => setIsPlaying(!isPlaying)}
         >
-          {isVideoPlaying
+          {isPlaying
             ? (
                 <StopCircle className="size-5" />
               )

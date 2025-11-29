@@ -94,7 +94,7 @@ CommentEmailTemplate.PreviewProps = {
   date: 'January 1, 2025',
   commentIdentifier: 'comment=1',
   contentTitle: 'Understanding Modern Web Development',
-  contentUrl: 'http://localhost:3000/blog/understanding-modern-web-development',
+  contentUrl: 'http://localhost:3000/posts/understanding-modern-web-development',
 } satisfies CommentEmailTemplateProps
 
 export default CommentEmailTemplate

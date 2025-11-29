@@ -1,18 +1,21 @@
 import type { Track } from '~/types/music'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useMusicPlay } from './use-music-play'
+import { useMusicToast } from './use-music-toast'
 
 type PlayMode = 'order' | 'random' | 'loop'
 
 export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.RefObject<HTMLAudioElement | null>) {
   // 简化状态管理
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const { isPlaying, setIsPlaying } = useMusicPlay()
   const [playMode, setPlayMode] = useState<PlayMode>('order')
   const [volume, setVolume] = useState(0.7)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [playedHistory, setPlayedHistory] = useState<number[]>([])
   const [isMuted, setIsMuted] = useState(false) // 添加静音状态变量[3,4](@ref)
+  const toast = useMusicToast()
 
   // 使用ref跟踪最新状态，避免闭包问题
   const stateRef = useRef({ isPlaying, currentTrackIndex, repeatMode: playMode, currentTime, playedHistory, isMuted })
@@ -60,7 +63,7 @@ export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.Ref
     }
 
     return randomIndex ?? 0
-  }, [currentPlaylist.length])
+  }, [currentPlaylist, stateRef])
 
   // 统一曲目切换逻辑
   const switchTrack = useCallback((direction: 'next' | 'prev') => {
@@ -99,11 +102,20 @@ export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.Ref
     setCurrentTrackIndex(newIndex)
     setCurrentTime(0)
 
+    // 播放 Toast
+    const newTrack = currentPlaylist[newIndex]
+    if (newTrack) {
+      toast.show({
+        songName: newTrack.name,
+        artist: newTrack.artist,
+      })
+    }
+
     // 如果正在播放，继续播放新曲目
     if (!isPlaying && newIndex !== currentTrackIndex) {
       setTimeout(() => setIsPlaying(true), 100)
     }
-  }, [currentPlaylist.length, getRandomTrackIndex])
+  }, [currentPlaylist, getRandomTrackIndex, toast, setIsPlaying])
 
   // 下一曲和上一曲基于统一逻辑
   const nextTrack = useCallback(() => switchTrack('next'), [switchTrack])
@@ -139,6 +151,15 @@ export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.Ref
       setCurrentTrackIndex(index)
       setCurrentTime(0)
 
+      // 播放 Toast
+      const newTrack = currentPlaylist[index]
+      if (newTrack) {
+        toast.show({
+          songName: newTrack.name,
+          artist: newTrack.artist,
+        })
+      }
+
       // 随机模式下记录播放历史
       if (repeatMode === 'random' && !playedHistory.includes(index)) {
         setPlayedHistory(prev => [...prev, index])
@@ -147,7 +168,7 @@ export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.Ref
       // 自动开始播放
       setIsPlaying(true)
     }
-  }, [currentPlaylist.length, duration, seekTo, isPlaying, playedHistory])
+  }, [currentPlaylist, duration, seekTo, isPlaying, playedHistory, toast, setIsPlaying])
 
   // 切换播放模式
   const switchPlayMode = useCallback(() => {
@@ -213,7 +234,7 @@ export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.Ref
     return () => {
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
     }
-  }, [currentTrack?.url])
+  }, [currentTrack?.url, audioRef])
 
   // 核心音频事件处理
   useEffect(() => {
@@ -266,7 +287,7 @@ export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.Ref
       audio.removeEventListener('pause', handlePause)
       audio.removeEventListener('ended', handleEnded)
     }
-  }, [audioRef, volume, isMuted, nextTrack, currentTrackIndex, currentPlaylist.length])
+  }, [audioRef, volume, isMuted, nextTrack, currentTrackIndex, currentPlaylist.length, setIsPlaying])
 
   // 播放状态控制
   useEffect(() => {
@@ -278,7 +299,7 @@ export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.Ref
     else {
       audioRef.current.pause()
     }
-  }, [currentTrack, isPlaying])
+  }, [currentTrack, isPlaying, audioRef])
 
   return {
     // 状态变量
