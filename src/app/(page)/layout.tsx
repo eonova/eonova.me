@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import Script from 'next/script'
 import SignInDialog from '~/components/layouts/sign-in-dialog'
 import Hello from '~/components/shared/hello'
 import { ErrorBoundaryMonitor, PerformanceMonitor } from '~/components/shared/performance-monitor'
@@ -13,7 +12,6 @@ import {
   SITE_TITLE,
   SITE_URL,
 } from '~/config/constants'
-import { env } from '~/lib/env'
 import { cn } from '~/utils'
 import Providers from '../providers'
 import '~/styles/globals.css'
@@ -119,9 +117,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {env.NODE_ENV === 'development' && (
-          <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
-        )}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"

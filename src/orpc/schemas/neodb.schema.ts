@@ -7,9 +7,6 @@ const NeoCategorySchema = z.enum([
   'movie',
   'tv',
   'music',
-  'game',
-  'podcast',
-  'performance',
 ])
 
 export const listNeoShelfInputSchema = z.object({

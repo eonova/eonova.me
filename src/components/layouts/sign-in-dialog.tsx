@@ -21,9 +21,9 @@ import { Link } from '../base/link'
 
 type Provider = 'github' | 'google'
 
-function GoogleIcon() {
+function GoogleIcon({ className }: { className?: string }) {
   return (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={className}>
       <path
         fill="#EA4335"
         d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
@@ -98,7 +98,7 @@ function SignInDialog() {
             disabled={isPending}
             data-testid="github-sign-in-button"
           >
-            {isPending ? <LoaderIcon className="animate-spin" /> : <SiGithub />}
+            {isPending ? <LoaderIcon className="animate-spin" /> : <SiGithub className="size-5" />}
             继续使用 GitHub
             {lastUsedProvider === 'github' && <LastUsed />}
           </Button>
@@ -108,7 +108,7 @@ function SignInDialog() {
             onClick={() => handleSignIn('google')}
             disabled={isPending}
           >
-            {isPending ? <LoaderIcon className="animate-spin" /> : <GoogleIcon />}
+            {isPending ? <LoaderIcon className="animate-spin" /> : <GoogleIcon className="size-5" />}
             继续使用 Google
             {lastUsedProvider === 'google' && <LastUsed />}
           </Button>

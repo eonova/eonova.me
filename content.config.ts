@@ -149,7 +149,7 @@ const projects = defineCollection({
 
 const pages = defineCollection({
   name: 'Page',
-  directory: 'src/content/pages',
+  directory: './data/pages',
   include: '**/*.md',
   schema: z.object({}),
   transform,

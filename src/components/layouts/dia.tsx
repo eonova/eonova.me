@@ -23,7 +23,7 @@ function Dia({ className }: DiaProps) {
 
   // Mock theme configuration since we don't have the app store
   // https://photokit.com/colors/color-gradient/?lang=zh
-  const themeConfig = theme === 'dark'
+  const themeConfig = theme !== 'light'
     ? {
         header_gradient_css: 'linear-gradient(135deg, #201C35, #2d212f, #3a2629, #472b22, #54301c)',
         gradient: {
@@ -79,7 +79,7 @@ function Dia({ className }: DiaProps) {
 
   return (
     <>
-      <div id="bot-container" className={cn('fixed z-1000 left-[20px] bottom-0', className)}>
+      <div id="bot-container" className={cn('fixed z-[1000] left-[20px] bottom-0', className)}>
         <div id="Aurora-Dia--body" style={cssVariables}>
           <div id="Aurora-Dia--tips-wrapper">
             <div id="Aurora-Dia--tips" className="Aurora-Dia--tips">早上好呀～</div>

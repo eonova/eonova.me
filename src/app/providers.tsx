@@ -28,7 +28,7 @@ function Providers(props: ProvidesProps) {
         <NuqsAdapter>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             enableColorScheme
             disableTransitionOnChange

@@ -15,7 +15,7 @@ const TYPE_LABELS: Record<ShelfType, string> = {
   complete: '已完成',
 }
 
-const CATEGORIES = ['book', 'movie', 'tv', 'music', 'game', 'podcast', 'performance'] as const
+const CATEGORIES = ['book', 'movie', 'tv', 'music'] as const
 type Category = (typeof CATEGORIES)[number]
 
 const CATEGORY_LABELS: Record<Category, string> = {
@@ -23,9 +23,6 @@ const CATEGORY_LABELS: Record<Category, string> = {
   movie: '电影',
   tv: '剧集',
   music: '音乐',
-  game: '游戏',
-  podcast: '播客',
-  performance: '演出',
 }
 
 function NeoDBContent() {
