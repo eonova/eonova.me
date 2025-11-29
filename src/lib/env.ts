@@ -55,8 +55,6 @@ export const env = createEnv({
 
     NEODB_TOKEN: z.string().min(1).optional(),
 
-    REACT_SCAN_MONITOR_API_KEY: z.string().optional(),
-
   },
   client: {
     // Required

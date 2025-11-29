@@ -12,13 +12,13 @@ import {
   DropdownMenuTrigger,
 } from '~/components/base/dropdown-menu'
 import { Skeleton } from '~/components/base/skeleton'
+import { useSignInDialog } from '~/hooks/use-sign-in-dialog'
 import { authClient, useSession } from '~/lib/auth-client'
-import { useDialogsStore } from '~/stores/dialogs'
 import { getDefaultImage } from '~/utils'
 
 function UserAuth() {
   const { data: session, isPending } = useSession()
-  const dialogStore = useDialogsStore()
+  const dialogStore = useSignInDialog()
 
   const handleSignOut = async () => {
     await authClient.signOut({
@@ -40,7 +40,7 @@ function UserAuth() {
         size="sm"
         variant="ghost"
         className="flex size-8 cursor-pointer items-center justify-center rounded-full p-0 duration-200 sm:size-9"
-        onClick={() => dialogStore.setIsSignInOpen(true)}
+        onClick={() => dialogStore.setOpen(true)}
         data-testid="sign-in-button"
       >
         <UserIcon className="size-5 sm:size-4" />

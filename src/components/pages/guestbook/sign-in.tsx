@@ -2,16 +2,16 @@
 
 import { Button } from '~/components/base'
 
-import { useDialogsStore } from '~/stores/dialogs'
+import { useSignInDialog } from '~/hooks/use-sign-in-dialog'
 
 function SignIn() {
-  const { setIsSignInOpen } = useDialogsStore()
+  const { setOpen } = useSignInDialog()
 
   return (
     <>
       <Button
         className="dark:text-foreground inline-block bg-linear-to-br from-[#fcd34d] via-[#ef4444] to-[#ec4899] font-extrabold"
-        onClick={() => setIsSignInOpen(true)}
+        onClick={() => setOpen(true)}
       >
         登入
       </Button>
