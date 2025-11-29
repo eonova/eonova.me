@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import { CodeIcon, Lightbulb, Palette } from 'lucide-react'
-import React from 'react'
 
 interface ICATEGORIES {
   name: string

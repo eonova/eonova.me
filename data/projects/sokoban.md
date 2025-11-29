@@ -3,7 +3,7 @@ name: 'sokoban'
 description: '推箱子小游戏📦'
 homepage: 'https://sokoban-vitest.vercel.app/'
 github: 'https://github.com/eonova/sokoban'
-date: '2024-02-15T03:10:30.571Z'
+dateCreated: '2024-02-15T03:10:30.571Z'
 techstack: ['Vue', 'Pinia', 'UnoCSS', 'Vitest', 'TypeScript']
 selected: false
 ---

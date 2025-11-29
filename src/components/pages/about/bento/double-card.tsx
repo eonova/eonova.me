@@ -32,7 +32,7 @@ const DoubleCard: React.FC<DoubleCardProps> = ({
       setPosition={setPosition}
       setOpacity={setOpacity}
     >
-      <div className="font-world shadow-feature-card dark:shadow-feature-card-dark relative flex h-[90px] w-full items-center justify-between rounded-3xl border border-black/5 bg-[#FDE047] p-6 backdrop-blur-xs transition-all duration-500 dark:border-white/10">
+      <div className="font-world shadow-feature-card dark:shadow-feature-card-dark relative flex h-[90px] w-full items-center justify-between rounded-3xl border border-black/5 bg-amber-300 text-black/80 p-6 backdrop-blur-xs transition-all duration-500 dark:border-white/10">
         <NormalCard
           title={title}
           subheading={subheading}

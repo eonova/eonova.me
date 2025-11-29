@@ -3,7 +3,7 @@ import { Column, Hr, Img, Link, Row, Section, Text } from '@react-email/componen
 function Footer() {
   return (
     <>
-      <Hr className="border-t-border mt-6 mb-3" />
+      <Hr className="mt-6 mb-3" />
       <Section>
         <Row className="mt-4" align="left" width="auto">
           <Column className="pr-6 align-middle">
@@ -13,12 +13,7 @@ function Footer() {
           </Column>
           <Column className="align-middle">
             <Link href="https://github.com/eonova/eonova.me" className="text-xl text-black">
-              <Img
-                src="https://eonova.me/images/email/github.png"
-                alt="GitHub"
-                width={22}
-                height={22}
-              />
+              <Img src="https://eonova.me/images/email/github.png" alt="GitHub" width={22} height={22} />
             </Link>
           </Column>
         </Row>

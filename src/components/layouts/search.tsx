@@ -1,14 +1,12 @@
 'use client'
-
-import { useQuery } from '@tanstack/react-query'
 import { FileTextIcon, FolderIcon, Search, StickyNoteIcon } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '~/components/base/button'
 import { Dialog, DialogContent, DialogTitle } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
 import { ScrollArea } from '~/components/base/scroll-area'
+import { useSearchResults } from '~/hooks/queries/search.query'
 import { useDebouncedCallback } from '~/hooks/use-debounced-callback'
-import { useTRPC } from '~/trpc/client'
 import { SvgLogo } from '../shared/logo'
 
 interface SearchResult {
@@ -23,24 +21,14 @@ function CommandMenu() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(-1)
   const inputRef = useRef<HTMLInputElement>(null)
-  const trpc = useTRPC()
-
-  const { data: searchResults = [] } = useQuery(
-    trpc.search.searchContent.queryOptions(
-      {
-        query: searchQuery,
-        type: 'all',
-        limit: 8,
-      },
-      {
-        enabled: searchQuery.length >= 2,
-      },
-    ),
+  const { data: searchResults = [] } = useSearchResults(
+    { query: searchQuery, type: 'all', limit: 8 },
+    searchQuery.length >= 2,
   )
 
   const transformedSearchResults: SearchResult[] = useMemo(
     () =>
-      searchResults.map(result => ({
+      (searchResults as any[]).map(result => ({
         id: result.id,
         title: result.title,
         type: result.type,

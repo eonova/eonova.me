@@ -1,13 +1,11 @@
 'use client'
 import type { Talk } from './box'
-import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TalkSkeleton } from '~/components/modules/skeleton/talk-skeleton'
-import { flags } from '~/lib/env'
+import { useTalks } from '~/hooks/queries/talks.query'
 import { useTalkStore } from '~/stores/talk'
-import { useTRPC } from '~/trpc/client'
 import InfiniteScrollingLoading from '../../shared/infinite-scrolling-loading'
 import TalkBox from './box'
 import CommentDialog from './comment-modal'
@@ -17,17 +15,7 @@ interface TalkListProps {
 }
 
 const TalkList: React.FC<TalkListProps> = () => {
-  const trpc = useTRPC()
-  const { data, isLoading, status, error, fetchNextPage, hasNextPage, isFetchingNextPage }
-    = useInfiniteQuery(
-      trpc.talks.getAllTalks.infiniteQueryOptions(
-        {},
-        {
-          getNextPageParam: lastPage => lastPage.nextCursor,
-          placeholderData: keepPreviousData,
-        },
-      ),
-    )
+  const { data, isLoading, status, error, fetchNextPage, hasNextPage, isFetchingNextPage } = useTalks()
 
   const { ref, inView } = useInView({ threshold: 0.1 })
 
@@ -114,7 +102,7 @@ const TalkList: React.FC<TalkListProps> = () => {
         />
       </div>
 
-      {flags.comment && currentTalk && <CommentDialog talk={currentTalk!} isVisible={isOpenCommentDialog} />}
+      {currentTalk && <CommentDialog talk={currentTalk!} isVisible={isOpenCommentDialog} />}
     </div>
   )
 }

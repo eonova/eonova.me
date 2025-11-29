@@ -1,10 +1,9 @@
 // @ts-nocheck
 'use client'
-import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { buttonVariants } from '~/components/base/button'
 import NonFound from '~/components/shared/non-found'
-import { useTRPC } from '~/trpc/client'
+import { useAlbumImages } from '~/hooks/queries/album.query'
 import { cn } from '~/utils'
 import Lightbox from './lightbox'
 import Masonry from './masonry'
@@ -23,8 +22,7 @@ interface WaterfallGalleryProps {
 }
 
 function WaterfallGallery({ itemsPerPage = 12 }: WaterfallGalleryProps) {
-  const trpc = useTRPC()
-  const { data, isLoading, isError } = useQuery(trpc.album.getAllImages.queryOptions())
+  const { data, isLoading, isError } = useAlbumImages()
   const items: ImageItem[] = data?.images ?? []
   const [currentPage, setCurrentPage] = useState(1)
   const [isOpen, setIsOpen] = useState(false)

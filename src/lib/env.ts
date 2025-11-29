@@ -2,107 +2,89 @@ import { createEnv } from '@t3-oss/env-nextjs'
 import { vercel } from '@t3-oss/env-nextjs/presets-zod'
 import { z } from 'zod'
 
-export const flags = {
-  comment: process.env.NEXT_PUBLIC_FLAG_COMMENT === 'true',
-  auth: process.env.NEXT_PUBLIC_FLAG_AUTH === 'true',
-  stats: process.env.NEXT_PUBLIC_FLAG_STATS === 'true',
-  spotify: process.env.NEXT_PUBLIC_FLAG_SPOTIFY === 'true',
-  guestbookNotification: process.env.NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION === 'true',
-  likeButton: process.env.NEXT_PUBLIC_FLAG_LIKE_BUTTON === 'true',
-  search: process.env.NEXT_PUBLIC_FLAG_SEARCH === 'true',
-}
-
 export const env = createEnv({
   skipValidation: !!process.env.CI || process.env.NODE_ENV === 'test',
   extends: [vercel()],
 
   shared: {
-    NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+    NODE_ENV: z.enum(['development', 'test', 'production']).optional(),
   },
 
   server: {
-    ...(flags.spotify
-      ? {
-          SPOTIFY_CLIENT_ID: z.string().min(1),
-          SPOTIFY_CLIENT_SECRET: z.string().min(1),
-          SPOTIFY_REFRESH_TOKEN: z.string().min(1),
-        }
-      : {}),
+    // Required
+    DATABASE_URL: z.url(),
 
-    ...(flags.auth
-      ? {
-          BETTER_AUTH_SECRET: z.string().min(1),
-          GOOGLE_CLIENT_ID: z.string().min(1),
-          GOOGLE_CLIENT_SECRET: z.string().min(1),
-          GITHUB_CLIENT_ID: z.string().min(1),
-          GITHUB_CLIENT_SECRET: z.string().min(1),
-        }
-      : {}),
-
-    ...(flags.stats
-      ? {
-          GOOGLE_API_KEY: z.string().min(1),
-          GITHUB_TOKEN: z.string().min(1),
-          WAKATIME_API_KEY: z.string().min(1),
-        }
-      : {}),
-
-    ...(flags.comment
-      ? { RESEND_API_KEY: z.string().min(1), AUTHOR_EMAIL: z.string().email() }
-      : {}),
-
-    ...(flags.guestbookNotification
-      ? {
-          DISCORD_WEBHOOK_URL: z.string().url(),
-        }
-      : {}),
-
-    ...(flags.likeButton
-      ? {
-          IP_ADDRESS_SALT: z.string().min(1),
-        }
-      : {}),
-    DOUBAN_ID: z.string().min(1),
-    BANGUMI_USERNAME: z.string().min(1),
-    BANGUMI_APIKEY: z.string().optional(),
-    DATABASE_URL: z.string().url(),
-    UPSTASH_REDIS_REST_URL: z.string().url(),
+    UPSTASH_REDIS_REST_URL: z.url(),
     UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
+
+    IP_ADDRESS_SALT: z.string().min(1),
+
+    BETTER_AUTH_SECRET: z.string().min(1),
+
+    // Optional
+    SPOTIFY_CLIENT_ID: z.string().min(1).optional(),
+    SPOTIFY_CLIENT_SECRET: z.string().min(1).optional(),
+    SPOTIFY_REFRESH_TOKEN: z.string().min(1).optional(),
+
+    GOOGLE_API_KEY: z.string().min(1).optional(),
+    GITHUB_TOKEN: z.string().min(1).optional(),
+    WAKATIME_API_KEY: z.string().min(1).optional(),
+
+    GOOGLE_CLIENT_ID: z.string().min(1).optional(),
+    GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
+    GITHUB_CLIENT_ID: z.string().min(1).optional(),
+    GITHUB_CLIENT_SECRET: z.string().min(1).optional(),
+
+    DISCORD_WEBHOOK_URL: z.url().optional(),
+
+    RESEND_API_KEY: z.string().min(1).optional(),
+    AUTHOR_EMAIL: z.email().optional(),
+    JWT_SECRET: z.string().min(1).optional(),
+
+    CLOUDFLARE_R2_ENDPOINT: z.url().optional(),
+    CLOUDFLARE_R2_ACCESS_KEY_ID: z.string().min(1).optional(),
+    CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string().min(1).optional(),
+    CLOUDFLARE_R2_BUCKET_NAME: z.string().min(1).optional(),
+    CLOUDFLARE_R2_PUBLIC_URL: z.url().optional(),
+
+    UPYUN_OPERATOR: z.string().min(1).optional(),
+    UPYUN_PASSWORD: z.string().min(1).optional(),
+    UPYUN_BUCKET: z.string().min(1).optional(),
+
+    DEEPSEEK_API_KEY: z.string().min(1).optional(),
+
+    NEODB_TOKEN: z.string().min(1).optional(),
+
     REACT_SCAN_MONITOR_API_KEY: z.string().optional(),
-    UPYUN_OPERATOR: z.string().min(1),
-    UPYUN_PASSWORD: z.string().min(1),
-    UPYUN_BUCKET: z.string().min(1),
-    DEEPSEEK_API_KEY: z.string().min(1),
-    NEODB_TOKEN: z.string().min(1),
+
   },
   client: {
-    NEXT_PUBLIC_FLAG_COMMENT: z.string().min(1).optional(),
-    NEXT_PUBLIC_FLAG_AUTH: z.string().min(1).optional(),
-    NEXT_PUBLIC_FLAG_STATS: z.string().min(1).optional(),
-    NEXT_PUBLIC_FLAG_SPOTIFY: z.string().min(1).optional(),
-    NEXT_PUBLIC_FLAG_ANALYTICS: z.string().min(1).optional(),
-    NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION: z.string().min(1).optional(),
-    NEXT_PUBLIC_FLAG_LIKE_BUTTON: z.string().min(1).optional(),
-    NEXT_PUBLIC_FLAG_SEARCH: z.string().min(1).optional(),
+    // Required
+    NEXT_PUBLIC_SITE_URL: z.url(),
+    // Optional
+    NEXT_PUBLIC_VERCEL_ENV: z.string().optional(),
+    NEXT_PUBLIC_VERCEL_BRANCH_URL: z.string().optional(),
 
-    NEXT_PUBLIC_SITE_URL: z.string().optional(),
-    NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: z.string().min(1).optional(),
-    NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF: z.string().min(1).optional(),
+    NEXT_PUBLIC_UMAMI_URL: z.url().optional(),
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.uuid().optional(),
+
+    NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1).optional(),
+    NEXT_PUBLIC_POSTHOG_HOST: z.string().min(1).optional(),
+    NEXT_PUBLIC_FLAG_SEARCH: z.string().min(1).optional(),
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    NEXT_PUBLIC_FLAG_COMMENT: process.env.NEXT_PUBLIC_FLAG_COMMENT,
-    NEXT_PUBLIC_FLAG_AUTH: process.env.NEXT_PUBLIC_FLAG_AUTH,
-    NEXT_PUBLIC_FLAG_STATS: process.env.NEXT_PUBLIC_FLAG_STATS,
-    NEXT_PUBLIC_FLAG_SPOTIFY: process.env.NEXT_PUBLIC_FLAG_SPOTIFY,
-    NEXT_PUBLIC_FLAG_ANALYTICS: process.env.NEXT_PUBLIC_FLAG_ANALYTICS,
-    NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION: process.env.NEXT_PUBLIC_FLAG_GUESTBOOK_NOTIFICATION,
-    NEXT_PUBLIC_FLAG_LIKE_BUTTON: process.env.NEXT_PUBLIC_FLAG_LIKE_BUTTON,
-    NEXT_PUBLIC_FLAG_SEARCH: process.env.NEXT_PUBLIC_FLAG_SEARCH,
 
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-    NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
-    NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF,
+    NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
+    NEXT_PUBLIC_VERCEL_BRANCH_URL: process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL,
+
+    NEXT_PUBLIC_UMAMI_URL: process.env.NEXT_PUBLIC_UMAMI_URL,
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
+
+    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+    NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    NEXT_PUBLIC_FLAG_SEARCH: process.env.NEXT_PUBLIC_FLAG_SEARCH,
   },
 
   emptyStringAsUndefined: true,

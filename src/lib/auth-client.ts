@@ -2,9 +2,9 @@ import type { auth } from './auth'
 
 import { inferAdditionalFields } from 'better-auth/client/plugins'
 import { createAuthClient } from 'better-auth/react'
-import { toast } from '~/components/base/toaster'
+import { toast } from 'sonner'
 
-const authClient = createAuthClient({
+export const authClient = createAuthClient({
   plugins: [inferAdditionalFields<typeof auth>()],
   fetchOptions: {
     onError(e) {
@@ -15,9 +15,6 @@ const authClient = createAuthClient({
   },
 })
 
-export const signIn: typeof authClient.signIn = authClient.signIn
-export const signOut: typeof authClient.signOut = authClient.signOut
-export const useSession: typeof authClient.useSession = authClient.useSession
+export const { useSession } = authClient
 
-// export type Session = typeof authClient.$Infer.Session
 export type User = (typeof authClient.$Infer.Session)['user']

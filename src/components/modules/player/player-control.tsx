@@ -1,12 +1,17 @@
 import { ArrowRightLeft, Pause, Play, Repeat, Shuffle, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react'
+import { useState } from 'react'
 
 import { Button } from '~/components/base/button'
+import { Slider } from '~/components/base/slider'
+import { cn } from '~/utils'
 
 interface PlayerControlProps {
   isPlaying: boolean
   playMode: 'order' | 'random' | 'loop'
   isMuted: boolean
+  volume: number
   setIsMuted: (muted: boolean) => void
+  setVolume: (volume: number) => void
   previousTrack: () => void
   togglePlay: () => void
   nextTrack: () => void
@@ -16,14 +21,18 @@ interface PlayerControlProps {
 const PlayerControl: React.FC<PlayerControlProps> = ({
   isPlaying,
   isMuted,
+  volume,
   playMode,
   setIsMuted,
+  setVolume,
   previousTrack,
   togglePlay,
   nextTrack,
   switchPlayMode,
 
 }) => {
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false)
+
   return (
     <div className="flex items-center w-full  space-x-4 mb-4 px-2 gap-3 controller">
       <div
@@ -61,20 +70,32 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
         <SkipForward className="h-4 w-4" />
       </div>
       <div
-        onClick={() => setIsMuted(!isMuted)}
-        className="h-12 w-8 relative flex items-center justify-center flex-1 p-0 text-gray-400 hover:text-white"
+        className="relative flex items-center flex-col space-x-2 flex-1"
+        onMouseEnter={() => setShowVolumeSlider(true)}
+        onMouseLeave={() => setShowVolumeSlider(false)}
       >
-        {
-          isMuted
-            ? <VolumeX className="h-4 w-4" />
-            : (
-                <>
-                  <Volume2 className="h-4 w-4" />
-                  <div className="bg-red-500/40 w-full h-1 z-50 rounded-full absolute bottom-0"></div>
-                </>
-              )
-        }
-
+        <div
+          onClick={() => setIsMuted(!isMuted)}
+          className="h-8 w-8 flex items-center justify-center text-gray-400 hover:text-white cursor-pointer"
+        >
+          {isMuted || volume === 0 ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+        </div>
+        <Slider
+          value={[isMuted ? 0 : volume * 100]}
+          onValueChange={(value) => {
+            const vol = value[0]
+            if (vol !== undefined) {
+              const newVolume = vol / 100
+              setVolume(newVolume)
+              if (newVolume > 0 && isMuted) {
+                setIsMuted(false)
+              }
+            }
+          }}
+          max={100}
+          step={1}
+          className={cn('flex-1 absolute bottom-[-10] z-1 transition-all duration-100', !showVolumeSlider && 'invisible')}
+        />
       </div>
     </div>
   )

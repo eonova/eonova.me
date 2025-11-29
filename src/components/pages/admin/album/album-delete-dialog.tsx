@@ -1,74 +1,50 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import Image from 'next/image'
-import { memo } from 'react'
-import { toast } from 'sonner'
+'use client'
+
+import { Button } from '~/components/base/button'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '~/components/base/alert-dialog'
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '~/components/base/dialog'
+import { useDeleteAlbumImage } from '~/hooks/queries/album.query'
 import { useAlbumDialogsStore } from '~/stores/album'
-import { useTRPC } from '~/trpc/client'
 
-const AlertDialogContentMemo = memo(AlertDialogContent)
-interface DeleteAlbumDialogProps {
-  id: string
-  imageUrl: string
-}
+export default function DeleteAlbumDialog() {
+  const { deleteDialog, setDeleteDialogs, currentImage } = useAlbumDialogsStore()
 
-const DeleteAlbumDialog: React.FC<DeleteAlbumDialogProps> = ({ id, imageUrl }) => {
-  const albumDialogStore = useAlbumDialogsStore()
-  const trpc = useTRPC()
-  const queryClient = useQueryClient()
-  const albumMutation = useMutation(
-    trpc.album.deleteImage.mutationOptions({
-      onSuccess: () => {
-        albumDialogStore.setDeleteDialogs(false)
-        toast.success('删除成功')
-      },
-      onError: error => toast.error(`删除图片失败：${error}`),
-      onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: trpc.album.getAllImages.queryKey(),
-        })
-      },
-    }),
-  )
+  const { mutate, isPending } = useDeleteAlbumImage(() => {
+    setDeleteDialogs(false)
+  })
+
+  function handleDelete() {
+    if (!currentImage)
+      return
+    mutate({
+      id: currentImage.id,
+    })
+  }
 
   return (
-    <AlertDialog
-      open={albumDialogStore.deleteDialog}
-      onOpenChange={(v) => {
-        albumDialogStore.setDeleteDialogs(v)
-      }}
-    >
-      <AlertDialogContentMemo>
-        <AlertDialogHeader>
-          <AlertDialogTitle>删除</AlertDialogTitle>
-          <AlertDialogDescription>
-            你确定要删除这张图片吗?
-            <Image
-              src={imageUrl} // 假设 imageUrl 是图片的地址
-              alt="Image preview"
-              width={100}
-              height={80}
-              className="my-2 h-50 w-50 rounded-2xl object-cover"
-              loading="lazy"
-            />
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>取消</AlertDialogCancel>
-          <AlertDialogAction onClick={() => albumMutation.mutate({ id })}>确定</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContentMemo>
-    </AlertDialog>
+    <Dialog open={deleteDialog} onOpenChange={setDeleteDialogs}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>确认删除</DialogTitle>
+          <DialogDescription>
+            确定要删除这张图片吗？此操作无法撤销。
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setDeleteDialogs(false)}>
+            取消
+          </Button>
+          <Button variant="destructive" onClick={handleDelete} disabled={isPending}>
+            {isPending ? '删除中...' : '确认删除'}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }
-
-export default DeleteAlbumDialog

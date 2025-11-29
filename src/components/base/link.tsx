@@ -1,4 +1,5 @@
 import type { VariantProps } from 'cva'
+import type { UrlObject } from 'node:url'
 import { cva } from 'cva'
 import NextLink from 'next/link'
 import { cn } from '~/utils'
@@ -13,15 +14,15 @@ const linkVariants = cva({
 
 type LinkProps = {
   href: string
-} & Omit<React.ComponentProps<'a'>, 'href'> &
-VariantProps<typeof linkVariants>
+} & Omit<React.ComponentProps<'a'>, 'href'>
+& VariantProps<typeof linkVariants>
 
 function Link(props: LinkProps) {
   const { href, className, children, variant, ...rest } = props
 
   if (href.startsWith('/')) {
     return (
-      <NextLink className={cn(linkVariants({ variant, className }))} href={href} {...rest}>
+      <NextLink className={cn(linkVariants({ variant, className }))} href={href as unknown as UrlObject} {...rest}>
         {children}
       </NextLink>
     )

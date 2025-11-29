@@ -1,9 +1,12 @@
+import type { NextRequest } from 'next/server'
+
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { headers } from 'next/headers'
 import { db } from '~/db'
+import { env } from '~/lib/env'
+
 import { getBaseUrl } from '~/utils/get-base-url'
-import { env } from './env'
 
 export const auth = betterAuth({
   baseURL: getBaseUrl(),
@@ -13,14 +16,20 @@ export const auth = betterAuth({
   }),
   trustedOrigins: [getBaseUrl()],
   socialProviders: {
-    google: {
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
-    },
-    github: {
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
-    },
+    ...(!!env.GOOGLE_CLIENT_ID
+      && !!env.GOOGLE_CLIENT_SECRET && {
+      google: {
+        clientId: env.GOOGLE_CLIENT_ID,
+        clientSecret: env.GOOGLE_CLIENT_SECRET,
+      },
+    }),
+    ...(!!env.GITHUB_CLIENT_ID
+      && !!env.GITHUB_CLIENT_SECRET && {
+      github: {
+        clientId: env.GITHUB_CLIENT_ID,
+        clientSecret: env.GITHUB_CLIENT_SECRET,
+      },
+    }),
   },
   user: {
     additionalFields: {
@@ -29,8 +38,8 @@ export const auth = betterAuth({
   },
 })
 
-export async function getSession() {
-  return await auth.api.getSession({
-    headers: await headers(),
+export async function getSession(request?: NextRequest) {
+  return auth.api.getSession({
+    headers: request ? request.headers : await headers(),
   })
 }

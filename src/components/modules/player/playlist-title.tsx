@@ -35,7 +35,7 @@ const PlaylistTile: React.FC<PlaylistTileProps> = ({
               setCurrentPlaylistIndex(index)
               setCurrentTrackIndex(0)
             }}
-            className={`flex-1 px-4 py-2 text-sm font-medium ${currentPlaylistIndex === index
+            className={`gap-2 px-4 py-2 text-sm font-medium ${currentPlaylistIndex === index
               ? 'text-red-400 border-b-2 border-red-400'
               : 'text-gray-400 hover:text-white'
             }`}

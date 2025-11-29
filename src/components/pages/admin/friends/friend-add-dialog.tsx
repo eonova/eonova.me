@@ -1,104 +1,130 @@
-import { useMutation } from '@tanstack/react-query'
-import React, { useState } from 'react'
+'use client'
+
+import { useState } from 'react'
 import { Button } from '~/components/base/button'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
-import { toast } from '~/components/base/toaster'
-import { useTRPC } from '~/trpc/client'
+import { Label } from '~/components/base/label'
+import { useCreateFriend } from '~/hooks/queries/friend.query'
+import { useFriendDialogsStore } from '~/stores/friend'
 
-// 假设你有 createFriend 的 mutation hook
-// import { useCreateFriend } from '~/hooks/useCreateFriend'
-
-interface AddFriendDialogProps {
-  open: boolean
-  onClose: () => void
-}
-
-const AddFriendDialog: React.FC<AddFriendDialogProps> = ({ open, onClose }) => {
+export default function AddFriendDialog({ open, onOpenChange }: { open?: boolean, onOpenChange?: (open: boolean) => void }) {
   const [name, setName] = useState('')
   const [url, setUrl] = useState('')
   const [avatar, setAvatar] = useState('')
   const [description, setDescription] = useState('')
+  const [order, setOrder] = useState(0)
 
-  const handleClose = () => {
+  const { addDialog, setAddDialogs } = useFriendDialogsStore()
+
+  const isOpen = open ?? addDialog
+  const setOpen = onOpenChange ?? setAddDialogs
+
+  function reset() {
     setName('')
     setUrl('')
     setAvatar('')
     setDescription('')
-    onClose()
+    setOrder(0)
   }
 
-  const trpc = useTRPC()
-  const createFriendMutate = useMutation(
-    trpc.friend.createFriend.mutationOptions({
-      onSuccess: () => {
-        handleClose()
-        toast.success('好友添加成功')
-      },
-      onError: error => toast.error(`添加好友失败：${error}`),
-      onSettled: () => trpc.friend.getAllFriends.queryOptions(),
-    }),
-  )
-  const handleAdd = async () => {
-    createFriendMutate.mutate({
-      name: name.trim(),
-      url: url.trim(),
-      avatar: avatar.trim(),
-      description: description.trim(),
+  const { mutate, isPending } = useCreateFriend(() => {
+    setOpen(false)
+    reset()
+  })
+
+  function handleAdd() {
+    mutate({
+      name,
+      url,
+      avatar,
+      description,
     })
-    setName('')
-    setUrl('')
-    setAvatar('')
-    setDescription('')
-    onClose()
   }
-  const canSubmit = name.trim() && url.trim()
 
   return (
-    <Dialog open={open} onOpenChange={open => !open && handleClose()}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>添加好友</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-4 py-2">
-          <Input
-            autoFocus
-            placeholder="名称"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-          <Input placeholder="URL" value={url} onChange={e => setUrl(e.target.value)} />
-          <Input
-            placeholder="头像URL（可选）"
-            value={avatar}
-            onChange={e => setAvatar(e.target.value)}
-          />
-          <Input
-            placeholder="描述（可选）"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-          />
-        </div>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline" onClick={handleClose}>
-              取消
-            </Button>
-          </DialogClose>
-          <Button onClick={handleAdd} disabled={!canSubmit}>
-            添加
+    <Dialog open={isOpen} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        {!onOpenChange && (
+          <Button variant="outline" onClick={() => setOpen(true)}>
+            添加友链
           </Button>
-        </DialogFooter>
+        )}
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>添加友链</DialogTitle>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-left">
+              名称
+            </Label>
+            <Input
+              id="name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="url" className="text-left">
+              链接
+            </Label>
+            <Input
+              id="url"
+              value={url}
+              onChange={e => setUrl(e.target.value)}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="avatar" className="text-left">
+              头像
+            </Label>
+            <Input
+              id="avatar"
+              value={avatar}
+              onChange={e => setAvatar(e.target.value)}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="description" className="text-left">
+              描述
+            </Label>
+            <Input
+              id="description"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="order" className="text-left">
+              排序
+            </Label>
+            <Input
+              id="order"
+              type="number"
+              value={order}
+              onChange={e => setOrder(Number(e.target.value))}
+              className="col-span-3"
+            />
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <Button onClick={handleAdd} disabled={isPending || !name || !url}>
+            {isPending ? '添加中...' : '确认添加'}
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   )
 }
-
-export default AddFriendDialog

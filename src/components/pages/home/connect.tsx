@@ -19,7 +19,7 @@ function Connect() {
           return (
             <Link
               key={href}
-              href={href}
+              href={href as any}
               target="_blank"
               className="text-muted-foreground hover:text-foreground flex items-center gap-3 transition-colors"
             >

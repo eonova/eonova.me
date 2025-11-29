@@ -12,8 +12,9 @@ const IntroTwo: React.FC = () => {
   return (
     <>
       <IntroCard
-        className="col-span-1 h-[180px] rounded-3xl backdrop-blur-xs md:col-span-2 lg:col-span-4"
+        className="col-span-1 bg-slate-800/90 text-emerald-300 h-[180px] rounded-3xl backdrop-blur-xs md:col-span-2 lg:col-span-4"
         subheading="性格"
+        isColor
       >
         <div className="mt-2">
           <h2 className="text-3xl font-bold">{MBTI_PERSONALITY_NAME}</h2>
@@ -48,13 +49,13 @@ const IntroTwo: React.FC = () => {
         </div>
       </IntroCard>
       <IntroCard
-        className="col-span-1 h-[180px] rounded-3xl bg-[#fcb7bf] text-black backdrop-blur-xs md:col-span-2 lg:col-span-4"
+        className="col-span-1 h-[180px] rounded-3xl bg-rose-400/80 text-black backdrop-blur-xs md:col-span-2 lg:col-span-4"
         subheading="星座"
         isColor
       >
         <div className="mt-2">
           <p className="text-3xl font-bold">{STAR_SIGN}</p>
-          <p className="text-3xl font-bold text-[#C78B02]">{STAR_SIGN_NAME}</p>
+          <p className="text-3xl font-bold text-rose-900/80">{STAR_SIGN_NAME}</p>
         </div>
         <Image
           className="absolute right-5 bottom-[-15] duration-300 hover:rotate-6"

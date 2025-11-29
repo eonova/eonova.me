@@ -1,12 +1,12 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { CollectionPage, WithContext } from 'schema-dts'
 
-import { allProjects } from 'content-collections'
 import BackgroundFont from '~/components/shared/background-font'
 
 import PageTitle from '~/components/shared/page-title'
 import ProjectCards from '~/components/shared/project-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
+import { getLatestProjects } from '~/lib/content'
 import { groupAndSortByYear } from '~/utils'
 
 const title = '项目'
@@ -38,7 +38,7 @@ export async function generateMetadata(_: unknown, parent: ResolvingMetadata): P
 }
 
 async function Page() {
-  const projects = allProjects
+  const projects = getLatestProjects()
 
   const jsonLd: WithContext<CollectionPage> = {
     '@context': 'https://schema.org',
@@ -52,7 +52,7 @@ async function Page() {
       'name': SITE_NAME,
       'url': SITE_URL,
     },
-    'hasPart': allProjects.map(project => ({
+    'hasPart': projects.map(project => ({
       '@type': 'SoftwareApplication',
       'name': project.name,
       'description': project.description,

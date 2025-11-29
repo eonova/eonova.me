@@ -11,7 +11,7 @@ interface SearchResultItemProps {
     description?: string
     type: 'post' | 'note' | 'project'
     slug: string
-    date: string
+    dateCreated: string
     score: number
     url: string
     categories?: string
@@ -72,11 +72,11 @@ export function SearchResultItem({ result, query }: SearchResultItemProps) {
 
   return (
     <Link
-      href={result.url}
+      href={result.url as any}
       className="border-border hover:bg-accent/50 block rounded-lg border p-4 transition-colors duration-200"
     >
       <div className="flex items-start gap-3">
-        <div className="mt-1 flex-shrink-0">{getTypeIcon(result.type)}</div>
+        <div className="mt-1 shrink-0">{getTypeIcon(result.type)}</div>
 
         <div className="min-w-0 flex-1">
           <div className="mb-1 flex items-center gap-2">
@@ -103,7 +103,7 @@ export function SearchResultItem({ result, query }: SearchResultItemProps) {
           <div className="text-muted-foreground flex items-center gap-4 text-xs">
             <div className="flex items-center gap-1">
               <CalendarIcon className="size-3" />
-              {formatDate(result.date)}
+              {formatDate(result.dateCreated)}
             </div>
 
             {result.techstack && result.techstack.length > 0 && (

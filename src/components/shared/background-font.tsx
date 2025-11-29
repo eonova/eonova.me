@@ -1,4 +1,4 @@
-import { cn } from '~/utils'
+import { cn } from '~/utils/cn'
 import '~/styles/page/background-font.css'
 
 interface BackgroundFontProps {

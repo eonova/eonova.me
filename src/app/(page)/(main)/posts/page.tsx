@@ -1,13 +1,13 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
 
-import { allPosts } from 'content-collections'
+import PostCards from '~/components/pages/posts/post-cards'
 import PageTitle from '~/components/shared/page-title'
-import PostCards from '~/components/shared/post-cards'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
+import { getLatestPosts } from '~/lib/content'
 
 const title = '文章'
-const url = '/blog'
+const url = '/posts'
 const description = '分享我的编程学习笔记、生活小思考，希望能和网友们一起共同成长。'
 
 export async function generateMetadata(
@@ -38,9 +38,7 @@ export async function generateMetadata(
 }
 
 async function Page() {
-  const posts = allPosts.toSorted((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime()
-  })
+  const posts = getLatestPosts()
 
   const jsonLd: WithContext<Blog> = {
     '@context': 'https://schema.org',
@@ -54,7 +52,7 @@ async function Page() {
       'name': SITE_NAME,
       'url': SITE_URL,
     },
-    'blogPost': allPosts.map(post => ({
+    'blogPost': posts.map(post => ({
       '@type': 'BlogPosting',
       'headline': post.title,
       'url': `${url}/${post.slug}`,

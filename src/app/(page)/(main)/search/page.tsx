@@ -5,12 +5,11 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SearchInput, SearchResults } from '~/components/modules/search'
 import PageTitle from '~/components/shared/page-title'
-import { useTRPC } from '~/trpc/client'
+import { orpc } from '~/orpc/client'
 
 export default function SearchPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const trpc = useTRPC()
 
   const [query, setQuery] = useState(searchParams.get('q') || '')
   const [selectedType, setSelectedType] = useState<'all' | 'posts' | 'notes' | 'projects'>(
@@ -26,7 +25,7 @@ export default function SearchPage() {
       params.set('type', selectedType)
 
     const newUrl = params.toString() ? `/search?${params.toString()}` : '/search'
-    router.replace(newUrl, { scroll: false })
+    router.replace(newUrl as any, { scroll: false })
   }, [query, selectedType, router])
 
   // Keyboard shortcuts
@@ -65,16 +64,14 @@ export default function SearchPage() {
 
   // Search query
   const { data: searchResults = [], isLoading } = useQuery(
-    trpc.search.searchContent.queryOptions(
-      {
+    orpc.search.searchContent.queryOptions({
+      input: {
         query,
         type: selectedType,
         limit: 50,
       },
-      {
-        enabled: query.length >= 2,
-      },
-    ),
+      enabled: query.length >= 2,
+    }),
   )
 
   const handleSearch = (newQuery: string) => {

@@ -36,7 +36,7 @@ const MenuPopover = memo(({ link, isOpen }: MenuPopoverProps) => {
         {link.subMenu?.map(subItem => (
           <Link
             key={subItem.key}
-            href={subItem.href}
+            href={subItem.href as any}
             className="dark:hover:bg-accent hover:text-accent-foreground flex w-full items-center gap-4 rounded-full px-3 py-2 duration-200 hover:bg-gray-400/20"
           >
             {subItem.icon}

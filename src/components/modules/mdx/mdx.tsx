@@ -1,10 +1,10 @@
-import type { Url } from 'next/dist/shared/lib/router/router'
-
 import { useMDXComponent } from '@content-collections/mdx/react'
-import Link from 'next/link'
 import { BlurImage } from '~/components/base/blur-image'
+
 import { CodeBlock } from '~/components/base/code-block'
-import { Kbd } from '~/components/base/kbd'
+
+import { Link } from '~/components/base/link'
+
 import ImageZoom from '~/components/pages/album/image-zoom'
 import Logo from '~/components/shared/logo'
 import Heading from './heading'
@@ -19,7 +19,6 @@ interface MdxProps {
 }
 
 const components = {
-  h1: (props: React.ComponentProps<'h1'>) => <Heading as="h1" {...props} />,
   h2: (props: React.ComponentProps<'h2'>) => <Heading as="h2" {...props} />,
   h3: (props: React.ComponentProps<'h3'>) => <Heading as="h3" {...props} />,
   h4: (props: React.ComponentProps<'h4'>) => <Heading as="h4" {...props} />,
@@ -30,8 +29,8 @@ const components = {
 
     return (
       <Link
-        className="hover:text-foreground text-anchor no-underline transition-colors"
-        {...(rest as { href: Url })}
+        className="text-anchor no-underline transition-colors hover:text-foreground"
+        {...(rest as { href: string })}
       >
         {children}
       </Link>
@@ -49,6 +48,14 @@ const components = {
       </>
     )
   },
+  img: (props: React.ComponentProps<'img'>) => {
+    const { alt, ...rest } = props
+    return (
+      <>
+        <img className="rounded-xl border" {...rest} alt={alt || ''} />
+      </>
+    )
+  },
   pre: CodeBlock,
 
   // Custom components
@@ -58,7 +65,6 @@ const components = {
   LinkCard,
   Logo,
   TreeView,
-  Kbd,
 }
 
 function Mdx(props: MdxProps) {

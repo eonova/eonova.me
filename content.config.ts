@@ -4,6 +4,7 @@ import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { getTOC, rehypePlugins, remarkPlugins } from '@eonova/mdx-plugins'
 import { z } from 'zod'
+
 // Simple categories for content config (without React components)
 const CATEGORIES = [
   { name: '技术', label: 'tech' },
@@ -70,7 +71,7 @@ async function transform<D extends BaseDoc>(
     type: string
     toc: any
   }
-  > {
+> {
   const code = await compileMDX(context, document, {
     remarkPlugins,
     rehypePlugins,
@@ -136,16 +137,24 @@ const projects = defineCollection({
   include: '**/*.md',
   schema: z.object({
     name: z.string(),
-    date: z.string(),
     description: z.string(),
     homepage: z.string().optional(),
     github: z.string(),
     techstack: z.array(z.string()),
     selected: z.boolean().optional().default(false),
+    dateCreated: z.string(),
   }),
   transform,
 })
 
+const pages = defineCollection({
+  name: 'Page',
+  directory: 'src/content/pages',
+  include: '**/*.md',
+  schema: z.object({}),
+  transform,
+})
+
 export default defineConfig({
-  collections: [notes, posts, projects],
+  collections: [notes, posts, projects, pages],
 })

@@ -1,3 +1,4 @@
+import type { UrlObject } from 'node:url'
 import { ExternalLinkIcon } from 'lucide-react'
 import Link from 'next/link'
 import { BlurImage } from '~/components/base/blur-image'
@@ -14,7 +15,7 @@ function LinkCard(props: LinkCardProps) {
   return (
     <div className="not-prose flex justify-center">
       <Link
-        href={href}
+        href={href as unknown as UrlObject}
         className="my-8 flex items-center justify-center gap-4 rounded-lg border p-4"
       >
         <BlurImage

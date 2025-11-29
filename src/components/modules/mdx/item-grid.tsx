@@ -1,7 +1,4 @@
-/**
- * Inspired by: https://jahir.dev/uses
- */
-
+import type { UrlObject } from 'node:url'
 import Link from 'next/link'
 import { BlurImage } from '~/components/base/blur-image'
 
@@ -24,7 +21,7 @@ function ItemGrid(props: ItemGridProps) {
       {items.map(item => (
         <Link
           key={item.name}
-          href={item.url}
+          href={item.url as unknown as UrlObject}
           className="flex gap-6 rounded-lg border p-4 no-underline shadow-sm transition-colors hover:bg-zinc-100 sm:flex-col sm:gap-3 dark:bg-zinc-900 dark:hover:bg-zinc-800"
         >
           <BlurImage

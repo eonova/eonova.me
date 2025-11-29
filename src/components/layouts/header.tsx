@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { memo } from 'react'
 import useIsScroll from '~/hooks/use-is-scroll'
 import useScrollDirection from '~/hooks/use-scroll-direction'
-import { flags } from '~/lib/env'
 import { cn } from '~/utils'
 import { Separator } from '../base/separator'
 import { SvgLogo } from '../shared/logo'
@@ -72,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       <div className="flex items-center gap-2 sm:gap-1">
         <Navbar />
         <Separator orientation="vertical" className={cn('mx-1 hidden h-6 sm:block')} />
-        {flags.search && <Search />}
+        <Search />
         <ThemeSwitcher />
         <MobileNav />
         <UserAuth />

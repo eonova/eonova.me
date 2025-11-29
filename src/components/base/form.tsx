@@ -1,10 +1,10 @@
 // @ts-nocheck
 'use client'
 
-import type * as LabelPrimitive from '@radix-ui/react-label'
+import type * as LabelPrimitive from 'radix-ui'
 
 import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
-import { Slot } from '@radix-ui/react-slot'
+import { Slot } from 'radix-ui'
 import { createContext, use, useId, useMemo } from 'react'
 import { Controller, FormProvider, useFormContext, useFormState } from 'react-hook-form'
 import { cn } from '~/utils/cn'

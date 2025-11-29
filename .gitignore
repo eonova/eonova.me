@@ -6,6 +6,7 @@ node_modules/
 *.pem
 
 # Local env files
+.env.production
 .env*.local
 .env
 
@@ -55,3 +56,5 @@ next-env.d.ts
 public/sw.js
 public/workbox-*.js
 public/swe-worker-*.js
+
+.env.local

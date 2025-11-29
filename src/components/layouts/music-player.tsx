@@ -51,6 +51,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     isPlaying,
     currentTime,
     playMode,
+    volume,
     duration,
     currentTrack,
     isMuted,
@@ -61,6 +62,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     setIsPlaying,
     switchPlayMode,
     setIsMuted,
+    setVolume,
   } = usePlaybackControl(currentPlaylist, audioRef)
 
   // 当播放列表切换时，将滚动条置顶
@@ -93,7 +95,9 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
         playMode={playMode}
         switchPlayMode={switchPlayMode}
         isMuted={isMuted}
+        volume={volume}
         setIsMuted={setIsMuted}
+        setVolume={setVolume}
       />
 
       {/* 歌单标题 */}

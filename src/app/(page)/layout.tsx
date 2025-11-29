@@ -3,7 +3,6 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import Script from 'next/script'
-import { Monitoring } from 'react-scan/monitoring/next'
 import SignInDialog from '~/components/layouts/sign-in-dialog'
 import Hello from '~/components/shared/hello'
 import { ErrorBoundaryMonitor, PerformanceMonitor } from '~/components/shared/performance-monitor'
@@ -129,16 +128,6 @@ export default function RootLayout({
         />
       </head>
       <body className="relative antialiased">
-        {env.REACT_SCAN_MONITOR_API_KEY
-          ? (
-              <Monitoring
-                apiKey={env.REACT_SCAN_MONITOR_API_KEY}
-                url="https://monitoring.react-scan.com/api/v1/ingest"
-                commit={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
-                branch={env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-              />
-            )
-          : null}
         <Providers>
           <Hello />
           <PerformanceMonitor />

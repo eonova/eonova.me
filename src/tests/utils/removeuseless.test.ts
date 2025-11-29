@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { extractPlainTextFromMarkdown } from '~/utils/removeuseless'
+import { extractPlainTextFromMarkdown } from '~/utils/remove-useless'
 
 describe('removeuseless', () => {
   it('should remove useless', () => {

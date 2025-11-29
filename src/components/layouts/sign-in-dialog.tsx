@@ -1,10 +1,11 @@
 'use client'
 
 import { SiGithub } from '@icons-pack/react-simple-icons'
-import { Loader2Icon } from 'lucide-react'
+import { LoaderIcon } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
+import { toast } from 'sonner'
 import { Button } from '~/components/base/button'
 import {
   Dialog,
@@ -13,20 +14,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from '~/components/base/dialog'
-import { toast } from '~/components/base/toaster'
-import { signIn } from '~/lib/auth-client'
-import { useDialogsStore } from '~/stores/dialogs'
+import { useSignInDialog } from '~/hooks/use-sign-in-dialog'
+import { authClient } from '~/lib/auth-client'
+import { Badge } from '../base/badge'
+import { Link } from '../base/link'
 
 type Provider = 'github' | 'google'
 
 function GoogleIcon() {
   return (
-    <svg
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 48 48"
-      className="mr-3 size-6"
-    >
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
       <path
         fill="#EA4335"
         d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
@@ -49,22 +46,28 @@ function GoogleIcon() {
 }
 
 function SignInDialog() {
-  const { isSignInOpen, setIsSignInOpen } = useDialogsStore()
+  const { open, setOpen, closeDialog: closeSignInDialog } = useSignInDialog()
   const [isPending, setIsPending] = useState(false)
+  const [lastUsedProvider, setLastUsedProvider] = useState<Provider | null>(null)
   const pathname = usePathname()
+
+  useEffect(() => {
+    const provider = localStorage.getItem('last-used-provider') as Provider | null
+    setLastUsedProvider(provider)
+  }, [])
 
   const handleSignIn = async (provider: Provider) => {
     localStorage.setItem('last-used-provider', provider)
-    await signIn.social({
+    await authClient.signIn.social({
       provider,
-      callbackURL: pathname,
+      callbackURL: `${pathname}`,
       fetchOptions: {
         onSuccess: () => {
           setIsPending(false)
         },
         onError: () => {
           setIsPending(false)
-          toast.error('登录失败')
+          toast.error('登录失败，请稍后重试')
         },
         onRequest: () => {
           setIsPending(true)
@@ -72,55 +75,67 @@ function SignInDialog() {
       },
     })
   }
+
+  const closeDialog = () => {
+    if (!isPending) {
+      closeSignInDialog()
+    }
+  }
+
   return (
-    <Dialog
-      open={isSignInOpen}
-      onOpenChange={(v) => {
-        setIsSignInOpen(v)
-      }}
-    >
-      <DialogContent className="sm:max-w-[425px]">
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="sm:max-w-120">
         <DialogHeader>
           <DialogTitle className="text-left text-2xl">登录</DialogTitle>
-          <DialogDescription className="text-left">以继续使用 eonova.me</DialogDescription>
+          <DialogDescription className="text-left">
+            请使用您的 GitHub 或 Google 账号登录
+          </DialogDescription>
         </DialogHeader>
         <div className="my-6 flex flex-col gap-4">
           <Button
-            className="h-10 rounded-xl font-semibold"
+            className="relative h-10 gap-3 rounded-xl font-semibold"
             onClick={() => handleSignIn('github')}
-            isPending={isPending}
+            disabled={isPending}
+            data-testid="github-sign-in-button"
           >
-            {isPending
-              ? (
-                  <Loader2Icon className="animate-spin" />
-                )
-              : (
-                  <>
-                    <SiGithub className="mr-3" />
-                    使用 Github 登录
-                  </>
-                )}
+            {isPending ? <LoaderIcon className="animate-spin" /> : <SiGithub />}
+            继续使用 GitHub
+            {lastUsedProvider === 'github' && <LastUsed />}
           </Button>
           <Button
-            className="h-10 rounded-xl border font-semibold"
+            className="relative h-10 gap-3 rounded-xl border font-semibold"
             variant="ghost"
             onClick={() => handleSignIn('google')}
-            isPending={isPending}
+            disabled={isPending}
           >
-            {isPending
-              ? (
-                  <Loader2Icon className="animate-spin" />
-                )
-              : (
-                  <>
-                    <GoogleIcon />
-                    使用 Google 登录
-                  </>
-                )}
+            {isPending ? <LoaderIcon className="animate-spin" /> : <GoogleIcon />}
+            继续使用 Google
+            {lastUsedProvider === 'google' && <LastUsed />}
           </Button>
+        </div>
+        <div className="text-center text-xs text-muted-foreground">
+          继续使用后，您将同意我们的
+          {' '}
+          <Link href="/terms" className="text-foreground underline" onClick={closeDialog}>
+            服务条款
+          </Link>
+          {' '}
+          和
+          {' '}
+          <Link href="/privacy" className="text-foreground underline" onClick={closeDialog}>
+            隐私政策
+          </Link>
         </div>
       </DialogContent>
     </Dialog>
+  )
+}
+
+function LastUsed() {
+  return (
+    <Badge variant="outline" className="absolute -top-2 -right-2 bg-background">
+      最近使用
+    </Badge>
   )
 }
 

@@ -1,52 +1,28 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 
+import MessageBoard from '~/components/pages/guestbook/message-board'
+import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
-import { SITE_URL } from '~/config/constants'
-import { getSession } from '~/lib/auth'
+import { MY_NAME } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
+import { getBaseUrl } from '~/utils/get-base-url'
 
-import { flags } from '~/lib/env'
+export async function generateMetadata(): Promise<Metadata> {
+  const title = '留言板'
+  const description = '在我的留言板上留下您的想法。您可以在这里告诉我任何事情！'
 
-import MessageBox from './message-box'
-import Messages from './messages'
-import Pinned from './pinned'
-import SignIn from './sign-in'
-
-const title = '留言板'
-const description = '有任何问题可以给我留言'
-const url = '/guestbook'
-
-export async function generateMetadata(
-  _props: unknown,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
-
-  return {
+  return createMetadata({
+    pathname: '/guestbook',
     title,
     description,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      ...previousOpenGraph,
-      url,
-      title,
-      description,
-    },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description,
-    },
-  }
+  })
 }
 
-async function Page() {
-  if (!flags.auth)
-    return null
-  const session = await getSession()
+function Page() {
+  const title = '留言板'
+  const description = '在我的留言板上留下您的想法。您可以在这里告诉我任何事情！'
+  const url = `${getBaseUrl()}/guestbook`
 
   const jsonLd: WithContext<WebPage> = {
     '@context': 'https://schema.org',
@@ -56,25 +32,16 @@ async function Page() {
     url,
     'isPartOf': {
       '@type': 'WebSite',
-      'name': title,
-      'url': SITE_URL,
+      'name': MY_NAME,
+      'url': getBaseUrl(),
     },
   }
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <PageTitle
-        title="留言板"
-        description="在我的留言板上留下您的想法。您可以在这里告诉我任何事情！"
-      />
-      <div className="mx-auto max-w-xl space-y-10">
-        <Pinned />
-        {session ? <MessageBox user={session.user} /> : <SignIn />}
-        <Messages />
-      </div>
+      <JsonLd json={jsonLd} />
+      <PageTitle title={title} description={description} />
+      <MessageBoard />
     </>
   )
 }

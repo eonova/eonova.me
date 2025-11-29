@@ -1,3 +1,3 @@
-import { SITE_URL } from '~/config/constants'
+import { getBaseUrl } from './get-base-url'
 
-export const getDefaultImage = (id: string) => `${SITE_URL}/api/avatar/${id}`
+export const getDefaultImage = (id: string) => `${getBaseUrl()}/api/avatar/${id}`

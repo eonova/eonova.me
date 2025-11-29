@@ -1,10 +1,10 @@
 import MarkdownToJSX from 'markdown-to-jsx'
-import Link from 'next/link'
 import { Fragment, memo } from 'react'
-
+import { Link } from '~/components/base/link'
 import { TableCell, TableHead, TableHeader, TableRow } from '~/components/base/table'
-import CommentCodeBlock from '../comments/comment-code-block'
-import CommentTable from '../comments/comment-table'
+
+import CommentCodeBlock from '../comment-section/comment-code-block'
+import CommentTable from '../comment-section/comment-table'
 
 interface MarkdownProps {
   children: string
@@ -14,7 +14,7 @@ const Markdown = memo((props: MarkdownProps) => {
   const { children } = props
 
   return (
-    <div className="prose my-3 ml-0.5">
+    <div className="my-3 prose ml-0.5">
       <MarkdownToJSX
         options={{
           overrides: {
@@ -26,7 +26,7 @@ const Markdown = memo((props: MarkdownProps) => {
             th: TableHead,
             td: TableCell,
           },
-          disableParsingRawHTML: false,
+          disableParsingRawHTML: true,
           wrapper: Fragment,
         }}
       >

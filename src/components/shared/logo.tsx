@@ -1,3 +1,5 @@
+import { cn } from '~/utils'
+
 type LogoProps = React.SVGAttributes<SVGElement>
 
 export function SvgLogo(props: LogoProps) {
@@ -1686,9 +1688,9 @@ dGRhdGU6dGltZXN0YW1wADIwMjUtMDQtMTRUMTg6MTI6MTErMDA6MDCzCLS7AAAAAElFTkSuQmCC"
   )
 }
 
-function Logo() {
+function Logo({ className }: { className?: string }) {
   return (
-    <div className="flex flex-col gap-4 md:flex-row">
+    <div className={cn('flex flex-col gap-4 md:flex-row', className)}>
       <div className="flex h-52 w-full items-center justify-center rounded-lg bg-white">
         <SvgLogo className="text-black" width={48} height={48} />
       </div>

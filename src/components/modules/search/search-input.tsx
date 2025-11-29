@@ -7,7 +7,7 @@ import { Button } from '~/components/base/button'
 import { Input } from '~/components/base/input'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/base/popover'
 import { useDebouncedCallback } from '~/hooks/use-debounced-callback'
-import { useTRPC } from '~/trpc/client'
+import { orpc } from '~/orpc/client'
 
 interface SearchInputProps {
   value: string
@@ -27,7 +27,6 @@ export function SearchInput({
   const [isOpen, setIsOpen] = useState(false)
   const [debouncedQuery, setDebouncedQuery] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
-  const trpc = useTRPC()
 
   // Debounce the query value
   const debouncedSetQuery = useDebouncedCallback(
@@ -39,16 +38,14 @@ export function SearchInput({
 
   // Use React Query to fetch suggestions
   const { data: suggestions = [] } = useQuery(
-    trpc.search.getSearchSuggestions.queryOptions(
-      {
+    orpc.search.getSearchSuggestions.queryOptions({
+      input: {
         query: debouncedQuery,
         limit: 5,
       },
-      {
-        enabled: debouncedQuery.length >= 2,
-        staleTime: 5 * 60 * 1000, // 5 minutes
-      },
-    ),
+      enabled: debouncedQuery.length >= 2,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+    }),
   )
 
   useEffect(() => {

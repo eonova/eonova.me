@@ -101,7 +101,7 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
           <a.div
             key={item.id}
             style={style}
-            className="absolute cursor-pointer overflow-hidden p-1 [will-change:transform,width,height,opacity]"
+            className="absolute cursor-pointer overflow-hidden p-1 will-change-[transform,width,height,opacity]"
             onClick={() => {
               if (onImageClick) {
                 onImageClick(item.index)
@@ -112,7 +112,7 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
               src={item.imageUrl}
               height={item.height}
               width={item.width}
-              alt={item.description ?? ''}
+              alt={item.description ?? '111'}
               className="h-full w-full object-cover"
             />
           </a.div>

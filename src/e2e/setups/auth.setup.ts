@@ -7,7 +7,7 @@ import dayjs from 'dayjs'
 import { accounts, db, sessions, users } from '~/db'
 import { env } from '~/lib/env'
 
-import { TEST_USER } from '../constants'
+import { TEST_USER } from '../fixtures/auth'
 
 const authenticatedStoragePath = path.resolve(import.meta.dirname, '../.auth/user.json')
 const unauthenticatedStoragePath = path.resolve(

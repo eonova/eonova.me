@@ -3,7 +3,7 @@ name: 'vitesse-star'
 description: 'Vue3 起手模版'
 homepage: 'https://vitesse-star.netlify.app/'
 github: 'https://github.com/eonova/vitesse-star'
-date: '2023-06-06T03:40:55.002Z'
+dateCreated: '2023-06-06T03:40:55.002Z'
 techstack: ['Vite', 'Vue', 'UnoCSS', 'Alova', 'Pinia', 'TypeScript']
 selected: false
 ---

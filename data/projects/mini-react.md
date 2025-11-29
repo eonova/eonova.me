@@ -3,7 +3,7 @@ name: 'mini-react'
 description: 'monorepo实现一个简化版React'
 homepage: 'https://mini-react.eonova.me/'
 github: 'https://github.com/eonova/mini-react'
-date: '2024-03-15T05:56:23.191Z'
+dateCreated: '2024-03-15T05:56:23.191Z'
 techstack: ['Vite']
 selected: false
 ---

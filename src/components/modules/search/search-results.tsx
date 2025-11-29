@@ -14,7 +14,7 @@ interface SearchResult {
   description?: string
   type: 'post' | 'note' | 'project'
   slug: string
-  date: string
+  dateCreated: string
   score: number
   url: string
   categories?: string
