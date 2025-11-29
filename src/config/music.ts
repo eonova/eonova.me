@@ -29,5 +29,5 @@ export const musicConfig: MusicPlaylist[] = [
   },
 ]
 
-// export const MUSIC_API = 'https://api.injahow.cn/meting/'
-export const MUSIC_API = 'https://api.i-meto.com/meting/'
+export const MUSIC_API = 'https://api.injahow.cn/meting/'
+// export const MUSIC_API = 'https://api.i-meto.com/meting/'

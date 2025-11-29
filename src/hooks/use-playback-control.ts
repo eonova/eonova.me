@@ -1,12 +1,5 @@
+import type { Track } from '~/types/music'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-
-interface Track {
-  title: string
-  author: string
-  url: string
-  pic: string
-  lrc: string
-}
 
 type PlayMode = 'order' | 'random' | 'loop'
 

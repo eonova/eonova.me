@@ -1,10 +1,4 @@
-interface Track {
-  title: string
-  author: string
-  url: string
-  pic: string
-  lrc: string // LRC格式的歌词字符串
-}
+import type { Track } from '~/types/music'
 
 interface Playlist {
   title: string

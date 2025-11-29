@@ -1,16 +1,10 @@
 'use client'
 
+import type { Track } from '~/types/music'
 import { useCallback, useEffect, useState } from 'react'
 import { useLyrics } from '~/hooks/use-lyrics'
 import { cn } from '~/utils/cn'
 
-interface Track {
-  title: string
-  author: string
-  url: string
-  pic: string
-  lrc: string // LRC格式的歌词字符串
-}
 interface MusicSectionProps {
   isPlaying: boolean
   currentTrack?: Track
@@ -137,7 +131,7 @@ const MusicSection: React.FC<MusicSectionProps> = ({
       >
         <img
           src={currentTrack?.pic}
-          alt={currentTrack?.title}
+          alt={currentTrack?.name}
           className="w-[7em] h-[7em] rounded-full object-cover"
           onError={(e) => {
             e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMzIiIGZpbGw9IiMzNzM3MzciLz4KPHN2ZyB4PSIyMCIgeT0iMjAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM5Q0E0QUYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMyIvPgo8cGF0aCBkPSJtOSAxMiAyIDIgNC00Ii8+CjxwYXRoIGQ9Ik0yMSAxNVY5YTkgOSAwIDEgMC05IDlsNi02Ii8+Cjwvc3ZnPgo8L3N2Zz4K'
@@ -145,8 +139,8 @@ const MusicSection: React.FC<MusicSectionProps> = ({
         />
       </div>
       <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
-        <h3 className="dark:text-white text-black font-medium text-xl truncate">{currentTrack?.title}</h3>
-        <p className="text-gray-400 text-sm truncate">{currentTrack?.author}</p>
+        <h3 className="dark:text-white text-black font-medium text-xl truncate">{currentTrack?.name}</h3>
+        <p className="text-gray-400 text-sm truncate">{currentTrack?.artist}</p>
         {/* 歌词显示区域 */}
         <div className="relative h-16 px-1 overflow-hidden mt-1">
           <div

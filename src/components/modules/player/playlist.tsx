@@ -1,12 +1,5 @@
+import type { Track } from '~/types/music'
 import { cn } from '~/utils/cn'
-
-interface Track {
-  title: string
-  author: string
-  url: string
-  pic: string
-  lrc: string // LRC格式的歌词字符串
-}
 
 interface PlaylistProps {
   playlistScrollContainerRef: React.RefObject<HTMLOListElement | null>
@@ -70,12 +63,12 @@ const Playlist: React.FC<PlaylistProps> = ({
             <p className={`text-sm truncate ${index === currentTrackIndex ? 'text-red-400' : 'dark:text-white text-black'
             }`}
             >
-              {track.title}
+              {track.name}
             </p>
           </div>
           <div className="text-right">
             {
-              index !== currentTrackIndex && <p className="text-xs text-gray-400 truncate">{track.author}</p>
+              index !== currentTrackIndex && <p className="text-xs text-gray-400 truncate">{track.artist}</p>
             }
           </div>
           {index === currentTrackIndex && (

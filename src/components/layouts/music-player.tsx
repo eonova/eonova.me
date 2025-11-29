@@ -1,5 +1,6 @@
 'use client'
 
+import type { Track } from '~/types/music'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePlaybackControl } from '~/hooks/use-playback-control'
 import MusicSection from '../modules/player/music-section'
@@ -8,14 +9,6 @@ import PlayerControl from '../modules/player/player-control'
 import Playlist from '../modules/player/playlist'
 import PlaylistTile from '../modules/player/playlist-title'
 import '~/styles/page/music-playing.css'
-
-interface Track {
-  title: string
-  author: string
-  url: string
-  pic: string
-  lrc: string // LRC格式的歌词字符串
-}
 
 interface Playlist {
   title: string
