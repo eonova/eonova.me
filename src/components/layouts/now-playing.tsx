@@ -1,36 +1,13 @@
 'use client'
-
-import { useQuery } from '@tanstack/react-query'
+import type { UrlObject } from 'node:url'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { useTRPC } from '~/trpc/client'
+import { useSpotifyStat } from '~/hooks/queries/stat.query'
 import ShinyText from '../shared/shiny-text'
 
 function NowPlaying() {
-  const trpc = useTRPC()
-  const { status, data } = useQuery(
-    trpc.spotify.get.queryOptions(undefined, {
-      staleTime: 1000 * 60,
-    }),
-  )
-  const isPlaying = status === 'success' && data.isPlaying && data.songUrl
-  const notListening = status === 'success' && (!data.isPlaying || !data.songUrl)
-  const [text, setText] = useState<string>('')
+  const { isSuccess, isLoading, isError, data } = useSpotifyStat()
 
-  useEffect(() => {
-    switch (status) {
-      case 'pending':
-        setText('载入中 ...')
-        break
-      case 'error':
-        setText('无法获取 Spotify 资料')
-        break
-    }
-    if (isPlaying)
-      setText(`${data.name} - ${data.author}`)
-    if (notListening)
-      setText('未在收听 - Spotify')
-  }, [status, isPlaying, notListening])
+  const isPlaying = isSuccess && data.isPlaying && data.songUrl
 
   return (
     <div className="flex items-center gap-4">
@@ -48,14 +25,19 @@ function NowPlaying() {
       </svg>
 
       <div className="inline-flex w-full items-center justify-center gap-1 text-sm md:justify-start">
-        {!isPlaying
+        {isPlaying
           ? (
-              <ShinyText text={text} disabled speed={3} className="custom-class" />
+              <Link href={data.songUrl as unknown as UrlObject}>
+                <ShinyText text={`${data.name} - ${data.artist}`} disabled speed={3} className="custom-class" />
+              </Link>
             )
           : (
-              <Link target="black" href={data?.songUrl ?? '' as any}>
-                <ShinyText text={text} disabled speed={3} className="custom-class" />
-              </Link>
+              <ShinyText
+                text={isLoading ? '载入中 ...' : isError ? '无法获取 Spotify 资料' : '未在收听 - Spotify'}
+                disabled
+                speed={3}
+                className="custom-class"
+              />
             )}
       </div>
     </div>

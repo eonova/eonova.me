@@ -3,7 +3,7 @@ name: 'vscode-eonova-snippets'
 description: Eonova's Vscode Plugin
 homepage: https://marketplace.visualstudio.com/items?itemName=eonova.vscode-eonova-snippets
 github: https://github.com/eonova/vscode-eonova-snippets
-date: '2025-01-22T00:00:00Z'
+dateCreated: '2025-01-22T00:00:00Z'
 techstack: ['TypeScript', '@vscode/vsce']
 selected: false
 ---

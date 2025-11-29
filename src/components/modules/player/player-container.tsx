@@ -42,10 +42,10 @@ const MusicPlayerContainer: React.FC<MusicPlayerContainerProps> = ({
     >
       <Image
         src="/images/play_needle.png"
-        className={cn('absolute z-10 origin-[20%_12%] duration-300', isPlaying ? '-rotate-35' : '-rotate-60')}
+        className={cn('absolute w-auto z-10 origin-[20%_12%] duration-300', isPlaying ? '-rotate-35' : '-rotate-60')}
         height={34}
         width={51}
-        alt=""
+        alt="play needle"
       />
       {children}
     </motion.div>

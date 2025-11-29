@@ -1,11 +1,11 @@
 'use client'
+import type { ContentType } from '~/types/content'
 import NumberFlow, { continuous } from '@number-flow/react'
-import { useQuery } from '@tanstack/react-query'
 import { Heart, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
+import { useContentCommentCount } from '~/hooks/queries/comment.query'
 import { dayjs } from '~/lib/dayjs'
 import { useTalkStore } from '~/stores/talk'
-import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
 import LikeButton from './likes'
 import TalkMdx from './mdx'
@@ -30,18 +30,13 @@ const TalkBox: React.FC<TalkBoxProps> = ({
   children,
   images = '/images/home/avatar.webp',
   name = 'Eonova',
-  time = Date.now(),
+  time = new Date(),
   likes = 0,
   setTalkId,
 }) => {
-  const trpc = useTRPC()
   const { setIsOpenCommentDialog } = useTalkStore()
 
-  const commentsCountQuery = useQuery(
-    trpc.comments.getTotalCommentCount.queryOptions({
-      slug: id ?? '',
-    }),
-  )
+  const commentsCountQuery = useContentCommentCount({ slug: id ?? '', withReplies: true }, 'talks' as ContentType)
   return (
     <li className="mt-[50px] flex flex-col gap-2 space-y-2 sm:flex-row sm:gap-4">
       <div className="flex gap-3 sm:hidden sm:w-[40px]">
@@ -104,7 +99,7 @@ const TalkBox: React.FC<TalkBoxProps> = ({
                     <NumberFlow
                       willChange
                       plugins={[continuous]}
-                      value={commentsCountQuery.data.comments}
+                      value={commentsCountQuery.data.count}
                       className="text-sm font-medium text-gray-900 dark:text-gray-100"
                     />
                   )

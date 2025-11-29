@@ -2,13 +2,12 @@
 
 import type { FC } from 'react'
 
-import { useMutation } from '@tanstack/react-query'
 import { Bot } from 'lucide-react'
 import { useEffect } from 'react'
 import { AutoResizeHeight } from '~/components/shared/auto-resize-height'
-import { useTRPC } from '~/trpc/client'
+import { useGenerateSummary } from '~/hooks/queries/ai.query'
 import { cn } from '~/utils'
-import { extractPlainTextFromMarkdown } from '~/utils/removeuseless'
+import { extractPlainTextFromMarkdown } from '~/utils/remove-useless'
 
 export interface AiSummaryProps {
   className?: string
@@ -31,7 +30,7 @@ function SummaryContainer(props: { isLoading: boolean, summary?: string, classNa
       </div>
 
       <AutoResizeHeight duration={0.3}>
-        <div className="text-base-content/85 !m-0 text-sm leading-loose">
+        <div className="text-base-content/85 m-0! text-sm leading-loose">
           {isLoading
             ? (
                 <div className="space-y-2">
@@ -50,21 +49,7 @@ function SummaryContainer(props: { isLoading: boolean, summary?: string, classNa
 }
 
 export const AISummary: FC<AiSummaryProps> = (props: any) => {
-  const trpc = useTRPC()
-  const {
-    data: aiSummary,
-    isPending,
-    mutate,
-  } = useMutation(
-    trpc.ai.generate.mutationOptions({
-      onSuccess: (data) => {
-        console.log('data', data)
-      },
-      onError: (error) => {
-        console.log('error', error)
-      },
-    }),
-  )
+  const { data: aiSummary, isPending, mutate } = useGenerateSummary()
   const content = props.data.content as string
   const slug = props.data.slug as string
 
@@ -73,7 +58,7 @@ export const AISummary: FC<AiSummaryProps> = (props: any) => {
       const handleContent = extractPlainTextFromMarkdown(content)
       mutate({ content: handleContent, slug })
     }
-  }, [props.content, props.slug, mutate])
+  }, [content, slug, mutate])
 
   // 优先展示 props.summary，其次展示 aiSummary
   let summary: string | undefined = props.summary as string | undefined

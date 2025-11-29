@@ -3,6 +3,7 @@
 import { Sidebar, SidebarContent } from '~/components/base/sidebar'
 
 import { ADMIN_SIDEBAR_LINKS } from '~/config/admin-sidebar-links'
+
 import AdminNavGroup from './admin-nav-group'
 
 function AdminSidebar() {

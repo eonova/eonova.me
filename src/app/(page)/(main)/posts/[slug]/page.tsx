@@ -4,16 +4,16 @@ import type { Article, WithContext } from 'schema-dts'
 import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
-import TableOfContents from '~/components/layouts/table-of-contents'
-import Comments from '~/components/modules/comments'
+import CommentSection from '~/components/modules/comment-section/comment-section'
 import Mdx from '~/components/modules/mdx'
+import LikeButton from '~/components/pages/posts/like-button'
+import Footer from '~/components/pages/posts/post-footer'
+import Header from '~/components/pages/posts/post-header'
+import Providers from '~/components/pages/posts/providers'
+import TableOfContents from '~/components/pages/posts/table-of-contents'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
-import { flags } from '~/lib/env'
-import Footer from './footer'
-import Header from './header'
-import LikeButton from './like-button'
-import Providers from './providers'
+import { getPostBySlug } from '~/lib/content'
 
 interface PageProps {
   params: Promise<{
@@ -31,7 +31,7 @@ export async function generateMetadata(
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
 
-  const post = allPosts.find(p => p.slug === slug)
+  const post = getPostBySlug(slug)
 
   if (!post)
     return {}
@@ -116,7 +116,6 @@ async function Page(props: Readonly<PageProps>) {
       'url': SITE_URL,
     },
   }
-
   return (
     <>
       <script
@@ -129,21 +128,19 @@ async function Page(props: Readonly<PageProps>) {
           <article className="w-full sm:px-4">
             <Mdx code={code} />
           </article>
-          <aside className="hidden w-[0] lg:ml-[-15vw] lg:block xl:ml-[-20vw]">
+          <aside className="hidden w-0 lg:ml-[-15vw] lg:block xl:ml-[-20vw]">
             <div className="sticky top-32 ml-5 lg:max-w-[200px] lg:min-w-[200px]">
               {toc.length > 0 && <TableOfContents toc={toc} />}
-              {flags.likeButton && <LikeButton className="ml-5 justify-start" slug={slug} />}
+              <LikeButton className="ml-5 justify-start" slug={slug} />
             </div>
           </aside>
         </div>
         {toc.length > 0 && <MobileTableOfContents toc={toc} />}
         <Footer />
       </Providers>
-      {flags.comment && (
-        <Suspense>
-          <Comments slug={slug} />
-        </Suspense>
-      )}
+      <Suspense>
+        <CommentSection slug={slug} />
+      </Suspense>
     </>
   )
 }

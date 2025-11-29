@@ -1,11 +1,4 @@
-import {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Table as UITable,
-} from '~/components/base/table'
+import { TableBody, TableCell, TableHead, TableHeader, TableRow, Table as UITable } from '~/components/base/table'
 
 interface TableProps {
   headers: string[]
@@ -19,16 +12,16 @@ function Table(props: TableProps) {
     <UITable className="not-prose">
       <TableHeader>
         <TableRow>
-          {headers.map((header, i) => (
-            <TableHead key={`${i}`}>{header}</TableHead>
+          {headers.map((header, index) => (
+            <TableHead key={`${index}`}>{header}</TableHead>
           ))}
         </TableRow>
       </TableHeader>
       <TableBody>
-        {rows.map((row, i) => (
-          <TableRow key={i}>
-            {row.map((cell, j) => (
-              <TableCell key={j}>{cell}</TableCell>
+        {rows.map((row, rowIndex) => (
+          <TableRow key={rowIndex}>
+            {row.map((cell, cellIndex) => (
+              <TableCell key={cellIndex}>{cell}</TableCell>
             ))}
           </TableRow>
         ))}

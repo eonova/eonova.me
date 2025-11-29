@@ -1,6 +1,6 @@
-import type { DiaConfig } from '~/utils/aurora-dia'
+import type { DiaConfig } from '~/plugins/aurora-dia'
 import { create } from 'zustand'
-import { AuroraDia } from '~/utils/aurora-dia'
+import { AuroraDia } from '~/plugins/aurora-dia'
 
 interface DiaState {
   dia: AuroraDia

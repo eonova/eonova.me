@@ -4,15 +4,14 @@ import type { Article, WithContext } from 'schema-dts'
 import { allNotes } from 'content-collections'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
-import Comments from '~/components/modules/comments'
+import CommentSection from '~/components/modules/comment-section/comment-section'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
 import TableOfContents from '~/components/pages/notes/table-of-contents'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
-import { flags } from '~/lib/env'
-import Footer from './footer'
-import Header from './header'
-import Providers from './providers'
+import Footer from '../../../../../components/pages/notes/note-footer'
+import Header from '../../../../../components/pages/notes/note-header'
+import Providers from '../../../../../components/pages/notes/providers'
 
 interface PageProps {
   params: Promise<{
@@ -138,13 +137,9 @@ async function Page(props: Readonly<PageProps>) {
         <Footer />
       </Providers>
 
-      {
-        flags.comment && (
-          <Suspense>
-            <Comments slug={slug} type="note" />
-          </Suspense>
-        )
-      }
+      <Suspense>
+        <CommentSection slug={slug} contentType="notes" />
+      </Suspense>
     </>
   )
 }

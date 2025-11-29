@@ -1,8 +1,8 @@
 import type { SidebarLink } from '~/config/admin-sidebar-links'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { SidebarMenuButton, SidebarMenuItem } from '~/components/base'
+import { Link } from '~/components/base/link'
+import { SidebarMenuButton, SidebarMenuItem } from '~/components/base/sidebar'
 
 type AdminNavLinkProps = SidebarLink
 

@@ -1,12 +1,9 @@
 'use client'
 
-import type { Node } from '~/components/base'
-import { createTreeCollection, TreeView as UITreeView } from '~/components/base'
+import type { Node } from '~/components/base/tree-view'
+import { createTreeCollection, TreeView as UITreeView } from '~/components/base/tree-view'
 
-type TreeViewProps = { collection: Node } & Omit<
-  React.ComponentProps<typeof UITreeView>,
-  'collection'
->
+type TreeViewProps = { collection: Node } & Omit<React.ComponentProps<typeof UITreeView>, 'collection'>
 
 function TreeView(props: TreeViewProps) {
   const { collection, ...rest } = props

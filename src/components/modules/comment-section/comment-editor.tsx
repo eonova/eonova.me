@@ -1,0 +1,99 @@
+import { BoldIcon, ItalicIcon, StrikethroughIcon } from 'lucide-react'
+import { Button } from '~/components/base/button'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/base/tabs'
+import { Textarea } from '~/components/base/textarea'
+import { useCommentEditor } from '~/hooks/use-comment-editor'
+
+import { cn } from '~/utils/cn'
+
+import Markdown from '../mdx/markdown'
+
+type CommentEditorProps = {
+  tabsValue?: string
+  onTabsValueChange?: (value: string) => void
+  onModEnter?: () => void
+  onEscape?: () => void
+} & React.ComponentProps<typeof Textarea>
+
+function CommentEditor(props: CommentEditorProps) {
+  const { value, tabsValue, onTabsValueChange, onModEnter, onEscape, ...rest } = props
+  const { textareaRef, handleKeyDown, handleInput, handleCompositionStart, handleCompositionEnd, decorateText }
+    = useCommentEditor({
+      onModEnter,
+      onEscape,
+    })
+
+  return (
+    <Tabs value={tabsValue} onValueChange={onTabsValueChange} defaultValue={tabsValue ?? 'write'}>
+      <TabsList>
+        <TabsTrigger value="write">写评论</TabsTrigger>
+        <TabsTrigger value="preview">预览</TabsTrigger>
+      </TabsList>
+      <TabsContent value="write">
+        <div
+          className={cn(
+            'rounded-md border border-input bg-transparent pb-1 font-mono transition-[color,box-shadow] dark:bg-input/30',
+            'focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50',
+          )}
+        >
+          <Textarea
+            rows={1}
+            value={value}
+            onKeyDown={handleKeyDown}
+            onInput={handleInput}
+            onCompositionStart={handleCompositionStart}
+            onCompositionEnd={handleCompositionEnd}
+            ref={textareaRef}
+            className="min-h-10 resize-none border-none bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
+            data-testid="comment-editor-textarea"
+            {...rest}
+          />
+          <div className="flex flex-row items-center gap-0.5 px-1.5">
+            <Button
+              aria-label="加粗"
+              variant="ghost"
+              size="icon"
+              className="size-7"
+              onClick={() => {
+                decorateText('bold')
+              }}
+            >
+              <BoldIcon />
+            </Button>
+            <Button
+              aria-label="删除线"
+              variant="ghost"
+              size="icon"
+              className="size-7"
+              onClick={() => {
+                decorateText('strikethrough')
+              }}
+            >
+              <StrikethroughIcon />
+            </Button>
+            <Button
+              aria-label="斜体"
+              variant="ghost"
+              size="icon"
+              className="size-7"
+              onClick={() => {
+                decorateText('italic')
+              }}
+            >
+              <ItalicIcon />
+            </Button>
+          </div>
+        </div>
+      </TabsContent>
+      <TabsContent value="preview" className="rounded-md border border-input px-2.5 dark:bg-input/30">
+        <Markdown>{typeof value === 'string' && value.trim() !== '' ? value : '暂无预览'}</Markdown>
+      </TabsContent>
+    </Tabs>
+  )
+}
+
+export default CommentEditor

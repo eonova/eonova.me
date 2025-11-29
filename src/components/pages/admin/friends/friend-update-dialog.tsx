@@ -1,133 +1,123 @@
 'use client'
 
-import { useMutation } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '~/components/base/button'
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
-import { toast } from '~/components/base/toaster'
+import { useUpdateFriend } from '~/hooks/queries/friend.query'
 import { useFriendDialogsStore } from '~/stores/friend'
-import { useTRPC } from '~/trpc/client'
 
-interface UpdateFriendDialogProps {
-  id: string
-}
+export default function UpdateFriendDialog() {
+  const { updateDialog, setUpdateDialogs, currentFriend } = useFriendDialogsStore()
 
-const UpdateFriendDialog: React.FC<UpdateFriendDialogProps> = ({ id }) => {
   const [name, setName] = useState('')
   const [url, setUrl] = useState('')
   const [avatar, setAvatar] = useState('')
   const [description, setDescription] = useState('')
-  const friendDialogStore = useFriendDialogsStore()
-  const trpc = useTRPC()
+  const [order, setOrder] = useState(0)
 
-  const updateMutation = useMutation(
-    trpc.friend.updateFriend.mutationOptions({
-      onSuccess: () => {
-        friendDialogStore.setAddDialogs(false)
-        toast.success('友链更新成功')
-      },
-      onError: error => toast.error(`添加失败：${error.message}`),
-      onSettled: () => trpc.friend.getAllFriends.queryOptions(),
-    }),
-  )
+  useEffect(() => {
+    if (currentFriend) {
+      setName(currentFriend.name)
+      setUrl(currentFriend.url)
+      setAvatar(currentFriend.avatar || '')
+      setDescription(currentFriend.description || '')
+      setOrder(currentFriend.order || 0)
+    }
+  }, [currentFriend])
 
-  const handleSubmit = () => {
-    updateMutation.mutate({
-      id,
+  const { mutate, isPending } = useUpdateFriend(() => {
+    setUpdateDialogs(false)
+  })
+
+  function handleUpdate() {
+    if (!currentFriend)
+      return
+    mutate({
+      id: currentFriend.id,
       name,
       url,
       avatar,
       description,
     })
-    setName('')
-    setUrl('')
-    setAvatar('')
-    setDescription('')
   }
 
   return (
-    <Dialog
-      open={friendDialogStore.addDialog}
-      onOpenChange={v => friendDialogStore.setAddDialogs(v)}
-    >
-      <DialogTrigger asChild>
-        <Button variant="outline">新增友链</Button>
-      </DialogTrigger>
-
+    <Dialog open={updateDialog} onOpenChange={setUpdateDialogs}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>添加友链</DialogTitle>
+          <DialogTitle>更新友链</DialogTitle>
         </DialogHeader>
-
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="update-name" className="text-left">
               名称
             </Label>
             <Input
-              id="name"
+              id="update-name"
               value={name}
               onChange={e => setName(e.target.value)}
               className="col-span-3"
-              required
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="url" className="text-right">
+            <Label htmlFor="update-url" className="text-left">
               链接
             </Label>
             <Input
-              id="url"
-              type="url"
+              id="update-url"
               value={url}
               onChange={e => setUrl(e.target.value)}
               className="col-span-3"
-              required
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="avatar" className="text-right">
+            <Label htmlFor="update-avatar" className="text-left">
               头像
             </Label>
             <Input
-              id="avatar"
-              type="url"
+              id="update-avatar"
               value={avatar}
               onChange={e => setAvatar(e.target.value)}
               className="col-span-3"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="avatar" className="text-right">
+            <Label htmlFor="update-description" className="text-left">
               描述
             </Label>
             <Input
-              id="description"
-              type="url"
+              id="update-description"
               value={description}
               onChange={e => setDescription(e.target.value)}
               className="col-span-3"
             />
           </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="update-order" className="text-left">
+              排序
+            </Label>
+            <Input
+              id="update-order"
+              type="number"
+              value={order}
+              onChange={e => setOrder(Number(e.target.value))}
+              className="col-span-3"
+            />
+          </div>
         </div>
-
-        <DialogFooter>
-          <Button type="button" onClick={handleSubmit}>
-            保存
+        <div className="flex justify-end">
+          <Button onClick={handleUpdate} disabled={isPending || !name || !url}>
+            {isPending ? '更新中...' : '确认更新'}
           </Button>
-        </DialogFooter>
+        </div>
       </DialogContent>
     </Dialog>
   )
 }
-
-export default UpdateFriendDialog

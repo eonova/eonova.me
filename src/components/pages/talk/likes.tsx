@@ -1,10 +1,10 @@
 'use client'
+import type { ContentType } from '~/types/content'
 import NumberFlow, { continuous } from '@number-flow/react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Heart } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { useContentLikeCount, useLikeContent } from '~/hooks/queries/like.query'
 import { useSession } from '~/lib/auth-client'
-import { useTRPC } from '~/trpc/client'
 import { cn } from '~/utils'
 
 interface LikeButtonProps {
@@ -17,7 +17,6 @@ const MAX_LIKES_PER_USER = 3
 
 function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
   const { data: session } = useSession()
-  const trpc = useTRPC()
   const [optimisticLikes, setOptimisticLikes] = useState(initialLikes)
   const [userLikes, setUserLikes] = useState(0)
 
@@ -26,44 +25,27 @@ function LikeButton({ talkId, initialLikes, className }: LikeButtonProps) {
     const storedLikes = localStorage.getItem(`talk-${talkId}-likes`)
     setUserLikes(storedLikes ? Math.min(Number(storedLikes), MAX_LIKES_PER_USER) : 0)
   }, [talkId])
-  const queryClient = useQueryClient()
+  const likeCountQuery = useContentLikeCount({ slug: talkId, contentType: 'talks' as ContentType })
+  const { mutate: likeTalk } = useLikeContent({ slug: talkId, contentType: 'talks' as ContentType })
 
-  // 点赞 mutation
-  const { mutate: incrementLike } = useMutation(
-    trpc.talks.incrementLikes.mutationOptions({
-      onMutate: async () => {
-        await trpc.talks.getAllTalks.queryOptions()
-
-        // 乐观更新直接使用最新值
-        setOptimisticLikes(prev => prev + 1)
-
-        return { previousLikes: optimisticLikes }
-      },
-      onError: (_, __, context) => {
-        // 回滚到之前的值
-        setOptimisticLikes(context?.previousLikes ?? optimisticLikes)
-      },
-      onSuccess: () => {
-        // 更新用户点赞计数
-        setUserLikes((prev) => {
-          const newValue = prev + 1
-          localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
-          return newValue
-        })
-        // 主动刷新数据
-        queryClient.invalidateQueries({
-          queryKey: trpc.talks.getAllTalks.queryKey(),
-        })
-      },
-    }),
-  )
+  useEffect(() => {
+    if (likeCountQuery.status === 'success') {
+      setOptimisticLikes(likeCountQuery.data.likes)
+    }
+  }, [likeCountQuery.status, likeCountQuery.data?.likes])
 
   const handleLike = () => {
     if (!session || userLikes >= MAX_LIKES_PER_USER)
       return
 
     // 只触发一次 mutation
-    incrementLike({ talkId })
+    likeTalk({ slug: talkId, value: 1, contentType: 'talks' as ContentType })
+    setOptimisticLikes(prev => prev + 1)
+    setUserLikes((prev) => {
+      const newValue = prev + 1
+      localStorage.setItem(`talk-${talkId}-likes`, String(newValue))
+      return newValue
+    })
   }
 
   return (

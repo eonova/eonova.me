@@ -1,137 +1,108 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
+'use client'
+
+import { useEffect, useState } from 'react'
 import { Button } from '~/components/base/button'
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
-import { toast } from '~/components/base/toaster'
+import FileUpload from '~/components/pages/album/file-upload'
+import { useUpdateAlbumImage } from '~/hooks/queries/album.query'
 import { useAlbumDialogsStore } from '~/stores/album'
-import { useTRPC } from '~/trpc/client'
 
-interface UpdateAlbumDialogProps {
-  id: string
-  imageUrl: string | null
-  description: string | null
-  height: number | null
-  width: number | null
-}
+export default function UpdateAlbumDialog() {
+  const { updateDialog, setUpdateDialogs, currentImage } = useAlbumDialogsStore()
 
-const UpdateAlbumDialog: React.FC<UpdateAlbumDialogProps> = ({
-  id,
-  imageUrl,
-  description,
-  height,
-  width,
-}) => {
-  const [updateImageUrl, setUpdateImageUrl] = useState<string>(imageUrl ?? '')
-  const [updateDescription, setUpdateDescription] = useState<string>(description ?? '')
-  const [updateHeight, setUpdateHeight] = useState<number>(height ?? 200)
-  const [updateWidth, setUpdateWidth] = useState<number>(width ?? 300)
-  const albumDialogStore = useAlbumDialogsStore()
-  const trpc = useTRPC()
-  const queryClient = useQueryClient()
+  const [imageUrl, setImageUrl] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [height, setHeight] = useState<number>(0)
+  const [width, setWidth] = useState<number>(0)
 
-  const addImageMutate = useMutation(
-    trpc.album.updateImage.mutationOptions({
-      onSuccess: async () => {
-        albumDialogStore.setUpdateDialogs(false)
-        toast.success('图片更新成功')
-        queryClient.invalidateQueries({
-          queryKey: trpc.album.getAllImages.queryKey(),
-        })
-      },
-      onError: error => toast.error(error.message),
-      onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: trpc.album.getAllImages.queryKey(),
-        })
-      },
-    }),
-  )
+  useEffect(() => {
+    if (currentImage) {
+      setImageUrl(currentImage.imageUrl)
+      setDescription(currentImage.description || '')
+      setHeight(currentImage.height || 0)
+      setWidth(currentImage.width || 0)
+    }
+  }, [currentImage])
 
-  function updateImage() {
-    addImageMutate.mutate({
-      id,
-      imageUrl: updateImageUrl,
-      description: updateDescription,
-      height: height ?? 200,
-      width: width ?? 300,
+  const { mutate, isPending } = useUpdateAlbumImage(() => {
+    setUpdateDialogs(false)
+  })
+
+  function handleUpdate() {
+    if (!currentImage)
+      return
+    mutate({
+      id: currentImage.id,
+      imageUrl,
+      description,
+      width,
+      height,
     })
   }
 
   return (
-    <Dialog
-      open={albumDialogStore.updateDialog}
-      onOpenChange={(v) => {
-        albumDialogStore.setUpdateDialogs(v)
-      }}
-    >
+    <Dialog open={updateDialog} onOpenChange={setUpdateDialogs}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>{id}</DialogDescription>
+          <DialogTitle>更新图片</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
+          <FileUpload setImageUrl={setImageUrl} imageUrl={imageUrl} />
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="update-url" className="text-left">
               图片地址
             </Label>
-            <Input
-              id="imageUrl"
-              value={updateImageUrl}
-              onChange={e => setUpdateImageUrl(e.target.value)}
-              className="col-span-3"
-            />
+            <Input id="update-url" disabled value={imageUrl} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="update-desc" className="text-left">
               图片描述
             </Label>
             <Input
-              id="username"
-              value={updateDescription}
-              onChange={e => setUpdateDescription(e.target.value)}
+              id="update-desc"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
               className="col-span-3"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="update-width" className="text-left">
               宽度
             </Label>
             <Input
-              id="width"
-              value={updateWidth}
-              onChange={e => setUpdateWidth(Number(e.target.value))}
+              id="update-width"
+              type="number"
+              value={width}
+              onChange={e => setWidth(Number(e.target.value))}
               className="col-span-3"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="update-height" className="text-left">
               高度
             </Label>
             <Input
-              id="height"
-              value={updateHeight}
-              onChange={e => setUpdateHeight(Number(e.target.value))}
+              id="update-height"
+              type="number"
+              value={height}
+              onChange={e => setHeight(Number(e.target.value))}
               className="col-span-3"
             />
           </div>
         </div>
-        <DialogFooter>
-          <Button type="submit" onClick={updateImage}>
-            保存
+        <div className="flex justify-end">
+          <Button onClick={handleUpdate} disabled={isPending || !imageUrl}>
+            {isPending ? '更新中...' : '确认更新'}
           </Button>
-        </DialogFooter>
+        </div>
       </DialogContent>
     </Dialog>
   )
 }
-
-export default UpdateAlbumDialog

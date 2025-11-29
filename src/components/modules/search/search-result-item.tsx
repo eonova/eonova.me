@@ -11,7 +11,7 @@ interface SearchResultItemProps {
     description?: string
     type: 'post' | 'note' | 'project'
     slug: string
-    date: string
+    dateCreated: string
     score: number
     url: string
     categories?: string
@@ -103,7 +103,7 @@ export function SearchResultItem({ result, query }: SearchResultItemProps) {
           <div className="text-muted-foreground flex items-center gap-4 text-xs">
             <div className="flex items-center gap-1">
               <CalendarIcon className="size-3" />
-              {formatDate(result.date)}
+              {formatDate(result.dateCreated)}
             </div>
 
             {result.techstack && result.techstack.length > 0 && (

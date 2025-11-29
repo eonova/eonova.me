@@ -4,7 +4,7 @@ import { env } from './src/lib/env'
 
 export default {
   dialect: 'postgresql',
-  schema: './src/db/schema/index.ts',
+  schema: './src/db/schemas/index.ts',
   dbCredentials: {
     url: env.DATABASE_URL,
   },

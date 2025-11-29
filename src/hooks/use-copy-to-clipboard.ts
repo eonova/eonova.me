@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { toast } from '~/components/base/toaster'
+import { toast } from 'sonner'
 
 interface CopyOptions {
   text: string
@@ -18,14 +18,14 @@ export function useCopyToClipboard(): [(options: CopyOptions) => Promise<void>, 
     try {
       await navigator.clipboard.writeText(text)
       setIsCopied(true)
-      toast.success(successMessage ?? '已复制到剪贴板！')
+      toast.success(successMessage ?? '已复制到剪贴板')
 
       setTimeout(() => {
         setIsCopied(false)
       }, timeout ?? 2000)
     }
     catch {
-      toast.error(errorMessage ?? '无法复制到剪贴板。请再试一次！')
+      toast.error(errorMessage ?? '复制到剪贴板失败')
     }
   }
 

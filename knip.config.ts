@@ -2,12 +2,13 @@ import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
   ignoreDependencies: [
+    '@types/spotify-api',
     '@tailwindcss/typography',
+    'tw-animate-css',
     'sharp',
     'tailwindcss',
     'react-email',
     'picocolors',
-    'critters',
     'execa',
   ],
   ignoreBinaries: ['only-allow'],

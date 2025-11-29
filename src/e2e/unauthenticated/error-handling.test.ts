@@ -81,7 +81,7 @@ test.describe('Error Handling and Edge Cases', () => {
 
     test('should handle API failures gracefully', async ({ page }) => {
       // Intercept API calls and make them fail
-      await page.route('**/api/trpc/**', (route) => {
+      await page.route('**/rpc/**', (route) => {
         route.fulfill({
           status: 500,
           contentType: 'application/json',

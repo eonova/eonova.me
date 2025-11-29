@@ -7,8 +7,9 @@ import { notFound } from 'next/navigation'
 import { BlurImage } from '~/components/base/blur-image'
 import Mdx from '~/components/modules/mdx'
 
+import Header from '~/components/pages/projects/header'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
-import Header from './header'
+import { getProjectBySlug } from '~/lib/content'
 
 interface PageProps {
   params: Promise<{
@@ -26,7 +27,7 @@ export async function generateMetadata(
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
 
-  const project = allProjects.find(p => p.slug === slug)
+  const project = getProjectBySlug(slug)
 
   if (!project) {
     return {}

@@ -87,7 +87,7 @@ export default function TiltedCard({
     <figure
       id="figure"
       ref={ref}
-      className="relative flex h-full w-full flex-col items-center justify-center [perspective:800px]"
+      className="relative flex h-full w-full flex-col items-center justify-center perspective-midrange"
       onMouseMove={handleMouse}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

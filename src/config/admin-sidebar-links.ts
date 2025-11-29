@@ -9,7 +9,7 @@ import {
 
 export const ADMIN_SIDEBAR_LINKS = [
   {
-    titleKey: 'general',
+    titleKey: '常规',
     links: [
       {
         titleKey: '仪表盘',

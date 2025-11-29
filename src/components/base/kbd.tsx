@@ -1,100 +1,31 @@
-import { cn } from '~/utils'
+import { cn } from '~/utils/cn'
 
-/**
- * heroui (MIT License)
- * Copyright (c) Next UI Inc.
- * Source: https://github.com/heroui-inc/heroui/blob/93f68727c1cef10d8745d22099cf27011fd4dce3/packages/components/kbd/src/utils.ts
- *
- * Modified by: eonova
- */
-type KbdKey =
-  | 'command'
-  | 'shift'
-  | 'ctrl'
-  | 'option'
-  | 'enter'
-  | 'delete'
-  | 'escape'
-  | 'tab'
-  | 'capsLock'
-  | 'up'
-  | 'right'
-  | 'down'
-  | 'left'
-  | 'pageup'
-  | 'pagedown'
-  | 'home'
-  | 'end'
-  | 'help'
-  | 'space'
-
-const kbdKeysMap: Record<KbdKey, string> = {
-  command: '⌘',
-  shift: '⇧',
-  ctrl: '⌃',
-  option: '⌥',
-  enter: '↵',
-  delete: '⌫',
-  escape: '⎋',
-  tab: '⇥',
-  capsLock: '⇪',
-  up: '↑',
-  right: '→',
-  down: '↓',
-  left: '←',
-  pageup: '⇞',
-  pagedown: '⇟',
-  home: '↖',
-  end: '↘',
-  help: '?',
-  space: '␣',
-}
-
-const kbdKeysLabelMap: Record<KbdKey, string> = {
-  command: 'Command',
-  shift: 'Shift',
-  ctrl: 'Control',
-  option: 'Option',
-  enter: 'Enter',
-  delete: 'Delete',
-  escape: 'Escape',
-  tab: 'Tab',
-  capsLock: 'Caps Lock',
-  up: 'Up',
-  right: 'Right',
-  down: 'Down',
-  left: 'Left',
-  pageup: 'Page Up',
-  pagedown: 'Page Down',
-  home: 'Home',
-  end: 'End',
-  help: 'Help',
-  space: 'Space',
-}
-
-type KbdProps = {
-  keys?: KbdKey[]
-} & React.ComponentProps<'kbd'>
+type KbdProps = React.ComponentProps<'kbd'>
 
 function Kbd(props: KbdProps) {
-  const { children, keys, className, ...rest } = props
+  const { className, ...rest } = props
 
   return (
     <kbd
+      data-slot="kbd"
       className={cn(
-        'bg-muted inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 font-mono text-sm',
+        'pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm bg-muted px-1 font-sans text-xs font-medium text-muted-foreground select-none',
+        'dark:in-data-[slot=tooltip-content]:bg-background/10',
+        'in-data-[slot=tooltip-content]:bg-background/20 in-data-[slot=tooltip-content]:text-background',
+        '[&_svg:not([class*=\'size-\'])]:size-3',
         className,
       )}
       {...rest}
-    >
-      {keys?.map(key => (
-        <abbr key={key} title={kbdKeysLabelMap[key]} className="no-underline">
-          {kbdKeysMap[key]}
-        </abbr>
-      ))}
-      {children}
-    </kbd>
+    />
   )
 }
 
-export { Kbd }
+type KbdGroupProps = React.ComponentProps<'div'>
+
+function KbdGroup(props: KbdGroupProps) {
+  const { className, ...rest } = props
+
+  return <kbd data-slot="kbd-group" className={cn('inline-flex items-center gap-1', className)} {...rest} />
+}
+
+export { Kbd, KbdGroup }

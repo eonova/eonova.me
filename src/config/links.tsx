@@ -5,9 +5,6 @@ import { SiGithub, SiInstagram, SiRss, SiX, SiYoutube } from '@icons-pack/react-
 import {
   Archive,
   BellElectric,
-  Book,
-  Cat,
-  Film,
   FlameIcon,
   Images,
   Link2,
@@ -88,29 +85,9 @@ export const HEADER_LINKS: IHeaderMenu[] = [
   },
   {
     icon: <BellElectric className="size-5" />,
-    href: '#',
+    href: '/neodb',
     key: 'recreation',
     text: '书架',
-    subMenu: [
-      {
-        icon: <Book className="size-5" />,
-        href: '/books',
-        key: 'books',
-        text: '书单',
-      },
-      {
-        icon: <Film className="size-5" />,
-        href: '/movies',
-        key: 'movies',
-        text: '观影记录',
-      },
-      {
-        icon: <Cat className="size-5" />,
-        href: '/bangumi',
-        key: 'bangumi',
-        text: '追番',
-      },
-    ],
   },
   {
     icon: <ListCollapse className="size-5" />,
@@ -216,5 +193,21 @@ export const SOCIAL_LINKS: SocialLinks = [
     href: '/rss.xml',
     title: 'RSS',
     icon: SiRss,
+  },
+]
+
+type AccountSidebarLinks = Array<{
+  href: string
+  text: string
+}>
+
+export const ACCOUNT_SIDEBAR_LINKS: AccountSidebarLinks = [
+  {
+    href: '/account',
+    text: '个人资料',
+  },
+  {
+    href: '/account/settings',
+    text: '通知设置',
   },
 ]

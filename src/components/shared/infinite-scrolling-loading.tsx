@@ -27,7 +27,7 @@ const InfiniteScrollingLoading: React.FC<InfiniteScrollingLoadingProps> = ({
           )
         : (
             status === 'success' && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-gray-500">
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-gray-500 mt-10">
                 {totalItems > 0 ? '🎉 已经到底啦 (≧▽≦) ～' : '⚠️ 暂无相关数据 (╯︵╰,)'}
               </motion.div>
             )

@@ -1,13 +1,10 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
 import { ClockIcon } from 'lucide-react'
-
-import { useTRPC } from '~/trpc/client'
+import { useWakatimeStat } from '~/hooks/queries/stat.query'
 
 function CodingHours() {
-  const trpc = useTRPC()
-  const { data, isLoading, isError } = useQuery(trpc.wakatime.get.queryOptions())
+  const { isSuccess, isLoading, isError, data } = useWakatimeStat()
 
   return (
     <div className="shadow-feature-card flex flex-col gap-6 rounded-xl p-4 lg:p-6">
@@ -16,11 +13,9 @@ function CodingHours() {
         <h2 className="text-sm">编程时间</h2>
       </div>
       <div className="flex grow items-center justify-center text-4xl font-semibold">
-        {isLoading ? '--' : null}
-        {isError ? '错误' : null}
-        {!isLoading && !isError && data ? Math.round(data.seconds / 60 / 60) : null}
-        {' '}
-        hrs
+        {isSuccess && `${2500 + data.hours} hrs`}
+        {isLoading && '--'}
+        {isError && '错误'}
       </div>
     </div>
   )

@@ -28,10 +28,9 @@ interface IRecreationCardProps {
 
 const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => {
   const date = item.publishDate ? getMinYear(item.publishDate) : '---'
-
   return (
     <motion.a
-      href={item.detailUrl}
+      href={`https://neodb.social${item.detailUrl}`}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
@@ -47,6 +46,7 @@ const RecreationCard: React.FC<IRecreationCardProps> = ({ item, className }) => 
         height={500}
         src={item.coverUrl}
         alt={item.metaInfo}
+        unoptimized
         className="during-300 h-72 w-full object-cover transition-transform will-change-transform hover:scale-103 sm:h-80"
       />
       <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-2.5 pt-4 text-sm text-white">

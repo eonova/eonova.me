@@ -1,13 +1,13 @@
 'use client'
 
 import type { Project } from 'content-collections'
-import { allProjects } from 'content-collections'
 import { ArrowUpRightIcon, LightbulbIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import Link from 'next/link'
 import { useRef } from 'react'
 import { BlurImage } from '~/components/base/blur-image'
 import { buttonVariants } from '~/components/base/button'
+import { getSelectedProjects } from '~/lib/content'
 import { cn } from '~/utils'
 
 const variants = {
@@ -28,8 +28,7 @@ interface CardProps {
 function SelectedProjects() {
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
-  const filteredProjects = allProjects.filter(project => project.selected)
-
+  const filteredProjects = getSelectedProjects()
   return (
     <motion.div
       initial="initial"

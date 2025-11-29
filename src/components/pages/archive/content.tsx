@@ -22,7 +22,7 @@ const ArchiveContent: React.FC<ArchiveContentProps> = ({ articlesByYear }) => {
                       <BottomToUpTransitionView
                         as="h4"
                         delay={700}
-                        className="before:content-auto before:bg-accent relative mb-4 ml-3 rounded-md text-lg font-medium before:absolute before:inset-y-[4px] before:-left-3 before:w-[2px]"
+                        className="before:content-auto before:bg-accent relative mb-4 ml-3 rounded-md text-lg font-medium before:absolute before:inset-y-1 before:-left-3 before:w-0.5"
                       >
                         {year}
                       </BottomToUpTransitionView>

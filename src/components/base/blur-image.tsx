@@ -1,6 +1,3 @@
-/**
- * Adapted from: https://github.com/delbaoliveira/website/blob/59e6f181ad75751342ceaa8931db4cbcef86b018/ui/BlurImage.tsx
- */
 'use client'
 
 import NextImage from 'next/image'
@@ -64,7 +61,7 @@ function BlurImage(props: ImageProps) {
         {...rest}
       />
       {blurGlass && (
-        <div className="absolute right-0 bottom-0 h-[60%] w-full bg-gradient-to-t from-black/70" />
+        <div className="absolute right-0 bottom-0 h-[60%] w-full bg-linear-to-t from-black/70" />
       )}
       {hasError && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">

@@ -1,7 +1,7 @@
 /** 定义合法的播放列表URL前缀 */
-type PlaylistUrlPrefix =
-  | 'https://y.qq.com/n/ryqq/playlist/'
-  | 'https://music.163.com/#/playlist?id='
+type PlaylistUrlPrefix
+  = | 'https://y.qq.com/n/ryqq/playlist/'
+    | 'https://music.163.com/#/playlist?id='
 
 export interface MusicPlaylist {
   title: string

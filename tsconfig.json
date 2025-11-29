@@ -22,7 +22,7 @@
         "./*"
       ],
       "@eonova/mdx-plugins": [
-        "./src/plugins"
+        "./src/plugins/mdx"
       ],
       "content-collections": [
         "./.content-collections/generated"
@@ -68,7 +68,7 @@
   ],
   "exclude": [
     "node_modules",
-    ".next/types/*.ts",
+    ".next/types/*",
     "test-results"
   ]
 }

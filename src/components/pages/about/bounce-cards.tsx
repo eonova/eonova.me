@@ -66,7 +66,7 @@ export default function BounceCards({
           ref={(el) => {
             cardRefs.current[idx] = el
           }}
-          className="bounce-card card absolute aspect-square w-[120px] overflow-hidden rounded-[15px] border-4 border-white shadow-md shadow-gray-200 sm:w-[200px] sm:rounded-[30px] sm:border-8 dark:border-gray-700/60 dark:shadow-white/20"
+          className="bounce-card card absolute aspect-square w-[120px] overflow-hidden rounded-[15px] border-4 border-white shadow-md shadow-gray-200 sm:2-[190px] xl:w-[210px] sm:rounded-[30px] sm:border-8 dark:border-gray-700/60 dark:shadow-white/20"
         >
           <Image
             className="h-full w-full object-cover"

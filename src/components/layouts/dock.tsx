@@ -1,11 +1,11 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
 import { ArrowUp, MessageCircle, Music, PlayCircle, StopCircle } from 'lucide-react'
 import { motion } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useTRPC } from '~/trpc/client'
+
+import { usePlaylistSongs } from '~/hooks/queries/music.query'
 import { cn } from '~/utils'
 import MusicPlayer from './music-player'
 
@@ -21,8 +21,7 @@ const Dock: React.FC<DockProps> = ({ className }) => {
   const pathname = usePathname()
 
   // 音乐数据获取
-  const trpc = useTRPC()
-  const { data: songs } = useQuery(trpc.music.getPlaylistSongs.queryOptions())
+  const { data: playlistSongs } = usePlaylistSongs()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -128,11 +127,10 @@ const Dock: React.FC<DockProps> = ({ className }) => {
       </motion.ul>
       <MusicPlayer
         onClose={() => {
-          console.log('触发')
           setPlayerIsVisible(false)
         }}
         isVisible={isPlayerVisible}
-        songs={songs}
+        songs={playlistSongs}
       />
     </>
   )

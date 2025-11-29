@@ -1,7 +1,7 @@
 import type { Talk } from './box'
 import { Suspense } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/base'
-import Comments from '~/components/modules/comments/comments'
+import Comments from '~/components/modules/comment-section/comment-section'
 import { useTalkStore } from '~/stores/talk'
 import { cn } from '~/utils'
 
@@ -19,7 +19,7 @@ const CommentModal: React.FC<CommentDialogProps> = ({
   const { setIsOpenCommentDialog } = useTalkStore()
   return (
     <Dialog modal={false} open={isVisible} onOpenChange={setIsOpenCommentDialog}>
-      <DialogContent className={cn('max-h-[70vh] bg-background/80 !max-w-5xl overflow-x-hidden overflow-y-auto backdrop-blur-[10px] md:w-[550px] lg:w-[600px] xl:w-[800px]', className)}>
+      <DialogContent className={cn('max-h-[70vh] bg-background/80 max-w-5xl! overflow-x-hidden overflow-y-auto backdrop-blur-[10px] md:w-[550px] lg:w-[600px] xl:w-[800px]', className)}>
         <DialogHeader>
           <DialogTitle>评论</DialogTitle>
         </DialogHeader>
@@ -28,7 +28,7 @@ const CommentModal: React.FC<CommentDialogProps> = ({
             {talk.content}
           </div>
           <Suspense>
-            <Comments slug={talk.id} type="talk" />
+            <Comments slug={talk.id} contentType="talks" />
           </Suspense>
         </div>
       </DialogContent>

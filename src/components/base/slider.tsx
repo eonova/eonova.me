@@ -1,23 +1,27 @@
-import * as SliderPrimitive from '@radix-ui/react-slider'
+import { Slider as SliderPrimitive } from 'radix-ui'
 import { useMemo } from 'react'
+
 import { cn } from '~/utils/cn'
 
 type SliderProps = React.ComponentProps<typeof SliderPrimitive.Root>
 
 function Slider(props: SliderProps) {
   const { className, defaultValue, value, min = 0, max = 100, ...rest } = props
+  const _values = useMemo(() => {
+    let result: number[] // or appropriate type depending on your data
 
-  const getInitialValues = () => {
     if (Array.isArray(value)) {
-      return value
+      result = value
     }
-    if (Array.isArray(defaultValue)) {
-      return defaultValue
+    else if (Array.isArray(defaultValue)) {
+      result = defaultValue
     }
-    return [min, max]
-  }
+    else {
+      result = [min, max]
+    }
 
-  const _values = useMemo(getInitialValues, [value, defaultValue, min, max])
+    return result
+  }, [value, defaultValue, min, max])
 
   return (
     <SliderPrimitive.Root
@@ -28,7 +32,7 @@ function Slider(props: SliderProps) {
       max={max}
       className={cn(
         'relative flex w-full touch-none items-center select-none',
-        'data-[disabled]:opacity-50',
+        'data-disabled:opacity-50',
         'data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col',
         className,
       )}
@@ -37,7 +41,7 @@ function Slider(props: SliderProps) {
       <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
-          'bg-muted relative grow overflow-hidden rounded-full',
+          'relative grow overflow-hidden rounded-full bg-muted',
           'data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full',
           'data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5',
         )}
@@ -45,7 +49,7 @@ function Slider(props: SliderProps) {
         <SliderPrimitive.Range
           data-slot="slider-range"
           className={cn(
-            'bg-primary absolute',
+            'absolute bg-primary',
             'data-[orientation=horizontal]:h-full',
             'data-[orientation=vertical]:w-full',
           )}
@@ -56,7 +60,7 @@ function Slider(props: SliderProps) {
           data-slot="slider-thumb"
           key={index}
           className={cn(
-            'border-primary bg-background ring-ring/50 transition-color transition-box-shadow block size-4 shrink-0 rounded-full border shadow-sm',
+            'block size-4 shrink-0 rounded-full border border-primary bg-white shadow-sm ring-ring/50 transition-[color,box-shadow]',
             'hover:ring-4',
             'focus-visible:ring-4 focus-visible:outline-hidden',
             'disabled:pointer-events-none disabled:opacity-50',

@@ -22,16 +22,17 @@ function Dia({ className }: DiaProps) {
   const eyesRef = useRef<HTMLDivElement>(null)
 
   // Mock theme configuration since we don't have the app store
+  // https://photokit.com/colors/color-gradient/?lang=zh
   const themeConfig = theme === 'dark'
     ? {
-        header_gradient_css: 'linear-gradient(to bottom, #201C35, #482411)',
+        header_gradient_css: 'linear-gradient(135deg, #201C35, #2d212f, #3a2629, #472b22, #54301c)',
         gradient: {
           color_2: '#25b0cc',
           color_3: '#3f60de',
         },
       }
     : {
-        header_gradient_css: 'linear-gradient(to bottom, #CDBBDB, #F0BAA9)',
+        header_gradient_css: 'linear-gradient(135deg, #8290c9, #9a9db3, #b2ab9c,  #cab886)',
         gradient: {
           color_2: '#25b0cc',
           color_3: '#3f60de',

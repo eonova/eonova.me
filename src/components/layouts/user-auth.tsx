@@ -1,6 +1,6 @@
 'use client'
 
-import { LogOutIcon, UserIcon } from 'lucide-react'
+import { LogOutIcon, Settings, UserIcon } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/base/avatar'
 import { Button } from '~/components/base/button'
 import {
@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '~/components/base/dropdown-menu'
 import { Skeleton } from '~/components/base/skeleton'
-import { signOut, useSession } from '~/lib/auth-client'
+import { authClient, useSession } from '~/lib/auth-client'
 import { useDialogsStore } from '~/stores/dialogs'
 import { getDefaultImage } from '~/utils'
 
@@ -21,7 +21,7 @@ function UserAuth() {
   const dialogStore = useDialogsStore()
 
   const handleSignOut = async () => {
-    await signOut({
+    await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
           window.location.reload()
@@ -48,7 +48,7 @@ function UserAuth() {
     )
   }
 
-  const { id, image, name, email } = session.user
+  const { id, image, name, email, role } = session.user
   const defaultImage = getDefaultImage(id)
 
   return (
@@ -77,10 +77,23 @@ function UserAuth() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        {
+          role === 'admin' && (
+            <>
+              <DropdownMenuItem className="cursor-pointer" asChild>
+                <a href="/admin" className="flex items-center gap-2">
+                  <UserIcon className="size-4" />
+                  管理后台
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+            </>
+          )
+        }
         <DropdownMenuItem className="cursor-pointer" asChild>
-          <a href="/admin" className="flex items-center gap-2">
-            <UserIcon className="size-4" />
-            管理后台
+          <a href="/account" className="flex items-center gap-2">
+            <Settings className="size-4" />
+            账号设置
           </a>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

@@ -1,6 +1,6 @@
-import eonova from '@eonova/eslint-config'
+import antfu from '@antfu/eslint-config'
 
-export default eonova({
+export default antfu({
   react: true,
   typescript: true,
   stylistic: true,
@@ -25,5 +25,12 @@ export default eonova({
     'ts/no-redeclare': 'off',
     'ts/ban-ts-comment': 'off',
     'no-irregular-whitespace': 'off',
+    'react-hooks/preserve-manual-memoization': 'off',
+    'react-hooks/set-state-in-effect': 'off',
+    'react-hooks-extra/no-direct-set-state-in-use-effect': 'off',
+    'react/prefer-use-state-lazy-initialization': 'off',
+    'react-hooks/immutability': 'off',
+    'react-hooks/static-components': 'off',
+    'react-hooks/incompatible-library': 'off',
   },
 })
