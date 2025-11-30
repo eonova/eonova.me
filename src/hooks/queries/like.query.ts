@@ -20,7 +20,6 @@ export function useLikeContent(input: Inputs[ContentType]['likes']['count']) {
         await queryClient.cancelQueries({ queryKey })
 
         const previousData = queryClient.getQueryData<ContentLikeCountOutput>(queryKey)
-
         if (previousData) {
           queryClient.setQueryData<ContentLikeCountOutput>(queryKey, {
             ...previousData,

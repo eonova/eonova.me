@@ -86,6 +86,10 @@
   right: 25%;
 }
 
+.Aurora-Dia--eyes.moving > .Aurora-Dia--eye {
+  animation: none;
+}
+
 .Aurora-Dia--platform {
   position: relative;
   top: 0;
@@ -98,7 +102,6 @@
   animation: jump-pulse 3s linear infinite;
   opacity: 60%;
 }
-
 
 #Aurora-Dia--tips-wrapper {
   position: absolute;

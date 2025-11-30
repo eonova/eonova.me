@@ -8,9 +8,7 @@ import { talks } from './talks'
 export const contentLikes = pgTable(
   'content_likes',
   {
-    contentId: text('content_id')
-      .notNull()
-      .references(() => posts.slug, { onDelete: 'cascade' }),
+    contentId: text('content_id').notNull(),
     anonKey: text('anon_key').notNull(),
     likeCount: integer('like_count').notNull().default(0),
     createdAt: timestamp('created_at')

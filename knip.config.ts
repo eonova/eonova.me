@@ -4,6 +4,7 @@ const config: KnipConfig = {
   ignoreDependencies: [
     '@types/spotify-api',
     '@tailwindcss/typography',
+    '@react-email/preview-server',
     'tw-animate-css',
     'sharp',
     'tailwindcss',

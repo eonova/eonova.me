@@ -144,6 +144,7 @@
     "@eslint-react/eslint-plugin": "catalog:lint",
     "@next/bundle-analyzer": "catalog:analysis",
     "@playwright/test": "catalog:test",
+    "@react-email/preview-server": "catalog:ui",
     "@tailwindcss/postcss": "catalog:ui",
     "@tailwindcss/typography": "catalog:ui",
     "@tanstack/react-query-devtools": "catalog:backend",

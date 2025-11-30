@@ -1,8 +1,8 @@
-interface VideoCardProps extends React.IframeHTMLAttributes<HTMLIFrameElement> {
+interface IframeCardProps extends React.IframeHTMLAttributes<HTMLIFrameElement> {
   aspectRatio?: string
 }
 
-const VideoCard: React.FC<VideoCardProps> = ({
+const IframeCard: React.FC<IframeCardProps> = ({
   aspectRatio = '16/9',
   style,
   title = '视频播放器',
@@ -42,4 +42,4 @@ const VideoCard: React.FC<VideoCardProps> = ({
   )
 }
 
-export default VideoCard
+export default IframeCard

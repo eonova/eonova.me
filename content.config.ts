@@ -112,6 +112,7 @@ const posts = defineCollection({
     modifiedTime: z.string(),
     summary: z.string(),
     cover: z.string(),
+    content: z.string(),
   }),
   transform,
 })
@@ -127,6 +128,7 @@ const notes = defineCollection({
     mood: z.string(),
     weather: z.string(),
     cover: z.string(),
+    content: z.string(),
   }),
   transform,
 })
@@ -143,6 +145,7 @@ const projects = defineCollection({
     techstack: z.array(z.string()),
     selected: z.boolean().optional().default(false),
     dateCreated: z.string(),
+    content: z.string(),
   }),
   transform,
 })
@@ -151,7 +154,9 @@ const pages = defineCollection({
   name: 'Page',
   directory: './data/pages',
   include: '**/*.md',
-  schema: z.object({}),
+  schema: z.object({
+    content: z.string(),
+  }),
   transform,
 })
 

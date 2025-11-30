@@ -43,7 +43,7 @@ export const incrementView = publicProcedure
     const { contentType } = input
     const typeDB = getContentDB(contentType)
     const val = contentType === 'talks'
-      ? { content: input.slug }
+      ? { id: input.slug }
       : contentType === 'notes'
         ? { title: input.slug }
         : { slug: input.slug }

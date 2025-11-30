@@ -1,9 +1,10 @@
 import { ORPCError } from '@orpc/client'
-import { and, contentLikes, eq, posts, sql } from '~/db'
+import { and, contentLikes, eq, sql } from '~/db'
 
 import { getAnonKey } from '~/utils/get-anon-key'
-import { getIp } from '~/utils/get-ip'
+import { getContent, getContentDB } from '~/utils/get-content-db'
 
+import { getIp } from '~/utils/get-ip'
 import { cache } from '../cache'
 import { publicProcedure } from '../root'
 import {
@@ -36,9 +37,9 @@ export const countLike = publicProcedure
     }
 
     // Fetch missing data from DB
-    const [[post], [user]] = await Promise.all([
+    const [[content], [user]] = await Promise.all([
       cachedLikes === null
-        ? context.db.select({ likes: posts.likes }).from(posts).where(eq(posts.slug, input.slug))
+        ? context.db.select({ likes: getContentDB(contentType).likes }).from(getContentDB(contentType)).where(eq(getContent(contentType), input.slug))
         : Promise.resolve([null]),
       cachedUserLikes === null
         ? context.db
@@ -48,13 +49,13 @@ export const countLike = publicProcedure
         : Promise.resolve([null]),
     ])
 
-    if (cachedLikes === null && !post) {
+    if (cachedLikes === null && !content) {
       throw new ORPCError('NOT_FOUND', {
         message: 'Content not found',
       })
     }
 
-    const likes = cachedLikes ?? post!.likes
+    const likes = cachedLikes ?? content!.likes
     const currentUserLikes = cachedUserLikes ?? user?.likeCount ?? 0
 
     // Cache any missing values
@@ -83,11 +84,14 @@ export const incrementLike = publicProcedure
 
     const [content, currentUserLikes] = await context.db.transaction(async (tx) => {
       // Validate content existence first
-      const [existingContent] = await tx.select({ contentId: contentLikes.contentId }).from(contentLikes).where(eq(contentLikes.contentId, input.slug))
+      const typeDB = getContentDB(contentType)
+      const contentIdColumn = getContent(contentType)
+
+      const [existingContent] = await tx.select({ contentId: contentIdColumn }).from(typeDB).where(eq(contentIdColumn, input.slug))
 
       if (!existingContent) {
         throw new ORPCError('NOT_FOUND', {
-          message: 'Content not found',
+          message: `${contentType} not found`,
         })
       }
 
@@ -150,19 +154,18 @@ export const incrementLike = publicProcedure
         userLikes = inserted
       }
 
-      // Update the post's total like count
-      const [postResult] = await tx
-        .update(posts)
-        .set({ likes: sql`${posts.likes} + ${input.value}` })
-        .where(eq(posts.slug, input.slug))
+      // Update the content's total like count
+      const [contentResult] = await tx
+        .update(typeDB)
+        .set({ likes: sql`${typeDB.likes} + ${input.value}` })
+        .where(eq(contentIdColumn, input.slug))
         .returning()
-
-      return [postResult, userLikes]
+      return [contentResult, userLikes]
     })
 
     if (!content || !currentUserLikes) {
       throw new ORPCError('INTERNAL_SERVER_ERROR', {
-        message: 'Failed to increment like',
+        message: `Failed to increment like`,
       })
     }
 

@@ -7,7 +7,7 @@ export function getContent(contentType: 'posts' | 'notes' | 'talks') {
     case 'notes':
       return notes.title
     case 'talks':
-      return talks.content
+      return talks.id
   }
 }
 

@@ -1,12 +1,13 @@
 'use client'
 
 import { HomeIcon } from 'lucide-react'
-import router from 'next/router'
+import { useRouter } from 'next/navigation'
 import { Button } from '~/components/base/button'
 import { SidebarTrigger } from '~/components/base/sidebar'
 import ThemeSwitcher from '~/components/layouts/theme-switcher'
 
 function AdminHeader() {
+  const router = useRouter()
   const goToHome = () => {
     router.push('/')
   }
