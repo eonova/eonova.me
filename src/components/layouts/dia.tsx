@@ -79,7 +79,7 @@ function Dia({ className }: DiaProps) {
 
   return (
     <>
-      <div id="bot-container" className={cn('fixed z-[1000] left-[20px] bottom-0', className)}>
+      <div id="bot-container" className={cn('hidden sm:block fixed z-[1000] left-[20px] bottom-0', className)}>
         <div id="Aurora-Dia--body" style={cssVariables}>
           <div id="Aurora-Dia--tips-wrapper">
             <div id="Aurora-Dia--tips" className="Aurora-Dia--tips">早上好呀～</div>

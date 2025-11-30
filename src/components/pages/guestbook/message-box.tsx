@@ -55,7 +55,7 @@ function MessageBox(props: Readonly<FormProps>) {
   return (
     <div className="flex gap-3">
       <Avatar>
-        <AvatarImage src={user.image ?? defaultImage} alt={user.name} className="size-10" />
+        <AvatarImage src={user.image ?? defaultImage} alt={user.name} className="size-8" />
         <AvatarFallback className="bg-transparent">
           <Skeleton className="size-10 rounded-full" />
         </AvatarFallback>

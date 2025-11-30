@@ -23,6 +23,7 @@ const TalkMdx = memo((props: MarkdownProps) => {
         },
         disableParsingRawHTML: false,
         wrapper: Fragment,
+        tagfilter: false,
       }}
     >
       {children}
