@@ -56,6 +56,7 @@ function UserAuth() {
           variant="ghost"
           className="flex size-8 cursor-pointer items-center justify-center rounded-full p-0 duration-200 sm:size-9"
           data-testid="user-auth-button"
+          aria-label="user-auth-button"
         >
           <UserIcon className="size-5 sm:size-4" />
         </Button>

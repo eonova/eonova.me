@@ -142,18 +142,18 @@ export const FOOTER_LINKS = [
       { href: '/posts', key: '文章' },
       { href: '/notes', key: '手记' },
       { href: '/album', key: '相册' },
-      { href: '/bangumi', key: '追番' },
-      { href: '/movies', key: '观影记录' },
+      { href: '/neodb', key: '书架' },
+      { href: '/talk', key: '说说' },
     ],
   },
   {
     id: 2,
     links: [
-      { href: '/books', key: '书单' },
+      { href: '/archive', key: '归档' },
       { href: '/project', key: '项目' },
+      { href: '/links', key: '收藏' },
+      { href: '/guestbook', key: '留言' },
       { href: '/about', key: '关于' },
-      { href: '/links', key: '收藏夹' },
-      { href: '/guestbook', key: '留言板' },
     ],
   },
   {

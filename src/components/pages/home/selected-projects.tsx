@@ -110,7 +110,7 @@ function Card(props: CardProps) {
       </div>
       <BlurImage
         width={600}
-        height={450}
+        height={342}
         src={`/images/projects/${slug}.png`}
         alt={description}
         className="rounded-lg"
