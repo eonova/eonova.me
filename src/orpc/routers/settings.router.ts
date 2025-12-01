@@ -1,13 +1,17 @@
 import { createId } from '@paralleldrive/cuid2'
 import { eq, settings } from '~/db'
 
-import { protectedProcedure } from '../root'
+import { protectedProcedure, publicProcedure } from '../root'
 import { emptyOutputSchema } from '../schemas/common.schema'
 import { getSettingsOutputSchema, updateSettingsInputSchema } from '../schemas/settings.schema'
 
-export const getSettings = protectedProcedure
+export const getSettings = publicProcedure
   .output(getSettingsOutputSchema)
   .handler(async ({ context }) => {
+    if (!context.session?.user) {
+      return { diaEnabled: true }
+    }
+
     const result = await context.db.query.settings.findFirst({
       where: eq(settings.userId, context.session.user.id),
     })
