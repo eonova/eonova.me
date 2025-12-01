@@ -2,6 +2,7 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { AboutPage, WithContext } from 'schema-dts'
 import dynamic from 'next/dynamic'
 import Bento from '~/components/pages/about/bento'
+import { Donate } from '~/components/shared/donate'
 import PageTitle from '~/components/shared/page-title'
 import { BOUNCE_IMAGES } from '~/config/about-profiles'
 import {
@@ -82,6 +83,9 @@ async function Page() {
         ]}
       />
       <Bento />
+      <div className="mt-16 flex justify-center">
+        <Donate />
+      </div>
     </>
   )
 }

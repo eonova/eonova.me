@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from '~/components/base/button'
 import {
   Dialog,
@@ -19,7 +20,6 @@ export default function AddFriendDialog({ open, onOpenChange }: { open?: boolean
   const [url, setUrl] = useState('')
   const [avatar, setAvatar] = useState('')
   const [description, setDescription] = useState('')
-  const [order, setOrder] = useState(0)
 
   const { addDialog, setAddDialogs } = useFriendDialogsStore()
 
@@ -31,12 +31,12 @@ export default function AddFriendDialog({ open, onOpenChange }: { open?: boolean
     setUrl('')
     setAvatar('')
     setDescription('')
-    setOrder(0)
   }
 
   const { mutate, isPending } = useCreateFriend(() => {
     setOpen(false)
     reset()
+    toast.success('提交成功，请等待管理员审核')
   })
 
   function handleAdd() {
@@ -103,18 +103,6 @@ export default function AddFriendDialog({ open, onOpenChange }: { open?: boolean
               id="description"
               value={description}
               onChange={e => setDescription(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="order" className="text-left">
-              排序
-            </Label>
-            <Input
-              id="order"
-              type="number"
-              value={order}
-              onChange={e => setOrder(Number(e.target.value))}
               className="col-span-3"
             />
           </div>

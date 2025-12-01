@@ -5,15 +5,17 @@ import { Card } from '~/components/base/card'
 import { Label } from '~/components/base/label'
 import { Skeleton } from '~/components/base/skeleton'
 import { Switch } from '~/components/base/switch'
+import { useSettings, useUpdateSettings } from '~/hooks/queries/settings.query'
 
 import { useReplyPrefs, useUpdateReplyPrefs } from '~/hooks/queries/unsubscribe.query'
 
 function Settings() {
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-semibold">通知设置</h2>
-      <Card className="p-4 sm:p-6">
+      <h2 className="text-lg font-semibold">其他设置</h2>
+      <Card className="p-4 sm:p-6 space-y-6">
         <ReplyNotificationSettings />
+        <DiaSettings />
       </Card>
     </div>
   )
@@ -40,6 +42,31 @@ function ReplyNotificationSettings() {
       {isLoading && <Skeleton className="h-6 w-10" />}
       {isError && <p className="text-sm">加载失败</p>}
       {isSuccess && <Switch checked={data.isEnabled} onCheckedChange={handleUpdatePrefs} disabled={isUpdating} />}
+    </div>
+  )
+}
+
+function DiaSettings() {
+  const { data, isLoading, isError } = useSettings()
+  const { mutate: updateSettings, isPending: isUpdating } = useUpdateSettings(() => {
+    toast.success('设置已保存')
+  })
+
+  const handleUpdate = (checked: boolean) => {
+    if (isUpdating)
+      return
+    updateSettings({ diaEnabled: checked })
+  }
+
+  return (
+    <div className="flex items-center justify-between">
+      <div className="space-y-0.5">
+        <Label className="text-base">Dia 机器人</Label>
+        <p className="text-muted-foreground">是否启用 Dia 机器人</p>
+      </div>
+      {isLoading && <Skeleton className="h-6 w-10" />}
+      {isError && <p className="text-sm">加载失败</p>}
+      {data && <Switch checked={data.diaEnabled} onCheckedChange={handleUpdate} disabled={isUpdating} />}
     </div>
   )
 }

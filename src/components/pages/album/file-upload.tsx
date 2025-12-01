@@ -61,7 +61,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ imageUrl, className, setImageUr
     <>
       {imageUrl
         ? (
-            <Image src={imageUrl} alt="image" width={100} height={100} />
+            <Image unoptimized src={imageUrl} alt="image" width={100} height={100} />
           )
         : (
             <Input

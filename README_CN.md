@@ -102,5 +102,5 @@ pnpm bundle-analyzer
 ## ☕️ 请我喝咖啡
 
 <div align="center">
-  <img src="./public//images/admire.jpg" alt="赞赏码" width="70%"/>
+  <img src="./public//images/wechat-pay.jpg" alt="赞赏码" width="70%"/>
 </div>

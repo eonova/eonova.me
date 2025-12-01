@@ -46,10 +46,11 @@ function Dia({ className }: DiaProps) {
   } as React.CSSProperties), [themeConfig])
 
   const initializeBot = () => {
-    // Mock aurora_bot_enable as true since we don't have app store
-    const aurora_bot_enable = true
-    if (!aurora_bot_enable)
+    const aurora_bot_enable = diaStore.aurora_bot.enable
+    if (!aurora_bot_enable) {
+      setShowDia(false)
       return
+    }
 
     diaStore.initializeBot({
       tips: diaStore.aurora_bot.tips,
@@ -61,7 +62,7 @@ function Dia({ className }: DiaProps) {
 
   useEffect(() => {
     initializeBot()
-  }, [])
+  }, [diaStore.aurora_bot.enable])
 
   // 添加 useEffect 来在 DOM 渲染后激活眼球运动
   useEffect(() => {
@@ -79,7 +80,7 @@ function Dia({ className }: DiaProps) {
 
   return (
     <>
-      <div id="bot-container" className={cn('hidden sm:block fixed z-[1000] left-[20px] bottom-0', className)}>
+      <div id="bot-container" className={cn('hidden sm:block fixed z-10 left-[20px] bottom-0', className)}>
         <div id="Aurora-Dia--body" style={cssVariables}>
           <div id="Aurora-Dia--tips-wrapper">
             <div id="Aurora-Dia--tips" className="Aurora-Dia--tips">早上好呀～</div>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from '~/components/base/button'
 import {
   Dialog,
@@ -10,6 +11,7 @@ import {
 } from '~/components/base/dialog'
 import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
+import { Switch } from '~/components/base/switch'
 import { useUpdateFriend } from '~/hooks/queries/friend.query'
 import { useFriendDialogsStore } from '~/stores/friend'
 
@@ -21,6 +23,7 @@ export default function UpdateFriendDialog() {
   const [avatar, setAvatar] = useState('')
   const [description, setDescription] = useState('')
   const [order, setOrder] = useState(0)
+  const [active, setActive] = useState(false)
 
   useEffect(() => {
     if (currentFriend) {
@@ -29,11 +32,13 @@ export default function UpdateFriendDialog() {
       setAvatar(currentFriend.avatar || '')
       setDescription(currentFriend.description || '')
       setOrder(currentFriend.order || 0)
+      setActive(currentFriend.active || false)
     }
   }, [currentFriend])
 
   const { mutate, isPending } = useUpdateFriend(() => {
     setUpdateDialogs(false)
+    toast.success('更新成功')
   })
 
   function handleUpdate() {
@@ -45,6 +50,7 @@ export default function UpdateFriendDialog() {
       url,
       avatar,
       description,
+      active,
     })
   }
 
@@ -110,6 +116,21 @@ export default function UpdateFriendDialog() {
               onChange={e => setOrder(Number(e.target.value))}
               className="col-span-3"
             />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="update-active" className="text-left">
+              审核状态
+            </Label>
+            <div className="col-span-3 flex items-center space-x-2">
+              <Switch
+                id="update-active"
+                checked={active}
+                onCheckedChange={setActive}
+              />
+              <Label htmlFor="update-active" className="cursor-pointer text-sm font-normal text-gray-500">
+                {active ? '已通过' : '待审核'}
+              </Label>
+            </div>
           </div>
         </div>
         <div className="flex justify-end">

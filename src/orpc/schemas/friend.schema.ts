@@ -23,4 +23,5 @@ export const updateFriendInputSchema = z.object({
   url: z.string().url('请输入有效的URL'),
   avatar: z.string().url('请输入有效的头像URL').optional(),
   description: z.string().optional(),
+  active: z.boolean().optional(),
 })

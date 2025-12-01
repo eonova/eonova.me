@@ -103,5 +103,5 @@ pnpm bundle-analyzer
 ## ☕️ Buy me a coffee
 
 <div align="center">
-  <img src="./public//images/admire.jpg" alt="Admire" width="70%"/>
+  <img src="./public//images/wechat-pay.jpg" alt="Admire" width="70%"/>
 </div>

@@ -24,6 +24,7 @@ import { likesStats as likePostStats, viewsStats as viewPostStats } from './post
 import { getAvatarUploadUrl } from './r2.router'
 import { countReplies } from './reply.router'
 import { getSearchSuggestions, searchContent } from './search.router'
+import { getSettings, updateSettings } from './settings.router'
 import { spotifyStats } from './spotify.router'
 import { createTalk, deleteTalk, likesStats as likeTalkStats, listAllTalks, updateTalk, viewsStats as viewTalkStats } from './talk.router'
 import { getReplyPrefs, updateCommentReplyPrefs, updateReplyPrefs } from './unsubscribe.router'
@@ -169,6 +170,10 @@ export const router = {
     getReplyPrefs,
     updateReplyPrefs,
     updateCommentReplyPrefs,
+  },
+  settings: {
+    get: getSettings,
+    update: updateSettings,
   },
   friends: {
     listAllFriends,

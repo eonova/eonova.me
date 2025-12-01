@@ -48,6 +48,7 @@ export const columns: ColumnDef<AlbumImage>[] = [
       return (
         <div className="h-20 w-24 relative">
           <Image
+            unoptimized
             src={image.imageUrl}
             alt="Preview"
             fill

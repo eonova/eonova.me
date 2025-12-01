@@ -1,6 +1,6 @@
 import { createId } from '@paralleldrive/cuid2'
 import { sql } from 'drizzle-orm'
-import { index, integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+import { boolean, index, integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const friends = pgTable('friends', {
   id: text('id').primaryKey().$defaultFn(createId),
@@ -9,6 +9,7 @@ export const friends = pgTable('friends', {
   avatar: text('avatar'),
   description: text('description'),
   order: integer('order').default(0),
+  active: boolean('active').default(false).notNull(),
   createdAt: timestamp('created_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP(3)`),
