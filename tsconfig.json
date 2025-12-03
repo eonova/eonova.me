@@ -60,7 +60,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.tsx",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
     "eslint.config.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts",
@@ -68,7 +69,6 @@
   ],
   "exclude": [
     "node_modules",
-    ".next/types/*",
     "test-results"
   ]
 }
