@@ -97,6 +97,6 @@ jobs:
         uses: ./.github/actions/setup
 
       - run: pnpm install -g @lhci/cli@0.15.x
-      - run: pnpm next build
+      - run: pnpm build
       - run: lhci autorun --config=./.github/lighthouserc.yml
 
