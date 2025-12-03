@@ -186,9 +186,6 @@ catalogs:
     vaul:
       specifier: ^1.1.2
       version: 1.1.2
-    zustand:
-      specifier: ^5.0.9
-      version: 5.0.9
   lint:
     '@antfu/eslint-config':
       specifier: ^6.2.0
@@ -676,7 +673,7 @@ importers:
         specifier: catalog:prod
         version: 4.1.13
       zustand:
-        specifier: catalog:frontend
+        specifier: ^5.0.9
         version: 5.0.9(@types/react@19.2.2)(react@19.2.0)(use-sync-external-store@1.6.0(react@19.2.0))
     devDependencies:
       '@antfu/eslint-config':

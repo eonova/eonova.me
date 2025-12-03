@@ -131,7 +131,8 @@
     "unist-util-visit": "catalog:mdx",
     "vaul": "catalog:frontend",
     "yet-another-react-lightbox": "catalog:ui",
-    "zod": "catalog:prod"
+    "zod": "catalog:prod",
+    "zustand": "catalog:frontend"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:lint",
