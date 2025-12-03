@@ -1,7 +1,7 @@
 import type { Post } from 'content-collections'
 import Link from 'next/link'
 import { BottomToUpTransitionView } from '~/components/modules/transition/bottom-to-top'
-import NonFound from '~/components/shared/non-found'
+import NonFound from '~/components/shared/not-found'
 import TimelineList from '~/components/shared/timeline-list'
 
 interface CategoriesContentProps {

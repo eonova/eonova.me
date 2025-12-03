@@ -2,7 +2,7 @@
 'use client'
 import { useState } from 'react'
 import { buttonVariants } from '~/components/base/button'
-import NonFound from '~/components/shared/non-found'
+import NonFound from '~/components/shared/not-found'
 import { useAlbumImages } from '~/hooks/queries/album.query'
 import { cn } from '~/utils'
 import Lightbox from './lightbox'

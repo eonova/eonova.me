@@ -9,7 +9,7 @@ const IntroSix = dynamic(() => import('~/components/pages/about/bento/intro-six'
 const IntroThree = dynamic(() => import('~/components/pages/about/bento/intro-three'))
 const IntroTwo = dynamic(() => import('~/components/pages/about/bento/intro-two'))
 const VelocityScroll = dynamic(() =>
-  import('~/components/pages/about/scrollbasedvelocity').then(mod => mod.VelocityScroll),
+  import('~/components/pages/about/scroll-based-velocity').then(mod => mod.VelocityScroll),
 )
 
 const Bento: React.FC<BentoProps> = () => {
