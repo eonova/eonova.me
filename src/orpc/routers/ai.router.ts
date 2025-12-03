@@ -7,7 +7,7 @@ import { AIAbstractInputSchema } from '../schemas/ai.schema'
 
 const openai = new OpenAI({
   baseURL: 'https://api.deepseek.com',
-  apiKey: env.DEEPSEEK_API_KEY,
+  apiKey: env.DEEPSEEK_API_KEY ?? '',
 })
 
 export const generate = publicProcedure
