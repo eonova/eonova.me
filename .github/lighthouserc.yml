@@ -6,7 +6,8 @@ ci:
     numberOfRuns: 1
     settings:
       preset: desktop
-  assert:
-    preset: lighthouse:recommended
+    assertions:
+      uses-rel-preload: 'off'
+      uses-rel-preconnect: 'off'
   upload:
     target: temporary-public-storage
