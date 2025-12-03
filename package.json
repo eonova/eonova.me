@@ -26,7 +26,7 @@
     "db:seed": "pnpm with-env tsx ./src/db/seed.ts",
     "db:reset": "pnpm with-env tsx ./src/db/reset.ts",
     "db:studio": "pnpm with-env drizzle-kit studio",
-    "with-env": "dotenv -e .env.production --",
+    "with-env": "dotenv -e .env.local --",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --max-warnings 0 --fix",
     "format": "prettier --write . --config prettier.config.ts",

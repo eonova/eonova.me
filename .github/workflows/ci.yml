@@ -19,7 +19,6 @@ env:
   BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
   GITHUB_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
   GITHUB_CLIENT_SECRET: ${{ secrets.GH_CLIENT_SECRET }}
-  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
   tests:
@@ -98,6 +97,6 @@ jobs:
         uses: ./.github/actions/setup
 
       - run: pnpm install -g @lhci/cli@0.15.x
-      - run: pnpm build
+      - run: next build
       - run: lhci autorun --config=./.github/lighthouserc.yml
 
