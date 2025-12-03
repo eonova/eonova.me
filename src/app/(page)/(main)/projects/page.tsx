@@ -37,6 +37,8 @@ export async function generateMetadata(_: unknown, parent: ResolvingMetadata): P
   }
 }
 
+export const dynamic = 'force-static'
+
 async function Page() {
   const projects = getLatestProjects()
 

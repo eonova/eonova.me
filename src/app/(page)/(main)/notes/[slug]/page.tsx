@@ -4,6 +4,7 @@ import type { Article, WithContext } from 'schema-dts'
 import { allNotes } from 'content-collections'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import { Skeleton } from '~/components/base/skeleton'
 import CommentSection from '~/components/modules/comment-section/comment-section'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
 import TableOfContents from '~/components/pages/notes/table-of-contents'
@@ -81,6 +82,12 @@ export async function generateMetadata(
   }
 }
 
+export const dynamic = 'force-static'
+
+export function generateStaticParams() {
+  return allNotes.map(n => ({ slug: n.slug }))
+}
+
 async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 
@@ -137,7 +144,7 @@ async function Page(props: Readonly<PageProps>) {
         <Footer />
       </Providers>
 
-      <Suspense>
+      <Suspense fallback={<div className="mt-8"><Skeleton className="h-24 w-full" /></div>}>
         <CommentSection slug={slug} contentType="notes" />
       </Suspense>
     </>

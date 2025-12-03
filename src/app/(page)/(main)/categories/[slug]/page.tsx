@@ -76,6 +76,12 @@ export async function generateMetadata(
   }
 }
 
+export const dynamic = 'force-static'
+
+export function generateStaticParams() {
+  return CATEGORIES.map(i => ({ slug: i.label }))
+}
+
 async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 

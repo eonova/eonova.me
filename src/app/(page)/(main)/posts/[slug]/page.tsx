@@ -4,6 +4,7 @@ import type { Article, WithContext } from 'schema-dts'
 import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import { Skeleton } from '~/components/base/skeleton'
 import CommentSection from '~/components/modules/comment-section/comment-section'
 import Mdx from '~/components/modules/mdx'
 import LikeButton from '~/components/pages/posts/like-button'
@@ -83,6 +84,12 @@ export async function generateMetadata(
   }
 }
 
+export const dynamic = 'force-static'
+
+export function generateStaticParams() {
+  return allPosts.map(p => ({ slug: p.slug }))
+}
+
 async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 
@@ -138,7 +145,7 @@ async function Page(props: Readonly<PageProps>) {
         {toc.length > 0 && <MobileTableOfContents toc={toc} />}
         <Footer />
       </Providers>
-      <Suspense>
+      <Suspense fallback={<div className="mt-8"><Skeleton className="h-24 w-full" /></div>}>
         <CommentSection slug={slug} />
       </Suspense>
     </>

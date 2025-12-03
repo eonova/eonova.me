@@ -73,6 +73,12 @@ export async function generateMetadata(
   }
 }
 
+export const dynamic = 'force-static'
+
+export function generateStaticParams() {
+  return allProjects.map(p => ({ slug: p.slug }))
+}
+
 async function Page(props: PageProps) {
   const { slug } = await props.params
 

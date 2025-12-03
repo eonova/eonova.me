@@ -34,6 +34,8 @@ export async function generateMetadata(_props: any, parent: ResolvingMetadata): 
   }
 }
 
+export const dynamic = 'force-static'
+
 async function Page() {
   const notes = allNotes.toSorted((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime()

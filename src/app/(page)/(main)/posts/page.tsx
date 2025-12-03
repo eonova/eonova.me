@@ -37,6 +37,8 @@ export async function generateMetadata(
   }
 }
 
+export const dynamic = 'force-static'
+
 async function Page() {
   const posts = getLatestPosts()
 
