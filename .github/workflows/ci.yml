@@ -5,61 +5,102 @@ on:
     branches:
       - main
   pull_request:
-    branches:
-      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+env:
+  NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  IP_ADDRESS_SALT: ${{ secrets.IP_ADDRESS_SALT }}
+  BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+  GITHUB_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
+  GITHUB_CLIENT_SECRET: ${{ secrets.GH_CLIENT_SECRET }}
 
 jobs:
-  lint:
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
-    strategy:
-      matrix:
-        node_version: [22.x]
-        os: [ubuntu-latest, windows-latest]
-      fail-fast: false
-
+  tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - name: Checkout branch
+        uses: actions/checkout@v4
 
-      - name: Set node version to ${{ matrix.node_version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node_version }}
-          cache: pnpm
-
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
-      - name: Lint
-        run: pnpm lint
-
-      - name: CSpell
-        run: pnpm check:spelling
-
-      - name: MDX Build
-        run: pnpm build:mdx
-
-      - name: Build
-        run: pnpm build
-
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Knip
-        run: pnpm check:knip
-
-      - name: Unit Test
+      - name: Run unit tests
         run: pnpm test:unit
 
-  lighthouse:
-    runs-on: macos-latest
-    needs: lint
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Lighthouse
-        uses: foo-software/lighthouse-check-action@master
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Configure environment
+        uses: ./.github/actions/setup
+
+      - name: Run ESLint
+        run: pnpm lint
+
+  types:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Configure environment
+        uses: ./.github/actions/setup
+
+      - name: Run type check
+        run: pnpm typecheck
+
+  spelling:
+    name: Spelling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Configure environment
+        uses: ./.github/actions/setup
+
+      - name: Run spelling check
+        run: pnpm check:spelling
+
+  knip:
+    name: Knip
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Configure environment
+        uses: ./.github/actions/setup
+
+      - name: Run Knip
+        run: pnpm check:knip
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+
+      - name: Configure environment
+        uses: ./.github/actions/setup
+
         with:
-          urls: 'https://eonova.me'
-          device: 'all'
+          node-version: 22.x
+
+      - run: pnpm install && pnpm install -g @lhci/cli@0.15.x
+      - run: pnpm build
+      - run: lhci autorun
 
