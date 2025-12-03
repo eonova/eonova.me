@@ -90,17 +90,12 @@ jobs:
     name: Lighthouse
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - name: Checkout branch
+        uses: actions/checkout@v4
 
       - name: Configure environment
         uses: ./.github/actions/setup
 
-        with:
-          node-version: 22.x
-
       - run: pnpm install -g @lhci/cli@0.15.x
-      - run: pnpm build
       - run: lhci autorun --config=./.github/lighthouserc.yml
 
