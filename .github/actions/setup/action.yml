@@ -22,3 +22,7 @@ runs:
     - name: Build MDX
       shell: bash
       run: pnpm build:mdx
+
+    - name: Generate Next.js route types
+      shell: bash
+      run: pnpm typegen

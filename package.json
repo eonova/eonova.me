@@ -13,6 +13,7 @@
     "dev": "pnpm with-env next dev --turbo -p 3000",
     "build": "pnpm with-env next build",
     "build:mdx": "content-collections build --config ./content.config.ts",
+    "typegen": "next typegen",
     "bundle-analyzer": "cross-env ANALYZE=true pnpm run build",
     "clean": "rm -rf .next .content-collections test-results playwright-report",
     "check:knip": "pnpm with-env knip",
