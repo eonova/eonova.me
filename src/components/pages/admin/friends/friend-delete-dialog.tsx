@@ -10,10 +10,10 @@ import {
   DialogTitle,
 } from '~/components/base/dialog'
 import { useDeleteFriend } from '~/hooks/queries/friend.query'
-import { useFriendDialogsStore } from '~/stores/friend'
+import { useFriendDialogs } from '~/hooks/use-friend-dialogs'
 
 export default function DeleteFriendDialog() {
-  const { deleteDialog, setDeleteDialogs, currentFriend } = useFriendDialogsStore()
+  const { deleteDialog, setDeleteDialogs, currentFriend } = useFriendDialogs()
 
   const { mutate, isPending } = useDeleteFriend(() => {
     setDeleteDialogs(false)

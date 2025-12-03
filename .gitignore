@@ -58,3 +58,6 @@ public/workbox-*.js
 public/swe-worker-*.js
 
 .env.local
+
+#IDE
+.trae/

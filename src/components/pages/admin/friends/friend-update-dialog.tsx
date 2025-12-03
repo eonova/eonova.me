@@ -13,10 +13,10 @@ import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
 import { Switch } from '~/components/base/switch'
 import { useUpdateFriend } from '~/hooks/queries/friend.query'
-import { useFriendDialogsStore } from '~/stores/friend'
+import { useFriendDialogs } from '~/hooks/use-friend-dialogs'
 
 export default function UpdateFriendDialog() {
-  const { updateDialog, setUpdateDialogs, currentFriend } = useFriendDialogsStore()
+  const { updateDialog, setUpdateDialogs, currentFriend } = useFriendDialogs()
 
   const [name, setName] = useState('')
   const [url, setUrl] = useState('')

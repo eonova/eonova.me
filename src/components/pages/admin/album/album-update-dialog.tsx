@@ -12,10 +12,10 @@ import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
 import FileUpload from '~/components/pages/album/file-upload'
 import { useUpdateAlbumImage } from '~/hooks/queries/album.query'
-import { useAlbumDialogsStore } from '~/stores/album'
+import { useAlbumDialogs } from '~/hooks/use-album-dialogs'
 
 export default function UpdateAlbumDialog() {
-  const { updateDialog, setUpdateDialogs, currentImage } = useAlbumDialogsStore()
+  const { updateDialog, setUpdateDialogs, currentImage } = useAlbumDialogs()
 
   const [imageUrl, setImageUrl] = useState<string>('')
   const [description, setDescription] = useState<string>('')

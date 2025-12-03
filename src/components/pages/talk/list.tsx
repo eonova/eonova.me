@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TalkSkeleton } from '~/components/modules/skeleton/talk-skeleton'
 import { useTalks } from '~/hooks/queries/talks.query'
-import { useTalkStore } from '~/stores/talk'
+import { useTalk } from '~/hooks/use-talk'
 import InfiniteScrollingLoading from '../../shared/infinite-scrolling-loading'
 import TalkBox from './box'
 import CommentDialog from './comment-modal'
@@ -44,7 +44,7 @@ const TalkList: React.FC<TalkListProps> = () => {
     exit: { opacity: 0, scale: 0.5 },
   }
 
-  const { isOpenCommentDialog } = useTalkStore()
+  const { isOpenCommentDialog } = useTalk()
   const [currentTalk, setCurrentTalk] = useState<Talk>()
 
   return (

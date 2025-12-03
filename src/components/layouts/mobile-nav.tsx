@@ -2,7 +2,7 @@
 
 import { MenuIcon } from 'lucide-react'
 import { Button } from '~/components/base'
-import { useNav } from '~/stores/nav'
+import { useNav } from '~/hooks/use-nav'
 
 function MobileNav() {
   const navStore = useNav()

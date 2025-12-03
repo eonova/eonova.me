@@ -13,7 +13,7 @@ import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
 import FileUpload from '~/components/pages/album/file-upload'
 import { useAddAlbumImage } from '~/hooks/queries/album.query'
-import { useAlbumDialogsStore } from '~/stores/album'
+import { useAlbumDialogs } from '~/hooks/use-album-dialogs'
 
 export default function AddAlbumDialog() {
   const [imageUrl, setImageUrl] = useState<string>('')
@@ -21,7 +21,7 @@ export default function AddAlbumDialog() {
   const [height, setHeight] = useState<number>(200)
   const [width, setWidth] = useState<number>(300)
 
-  const { addDialog, setAddDialogs } = useAlbumDialogsStore()
+  const { addDialog, setAddDialogs } = useAlbumDialogs()
 
   const { mutate, isPending } = useAddAlbumImage(() => {
     setAddDialogs(false)

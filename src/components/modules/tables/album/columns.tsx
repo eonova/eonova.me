@@ -6,12 +6,12 @@ import type { ListAllAlbumOutput } from '~/orpc/routers'
 import Image from 'next/image'
 import { Button } from '~/components/base/button'
 import FormattedDateCell from '~/components/modules/tables/formatted-date-cell'
-import { useAlbumDialogsStore } from '~/stores/album'
+import { useAlbumDialogs } from '~/hooks/use-album-dialogs'
 
 export type AlbumImage = ListAllAlbumOutput['album'][number]
 
 function AlbumActions({ row }: { row: AlbumImage }) {
-  const { setUpdateDialogs, setCurrentImage, setDeleteDialogs } = useAlbumDialogsStore()
+  const { setUpdateDialogs, setCurrentImage, setDeleteDialogs } = useAlbumDialogs()
 
   return (
     <div className="flex items-center gap-2">

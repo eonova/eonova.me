@@ -6,12 +6,12 @@ import type { ListAllFriendsOutput } from '~/orpc/routers'
 import { toast } from 'sonner'
 import { Button } from '~/components/base/button'
 import { useUpdateFriend } from '~/hooks/queries/friend.query'
-import { useFriendDialogsStore } from '~/stores/friend'
+import { useFriendDialogs } from '~/hooks/use-friend-dialogs'
 
 export type Friend = ListAllFriendsOutput['friends'][number]
 
 function FriendActions({ row }: { row: Friend }) {
-  const { setUpdateDialogs, setCurrentFriend, setDeleteDialogs } = useFriendDialogsStore()
+  const { setUpdateDialogs, setCurrentFriend, setDeleteDialogs } = useFriendDialogs()
   const { mutate: updateFriend } = useUpdateFriend(() => {
     toast.success('更新成功')
   })

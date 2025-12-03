@@ -2,7 +2,7 @@ import type { Talk } from './box'
 import { Suspense } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/base'
 import Comments from '~/components/modules/comment-section/comment-section'
-import { useTalkStore } from '~/stores/talk'
+import { useTalk } from '~/hooks/use-talk'
 import { cn } from '~/utils'
 
 interface CommentDialogProps {
@@ -16,7 +16,7 @@ const CommentModal: React.FC<CommentDialogProps> = ({
   talk,
   isVisible,
 }) => {
-  const { setIsOpenCommentDialog } = useTalkStore()
+  const { setIsOpenCommentDialog } = useTalk()
   return (
     <Dialog modal={false} open={isVisible} onOpenChange={setIsOpenCommentDialog}>
       <DialogContent className={cn('max-h-[70vh] bg-background/80 max-w-5xl! overflow-x-hidden overflow-y-auto backdrop-blur-[10px] md:w-[550px] lg:w-[600px] xl:w-[800px]', className)}>

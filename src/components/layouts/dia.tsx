@@ -3,7 +3,7 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useDiaStore } from '~/stores/dia'
+import { useDia } from '~/hooks/use-dia'
 import { cn } from '~/utils/cn'
 import '~/styles/page/dia.css'
 
@@ -12,7 +12,7 @@ interface DiaProps {
 }
 
 function Dia({ className }: DiaProps) {
-  const diaStore = useDiaStore()
+  const diaStore = useDia()
   const [showDia, setShowDia] = useState(false)
   const { theme } = useTheme()
 
@@ -67,7 +67,7 @@ function Dia({ className }: DiaProps) {
   // 添加 useEffect 来在 DOM 渲染后激活眼球运动
   useEffect(() => {
     if (showDia && leftEyeRef.current && rightEyeRef.current && eyesRef.current) {
-      useDiaStore.getState().activateMotion(
+      diaStore.activateMotion(
         leftEyeRef.current,
         rightEyeRef.current,
         eyesRef.current,

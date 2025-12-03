@@ -4,8 +4,8 @@ import NumberFlow, { continuous } from '@number-flow/react'
 import { Heart, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 import { useContentCommentCount } from '~/hooks/queries/comment.query'
+import { useTalk } from '~/hooks/use-talk'
 import { dayjs } from '~/lib/dayjs'
-import { useTalkStore } from '~/stores/talk'
 import { cn } from '~/utils'
 import LikeButton from './likes'
 import TalkMdx from './mdx'
@@ -34,7 +34,7 @@ const TalkBox: React.FC<TalkBoxProps> = ({
   likes = 0,
   setTalkId,
 }) => {
-  const { setIsOpenCommentDialog } = useTalkStore()
+  const { setIsOpenCommentDialog } = useTalk()
 
   const commentsCountQuery = useContentCommentCount({ slug: id ?? '', withReplies: true }, 'talks' as ContentType)
   return (

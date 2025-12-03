@@ -7,7 +7,7 @@ import { useEffect } from 'react' // 引入 useEffect
 import { Sheet, SheetContent, SheetTitle, VisuallyHidden } from '~/components/base'
 import { Separator } from '~/components/base/separator'
 import { HEADER_LINKS } from '~/config/links'
-import { useNav } from '~/stores/nav'
+import { useNav } from '~/hooks/use-nav'
 import { cn } from '~/utils'
 
 function MobileNavAside() {

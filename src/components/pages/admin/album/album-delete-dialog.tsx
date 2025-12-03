@@ -10,10 +10,10 @@ import {
   DialogTitle,
 } from '~/components/base/dialog'
 import { useDeleteAlbumImage } from '~/hooks/queries/album.query'
-import { useAlbumDialogsStore } from '~/stores/album'
+import { useAlbumDialogs } from '~/hooks/use-album-dialogs'
 
 export default function DeleteAlbumDialog() {
-  const { deleteDialog, setDeleteDialogs, currentImage } = useAlbumDialogsStore()
+  const { deleteDialog, setDeleteDialogs, currentImage } = useAlbumDialogs()
 
   const { mutate, isPending } = useDeleteAlbumImage(() => {
     setDeleteDialogs(false)
