@@ -100,7 +100,6 @@ jobs:
         with:
           node-version: 22.x
 
-      - run: pnpm install && pnpm install -g @lhci/cli@0.15.x
-      - run: pnpm build
+      - run: pnpm install -g @lhci/cli@0.15.x
       - run: lhci autorun
 
