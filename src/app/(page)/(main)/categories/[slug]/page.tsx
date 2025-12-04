@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 
 import { allPosts } from 'content-collections'
@@ -13,65 +13,25 @@ import { CATEGORIES } from '~/config/posts'
 interface PageProps {
   params: Promise<{
     slug: string
-    locale: string
   }>
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
 export async function generateMetadata(
   props: Readonly<PageProps>,
-  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await props.params
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
 
-  const post = allPosts.find(p => p.slug === slug)
+  const category = CATEGORIES.find(i => i.label === slug)
+  if (!category)
+    notFound()
 
-  if (!post)
-    return {}
-
-  const { date, modifiedTime, title, summary } = post
-
-  const ISOPublishedTime = new Date(date).toISOString()
-  const ISOModifiedTime = new Date(modifiedTime).toISOString()
   const url = `/categories/${slug}`
+
   return createMetadata({
     pathname: url,
-    title,
-    description: summary,
-    openGraph: {
-      ...previousOpenGraph,
-      url,
-      type: 'article',
-      title,
-      description: summary,
-      publishedTime: ISOPublishedTime,
-      modifiedTime: ISOModifiedTime,
-      authors: SITE_URL,
-      images: [
-        {
-          url: `/og/${slug}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-          type: 'image/png',
-        },
-      ],
-    },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description: summary,
-      images: [
-        {
-          url: `/og/${slug}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
+    title: `分类 - ${category.name}`,
+    description: category.name,
   })
 }
 

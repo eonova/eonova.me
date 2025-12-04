@@ -15,7 +15,6 @@ export function getPathnames(options: GetPathnamesOptions = {}) {
     '/posts',
     '/guestbook',
     '/projects',
-    '/dashboard',
     '/links',
     '/neodb',
     '/about',
