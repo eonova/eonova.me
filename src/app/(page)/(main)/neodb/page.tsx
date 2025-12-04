@@ -14,9 +14,6 @@ export async function generateMetadata(): Promise<Metadata> {
     pathname: '/neodb',
     title,
     description,
-    openGraph: {
-      type: 'profile',
-    },
   })
 }
 

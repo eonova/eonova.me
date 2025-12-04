@@ -17,9 +17,6 @@ export async function generateMetadata(): Promise<Metadata> {
     pathname: '/links',
     title,
     description,
-    openGraph: {
-      type: 'profile',
-    },
   })
 }
 

@@ -1,43 +1,40 @@
 import { allNotes, allPosts } from 'content-collections'
 import { NextResponse } from 'next/server'
 import RSS from 'rss'
+import { MY_NAME, SITE_DESCRIPTION, SITE_NAME } from '~/config/constants'
+import { getBaseUrl } from '~/utils'
 
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '~/config/constants'
+export const dynamic = 'force-static'
 
-export function GET() {
+export async function GET(_request: Request) {
+  const baseUrl = getBaseUrl()
   const feed = new RSS({
-    title: SITE_TITLE,
+    title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    site_url: SITE_URL,
-    feed_url: `${SITE_URL}/rss.xml`,
-    language: 'en-US',
-    image_url: `${SITE_URL}/images/home/avatar.webp`,
+    site_url: baseUrl,
+    feed_url: `${baseUrl}/rss.xml`,
+    language: 'en',
+    image_url: `${baseUrl}/og/image.webp`,
+    copyright: `© ${new Date().getFullYear()} ${MY_NAME}. All rights reserved.`,
+    webMaster: 'me@nelsonlai.dev',
   })
-
-  const posts = allPosts
-  const notes = allNotes
-
-  for (const post of posts) {
-    const { title, summary, date, slug } = post
-
+  for (const post of allPosts) {
     feed.item({
-      title,
-      url: `${SITE_URL}/posts/${slug}`,
-      date,
-      description: summary ?? '',
-      author: SITE_NAME,
+      title: post.title,
+      url: `${baseUrl}/posts/${post.slug}`,
+      date: post.date,
+      description: post.summary,
+      author: MY_NAME,
     })
   }
 
-  for (const note of notes) {
-    const { title, date, slug, summary } = note
-
+  for (const note of allNotes) {
     feed.item({
-      title,
-      url: `${SITE_URL}/notes/${slug}`,
-      date,
-      description: summary ?? '',
-      author: SITE_NAME,
+      title: note.title,
+      url: `${baseUrl}/notes/${note.slug}`,
+      date: note.date,
+      description: note.summary ?? '',
+      author: MY_NAME,
     })
   }
 

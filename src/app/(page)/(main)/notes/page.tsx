@@ -17,9 +17,6 @@ export async function generateMetadata(): Promise<Metadata> {
     pathname: url,
     title,
     description,
-    openGraph: {
-      type: 'article',
-    },
   })
 }
 export const dynamic = 'force-static'
