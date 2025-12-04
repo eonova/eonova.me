@@ -12,6 +12,7 @@ const description = '条款和条件'
 
 export async function generateMetadata(): Promise<Metadata> {
   return createMetadata({
+    pathname: '/terms',
     title,
     description,
   })
