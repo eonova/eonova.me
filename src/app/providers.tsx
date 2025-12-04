@@ -4,9 +4,11 @@ import dynamic from 'next/dynamic'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster } from '~/components/base/sonner'
 import { TooltipProvider } from '~/components/base/tooltip'
+import Dia from '~/components/layouts/dia'
 import { PHProvider } from '~/components/layouts/posthog-provider'
 import { MusicToast } from '~/components/shared/music-toast'
 import PageProgress from '~/components/shared/page-progress'
+import { DiaProvider } from '~/hooks/use-dia'
 import { ORPCQueryProvider } from '~/orpc/tanstack-query/client'
 
 const SmoothScroll = dynamic(
@@ -35,16 +37,19 @@ function Providers(props: ProvidesProps) {
             disableTransitionOnChange
           >
             <TooltipProvider>
-              <SmoothScroll>{children}</SmoothScroll>
-              <MusicToast />
-              <Toaster
-                toastOptions={{
-                  duration: 2500,
-                }}
-                visibleToasts={5}
-                expand
-              />
-              <PageProgress />
+              <DiaProvider>
+                <SmoothScroll>{children}</SmoothScroll>
+                <Dia />
+                <MusicToast />
+                <Toaster
+                  toastOptions={{
+                    duration: 2500,
+                  }}
+                  visibleToasts={5}
+                  expand
+                />
+                <PageProgress />
+              </DiaProvider>
             </TooltipProvider>
           </ThemeProvider>
         </NuqsAdapter>
