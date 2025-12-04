@@ -1688,13 +1688,13 @@ dGRhdGU6dGltZXN0YW1wADIwMjUtMDQtMTRUMTg6MTI6MTErMDA6MDCzCLS7AAAAAElFTkSuQmCC"
   )
 }
 
-function Logo({ className }: { className?: string }) {
+function Logo({ className, style }: { className?: string, style?: React.CSSProperties }) {
   return (
-    <div className={cn('flex flex-col gap-4 md:flex-row', className)}>
-      <div className="flex h-52 w-full items-center justify-center rounded-lg bg-white">
+    <div className={cn('flex flex-col gap-4 md:flex-row', className)} style={{ display: 'flex', ...style }}>
+      <div className="flex h-52 w-full items-center justify-center rounded-lg bg-white" style={{ display: 'flex' }}>
         <SvgLogo className="text-black" width={48} height={48} />
       </div>
-      <div className="flex h-52 w-full items-center justify-center rounded-lg bg-black">
+      <div className="flex h-52 w-full items-center justify-center rounded-lg bg-black" style={{ display: 'flex' }}>
         <SvgLogo className="text-white" width={48} height={48} />
       </div>
     </div>

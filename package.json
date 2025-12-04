@@ -163,6 +163,7 @@
     "@vitejs/plugin-react": "catalog:build",
     "@vitest/coverage-v8": "catalog:test",
     "@vitest/ui": "catalog:test",
+    "critters": "^0.0.25",
     "discord-api-types": "catalog:types",
     "dotenv-cli": "catalog:script",
     "drizzle-kit": "catalog:script",

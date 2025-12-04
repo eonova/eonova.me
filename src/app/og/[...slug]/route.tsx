@@ -12,13 +12,15 @@ import { getPathnames } from '~/utils/get-pathnames'
 
 interface OGRouteProps {
   params: Promise<{
-    id: string
+    slug: string[]
   }>
 }
 export async function GET(_request: Request, props: OGRouteProps) {
   const { params } = props
-  const { id } = await params
-  const normalizedSlug = id.split('/')
+  const { slug } = await params
+
+  // Filter out image.webp if it exists
+  const normalizedSlug = slug.filter(s => s !== 'image.webp')
   const pathname = `/${normalizedSlug.join('/')}`
 
   if (pathname === '/') {
@@ -57,7 +59,7 @@ async function generateBlogOGImage(slugs: string[]) {
   if (!post)
     notFound()
 
-  return generateOGImage(post.title, '/blog')
+  return generateOGImage(post.title, '/posts')
 }
 
 async function generatePageOGImage(slugs: string[], pathname: string) {
