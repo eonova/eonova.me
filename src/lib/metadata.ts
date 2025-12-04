@@ -19,7 +19,7 @@ export function createMetadata(options: Options): Metadata {
   const baseUrl = getBaseUrl()
 
   const resolvedTitle = root ? title : `${title} | ${SITE_NAME}`
-  const resolvedOGImageUrl = pathname ? `/og${pathname}/image.webp` : '/og/image.webp'
+  const resolvedOGImageUrl = '/og'
 
   const currentUrl = `${baseUrl}${resolvedOGImageUrl}`
 
