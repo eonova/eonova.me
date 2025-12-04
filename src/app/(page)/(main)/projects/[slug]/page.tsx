@@ -10,8 +10,8 @@ import Mdx from '~/components/modules/mdx'
 import Header from '~/components/pages/projects/header'
 import JsonLd from '~/components/shared/json-ld'
 import { MY_NAME, SITE_URL } from '~/config/constants'
-import { createMetadata } from '~/config/metadata'
 import { getProjectBySlug } from '~/lib/content'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
 interface PageProps {

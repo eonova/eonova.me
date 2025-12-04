@@ -11,15 +11,14 @@ type Options = {
   pathname?: string
   title: string
   description: string
-  locale: string
 } & Partial<Metadata>
 
 export function createMetadata(options: Options): Metadata {
-  const { root = false, pathname, title, description, locale, ...rest } = options
+  const { root = false, pathname, title, description, ...rest } = options
   const baseUrl = getBaseUrl()
 
   const resolvedTitle = root ? title : `${title} | ${SITE_NAME}`
-  const resolvedOGImageUrl = '/og'
+  const resolvedOGImageUrl = pathname ? `/og${pathname}/image.webp` : '/og/image.webp'
 
   const currentUrl = `${baseUrl}${resolvedOGImageUrl}`
 
@@ -54,7 +53,6 @@ export function createMetadata(options: Options): Metadata {
         url: currentUrl,
         siteName: MY_NAME,
         type: 'website',
-        locale,
         images: [
           {
             url: resolvedOGImageUrl,

@@ -13,7 +13,7 @@ import Providers from '~/components/pages/notes/providers'
 import TableOfContents from '~/components/pages/notes/table-of-contents'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 
 interface PageProps {
   params: Promise<{

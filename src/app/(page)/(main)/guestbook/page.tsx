@@ -5,7 +5,7 @@ import MessageBoard from '~/components/pages/guestbook/message-board'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { MY_NAME } from '~/config/constants'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
 const title = '留言板'

@@ -3,7 +3,7 @@ import type { WebPage, WithContext } from 'schema-dts'
 import NeoDBContent from '~/components/pages/neodb/content'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
 const title = '书影番'

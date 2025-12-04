@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import Settings from '~/components/layouts/settings'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = '设置'

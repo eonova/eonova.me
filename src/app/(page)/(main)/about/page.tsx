@@ -14,7 +14,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
 const BounceCards = dynamic(() => import('~/components/pages/about/bounce-cards'))

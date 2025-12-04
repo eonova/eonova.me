@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation'
 
 import PageHeader from '~/components/layouts/page-header'
 import Mdx from '~/components/modules/mdx'
-import { createMetadata } from '~/config/metadata'
 import { getPageBySlug } from '~/lib/content'
+import { createMetadata } from '~/lib/metadata'
 
 const title = '隐私政策'
 const description = '隐私政策和条款'

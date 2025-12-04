@@ -3,7 +3,7 @@ import type { WebPage, WithContext } from 'schema-dts'
 import FriendsList from '~/components/pages/friends/friends-list'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
 const title = '友链'

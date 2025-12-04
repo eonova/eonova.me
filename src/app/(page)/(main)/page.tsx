@@ -7,7 +7,7 @@ import LatestNews from '~/components/pages/home/latest-news'
 import SelectedProjects from '~/components/pages/home/selected-projects'
 import JsonLd from '~/components/shared/json-ld'
 import { MY_NAME, SITE_DESCRIPTION, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_NAME, SITE_X_URL, SITE_YOUTUBE_URL } from '~/config/constants'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
 export async function generateMetadata(): Promise<Metadata> {

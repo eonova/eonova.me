@@ -7,8 +7,8 @@ import CategoriesContent from '~/components/pages/categories/content'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { SITE_URL } from '~/config/constants'
-import { createMetadata } from '~/config/metadata'
 import { CATEGORIES } from '~/config/posts'
+import { createMetadata } from '~/lib/metadata'
 
 interface PageProps {
   params: Promise<{

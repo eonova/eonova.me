@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation'
 import ArchiveContent from '~/components/pages/archive/content'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
 interface PageProps {

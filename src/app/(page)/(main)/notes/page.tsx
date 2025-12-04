@@ -6,7 +6,7 @@ import NoteCards from '~/components/pages/notes/note-cards'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 
 const title = '手记'
 const url = '/notes'

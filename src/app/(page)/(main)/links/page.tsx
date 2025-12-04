@@ -6,7 +6,7 @@ import BackgroundFont from '~/components/shared/background-font'
 import JsonLd from '~/components/shared/json-ld'
 import LinkCard from '~/components/shared/link-card'
 import PageTitle from '~/components/shared/page-title'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
 const title = '收藏夹'

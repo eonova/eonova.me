@@ -15,8 +15,8 @@ import TableOfContents from '~/components/pages/posts/table-of-contents'
 import JsonLd from '~/components/shared/json-ld'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { MY_NAME, SITE_URL } from '~/config/constants'
-import { createMetadata } from '~/config/metadata'
 import { getPostBySlug } from '~/lib/content'
+import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
 export async function generateMetadata(props: PageProps<'/posts/[slug]'>): Promise<Metadata> {

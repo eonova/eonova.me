@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import ActiveSessions from '~/components/modules/account/active-sessions'
 import Profile from '~/components/modules/account/profile'
-import { createMetadata } from '~/config/metadata'
+import { createMetadata } from '~/lib/metadata'
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = '设置'
