@@ -79,7 +79,7 @@ function LatestNews() {
       >
         <Card articles={filteredPosts} />
         <div className="hidden justify-center sm:flex">
-          <div className="h-full w-[1px] rounded-full bg-gray-500/20" />
+          <div className="h-full w-px rounded-full bg-gray-500/20" />
         </div>
         <Card color text="手记" articles={filteredNotes} />
       </motion.div>

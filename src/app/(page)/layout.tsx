@@ -17,16 +17,9 @@ import { cn } from '~/utils'
 import Providers from '../providers'
 import '~/styles/globals.css'
 
-const dingTalk = localFont({
-  src: '../../../public/fonts/DingTalk-JinBuTi.ttf',
+const DingTalk = localFont({
+  src: '../../../public/fonts/DingTalk.otf',
   variable: '--font-dingtalk',
-  display: 'swap',
-})
-
-const dingTalkSans = localFont({
-  src: '../../../public/fonts/DingTalk-Sans.ttf',
-  variable: '--font-dingtalk-sans',
-  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -129,8 +122,7 @@ export default function RootLayout({
       className={cn(
         GeistSans.variable,
         GeistMono.variable,
-        dingTalk.variable,
-        dingTalkSans.variable,
+        DingTalk.variable,
         'scroll-smooth',
       )}
       suppressHydrationWarning
