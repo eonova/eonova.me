@@ -24,7 +24,6 @@ const url = `${SITE_URL}/archive`
 
 export async function generateMetadata(): Promise<Metadata> {
   return createMetadata({
-    pathname: '/archive',
     title,
     description,
     openGraph: {

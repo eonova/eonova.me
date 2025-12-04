@@ -15,7 +15,6 @@ const description = '分享我的编程学习笔记、生活小思考，希望�
 
 export async function generateMetadata(): Promise<Metadata> {
   return createMetadata({
-    pathname: url,
     title,
     description,
   })
