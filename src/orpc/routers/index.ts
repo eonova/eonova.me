@@ -1,6 +1,8 @@
 import type { Inputs, Outputs } from '../client'
 
 import {
+  deleteComment as deleteCommentAdmin,
+  deleteUser as deleteUserAdmin,
   getDashboardStats,
   getRecentActivity,
   listAllAlbum,
@@ -8,6 +10,7 @@ import {
   listAllFriends as listAllFriendsAdmin,
   listAllTalks as listAllTalksAdmin,
   listAllUsers,
+  updateUser as updateUserAdmin,
 } from './admin.router'
 import { generate } from './ai.router'
 import { addImage, deleteImage, listAllImages, updateImage } from './album.router'
@@ -135,9 +138,12 @@ export const router = {
     },
     comments: {
       list: listAllComments,
+      delete: deleteCommentAdmin,
     },
     users: {
       list: listAllUsers,
+      delete: deleteUserAdmin,
+      update: updateUserAdmin,
     },
     album: {
       list: listAllAlbum,

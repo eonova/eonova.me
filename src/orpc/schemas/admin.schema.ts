@@ -54,3 +54,17 @@ export const recentActivityOutputSchema = z.array(
     }).nullable(),
   }),
 )
+
+export const deleteUserInputSchema = z.object({
+  id: z.string().min(1),
+})
+
+export const updateUserInputSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1).max(50).optional(),
+  role: z.enum(['user', 'admin']).optional(),
+})
+
+export const deleteCommentInputSchema = z.object({
+  id: z.string().min(1),
+})

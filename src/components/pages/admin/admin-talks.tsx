@@ -2,6 +2,14 @@
 
 import { useState } from 'react'
 import { Button } from '~/components/base/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '~/components/base/dialog'
 import { Textarea } from '~/components/base/textarea'
 import TalkBox from '~/components/pages/talk/box'
 import TalkMdx from '~/components/pages/talk/mdx'
@@ -12,6 +20,7 @@ import { cn } from '~/utils'
 function AdminTalks() {
   const [talkText, setTalkText] = useState('')
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [deleteId, setDeleteId] = useState<string | null>(null)
   const { data, isLoading } = useAdminTalks()
 
   const resetForm = () => {
@@ -21,7 +30,7 @@ function AdminTalks() {
 
   const createTalk = useCreateTalk(resetForm)
   const updateTalk = useUpdateTalk(resetForm)
-  const deleteTalk = useDeleteTalk()
+  const deleteTalk = useDeleteTalk(() => setDeleteId(null))
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -100,10 +109,9 @@ function AdminTalks() {
                 编辑
               </Button>
               <Button
-                onClick={() => deleteTalk.mutate({ id: talk.id })}
+                onClick={() => setDeleteId(talk.id)}
                 variant="destructive"
                 className="w-15"
-                disabled={deleteTalk.isPending}
               >
                 删除
               </Button>
@@ -111,6 +119,27 @@ function AdminTalks() {
           </div>
         ))}
       </div>
+
+      <Dialog open={!!deleteId} onOpenChange={open => !open && setDeleteId(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>确认删除</DialogTitle>
+            <DialogDescription>确定要删除这个想法吗？</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDeleteId(null)}>
+              取消
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => deleteId && deleteTalk.mutate({ id: deleteId })}
+              disabled={deleteTalk.isPending}
+            >
+              {deleteTalk.isPending ? '删除中...' : '确认删除'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

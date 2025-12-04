@@ -1,18 +1,22 @@
-import { count, desc, gt } from 'drizzle-orm'
+import { count, desc, eq, gt } from 'drizzle-orm'
 import * as z from 'zod'
 import { album, comments, friends, talks, users } from '~/db'
 
 import { adminProcedure } from '~/orpc/root'
-
 import {
   dashboardStatsOutputSchema,
+  deleteCommentInputSchema,
+  deleteUserInputSchema,
   listAllAlbumOutputSchema,
   listAllCommentsOutputSchema,
   listAllFriendsOutputSchema,
   listAllTalksOutputSchema,
   listAllUsersOutputSchema,
   recentActivityOutputSchema,
+  updateUserInputSchema,
 } from '../schemas/admin.schema'
+
+import { emptyOutputSchema } from '../schemas/common.schema'
 
 export const getDashboardStats = adminProcedure.output(dashboardStatsOutputSchema).handler(async ({ context }) => {
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
@@ -147,3 +151,27 @@ export const listAllUsers = adminProcedure.output(listAllUsersOutputSchema).hand
     users: result,
   }
 })
+
+export const deleteUser = adminProcedure
+  .input(deleteUserInputSchema)
+  .output(emptyOutputSchema)
+  .handler(async ({ context, input }) => {
+    await context.db.delete(users).where(eq(users.id, input.id))
+  })
+
+export const updateUser = adminProcedure
+  .input(updateUserInputSchema)
+  .output(emptyOutputSchema)
+  .handler(async ({ context, input }) => {
+    await context.db.update(users).set({
+      name: input.name,
+      role: input.role,
+    }).where(eq(users.id, input.id))
+  })
+
+export const deleteComment = adminProcedure
+  .input(deleteCommentInputSchema)
+  .output(emptyOutputSchema)
+  .handler(async ({ context, input }) => {
+    await context.db.delete(comments).where(eq(comments.id, input.id))
+  })
