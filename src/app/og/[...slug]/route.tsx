@@ -6,22 +6,14 @@ import { ImageResponse } from 'next/og'
 import { NextResponse } from 'next/server'
 
 import OGImage from '~/components/shared/og-image'
-import { SITE_NAME } from '~/config/constants'
-import { getPostBySlug, getProjectBySlug } from '~/lib/content'
+import { getPostBySlug } from '~/lib/content'
 import { getOGImageFonts } from '~/lib/fonts'
 import { getPathnames } from '~/utils/get-pathnames'
 
-interface OGRouteProps {
-  params: Promise<{
-    slug: string[]
-  }>
-}
-export async function GET(_request: Request, props: OGRouteProps) {
+export async function GET(_request: Request, props: RouteContext<'/og/[...slug]'>) {
   const { params } = props
   const { slug } = await params
-
-  // Filter out image.webp if it exists
-  const normalizedSlug = slug.filter(s => s !== 'image.webp')
+  const normalizedSlug = slug.slice(0, -1)
   const pathname = `/${normalizedSlug.join('/')}`
 
   if (pathname === '/') {
@@ -40,33 +32,15 @@ export async function GET(_request: Request, props: OGRouteProps) {
 }
 
 async function generateIndexOGImage() {
-  try {
-    const imageBuffer = await fs.readFile(path.join(process.cwd(), 'public', 'images', 'banner.png'))
+  const imageBuffer = await fs.readFile(path.join(process.cwd(), 'public', 'images', 'banner.png'))
 
-    return new NextResponse(new Uint8Array(imageBuffer), {
-      status: 200,
-      headers: {
-        'Content-Type': 'image/png',
-        'Cache-Control': 'no-cache, no-store',
-      },
-    })
-  }
-  catch {
-    try {
-      const imageBuffer = await fs.readFile(path.join(process.cwd(), 'public', 'images', 'og.png'))
-
-      return new NextResponse(new Uint8Array(imageBuffer), {
-        status: 200,
-        headers: {
-          'Content-Type': 'image/png',
-          'Cache-Control': 'no-cache, no-store',
-        },
-      })
-    }
-    catch {
-      return generateOGImage(SITE_NAME, '/')
-    }
-  }
+  return new NextResponse(new Uint8Array(imageBuffer), {
+    status: 200,
+    headers: {
+      'Content-Type': 'image/png',
+      'Cache-Control': 'no-cache, no-store',
+    },
+  })
 }
 
 async function generateBlogOGImage(slugs: string[]) {
@@ -78,7 +52,7 @@ async function generateBlogOGImage(slugs: string[]) {
   if (!post)
     notFound()
 
-  return generateOGImage(post.title, '/posts')
+  return generateOGImage(post.title, '/blog')
 }
 
 async function generatePageOGImage(slugs: string[], pathname: string) {
@@ -94,38 +68,17 @@ async function generateProjectOGImage(slugs: string[]) {
   if (!projectSlug)
     notFound()
 
-  const folderPath = path.join(process.cwd(), 'public', 'images', 'projects', projectSlug, 'cover.png')
-  const filePath = path.join(process.cwd(), 'public', 'images', 'projects', `${projectSlug}.png`)
+  const imageBuffer = await fs.readFile(
+    path.join(process.cwd(), 'public', 'images', 'projects', `${projectSlug}.png`),
+  )
 
-  try {
-    const imageBuffer = await fs.readFile(folderPath)
-    return new NextResponse(new Uint8Array(imageBuffer), {
-      status: 200,
-      headers: {
-        'Content-Type': 'image/png',
-        'Cache-Control': 'no-cache, no-store',
-      },
-    })
-  }
-  catch {
-    try {
-      const imageBuffer = await fs.readFile(filePath)
-      return new NextResponse(new Uint8Array(imageBuffer), {
-        status: 200,
-        headers: {
-          'Content-Type': 'image/png',
-          'Cache-Control': 'no-cache, no-store',
-        },
-      })
-    }
-    catch {
-      const project = getProjectBySlug(projectSlug)
-      if (!project)
-        notFound()
-
-      return generateOGImage(project.name, `/projects/${projectSlug}`)
-    }
-  }
+  return new NextResponse(new Uint8Array(imageBuffer), {
+    status: 200,
+    headers: {
+      'Content-Type': 'image/png',
+      'Cache-Control': 'no-cache, no-store',
+    },
+  })
 }
 
 async function generateOGImage(title: string, url: string) {
