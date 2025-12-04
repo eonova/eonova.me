@@ -1,39 +1,36 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
+import type { WebPage, WithContext } from 'schema-dts'
 import FriendsList from '~/components/pages/friends/friends-list'
+import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
-import { SITE_URL } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
+import { getBaseUrl } from '~/utils'
 
 const title = '友链'
 const description = '感谢你愿意和我做朋友🌈'
 
-export async function generateMetadata(_: unknown, parent: ResolvingMetadata): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
-
-  return {
+export async function generateMetadata(): Promise<Metadata> {
+  return createMetadata({
+    pathname: '/friends',
     title,
     description,
-    alternates: {
-      canonical: SITE_URL,
-    },
     openGraph: {
-      ...previousOpenGraph,
-      url: SITE_URL,
       type: 'profile',
-      title,
-      description,
     },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description,
-    },
-  }
+  })
 }
 
 function Page() {
+  const jsonLd: WithContext<WebPage> = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    'name': title,
+    description,
+    'url': `${getBaseUrl()}/friends`,
+  }
   return (
     <>
+      <JsonLd json={jsonLd} />
       <PageTitle title={title} description={description} />
       <FriendsList />
     </>

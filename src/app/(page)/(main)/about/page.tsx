@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { AboutPage, WithContext } from 'schema-dts'
 import dynamic from 'next/dynamic'
 import Bento from '~/components/pages/about/bento'
@@ -14,6 +14,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
 const BounceCards = dynamic(() => import('~/components/pages/about/bounce-cards'))
@@ -22,28 +23,15 @@ const title = '关于'
 const description = '👋 嗨！我是 Eonova'
 const url = `${SITE_URL}/about`
 
-export async function generateMetadata(_: unknown, parent: ResolvingMetadata): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
-  return {
+export async function generateMetadata(): Promise<Metadata> {
+  return createMetadata({
+    pathname: '/about',
     title,
     description,
-    alternates: {
-      canonical: url,
-    },
     openGraph: {
-      ...previousOpenGraph,
-      url,
       type: 'profile',
-      title,
-      description,
     },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description,
-    },
-  }
+  })
 }
 
 async function Page() {

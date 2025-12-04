@@ -1,39 +1,27 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
 
-import { allNotes, allPosts } from 'content-collections'
+import { allNotes } from 'content-collections'
 import NoteCards from '~/components/pages/notes/note-cards'
+import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
 
 const title = '手记'
 const url = '/notes'
 const description = '记录我的生活琐事，希望能帮助到你。'
 
-export async function generateMetadata(_props: any, parent: ResolvingMetadata): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
-
-  return {
+export async function generateMetadata(): Promise<Metadata> {
+  return createMetadata({
+    pathname: url,
     title,
     description,
-    alternates: {
-      canonical: url,
-    },
     openGraph: {
-      ...previousOpenGraph,
-      url,
-      title,
-      description,
+      type: 'article',
     },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description,
-    },
-  }
+  })
 }
-
 export const dynamic = 'force-static'
 
 async function Page() {
@@ -53,21 +41,18 @@ async function Page() {
       'name': SITE_NAME,
       'url': SITE_URL,
     },
-    'blogPost': allPosts.map(post => ({
+    'blogPost': notes.map(note => ({
       '@type': 'BlogPosting',
-      'headline': post.title,
-      'url': `${url}/${post.slug}`,
-      'datePublished': post.date,
-      'dateModified': post.modifiedTime,
+      'headline': note.title,
+      'url': `${url}/${note.slug}`,
+      'datePublished': note.date,
+      'dateModified': note.date,
     })),
   }
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd json={jsonLd} />
       <PageTitle title={title} description={description} />
       {notes.length === 0 ? <div className="my-24 text-center text-xl">暂无结果</div> : null}
       <NoteCards notes={notes} />

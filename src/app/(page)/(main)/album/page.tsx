@@ -1,6 +1,7 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 import WaterfallGallery from '~/components/pages/album/masonry-gallery'
+import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import {
   SITE_DESCRIPTION,
@@ -10,34 +11,22 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
 const title = '相册'
 const description = '记录生活点点滴滴✨'
 const url = '/album'
 
-export async function generateMetadata(_: unknown, parent: ResolvingMetadata): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
-  return {
+export async function generateMetadata(): Promise<Metadata> {
+  return createMetadata({
+    pathname: '/album',
     title,
     description,
-    alternates: {
-      canonical: url,
-    },
     openGraph: {
-      ...previousOpenGraph,
-      url,
       type: 'profile',
-      title,
-      description,
     },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description,
-    },
-  }
+  })
 }
 
 function Album() {
@@ -57,10 +46,7 @@ function Album() {
   }
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd json={jsonLd} />
       <PageTitle title={title} description={description} />
       <WaterfallGallery itemsPerPage={12} />
     </>

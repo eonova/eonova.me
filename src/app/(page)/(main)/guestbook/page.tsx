@@ -8,20 +8,17 @@ import { MY_NAME } from '~/config/constants'
 import { createMetadata } from '~/config/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const title = '留言板'
-  const description = '在我的留言板上留下您的想法。您可以在这里告诉我任何事情！'
+const title = '留言板'
+const description = '在我的留言板上留下您的想法。您可以在这里告诉我任何事情！'
 
+export async function generateMetadata(): Promise<Metadata> {
   return createMetadata({
     pathname: '/guestbook',
     title,
     description,
   })
 }
-
 function Page() {
-  const title = '留言板'
-  const description = '在我的留言板上留下您的想法。您可以在这里告诉我任何事情！'
   const url = `${getBaseUrl()}/guestbook`
 
   const jsonLd: WithContext<WebPage> = {

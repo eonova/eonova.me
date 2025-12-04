@@ -4,8 +4,10 @@ import type { WebPage, WithContext } from 'schema-dts'
 import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
 import CategoriesContent from '~/components/pages/categories/content'
+import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { SITE_URL } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
 import { CATEGORIES } from '~/config/posts'
 
 interface PageProps {
@@ -34,13 +36,10 @@ export async function generateMetadata(
   const ISOPublishedTime = new Date(date).toISOString()
   const ISOModifiedTime = new Date(modifiedTime).toISOString()
   const url = `/categories/${slug}`
-
-  return {
+  return createMetadata({
+    pathname: url,
     title,
     description: summary,
-    alternates: {
-      canonical: url,
-    },
     openGraph: {
       ...previousOpenGraph,
       url,
@@ -73,7 +72,7 @@ export async function generateMetadata(
         },
       ],
     },
-  }
+  })
 }
 
 export const dynamic = 'force-static'
@@ -94,24 +93,22 @@ async function Page(props: Readonly<PageProps>) {
     notFound()
   }
 
+  const title = `分类 - ${CATEGORIES.find(i => i.label === slug)?.name}`
+
   const jsonLd: WithContext<WebPage> = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     'headline': slug,
     'name': slug,
-    'description': `分类-${CATEGORIES.find(i => i.label === slug)?.name}`,
+    'description': title,
     url,
     'image': `${SITE_URL}/og/${slug}`,
   }
 
-  const title = `分类 - ${CATEGORIES.find(i => i.label === slug)?.name}`
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <PageTitle title={title} description="" />
+      <JsonLd json={jsonLd} />
+      <PageTitle title={title} description={title} />
       <CategoriesContent posts={posts} />
     </>
   )

@@ -1,6 +1,6 @@
 import type { Note, Post } from 'content-collections'
 
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 import { allNotes, allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
@@ -15,44 +15,22 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
 import { getBaseUrl } from '~/utils'
 
-interface PageProps {
-  params: Promise<{
-    slug: string
-    locale: string
-  }>
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
 const title = '归档'
 const description = '回望过往，方知自己的成长。'
 const url = `${SITE_URL}/archive`
 
-export async function generateMetadata(
-  _: Readonly<PageProps>,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
-  return {
+export async function generateMetadata(): Promise<Metadata> {
+  return createMetadata({
+    pathname: '/archive',
     title,
     description,
-    alternates: {
-      canonical: url,
-    },
     openGraph: {
-      ...previousOpenGraph,
-      url,
       type: 'profile',
-      title,
-      description,
     },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description,
-    },
-  }
+  })
 }
 
 async function Page() {

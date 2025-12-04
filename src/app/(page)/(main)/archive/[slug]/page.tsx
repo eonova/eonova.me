@@ -1,12 +1,14 @@
 import type { Note, Post } from 'content-collections'
 
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 import { allNotes, allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
 import ArchiveContent from '~/components/pages/archive/content'
+import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
-import { SITE_URL } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
+import { getBaseUrl } from '~/utils'
 
 interface PageProps {
   params: Promise<{
@@ -18,29 +20,14 @@ interface PageProps {
 
 export async function generateMetadata(
   pageProps: Readonly<PageProps>,
-  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await pageProps.params
   const title = `归档-${slug === 'posts' ? '文章' : '手记'}`
-  const url = `${SITE_URL}/archive/${slug}`
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
-  return {
+  return createMetadata({
+    pathname: `/archive/${slug}`,
     title,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      ...previousOpenGraph,
-      url,
-      type: 'profile',
-      title,
-    },
-    twitter: {
-      ...previousTwitter,
-      title,
-    },
-  }
+    description: `归档-${slug === 'posts' ? '文章' : '手记'}`,
+  })
 }
 
 export const dynamic = 'force-static'
@@ -63,7 +50,7 @@ async function Page(props: Readonly<PageProps>) {
     },
     {} as Record<string, (Post | Note)[]>,
   )
-  const url = `${SITE_URL}/archive/${slug}`
+  const url = `${getBaseUrl()}/archive/${slug}`
 
   if (!articles) {
     notFound()
@@ -76,16 +63,14 @@ async function Page(props: Readonly<PageProps>) {
     'name': slug,
     'description': `归档-${slug === 'posts' ? '文章' : '手记'}`,
     url,
-    'image': `${SITE_URL}/og/${slug}`,
+    'image': `${getBaseUrl()}/og/${slug}`,
   }
 
   const title = `归档-${slug === 'posts' ? '文章' : '手记'}`
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd json={jsonLd} />
       <PageTitle title={title} description="" />
       <ArchiveContent articlesByYear={articlesByYear} />
     </>

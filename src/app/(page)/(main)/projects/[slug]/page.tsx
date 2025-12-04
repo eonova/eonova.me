@@ -1,5 +1,5 @@
-import type { Metadata, ResolvingMetadata } from 'next'
-import type { SoftwareApplication, WithContext } from 'schema-dts'
+import type { Metadata } from 'next'
+import type { SoftwareSourceCode, WithContext } from 'schema-dts'
 
 import { allProjects } from 'content-collections'
 import { notFound } from 'next/navigation'
@@ -8,8 +8,11 @@ import { BlurImage } from '~/components/base/blur-image'
 import Mdx from '~/components/modules/mdx'
 
 import Header from '~/components/pages/projects/header'
-import { SITE_NAME, SITE_URL } from '~/config/constants'
+import JsonLd from '~/components/shared/json-ld'
+import { MY_NAME, SITE_URL } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
 import { getProjectBySlug } from '~/lib/content'
+import { getBaseUrl } from '~/utils/get-base-url'
 
 interface PageProps {
   params: Promise<{
@@ -21,11 +24,8 @@ interface PageProps {
 
 export async function generateMetadata(
   props: Readonly<PageProps>,
-  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await props.params
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
 
   const project = getProjectBySlug(slug)
 
@@ -34,43 +34,12 @@ export async function generateMetadata(
   }
 
   const { name, description } = project
-  const url = `/projects/${slug}`
 
-  return {
+  return createMetadata({
+    pathname: `/projects/${slug}`,
     title: name,
     description,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      ...previousOpenGraph,
-      url,
-      title: name,
-      description,
-      images: [
-        {
-          url: `/images/projects/${slug}.png`,
-          width: 1280,
-          height: 832,
-          alt: description,
-          type: 'image/png',
-        },
-      ],
-    },
-    twitter: {
-      ...previousTwitter,
-      title: name,
-      description,
-      images: [
-        {
-          url: `/images/projects/${slug}.png`,
-          width: 1280,
-          height: 832,
-          alt: description,
-        },
-      ],
-    },
-  }
+  })
 }
 
 export const dynamic = 'force-static'
@@ -90,30 +59,30 @@ async function Page(props: PageProps) {
     notFound()
   }
 
-  const { name, code, description, github } = project
+  const { name, code, description, github, dateCreated } = project
 
-  const jsonLd: WithContext<SoftwareApplication> = {
+  const baseUrl = getBaseUrl()
+  const jsonLd: WithContext<SoftwareSourceCode> = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    '@type': 'SoftwareSourceCode',
     name,
     description,
     url,
-    'applicationCategory': 'WebApplication',
+    'codeRepository': github,
+    'license': 'https://opensource.org/licenses/MIT',
+    'programmingLanguage': 'TypeScript',
+    dateCreated,
     'author': {
       '@type': 'Person',
-      'name': SITE_NAME,
-      'url': SITE_URL,
+      'name': MY_NAME,
+      'url': baseUrl,
     },
-    'sameAs': [github],
-    'screenshot': `${SITE_URL}/images/projects/${slug}.png`,
+    'thumbnailUrl': `${baseUrl}/images/projects/${slug}.png`,
   }
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd json={jsonLd} />
       <div className="mx-auto max-w-3xl">
         <Header {...project} />
         <BlurImage

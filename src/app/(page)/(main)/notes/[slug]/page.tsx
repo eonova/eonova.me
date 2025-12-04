@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import type { Article, WithContext } from 'schema-dts'
 
 import { allNotes } from 'content-collections'
@@ -13,6 +13,7 @@ import Providers from '~/components/pages/notes/providers'
 import TableOfContents from '~/components/pages/notes/table-of-contents'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
+import { createMetadata } from '~/config/metadata'
 
 interface PageProps {
   params: Promise<{
@@ -22,64 +23,21 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata(
-  props: Readonly<PageProps>,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const { slug } = await props.params
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
+const url = '/notes'
 
-  const note = allNotes.find(p => p.slug === slug)
-
-  if (!note)
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const note = allNotes.find(n => n.slug === params.slug)
+  if (!note) {
     return {}
-
-  const { date, title, summary } = note
-
-  const ISOPublishedTime = new Date(date).toISOString()
-  const ISOModifiedTime = new Date(date).toISOString()
-  const url = `/notes/${slug}`
-
-  return {
-    title,
-    description: summary,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      ...previousOpenGraph,
-      url,
-      type: 'article',
-      title,
-      description: summary,
-      publishedTime: ISOPublishedTime,
-      modifiedTime: ISOModifiedTime,
-      authors: SITE_URL,
-      images: [
-        {
-          url: `/og/${slug}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-          type: 'image/png',
-        },
-      ],
-    },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description: summary,
-      images: [
-        {
-          url: `/og/${slug}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
   }
+  return createMetadata({
+    pathname: `${url}/${note.slug}`,
+    title: note.title,
+    description: note.summary ?? '',
+    openGraph: {
+      type: 'article',
+    },
+  })
 }
 
 export const dynamic = 'force-static'
@@ -92,7 +50,7 @@ async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 
   const note = allNotes.find(p => p.slug === slug)
-  const url = `${SITE_URL}/blog/${slug}`
+  const url = `${SITE_URL}/notes/${slug}`
 
   if (!note) {
     notFound()
