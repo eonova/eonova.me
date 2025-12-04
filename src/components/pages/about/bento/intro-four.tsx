@@ -38,7 +38,7 @@ const IntroFour: React.FC<IntroFourProps> = () => {
         />
       </IntroCard>
       <IntroCard
-        className="font-world col-span-1 h-60 overflow-hidden rounded-3xl text-white backdrop-blur-xs md:col-span-1 lg:col-span-2 lg:h-72"
+        className="font-dingtalk col-span-1 h-60 overflow-hidden rounded-3xl text-white backdrop-blur-xs md:col-span-1 lg:col-span-2 lg:h-72"
         subheading="音乐"
         title="Music"
         desc={LINK_MUSIC}

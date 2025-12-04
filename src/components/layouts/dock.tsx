@@ -2,13 +2,15 @@
 
 import { ArrowUp, MessageCircle, Music, PlayCircle, StopCircle } from 'lucide-react'
 import { motion } from 'motion/react'
+import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { usePlaylistSongs } from '~/hooks/queries/music.query'
 import { useMusicPlay } from '~/hooks/use-music-play'
 import { cn } from '~/utils'
-import MusicPlayer from './music-player'
+
+const MusicPlayer = dynamic(() => import('./music-player'), { ssr: false })
 
 interface DockProps {
   className?: string

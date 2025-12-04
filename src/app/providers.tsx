@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster } from '~/components/base/sonner'
 import { TooltipProvider } from '~/components/base/tooltip'
-import Dia from '~/components/layouts/dia'
 import { PHProvider } from '~/components/layouts/posthog-provider'
 import { MusicToast } from '~/components/shared/music-toast'
 import PageProgress from '~/components/shared/page-progress'
@@ -34,7 +33,6 @@ function Providers(props: ProvidesProps) {
             <TooltipProvider>
               <DiaProvider>
                 <SmoothScroll>{children}</SmoothScroll>
-                <Dia />
                 <MusicToast />
                 <Toaster
                   toastOptions={{

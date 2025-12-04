@@ -1,5 +1,6 @@
 // @ts-nocheck
 'use client'
+import Image from 'next/image'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { a, useTransition } from 'react-spring'
 
@@ -108,13 +109,15 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
               }
             }}
           >
-            <img
-              src={item.imageUrl}
-              height={item.height}
-              width={item.width}
-              alt={item.description ?? '111'}
-              className="h-full w-full object-cover"
-            />
+            <div className="relative h-full w-full">
+              <Image
+                src={item.imageUrl}
+                alt={item.description ?? 'album image'}
+                fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                className="object-cover"
+              />
+            </div>
           </a.div>
         )
       })}

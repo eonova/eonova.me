@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import { env } from '~/lib/env'
 import { publicProcedure } from '../root'
 import { listNeoShelfInputSchema, listNeoShelfOutputSchema } from '../schemas/neodb.schema'
@@ -83,6 +84,17 @@ async function fetchShelf(type: NeoDBType, category: string, page: number, pageS
   }
 }
 
+const getCachedShelf = unstable_cache(
+  async (type: NeoDBType, category: string, page: number, pageSize: number) => {
+    return fetchShelf(type, category, page, pageSize)
+  },
+  ['neodb-shelf'],
+  {
+    revalidate: 3600, // 1 hour
+    tags: ['neodb-shelf'],
+  },
+)
+
 export const listNeoDBShelf = publicProcedure
   .input(listNeoShelfInputSchema)
   .output(listNeoShelfOutputSchema)
@@ -90,7 +102,7 @@ export const listNeoDBShelf = publicProcedure
     const page = input.page ?? 1
     const type = input.types[0]!
 
-    const { items, pages } = await fetchShelf(type, input.category, page, input.pageSize)
+    const { items, pages } = await getCachedShelf(type, input.category, page, input.pageSize)
     const nextCursor = page < pages ? page + 1 : undefined
 
     return {

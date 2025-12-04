@@ -63,7 +63,7 @@ const UpMotion: React.FC<UpMotionProps> = ({ className, children, setPosition, s
         duration: 0.5,
       }}
       className={cn(
-        'shadow-feature-card dark:shadow-feature-card-dark font-world relative overflow-hidden rounded-3xl border border-black/5 p-6 px-8 dark:border-white/10',
+        'shadow-feature-card dark:shadow-feature-card-dark font-dingtalk relative overflow-hidden rounded-3xl border border-black/5 p-6 px-8 dark:border-white/10',
         className,
       )}
     >

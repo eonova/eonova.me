@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import localFont from 'next/font/local'
 import SignInDialog from '~/components/layouts/sign-in-dialog'
 import Hello from '~/components/shared/hello'
 import { ErrorBoundaryMonitor, PerformanceMonitor } from '~/components/shared/performance-monitor'
@@ -15,6 +16,18 @@ import {
 import { cn } from '~/utils'
 import Providers from '../providers'
 import '~/styles/globals.css'
+
+const dingTalk = localFont({
+  src: '../../../public/fonts/DingTalk-JinBuTi.ttf',
+  variable: '--font-dingtalk',
+  display: 'swap',
+})
+
+const dingTalkSans = localFont({
+  src: '../../../public/fonts/DingTalk-Sans.ttf',
+  variable: '--font-dingtalk-sans',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -113,15 +126,15 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
-      className={cn(GeistSans.variable, GeistMono.variable, 'scroll-smooth')}
+      className={cn(
+        GeistSans.variable,
+        GeistMono.variable,
+        dingTalk.variable,
+        dingTalkSans.variable,
+        'scroll-smooth',
+      )}
       suppressHydrationWarning
     >
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/cn-fontsource-ding-talk-jin-bu-ti-regular/font.css"
-        />
-      </head>
       <body className="relative antialiased">
         <Providers>
           <Hello />

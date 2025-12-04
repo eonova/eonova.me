@@ -1,5 +1,6 @@
 import type { MusicPlaylist } from '~/config/music'
 import { ORPCError } from '@orpc/client'
+import { unstable_cache } from 'next/cache'
 import { MUSIC_API, musicConfig } from '~/config/music'
 import { publicProcedure } from '../root'
 
@@ -38,9 +39,18 @@ async function queryPlaylistSongs(config: MusicPlaylist[]) {
   return handleConfig
 }
 
+const getCachedPlaylistSongs = unstable_cache(
+  async () => queryPlaylistSongs(musicConfig),
+  ['music-playlist'],
+  {
+    revalidate: 3600, // 1 hour
+    tags: ['music-playlist'],
+  },
+)
+
 export const listAllPlaylistSongs = publicProcedure.handler(async () => {
   try {
-    const songs = await queryPlaylistSongs(musicConfig)
+    const songs = await getCachedPlaylistSongs()
     return songs
   }
   catch (error) {

@@ -61,7 +61,7 @@ function MobileNavAside() {
                 alt="Eonova"
               />
               <div className="flex flex-col gap-2">
-                <h3 className="font-world text-3xl">Eonova</h3>
+                <h3 className="font-dingtalk text-3xl">Eonova</h3>
                 <h4 className="text-gray-600/80 dark:text-white/50">一个爱捣鼓的前端</h4>
               </div>
             </div>

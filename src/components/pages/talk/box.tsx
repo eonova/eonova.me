@@ -71,7 +71,7 @@ const TalkBox: React.FC<TalkBoxProps> = ({
         <div className="relative w-full min-w-0 grow sm:w-auto">
           <div
             className={cn(
-              'font-world relative inline-block rounded-xl p-3 text-zinc-800 dark:text-zinc-200',
+              'font-dingtalk relative inline-block rounded-xl p-3 text-zinc-800 dark:text-zinc-200',
               'rounded-tl-sm bg-zinc-600/5 dark:bg-zinc-500/20',
               'max-w-full overflow-auto',
             )}

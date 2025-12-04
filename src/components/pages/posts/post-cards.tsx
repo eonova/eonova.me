@@ -38,7 +38,7 @@ function PostCard(props: PostCardProps & { idx: number }) {
         href={`/posts/${slug}`}
         className="group relative flex w-full flex-col items-start gap-3 rounded-xl p-5 tracking-wide duration-500 hover:bg-slate-300/30 focus-visible:!shadow-none dark:hover:bg-slate-300/10"
       >
-        <h2 className="font-world w-full text-3xl">{title}</h2>
+        <h2 className="font-dingtalk w-full text-3xl">{title}</h2>
         <ul className="flex items-center gap-2.5">
           <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
             <Clock className="size-3" />

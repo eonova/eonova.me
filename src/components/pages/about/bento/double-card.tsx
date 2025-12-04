@@ -32,7 +32,7 @@ const DoubleCard: React.FC<DoubleCardProps> = ({
       setPosition={setPosition}
       setOpacity={setOpacity}
     >
-      <div className="font-world shadow-feature-card dark:shadow-feature-card-dark relative flex h-[90px] w-full items-center justify-between rounded-3xl border border-black/5 bg-amber-300 text-black/80 p-6 backdrop-blur-xs transition-all duration-500 dark:border-white/10">
+      <div className="font-dingtalk shadow-feature-card dark:shadow-feature-card-dark relative flex h-[90px] w-full items-center justify-between rounded-3xl border border-black/5 bg-amber-300 text-black/80 p-6 backdrop-blur-xs transition-all duration-500 dark:border-white/10">
         <NormalCard
           title={title}
           subheading={subheading}
@@ -46,7 +46,7 @@ const DoubleCard: React.FC<DoubleCardProps> = ({
           <p className="text-[32px]">{DATE_BIRTH}</p>
         </NormalCard>
       </div>
-      <div className="font-world relative flex h-[90px] w-full items-center justify-between rounded-3xl bg-[#FDBA74] p-6 text-white shadow-lg backdrop-blur-xs transition-all duration-500">
+      <div className="font-dingtalk relative flex h-[90px] w-full items-center justify-between rounded-3xl bg-[#FDBA74] p-6 text-white shadow-lg backdrop-blur-xs transition-all duration-500">
         <NormalCard
           title={title}
           subheading={subheading}

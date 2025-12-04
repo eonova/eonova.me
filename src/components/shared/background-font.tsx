@@ -16,7 +16,7 @@ const BackgroundFont: React.FC<BackgroundFontProps> = ({
 }) => {
   return (
     <h6
-      className={cn('page-section-title', isDefaultFont && 'font-world', className)}
+      className={cn('page-section-title', isDefaultFont && 'font-dingtalk', className)}
       style={{
         lineHeight,
       }}

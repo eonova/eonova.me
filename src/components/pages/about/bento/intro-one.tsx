@@ -6,12 +6,12 @@ const IntroOne: React.FC = () => {
   return (
     <>
       <IntroCard
-        className="font-world col-span-1 h-[195px] rounded-3xl bg-indigo-500 text-white backdrop-blur-xs md:col-span-2 lg:col-span-5 lg:rounded-3xl"
+        className="font-dingtalk col-span-1 h-[195px] rounded-3xl bg-indigo-500 text-white backdrop-blur-xs md:col-span-2 lg:col-span-5 lg:rounded-3xl"
         title="我是谁"
         desc="一名前端开发Coder、UI设计狮"
         isColor
       >
-        <div className="font-world text-indigo-100 mt-3">
+        <div className="font-dingtalk text-indigo-100 mt-3">
           <h2>你好，很高兴认识你👋</h2>
           <p>我是 Eonova</p>
         </div>

@@ -54,7 +54,7 @@ function AdminTalks() {
 
   return (
     <div className="grid w-full flex-1 gap-5 sm:grid-cols-2">
-      <form className="font-world flex flex-col gap-5" onSubmit={handleSubmit}>
+      <form className="font-dingtalk flex flex-col gap-5" onSubmit={handleSubmit}>
         <h3>{editingId ? '编辑想法💡：' : '表达你的想法💡：'}</h3>
         <div className="flex flex-col gap-2">
           <Textarea value={talkText} onChange={e => setTalkText(e.target.value)} />
@@ -94,7 +94,7 @@ function AdminTalks() {
             <div
               className={cn(
                 'relative inline-block rounded-xl p-3 text-zinc-800 dark:text-zinc-200',
-                'rounded-tl-sm bg-zinc-600/5 dark:bg-zinc-500/20 font-world',
+                'rounded-tl-sm bg-zinc-600/5 dark:bg-zinc-500/20 font-dingtalk',
                 'overflow-auto',
               )}
             >

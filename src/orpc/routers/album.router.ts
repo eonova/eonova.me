@@ -1,12 +1,34 @@
 import { ORPCError } from '@orpc/client'
+import { revalidateTag, unstable_cache } from 'next/cache'
 
-import { album, desc, eq } from '~/db'
+import { album, db, desc, eq } from '~/db'
 import { ratelimit } from '~/lib/kv'
 import { adminProcedure, publicProcedure } from '~/orpc/root'
 import { getIp } from '~/utils/get-ip'
 import { AddImageInputSchema, DeleteImageInputSchema, UpdateImageInputSchema } from '../schemas/album.schema'
 
 const getKey = (id: string) => `album:${id}`
+
+const getCachedAlbumImages = unstable_cache(
+  async () => {
+    return db.query.album.findMany({
+      columns: {
+        id: true,
+        imageUrl: true,
+        height: true,
+        width: true,
+        description: true,
+        createdAt: true,
+      },
+      orderBy: desc(album.createdAt),
+    })
+  },
+  ['album-list'],
+  {
+    revalidate: 3600, // 1 hour
+    tags: ['album-list'],
+  },
+)
 
 export const listAllImages = publicProcedure.handler(async ({ context }) => {
   const ip = getIp(context.headers)
@@ -16,17 +38,7 @@ export const listAllImages = publicProcedure.handler(async ({ context }) => {
   if (!success)
     throw new ORPCError('TOO_MANY_REQUESTS')
 
-  const result = await context.db.query.album.findMany({
-    columns: {
-      id: true,
-      imageUrl: true,
-      height: true,
-      width: true,
-      description: true,
-      createdAt: true,
-    },
-    orderBy: desc(album.createdAt),
-  })
+  const result = await getCachedAlbumImages()
 
   return {
     images: result,
@@ -43,12 +55,14 @@ export const addImage = adminProcedure
       width,
       height,
     })
+    ;(revalidateTag as any)('album-list')
   })
 
 export const deleteImage = adminProcedure
   .input(DeleteImageInputSchema)
   .handler(async ({ context, input }) => {
     await context.db.delete(album).where(eq(album.id, input.id))
+    ;(revalidateTag as any)('album-list')
   })
 
 export const updateImage = adminProcedure
@@ -64,4 +78,5 @@ export const updateImage = adminProcedure
         ...(width ? { width } : {}),
       })
       .where(eq(album.id, id))
+    ;(revalidateTag as any)('album-list')
   })
