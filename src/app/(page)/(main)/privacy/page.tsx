@@ -7,10 +7,10 @@ import Mdx from '~/components/modules/mdx'
 import { createMetadata } from '~/config/metadata'
 import { getPageBySlug } from '~/lib/content'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const title = '隐私政策'
-  const description = '隐私政策和条款'
+const title = '隐私政策'
+const description = '隐私政策和条款'
 
+export async function generateMetadata(): Promise<Metadata> {
   return createMetadata({
     pathname: '/privacy',
     title,
@@ -19,8 +19,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 function Page() {
-  const title = '隐私政策'
-  const description = '隐私政策和条款'
   const page = getPageBySlug('privacy')
 
   if (!page) {

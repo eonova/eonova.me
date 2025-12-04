@@ -3,5 +3,5 @@ export interface Track {
   artist: string
   url: string
   pic: string
-  lrc: string // LRC格式的歌词字符串
+  lrc: string
 }

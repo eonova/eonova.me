@@ -11,12 +11,7 @@ import PageProgress from '~/components/shared/page-progress'
 import { DiaProvider } from '~/hooks/use-dia'
 import { ORPCQueryProvider } from '~/orpc/tanstack-query/client'
 
-const SmoothScroll = dynamic(
-  () => import('../components/layouts/lenis-provider').then(mod => mod.LenisProvider),
-  {
-    ssr: false, // 禁用 SSR
-  },
-)
+const SmoothScroll = dynamic(() => import('../components/layouts/lenis-provider').then(mod => mod.LenisProvider), { ssr: false })
 
 interface ProvidesProps {
   children: React.ReactNode

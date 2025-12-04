@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next'
-
-import { SITE_URL } from '~/config/constants'
+import { getBaseUrl } from '~/utils/get-base-url'
 
 function robots(): MetadataRoute.Robots {
   return {
@@ -8,11 +7,10 @@ function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: ['/', '/api/avatar/*', '/og/*'],
-        disallow: ['/api/'],
+        disallow: ['/api/', '/rpc/'],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    sitemap: `${getBaseUrl()}/sitemap.xml`,
   }
 }
 

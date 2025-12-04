@@ -7,12 +7,12 @@ import { Suspense } from 'react'
 import { Skeleton } from '~/components/base/skeleton'
 import CommentSection from '~/components/modules/comment-section/comment-section'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
+import Footer from '~/components/pages/notes/note-footer'
+import Header from '~/components/pages/notes/note-header'
+import Providers from '~/components/pages/notes/providers'
 import TableOfContents from '~/components/pages/notes/table-of-contents'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
-import Footer from '../../../../../components/pages/notes/note-footer'
-import Header from '../../../../../components/pages/notes/note-header'
-import Providers from '../../../../../components/pages/notes/providers'
 
 interface PageProps {
   params: Promise<{

@@ -15,6 +15,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+import { getBaseUrl } from '~/utils'
 
 interface PageProps {
   params: Promise<{
@@ -84,7 +85,7 @@ async function Page() {
       '@type': 'Person',
       'name': SITE_NAME,
       'description': SITE_DESCRIPTION,
-      url,
+      'url': getBaseUrl(),
       'sameAs': [SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL],
     },
   }

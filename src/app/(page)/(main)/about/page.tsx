@@ -14,6 +14,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+import { getBaseUrl } from '~/utils/get-base-url'
 
 const BounceCards = dynamic(() => import('~/components/pages/about/bounce-cards'))
 
@@ -56,7 +57,7 @@ async function Page() {
       '@type': 'Person',
       'name': SITE_NAME,
       'description': SITE_DESCRIPTION,
-      'url': SITE_URL,
+      'url': getBaseUrl(),
       'sameAs': [SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL],
     },
   }

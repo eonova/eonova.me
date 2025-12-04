@@ -1,5 +1,7 @@
 'use client'
 
+import posthog from 'posthog-js'
+import { useEffect } from 'react'
 import { Button } from '~/components/base/button'
 import MainLayout from '~/components/layouts/main-layout'
 
@@ -10,6 +12,10 @@ interface PageProps {
 
 function Page(props: PageProps) {
   const { error, reset } = props
+
+  useEffect(() => {
+    posthog.captureException(error)
+  }, [error])
 
   return (
     <MainLayout>

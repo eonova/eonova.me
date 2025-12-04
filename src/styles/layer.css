@@ -17,7 +17,7 @@
     height: 0 !important;
   }
   .shiro-timeline a {
-    @apply !no-underline;
+    @apply no-underline!;
   }
   .shiro-link--underline,
   .shiro-timeline a {
