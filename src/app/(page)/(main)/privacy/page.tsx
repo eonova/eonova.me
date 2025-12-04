@@ -12,7 +12,6 @@ const description = '隐私政策和条款'
 
 export async function generateMetadata(): Promise<Metadata> {
   return createMetadata({
-    pathname: '/privacy',
     title,
     description,
   })
