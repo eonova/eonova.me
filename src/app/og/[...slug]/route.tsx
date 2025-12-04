@@ -6,7 +6,7 @@ import { ImageResponse } from 'next/og'
 import { NextResponse } from 'next/server'
 
 import OGImage from '~/components/shared/og-image'
-import { getPostBySlug } from '~/lib/content'
+import { getNoteBySlug, getPostBySlug } from '~/lib/content'
 import { getOGImageFonts } from '~/lib/fonts'
 import { getPathnames } from '~/utils/get-pathnames'
 
@@ -20,8 +20,12 @@ export async function GET(_request: Request, props: RouteContext<'/og/[...slug]'
     return generateIndexOGImage()
   }
 
-  if (pathname.startsWith('/blog/')) {
+  if (pathname.startsWith('/posts/')) {
     return generateBlogOGImage(normalizedSlug)
+  }
+
+  if (pathname.startsWith('/notes/')) {
+    return generateNoteOGImage(normalizedSlug)
   }
 
   if (pathname.startsWith('/projects/')) {
@@ -43,6 +47,18 @@ async function generateIndexOGImage() {
   })
 }
 
+async function generateNoteOGImage(slugs: string[]) {
+  const noteSlug = slugs.at(-1)
+  if (!noteSlug)
+    notFound()
+
+  const note = getNoteBySlug(noteSlug)
+  if (!note)
+    notFound()
+
+  return generateOGImage(note.title, '/notes')
+}
+
 async function generateBlogOGImage(slugs: string[]) {
   const postSlug = slugs.at(-1)
   if (!postSlug)
@@ -52,7 +68,7 @@ async function generateBlogOGImage(slugs: string[]) {
   if (!post)
     notFound()
 
-  return generateOGImage(post.title, '/blog')
+  return generateOGImage(post.title, '/posts')
 }
 
 async function generatePageOGImage(slugs: string[], pathname: string) {

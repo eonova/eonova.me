@@ -67,7 +67,7 @@ async function Page(props: PageProps<'/posts/[slug]'>) {
       '@type': 'WebPage',
       '@id': url,
     },
-    'image': `/og/blog/${post.slug}/image.webp`,
+    'image': `/og/posts/${post.slug}/image.webp`,
     'datePublished': date,
     'dateModified': modifiedTime,
     'author': {

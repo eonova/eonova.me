@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { deepmerge } from '@fastify/deepmerge'
 
-import { MY_NAME, OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH, SITE_DESCRIPTION, SITE_NAME } from '~/config/constants'
+import { MY_NAME, OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME } from '~/config/constants'
 
 import { getBaseUrl } from '~/utils/get-base-url'
 
@@ -29,6 +29,7 @@ export function createMetadata(options: Options): Metadata {
       description,
       creator: MY_NAME,
       manifest: `${baseUrl}/site.webmanifest`,
+      keywords: SITE_KEYWORDS,
       alternates: {
         canonical: currentUrl,
       },
