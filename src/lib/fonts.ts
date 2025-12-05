@@ -29,7 +29,7 @@ const getSemiBoldFont = cache(async () => {
 })
 
 const getFallbackFont = cache(async () => {
-  const response = await fs.readFile(getFontPath('HappyWorld.otf'))
+  const response = await fs.readFile(getFontPath('DingTalk.otf'))
   const font = Uint8Array.from(response).buffer
 
   return font
