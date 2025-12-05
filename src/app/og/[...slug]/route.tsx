@@ -7,7 +7,6 @@ import { NextResponse } from 'next/server'
 
 import OGImage from '~/components/shared/og-image'
 import { getNoteBySlug, getPostBySlug } from '~/lib/content'
-import { getOGImageFonts } from '~/lib/fonts'
 import { getPathnames } from '~/utils/get-pathnames'
 
 export async function GET(_request: Request, props: RouteContext<'/og/[...slug]'>) {
@@ -98,12 +97,9 @@ async function generateProjectOGImage(slugs: string[]) {
 }
 
 async function generateOGImage(title: string, url: string) {
-  const fonts = await getOGImageFonts(title)
-
   return new ImageResponse(<OGImage title={title} url={url} />, {
     width: 1200,
     height: 630,
-    fonts,
   })
 }
 
