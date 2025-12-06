@@ -114,6 +114,9 @@ catalogs:
     cmdk:
       specifier: ^1.1.1
       version: 1.1.1
+    cn-fontsource-ding-talk-jin-bu-ti-regular:
+      specifier: ^1.0.3
+      version: 1.0.3
     cobe:
       specifier: ^0.6.5
       version: 0.6.5
@@ -516,6 +519,9 @@ importers:
       cmdk:
         specifier: catalog:frontend
         version: 1.1.1(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      cn-fontsource-ding-talk-jin-bu-ti-regular:
+        specifier: catalog:frontend
+        version: 1.0.3
       cobe:
         specifier: catalog:frontend
         version: 0.6.5
@@ -6328,6 +6334,9 @@ packages:
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
       react-dom: ^18 || ^19 || ^19.0.0-rc
+
+  cn-fontsource-ding-talk-jin-bu-ti-regular@1.0.3:
+    resolution: {integrity: sha512-DeSn8ooCvRnYxC2306F/rFb5jI9AquYGwGlTlc1LeJjpoSE/rKPndGlGrjyFFXsPyJq4vbrlU+Rwtp2DzWXEJw==}
 
   cobe@0.6.5:
     resolution: {integrity: sha512-MA8bu81EFY6JjQpj+FovEuhyJ25khx2Q7Lh+ot/UkCJe5yKyDgzdc6u2lGZIOmsZTXK6Itg1i4lQZIJZbPWnAg==}
@@ -17938,6 +17947,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
+
+  cn-fontsource-ding-talk-jin-bu-ti-regular@1.0.3: {}
 
   cobe@0.6.5:
     dependencies:

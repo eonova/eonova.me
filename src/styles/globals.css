@@ -4,6 +4,7 @@
 @import './shiki.css';
 @import './typography.css';
 @import './layer.css';
+@import 'cn-fontsource-ding-talk-jin-bu-ti-regular/font.css';
 
 @theme {
   --color-anchor: var(--anchor);
@@ -15,7 +16,7 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-dingtalk: var(--font-dingtalk);
+  --font-dingtalk: "DingTalk JinBuTi";
 }
 
 :root {

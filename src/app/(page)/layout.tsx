@@ -2,18 +2,12 @@ import type { Viewport } from 'next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import localFont from 'next/font/local'
 import SignInDialog from '~/components/layouts/sign-in-dialog'
 import Hello from '~/components/shared/hello'
 import { ErrorBoundaryMonitor, PerformanceMonitor } from '~/components/shared/performance-monitor'
 import { cn } from '~/utils'
 import Providers from '../providers'
 import '~/styles/globals.css'
-
-const DingTalk = localFont({
-  src: '../../../public/fonts/ding-talk.otf',
-  variable: '--font-dingtalk',
-})
 
 export const viewport: Viewport = {
   themeColor: [
@@ -33,7 +27,6 @@ export default function RootLayout({
       className={cn(
         GeistSans.variable,
         GeistMono.variable,
-        DingTalk.variable,
         'scroll-smooth',
       )}
       suppressHydrationWarning

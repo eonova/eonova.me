@@ -80,6 +80,7 @@
     "canvas-confetti": "catalog:ui",
     "clsx": "catalog:frontend",
     "cmdk": "catalog:frontend",
+    "cn-fontsource-ding-talk-jin-bu-ti-regular": "catalog:frontend",
     "cobe": "catalog:frontend",
     "consola": "catalog:backend",
     "cross-env": "catalog:script",
