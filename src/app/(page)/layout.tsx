@@ -11,7 +11,7 @@ import Providers from '../providers'
 import '~/styles/globals.css'
 
 const DingTalk = localFont({
-  src: '/fonts/DingTalk.otf',
+  src: '../../../public/fonts/ding-talk.otf',
   variable: '--font-dingtalk',
 })
 
