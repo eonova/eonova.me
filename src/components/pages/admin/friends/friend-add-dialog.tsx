@@ -13,7 +13,7 @@ import {
 import { Input } from '~/components/base/input'
 import { Label } from '~/components/base/label'
 import { useCreateFriend } from '~/hooks/queries/friend.query'
-import { useFriendDialogs } from '~/hooks/use-friend-dialogs'
+import { useSafeFriendDialogs } from '~/hooks/use-friend-dialogs'
 
 export default function AddFriendDialog({ open, onOpenChange }: { open?: boolean, onOpenChange?: (open: boolean) => void }) {
   const [name, setName] = useState('')
@@ -21,10 +21,12 @@ export default function AddFriendDialog({ open, onOpenChange }: { open?: boolean
   const [avatar, setAvatar] = useState('')
   const [description, setDescription] = useState('')
 
-  const { addDialog, setAddDialogs } = useFriendDialogs()
+  const context = useSafeFriendDialogs()
+  const addDialog = context?.addDialog
+  const setAddDialogs = context?.setAddDialogs
 
-  const isOpen = open ?? addDialog
-  const setOpen = onOpenChange ?? setAddDialogs
+  const isOpen = open ?? addDialog ?? false
+  const setOpen = onOpenChange ?? setAddDialogs ?? (() => {})
 
   function reset() {
     setName('')

@@ -47,3 +47,7 @@ export function useFriendDialogs() {
     throw new Error('useFriendDialogs must be used within FriendDialogsProvider')
   return ctx
 }
+
+export function useSafeFriendDialogs() {
+  return use(FriendDialogsContext)
+}
