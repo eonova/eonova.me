@@ -5,6 +5,7 @@ import { SiGithub, SiInstagram, SiRss, SiX, SiYoutube } from '@icons-pack/react-
 import {
   Archive,
   BellElectric,
+  ChartColumnStacked,
   FlameIcon,
   Images,
   Link2,
@@ -13,17 +14,15 @@ import {
   MessageSquareMore,
   Notebook,
   PencilIcon,
+  TagIcon,
   UserCircleIcon,
 } from 'lucide-react'
 import {
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
-  SITE_URL,
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from './constants'
-
-import { CATEGORIES } from './posts'
 
 type SocialLinks = Array<{
   href: string
@@ -44,12 +43,20 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     href: '/posts',
     key: 'posts',
     text: '文章',
-    subMenu: CATEGORIES.map(category => ({
-      text: category.name,
-      icon: category.icon,
-      href: `${SITE_URL}/categories/${category.label}`,
-      key: category.label,
-    })),
+    subMenu: [
+      {
+        icon: <ChartColumnStacked className="size-5" />,
+        href: '/categories',
+        key: 'categories',
+        text: '分类',
+      },
+      {
+        icon: <TagIcon className="size-5" />,
+        href: '/tags',
+        key: 'tags',
+        text: '标签',
+      },
+    ],
   },
   {
     icon: <Notebook className="size-5" />,
@@ -95,6 +102,12 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     key: 'more',
     text: '我的',
     subMenu: [
+      {
+        icon: <TagIcon className="size-5" />,
+        href: '/tags',
+        key: 'tags',
+        text: '标签',
+      },
       {
         icon: <Images className="size-5" />,
         href: '/album',

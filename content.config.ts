@@ -111,6 +111,7 @@ const posts = defineCollection({
     date: z.string(),
     modifiedTime: z.string(),
     intro: z.string().optional(),
+    tags: z.array(z.string()).default([]),
     cover: z.string(),
     content: z.string(),
   }),

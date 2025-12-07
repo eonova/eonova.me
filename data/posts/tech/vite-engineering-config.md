@@ -4,6 +4,7 @@ date: '2023-11-14T00:00:00Z'
 modifiedTime: '2025-05-23T00:00:00Z'
 intro: '工程化使项目开发更加规范化，利于后期维护修改和团队协作开发'
 categories: ['tech']
+tags: ['vite','工程化']
 cover: 'https://img.eonova.me/upload/vite-engineering-config.png'
 ---
 

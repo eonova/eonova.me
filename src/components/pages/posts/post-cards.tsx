@@ -2,7 +2,7 @@
 
 import type { Post } from 'content-collections'
 
-import { ChartColumnStacked, Clock, Eye, ThumbsUp } from 'lucide-react'
+import { ChartColumnStacked, Clock, Eye, TagIcon, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { CATEGORIES } from '~/config/posts'
 import { useContentLikeCount } from '~/hooks/queries/like.query'
@@ -47,6 +47,10 @@ function PostCard(props: PostCardProps & { idx: number }) {
           <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
             <ChartColumnStacked className="size-3" />
             <span className="text-sm">{CATEGORIES.find(i => i.label === categories)?.name}</span>
+          </li>
+          <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
+            <TagIcon className="size-3" />
+            <span className="text-sm">{props.tags?.join('、') || '无'}</span>
           </li>
           <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
             <Eye className="size-3" />

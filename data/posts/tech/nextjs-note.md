@@ -4,6 +4,7 @@ date: '2025-05-21T08:34:10.022Z'
 modifiedTime: '2025-05-21T08:34:10.026Z'
 intro: 'Next.js 概念介绍：文件系统路由、核心渲染策略概览、项目结构和约定。'
 categories: ['tech']
+tags: ['nextjs']
 cover: 'https://www.0xkishan.com/_next/image?url=%2Fblogs%2Fnextjs%2Fhero.png&w=3840&q=75'
 ---
 
