@@ -49,6 +49,7 @@
     "react-dom": "^19"
   },
   "dependencies": {
+    "@ai-sdk/deepseek": "catalog:backend",
     "@ark-ui/react": "catalog:ui",
     "@aws-sdk/client-s3": "catalog:backend",
     "@aws-sdk/s3-request-presigner": "catalog:backend",
@@ -73,6 +74,7 @@
     "@upstash/ratelimit": "catalog:backend",
     "@upstash/redis": "catalog:backend",
     "@vercel/speed-insights": "catalog:analysis",
+    "ai": "catalog:backend",
     "babel-plugin-react-compiler": "catalog:build",
     "better-auth": "catalog:backend",
     "better-call": "catalog:backend",
@@ -81,6 +83,7 @@
     "clsx": "catalog:frontend",
     "cmdk": "catalog:frontend",
     "cn-fontsource-ding-talk-jin-bu-ti-regular": "catalog:frontend",
+    "cn-fontsource-yozai-medium": "catalog:frontend",
     "cobe": "catalog:frontend",
     "consola": "catalog:backend",
     "cross-env": "catalog:script",
@@ -106,7 +109,6 @@
     "next": "catalog:frontend",
     "next-themes": "catalog:frontend",
     "nuqs": "catalog:frontend",
-    "openai": "catalog:backend",
     "postgres": "catalog:backend",
     "posthog-js": "catalog:frontend",
     "radix-ui": "catalog:ui",

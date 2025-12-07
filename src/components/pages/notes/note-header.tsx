@@ -7,8 +7,9 @@ import { useNoteContext } from '~/contexts/note'
 import { useContentCommentCount } from '~/hooks/queries/comment.query'
 import { useContentViewCount, useIncrementContentViewCount } from '~/hooks/queries/view.query'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
+import { cn } from '~/utils/cn'
 
-function Header() {
+function Header({ className }: { className?: string }) {
   const { date, title, slug } = useNoteContext()
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
@@ -30,8 +31,8 @@ function Header() {
   }, [incrementNoteView, slug])
 
   return (
-    <div className="flex flex-col gap-5 py-4">
-      <h2 className="bg-gradient-to-b from-black via-black/90 to-black/70 to-[90%] bg-clip-text text-2xl font-bold text-transparent md:text-3xl dark:from-white dark:via-white/90 dark:to-white/70">
+    <div className={cn('flex flex-col gap-8', className)}>
+      <h2 className=" bg-clip-text text-2xl font-bold font-mono md:text-4xl ">
         {title}
       </h2>
       <div className="flex items-center justify-start gap-5 text-sm">

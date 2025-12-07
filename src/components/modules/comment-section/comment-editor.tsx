@@ -62,7 +62,7 @@ function CommentEditor(props: CommentEditorProps) {
                 decorateText('bold')
               }}
             >
-              <BoldIcon />
+              <BoldIcon className="size-5" />
             </Button>
             <Button
               aria-label="删除线"
@@ -73,7 +73,7 @@ function CommentEditor(props: CommentEditorProps) {
                 decorateText('strikethrough')
               }}
             >
-              <StrikethroughIcon />
+              <StrikethroughIcon className="size-5" />
             </Button>
             <Button
               aria-label="斜体"
@@ -84,7 +84,7 @@ function CommentEditor(props: CommentEditorProps) {
                 decorateText('italic')
               }}
             >
-              <ItalicIcon />
+              <ItalicIcon className="size-5" />
             </Button>
           </div>
         </div>

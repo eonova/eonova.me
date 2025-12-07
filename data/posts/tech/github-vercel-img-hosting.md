@@ -2,7 +2,7 @@
 title: 使用 Github 和 Vercel 搭建图床
 date: '2025-05-29T00:00:00Z'
 modifiedTime: '2025-05-29T00:00:00Z'
-summary: 使用 Github 和 Vercel 搭建图床，本地 picgo 上传图片。
+intro: 使用 Github 和 Vercel 搭建图床，本地 picgo 上传图片。
 categories: ['tech']
 cover: 'https://img.eonova.me/picgo/20250529195625450.png'
 ---

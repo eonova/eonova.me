@@ -2,38 +2,37 @@ import type { Metadata } from 'next'
 import type { Article, WithContext } from 'schema-dts'
 
 import { allNotes } from 'content-collections'
+import { eq } from 'drizzle-orm'
 import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
-import { Skeleton } from '~/components/base/skeleton'
+import { AISummary } from '~/components/modules/ai/summary'
 import CommentSection from '~/components/modules/comment-section/comment-section'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
 import Footer from '~/components/pages/notes/note-footer'
 import Header from '~/components/pages/notes/note-header'
+import Intro from '~/components/pages/notes/note-intro'
 import Providers from '~/components/pages/notes/providers'
 import TableOfContents from '~/components/pages/notes/table-of-contents'
+import JsonLd from '~/components/shared/json-ld'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
-import { SITE_NAME, SITE_URL } from '~/config/constants'
+import { MY_NAME } from '~/config/constants'
+import { db, notes as notesSchema } from '~/db'
+import { getNoteBySlug } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
-
-interface PageProps {
-  params: Promise<{
-    slug: string
-    locale: string
-  }>
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
+import { getBaseUrl } from '~/utils'
 
 const url = '/notes'
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const note = allNotes.find(n => n.slug === params.slug)
+export async function generateMetadata(props: PageProps<'/notes/[slug]'>): Promise<Metadata> {
+  const { params } = props
+  const { slug } = await params
+  const note = getNoteBySlug(slug)
   if (!note) {
     return {}
   }
   return createMetadata({
     pathname: `${url}/${note.slug}`,
     title: note.title,
-    description: note.summary ?? '',
+    description: note.intro ?? '',
     openGraph: {
       type: 'article',
     },
@@ -46,65 +45,77 @@ export function generateStaticParams() {
   return allNotes.map(n => ({ slug: n.slug }))
 }
 
-async function Page(props: Readonly<PageProps>) {
+async function Page(props: PageProps<'/notes/[slug]'>) {
   const { slug } = await props.params
 
-  const note = allNotes.find(p => p.slug === slug)
-  const url = `${SITE_URL}/notes/${slug}`
+  const baseUrl = getBaseUrl()
+  const note = getNoteBySlug(slug)
+  const url = `${baseUrl}/notes/${slug}`
 
   if (!note) {
     notFound()
   }
 
-  const { title, summary, date, code, toc } = note
+  const { title, intro, date, code, toc } = note
 
   const jsonLd: WithContext<Article> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     'headline': title,
     'name': title,
-    'description': summary,
+    'description': intro,
     url,
     'datePublished': date,
     'dateModified': date,
-    'image': `${SITE_URL}/og/${slug}`,
+    'image': `${baseUrl}/og/${slug}`,
     'author': {
       '@type': 'Person',
-      'name': SITE_NAME,
-      'url': SITE_URL,
+      'name': MY_NAME,
+      'url': baseUrl,
     },
     'publisher': {
       '@type': 'Person',
-      'name': SITE_NAME,
-      'url': SITE_URL,
+      'name': MY_NAME,
+      'url': baseUrl,
     },
   }
 
+  const dbNote = await db.query.notes.findFirst({
+    where: eq(notesSchema.title, slug),
+  })
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd json={jsonLd} />
       <Providers note={note}>
-        <div className="relative my-16 mb-8 flex w-full flex-col justify-between gap-2 overflow-visible rounded-[0_6px_6px_0] border-solid border-zinc-200/70 bg-white p-10 md:col-start-1 lg:flex-row lg:border dark:border-neutral-800 dark:bg-zinc-900/50">
+        <div className="relative my-16 mb-8 flex w-full flex-col justify-between gap-2 overflow-visible rounded-[0_6px_6px_0] border-solid border-zinc-200/70 bg-white/50 p-8 md:col-start-1 lg:flex-row lg:border dark:border-neutral-800 dark:bg-zinc-900/50">
           <article className="w-full sm:px-4 pb-10">
-            <Header />
+            <Header className="my-4 mt-10" />
+            <AISummary
+              summary={dbNote?.summary ?? '---'}
+              content={note.content}
+              slug={slug}
+              type="note"
+              color="orange"
+            />
+            {intro && <Intro intro={intro} />}
             <NoteMdx code={code} />
           </article>
-          <aside className="hidden w-[0] lg:ml-[-15vw] lg:block xl:ml-[-20vw]">
-            <div className="sticky top-60 ml-15 lg:max-w-[200px] lg:min-w-[200px]">
+          <aside className="hidden w-0 lg:ml-[-15vw] lg:block xl:ml-[-20vw]">
+            <div className="sticky top-70 ml-15 lg:max-w-[200px] lg:min-w-[200px]">
               {toc.length > 0 && <TableOfContents toc={toc} />}
             </div>
           </aside>
         </div>
-        {toc.length > 0 && <MobileTableOfContents toc={toc} />}
-        <Footer />
+        <div className="flex w-full flex-col gap-4">
+          <Footer />
+          <CommentSection
+            slug={slug}
+            contentType="notes"
+          />
+        </div>
+        <MobileTableOfContents toc={toc} />
       </Providers>
-
-      <Suspense fallback={<div className="mt-8"><Skeleton className="h-24 w-full" /></div>}>
-        <CommentSection slug={slug} contentType="notes" />
-      </Suspense>
     </>
   )
 }

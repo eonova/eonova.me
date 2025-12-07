@@ -5,6 +5,7 @@ modifiedTime: '2025-05-24T08:34:10.026Z'
 summary: '深入解析前端渲染模式：SSR、SSG、ISR 与 CSR 的原理、优缺点及适用场景。'
 categories: ['tech']
 cover: 'https://media.licdn.com/dms/image/v2/D5612AQGIshAZ7H_dlQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1721339586044?e=2147483647&v=beta&t=LZ4_GuqwJxISmTGoYXu7FNv1nIBFC_QRXCjWXmBz-cE'
+intro: '深入解析前端渲染模式：SSR、SSG、ISR 与 CSR 的原理、优缺点及适用场景。'
 ---
 
 ## 前言

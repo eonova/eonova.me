@@ -45,7 +45,7 @@ function Dia({ className }: DiaProps) {
     '--aurora-dia--platform-light': '#ff0099',
   } as React.CSSProperties), [themeConfig])
 
-  const initializeBot = () => {
+  useEffect(() => {
     const aurora_bot_enable = diaStore.aurora_bot.enable
     if (!aurora_bot_enable) {
       setShowDia(false)
@@ -55,14 +55,13 @@ function Dia({ className }: DiaProps) {
     diaStore.initializeBot({
       tips: diaStore.aurora_bot.tips,
     })
-    setTimeout(() => {
+
+    const timer = setTimeout(() => {
       setShowDia(true)
     }, 500)
-  }
 
-  useEffect(() => {
-    initializeBot()
-  }, [diaStore.aurora_bot.enable])
+    return () => clearTimeout(timer)
+  }, [diaStore.aurora_bot.enable, diaStore.initializeBot, diaStore.aurora_bot.tips])
 
   // 添加 useEffect 来在 DOM 渲染后激活眼球运动
   useEffect(() => {

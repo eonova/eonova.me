@@ -110,7 +110,7 @@ const posts = defineCollection({
     title: z.string(),
     date: z.string(),
     modifiedTime: z.string(),
-    summary: z.string(),
+    intro: z.string().optional(),
     cover: z.string(),
     content: z.string(),
   }),
@@ -124,7 +124,7 @@ const notes = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
-    summary: z.string().optional(),
+    intro: z.string().optional(),
     mood: z.string(),
     weather: z.string(),
     cover: z.string(),

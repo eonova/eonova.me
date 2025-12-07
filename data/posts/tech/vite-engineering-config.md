@@ -2,7 +2,7 @@
 title: Vite工程化配置
 date: '2023-11-14T00:00:00Z'
 modifiedTime: '2025-05-23T00:00:00Z'
-summary: '工程化使项目开发更加规范化，利于后期维护修改和团队协作开发'
+intro: '工程化使项目开发更加规范化，利于后期维护修改和团队协作开发'
 categories: ['tech']
 cover: 'https://img.eonova.me/upload/vite-engineering-config.png'
 ---

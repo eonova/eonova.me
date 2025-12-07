@@ -10,8 +10,14 @@ import { usePostContext } from '~/contexts/post'
 import { useContentCommentCount } from '~/hooks/queries/comment.query'
 import { useContentViewCount, useIncrementContentViewCount } from '~/hooks/queries/view.query'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
+import Intro from './post-intro'
 
-function Header() {
+interface HeaderProps {
+  summary?: string
+  intro?: string
+}
+
+function Header({ summary, intro }: HeaderProps) {
   const { cover, date, title, slug, ...postData } = usePostContext()
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
@@ -31,8 +37,9 @@ function Header() {
       incremented.current = true
     }
   }, [incrementPostView, slug])
+
   return (
-    <div className="space-y-12 py-12">
+    <div className="space-y-12 pt-12">
       <div className="space-y-12 sm:px-8">
         <h1 className="bg-linear-to-b from-black via-black/90 to-black/70 to-[90%] bg-clip-text text-center text-4xl font-bold text-transparent md:text-5xl md:leading-16 dark:from-white dark:via-white/90 dark:to-white/70">
           {title}
@@ -75,7 +82,14 @@ function Header() {
           </div>
         </div>
       </div>
-      <AISummary data={{ ...postData, title, slug }} className="mx-auto" />
+      <AISummary
+        content={postData.content}
+        slug={slug}
+        type="post"
+        summary={summary}
+        className="mx-auto"
+      />
+      <Intro intro={intro ?? ''} />
     </div>
   )
 }

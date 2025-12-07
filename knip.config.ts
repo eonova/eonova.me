@@ -11,6 +11,8 @@ const config: KnipConfig = {
     'react-email',
     'picocolors',
     'execa',
+    'cn-fontsource-ding-talk-jin-bu-ti-regular',
+    'cn-fontsource-yozai-medium',
   ],
   ignoreBinaries: ['only-allow'],
   entry: ['content.config.ts', '*.config.mjs', '*.config.ts', 'src/e2e/**/*.{setup,teardown}.ts'],

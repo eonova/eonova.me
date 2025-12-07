@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 
 import type { BlogPosting, WithContext } from 'schema-dts'
 import { allPosts } from 'content-collections'
+import { eq } from 'drizzle-orm'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+
 import { Skeleton } from '~/components/base/skeleton'
 import CommentSection from '~/components/modules/comment-section/comment-section'
 import Mdx from '~/components/modules/mdx'
@@ -14,7 +16,8 @@ import Providers from '~/components/pages/posts/providers'
 import TableOfContents from '~/components/pages/posts/table-of-contents'
 import JsonLd from '~/components/shared/json-ld'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
-import { MY_NAME, SITE_URL } from '~/config/constants'
+import { MY_NAME } from '~/config/constants'
+import { db, posts as postsSchema } from '~/db'
 import { getPostBySlug } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
@@ -31,7 +34,7 @@ export async function generateMetadata(props: PageProps<'/posts/[slug]'>): Promi
   return createMetadata({
     pathname: `/posts/${slug}`,
     title: post.title,
-    description: post.summary,
+    description: post.intro ?? '',
     openGraph: {
       type: 'article',
       publishedTime: post.date,
@@ -48,21 +51,25 @@ export function generateStaticParams() {
 async function Page(props: PageProps<'/posts/[slug]'>) {
   const { slug } = await props.params
 
-  const post = allPosts.find(p => p.slug === slug)
-  const url = `${SITE_URL}/posts/${slug}`
+  const post = getPostBySlug(slug)
+  const baseUrl = getBaseUrl()
+  const url = `${baseUrl}/posts/${slug}`
 
   if (!post) {
     notFound()
   }
 
-  const { title, summary, date, modifiedTime, code, toc } = post
+  const { title, intro, date, modifiedTime, code, toc } = post
 
-  const baseUrl = getBaseUrl()
+  const dbPost = await db.query.posts.findFirst({
+    where: eq(postsSchema.slug, slug),
+  })
+
   const jsonLd: WithContext<BlogPosting> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     'headline': title,
-    'description': summary,
+    'description': intro,
     'mainEntityOfPage': {
       '@type': 'WebPage',
       '@id': url,
@@ -85,7 +92,7 @@ async function Page(props: PageProps<'/posts/[slug]'>) {
     <>
       <JsonLd json={jsonLd} />
       <Providers post={post}>
-        <Header />
+        <Header summary={dbPost?.summary ?? undefined} intro={intro ?? ''} />
         <div className="mt-8 flex w-full flex-col justify-between gap-2 overflow-visible lg:flex-row">
           <article className="w-full sm:px-4">
             <Mdx code={code} />

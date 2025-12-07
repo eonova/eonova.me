@@ -13,6 +13,9 @@ catalogs:
       specifier: ^1.2.0
       version: 1.3.1
   backend:
+    '@ai-sdk/deepseek':
+      specifier: ^1.0.31
+      version: 1.0.31
     '@aws-sdk/client-s3':
       specifier: 3.919.0
       version: 3.919.0
@@ -46,6 +49,9 @@ catalogs:
     '@upstash/redis':
       specifier: ^1.35.7
       version: 1.35.7
+    ai:
+      specifier: ^5.0.108
+      version: 5.0.108
     better-auth:
       specifier: ^1.4.3
       version: 1.4.5
@@ -64,9 +70,6 @@ catalogs:
     jose:
       specifier: ^6.1.2
       version: 6.1.3
-    openai:
-      specifier: ^6.9.1
-      version: 6.9.1
     postgres:
       specifier: 3.4.7
       version: 3.4.7
@@ -117,6 +120,9 @@ catalogs:
     cn-fontsource-ding-talk-jin-bu-ti-regular:
       specifier: ^1.0.3
       version: 1.0.3
+    cn-fontsource-yozai-medium:
+      specifier: ^1.0.6
+      version: 1.0.6
     cobe:
       specifier: ^0.6.5
       version: 0.6.5
@@ -426,6 +432,9 @@ importers:
 
   .:
     dependencies:
+      '@ai-sdk/deepseek':
+        specifier: catalog:backend
+        version: 1.0.31(zod@4.1.13)
       '@ark-ui/react':
         specifier: catalog:ui
         version: 5.29.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -437,7 +446,7 @@ importers:
         version: 3.919.0
       '@ducanh2912/next-pwa':
         specifier: catalog:frontend
-        version: 10.2.9(@types/babel__core@7.20.5)(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(webpack@5.103.0(esbuild@0.25.12))
+        version: 10.2.9(@types/babel__core@7.20.5)(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(webpack@5.103.0(esbuild@0.25.12))
       '@fastify/deepmerge':
         specifier: catalog:backend
         version: 3.1.0
@@ -455,13 +464,13 @@ importers:
         version: 22.0.1
       '@orpc/client':
         specifier: catalog:backend
-        version: 1.12.2
+        version: 1.12.2(@opentelemetry/api@1.9.0)
       '@orpc/server':
         specifier: catalog:backend
-        version: 1.12.2(ws@8.18.3)
+        version: 1.12.2(@opentelemetry/api@1.9.0)(ws@8.18.3)
       '@orpc/tanstack-query':
         specifier: catalog:backend
-        version: 1.12.2(@orpc/client@1.12.2)(@tanstack/query-core@5.90.11)
+        version: 1.12.2(@opentelemetry/api@1.9.0)(@orpc/client@1.12.2(@opentelemetry/api@1.9.0))(@tanstack/query-core@5.90.11)
       '@paralleldrive/cuid2':
         specifier: catalog:prod
         version: 3.1.0
@@ -497,13 +506,16 @@ importers:
         version: 1.35.7
       '@vercel/speed-insights':
         specifier: catalog:analysis
-        version: 1.3.1(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
+        version: 1.3.1(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
+      ai:
+        specifier: catalog:backend
+        version: 5.0.108(zod@4.1.13)
       babel-plugin-react-compiler:
         specifier: catalog:build
         version: 19.0.0-beta-714736e-20250131
       better-auth:
         specifier: catalog:backend
-        version: 1.4.5(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+        version: 1.4.5(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       better-call:
         specifier: catalog:backend
         version: 1.1.4(zod@4.1.13)
@@ -522,6 +534,9 @@ importers:
       cn-fontsource-ding-talk-jin-bu-ti-regular:
         specifier: catalog:frontend
         version: 1.0.3
+      cn-fontsource-yozai-medium:
+        specifier: catalog:frontend
+        version: 1.0.6
       cobe:
         specifier: catalog:frontend
         version: 0.6.5
@@ -542,10 +557,10 @@ importers:
         version: 1.11.19
       drizzle-orm:
         specifier: catalog:backend
-        version: 0.44.7(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7)
+        version: 0.44.7(@opentelemetry/api@1.9.0)(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7)
       drizzle-zod:
         specifier: catalog:backend
-        version: 0.8.3(drizzle-orm@0.44.7(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7))(zod@4.1.13)
+        version: 0.8.3(drizzle-orm@0.44.7(@opentelemetry/api@1.9.0)(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7))(zod@4.1.13)
       embla-carousel-react:
         specifier: catalog:frontend
         version: 8.6.0(react@19.2.1)
@@ -557,7 +572,7 @@ importers:
         version: 9.6.1
       geist:
         specifier: catalog:frontend
-        version: 1.5.1(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
+        version: 1.5.1(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
       github-slugger:
         specifier: catalog:mdx
         version: 2.0.0
@@ -590,16 +605,13 @@ importers:
         version: 12.23.25(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       next:
         specifier: catalog:frontend
-        version: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+        version: 16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       next-themes:
         specifier: catalog:frontend
         version: 0.4.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       nuqs:
         specifier: catalog:frontend
-        version: 2.8.2(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
-      openai:
-        specifier: catalog:backend
-        version: 6.9.1(ws@8.18.3)(zod@4.1.13)
+        version: 2.8.2(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
       postgres:
         specifier: catalog:backend
         version: 3.4.7
@@ -702,7 +714,7 @@ importers:
         version: 0.2.2(@content-collections/core@0.12.0(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@content-collections/next':
         specifier: catalog:mdx
-        version: 0.2.9(@content-collections/core@0.12.0(typescript@5.7.3))(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
+        version: 0.2.9(@content-collections/core@0.12.0(typescript@5.7.3))(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
       '@eslint-react/eslint-plugin':
         specifier: catalog:lint
         version: 2.3.12(eslint@9.39.1(jiti@2.6.1))(typescript@5.7.3)
@@ -714,7 +726,7 @@ importers:
         version: 1.57.0
       '@react-email/preview-server':
         specifier: catalog:ui
-        version: 4.3.2(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(postcss@8.5.6)
+        version: 4.3.2(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(postcss@8.5.6)
       '@tailwindcss/postcss':
         specifier: catalog:ui
         version: 4.1.17
@@ -831,7 +843,7 @@ importers:
         version: 5.7.3
       vitest:
         specifier: catalog:test
-        version: 4.0.15(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
+        version: 4.0.15(@opentelemetry/api@1.9.0)(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
 
 packages:
 
@@ -840,6 +852,28 @@ packages:
 
   '@adobe/css-tools@4.4.4':
     resolution: {integrity: sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg==}
+
+  '@ai-sdk/deepseek@1.0.31':
+    resolution: {integrity: sha512-Il7WJp8bA3CmlreYSl1YzCucGTn2e5P81IANYIIEeLtWrbK0Y9CLoOCROj8xKYyUSMKlINyGZX2uP79cKewtSg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  '@ai-sdk/gateway@2.0.18':
+    resolution: {integrity: sha512-sDQcW+6ck2m0pTIHW6BPHD7S125WD3qNkx/B8sEzJp/hurocmJ5Cni0ybExg6sQMGo+fr/GWOwpHF1cmCdg5rQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  '@ai-sdk/provider-utils@3.0.18':
+    resolution: {integrity: sha512-ypv1xXMsgGcNKUP+hglKqtdDuMg68nWHucPPAhIENrbFAI+xCHiqPVN8Zllxyv1TNZwGWUghPxJXU+Mqps0YRQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  '@ai-sdk/provider@2.0.0':
+    resolution: {integrity: sha512-6o7Y2SeO9vFKB8lArHXehNuusnpddKPk7xqL7T2/b+OvXMRIXUO1rR4wcv1hAFUAT9avGZshty3Wlua/XA7TvA==}
+    engines: {node: '>=18'}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -3374,6 +3408,10 @@ packages:
   '@octokit/types@16.0.0':
     resolution: {integrity: sha512-sKq+9r1Mm4efXW1FCk7hFSeJo4QKreL/tTbR0rz/qx/r1Oa2VV83LTA/H/MuCOX7uCIJmQVRKBcbmWoySjAnSg==}
 
+  '@opentelemetry/api@1.9.0':
+    resolution: {integrity: sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==}
+    engines: {node: '>=8.0.0'}
+
   '@orpc/client@1.12.2':
     resolution: {integrity: sha512-3MTFnWRYYjcyzhtcYpodvkaYQlqsxKd5xGv+7PPJSpjCgFg9wcp7mZmRKy7hK0sCwUlkyi7AKs1Q19aUVUFIGA==}
 
@@ -5461,6 +5499,10 @@ packages:
   '@upstash/redis@1.35.7':
     resolution: {integrity: sha512-bdCdKhke+kYUjcLLuGWSeQw7OLuWIx3eyKksyToLBAlGIMX9qiII0ptp8E0y7VFE1yuBxBd/3kSzJ8774Q4g+A==}
 
+  '@vercel/oidc@3.0.5':
+    resolution: {integrity: sha512-fnYhv671l+eTTp48gB4zEsTW/YtRgRPnkI2nT7x6qw5rkI1Lq2hTmQIpHPgyThI0znLK+vX2n9XxKdXZ7BUbbw==}
+    engines: {node: '>= 20'}
+
   '@vercel/speed-insights@1.3.1':
     resolution: {integrity: sha512-PbEr7FrMkUrGYvlcLHGkXdCkxnylCWePx7lPxxq36DNdfo9mcUjLOmqOyPDHAOgnfqgGGdmE3XI9L/4+5fr+vQ==}
     peerDependencies:
@@ -5866,6 +5908,12 @@ packages:
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
+
+  ai@5.0.108:
+    resolution: {integrity: sha512-Jex3Lb7V41NNpuqJHKgrwoU6BCLHdI1Pg4qb4GJH4jRIDRXUBySJErHjyN4oTCwbiYCeb/8II9EnqSRPq9EifA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
 
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
@@ -6337,6 +6385,9 @@ packages:
 
   cn-fontsource-ding-talk-jin-bu-ti-regular@1.0.3:
     resolution: {integrity: sha512-DeSn8ooCvRnYxC2306F/rFb5jI9AquYGwGlTlc1LeJjpoSE/rKPndGlGrjyFFXsPyJq4vbrlU+Rwtp2DzWXEJw==}
+
+  cn-fontsource-yozai-medium@1.0.6:
+    resolution: {integrity: sha512-6czCz+KBj5D8eH1bPxnf1bcjpxoS2M31Arv1G7BNOV7TIvS5vlfTr18H8tEvUwPQG17rmQ+EqFVM98xO5jYiZA==}
 
   cobe@0.6.5:
     resolution: {integrity: sha512-MA8bu81EFY6JjQpj+FovEuhyJ25khx2Q7Lh+ot/UkCJe5yKyDgzdc6u2lGZIOmsZTXK6Itg1i4lQZIJZbPWnAg==}
@@ -7265,6 +7316,10 @@ packages:
   events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
+
+  eventsource-parser@3.0.6:
+    resolution: {integrity: sha512-Vo1ab+QXPzZ4tCa8SwIHJFaSzy4R6SHf7BY79rFBDf0idraZWAkYrDjDj8uWaSm3S2TK+hJ7/t1CEmZ7jXw+pg==}
+    engines: {node: '>=18.0.0'}
 
   execa@9.6.1:
     resolution: {integrity: sha512-9Be3ZoN4LmYR90tUoVu2te2BsbzHfhJyfEiAVfz7N5/zv+jduIfLrV2xdQXOHbaD6KgpGdO9PRPM1Y4Q9QkPkA==}
@@ -9076,18 +9131,6 @@ packages:
   open@7.4.2:
     resolution: {integrity: sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==}
     engines: {node: '>=8'}
-
-  openai@6.9.1:
-    resolution: {integrity: sha512-vQ5Rlt0ZgB3/BNmTa7bIijYFhz3YBceAA3Z4JuoMSBftBF9YqFHIEhZakSs+O/Ad7EaoEimZvHxD5ylRjN11Lg==}
-    hasBin: true
-    peerDependencies:
-      ws: ^8.18.0
-      zod: ^3.25 || ^4.0
-    peerDependenciesMeta:
-      ws:
-        optional: true
-      zod:
-        optional: true
 
   openapi-types@12.1.3:
     resolution: {integrity: sha512-N4YtSYJqghVu4iek2ZUvcN/0aqH1kRDuNqzcycDxhOUpg7GdvLa2F3DgS6yBNhInhv2r/6I0Flkn7CqL8+nIcw==}
@@ -11199,6 +11242,30 @@ snapshots:
 
   '@adobe/css-tools@4.4.4': {}
 
+  '@ai-sdk/deepseek@1.0.31(zod@4.1.13)':
+    dependencies:
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.18(zod@4.1.13)
+      zod: 4.1.13
+
+  '@ai-sdk/gateway@2.0.18(zod@4.1.13)':
+    dependencies:
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.18(zod@4.1.13)
+      '@vercel/oidc': 3.0.5
+      zod: 4.1.13
+
+  '@ai-sdk/provider-utils@3.0.18(zod@4.1.13)':
+    dependencies:
+      '@ai-sdk/provider': 2.0.0
+      '@standard-schema/spec': 1.0.0
+      eventsource-parser: 3.0.6
+      zod: 4.1.13
+
+  '@ai-sdk/provider@2.0.0':
+    dependencies:
+      json-schema: 0.4.0
+
   '@alloc/quick-lru@5.2.0': {}
 
   '@ampproject/remapping@2.3.0':
@@ -12735,11 +12802,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@content-collections/next@0.2.9(@content-collections/core@0.12.0(typescript@5.7.3))(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))':
+  '@content-collections/next@0.2.9(@content-collections/core@0.12.0(typescript@5.7.3))(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))':
     dependencies:
       '@content-collections/core': 0.12.0(typescript@5.7.3)
       '@content-collections/integrations': 0.3.0(@content-collections/core@0.12.0(typescript@5.7.3))
-      next: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      next: 16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
 
   '@cspell/cspell-bundled-dicts@9.4.0':
     dependencies:
@@ -12983,10 +13050,10 @@ snapshots:
 
   '@drizzle-team/brocli@0.10.2': {}
 
-  '@ducanh2912/next-pwa@10.2.9(@types/babel__core@7.20.5)(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(webpack@5.103.0(esbuild@0.25.12))':
+  '@ducanh2912/next-pwa@10.2.9(@types/babel__core@7.20.5)(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(webpack@5.103.0(esbuild@0.25.12))':
     dependencies:
       fast-glob: 3.3.2
-      next: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      next: 16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       semver: 7.6.3
       webpack: 5.103.0(esbuild@0.25.12)
       workbox-build: 7.1.1(@types/babel__core@7.20.5)
@@ -14047,19 +14114,21 @@ snapshots:
     dependencies:
       '@octokit/openapi-types': 27.0.0
 
-  '@orpc/client@1.12.2':
+  '@opentelemetry/api@1.9.0': {}
+
+  '@orpc/client@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
-      '@orpc/shared': 1.12.2
-      '@orpc/standard-server': 1.12.2
-      '@orpc/standard-server-fetch': 1.12.2
-      '@orpc/standard-server-peer': 1.12.2
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-fetch': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-peer': 1.12.2(@opentelemetry/api@1.9.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/contract@1.12.2':
+  '@orpc/contract@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
-      '@orpc/client': 1.12.2
-      '@orpc/shared': 1.12.2
+      '@orpc/client': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
       '@standard-schema/spec': 1.0.0
       openapi-types: 12.1.3
     transitivePeerDependencies:
@@ -14067,18 +14136,18 @@ snapshots:
 
   '@orpc/interop@1.12.2': {}
 
-  '@orpc/server@1.12.2(ws@8.18.3)':
+  '@orpc/server@1.12.2(@opentelemetry/api@1.9.0)(ws@8.18.3)':
     dependencies:
-      '@orpc/client': 1.12.2
-      '@orpc/contract': 1.12.2
+      '@orpc/client': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/contract': 1.12.2(@opentelemetry/api@1.9.0)
       '@orpc/interop': 1.12.2
-      '@orpc/shared': 1.12.2
-      '@orpc/standard-server': 1.12.2
-      '@orpc/standard-server-aws-lambda': 1.12.2
-      '@orpc/standard-server-fastify': 1.12.2
-      '@orpc/standard-server-fetch': 1.12.2
-      '@orpc/standard-server-node': 1.12.2
-      '@orpc/standard-server-peer': 1.12.2
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-aws-lambda': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-fastify': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-fetch': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-node': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-peer': 1.12.2(@opentelemetry/api@1.9.0)
       cookie: 1.1.1
     optionalDependencies:
       ws: 8.18.3
@@ -14086,60 +14155,62 @@ snapshots:
       - '@opentelemetry/api'
       - fastify
 
-  '@orpc/shared@1.12.2':
+  '@orpc/shared@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
       radash: 12.1.1
       type-fest: 5.3.0
+    optionalDependencies:
+      '@opentelemetry/api': 1.9.0
 
-  '@orpc/standard-server-aws-lambda@1.12.2':
+  '@orpc/standard-server-aws-lambda@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
-      '@orpc/shared': 1.12.2
-      '@orpc/standard-server': 1.12.2
-      '@orpc/standard-server-fetch': 1.12.2
-      '@orpc/standard-server-node': 1.12.2
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-fetch': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-node': 1.12.2(@opentelemetry/api@1.9.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/standard-server-fastify@1.12.2':
+  '@orpc/standard-server-fastify@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
-      '@orpc/shared': 1.12.2
-      '@orpc/standard-server': 1.12.2
-      '@orpc/standard-server-node': 1.12.2
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-node': 1.12.2(@opentelemetry/api@1.9.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/standard-server-fetch@1.12.2':
+  '@orpc/standard-server-fetch@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
-      '@orpc/shared': 1.12.2
-      '@orpc/standard-server': 1.12.2
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server': 1.12.2(@opentelemetry/api@1.9.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/standard-server-node@1.12.2':
+  '@orpc/standard-server-node@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
-      '@orpc/shared': 1.12.2
-      '@orpc/standard-server': 1.12.2
-      '@orpc/standard-server-fetch': 1.12.2
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server-fetch': 1.12.2(@opentelemetry/api@1.9.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/standard-server-peer@1.12.2':
+  '@orpc/standard-server-peer@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
-      '@orpc/shared': 1.12.2
-      '@orpc/standard-server': 1.12.2
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/standard-server': 1.12.2(@opentelemetry/api@1.9.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/standard-server@1.12.2':
+  '@orpc/standard-server@1.12.2(@opentelemetry/api@1.9.0)':
     dependencies:
-      '@orpc/shared': 1.12.2
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/tanstack-query@1.12.2(@orpc/client@1.12.2)(@tanstack/query-core@5.90.11)':
+  '@orpc/tanstack-query@1.12.2(@opentelemetry/api@1.9.0)(@orpc/client@1.12.2(@opentelemetry/api@1.9.0))(@tanstack/query-core@5.90.11)':
     dependencies:
-      '@orpc/client': 1.12.2
-      '@orpc/shared': 1.12.2
+      '@orpc/client': 1.12.2(@opentelemetry/api@1.9.0)
+      '@orpc/shared': 1.12.2(@opentelemetry/api@1.9.0)
       '@tanstack/query-core': 5.90.11
     transitivePeerDependencies:
       - '@opentelemetry/api'
@@ -15435,7 +15506,7 @@ snapshots:
       marked: 15.0.12
       react: 19.2.1
 
-  '@react-email/preview-server@4.3.2(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(postcss@8.5.6)':
+  '@react-email/preview-server@4.3.2(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(postcss@8.5.6)':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/parser': 7.27.0
@@ -15461,7 +15532,7 @@ snapshots:
       json5: 2.2.3
       log-symbols: 4.1.0
       module-punycode: punycode@2.3.1
-      next: 15.5.2(@babel/core@7.26.10)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      next: 15.5.2(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       node-html-parser: 7.0.1
       ora: 5.4.1
       pretty-bytes: 6.1.1
@@ -16707,9 +16778,11 @@ snapshots:
     dependencies:
       uncrypto: 0.1.3
 
-  '@vercel/speed-insights@1.3.1(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)':
+  '@vercel/oidc@3.0.5': {}
+
+  '@vercel/speed-insights@1.3.1(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)':
     optionalDependencies:
-      next: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      next: 16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react: 19.2.1
 
   '@vitejs/plugin-react@5.1.1(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))':
@@ -16739,7 +16812,7 @@ snapshots:
       std-env: 3.10.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 4.0.15(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
+      vitest: 4.0.15(@opentelemetry/api@1.9.0)(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -16750,7 +16823,7 @@ snapshots:
       eslint: 9.39.1(jiti@2.6.1)
     optionalDependencies:
       typescript: 5.7.3
-      vitest: 4.0.15(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
+      vitest: 4.0.15(@opentelemetry/api@1.9.0)(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -16797,7 +16870,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.15(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
+      vitest: 4.0.15(@opentelemetry/api@1.9.0)(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
 
   '@vitest/utils@4.0.15':
     dependencies:
@@ -17472,6 +17545,14 @@ snapshots:
 
   agent-base@7.1.4: {}
 
+  ai@5.0.108(zod@4.1.13):
+    dependencies:
+      '@ai-sdk/gateway': 2.0.18(zod@4.1.13)
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.18(zod@4.1.13)
+      '@opentelemetry/api': 1.9.0
+      zod: 4.1.13
+
   ajv-formats@2.1.1(ajv@8.17.1):
     optionalDependencies:
       ajv: 8.17.1
@@ -17702,7 +17783,7 @@ snapshots:
 
   before-after-hook@4.0.0: {}
 
-  better-auth@1.4.5(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
+  better-auth@1.4.5(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
     dependencies:
       '@better-auth/core': 1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@4.1.13))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0)
       '@better-auth/telemetry': 1.4.5(@better-auth/core@1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@4.1.13))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0))
@@ -17718,7 +17799,7 @@ snapshots:
       nanostores: 1.1.0
       zod: 4.1.13
     optionalDependencies:
-      next: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      next: 16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react: 19.2.1
       react-dom: 19.2.1(react@19.2.1)
 
@@ -17949,6 +18030,8 @@ snapshots:
       - '@types/react-dom'
 
   cn-fontsource-ding-talk-jin-bu-ti-regular@1.0.3: {}
+
+  cn-fontsource-yozai-medium@1.0.6: {}
 
   cobe@0.6.5:
     dependencies:
@@ -18307,15 +18390,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.44.7(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7):
+  drizzle-orm@0.44.7(@opentelemetry/api@1.9.0)(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7):
     optionalDependencies:
+      '@opentelemetry/api': 1.9.0
       '@upstash/redis': 1.35.7
       kysely: 0.28.8
       postgres: 3.4.7
 
-  drizzle-zod@0.8.3(drizzle-orm@0.44.7(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7))(zod@4.1.13):
+  drizzle-zod@0.8.3(drizzle-orm@0.44.7(@opentelemetry/api@1.9.0)(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7))(zod@4.1.13):
     dependencies:
-      drizzle-orm: 0.44.7(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7)
+      drizzle-orm: 0.44.7(@opentelemetry/api@1.9.0)(@upstash/redis@1.35.7)(kysely@0.28.8)(postgres@3.4.7)
       zod: 4.1.13
 
   dunder-proto@1.0.1:
@@ -19082,6 +19166,8 @@ snapshots:
 
   events@3.3.0: {}
 
+  eventsource-parser@3.0.6: {}
+
   execa@9.6.1:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
@@ -19314,9 +19400,9 @@ snapshots:
 
   fzf@0.5.2: {}
 
-  geist@1.5.1(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)):
+  geist@1.5.1(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)):
     dependencies:
-      next: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      next: 16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
 
   generator-function@2.0.1: {}
 
@@ -21125,7 +21211,7 @@ snapshots:
       react: 19.2.1
       react-dom: 19.2.1(react@19.2.1)
 
-  next@15.5.2(@babel/core@7.26.10)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  next@15.5.2(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@next/env': 15.5.2
       '@swc/helpers': 0.5.15
@@ -21143,6 +21229,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.5.2
       '@next/swc-win32-arm64-msvc': 15.5.2
       '@next/swc-win32-x64-msvc': 15.5.2
+      '@opentelemetry/api': 1.9.0
       '@playwright/test': 1.57.0
       babel-plugin-react-compiler: 19.0.0-beta-714736e-20250131
       sharp: 0.34.5
@@ -21150,7 +21237,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
+  next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
     dependencies:
       '@next/env': 16.0.7
       '@swc/helpers': 0.5.15
@@ -21168,6 +21255,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 16.0.7
       '@next/swc-win32-arm64-msvc': 16.0.7
       '@next/swc-win32-x64-msvc': 16.0.7
+      '@opentelemetry/api': 1.9.0
       '@playwright/test': 1.57.0
       babel-plugin-react-compiler: 19.0.0-beta-714736e-20250131
       sharp: 0.34.5
@@ -21220,12 +21308,12 @@ snapshots:
     dependencies:
       esm-env: 1.2.2
 
-  nuqs@2.8.2(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1):
+  nuqs@2.8.2(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1):
     dependencies:
       '@standard-schema/spec': 1.0.0
       react: 19.2.1
     optionalDependencies:
-      next: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      next: 16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@19.0.0-beta-714736e-20250131)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
 
   nypm@0.6.0:
     dependencies:
@@ -21309,11 +21397,6 @@ snapshots:
     dependencies:
       is-docker: 2.2.1
       is-wsl: 2.2.0
-
-  openai@6.9.1(ws@8.18.3)(zod@4.1.13):
-    optionalDependencies:
-      ws: 8.18.3
-      zod: 4.1.13
 
   openapi-types@12.1.3: {}
 
@@ -23320,7 +23403,7 @@ snapshots:
       tsx: 4.21.0
       yaml: 2.8.2
 
-  vitest@4.0.15(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2):
+  vitest@4.0.15(@opentelemetry/api@1.9.0)(@types/node@24.10.1)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2):
     dependencies:
       '@vitest/expect': 4.0.15
       '@vitest/mocker': 4.0.15(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))
@@ -23343,6 +23426,7 @@ snapshots:
       vite: 7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
       why-is-node-running: 2.3.0
     optionalDependencies:
+      '@opentelemetry/api': 1.9.0
       '@types/node': 24.10.1
       '@vitest/ui': 4.0.15(vitest@4.0.15)
       jsdom: 27.2.0

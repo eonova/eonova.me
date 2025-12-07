@@ -82,7 +82,7 @@ function CommentPost() {
           aria-disabled={disabled || !content}
           data-testid="comment-submit-button"
         >
-          <SendIcon />
+          <SendIcon className="size-5" />
         </Button>
         {isAuthenticated ? null : <UnauthenticatedOverlay />}
       </div>

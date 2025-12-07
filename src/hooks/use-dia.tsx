@@ -2,6 +2,8 @@
 
 import type { DiaConfig } from '~/plugins/aurora-dia'
 import { createContext, use, useEffect, useMemo, useRef, useState } from 'react'
+import { useSettings } from '~/hooks/queries/settings.query'
+import { useSession } from '~/lib/auth-client'
 import { AuroraDia } from '~/plugins/aurora-dia'
 
 interface DiaContextValue {
@@ -24,6 +26,16 @@ export function DiaProvider({ children }: { children: React.ReactNode }) {
   const [auroraBotEnable, setAuroraBotEnable] = useState<boolean>(true)
   const [botType, setBotType] = useState<string>('dia')
   const [tips, setTips] = useState<{ [key: string]: { selector: string, text: string | string[] } } | undefined>(undefined)
+
+  const { data: session } = useSession()
+  const { data: settings } = useSettings()
+
+  // Sync with server settings
+  useEffect(() => {
+    if (session?.user && settings) {
+      setAuroraBotEnable(settings.diaEnabled)
+    }
+  }, [session, settings])
 
   // hydrate from localStorage
   useEffect(() => {

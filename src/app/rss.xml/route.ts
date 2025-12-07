@@ -23,7 +23,7 @@ export async function GET(_request: Request) {
       title: post.title,
       url: `${baseUrl}/posts/${post.slug}`,
       date: post.date,
-      description: post.summary,
+      description: post.intro ?? '',
       author: MY_NAME,
     })
   }
@@ -33,7 +33,7 @@ export async function GET(_request: Request) {
       title: note.title,
       url: `${baseUrl}/notes/${note.slug}`,
       date: note.date,
-      description: note.summary ?? '',
+      description: note.intro ?? '',
       author: MY_NAME,
     })
   }

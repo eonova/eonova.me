@@ -8,7 +8,7 @@ const mockNote: Note = {
   slug: 'test-note',
   title: 'Test Note',
   date: '2024-01-01',
-  summary: 'This is a test note',
+  intro: 'This is a test note',
   mood: 'happy',
   weather: 'sunny',
   cover: '/test-cover.jpg',
@@ -31,7 +31,7 @@ function TestComponent() {
   return (
     <div>
       <h1>{note.title}</h1>
-      <p>{note.summary}</p>
+      <p>{note.intro}</p>
       <span data-testid="mood">{note.mood}</span>
       <span data-testid="weather">{note.weather}</span>
     </div>
@@ -73,7 +73,7 @@ describe('noteContext', () => {
     const updatedNote: Note = {
       ...mockNote,
       title: 'Updated Note',
-      summary: 'Updated summary',
+      intro: 'Updated Intro',
       mood: 'excited',
     }
 
@@ -93,7 +93,7 @@ describe('noteContext', () => {
     )
 
     expect(screen.getByText('Updated Note')).toBeInTheDocument()
-    expect(screen.getByText('Updated summary')).toBeInTheDocument()
+    expect(screen.getByText('Updated intro')).toBeInTheDocument()
     expect(screen.getByTestId('mood')).toHaveTextContent('excited')
   })
 
@@ -183,7 +183,7 @@ describe('noteContext', () => {
       return (
         <div>
           <span data-testid="title">{note.title}</span>
-          <span data-testid="summary">{note.summary || 'No summary'}</span>
+          <span data-testid="intro">{note.intro || 'No intro'}</span>
         </div>
       )
     }
@@ -195,7 +195,7 @@ describe('noteContext', () => {
     )
 
     expect(screen.getByTestId('title')).toHaveTextContent('Minimal Note')
-    expect(screen.getByTestId('summary')).toHaveTextContent('No summary')
+    expect(screen.getByTestId('intro')).toHaveTextContent('No intro')
   })
 
   it('should maintain context display name', () => {

@@ -17,18 +17,19 @@ interface MdxProps {
 }
 
 const components = {
-  h1: (props: React.ComponentProps<'h1'>) => <Heading as="h1" {...props} />,
-  h2: (props: React.ComponentProps<'h2'>) => <Heading as="h2" {...props} />,
-  h3: (props: React.ComponentProps<'h3'>) => <Heading as="h3" {...props} />,
-  h4: (props: React.ComponentProps<'h4'>) => <Heading as="h4" {...props} />,
-  h5: (props: React.ComponentProps<'h5'>) => <Heading as="h5" {...props} />,
-  h6: (props: React.ComponentProps<'h6'>) => <Heading as="h6" {...props} />,
+  h1: (props: React.ComponentProps<'h1'>) => <Heading className="font-yozai" as="h1" {...props} />,
+  h2: (props: React.ComponentProps<'h2'>) => <Heading className="font-yozai" as="h2" {...props} />,
+  h3: (props: React.ComponentProps<'h3'>) => <Heading className="font-yozai" as="h3" {...props} />,
+  h4: (props: React.ComponentProps<'h4'>) => <Heading className="font-yozai" as="h4" {...props} />,
+  h5: (props: React.ComponentProps<'h5'>) => <Heading className="font-yozai" as="h5" {...props} />,
+  h6: (props: React.ComponentProps<'h6'>) => <Heading className="font-yozai" as="h6" {...props} />,
+  p: (props: React.ComponentProps<'p'>) => <p className="font-yozai indent-8" {...props} />,
   a: (props: React.ComponentProps<'a'>) => {
     const { children, ...rest } = props
 
     return (
       <Link
-        className="hover:text-foreground text-anchor no-underline transition-colors"
+        className="font-yozai hover:text-foreground text-anchor no-underline transition-colors"
         {...(rest as unknown as { href: UrlObject })}
       >
         {children}
@@ -44,6 +45,14 @@ const components = {
           <BlurImage className="rounded-lg border" alt={alt} {...rest} />
         </ImageZoom>
         <figcaption className="mt-4 text-center">{alt}</figcaption>
+      </>
+    )
+  },
+  img: (props: React.ComponentProps<'img'>) => {
+    const { alt, ...rest } = props
+    return (
+      <>
+        <img className="rounded-xl border max-h-[500px]" {...rest} alt={alt || ''} />
       </>
     )
   },

@@ -83,7 +83,7 @@ export const searchContent = publicProcedure
           results.push({
             id: post.slug,
             title: post.title,
-            summary: post.summary,
+            summary: post.intro,
             type: 'post',
             slug: post.slug,
             dateCreated: post.date,
@@ -104,7 +104,7 @@ export const searchContent = publicProcedure
           results.push({
             id: note.slug,
             title: note.title,
-            summary: note.summary,
+            summary: note.intro,
             type: 'note',
             slug: note.slug,
             dateCreated: note.date,
