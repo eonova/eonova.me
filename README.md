@@ -1,6 +1,6 @@
 <h3 align="center"> eonova.me </h3>
 
-![预览](./public//images/projects/eonova.me.png)
+![Preview](./public//images/projects/eonova.me.png)
 
 <div align="center">
   <a href="./README_CN.md"> 🇨🇳 简体中文</a>
@@ -10,51 +10,54 @@
 
 ## 🎉 Introduction
 
-A personal blog built with modern technology stack, integrating technical
-article display, open source project management, and more.
+A personal blog and portfolio built with modern technology stack, integrating technical article display, open source project management, and rich interactive features.
 
 ## 🌌 Features
 
-- Comments system
-- Like functionality
-- Post view counter
-- Blog post search
-- RSS feed
-- Sitemap
-- PWA
+-   **Content Management**: Blog posts, Notes, Projects, and Photo Album with MDX support.
+-   **Interactive Comments**: Nested replies, markdown support, emoji reactions, and email notifications.
+-   **Media Experience**: Global music player, masonry photo gallery, and video support.
+-   **Social Features**: Guestbook, Friends links, and "Talk" (micro-blogging).
+-   **User System**: Authentication (GitHub/Google/Email), Profile management, and Active sessions tracking.
+-   **Admin Dashboard**: comprehensive management for content, comments, users, and more.
+-   **AI Integration**: AI-powered summary for blog posts.
+-   **Performance & SEO**: SSR/ISR, Sitemap, RSS feed, and PWA support.
+-   **Search**: Full-text search capability.
 
 ## ✨ Tech Stack
 
 ```mermaid
 graph TD
-    A[前端框架] --> B["Next.js 15"]
+    A[Frontend] --> B["Next.js 15 (App Router)"]
     A --> C["Tailwind CSS 4"]
     A --> D["TypeScript 5.7"]
-    D --> E["React 19"]
+    A --> E["React 19"]
+    A --> F["Framer Motion"]
 
-    G[后端服务] --> H["Drizzle Kit"]
-    G --> I["Trpc Server"]
-    H --> J["PostgreSQL 16"]
-    I --> K["Redis 1.34"]
+    G[Backend & Data] --> H["Drizzle ORM"]
+    G --> I["oRPC (Type-safe RPC)"]
+    H --> J["PostgreSQL"]
+    I --> K["Redis (Upstash)"]
+    G --> L["Better Auth"]
 
-    L[构建工具链] --> M["pnpm 10"]
-    L --> N["Webpack 5"]
-    M --> O["ESLint 9"]
-    M --> P["TypeScript 编译器"]
+    M[Build & Tools] --> N["pnpm 10"]
+    M --> O["Content Collections"]
+    M --> P["Playwright & Vitest"]
+    M --> Q["ESLint 9"]
 
     classDef framework fill:#2196F3,stroke:#1976D2;
     classDef service fill:#FFC107,stroke:#000;
     classDef build fill:#9C27B0,stroke:#7B1FA2;
 
-    class A,F,D,E,L,N,M,O,P service;
-    class B,C,G,H,I,J,K build;
+    class A,D,E,M,N,P,Q service;
+    class B,C,F,H,I,J,K,L,O build;
 ```
 
 ## 🚀 Quick Start
 
 ### Vercel One-Click Deployment
 
-[![Deploy with Vercel](https://vercel.com/button)](<https://vercel.com/new/clone?repository-url=[https%3A%2F%2Fgithub.com%2Fhamster1963%2Fnextme&env=SITE_URL,SITE_AUTHOR](https://github.com/eonova/eonova.me)>)
+[![Deploy with Vercel](https://vercel.com/button)](<https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Feonova%2Feonova.me&env=SITE_URL,SITE_AUTHOR>)
 
 ### Docker Compose Deployment
 
@@ -64,40 +67,52 @@ docker compose up -d
 
 ## 🖥️ Local Development
 
-Local development setup
+### Prerequisites
+
+-   Node.js >= 22
+-   pnpm >= 10
+-   PostgreSQL
+-   Redis
+
+### Setup
 
 ```bash
-# Install all dependencies
+# Install dependencies
 pnpm i
 
-# Start development server (with 3000 processes in parallel)
-pnpm dev --p 3000
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your credentials
 
+# Database initialization
+pnpm db:generate
+pnpm db:migrate
+pnpm db:seed
+
+# Start development server
+pnpm dev
+```
+
+### Key Scripts
+
+```bash
 # Build production version
 pnpm build
 
-# Database initialization
-pnpm db:migrate
-pnpm db:seed
-```
+# Type checking
+pnpm typecheck
 
-Key scripts
-
-```bash
-# Update dependencies
-pnpm deps:up
-
-# Check dependencies
-pnpm check:knip
-
-# Code quality check
+# Code linting
 pnpm lint
 
-# Database operations
-pnpm db:studio # Database management
+# Database management (Studio)
+pnpm db:studio
 
-# Analyze build package
-pnpm bundle-analyzer
+# Run Unit Tests
+pnpm test:unit
+
+# Run E2E Tests
+pnpm test:e2e
 ```
 
 ## ☕️ Buy me a coffee
