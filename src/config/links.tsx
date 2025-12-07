@@ -103,12 +103,6 @@ export const HEADER_LINKS: IHeaderMenu[] = [
     text: '我的',
     subMenu: [
       {
-        icon: <TagIcon className="size-5" />,
-        href: '/tags',
-        key: 'tags',
-        text: '标签',
-      },
-      {
         icon: <Images className="size-5" />,
         href: '/album',
         key: 'album',
