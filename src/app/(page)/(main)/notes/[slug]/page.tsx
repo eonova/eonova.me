@@ -3,6 +3,7 @@ import type { Article, WithContext } from 'schema-dts'
 
 import { allNotes } from 'content-collections'
 import { notFound } from 'next/navigation'
+import { Suspense, use } from 'react'
 import CommentSection from '~/components/modules/comment-section/comment-section'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
 import Footer from '~/components/pages/notes/note-footer'
@@ -42,8 +43,9 @@ export function generateStaticParams() {
   return allNotes.map(n => ({ slug: n.slug }))
 }
 
-async function Page(props: PageProps<'/notes/[slug]'>) {
-  const { slug } = await props.params
+function Page(props: PageProps<'/notes/[slug]'>) {
+  const { params } = props
+  const { slug } = use(params)
 
   const baseUrl = getBaseUrl()
   const note = getNoteBySlug(slug)
@@ -95,10 +97,12 @@ async function Page(props: PageProps<'/notes/[slug]'>) {
         </div>
         <div className="flex w-full flex-col gap-4">
           <Footer />
-          <CommentSection
-            slug={slug}
-            contentType="notes"
-          />
+          <Suspense>
+            <CommentSection
+              slug={slug}
+              contentType="notes"
+            />
+          </Suspense>
         </div>
         <MobileTableOfContents toc={toc} />
       </Providers>

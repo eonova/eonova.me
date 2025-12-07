@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import type { BlogPosting, WithContext } from 'schema-dts'
 import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
+import { Suspense, use } from 'react'
 
 import { Skeleton } from '~/components/base/skeleton'
 import CommentSection from '~/components/modules/comment-section/comment-section'
@@ -46,8 +46,9 @@ export function generateStaticParams() {
   return allPosts.map(p => ({ slug: p.slug }))
 }
 
-async function Page(props: PageProps<'/posts/[slug]'>) {
-  const { slug } = await props.params
+function Page(props: PageProps<'/posts/[slug]'>) {
+  const { params } = props
+  const { slug } = use(params)
 
   const post = getPostBySlug(slug)
   const baseUrl = getBaseUrl()
