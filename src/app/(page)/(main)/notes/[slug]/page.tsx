@@ -2,9 +2,7 @@ import type { Metadata } from 'next'
 import type { Article, WithContext } from 'schema-dts'
 
 import { allNotes } from 'content-collections'
-import { eq } from 'drizzle-orm'
 import { notFound } from 'next/navigation'
-import { AISummary } from '~/components/modules/ai/summary'
 import CommentSection from '~/components/modules/comment-section/comment-section'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
 import Footer from '~/components/pages/notes/note-footer'
@@ -15,7 +13,6 @@ import TableOfContents from '~/components/pages/notes/table-of-contents'
 import JsonLd from '~/components/shared/json-ld'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { MY_NAME } from '~/config/constants'
-import { db, notes as notesSchema } from '~/db'
 import { getNoteBySlug } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
@@ -80,10 +77,6 @@ async function Page(props: PageProps<'/notes/[slug]'>) {
     },
   }
 
-  const dbNote = await db.query.notes.findFirst({
-    where: eq(notesSchema.title, slug),
-  })
-
   return (
     <>
       <JsonLd json={jsonLd} />
@@ -91,13 +84,6 @@ async function Page(props: PageProps<'/notes/[slug]'>) {
         <div className="relative my-16 mb-8 flex w-full flex-col justify-between gap-2 overflow-visible rounded-[0_6px_6px_0] border-solid border-zinc-200/70 bg-white/50 p-8 md:col-start-1 lg:flex-row lg:border dark:border-neutral-800 dark:bg-zinc-900/50">
           <article className="w-full sm:px-4 pb-10">
             <Header className="my-4 mt-10" />
-            <AISummary
-              summary={dbNote?.summary ?? '---'}
-              content={note.content}
-              slug={slug}
-              type="note"
-              color="orange"
-            />
             {intro && <Intro intro={intro} />}
             <NoteMdx code={code} />
           </article>

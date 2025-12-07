@@ -1,3 +1,5 @@
+import { eq } from 'drizzle-orm'
+import * as z from 'zod'
 import { notes, sum } from '~/db'
 
 import { publicProcedure } from '../root'
@@ -30,3 +32,13 @@ export const likesStats = publicProcedure.output(likesStatsOutputSchema).handler
     likes,
   }
 })
+
+export const bySlug = publicProcedure
+  .input(z.object({ slug: z.string() }))
+  .handler(async ({ context, input }) => {
+    const note = await context.db.query.notes.findFirst({
+      where: eq(notes.title, input.slug),
+    })
+
+    return note
+  })

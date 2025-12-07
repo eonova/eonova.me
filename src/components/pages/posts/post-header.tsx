@@ -8,17 +8,18 @@ import { BlurImage } from '~/components/base/blur-image'
 import { AISummary } from '~/components/modules/ai/summary'
 import { usePostContext } from '~/contexts/post'
 import { useContentCommentCount } from '~/hooks/queries/comment.query'
+import { usePost } from '~/hooks/queries/post.query'
 import { useContentViewCount, useIncrementContentViewCount } from '~/hooks/queries/view.query'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 import Intro from './post-intro'
 
 interface HeaderProps {
-  summary?: string
   intro?: string
 }
 
-function Header({ summary, intro }: HeaderProps) {
+function Header({ intro }: HeaderProps) {
   const { cover, date, title, slug, ...postData } = usePostContext()
+  const { data: dbPost } = usePost(slug)
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
     loading: '...',
@@ -86,7 +87,7 @@ function Header({ summary, intro }: HeaderProps) {
         content={postData.content}
         slug={slug}
         type="post"
-        summary={summary}
+        summary={dbPost?.summary}
         className="mx-auto"
       />
       <Intro intro={intro ?? ''} />

@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 
 import type { BlogPosting, WithContext } from 'schema-dts'
 import { allPosts } from 'content-collections'
-import { eq } from 'drizzle-orm'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
@@ -17,7 +16,6 @@ import TableOfContents from '~/components/pages/posts/table-of-contents'
 import JsonLd from '~/components/shared/json-ld'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { MY_NAME } from '~/config/constants'
-import { db, posts as postsSchema } from '~/db'
 import { getPostBySlug } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
@@ -61,10 +59,6 @@ async function Page(props: PageProps<'/posts/[slug]'>) {
 
   const { title, intro, date, modifiedTime, code, toc } = post
 
-  const dbPost = await db.query.posts.findFirst({
-    where: eq(postsSchema.slug, slug),
-  })
-
   const jsonLd: WithContext<BlogPosting> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -92,7 +86,7 @@ async function Page(props: PageProps<'/posts/[slug]'>) {
     <>
       <JsonLd json={jsonLd} />
       <Providers post={post}>
-        <Header summary={dbPost?.summary ?? undefined} intro={intro ?? ''} />
+        <Header intro={intro ?? ''} />
         <div className="mt-8 flex w-full flex-col justify-between gap-2 overflow-visible lg:flex-row">
           <article className="w-full sm:px-4">
             <Mdx code={code} />

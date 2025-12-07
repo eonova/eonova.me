@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-export default function Home() {
+export default function Page() {
   const url = getBaseUrl()
   const jsonLd: WithContext<WebSite> = {
     '@context': 'https://schema.org',

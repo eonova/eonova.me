@@ -1,3 +1,5 @@
+import { eq } from 'drizzle-orm'
+import * as z from 'zod'
 import { posts, sum } from '~/db'
 
 import { publicProcedure } from '../root'
@@ -30,3 +32,13 @@ export const likesStats = publicProcedure.output(likesStatsOutputSchema).handler
     likes,
   }
 })
+
+export const bySlug = publicProcedure
+  .input(z.object({ slug: z.string() }))
+  .handler(async ({ context, input }) => {
+    const post = await context.db.query.posts.findFirst({
+      where: eq(posts.slug, input.slug),
+    })
+
+    return post
+  })

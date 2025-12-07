@@ -22,8 +22,8 @@ import { countLike, incrementLike } from './like.router'
 import { createMessage, deleteMessage, listMessages } from './message.router'
 import { listAllPlaylistSongs } from './music.router'
 import { listNeoDBShelf } from './neodb.router'
-import { likesStats as likeNoteStats, viewsStats as viewNoteStats } from './note.router'
-import { likesStats as likePostStats, viewsStats as viewPostStats } from './post.router'
+import { bySlug as getNoteBySlug, likesStats as likeNoteStats, viewsStats as viewNoteStats } from './note.router'
+import { bySlug as getPostBySlug, likesStats as likePostStats, viewsStats as viewPostStats } from './post.router'
 import { getAvatarUploadUrl } from './r2.router'
 import { countReplies } from './reply.router'
 import { getSearchSuggestions, searchContent } from './search.router'
@@ -57,6 +57,7 @@ export const router = {
     },
   },
   posts: {
+    bySlug: getPostBySlug,
     views: {
       count: countView,
       increment: incrementView,
@@ -79,6 +80,7 @@ export const router = {
     },
   },
   notes: {
+    bySlug: getNoteBySlug,
     views: {
       count: countView,
       increment: incrementView,
