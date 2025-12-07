@@ -97,21 +97,9 @@ async function generateProjectOGImage(slugs: string[]) {
 }
 
 async function generateOGImage(title: string, url: string) {
-  const fontData = await fetch(
-    new URL('https://raw.githubusercontent.com/google/fonts/main/ofl/notosanssc/NotoSansSC-Regular.ttf', import.meta.url),
-  ).then(res => res.arrayBuffer())
-
   return new ImageResponse(<OGImage title={title} url={url} />, {
     width: 1200,
     height: 630,
-    fonts: [
-      {
-        name: 'Noto Sans SC',
-        data: fontData,
-        style: 'normal',
-        weight: 400,
-      },
-    ],
   })
 }
 
