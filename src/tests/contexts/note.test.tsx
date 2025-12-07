@@ -93,7 +93,7 @@ describe('noteContext', () => {
     )
 
     expect(screen.getByText('Updated Note')).toBeInTheDocument()
-    expect(screen.getByText('Updated intro')).toBeInTheDocument()
+    expect(screen.getByText('Updated Intro')).toBeInTheDocument()
     expect(screen.getByTestId('mood')).toHaveTextContent('excited')
   })
 
