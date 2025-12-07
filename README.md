@@ -18,7 +18,7 @@ A personal blog and portfolio built with modern technology stack, integrating te
 -   **Interactive Comments**: Nested replies, markdown support, emoji reactions, and email notifications.
 -   **Media Experience**: Global music player, masonry photo gallery, and video support.
 -   **Social Features**: Guestbook, Friends links, and "Talk" (micro-blogging).
--   **User System**: Authentication (GitHub/Google/Email), Profile management, and Active sessions tracking.
+-   **User System**: Authentication (GitHub/Google), Profile management, and Active sessions tracking.
 -   **Admin Dashboard**: comprehensive management for content, comments, users, and more.
 -   **AI Integration**: AI-powered summary for blog posts.
 -   **Performance & SEO**: SSR/ISR, Sitemap, RSS feed, and PWA support.
