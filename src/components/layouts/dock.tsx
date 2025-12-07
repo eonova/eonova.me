@@ -94,7 +94,7 @@ const Dock: React.FC<DockProps> = ({ className }) => {
                 <PlayCircle className="size-5" />
               )}
         </li>
-        {pathname.match(/\/posts\//g)?.length === 1 && (
+        {(pathname.match(/\/posts\//g)?.length === 1 || pathname.match(/\/notes\//g)?.length === 1) && (
           <li
             className="cursor-pointer p-1.5 rounded-md transition-colors text-[#7D4854] hover:text-black dark:hover:text-white"
             onClick={goToCommentSection}

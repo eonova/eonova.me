@@ -20,7 +20,7 @@ function CommentSection(props: CommentSectionProps) {
 
   return (
     <CommentsProvider value={{ slug, sort, setSort, contentType }}>
-      <div className="space-y-6">
+      <div id="comment" className="space-y-6">
         <CommentPost />
         <CommentList />
       </div>

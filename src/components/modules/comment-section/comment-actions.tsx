@@ -59,7 +59,7 @@ function CommentActions() {
           aria-label="点赞"
           disabled={isVoting}
         >
-          <ThumbsUpIcon />
+          <ThumbsUpIcon className="size-4" />
           <NumberFlow value={comment.likeCount} />
         </Button>
         <Button
@@ -73,7 +73,7 @@ function CommentActions() {
           aria-label="点踩"
           disabled={isVoting}
         >
-          <ThumbsDownIcon />
+          <ThumbsDownIcon className="size-4" />
           <NumberFlow value={comment.dislikeCount} />
         </Button>
         {comment.parentId
@@ -87,7 +87,7 @@ function CommentActions() {
                 }}
                 data-testid="comment-reply-button"
               >
-                <MessageSquareIcon />
+                <MessageSquareIcon className="size-4" />
                 回复
               </Button>
             )}
