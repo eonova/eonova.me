@@ -1,6 +1,7 @@
 'use client'
 
 import NumberFlow, { continuous } from '@number-flow/react'
+import { Calendar, Clock, Cloud, MessageCircle, Sticker } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 
 import { AISummary } from '~/components/modules/ai/summary'
@@ -12,7 +13,7 @@ import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { cn } from '~/utils/cn'
 
 function Header({ className }: { className?: string }) {
-  const { date, title, slug, content } = useNoteContext()
+  const { date, title, slug, content, weather, mood } = useNoteContext()
   const { data: dbNote } = useNote(slug)
   const formattedDate = useFormattedDate(date, {
     format: 'MMMM D, YYYY',
@@ -40,19 +41,28 @@ function Header({ className }: { className?: string }) {
           {title}
         </h2>
         <div className="flex items-center justify-start gap-5 text-sm">
-          <div className="flex items-center gap-3">
-            <span className="text-muted-foreground">发布</span>
+          <div className="flex items-center gap-2">
+            <Calendar className="size-3" />
             <span>{formattedDate}</span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-muted-foreground">浏览</span>
+
+          <div className="flex items-center gap-2">
+            <Cloud className="size-3" />
+            <span className="text-sm">{weather}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Sticker className="size-3" />
+            <span className="text-sm">{mood}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Clock className="size-3" />
             {viewCountQuery.isLoading && '--'}
             {viewCountQuery.isError && '错误'}
             {viewCountQuery.isSuccess
               && <NumberFlow willChange plugins={[continuous]} value={viewCountQuery.data.views} />}
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-muted-foreground">评论数</span>
+          <div className="flex items-center gap-2">
+            <MessageCircle className="size-3" />
             {commentCountQuery.isLoading && '--'}
             {commentCountQuery.isError && '错误'}
             {commentCountQuery.isSuccess && <NumberFlow willChange plugins={[continuous]} value={commentCountQuery.data.count} />}
@@ -61,7 +71,7 @@ function Header({ className }: { className?: string }) {
       </div>
 
       <AISummary
-        summary={dbNote?.summary ?? '---'}
+        summary={dbNote?.summary}
         content={content}
         slug={slug}
         type="note"

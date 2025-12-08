@@ -84,7 +84,10 @@ function Page(props: PageProps<'/notes/[slug]'>) {
       <JsonLd json={jsonLd} />
       <Providers note={note}>
         <div className="relative my-16 mb-8 flex w-full flex-col justify-between gap-2 overflow-visible rounded-[0_6px_6px_0] border-solid border-zinc-200/70 bg-white/50 p-8 md:col-start-1 lg:flex-row lg:border dark:border-neutral-800 dark:bg-zinc-900/50">
-          <article className="w-full sm:px-4 pb-10">
+          <article className="relative w-full sm:px-4 pb-10">
+            <div className="absolute text-9xl rotate-8 opacity-3 top-0 right-4 font-dingtalk">
+              #
+            </div>
             <Header className="my-4 mt-10" />
             {intro && <Intro intro={intro} />}
             <NoteMdx code={code} />
