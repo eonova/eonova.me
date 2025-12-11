@@ -1,7 +1,5 @@
 'use client'
 
-import type { Post } from 'content-collections'
-
 import { ChartColumnStacked, Clock, Eye, TagIcon, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { CATEGORIES } from '~/config/posts'
@@ -10,11 +8,19 @@ import { useContentViewCount } from '~/hooks/queries/view.query'
 import { formatDate } from '~/utils'
 import { BottomToUpTransitionView } from '../../modules/transition'
 
-interface PostCardsProps {
-  posts: Post[]
+interface PostData {
+  slug: string
+  title: string
+  date: string | null
+  categories: readonly string[]
+  tags: readonly string[]
 }
 
-type PostCardProps = Post
+interface PostCardsProps {
+  posts: PostData[]
+}
+
+type PostCardProps = PostData
 
 function PostCards(props: PostCardsProps) {
   const { posts } = props
@@ -42,11 +48,11 @@ function PostCard(props: PostCardProps & { idx: number }) {
         <ul className="flex items-center gap-2.5">
           <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
             <Clock className="size-3" />
-            <span className="text-sm">{formatDate(date)}</span>
+            <span className="text-sm">{formatDate(date ? new Date(date) : new Date())}</span>
           </li>
           <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
             <ChartColumnStacked className="size-3" />
-            <span className="text-sm">{CATEGORIES.find(i => i.label === categories)?.name}</span>
+            <span className="text-sm">{CATEGORIES.find(i => i.label === categories[0])?.name}</span>
           </li>
           <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
             <TagIcon className="size-3" />

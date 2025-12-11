@@ -1,0 +1,29 @@
+{
+  "categoryName": "好用工具",
+  "websites": [
+    {
+      "images": "https://www.tldraw.com/apple-touch-icon.png",
+      "url": "https://www.tldraw.com/",
+      "title": "Tldraw",
+      "desc": "Music for everyone"
+    },
+    {
+      "images": "https://excalidraw.com/apple-touch-icon.png",
+      "url": "https://excalidraw.com/",
+      "title": "Excalidraw",
+      "desc": "Music for everyone"
+    },
+    {
+      "images": "https://cli.im/favicon.ico",
+      "url": "https://cli.im/",
+      "title": "草料二维码",
+      "desc": "Music for everyone"
+    },
+    {
+      "images": "https://squoosh.app/c/icon-large-maskable-c2078ced.png",
+      "url": "https://squoosh.app/",
+      "title": "squoosh",
+      "desc": "图片压缩工具"
+    }
+  ]
+}

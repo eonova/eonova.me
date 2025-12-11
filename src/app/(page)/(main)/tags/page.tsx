@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
-import { allPosts } from 'content-collections'
 import Link from 'next/link'
 import { Badge } from '~/components/base/badge'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { MY_NAME } from '~/config/constants'
+import { getAllPosts } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
@@ -20,7 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-export default function TagsPage() {
+export default async function TagsPage() {
+  const allPosts = await getAllPosts()
   const tags = new Set<string>()
 
   allPosts.forEach((post) => {

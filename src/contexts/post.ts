@@ -1,4 +1,4 @@
-import type { Post } from 'content-collections'
+import type { Post } from '~/lib/content'
 
 import { createContext, use } from 'react'
 

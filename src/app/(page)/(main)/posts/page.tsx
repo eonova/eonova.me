@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export const dynamic = 'force-static'
 
 async function Page() {
-  const posts = getLatestPosts()
+  const posts = await getLatestPosts()
 
   const jsonLd: WithContext<CollectionPage> = {
     '@context': 'https://schema.org',
@@ -39,8 +39,8 @@ async function Page() {
         '@type': 'BlogPosting',
         'headline': post.title,
         'url': `${url}/${post.slug}`,
-        'datePublished': post.date,
-        'dateModified': post.modifiedTime,
+        'datePublished': post.date ?? '',
+        'dateModified': post.modifiedTime ?? '',
         'position': index + 1,
       })),
     },

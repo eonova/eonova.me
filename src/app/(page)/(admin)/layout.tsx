@@ -3,6 +3,7 @@ import { SidebarProvider } from '~/components/base'
 import AdminHeader from '~/components/pages/admin/admin-header'
 import AdminSidebar from '~/components/pages/admin/admin-sidebar'
 import { getSession } from '~/lib/auth'
+import '~/styles/globals.css'
 
 interface LayoutProps {
   children: React.ReactNode

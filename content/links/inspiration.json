@@ -1,0 +1,35 @@
+{
+  "categoryName": "灵感找寻",
+  "websites": [
+    {
+      "images": "https://codepen.io/favicon.ico",
+      "url": "https://codepen.io/",
+      "title": "Codepen",
+      "desc": "An online community for testing and showcasing user-created HTML, CSS and JavaScript code snippets."
+    },
+    {
+      "images": "https://uiverse.io/favicon.ico",
+      "url": "https://uiverse.io/",
+      "title": "uiverse",
+      "desc": "The Largest Library of Open-Source UI"
+    },
+    {
+      "images": "https://www.awwwards.com/favicon.ico",
+      "url": "https://www.awwwards.com/",
+      "title": "awwwards",
+      "desc": "Website Awards - Best Web Design Trends"
+    },
+    {
+      "images": "https://cdn.dribbble.com/assets/favicon-192x192-d70ad402693bdd1a8460da7f9f3c590e817da7369c5287789ac968cf6947d214.png",
+      "url": "https://dribbble.com/",
+      "title": "dribbble",
+      "desc": "Discover the world’s top designers"
+    },
+    {
+      "images": "https://www.ui.cn/favicon.ico",
+      "url": "https://www.ui.cn/",
+      "title": "UI 中国",
+      "desc": "一个设计师必逛的灵感网站！"
+    }
+  ]
+}

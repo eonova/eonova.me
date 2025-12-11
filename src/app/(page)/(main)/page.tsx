@@ -7,6 +7,7 @@ import LatestNews from '~/components/pages/home/latest-news'
 import SelectedProjects from '~/components/pages/home/selected-projects'
 import JsonLd from '~/components/shared/json-ld'
 import { MY_NAME, SITE_DESCRIPTION, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_NAME, SITE_X_URL, SITE_YOUTUBE_URL } from '~/config/constants'
+import { getLatestNotes, getLatestPosts, getSelectedProjects } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
@@ -18,8 +19,12 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-export default function Page() {
+export default async function Page() {
   const url = getBaseUrl()
+  const posts = await getLatestPosts(3)
+  const notes = await getLatestNotes(3)
+  const selectedProjects = await getSelectedProjects()
+
   const jsonLd: WithContext<WebSite> = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -41,8 +46,8 @@ export default function Page() {
     <>
       <JsonLd json={jsonLd} />
       <Hero />
-      <LatestNews />
-      <SelectedProjects />
+      <LatestNews posts={posts as any} notes={notes as any} />
+      <SelectedProjects projects={selectedProjects} />
       <AboutMe />
       <GetInTouch />
     </>

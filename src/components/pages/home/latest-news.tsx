@@ -1,7 +1,6 @@
 'use client'
 
-import type { Note, Post } from 'content-collections'
-import { allNotes, allPosts } from 'content-collections'
+import type { Note, Post } from '~/lib/content'
 import { ArrowRight } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import Link from 'next/link'
@@ -22,19 +21,14 @@ const variants = {
   },
 }
 
-function LatestNews() {
+interface LatestNewsProps {
+  posts: Post[]
+  notes: Note[]
+}
+
+function LatestNews({ posts, notes }: LatestNewsProps) {
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
-  const filteredPosts = allPosts
-    .toSorted((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime()
-    })
-    .slice(0, 3)
-  const filteredNotes = allNotes
-    .toSorted((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime()
-    })
-    .slice(0, 3)
 
   return (
     <motion.div
@@ -77,11 +71,11 @@ function LatestNews() {
           duration: 0.3,
         }}
       >
-        <Card articles={filteredPosts} />
+        <Card articles={posts} />
         <div className="hidden justify-center sm:flex">
           <div className="h-full w-px rounded-full bg-gray-500/20" />
         </div>
-        <Card color text="手记" articles={filteredNotes} />
+        <Card color text="手记" articles={notes} />
       </motion.div>
     </motion.div>
   )
@@ -105,14 +99,14 @@ function Card(props: CardProps) {
       </BackgroundFont>
       <TimelineList className={color ? 'shiro-timeline-yellow' : ''}>
         {articles.map((child) => {
-          const date = new Date(child.date)
+          const date = new Date(child.date ?? '')
 
           return (
             <li
               key={child.slug}
               className="after:bg-[] flex min-w-0 items-center justify-between leading-loose"
             >
-              <Link href={`/${child.type}/${child.slug}`} className="min-w-0 truncate">
+              <Link href={`/${(child as any).type || (text === '文章' ? 'posts' : 'notes')}/${child.slug}`} className="min-w-0 truncate">
                 {child.title}
               </Link>
               <span className="meta ml-2 text-xs opacity-70">{formatDate(date)}</span>

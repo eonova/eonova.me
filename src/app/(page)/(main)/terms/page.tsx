@@ -18,14 +18,15 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-function Page() {
-  const page = getPageBySlug('terms')
+async function Page() {
+  const page = await getPageBySlug('terms')
 
   if (!page) {
     return notFound()
   }
 
-  const { code } = page
+  const { content } = page
+  const code = await content()
 
   return (
     <>

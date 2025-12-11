@@ -1,0 +1,17 @@
+{
+  "categoryName": "美工设计",
+  "websites": [
+    {
+      "images": "https://static.figma.com/uploads/b6df2735e4cb368306acf5480b50f96e69f96099",
+      "url": "https://www.figma.com/",
+      "title": "Figma",
+      "desc": "The Collaborative Interface Design Tool"
+    },
+    {
+      "images": "https://www.gaitubao.com/apple-touch-icon.png",
+      "url": "https://www.gaitubao.com/",
+      "title": "改图宝",
+      "desc": "快速、简单的在线修改图片工具"
+    }
+  ]
+}

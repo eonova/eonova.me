@@ -69,6 +69,9 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().min(1).optional(),
     NEXT_PUBLIC_FLAG_SEARCH: z.string().min(1).optional(),
+
+    NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO_OWNER: z.string().min(1).optional(),
+    NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO_SLUG: z.string().min(1).optional(),
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -83,6 +86,9 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     NEXT_PUBLIC_FLAG_SEARCH: process.env.NEXT_PUBLIC_FLAG_SEARCH,
+
+    NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO_OWNER: process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO_OWNER,
+    NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO_SLUG: process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO_SLUG,
   },
 
   emptyStringAsUndefined: true,

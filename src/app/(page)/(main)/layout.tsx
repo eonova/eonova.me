@@ -1,4 +1,5 @@
 import MainLayout from '~/components/layouts/main-layout'
+import '~/styles/globals.css'
 
 interface LayoutProps {
   children: React.ReactNode

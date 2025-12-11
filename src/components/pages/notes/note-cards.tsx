@@ -1,6 +1,6 @@
 'use client'
 
-import type { Note } from 'content-collections'
+import type { Note } from '~/lib/content'
 
 import { Clock, Cloud, Eye, MessageCircle, Sticker } from 'lucide-react'
 import Link from 'next/link'
@@ -8,6 +8,7 @@ import { BottomToUpTransitionView } from '~/components/modules/transition'
 import { useContentCommentCount } from '~/hooks/queries/comment.query'
 import { useContentViewCount } from '~/hooks/queries/view.query'
 import { formatDate } from '~/utils'
+import { generateSlug } from '~/utils/generate-slug'
 
 interface NoteCardsProps {
   notes: Note[]
@@ -21,7 +22,7 @@ function NoteCards(props: NoteCardsProps) {
   return (
     <ul className="flex flex-col gap-5">
       {notes.map((post, idx) => (
-        <NoteCard key={post.slug} {...post} idx={idx} />
+        <NoteCard key={generateSlug(post.title, 10)} {...post} idx={idx} />
       ))}
     </ul>
   )
@@ -42,7 +43,7 @@ function NoteCard(props: NoteCardProps & { idx: number }) {
         <ul className="flex items-center gap-2.5">
           <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
             <Clock className="size-3" />
-            <span className="text-sm">{formatDate(date)}</span>
+            <span className="text-sm">{formatDate(date ?? '')}</span>
           </li>
           <li className="flex items-center gap-1 text-black/55 dark:text-white/55">
             <Cloud className="size-3" />

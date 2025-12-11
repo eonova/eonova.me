@@ -113,7 +113,7 @@ export const createComment = protectedProcedure
 
     let contentTitle, contentUrl
     if (contentType === 'posts') {
-      const post = getPostBySlug(slug)
+      const post = await getPostBySlug(slug)
 
       if (!post)
         throw new ORPCError('NOT_FOUND', { message: 'Blog post not found' })
@@ -122,7 +122,7 @@ export const createComment = protectedProcedure
       contentUrl = `https://eonova.me/post/${slug}`
     }
     else if (contentType === 'notes') {
-      const note = getNoteBySlug(slug)
+      const note = await getNoteBySlug(slug)
 
       if (!note)
         throw new ORPCError('NOT_FOUND', { message: 'Note post not found' })

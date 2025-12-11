@@ -1,4 +1,4 @@
-import type { Note, Post } from 'content-collections'
+import type { Note, Post } from '~/lib/content'
 import Link from 'next/link'
 import { BottomToUpTransitionView } from '~/components/modules/transition/bottom-to-top'
 import NonFound from '~/components/shared/not-found'
@@ -27,7 +27,7 @@ const ArchiveContent: React.FC<ArchiveContentProps> = ({ articlesByYear }) => {
                         {year}
                       </BottomToUpTransitionView>
                       <TimelineList>
-                        {(articles as (Post | Note)[]).map((child: Post | Note, i: number) => {
+                        {(articles as (Post | Note)[]).map((child, i: number) => {
                           return (
                             <BottomToUpTransitionView
                               key={child.slug}
@@ -35,12 +35,12 @@ const ArchiveContent: React.FC<ArchiveContentProps> = ({ articlesByYear }) => {
                               as="li"
                               className="flex min-w-0 items-center justify-between leading-loose"
                             >
-                              <Link href={`/${child.type}/${child.slug}`} className="min-w-0 truncate">
+                              <Link href={`/${(child as any).type || 'posts'}/${child.slug}`} className="min-w-0 truncate">
                                 {child.title}
                               </Link>
                               <span className="meta ml-2">
-                                {child.type === 'posts'
-                                  ? `${child.categoriesText ?? ''}/文章`
+                                {(child as any).type === 'posts' || !(child as any).mood
+                                  ? `${(child as any).categoriesText ?? ''}/文章`
                                   : `天气：${(child as Note).weather ?? ''}/心情：${(child as Note).mood ?? ''}/手记`}
                               </span>
                             </BottomToUpTransitionView>

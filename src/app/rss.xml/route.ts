@@ -1,13 +1,15 @@
-import { allNotes, allPosts } from 'content-collections'
 import { NextResponse } from 'next/server'
 import RSS from 'rss'
 import { MY_NAME, SITE_DESCRIPTION, SITE_NAME } from '~/config/constants'
+import { getAllNotes, getAllPosts } from '~/lib/content'
 import { getBaseUrl } from '~/utils'
 
 export const dynamic = 'force-static'
 
 export async function GET(_request: Request) {
   const baseUrl = getBaseUrl()
+  const allPosts = await getAllPosts()
+  const allNotes = await getAllNotes()
   const feed = new RSS({
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
@@ -22,7 +24,7 @@ export async function GET(_request: Request) {
     feed.item({
       title: post.title,
       url: `${baseUrl}/posts/${post.slug}`,
-      date: post.date,
+      date: post.date ?? '',
       description: post.intro ?? '',
       author: MY_NAME,
     })
@@ -32,7 +34,7 @@ export async function GET(_request: Request) {
     feed.item({
       title: note.title,
       url: `${baseUrl}/notes/${note.slug}`,
-      date: note.date,
+      date: note.date ?? '',
       description: note.intro ?? '',
       author: MY_NAME,
     })

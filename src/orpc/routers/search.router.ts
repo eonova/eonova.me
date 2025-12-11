@@ -1,5 +1,5 @@
-import { allNotes, allPosts, allProjects } from 'content-collections'
 import { z } from 'zod'
+import { getAllNotes, getAllPosts, getAllProjects } from '~/lib/content'
 import { publicProcedure } from '../root'
 
 // Simple fuzzy search function
@@ -34,10 +34,9 @@ function fuzzySearch(query: string, text: string): number {
 function calculateScore(query: string, item: any, _type: 'post' | 'note' | 'project'): number {
   const titleScore = fuzzySearch(query, item.title || item.name || '') * 3 // Title matches are more important
   const summaryScore = item.summary ? fuzzySearch(query, item.summary) * 2 : 0
-  const contentScore = item.content ? fuzzySearch(query, item.content) * 1 : 0
   const descriptionScore = item.description ? fuzzySearch(query, item.description) * 2 : 0
 
-  return titleScore + summaryScore + contentScore + descriptionScore
+  return titleScore + summaryScore + descriptionScore
 }
 export const searchContent = publicProcedure
   .input(
@@ -76,6 +75,7 @@ export const searchContent = publicProcedure
 
     // Search posts
     if (type === 'all' || type === 'posts') {
+      const allPosts = await getAllPosts()
       for (const post of allPosts) {
         const score = calculateScore(query, post, 'post')
         if (score > 10) {
@@ -86,11 +86,11 @@ export const searchContent = publicProcedure
             summary: post.intro,
             type: 'post',
             slug: post.slug,
-            dateCreated: post.date,
+            dateCreated: post.date ?? '',
             score,
             url: `/posts/${post.slug}`,
-            categories: post.categories,
-            categoriesText: post.categoriesText,
+            categories: post.categories?.join(','),
+            categoriesText: post.categories?.join(' '),
           })
         }
       }
@@ -98,6 +98,7 @@ export const searchContent = publicProcedure
 
     // Search notes
     if (type === 'all' || type === 'notes') {
+      const allNotes = await getAllNotes()
       for (const note of allNotes) {
         const score = calculateScore(query, note, 'note')
         if (score > 10) {
@@ -107,7 +108,7 @@ export const searchContent = publicProcedure
             summary: note.intro,
             type: 'note',
             slug: note.slug,
-            dateCreated: note.date,
+            dateCreated: note.date ?? '',
             score,
             url: `/notes/${note.slug}`,
             mood: note.mood,
@@ -119,6 +120,7 @@ export const searchContent = publicProcedure
 
     // Search projects
     if (type === 'all' || type === 'projects') {
+      const allProjects = await getAllProjects()
       for (const project of allProjects) {
         const score = calculateScore(query, project, 'project')
         if (score > 10) {
@@ -128,10 +130,10 @@ export const searchContent = publicProcedure
             description: project.description,
             type: 'project',
             slug: project.slug,
-            dateCreated: project.dateCreated,
+            dateCreated: project.dateCreated ?? '',
             score,
             url: `/projects/${project.slug}`,
-            techstack: project.techstack,
+            techstack: project.techstack as string[],
             github: project.github,
             homepage: project.homepage,
           })
@@ -153,6 +155,12 @@ export const getSearchSuggestions = publicProcedure
   .handler(async ({ input }) => {
     const { query, limit } = input
     const suggestions: string[] = []
+
+    const [allPosts, allNotes, allProjects] = await Promise.all([
+      getAllPosts(),
+      getAllNotes(),
+      getAllProjects(),
+    ])
 
     // Get title suggestions from all content
     const allContent = [

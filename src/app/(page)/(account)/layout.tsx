@@ -4,6 +4,7 @@ import PageHeader from '~/components/layouts/page-header'
 import AccountMobileNav from '~/components/modules/account/account-mobile-nav'
 import AccountSidebar from '~/components/modules/account/account-sidebar'
 import { getSession } from '~/lib/auth'
+import '~/styles/globals.css'
 
 async function Layout(props: LayoutProps<'/'>) {
   const { children } = props

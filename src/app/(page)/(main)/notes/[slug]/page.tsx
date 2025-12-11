@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import type { Article, WithContext } from 'schema-dts'
 
-import { allNotes } from 'content-collections'
 import { notFound } from 'next/navigation'
-import { Suspense, use } from 'react'
+import { Suspense } from 'react'
 import CommentSection from '~/components/modules/comment-section/comment-section'
 import NoteMdx from '~/components/modules/mdx/note-mdx'
 import Footer from '~/components/pages/notes/note-footer'
@@ -14,7 +13,7 @@ import TableOfContents from '~/components/pages/notes/table-of-contents'
 import JsonLd from '~/components/shared/json-ld'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { MY_NAME } from '~/config/constants'
-import { getNoteBySlug } from '~/lib/content'
+import { getAllNotes, getNoteBySlug } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
@@ -23,7 +22,7 @@ const url = '/notes'
 export async function generateMetadata(props: PageProps<'/notes/[slug]'>): Promise<Metadata> {
   const { params } = props
   const { slug } = await params
-  const note = getNoteBySlug(slug)
+  const note = await getNoteBySlug(slug)
   if (!note) {
     return {}
   }
@@ -39,23 +38,28 @@ export async function generateMetadata(props: PageProps<'/notes/[slug]'>): Promi
 
 export const dynamic = 'force-static'
 
-export function generateStaticParams() {
-  return allNotes.map(n => ({ slug: n.slug }))
+export async function generateStaticParams() {
+  const notes = await getAllNotes()
+  return notes.map(n => ({ slug: n.slug }))
 }
 
-function Page(props: PageProps<'/notes/[slug]'>) {
+async function Page(props: PageProps<'/notes/[slug]'>) {
   const { params } = props
-  const { slug } = use(params)
+  const { slug } = await params
 
   const baseUrl = getBaseUrl()
-  const note = getNoteBySlug(slug)
+  const note = await getNoteBySlug(slug)
   const url = `${baseUrl}/notes/${slug}`
 
   if (!note) {
     notFound()
   }
 
-  const { title, intro, date, code, toc } = note
+  const { title, intro, date } = note
+  const content = await note.content()
+  const toc: any[] = [] // TOC not supported with keystatic reader yet
+
+  const { content: _contentFn, ...noteRest } = note
 
   const jsonLd: WithContext<Article> = {
     '@context': 'https://schema.org',
@@ -64,8 +68,8 @@ function Page(props: PageProps<'/notes/[slug]'>) {
     'name': title,
     'description': intro,
     url,
-    'datePublished': date,
-    'dateModified': date,
+    'datePublished': date ?? '',
+    'dateModified': date ?? '',
     'image': `${baseUrl}/og/${slug}`,
     'author': {
       '@type': 'Person',
@@ -82,15 +86,15 @@ function Page(props: PageProps<'/notes/[slug]'>) {
   return (
     <>
       <JsonLd json={jsonLd} />
-      <Providers note={note}>
+      <Providers note={noteRest as any}>
         <div className="relative my-16 mb-8 flex w-full flex-col justify-between gap-2 overflow-visible rounded-[0_6px_6px_0] border-solid border-zinc-200/70 bg-white/50 p-8 md:col-start-1 lg:flex-row lg:border dark:border-neutral-800 dark:bg-zinc-900/50">
           <article className="relative w-full sm:px-4 pb-10">
             <div className="absolute text-9xl rotate-8 opacity-3 top-0 right-4 font-dingtalk">
               #
             </div>
-            <Header className="my-4 mt-10" />
+            <Header className="my-4 mt-10" content={content} />
             {intro && <Intro intro={intro} />}
-            <NoteMdx code={code} />
+            <NoteMdx code={content} />
           </article>
           <aside className="hidden w-0 lg:ml-[-15vw] lg:block xl:ml-[-20vw]">
             <div className="sticky top-70 ml-15 lg:max-w-[200px] lg:min-w-[200px]">

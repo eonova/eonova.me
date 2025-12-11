@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 
 import type { BlogPosting, WithContext } from 'schema-dts'
-import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
-import { Suspense, use } from 'react'
+import { Suspense } from 'react'
 
 import { Skeleton } from '~/components/base/skeleton'
 import CommentSection from '~/components/modules/comment-section/comment-section'
@@ -16,7 +15,7 @@ import TableOfContents from '~/components/pages/posts/table-of-contents'
 import JsonLd from '~/components/shared/json-ld'
 import MobileTableOfContents from '~/components/shared/mobile-table-of-contents'
 import { MY_NAME } from '~/config/constants'
-import { getPostBySlug } from '~/lib/content'
+import { getAllPosts, getPostBySlug } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
@@ -24,7 +23,7 @@ export async function generateMetadata(props: PageProps<'/posts/[slug]'>): Promi
   const { params } = props
   const { slug } = await params
 
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlug(slug)
 
   if (!post)
     return {}
@@ -35,22 +34,23 @@ export async function generateMetadata(props: PageProps<'/posts/[slug]'>): Promi
     description: post.intro ?? '',
     openGraph: {
       type: 'article',
-      publishedTime: post.date,
-      modifiedTime: post.modifiedTime,
+      publishedTime: post.date ?? undefined,
+      modifiedTime: post.modifiedTime ?? undefined,
     },
   })
 }
 export const dynamic = 'force-static'
 
-export function generateStaticParams() {
-  return allPosts.map(p => ({ slug: p.slug }))
+export async function generateStaticParams() {
+  const posts = await getAllPosts()
+  return posts.map(p => ({ slug: p.slug }))
 }
 
-function Page(props: PageProps<'/posts/[slug]'>) {
+async function Page(props: PageProps<'/posts/[slug]'>) {
   const { params } = props
-  const { slug } = use(params)
+  const { slug } = await params
 
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlug(slug)
   const baseUrl = getBaseUrl()
   const url = `${baseUrl}/posts/${slug}`
 
@@ -58,7 +58,11 @@ function Page(props: PageProps<'/posts/[slug]'>) {
     notFound()
   }
 
-  const { title, intro, date, modifiedTime, code, toc } = post
+  const { title, intro, date, modifiedTime } = post
+  const content = await post.content()
+  const toc: any[] = []
+
+  const { content: _contentFn, ...postRest } = post
 
   const jsonLd: WithContext<BlogPosting> = {
     '@context': 'https://schema.org',
@@ -70,8 +74,8 @@ function Page(props: PageProps<'/posts/[slug]'>) {
       '@id': url,
     },
     'image': `/og/posts/${post.slug}/image.webp`,
-    'datePublished': date,
-    'dateModified': modifiedTime,
+    'datePublished': date ?? '',
+    'dateModified': modifiedTime ?? '',
     'author': {
       '@type': 'Person',
       'name': MY_NAME,
@@ -86,11 +90,11 @@ function Page(props: PageProps<'/posts/[slug]'>) {
   return (
     <>
       <JsonLd json={jsonLd} />
-      <Providers post={post}>
-        <Header intro={intro ?? ''} />
+      <Providers post={postRest as any}>
+        <Header intro={intro ?? ''} content={content} />
         <div className="mt-8 flex w-full flex-col justify-between gap-2 overflow-visible lg:flex-row">
           <article className="w-full sm:px-4">
-            <Mdx code={code} />
+            <Mdx code={content} />
           </article>
           <aside className="hidden w-0 lg:ml-[-15vw] lg:block xl:ml-[-20vw]">
             <div className="sticky top-32 ml-5 lg:max-w-[200px] lg:min-w-[200px]">

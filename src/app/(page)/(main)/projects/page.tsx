@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export const dynamic = 'force-static'
 
 async function Page() {
-  const projects = getLatestProjects()
+  const projects = await getLatestProjects()
 
   const jsonLd: WithContext<CollectionPage> = {
     '@context': 'https://schema.org',

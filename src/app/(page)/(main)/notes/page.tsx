@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import type { Blog, WithContext } from 'schema-dts'
 
-import { allNotes } from 'content-collections'
 import NoteCards from '~/components/pages/notes/note-cards'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { SITE_NAME, SITE_URL } from '~/config/constants'
+import { getAllNotes } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 
 const title = '手记'
@@ -22,8 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export const dynamic = 'force-static'
 
 async function Page() {
+  const allNotes = await getAllNotes()
+  console.log('allNotes', allNotes)
   const notes = allNotes.toSorted((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime()
+    return new Date(b.date ?? '').getTime() - new Date(a.date ?? '').getTime()
   })
 
   const jsonLd: WithContext<Blog> = {
@@ -42,8 +44,8 @@ async function Page() {
       '@type': 'BlogPosting',
       'headline': note.title,
       'url': `${url}/${note.slug}`,
-      'datePublished': note.date,
-      'dateModified': note.date,
+      'datePublished': note.date ?? '',
+      'dateModified': note.date ?? '',
     })),
   }
 

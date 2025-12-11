@@ -16,6 +16,7 @@
     ".pnpm-store/",
     "src/db/migrations/**",
     "data/**",
+    "content/**",
     "public/**"
   ],
   "ignoreRegExpList": [
@@ -76,6 +77,7 @@
     "innerhtml",
     "Inspira",
     "José",
+    "keystatic",
     "KHTML",
     "kuaikanshijieti",
     "kuaileshijie",
@@ -89,6 +91,7 @@
     "Logto",
     "longtask",
     "María",
+    "markdoc",
     "maxage",
     "MBTI",
     "mdast",

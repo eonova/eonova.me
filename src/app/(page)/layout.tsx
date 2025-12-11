@@ -7,7 +7,6 @@ import Hello from '~/components/shared/hello'
 import { ErrorBoundaryMonitor, PerformanceMonitor } from '~/components/shared/performance-monitor'
 import { cn } from '~/utils'
 import Providers from '../providers'
-import '~/styles/globals.css'
 
 export const viewport: Viewport = {
   themeColor: [

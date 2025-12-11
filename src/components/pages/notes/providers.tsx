@@ -1,6 +1,6 @@
 'use client'
 
-import type { Note } from 'content-collections'
+import type { Note } from '~/lib/content'
 import { NoteProvider } from '~/contexts/note'
 
 interface ProvidersProps {

@@ -1,4 +1,4 @@
-import type { Post } from 'content-collections'
+import type { Post } from '~/lib/content'
 import Link from 'next/link'
 import { BottomToUpTransitionView } from '~/components/modules/transition/bottom-to-top'
 import NonFound from '~/components/shared/not-found'
@@ -16,7 +16,7 @@ const CategoriesContent: React.FC<CategoriesContentProps> = ({ posts }) => {
             <main className="mt-10 text-zinc-950/80 md:px-3 dark:text-zinc-50/80">
               <TimelineList>
                 {posts.map((child, i) => {
-                  const date = new Date(child.date)
+                  const date = new Date(child.date ?? '')
 
                   return (
                     <BottomToUpTransitionView

@@ -1,0 +1,35 @@
+{
+  "categoryName": "开发套餐",
+  "websites": [
+    {
+      "images": "https://nextjs.org/favicon.ico",
+      "url": "https://nextjs.org/",
+      "title": "Nextjs",
+      "desc": "The React Framework for the Web."
+    },
+    {
+      "images": "https://orm.drizzle.team/favicon.ico",
+      "url": "https://orm.drizzle.team/",
+      "title": "Drizzle-orm",
+      "desc": "Drizzle ORM is a headless TypeScript ORM with a head. 🐲"
+    },
+    {
+      "images": "https://assets.vercel.com/image/upload/front/favicon/vercel/apple-touch-icon-72x72.png",
+      "url": "https://vercel.com/",
+      "title": "Vercel",
+      "desc": "一个云平台,用于构建、部署和扩展无服务器应用程序和静态网站"
+    },
+    {
+      "images": "https://supabase.com/favicon/apple-icon-57x57.png",
+      "url": "https://supabase.com/",
+      "title": "Supabase",
+      "desc": "Supabase is an open source Firebase alternative."
+    },
+    {
+      "images": "https://upstash.com/icons/apple-touch-icon.png",
+      "url": "https://upstash.com/",
+      "title": "Upstash",
+      "desc": "Redis Serverless Server"
+    }
+  ]
+}

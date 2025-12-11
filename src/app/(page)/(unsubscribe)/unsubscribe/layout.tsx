@@ -1,3 +1,5 @@
+import '~/styles/globals.css'
+
 function Layout(props: LayoutProps<'/unsubscribe'>) {
   const { children } = props
 

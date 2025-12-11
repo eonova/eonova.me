@@ -1,12 +1,11 @@
-import type { Note, Post } from 'content-collections'
-
 import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
-import { allNotes, allPosts } from 'content-collections'
+import type { Note, Post } from '~/lib/content'
 import { notFound } from 'next/navigation'
 import ArchiveContent from '~/components/pages/archive/content'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
+import { getAllNotes, getAllPosts } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
@@ -39,13 +38,15 @@ export function generateStaticParams() {
 async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 
-  const articles = slug === 'posts' ? allPosts : allNotes
+  const posts = await getAllPosts()
+  const notes = await getAllNotes()
+  const articles = slug === 'posts' ? posts : notes
   // 做成对象数组：键为年份，值为文章数组
   const articlesByYear = articles.reduce(
     (acc, article) => {
-      const year = new Date(article.date).getFullYear()
+      const year = new Date(article.date ?? '').getFullYear()
       acc[year] ??= []
-      acc[year].push(article)
+      acc[year].push(article as unknown as Post | Note)
       return acc
     },
     {} as Record<string, (Post | Note)[]>,

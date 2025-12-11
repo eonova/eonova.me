@@ -1,0 +1,41 @@
+{
+  "categoryName": "技术开发",
+  "websites": [
+    {
+      "images": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+      "url": "https://github.com",
+      "title": "GitHub",
+      "desc": "全球最大的开源代码托管平台，开发者的聚集地，有海量的开源项目和丰富的代码资源。"
+    },
+    {
+      "images": "https://icon-sets.iconify.design/favicon.ico",
+      "url": "https://icon-sets.iconify.design/",
+      "title": "Iconify",
+      "desc": "All popular icon sets, one framework."
+    },
+    {
+      "images": "https://railway.com/favicon.ico",
+      "url": "https://railway.com",
+      "title": "Railway",
+      "desc": "Shipping great products is hard. Scaling infrastructure is easy."
+    },
+    {
+      "images": "https://resend.com/static/favicons/favicon.ico",
+      "url": "https://resend.com/",
+      "title": "Resend",
+      "desc": "The best way to reach humans instead of spam folders. Deliver transactional and marketing emails at scale."
+    },
+    {
+      "images": "https://bolt.new/static/favicon.svg",
+      "url": "https://bolt.new/",
+      "title": "bolt.new",
+      "desc": "AI-Powered Web Development at Your Fingertips"
+    },
+    {
+      "images": "https://logtoeu.blob.core.windows.net/public-blobs/admin/aG3Wi7UOuSQ7/2023/03/19/JVncuuqe/favicon.png",
+      "url": "https://auth.logto.io/",
+      "title": "Logto",
+      "desc": "The better auth and identify infrastructure"
+    }
+  ]
+}

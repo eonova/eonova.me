@@ -1,4 +1,4 @@
-import type { Note } from 'content-collections'
+import type { Note } from '~/lib/content'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { NoteProvider, useNoteContext } from '~/contexts/note'
@@ -12,17 +12,7 @@ const mockNote: Note = {
   mood: 'happy',
   weather: 'sunny',
   cover: '/test-cover.jpg',
-  content: 'Test note content',
-  code: 'test-code',
   type: 'notes',
-  toc: [],
-  _meta: {
-    filePath: 'test-note.md',
-    fileName: 'test-note.md',
-    directory: 'notes',
-    path: 'test-note',
-    extension: 'md',
-  },
 }
 
 // Test component that uses the context
@@ -105,7 +95,6 @@ describe('noteContext', () => {
           <span data-testid="slug">{note.slug}</span>
           <span data-testid="date">{note.date}</span>
           <span data-testid="cover">{note.cover}</span>
-          <span data-testid="content">{note.content}</span>
           <span data-testid="type">{note.type}</span>
         </div>
       )
@@ -120,7 +109,6 @@ describe('noteContext', () => {
     expect(screen.getByTestId('slug')).toHaveTextContent('test-note')
     expect(screen.getByTestId('date')).toHaveTextContent('2024-01-01')
     expect(screen.getByTestId('cover')).toHaveTextContent('/test-cover.jpg')
-    expect(screen.getByTestId('content')).toHaveTextContent('Test note content')
     expect(screen.getByTestId('type')).toHaveTextContent('notes')
   })
 
@@ -162,20 +150,11 @@ describe('noteContext', () => {
       slug: 'minimal',
       title: 'Minimal Note',
       date: '2024-01-01',
+      intro: '',
       mood: 'neutral',
       weather: 'cloudy',
       cover: '',
-      content: '',
-      code: '',
       type: 'notes',
-      toc: [],
-      _meta: {
-        filePath: 'minimal.md',
-        fileName: 'minimal.md',
-        directory: 'notes',
-        path: 'minimal',
-        extension: 'md',
-      },
     }
 
     function MinimalTestComponent() {
@@ -238,41 +217,5 @@ describe('noteContext', () => {
 
     expect(screen.getByTestId('outer')).toHaveTextContent('Outer Note')
     expect(screen.getByTestId('inner')).toHaveTextContent('Inner Note')
-  })
-
-  it('should handle note with complex toc structure', () => {
-    const noteWithToc: Note = {
-      ...mockNote,
-      toc: [
-        { id: 'heading-1', text: 'First Heading', level: 1 },
-        { id: 'heading-2', text: 'Second Heading', level: 2 },
-      ],
-    }
-
-    function TocTestComponent() {
-      const note = useNoteContext()
-      return (
-        <div>
-          {note.toc.map((item: any) => (
-            <div key={item.id} data-testid={`toc-${item.id}`}>
-              {item.text}
-              {' '}
-              (Level
-              {item.level}
-              )
-            </div>
-          ))}
-        </div>
-      )
-    }
-
-    render(
-      <NoteProvider value={noteWithToc}>
-        <TocTestComponent />
-      </NoteProvider>,
-    )
-
-    expect(screen.getByTestId('toc-heading-1')).toHaveTextContent('First Heading (Level1)')
-    expect(screen.getByTestId('toc-heading-2')).toHaveTextContent('Second Heading (Level2)')
   })
 })

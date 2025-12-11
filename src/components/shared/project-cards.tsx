@@ -1,12 +1,18 @@
 'use client'
 
-import type { Project } from 'content-collections'
 import Link from 'next/link'
 import { BlurImage } from '~/components/base/blur-image'
 
-type ProjectCardProps = Project
+interface ProjectData {
+  slug: string
+  name: string
+  description: string
+  techstack: readonly string[]
+}
+
+type ProjectCardProps = ProjectData
 interface ProjectCardsProps {
-  projects: Project[]
+  projects: ProjectData[]
 }
 
 function ProjectCards(props: ProjectCardsProps) {

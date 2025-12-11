@@ -1,0 +1,59 @@
+{
+  "categoryName": "UI 组件库",
+  "websites": [
+    {
+      "images": "https://ui.shadcn.com/apple-touch-icon.png",
+      "url": "https://ui.shadcn.com/",
+      "title": "Shadcn UI",
+      "desc": "A set of beautifully-designed, accessible, and customizable components to help you build your component library. "
+    },
+    {
+      "images": "https://daisyui.com/favicon.ico",
+      "url": "https://daisyui.com/",
+      "title": "Daisy UI",
+      "desc": "The most popular component library for Tailwind CSS"
+    },
+    {
+      "images": "https://www.hover.dev/favicon.ico",
+      "url": "https://www.hover.dev/",
+      "title": "Hover.dev",
+      "desc": "Animated UI Component and Template for React"
+    },
+    {
+      "images": "https://magicui.design/favicon.ico",
+      "url": "https://magicui.design/",
+      "title": "Magic UI",
+      "desc": "UI library for Design Engineers"
+    },
+    {
+      "images": "https://ui.aceternity.com/apple-icon.png?2deb28af3ac52d4d",
+      "url": "https://ui.aceternity.com/",
+      "title": "Aceternity UI",
+      "desc": "Make your websites look 10x better"
+    },
+    {
+      "images": "https://lunarui.dev/favicon.png",
+      "url": "https://lunarui.dev/",
+      "title": "Lunar UI",
+      "desc": "Build sites that sell well."
+    },
+    {
+      "images": "https://animata.design/apple-touch-icon.png",
+      "url": "https://animata.design/",
+      "title": "Animata Design",
+      "desc": "Hand-crafted ✍️ interaction animations and effects from around the internet 🛜 to copy and paste into your project."
+    },
+    {
+      "images": "https://inspira-ui.com/logo.svg",
+      "url": "https://inspira-ui.com/",
+      "title": "Inspira UI",
+      "desc": "Build beautiful websites using Vue & Nuxt"
+    },
+    {
+      "images": "https://www.reactbits.dev/favicon.ico",
+      "url": "https://www.reactbits.dev/",
+      "title": "Reactbits",
+      "desc": "Animated UI Components For React"
+    }
+  ]
+}

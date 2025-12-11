@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
 
-import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
 import CategoriesContent from '~/components/pages/categories/content'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { SITE_URL } from '~/config/constants'
 import { CATEGORIES } from '~/config/posts'
+import { getAllPosts } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 
 interface PageProps {
@@ -44,9 +44,10 @@ export function generateStaticParams() {
 async function Page(props: Readonly<PageProps>) {
   const { slug } = await props.params
 
+  const allPosts = await getAllPosts()
   const posts = allPosts
     .filter(p => p.categories?.includes(slug))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a, b) => new Date(b.date ?? '').getTime() - new Date(a.date ?? '').getTime())
   const url = `${SITE_URL}/categories/${slug}`
 
   if (!posts) {
@@ -69,7 +70,7 @@ async function Page(props: Readonly<PageProps>) {
     <>
       <JsonLd json={jsonLd} />
       <PageTitle title={title} description={title} />
-      <CategoriesContent posts={posts} />
+      <CategoriesContent posts={posts as any} />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import type { Note } from 'content-collections'
+import type { Note } from '~/lib/content'
 
 import { createContext, use } from 'react'
 

@@ -1,5 +1,5 @@
-import { allNotes, allPages, allPosts, allProjects } from 'content-collections'
 import { CATEGORIES } from '~/config/posts'
+import { getAllNotes, getAllPages, getAllPosts, getAllProjects } from '~/lib/content'
 
 const PROTECTED_ROUTES = ['/admin', '/account', '/account/settings']
 
@@ -7,8 +7,15 @@ interface GetPathnamesOptions {
   includeProtectedRoutes?: boolean
 }
 
-export function getPathnames(options: GetPathnamesOptions = {}) {
+export async function getPathnames(options: GetPathnamesOptions = {}) {
   const { includeProtectedRoutes = false } = options
+
+  const [posts, notes, pages, projects] = await Promise.all([
+    getAllPosts(),
+    getAllNotes(),
+    getAllPages(),
+    getAllProjects(),
+  ])
 
   const publicRoutes = [
     '/',
@@ -24,10 +31,10 @@ export function getPathnames(options: GetPathnamesOptions = {}) {
     '/friend',
     ...CATEGORIES.map(category => `/categories/${category.label}`),
     ...['/posts', '/notes'].map(path => `/archive${path}`),
-    ...new Set(allPages.map(page => `/${page.slug}`)),
-    ...new Set(allNotes.map(note => `/notes/${note.slug}`)),
-    ...new Set(allProjects.map(project => `/projects/${project.slug}`)),
-    ...new Set(allPosts.map(post => `/posts/${post.slug}`)),
+    ...new Set(pages.map(page => `/${page.slug}`)),
+    ...new Set(notes.map(note => `/notes/${note.slug}`)),
+    ...new Set(projects.map(project => `/projects/${project.slug}`)),
+    ...new Set(posts.map(post => `/posts/${post.slug}`)),
   ]
 
   if (includeProtectedRoutes) {

@@ -12,10 +12,15 @@ import { useContentViewCount, useIncrementContentViewCount } from '~/hooks/queri
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { cn } from '~/utils/cn'
 
-function Header({ className }: { className?: string }) {
-  const { date, title, slug, content, weather, mood } = useNoteContext()
+interface HeaderProps {
+  className?: string
+  content?: string
+}
+
+function Header({ className, content }: HeaderProps) {
+  const { date, title, slug, weather, mood } = useNoteContext()
   const { data: dbNote } = useNote(slug)
-  const formattedDate = useFormattedDate(date, {
+  const formattedDate = useFormattedDate(date ?? '', {
     format: 'MMMM D, YYYY',
     loading: '...',
   })
@@ -72,7 +77,7 @@ function Header({ className }: { className?: string }) {
 
       <AISummary
         summary={dbNote?.summary}
-        content={content}
+        content={content ?? ''}
         slug={slug}
         type="note"
         color="orange"

@@ -1,5 +1,6 @@
 import type { UrlObject } from 'node:url'
-import { useMDXComponent } from '@content-collections/mdx/react'
+import rehypeShiki from '@shikijs/rehype'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
 import { BlurImage } from '~/components/base/blur-image'
 import { CodeBlock } from '~/components/base/code-block'
@@ -69,11 +70,18 @@ const components = {
 
 function NoteMdx(props: MdxProps) {
   const { code } = props
-  const MDXContent = useMDXComponent(code)
 
   return (
     <div className="prose w-full">
-      <MDXContent components={components} />
+      <MDXRemote
+        source={code}
+        components={components}
+        options={{
+          mdxOptions: {
+            rehypePlugins: [[rehypeShiki, { theme: 'github-dark' }]],
+          },
+        }}
+      />
     </div>
   )
 }

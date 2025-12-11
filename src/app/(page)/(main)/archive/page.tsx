@@ -1,8 +1,6 @@
-import type { Note, Post } from 'content-collections'
-
 import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
-import { allNotes, allPosts } from 'content-collections'
+import type { Note, Post } from '~/lib/content'
 import { notFound } from 'next/navigation'
 import ArchiveContent from '~/components/pages/archive/content'
 import PageTitle from '~/components/shared/page-title'
@@ -15,6 +13,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL,
 } from '~/config/constants'
+import { getAllNotes, getAllPosts } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
@@ -34,16 +33,18 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function Page() {
-  const articles = [...allPosts, ...allNotes].sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  const posts = await getAllPosts()
+  const notes = await getAllNotes()
+  const articles = [...posts, ...notes].sort((a, b) => {
+    return new Date(b.date ?? '').getTime() - new Date(a.date ?? '').getTime()
   })
 
   // 做成对象数组：键为年份，值为文章数组
   const articlesByYear = articles.reduce(
     (acc, article) => {
-      const year = new Date(article.date).getFullYear()
+      const year = new Date(article.date ?? '').getFullYear()
       acc[year] ??= []
-      acc[year].push(article)
+      acc[year].push(article as unknown as Post | Note)
       return acc
     },
     {} as Record<string, (Post | Note)[]>,

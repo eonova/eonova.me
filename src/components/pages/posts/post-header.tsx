@@ -15,12 +15,13 @@ import Intro from './post-intro'
 
 interface HeaderProps {
   intro?: string
+  content?: string
 }
 
-function Header({ intro }: HeaderProps) {
-  const { cover, date, title, slug, ...postData } = usePostContext()
+function Header({ intro, content }: HeaderProps) {
+  const { date, title, slug } = usePostContext()
   const { data: dbPost } = usePost(slug)
-  const formattedDate = useFormattedDate(date, {
+  const formattedDate = useFormattedDate(date ?? '', {
     format: 'MMMM D, YYYY',
     loading: '...',
   })
@@ -84,7 +85,7 @@ function Header({ intro }: HeaderProps) {
         </div>
       </div>
       <AISummary
-        content={postData.content}
+        content={content ?? ''}
         slug={slug}
         type="post"
         summary={dbPost?.summary}

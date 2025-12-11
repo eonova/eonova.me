@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import type { SoftwareSourceCode, WithContext } from 'schema-dts'
 
-import { allProjects } from 'content-collections'
 import { notFound } from 'next/navigation'
 
 import { BlurImage } from '~/components/base/blur-image'
@@ -10,7 +9,7 @@ import Mdx from '~/components/modules/mdx'
 import Header from '~/components/pages/projects/header'
 import JsonLd from '~/components/shared/json-ld'
 import { MY_NAME, SITE_URL } from '~/config/constants'
-import { getProjectBySlug } from '~/lib/content'
+import { getAllProjects, getProjectBySlug } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils/get-base-url'
 
@@ -27,7 +26,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await props.params
 
-  const project = getProjectBySlug(slug)
+  const project = await getProjectBySlug(slug)
 
   if (!project) {
     return {}
@@ -44,14 +43,15 @@ export async function generateMetadata(
 
 export const dynamic = 'force-static'
 
-export function generateStaticParams() {
-  return allProjects.map(p => ({ slug: p.slug }))
+export async function generateStaticParams() {
+  const projects = await getAllProjects()
+  return projects.map(p => ({ slug: p.slug }))
 }
 
 async function Page(props: PageProps) {
   const { slug } = await props.params
 
-  const project = allProjects.find(p => p.slug === slug)
+  const project = await getProjectBySlug(slug)
   const localizedPath = `/projects/${slug}`
   const url = `${SITE_URL}${localizedPath}`
 
@@ -59,7 +59,10 @@ async function Page(props: PageProps) {
     notFound()
   }
 
-  const { name, code, description, github, dateCreated } = project
+  const { name, description, github, dateCreated } = project
+  const content = await project.content()
+
+  const { content: _content, ...projectRest } = project
 
   const baseUrl = getBaseUrl()
   const jsonLd: WithContext<SoftwareSourceCode> = {
@@ -71,7 +74,7 @@ async function Page(props: PageProps) {
     'codeRepository': github,
     'license': 'https://opensource.org/licenses/MIT',
     'programmingLanguage': 'TypeScript',
-    dateCreated,
+    'dateCreated': dateCreated ?? '',
     'author': {
       '@type': 'Person',
       'name': MY_NAME,
@@ -84,7 +87,7 @@ async function Page(props: PageProps) {
     <>
       <JsonLd json={jsonLd} />
       <div className="mx-auto max-w-3xl">
-        <Header {...project} />
+        <Header {...projectRest} />
         <BlurImage
           src={`/images/projects/${slug}.png`}
           width={600}
@@ -93,7 +96,7 @@ async function Page(props: PageProps) {
           className="my-12 rounded-lg"
           lazy={false}
         />
-        <Mdx code={code} />
+        <Mdx code={content} />
       </div>
     </>
   )

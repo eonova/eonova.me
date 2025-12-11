@@ -1,7 +1,7 @@
-import type { Project } from 'content-collections'
-
-export function groupAndSortByYear(data: Project[]) {
-  const temp = data.reduce((acc: { [key: string]: Project[] }, current) => {
+export function groupAndSortByYear<T extends { dateCreated: string | Date | null }>(data: T[]) {
+  const temp = data.reduce((acc: { [key: string]: T[] }, current) => {
+    if (!current.dateCreated)
+      return acc
     const date = new Date(current.dateCreated)
     const year = date.getUTCFullYear().toString()
 
@@ -14,8 +14,10 @@ export function groupAndSortByYear(data: Project[]) {
     return acc
   }, {})
   for (const year in temp) {
-    if (temp.hasOwnProperty(year)) {
+    if (Object.prototype.hasOwnProperty.call(temp, year)) {
       temp[year]?.sort((a, b) => {
+        if (!a.dateCreated || !b.dateCreated)
+          return 0
         // 提取日期并排序
         const dateA = new Date(a.dateCreated)
         const dateB = new Date(b.dateCreated)

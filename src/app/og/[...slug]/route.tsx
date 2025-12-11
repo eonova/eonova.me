@@ -51,7 +51,7 @@ async function generateNoteOGImage(slugs: string[]) {
   if (!noteSlug)
     notFound()
 
-  const note = getNoteBySlug(noteSlug)
+  const note = await getNoteBySlug(noteSlug)
   if (!note)
     notFound()
 
@@ -63,7 +63,7 @@ async function generateBlogOGImage(slugs: string[]) {
   if (!postSlug)
     notFound()
 
-  const post = getPostBySlug(postSlug)
+  const post = await getPostBySlug(postSlug)
   if (!post)
     notFound()
 
@@ -103,8 +103,8 @@ async function generateOGImage(title: string, url: string) {
   })
 }
 
-export function generateStaticParams(): Array<{ slug: string[] }> {
-  const pathnames = getPathnames({ includeProtectedRoutes: true })
+export async function generateStaticParams(): Promise<Array<{ slug: string[] }>> {
+  const pathnames = await getPathnames({ includeProtectedRoutes: true })
 
   return pathnames.map(pathname => ({
     slug: [...pathname.split('/'), 'image.webp'].filter(Boolean),

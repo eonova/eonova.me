@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { allPosts } from 'content-collections'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BottomToUpTransitionView } from '~/components/modules/transition/bottom-to-top'
 import PageTitle from '~/components/shared/page-title'
 import TimelineList from '~/components/shared/timeline-list'
+import { getAllPosts } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 
 interface Props {
@@ -25,6 +25,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const tags = new Set<string>()
+  const allPosts = await getAllPosts()
 
   allPosts.forEach((post) => {
     if (post.tags) {
@@ -39,12 +40,13 @@ export default async function TagPage(props: Props) {
   const { slug } = await props.params
   const decodedSlug = decodeURIComponent(slug)
 
+  const allPosts = await getAllPosts()
   const posts = allPosts
     .filter(post => post.tags?.includes(decodedSlug))
     .map(post => ({ ...post, type: 'post' as const }))
 
   const items = [...posts].sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime()
+    return new Date(b.date ?? '').getTime() - new Date(a.date ?? '').getTime()
   })
 
   if (items.length === 0) {
@@ -58,7 +60,7 @@ export default async function TagPage(props: Props) {
       <main className="mt-10 text-zinc-950/80 md:px-3 dark:text-zinc-50/80">
         <TimelineList>
           {items.map((item, i) => {
-            const date = new Date(item.date)
+            const date = new Date(item.date ?? '')
             const href = item.type === 'post' ? `/posts/${item.slug}` : `/notes/${item.slug}`
 
             return (

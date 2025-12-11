@@ -12,7 +12,7 @@ function editURL(slug: string) {
 function Footer() {
   const { slug, modifiedTime } = usePostContext()
 
-  const formattedDate = useFormattedDate(modifiedTime, {
+  const formattedDate = useFormattedDate(modifiedTime ?? '', {
     format: 'MMMM D, YYYY',
     loading: '...',
   })

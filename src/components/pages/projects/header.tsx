@@ -1,7 +1,5 @@
 'use client'
 
-import type { Project } from 'content-collections'
-
 import { ArrowUpRightIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 
@@ -21,7 +19,12 @@ const animation = {
   },
 }
 
-type HeaderProps = Project
+interface HeaderProps {
+  name: string
+  description: string
+  homepage?: string
+  github: string
+}
 
 function Header(props: Readonly<HeaderProps>) {
   const { name, description, homepage, github } = props

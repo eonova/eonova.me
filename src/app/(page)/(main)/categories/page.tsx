@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import type { WebPage, WithContext } from 'schema-dts'
-import { allPosts } from 'content-collections'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/base/card'
 import JsonLd from '~/components/shared/json-ld'
 import PageTitle from '~/components/shared/page-title'
 import { MY_NAME } from '~/config/constants'
 import { CATEGORIES } from '~/config/posts'
+import { getAllPosts } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'
 import { getBaseUrl } from '~/utils'
 
@@ -21,7 +21,8 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-export default function CategoriesPage() {
+export default async function CategoriesPage() {
+  const allPosts = await getAllPosts()
   const jsonLd: WithContext<WebPage> = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
