@@ -100,5 +100,6 @@
     "pcss",
     "postcss"
   ],
-  "oxc.enable": false
+  "oxc.enable": false,
+  "arrayIndexInlay.enabled": true
 }

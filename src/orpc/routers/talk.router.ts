@@ -114,9 +114,13 @@ export const listAllTalks = publicProcedure
     }
 
     let nextCursor: Date | undefined
-    if (items.length > (input?.limit ?? 10)) {
-      const nextItem = items.pop()
+    const limit = input?.limit ?? 10
+
+    if (items.length > limit) {
+      // Use slice to avoid mutating the cached array if it comes from unstable_cache
+      const nextItem = items[limit]
       nextCursor = nextItem?.createdAt
+      items = items.slice(0, limit)
     }
 
     return {
@@ -134,8 +138,8 @@ export const createTalk = adminProcedure
         content: input.content,
       })
       .returning()
-    ;(revalidateTag as any)('talks-list')
-    ;(revalidateTag as any)('talks-stats')
+      ; (revalidateTag as any)('talks-list')
+    ; (revalidateTag as any)('talks-stats')
     return newTalk
   })
 
@@ -143,8 +147,8 @@ export const deleteTalk = adminProcedure
   .input(deleteTalkInputSchema)
   .handler(async ({ context, input }) => {
     await context.db.delete(talks).where(eq(talks.id, input.id))
-    ;(revalidateTag as any)('talks-list')
-    ;(revalidateTag as any)('talks-stats')
+    ; (revalidateTag as any)('talks-list')
+    ; (revalidateTag as any)('talks-stats')
   })
 
 export const updateTalk = adminProcedure
@@ -155,6 +159,6 @@ export const updateTalk = adminProcedure
       .set({ content: input.content })
       .where(eq(talks.id, input.id))
       .returning()
-    ;(revalidateTag as any)('talks-list')
+      ; (revalidateTag as any)('talks-list')
     return updatedTalk
   })

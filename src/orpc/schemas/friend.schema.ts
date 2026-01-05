@@ -4,7 +4,7 @@ export const listAllFriendsInputSchema
   = z
     .object({
       limit: z.number().min(1).max(100).default(10),
-      cursor: z.date().optional(),
+      cursor: z.coerce.date().optional(),
     })
     .optional()
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { LogIn, LogOutIcon, Settings, UserIcon } from 'lucide-react'
+import { LogOutIcon, Settings, UserIcon } from 'lucide-react'
 import { Button } from '~/components/base/button'
 import {
   DropdownMenu,
@@ -13,6 +13,8 @@ import {
 import { Skeleton } from '~/components/base/skeleton'
 import { useSignInDialog } from '~/hooks/use-sign-in-dialog'
 import { authClient, useSession } from '~/lib/auth-client'
+import { getDefaultImage } from '~/utils/get-default-image'
+import { Avatar, AvatarFallback, AvatarImage } from '../base/avatar'
 
 function UserAuth() {
   const { data: session, isPending } = useSession()
@@ -41,12 +43,13 @@ function UserAuth() {
         onClick={() => dialogStore.setOpen(true)}
         data-testid="sign-in-button"
       >
-        <LogIn className="size-5 sm:size-4" />
+        <UserIcon className="size-5 sm:size-4" />
       </Button>
     )
   }
 
-  const { name, email, role } = session.user
+  const { id, name, email, role, image } = session.user
+  const defaultImage = getDefaultImage(id)
 
   return (
     <DropdownMenu>
@@ -58,13 +61,18 @@ function UserAuth() {
           data-testid="user-auth-button"
           aria-label="user-auth-button"
         >
-          <UserIcon className="size-5 sm:size-4" />
+          <Avatar className="size-7" data-testid="user-avatar">
+            <AvatarImage className="size-7" alt="user" src={image ?? defaultImage} />
+            <AvatarFallback className="bg-transparent">
+              <Skeleton className="size-7 rounded-full" />
+            </AvatarFallback>
+          </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuLabel>
           <div className="flex flex-col gap-1">
-            <p className="text-sm font-medium">{name}</p>
+            <p className="text-sm font-medium">{name ?? ''}</p>
             <p className="text-muted-foreground text-xs">{email}</p>
           </div>
         </DropdownMenuLabel>

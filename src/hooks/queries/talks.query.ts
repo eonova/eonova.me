@@ -19,7 +19,12 @@ export function useCreateTalk(onSuccess?: () => void) {
     orpc.talks.create.mutationOptions({
       onSuccess: () => {
         qc.invalidateQueries({ queryKey: orpc.talks.list.key() })
+        qc.invalidateQueries({ queryKey: orpc.admin.talks.list.key() })
         onSuccess?.()
+      },
+      onSettled() {
+        qc.invalidateQueries({ queryKey: orpc.talks.list.key() })
+        qc.invalidateQueries({ queryKey: orpc.admin.talks.list.key() })
       },
     }),
   )
@@ -31,7 +36,12 @@ export function useDeleteTalk(onSuccess?: () => void) {
     orpc.talks.delete.mutationOptions({
       onSuccess: () => {
         qc.invalidateQueries({ queryKey: orpc.talks.list.key() })
+        qc.invalidateQueries({ queryKey: orpc.admin.talks.list.key() })
         onSuccess?.()
+      },
+      onSettled() {
+        qc.invalidateQueries({ queryKey: orpc.talks.list.key() })
+        qc.invalidateQueries({ queryKey: orpc.admin.talks.list.key() })
       },
     }),
   )
@@ -43,7 +53,12 @@ export function useUpdateTalk(onSuccess?: () => void) {
     orpc.talks.update.mutationOptions({
       onSuccess: () => {
         qc.invalidateQueries({ queryKey: orpc.talks.list.key() })
+        qc.invalidateQueries({ queryKey: orpc.admin.talks.list.key() })
         onSuccess?.()
+      },
+      onSettled() {
+        qc.invalidateQueries({ queryKey: orpc.talks.list.key() })
+        qc.invalidateQueries({ queryKey: orpc.admin.talks.list.key() })
       },
     }),
   )

@@ -76,7 +76,7 @@ export function AISummary({
         } as React.CSSProperties
       }
     >
-      <div className="relative my-8 -mx-4 lg:-mx-8 overflow-hidden -mb-36">
+      <div className={cn('relative my-8 -mx-4 lg:-mx-8 overflow-hidden -mb-36', type === 'post' ? 'lg:-mx-4' : 'lg:-mx-8')}>
         <div className={`relative -skew-x-2 transform bg-linear-[170deg] via-5§0% ${bgColor} to-transparent px-8 py-6 pb-32 transition-all duration-300`}>
           <div className="skew-x-2 transform">
 

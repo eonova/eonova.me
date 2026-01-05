@@ -1,4 +1,4 @@
-import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { orpc } from '~/orpc/client'
 
@@ -35,7 +35,14 @@ export function useAdminFriends() {
 }
 
 export function useAdminTalks() {
-  return useQuery(orpc.admin.talks.list.queryOptions({ placeholderData: keepPreviousData }))
+  return useInfiniteQuery(
+    orpc.talks.list.infiniteOptions({
+      input: (pageParam: Date | undefined) => ({ cursor: pageParam }),
+      initialPageParam: undefined,
+      getNextPageParam: lastPage => lastPage.nextCursor,
+      placeholderData: keepPreviousData,
+    }),
+  )
 }
 
 export function useAdminUsers() {

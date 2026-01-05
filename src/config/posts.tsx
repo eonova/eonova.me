@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { CodeIcon, Lightbulb, Palette } from 'lucide-react'
+import { CodeIcon, LifeBuoy, Lightbulb, Palette } from 'lucide-react'
 
 interface ICATEGORIES {
   name: string
@@ -17,6 +17,11 @@ export const CATEGORIES: ICATEGORIES[] = [
     name: '总结',
     label: 'summary',
     icon: <Lightbulb className="size-5" />,
+  },
+  {
+    name: '生活',
+    label: 'life',
+    icon: <LifeBuoy className="size-5" />,
   },
   {
     name: '设计',

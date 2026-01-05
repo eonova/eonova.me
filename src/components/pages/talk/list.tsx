@@ -17,12 +17,12 @@ interface TalkListProps {
 const TalkList: React.FC<TalkListProps> = () => {
   const { data, isLoading, status, error, fetchNextPage, hasNextPage, isFetchingNextPage } = useTalks()
 
-  const { ref, inView } = useInView({ threshold: 0.1 })
+  const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '200px' })
 
   useEffect(() => {
-    if (inView && hasNextPage)
+    if (inView && hasNextPage && !isFetchingNextPage)
       fetchNextPage()
-  }, [inView, hasNextPage, fetchNextPage])
+  }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage])
 
   const talks = data?.pages.flatMap(page => page.items) ?? []
 
@@ -39,7 +39,6 @@ const TalkList: React.FC<TalkListProps> = () => {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
     exit: { opacity: 0, scale: 0.5 },
   }
@@ -97,7 +96,7 @@ const TalkList: React.FC<TalkListProps> = () => {
       <div ref={ref} className="text-center text-sm text-gray-500">
         <InfiniteScrollingLoading
           status={status}
-          hasNextPage={isFetchingNextPage}
+          hasNextPage={hasNextPage}
           totalItems={talks.length}
         />
       </div>

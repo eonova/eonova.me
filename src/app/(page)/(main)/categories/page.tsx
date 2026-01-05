@@ -34,12 +34,15 @@ export default function CategoriesPage() {
       'url': getBaseUrl(),
     },
   }
+
+  const displayCategories = CATEGORIES.filter(category => allPosts.some(post => post.categories?.includes(category.label)))
+
   return (
     <>
       <JsonLd json={jsonLd} />
       <PageTitle title={title} description={description} />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {CATEGORIES.map((category) => {
+        {displayCategories.map((category) => {
           const count = allPosts.filter(post => post.categories?.includes(category.label)).length
 
           return (

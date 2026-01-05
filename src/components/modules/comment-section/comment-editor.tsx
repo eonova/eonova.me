@@ -1,5 +1,12 @@
-import { BoldIcon, ItalicIcon, StrikethroughIcon } from 'lucide-react'
+'use client'
+
+import data from '@emoji-mart/data'
+import i18n from '@emoji-mart/data/i18n/zh.json'
+import Picker from '@emoji-mart/react'
+import { BoldIcon, ItalicIcon, SmileIcon, StrikethroughIcon } from 'lucide-react'
+import { useTheme } from 'next-themes'
 import { Button } from '~/components/base/button'
+import { Popover, PopoverContent, PopoverTrigger } from '~/components/base/popover'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/base/tabs'
 import { Textarea } from '~/components/base/textarea'
 import { useCommentEditor } from '~/hooks/use-comment-editor'
@@ -22,6 +29,20 @@ function CommentEditor(props: CommentEditorProps) {
       onModEnter,
       onEscape,
     })
+  const { resolvedTheme } = useTheme()
+
+  const insertEmoji = (emoji: any) => {
+    const textarea = textareaRef.current
+    if (!textarea)
+      return
+
+    const start = textarea.selectionStart
+    const end = textarea.selectionEnd
+
+    textarea.setRangeText(emoji.native, start, end, 'end')
+    textarea.dispatchEvent(new Event('input', { bubbles: true }))
+    textarea.focus()
+  }
 
   return (
     <Tabs value={tabsValue} onValueChange={onTabsValueChange} defaultValue={tabsValue ?? 'write'}>
@@ -53,6 +74,26 @@ function CommentEditor(props: CommentEditorProps) {
             {...rest}
           />
           <div className="flex flex-row items-center gap-0.5 px-1.5">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  aria-label="表情"
+                  variant="ghost"
+                  size="icon"
+                  className="size-7"
+                >
+                  <SmileIcon className="size-5" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Picker
+                  data={data}
+                  i18n={i18n}
+                  onEmojiSelect={insertEmoji}
+                  theme={resolvedTheme}
+                />
+              </PopoverContent>
+            </Popover>
             <Button
               aria-label="加粗"
               variant="ghost"
