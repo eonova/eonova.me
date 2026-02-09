@@ -169,8 +169,6 @@ const config: NextConfig = {
     optimizeCss: true,
   },
 
-  serverExternalPackages: ['prettier'],
-
   async redirects() {
     return [
       {
