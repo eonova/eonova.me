@@ -32,5 +32,6 @@ export default antfu({
     'react-hooks/immutability': 'off',
     'react-hooks/static-components': 'off',
     'react-hooks/incompatible-library': 'off',
+    'react/no-children-to-array': 'off',
   },
 })
