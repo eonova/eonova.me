@@ -12,9 +12,8 @@ async function Layout({ children }: Readonly<LayoutProps>) {
   const session = await getSession()
 
   if (!session || session.user.role !== 'admin') {
-    redirect('/')
+    redirect('/login')
   }
-
   return (
     <SidebarProvider>
       <AdminSidebar />
