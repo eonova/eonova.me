@@ -103,7 +103,7 @@ function CommandMenu() {
         onClick={() => setIsOpen(true)}
         aria-label="开启搜索"
       >
-        <Search className="size-5 sm:size-4" />
+        <Search className="size-7 sm:size-4" />
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen} modal={false}>

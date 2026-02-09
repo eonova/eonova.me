@@ -10,13 +10,13 @@ function MobileNav() {
     <>
       <Button
         variant="ghost"
-        className="flex size-8 cursor-pointer items-center justify-center rounded-full p-0 duration-200 md:hidden md:size-9"
+        className="flex size-7 cursor-pointer items-center justify-center rounded-full p-0 duration-200 md:hidden md:size-9"
         type="button"
         aria-label="Toggle menu"
         onClick={navStore.setIsVisible}
       >
         <span className="sr-only">Toggle menu</span>
-        <MenuIcon className="size-5" />
+        <MenuIcon className="size-8" />
       </Button>
     </>
   )

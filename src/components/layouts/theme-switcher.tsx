@@ -53,11 +53,11 @@ function ThemeSwitcher() {
     >
       <SunIcon
         data-testid="theme-light-button"
-        className="size-5 transition-transform duration-300 sm:size-4 dark:hidden"
+        className="size-7 transition-transform duration-300 sm:size-4 dark:hidden"
       />
       <MoonIcon
         data-testid="theme-dark-button"
-        className="hidden size-5 transition-transform duration-300 sm:size-4 dark:block"
+        className="hidden size-7 transition-transform duration-300 sm:size-4 dark:block"
       />
     </Button>
   )

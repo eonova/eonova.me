@@ -53,30 +53,44 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
   }
 
   return (
-    <motion.header
-      variants={headerVariants}
-      className={cn(
-        'bg-background/30 during-300 fixed inset-x-0 top-4 z-50 mx-4 flex h-[50px] max-w-[905px] items-center justify-between rounded-full px-5 shadow-xs backdrop-blur-[10px] transition-colors sm:mx-auto sm:h-[60px] sm:px-8 dark:border dark:border-solid dark:border-slate-600/50',
-        isScrolled && 'bg-background/80',
-        className,
-      )}
-      id="header"
-      initial="initial"
-      animate={!isVisible ? 'hidden' : 'visible'}
-    >
-      <Link className="flex h-full items-center" href="/" aria-label="回到首页" passHref>
-        <SvgLogo className="mr-5 h-8 w-8 transform-cpu duration-300 transform-view hover:scale-105 sm:h-9 sm:w-9" />
-      </Link>
+    <>
+      <motion.header
+        variants={headerVariants}
+        className={cn(
+          'bg-background/30 during-300 fixed inset-x-0 top-4 z-50 mx-4 h-[50px] max-w-[905px] items-center justify-between rounded-full px-5 shadow-xs backdrop-blur-[10px] transition-colors sm:mx-auto sm:h-[60px] sm:px-8 dark:border dark:border-solid dark:border-slate-600/50 hidden sm:flex',
+          isScrolled && 'bg-background/80',
+          className,
+        )}
+        id="header"
+        initial="initial"
+        animate={!isVisible ? 'hidden' : 'visible'}
+      >
+        <Link className="flex h-full items-center" href="/" aria-label="回到首页" passHref>
+          <SvgLogo className="mr-5 h-8 w-8 transform-cpu duration-300 transform-view hover:scale-105 sm:h-9 sm:w-9" />
+        </Link>
 
-      <div className="flex items-center gap-2 sm:gap-1">
-        <Navbar />
-        <Separator orientation="vertical" className={cn('mx-1 hidden h-6 sm:block')} />
-        <Search />
-        <ThemeSwitcher />
-        <MobileNav />
-        <UserAuth />
-      </div>
-    </motion.header>
+        <div className="flex items-center gap-2 sm:gap-1">
+          <Navbar />
+          <Separator orientation="vertical" className={cn('mx-1 hidden h-6 sm:block')} />
+          <Search />
+          <ThemeSwitcher />
+          <UserAuth />
+        </div>
+      </motion.header>
+      <motion.header
+        className="fixed inset-x-0 top-4 z-50 mx-4 h-[50px] max-w-[905px] items-center justify-between rounded-full sm:mx-auto px-2 flex sm:hidden"
+      >
+
+        <Link className="flex h-full items-center" href="/" aria-label="回到首页" passHref>
+          <SvgLogo className="mr-10 h-10 w-10 transform-cpu duration-300 transform-view hover:scale-105 sm:h-9 sm:w-9" />
+        </Link>
+        <div className="flex items-center gap-4">
+          <Search />
+          <ThemeSwitcher />
+          <MobileNav />
+        </div>
+      </motion.header>
+    </>
   )
 }
 
