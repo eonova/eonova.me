@@ -32,16 +32,16 @@ function MobileNavAside() {
     navStore.setIsVisible()
   }
 
-  const iconWrapClassName = 'flex size-5 shrink-0 items-center justify-center text-muted-foreground transition-colors group-hover:text-foreground text-white'
+  const iconWrapClassName = 'flex size-5 shrink-0 items-center justify-center text-muted-foreground transition-colors group-hover:text-foreground text-black dark:text-white'
 
   return (
     <Drawer open={navStore.isVisible} onOpenChange={handleLinkClick} direction="bottom">
-      <DrawerContent className="max-h-[90vh] h-[90vh] rounded-t-2xl border-t-2">
+      <DrawerContent className="bg-background dark:bg-background-dark max-h-[90vh] h-[90vh] rounded-t-2xl border-t-2">
         <DrawerHeader className="sr-only">
           <DrawerTitle>导航菜单</DrawerTitle>
           <DrawerDescription>网站导航链接</DrawerDescription>
         </DrawerHeader>
-        <nav className="text-white flex w-full mt-10 flex-col items-stretch gap-8 text-left" aria-label="主导航">
+        <nav className="text-black dark:text-white flex w-full mt-10 flex-col items-stretch gap-8 text-left" aria-label="主导航">
           {HEADER_LINKS.map((link) => {
             const hasSub = link.subMenu && link.subMenu.length > 0
 
@@ -65,7 +65,7 @@ function MobileNavAside() {
                         href={sub.href === '#' ? '#' : (sub.href as string)}
                         onClick={handleLinkClick}
                       >
-                        <span className="truncate  text-[15px]">{sub.text}</span>
+                        <span className="truncate text-[15px]">{sub.text}</span>
                       </Link>
                     ))}
                   </div>
