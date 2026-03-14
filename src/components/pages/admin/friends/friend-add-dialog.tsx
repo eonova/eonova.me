@@ -52,12 +52,16 @@ export default function AddFriendDialog({ open, onOpenChange }: { open?: boolean
 
   return (
     <Dialog open={isOpen} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        {!onOpenChange && (
-          <Button variant="outline" onClick={() => setOpen(true)}>
-            添加友链
-          </Button>
-        )}
+      <DialogTrigger render={
+        !onOpenChange
+          ? (
+              <Button variant="outline" onClick={() => setOpen(true)}>
+                添加友链
+              </Button>
+            )
+          : undefined
+      }
+      >
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

@@ -12,13 +12,11 @@ describe('uRL utility functions', () => {
       ]
 
       validUrls.forEach((url) => {
-        try {
-          // eslint-disable-next-line no-new
-          new URL(url)
-          expect(true).toBe(true) // URL is valid
+        if (URL.canParse(url)) {
+          expect(true).toBe(true)
         }
-        catch {
-          expect(false).toBe(true) // Should not reach here
+        else {
+          expect(false).toBe(true)
         }
       })
     })

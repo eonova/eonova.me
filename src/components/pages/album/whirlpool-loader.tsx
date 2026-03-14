@@ -11,7 +11,7 @@ function WhirlpoolLoader() {
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
         >
-          {[...Array.from({ length: segments })].map((_, i) => {
+          {Array.from(Array.from({ length: segments }), (_, i) => {
             const angle = (i / segments) * Math.PI * 2 * rotations
             const radius = 5 + (90 * i) / segments
             const x = Math.cos(angle) * radius

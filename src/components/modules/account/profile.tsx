@@ -1,8 +1,10 @@
+/* eslint-disable ts/no-use-before-define */
 'use client'
 
 import type { AvatarMimeType } from '~/config/constants'
 import type { User } from '~/lib/auth-client'
 import { useForm } from '@tanstack/react-form'
+
 import { useRef, useState } from 'react'
 import { toast } from 'sonner'
 import * as z from 'zod'
@@ -19,16 +21,15 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/base/avatar'
 import { Button } from '~/components/base/button'
 import { Card } from '~/components/base/card'
-import { Field, FieldError } from '~/components/base/field'
+import { Field, FieldError, FieldGroup } from '~/components/base/field'
 import { Input } from '~/components/base/input'
-
+import { Spinner } from '~/components/base/spinner'
 import { AVATAR_MAX_FILE_SIZE, SUPPORTED_AVATAR_MIME_TYPES } from '~/config/constants'
 import { useUpdateUser } from '~/hooks/queries/auth.query'
 import { useGetAvatarUploadUrl } from '~/hooks/queries/r2.query'
 import { useFormattedDate } from '~/hooks/use-formatted-date'
 import { useSession } from '~/lib/auth-client'
 import { getAbbreviation } from '~/utils/get-abbreviation'
-
 import ProfileSkeleton from './profile-skeleton'
 
 function Profile() {
@@ -96,14 +97,8 @@ function EditName(props: EditNameProps) {
   const [open, setOpen] = useState(false)
   const { refetch: refetchSession } = useSession()
 
-  const editNameFormSchema = z.object({
-    name: z.string().min(1, '名称不能为空').max(50, '名字太长'),
-  })
-
-  const { mutate: updateUser, isPending: isUpdating } = useUpdateUser(() => {
-    setOpen(false)
-    toast.success('名称已更新')
-    refetchSession()
+  const EditNameFormSchema = z.object({
+    name: z.string().min(1, '名称不能为空').max(50, '名称不能超过50个字符'),
   })
 
   const form = useForm({
@@ -111,7 +106,7 @@ function EditName(props: EditNameProps) {
       name,
     },
     validators: {
-      onSubmit: editNameFormSchema,
+      onSubmit: EditNameFormSchema,
     },
     onSubmit: ({ value }) => {
       if (isUpdating)
@@ -120,49 +115,59 @@ function EditName(props: EditNameProps) {
     },
   })
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { mutate: updateUser, isPending: isUpdating } = useUpdateUser(() => {
+    setOpen(false)
+    toast.success('名称更新成功')
+    refetchSession()
+  })
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     form.handleSubmit()
   }
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogTrigger asChild>
-        <Button variant="outline">编辑名称</Button>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="outline">编辑名称</Button>} />
       <AlertDialogContent>
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <AlertDialogHeader>
-            <AlertDialogTitle>编辑名称</AlertDialogTitle>
-            <AlertDialogDescription>编辑名称描述</AlertDialogDescription>
-          </AlertDialogHeader>
-          <form.Field name="name">
-            {(field) => {
-              const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+        <AlertDialogHeader>
+          <AlertDialogTitle>编辑名称</AlertDialogTitle>
+          <AlertDialogDescription>编辑您的显示名称</AlertDialogDescription>
+        </AlertDialogHeader>
+        <form className="space-y-6" id="edit-name-form" onSubmit={handleSubmit}>
+          <FieldGroup>
+            <form.Field name="name">
+              {(field) => {
+                const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
 
-              return (
-                <Field data-invalid={isInvalid}>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => {
-                      field.handleChange(e.target.value)
-                    }}
-                    aria-invalid={isInvalid}
-                    placeholder="显示名称"
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              )
-            }}
-          </form.Field>
-          <AlertDialogFooter>
-            <AlertDialogCancel>取消</AlertDialogCancel>
-            <Button type="submit">保存</Button>
-          </AlertDialogFooter>
+                return (
+                  <Field data-invalid={isInvalid}>
+                    <Input
+                      id={field.name}
+                      name={field.name}
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => {
+                        field.handleChange(e.target.value)
+                      }}
+                      aria-invalid={isInvalid}
+                      disabled={isUpdating}
+                      placeholder="显示名称"
+                    />
+                    {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                  </Field>
+                )
+              }}
+            </form.Field>
+          </FieldGroup>
         </form>
+        <AlertDialogFooter>
+          <AlertDialogCancel disabled={isUpdating}>取消</AlertDialogCancel>
+          <Button type="submit" form="edit-name-form" disabled={isUpdating}>
+            {isUpdating && <Spinner data-icon="inline-start" />}
+            保存
+          </Button>
+        </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   )
@@ -175,17 +180,17 @@ function UpdateAvatar() {
 
   const { mutateAsync: getAvatarUploadUrl } = useGetAvatarUploadUrl()
   const { mutateAsync: updateUser } = useUpdateUser(() => {
-    toast.success('头像更新')
+    toast.success('头像更新成功')
     refetchSession()
   })
 
-  const handleSelectFile = () => {
+  function handleSelectFile() {
     if (isUploading)
       return
     fileInputRef.current?.click()
   }
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
 
     if (!file)
@@ -194,13 +199,13 @@ function UpdateAvatar() {
     event.target.value = ''
 
     if (!SUPPORTED_AVATAR_MIME_TYPES.includes(file.type as AvatarMimeType)) {
-      toast.error('头像不支持的文件类型')
+      toast.error('不支持的文件类型')
       return
     }
 
     if (file.size > AVATAR_MAX_FILE_SIZE) {
       const maxSizeInMb = (AVATAR_MAX_FILE_SIZE / (1024 * 1024)).toFixed(1)
-      toast.error(`头像太大: ${maxSizeInMb}`)
+      toast.error(`头像大小不能超过 ${maxSizeInMb}MB`)
       return
     }
 
@@ -228,7 +233,7 @@ function UpdateAvatar() {
       await updateUser({ image: publicUrl })
     }
     catch {
-      toast.error('更新头像失败')
+      toast.error('头像更新失败')
     }
     finally {
       setIsUploading(false)

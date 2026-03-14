@@ -1,11 +1,11 @@
 'use client'
 import type { UrlObject } from 'node:url'
 import Link from 'next/link'
-import { useSpotifyStat } from '~/hooks/queries/stat.query'
+import { useSpotifyStats } from '~/hooks/queries/stat.query'
 import ShinyText from '../shared/shiny-text'
 
 function NowPlaying() {
-  const { isSuccess, isLoading, isError, data } = useSpotifyStat()
+  const { isSuccess, isLoading, isError, data } = useSpotifyStats()
 
   const isPlaying = isSuccess && data.isPlaying && data.songUrl
 

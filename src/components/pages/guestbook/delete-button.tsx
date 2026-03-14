@@ -33,16 +33,12 @@ function DeleteButton(props: DeleteButtonProps) {
   return (
     <div className="mt-4 flex justify-end">
       <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button
-            variant="destructive"
-            disabled={isPending}
-            aria-disabled={isPending}
-            data-testid="guestbook-delete-button"
-          >
+        <AlertDialogTrigger render={(
+          <Button variant="destructive" disabled={isPending} aria-disabled={isPending} data-testid="guestbook-delete-button">
             删除
           </Button>
-        </AlertDialogTrigger>
+        )}
+        />
         <AlertDialogContent data-testid="guestbook-dialog">
           <AlertDialogHeader>
             <AlertDialogTitle>删除评论</AlertDialogTitle>

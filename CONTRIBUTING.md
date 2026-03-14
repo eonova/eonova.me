@@ -44,7 +44,7 @@ cd eonova.me
 3. 复制 `.env.example` 文件为 `.env.local`：
 
    大多数功能默认关闭，所以你不需要配置所有环境变量即可运行项目。如果你想使用某个特定功能，可以在
-   `.env.local` 文件中设置所需的环境变量，并将[功能开关](#flags)设为 true。
+   `.env.local` 文件中设置所需的环境变量，并将 [功能开关](#flags)设为 true。
 
 ```bash
 cp .env.example .env.local

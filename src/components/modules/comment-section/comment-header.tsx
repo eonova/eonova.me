@@ -46,12 +46,13 @@ function CommentHeader() {
         </div>
       </NumberFlowGroup>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger render={(
           <Button variant="outline" size="sm" className="h-7 gap-1 text-sm">
             <ListFilterIcon className="size-3.5" />
             <span>排序</span>
           </Button>
-        </DropdownMenuTrigger>
+        )}
+        />
         <DropdownMenuContent align="end">
           <DropdownMenuRadioGroup
             value={sort}

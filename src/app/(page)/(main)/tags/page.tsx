@@ -29,7 +29,7 @@ export default function TagsPage() {
     }
   })
 
-  const sortedTags = Array.from(tags).sort()
+  const sortedTags = [...tags].toSorted()
 
   const jsonLd: WithContext<WebPage> = {
     '@context': 'https://schema.org',

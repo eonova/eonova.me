@@ -1,35 +1,55 @@
+shellEmulator: true
+
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - reselect@5.1.1
+  - semver@6.3.1
+
 packages:
   - ./*
 
+catalog:
+  '@base-ui/react': ^1.3.0
+  '@emoji-mart/data': ^1.2.1
+  '@emoji-mart/react': ^1.1.1
+  '@posthog/nextjs-config': ^1.8.21
+  '@react-three/drei': ^10.7.7
+  '@react-three/fiber': ^9.5.0
+  class-variance-authority: ^0.7.1
+  emoji-mart: ^5.6.0
+  maath: ^0.10.8
+  oxfmt: ^0.40.0
+  posthog-node: ^5.28.2
+  three: ^0.183.2
 catalogs:
   analysis:
-    '@next/bundle-analyzer': ^16.0.5
-    '@vercel/speed-insights': ^1.2.0
+    '@next/bundle-analyzer': ^16.1.6
+    '@vercel/speed-insights': ^2.0.0
   backend:
-    '@ai-sdk/deepseek': ^1.0.31
+    '@ai-sdk/deepseek': ^2.0.24
     '@aws-sdk/client-s3': 3.919.0
     '@aws-sdk/s3-request-presigner': 3.919.0
     '@fastify/deepmerge': 3.1.0
     '@octokit/rest': ^22.0.1
-    '@orpc/client': ^1.12.0
-    '@orpc/server': ^1.12.0
-    '@orpc/tanstack-query': ^1.12.0
-    '@tanstack/react-query': ^5.90.11
-    '@tanstack/react-query-devtools': ^5.91.1
-    '@upstash/ratelimit': ^2.0.7
-    '@upstash/redis': ^1.35.7
-    ai: ^5.0.108
-    better-auth: ^1.4.3
-    better-call: ^1.1.3
+    '@orpc/client': ^1.13.7
+    '@orpc/server': ^1.13.7
+    '@orpc/tanstack-query': ^1.13.7
+    '@tanstack/react-query': ^5.90.21
+    '@tanstack/react-query-devtools': ^5.91.3
+    '@upstash/ratelimit': ^2.0.8
+    '@upstash/redis': ^1.37.0
+    ai: ^6.0.116
+    better-auth: ^1.5.5
+    better-call: ^2.0.2
     consola: ^3.4.2
-    drizzle-orm: ^0.44.7
+    drizzle-orm: ^0.45.1
     drizzle-zod: ^0.8.3
-    jose: ^6.1.2
+    jose: ^6.2.1
     postgres: 3.4.7
-    resend: ^6.5.2
+    resend: ^6.9.3
     server-only: ^0.0.1
   build:
-    '@vitejs/plugin-react': ^5.1.1
+    '@vitejs/plugin-react': ^6.0.1
     babel-plugin-react-compiler: 19.0.0-beta-714736e-20250131
     sharp: ^0.34.5
     typescript: 5.7.3
@@ -37,9 +57,9 @@ catalogs:
     '@ducanh2912/next-pwa': ^10.2.9
     '@hookform/resolvers': ^5.2.2
     '@radix-ui/react-visually-hidden': ^1.2.4
-    '@t3-oss/env-nextjs': ^0.13.8
-    '@tanstack/react-form': ^1.26.0
-    bowser: ^2.13.1
+    '@t3-oss/env-nextjs': ^0.13.10
+    '@tanstack/react-form': ^1.28.5
+    bowser: ^2.14.1
     clsx: ^2.1.1
     cmdk: ^1.1.1
     cn-fontsource-ding-talk-jin-bu-ti-regular: ^1.0.3
@@ -47,103 +67,104 @@ catalogs:
     cobe: ^0.6.5
     cva: 1.0.0-beta.3
     embla-carousel-react: ^8.6.0
-    geist: ^1.5.1
+    geist: ^1.7.0
     input-otp: ^1.4.2
     merge-refs: ^2.0.0
     motion: ^12.23.24
     next: 16.1.5
     next-themes: ^0.4.6
-    nuqs: ^2.8.1
-    posthog-js: ^1.298.1
+    nuqs: ^2.8.9
+    posthog-js: ^1.360.2
     react: 19.2.1
-    react-day-picker: ^9.11.3
+    react-day-picker: ^9.14.0
     react-dom: 19.2.1
     react-email: 4.3.2
-    react-hook-form: ^7.67.0
-    react-intersection-observer: ^10.0.0
-    react-medium-image-zoom: ^5.4.0
-    react-resizable-panels: ^3.0.6
+    react-hook-form: ^7.71.2
+    react-intersection-observer: ^10.0.3
+    react-medium-image-zoom: ^5.4.1
+    react-resizable-panels: ^4.7.2
     react-spring: ^10.0.3
     rss: ^1.2.2
     tinycolor2: ^1.6.0
     tw-animate-css: ^1.4.0
+    use-debounce: 10.1.0
     vaul: ^1.1.2
-    zustand: ^5.0.9
+    zustand: ^5.0.11
   lint:
-    '@antfu/eslint-config': ^6.2.0
-    '@eslint-react/eslint-plugin': ^2.3.9
-    cspell: ^9.3.2
-    eslint: ^9.39.1
+    '@antfu/eslint-config': ^7.7.2
+    '@eslint-react/eslint-plugin': ^2.13.0
+    cspell: ^9.7.0
+    eslint: ^10.0.3
     eslint-plugin-react-hooks: ^7.0.1
-    eslint-plugin-react-refresh: ^0.4.24
-    knip: ^5.70.2
-    lint-staged: ^16.2.7
+    eslint-plugin-react-refresh: ^0.5.2
+    knip: ^5.86.0
+    lint-staged: ^16.4.0
     simple-git-hooks: ^2.13.1
   mdx:
-    '@content-collections/cli': ^0.1.7
-    '@content-collections/core': ^0.12.0
+    '@content-collections/cli': ^0.1.9
+    '@content-collections/core': ^0.14.2
     '@content-collections/mdx': ^0.2.2
-    '@content-collections/next': ^0.2.9
-    '@shikijs/rehype': ^3.17.0
-    '@shikijs/transformers': ^3.17.0
+    '@content-collections/next': ^0.2.11
+    '@shikijs/rehype': ^4.0.2
+    '@shikijs/transformers': ^4.0.2
     github-slugger: ^2.0.0
     markdown-to-jsx: 9.2.0
     remark: ^15.0.1
     remark-gfm: ^4.0.1
-    shiki: ^3.17.0
+    shiki: ^4.0.2
     unified: ^11.0.5
-    unist-util-visit: ^5.0.0
+    unist-util-visit: ^5.1.0
   prod:
-    '@paralleldrive/cuid2': ^3.1.0
-    dayjs: ^1.11.19
-    zod: ^4.1.13
+    '@paralleldrive/cuid2': ^3.3.0
+    dayjs: ^1.11.20
+    zod: ^4.3.6
   script:
     cross-env: ^10.1.0
     dotenv-cli: ^11.0.0
-    drizzle-kit: ^0.31.7
+    drizzle-kit: ^0.31.9
     execa: ^9.6.1
     picocolors: ^1.1.1
-    plop: ^4.0.4
-    taze: ^19.9.2
-    tsx: ^4.20.6
+    plop: ^4.0.5
+    taze: ^19.10.0
+    tsx: ^4.21.0
   test:
-    '@axe-core/playwright': ^4.11.0
-    '@playwright/test': ^1.57.0
+    '@axe-core/playwright': ^4.11.1
+    '@playwright/test': ^1.58.2
     '@testing-library/jest-dom': ^6.9.1
-    '@testing-library/react': ^16.3.0
+    '@testing-library/react': ^16.3.2
     '@vitest/coverage-v8': 3.2.1
-    '@vitest/ui': ^4.0.14
-    jsdom: ^27.2.0
-    vitest: ^4.0.14
+    '@vitest/ui': ^4.1.0
+    jsdom: ^28.1.0
+    vitest: ^4.1.0
   types:
     '@types/canvas-confetti': ^1.9.0
     '@types/hast': ^3.0.4
     '@types/mdast': ^4.0.4
-    '@types/node': ^24.10.1
+    '@types/node': ^25.5.0
     '@types/react': 19.2.2
     '@types/react-dom': 19.2.2
     '@types/rss': ^0.0.32
     '@types/spotify-api': ^0.0.25
     '@types/tinycolor2': ^1.4.6
-    discord-api-types: ^0.38.35
+    discord-api-types: ^0.38.42
     schema-dts: ^1.1.5
   ui:
-    '@ark-ui/react': ^5.29.1
+    '@ark-ui/react': ^5.34.1
     '@icons-pack/react-simple-icons': 10.2.0
-    '@number-flow/react': ^0.5.10
+    '@number-flow/react': ^0.6.0
     '@react-email/components': 0.5.7
     '@react-email/preview-server': 4.3.2
-    '@tailwindcss/postcss': ^4.1.17
+    '@tailwindcss/postcss': ^4.2.1
     '@tailwindcss/typography': ^0.5.19
     '@tanstack/react-table': ^8.21.3
     canvas-confetti: ^1.9.4
-    gsap: ^3.13.0
-    lenis: ^1.3.15
-    lucide-react: ^0.555.0
-    postcss: ^8.5.6
+    gsap: ^3.14.2
+    lenis: ^1.3.18
+    lucide-react: ^0.577.0
+    postcss: ^8.5.8
     postcss-load-config: ^6.0.1
     radix-ui: ^1.4.3
     sonner: ^2.0.7
-    tailwind-merge: ^3.4.0
-    tailwindcss: ^4.1.17
-    yet-another-react-lightbox: ^3.25.0
+    tailwind-merge: ^3.5.0
+    tailwindcss: ^4.2.1
+    yet-another-react-lightbox: ^3.29.1

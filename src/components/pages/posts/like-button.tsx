@@ -4,10 +4,10 @@ import NumberFlow from '@number-flow/react'
 import { motion } from 'motion/react'
 import { useRef, useState } from 'react'
 import { toast } from 'sonner'
+import { useDebouncedCallback } from 'use-debounce'
 import { Separator } from '~/components/base/separator'
-import { useContentLikeCount, useLikeContent } from '~/hooks/queries/like.query'
 
-import { useDebouncedCallback } from '~/hooks/use-debounced-callback'
+import { useContentLikeCount, useLikeContent } from '~/hooks/queries/like.query'
 import { cn } from '~/utils'
 
 interface LikeButtonProps {

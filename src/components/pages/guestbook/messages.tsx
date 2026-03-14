@@ -27,7 +27,7 @@ function Messages() {
   const noMessages = isSuccess && data.pages.every(page => page.messages.length === 0)
 
   return (
-    <div className="flex flex-col gap-4" data-testid="guestbook-messages-list">
+    <div className="flex flex-col gap-5" data-testid="guestbook-messages-list">
       {isSuccess
         && data.pages.map(page => page.messages.map(message => <Message key={message.id} message={message} />))}
       {(isLoading || isFetchingNextPage) && <MessagesLoader />}
@@ -63,18 +63,18 @@ function Message(props: MessageProps) {
   })
 
   return (
-    <div className="rounded-lg border p-4 shadow-xs dark:bg-zinc-900/30" data-testid={`message-${message.id}`}>
-      <div className="mb-3 flex gap-3">
-        <Avatar className="size-10">
+    <div className="rounded-2xl border p-6 shadow-xs dark:bg-zinc-900/30" data-testid={`message-${message.id}`}>
+      <div className="mb-3 flex gap-4">
+        <Avatar className="size-12">
           <AvatarImage src={message.user.image ?? defaultImage} alt={message.user.name ?? ''} />
           <AvatarFallback>{getAbbreviation(message.user.name ?? '')}</AvatarFallback>
         </Avatar>
-        <div className="flex flex-col justify-center gap-px text-sm">
+        <div className="flex flex-col justify-center gap-px text-md">
           <div>{message.user.name ?? ''}</div>
-          <div className="text-xs text-muted-foreground">{formattedDate ?? ''}</div>
+          <div className="text-sm text-muted-foreground">{formattedDate ?? ''}</div>
         </div>
       </div>
-      <div className="pl-13 wrap-break-word">{message.body ?? ''}</div>
+      <div className="pl-16 wrap-break-word text-md">{message.body ?? ''}</div>
       {isAuthor && <DeleteButton message={message} />}
     </div>
   )

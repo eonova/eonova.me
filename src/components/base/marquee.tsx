@@ -3,10 +3,11 @@ import { cn } from '~/utils/cn'
 interface MarqueeProps {
   children: React.ReactNode
   gap?: string
+  duration?: number
   direction?: 'left' | 'up'
   pauseOnHover?: boolean
-  reverse?: boolean
   fade?: boolean
+  reverse?: boolean
   className?: string
 }
 
@@ -14,10 +15,11 @@ function Marquee(props: MarqueeProps) {
   const {
     children,
     gap = '1rem',
+    duration = 30,
     direction = 'left',
-    pauseOnHover = false,
+    pauseOnHover = true,
+    fade = true,
     reverse = false,
-    fade = false,
     className,
   } = props
 
@@ -28,7 +30,8 @@ function Marquee(props: MarqueeProps) {
 
   return (
     <div
-      className={cn('group flex overflow-hidden', direction === 'left' ? 'flex-row' : 'flex-col', className)}
+      data-slot="marquee"
+      className={cn('group flex overflow-hidden', direction === 'left' ? 'flex flex-row' : 'flex flex-col', className)}
       style={{
         maskImage: mask,
         WebkitMaskImage: mask,
@@ -38,14 +41,13 @@ function Marquee(props: MarqueeProps) {
       {Array.from({ length: 2 }).map((_index, number) => (
         <div
           key={number}
-          style={
-            {
-              '--gap': gap,
-            } as React.CSSProperties
-          }
+          style={{
+            '--marquee-gap': gap,
+            '--marquee-duration': `${duration}s`,
+          }}
           className={cn(
-            'flex shrink-0 justify-around gap-(--gap)',
-            direction === 'left' ? 'animate-marquee-left flex-row' : 'animate-marquee-up flex-col',
+            'flex shrink-0 justify-around gap-(--marquee-gap)',
+            direction === 'left' ? 'animate-marquee-x flex flex-row' : 'animate-marquee-y flex flex-col',
             pauseOnHover && 'group-hover:paused',
             reverse && 'direction-reverse',
           )}

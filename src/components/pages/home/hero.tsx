@@ -132,7 +132,7 @@ function Hero() {
           }}
         >
           <TiltedCard
-            imageSrc="/images/home/avatar.webp"
+            imageSrc="/images/home/avatar.png"
             altText="Eonova"
             captionText="Eonova"
             rotateAmplitude={18}

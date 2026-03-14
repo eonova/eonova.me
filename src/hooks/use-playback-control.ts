@@ -113,7 +113,7 @@ export function usePlaybackControl(currentPlaylist: Track[], audioRef: React.Ref
 
     // 如果正在播放，继续播放新曲目
     if (!isPlaying && newIndex !== currentTrackIndex) {
-      setTimeout(() => setIsPlaying(true), 100)
+      setTimeout(setIsPlaying, 100, true)
     }
   }, [currentPlaylist, getRandomTrackIndex, toast, setIsPlaying])
 

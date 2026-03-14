@@ -61,7 +61,7 @@ function Navbar() {
           return (
             <li
               key={link.key}
-              className="nav-menu relative flex h-[60px] items-center justify-center"
+              className="nav-menu relative flex h-[64px] items-center justify-center"
               onMouseEnter={() => {
                 if (hasSubMenu) {
                   // 添加防抖处理
@@ -84,7 +84,7 @@ function Navbar() {
             >
               <Link
                 className={cn(
-                  'group flex items-center rounded px-2 py-2 text-sm font-medium transition-colors',
+                  'group flex items-center rounded px-2 py-2 text-md font-medium transition-colors',
                   {
                     'text-muted-foreground hover:text-foreground': !isActive,
                     'text-foreground': isActive,

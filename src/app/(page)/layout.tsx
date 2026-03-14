@@ -27,11 +27,11 @@ export default function RootLayout({
       className={cn(
         GeistSans.variable,
         GeistMono.variable,
-        'scroll-smooth',
       )}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body className="relative antialiased">
+      <body>
         <Providers>
           <Hello />
           <PerformanceMonitor />

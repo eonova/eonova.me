@@ -28,7 +28,7 @@ interface TalkBoxProps {
 const TalkBox: React.FC<TalkBoxProps> = ({
   id,
   children,
-  images = '/images/home/avatar.webp',
+  images = '/images/home/avatar.png',
   name = 'Eonova',
   time = new Date(),
   likes = 0,

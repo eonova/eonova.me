@@ -22,12 +22,13 @@ interface DonateProps {
 export function Donate({ className }: DonateProps) {
   return (
     <Dialog modal={false}>
-      <DialogTrigger asChild>
+      <DialogTrigger render={(
         <Button variant="outline" className={cn('gap-2', className)}>
           <CoffeeIcon className="size-4" />
           <span>打赏</span>
         </Button>
-      </DialogTrigger>
+      )}
+      />
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>打赏支持</DialogTitle>

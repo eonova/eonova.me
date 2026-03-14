@@ -14,7 +14,7 @@ export function groupAndSortByYear(data: Project[]) {
     return acc
   }, {})
   for (const year in temp) {
-    if (temp.hasOwnProperty(year)) {
+    if (Object.hasOwn(temp, year)) {
       temp[year]?.sort((a, b) => {
         // 提取日期并排序
         const dateA = new Date(a.dateCreated)

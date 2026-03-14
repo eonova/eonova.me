@@ -32,7 +32,7 @@ export async function generateStaticParams() {
     }
   })
 
-  return Array.from(tags).map(tag => ({ slug: tag }))
+  return Array.from(tags, tag => ({ slug: tag }))
 }
 
 export default async function TagPage(props: Props) {
@@ -43,7 +43,7 @@ export default async function TagPage(props: Props) {
     .filter(post => post.tags?.includes(decodedSlug))
     .map(post => ({ ...post, type: 'post' as const }))
 
-  const items = [...posts].sort((a, b) => {
+  const items = posts.toSorted((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime()
   })
 

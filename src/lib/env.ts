@@ -3,14 +3,23 @@ import { vercel } from '@t3-oss/env-nextjs/presets-zod'
 import { z } from 'zod'
 
 export const env = createEnv({
-  skipValidation: !!process.env.CI || process.env.NODE_ENV === 'test',
   extends: [vercel()],
 
   shared: {
     NODE_ENV: z.enum(['development', 'test', 'production']).optional(),
+    IS_TEST: z
+      .enum(['true', 'false', '1', '0'])
+      .default('false')
+      .transform(v => v === 'true' || v === '1'),
+    CI: z
+      .enum(['true', 'false', '1', '0'])
+      .default('false')
+      .transform(v => v === 'true' || v === '1'),
   },
 
   server: {
+    NEXT_RUNTIME: z.enum(['nodejs', 'edge']).default('nodejs'),
+
     // Required
     DATABASE_URL: z.url(),
 
@@ -55,6 +64,9 @@ export const env = createEnv({
 
     NEODB_TOKEN: z.string().min(1).optional(),
 
+    POSTHOG_ENV_ID: z.string().min(1).optional(),
+    POSTHOG_API_KEY: z.string().min(1).optional(),
+
   },
   client: {
     // Required
@@ -72,6 +84,8 @@ export const env = createEnv({
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    CI: process.env.CI,
+    IS_TEST: process.env.IS_TEST,
 
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,

@@ -53,7 +53,7 @@ function UserAuth() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger render={(
         <Button
           size="sm"
           variant="ghost"
@@ -68,7 +68,8 @@ function UserAuth() {
             </AvatarFallback>
           </Avatar>
         </Button>
-      </DropdownMenuTrigger>
+      )}
+      />
       <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuLabel>
           <div className="flex flex-col gap-1">
@@ -80,22 +81,28 @@ function UserAuth() {
         {
           role === 'admin' && (
             <>
-              <DropdownMenuItem className="cursor-pointer" asChild>
-                <a href="/admin" className="flex items-center gap-2">
-                  <UserIcon className="size-4" />
-                  管理后台
-                </a>
-              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                render={(
+                  <a href="/admin" className="flex items-center gap-2">
+                    <UserIcon className="size-4" />
+                    管理后台
+                  </a>
+                )}
+              />
               <DropdownMenuSeparator />
             </>
           )
         }
-        <DropdownMenuItem className="cursor-pointer" asChild>
-          <a href="/account" className="flex items-center gap-2">
-            <Settings className="size-4" />
-            账号设置
-          </a>
-        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="cursor-pointer"
+          render={(
+            <a href="/account" className="flex items-center gap-2">
+              <Settings className="size-4" />
+              账号设置
+            </a>
+          )}
+        />
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={handleSignOut}

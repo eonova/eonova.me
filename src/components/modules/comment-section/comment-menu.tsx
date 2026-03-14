@@ -55,7 +55,7 @@ function CommentMenu() {
   return (
     <AlertDialog>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger render={(
           <Button
             variant="ghost"
             size="icon"
@@ -65,7 +65,8 @@ function CommentMenu() {
           >
             <MoreVerticalIcon className="size-5" />
           </Button>
-        </DropdownMenuTrigger>
+        )}
+        />
         <DropdownMenuContent align="end">
           <DropdownMenuItem
             onClick={() =>
@@ -76,18 +77,21 @@ function CommentMenu() {
           >
             复制评论链接
           </DropdownMenuItem>
-          <AlertDialogTrigger asChild>
-            {isAuthor && (
-              <DropdownMenuItem
-                disabled={isDeleting}
-                aria-disabled={isDeleting}
-                data-testid="comment-delete-button"
-                variant="destructive"
-              >
-                删除评论
-              </DropdownMenuItem>
-            )}
-          </AlertDialogTrigger>
+          <AlertDialogTrigger render={(
+            isAuthor
+              ? (
+                  <DropdownMenuItem
+                    disabled={isDeleting}
+                    aria-disabled={isDeleting}
+                    data-testid="comment-delete-button"
+                    variant="destructive"
+                  >
+                    删除评论
+                  </DropdownMenuItem>
+                )
+              : undefined
+          )}
+          />
         </DropdownMenuContent>
       </DropdownMenu>
       <AlertDialogContent data-testid="comment-dialog">

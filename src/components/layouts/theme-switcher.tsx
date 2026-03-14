@@ -32,7 +32,7 @@ function ThemeSwitcher() {
 
       document.documentElement.animate(
         {
-          clipPath: willDark ? clipPath : [...clipPath].reverse(),
+          clipPath: willDark ? clipPath : clipPath.toReversed(),
         },
         {
           duration: 500,
@@ -53,11 +53,11 @@ function ThemeSwitcher() {
     >
       <SunIcon
         data-testid="theme-light-button"
-        className="size-7 transition-transform duration-300 sm:size-4 dark:hidden"
+        className="size-7 transition-transform duration-300 sm:size-5 dark:hidden"
       />
       <MoonIcon
         data-testid="theme-dark-button"
-        className="hidden size-7 transition-transform duration-300 sm:size-4 dark:block"
+        className="hidden size-7 transition-transform duration-300 sm:size-5 dark:block"
       />
     </Button>
   )

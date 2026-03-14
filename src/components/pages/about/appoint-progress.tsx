@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { cn } from '~/utils'
 
 interface AppointProgressProps {
@@ -10,7 +10,8 @@ interface AppointProgressProps {
 const AppointProgress: React.FC<AppointProgressProps> = ({ startDate, endDate, className }) => {
   // 计算进度百分比
   const calculateProgress = () => {
-    const now = new Date().getTime()
+    // eslint-disable-next-line react-hooks/purity
+    const now = Date.now()
     const start = startDate.getTime()
     const end = endDate.getTime()
 

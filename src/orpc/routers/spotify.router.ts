@@ -1,9 +1,24 @@
+import type * as z from 'zod'
+import type { NotPlayingSchema } from '../schemas/spotify.schema'
+
 import { Buffer } from 'node:buffer'
 
 import { env } from '~/lib/env'
+import { TraceableError } from '~/lib/errors'
 
 import { publicProcedure } from '../root'
-import { spotifyStatsOutputSchema } from '../schemas/spotify.schema'
+import {
+  AccessTokenResponseSchema,
+  NowPlayingResponseSchema,
+  SpotifyStatsOutputSchema,
+} from '../schemas/spotify.schema'
+
+const EMPTY_RESPONSE: z.infer<typeof NotPlayingSchema> = {
+  isPlaying: false,
+  songUrl: null,
+  name: null,
+  artist: null,
+}
 
 const CLIENT_ID = env.SPOTIFY_CLIENT_ID
 const CLIENT_SECRET = env.SPOTIFY_CLIENT_SECRET
@@ -13,18 +28,12 @@ const BASIC = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')
 const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing'
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
 
-const EMPTY_RESPONSE = {
-  isPlaying: false,
-  songUrl: null,
-  name: null,
-  artist: null,
-} as const
+const getStats = publicProcedure.output(SpotifyStatsOutputSchema).handler(async () => {
+  if (!CLIENT_ID || !CLIENT_SECRET || !REFRESH_TOKEN) {
+    return EMPTY_RESPONSE
+  }
 
-async function getAccessToken() {
-  if (!REFRESH_TOKEN)
-    return null
-
-  const response = await fetch(TOKEN_ENDPOINT, {
+  const tokenResponse = await fetch(TOKEN_ENDPOINT, {
     method: 'POST',
     headers: {
       'Authorization': `Basic ${BASIC}`,
@@ -36,29 +45,37 @@ async function getAccessToken() {
     }),
   })
 
-  const data = await response.json()
-
-  return data.access_token as string
-}
-
-export const spotifyStats = publicProcedure.output(spotifyStatsOutputSchema).handler(async () => {
-  if (!CLIENT_ID || !CLIENT_SECRET || !REFRESH_TOKEN) {
-    return EMPTY_RESPONSE
+  if (!tokenResponse.ok) {
+    const body = await tokenResponse.text()
+    throw new TraceableError('Spotify token API error', {
+      status: tokenResponse.status,
+      statusText: tokenResponse.statusText,
+      body,
+    })
   }
 
-  const accessToken = await getAccessToken()
+  const { access_token } = AccessTokenResponseSchema.parse(await tokenResponse.json())
 
-  const response = await fetch(NOW_PLAYING_ENDPOINT, {
+  const nowPlayingResponse = await fetch(NOW_PLAYING_ENDPOINT, {
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${access_token}`,
     },
   })
 
-  if (response.status === 204) {
+  if (nowPlayingResponse.status === 204) {
     return EMPTY_RESPONSE
   }
 
-  const song: SpotifyApi.CurrentlyPlayingResponse = await response.json()
+  if (!nowPlayingResponse.ok) {
+    const body = await nowPlayingResponse.text()
+    throw new TraceableError('Spotify now playing API error', {
+      status: nowPlayingResponse.status,
+      statusText: nowPlayingResponse.statusText,
+      body,
+    })
+  }
+
+  const song = NowPlayingResponseSchema.parse(await nowPlayingResponse.json())
 
   // If the song is not playing or is not a track, return an empty response
   if (song.item?.type !== 'track') {
@@ -74,3 +91,7 @@ export const spotifyStats = publicProcedure.output(spotifyStatsOutputSchema).han
     artist: artists,
   }
 })
+
+export const spotifyRouter = {
+  getStats,
+}

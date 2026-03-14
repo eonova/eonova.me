@@ -11,7 +11,7 @@ function MessageBoard() {
   const { data: session } = useSession()
 
   return (
-    <div className="mx-auto max-w-2xl space-y-10">
+    <div className="mx-auto max-w-3xl space-y-10">
       <Pinned />
       {session ? <MessageBox user={session.user} /> : <SignIn />}
       <Messages />

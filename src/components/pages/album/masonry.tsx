@@ -55,7 +55,7 @@ function MasonryComponent({ data, onImageClick }: MasonryProps) {
   }, [])
 
   const [heights, gridItems] = useMemo(() => {
-    const heights = Array.from({ length: columns }, () => 0)
+    const heights = Array.from({ length: columns }).fill(0)
     const gridItems = data.map((child, index) => {
       if (!child)
         return null

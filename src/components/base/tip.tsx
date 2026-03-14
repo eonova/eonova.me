@@ -1,21 +1,23 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip'
+
+import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/base/tooltip'
 
 interface TipProps {
   children: React.ReactNode
   content: React.ReactNode
 }
 
-function Tip({ children, content }: TipProps) {
+function Tip(props: TipProps) {
+  const { children, content } = props
   const [open, setOpen] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   const canHover = globalThis.matchMedia('(hover: hover)').matches
 
   useEffect(() => {
-    const handleClickOutside = (event: TouchEvent) => {
+    function handleClickOutside(event: TouchEvent) {
       if (!buttonRef.current?.contains(event.target as Node)) {
         setOpen(false)
       }
@@ -29,27 +31,29 @@ function Tip({ children, content }: TipProps) {
 
   return (
     <Tooltip open={open} onOpenChange={setOpen}>
-      <TooltipTrigger asChild>
-        <button
-          type="button"
-          className="cursor-pointer"
-          ref={buttonRef}
-          onClick={() => {
-            if (!canHover)
-              setOpen(v => !v)
-          }}
-          onMouseEnter={() => {
-            if (canHover)
-              setOpen(true)
-          }}
-          onMouseLeave={() => {
-            if (canHover)
-              setOpen(false)
-          }}
-        >
-          {children}
-        </button>
-      </TooltipTrigger>
+      <TooltipTrigger
+        render={(
+          <button
+            type="button"
+            className="cursor-pointer"
+            ref={buttonRef}
+            onClick={() => {
+              if (!canHover)
+                setOpen(v => !v)
+            }}
+            onMouseEnter={() => {
+              if (canHover)
+                setOpen(true)
+            }}
+            onMouseLeave={() => {
+              if (canHover)
+                setOpen(false)
+            }}
+          >
+            {children}
+          </button>
+        )}
+      />
       <TooltipContent>{content}</TooltipContent>
     </Tooltip>
   )

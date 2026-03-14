@@ -75,7 +75,7 @@ function CommentEditor(props: CommentEditorProps) {
           />
           <div className="flex flex-row items-center gap-0.5 px-1.5">
             <Popover>
-              <PopoverTrigger asChild>
+              <PopoverTrigger render={(
                 <Button
                   aria-label="表情"
                   variant="ghost"
@@ -84,7 +84,8 @@ function CommentEditor(props: CommentEditorProps) {
                 >
                   <SmileIcon className="size-5" />
                 </Button>
-              </PopoverTrigger>
+              )}
+              />
               <PopoverContent className="w-auto p-0" align="start">
                 <Picker
                   data={data}

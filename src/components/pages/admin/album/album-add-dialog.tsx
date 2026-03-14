@@ -49,11 +49,12 @@ export default function AddAlbumDialog() {
       open={addDialog}
       onOpenChange={setAddDialogs}
     >
-      <DialogTrigger asChild>
+      <DialogTrigger render={(
         <Button variant="outline" onClick={() => setAddDialogs(true)}>
           添加图片
         </Button>
-      </DialogTrigger>
+      )}
+      />
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>添加图片</DialogTitle>

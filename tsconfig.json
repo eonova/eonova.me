@@ -3,7 +3,7 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": ".tsbuildinfo",
-    "target": "ESNext",
+    "target": "ES2017",
     "jsx": "react-jsx",
     "lib": [
       "ESNext",
@@ -45,6 +45,8 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "declaration": false,
+    "declarationMap": false,
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -65,7 +67,8 @@
     "eslint.config.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "src/components/base/FluidGlass.tsx"
   ],
   "exclude": [
     "node_modules",

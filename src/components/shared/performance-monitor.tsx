@@ -21,7 +21,7 @@ export function PerformanceMonitor() {
     const observeLCP = () => {
       const observer = new PerformanceObserver((list) => {
         const entries = list.getEntries()
-        const lastEntry = entries[entries.length - 1] as PerformanceEntry & { startTime: number }
+        const lastEntry = entries.at(-1) as PerformanceEntry & { startTime: number }
 
         // 发送到分析服务
         if (typeof gtag !== 'undefined') {

@@ -38,6 +38,6 @@ export function useWakatimeStat() {
   return useQuery(orpc.stats.wakatime.queryOptions())
 }
 
-export function useSpotifyStat() {
-  return useQuery(orpc.stats.spotify.queryOptions())
+export function useSpotifyStats() {
+  return useQuery(orpc.stats.spotify.getStats.queryOptions())
 }

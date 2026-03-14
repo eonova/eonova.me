@@ -33,5 +33,9 @@ export default antfu({
     'react-hooks/static-components': 'off',
     'react-hooks/incompatible-library': 'off',
     'react/no-children-to-array': 'off',
+    'react-naming-convention/use-state': 'off',
+    'e18e/prefer-static-regex': 'off',
+    'react-naming-convention/ref-name': 'off',
+    'markdown/no-missing-link-fragments': 'off',
   },
 })
