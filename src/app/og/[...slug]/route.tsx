@@ -7,6 +7,7 @@ import { NextResponse } from 'next/server'
 
 import OGImage from '~/components/shared/og-image'
 import { getNoteBySlug, getPostBySlug } from '~/lib/content'
+import { getBaseUrl } from '~/utils/get-base-url'
 import { getPathnames } from '~/utils/get-pathnames'
 
 export async function GET(_request: Request, props: RouteContext<'/og/[...slug]'>) {
@@ -55,7 +56,7 @@ async function generateNoteOGImage(slugs: string[]) {
   if (!note)
     notFound()
 
-  return generateOGImage(note.title, '/notes')
+  return generateOGImage(note.title, '/notes', getBaseUrl())
 }
 
 async function generateBlogOGImage(slugs: string[]) {
@@ -67,7 +68,7 @@ async function generateBlogOGImage(slugs: string[]) {
   if (!post)
     notFound()
 
-  return generateOGImage(post.title, '/posts')
+  return generateOGImage(post.title, '/posts', getBaseUrl())
 }
 
 async function generatePageOGImage(slugs: string[], pathname: string) {
@@ -75,7 +76,7 @@ async function generatePageOGImage(slugs: string[], pathname: string) {
   if (!pageSlug)
     notFound()
 
-  return generateOGImage(pageSlug, pathname)
+  return generateOGImage(pageSlug, pathname, getBaseUrl())
 }
 
 async function generateProjectOGImage(slugs: string[]) {
@@ -96,8 +97,8 @@ async function generateProjectOGImage(slugs: string[]) {
   })
 }
 
-async function generateOGImage(title: string, url: string) {
-  return new ImageResponse(<OGImage title={title} url={url} />, {
+async function generateOGImage(title: string, url: string, baseUrl?: string) {
+  return new ImageResponse(<OGImage baseUrl={baseUrl} title={title} url={url} />, {
     width: 1200,
     height: 630,
   })

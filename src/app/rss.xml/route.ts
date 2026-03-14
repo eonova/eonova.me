@@ -14,7 +14,7 @@ export async function GET(_request: Request) {
     site_url: baseUrl,
     feed_url: `${baseUrl}/rss.xml`,
     language: 'en',
-    image_url: `${baseUrl}/og/image.webp`,
+    image_url: `${baseUrl}/images/home/avatar.png`,
     copyright: `© ${new Date().getFullYear()} ${MY_NAME}. All rights reserved.`,
     webMaster: 'me@nelsonlai.dev',
   })
