@@ -49,6 +49,25 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     },
   }
 
+  const mobileHeaderVariants = {
+    initial: {
+      y: -100,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+    hidden: {
+      y: -100,
+      opacity: 1,
+      transition: {
+        duration: 0.2,
+        ease: easeOut,
+      },
+    },
+  }
+
   return (
     <>
       <motion.header
@@ -78,11 +97,14 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         </GlassSurface>
       </motion.header>
       <motion.header
-        className="fixed inset-x-0 top-4 z-50 mx-4 h-[50px] max-w-[905px] items-center justify-between rounded-full sm:mx-auto px-2 flex sm:hidden"
+        variants={mobileHeaderVariants}
+        className="fixed inset-x-0 top-0 z-50 h-[75px] max-w-[905px] items-center justify-between rounded-b-[15%] bg-background/20 backdrop-blur-sm sm:mx-auto px-6 flex sm:hidden"
+        initial="initial"
+        animate={!isVisible ? 'hidden' : 'visible'}
       >
 
         <Link className="flex h-full items-center" href="/" aria-label="回到首页" passHref>
-          <Logo className="mr-10 h-10 w-10 transform-cpu duration-300 transform-view hover:scale-105 sm:h-9 sm:w-9" />
+          <Logo className="mr-10 size-11   transform-cpu duration-300 transform-view hover:scale-105" />
         </Link>
         <div className="flex items-center gap-4">
           <ThemeSwitcher />
