@@ -1,7 +1,6 @@
 import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
-  vitest: { config: [] },
   ignoreDependencies: [
     '@types/spotify-api',
     '@tailwindcss/typography',
@@ -14,8 +13,6 @@ const config: KnipConfig = {
     'execa',
     'cn-fontsource-ding-talk-jin-bu-ti-regular',
     'cn-fontsource-yozai-medium',
-    '@vitest/coverage-v8',
-    '@testing-library/jest-dom',
   ],
   ignoreBinaries: ['only-allow'],
   entry: ['content.config.ts', '*.config.mjs', '*.config.ts', 'src/e2e/**/*.{setup,teardown}.ts'],
