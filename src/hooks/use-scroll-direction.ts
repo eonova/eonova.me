@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 
+/** 视为「到达顶部」的阈值（px），避免移动端超额滚出回弹时误判导致 header 不显示 */
+const TOP_THRESHOLD = 10
+
 function useScrollDirection() {
   const [prevScrollPos, setPrevScrollPos] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
@@ -7,20 +10,16 @@ function useScrollDirection() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset
+      const atTop = currentScrollPos <= TOP_THRESHOLD
       const isScrollingDown = currentScrollPos > prevScrollPos
 
-      // 根据滚动方向设置 header 的显示状态
-      setIsVisible(!isScrollingDown)
+      // 到达顶部时始终显示 header（解决移动端顶部回弹不显示的问题）
+      setIsVisible(atTop || !isScrollingDown)
       setPrevScrollPos(currentScrollPos)
     }
 
-    // 添加滚动事件监听器
     window.addEventListener('scroll', handleScroll)
-
-    // 组件卸载时移除滚动事件监听器
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [prevScrollPos])
 
   return isVisible
