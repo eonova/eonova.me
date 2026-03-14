@@ -108,6 +108,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         </Link>
         <div className="flex items-center gap-4">
           <ThemeSwitcher />
+          <CommandMenu />
           <MobileNav />
         </div>
       </motion.header>

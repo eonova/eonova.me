@@ -102,28 +102,28 @@ export function CommandMenu() {
     ? [
         {
           title: '账户',
-          icon: <UserCircleIcon />,
+          icon: <UserCircleIcon className="size-4" />,
           onSelect: handleAccountNavigate,
         },
         ...(session.user.role === 'admin'
           ? [
               {
                 title: 'Admin',
-                icon: <ShieldIcon />,
+                icon: <ShieldIcon className="size-4" />,
                 onSelect: handleAdminNavigate,
               },
             ]
           : []),
         {
           title: '退出登录',
-          icon: <LogOutIcon />,
+          icon: <LogOutIcon className="size-4" />,
           onSelect: handleSignOut,
         },
       ]
     : [
         {
           title: '登录',
-          icon: <LogInIcon />,
+          icon: <LogInIcon className="size-4" />,
           onSelect: handleSignIn,
         },
       ]
@@ -131,12 +131,12 @@ export function CommandMenu() {
   const generalActions: CommandAction[] = [
     {
       title: '复制链接',
-      icon: <LinkIcon />,
+      icon: <LinkIcon className="size-4" />,
       onSelect: copyCurrentUrl,
     },
     {
       title: '源代码',
-      icon: <CodeIcon />,
+      icon: <CodeIcon className="size-4" />,
       onSelect: () => {
         openExternalLink('https://github.com/eonova/eonova.me')
       },
@@ -145,7 +145,7 @@ export function CommandMenu() {
 
   const socialActions: CommandAction[] = SOCIAL_LINKS.map(link => ({
     title: link.title,
-    icon: <link.icon />,
+    icon: <link.icon className="size-4" />,
     onSelect: () => {
       openExternalLink(link.href)
     },
