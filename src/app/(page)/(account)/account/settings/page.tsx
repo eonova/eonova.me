@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import Settings from '~/components/layouts/settings'
+import Settings from '~/components/layouts/internal/settings'
 import { createMetadata } from '~/lib/metadata'
 
 export async function generateMetadata(): Promise<Metadata> {

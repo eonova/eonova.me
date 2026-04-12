@@ -10,13 +10,13 @@ import { usePlaylistSongs } from '~/hooks/queries/music.query'
 import { useMusicPlay } from '~/hooks/use-music-play'
 import { cn } from '~/utils'
 
-const MusicPlayer = dynamic(() => import('./music-player'), { ssr: false })
+const MusicPlayer = dynamic(() => import('./internal/music-player'), { ssr: false })
 
-interface DockProps {
+interface SideDockProps {
   className?: string
 }
 
-const Dock: React.FC<DockProps> = ({ className }) => {
+const SideDock: React.FC<SideDockProps> = ({ className }) => {
   const [scrollPercentage, setScrollPercentage] = useState(0)
   const { isPlaying, setIsPlaying } = useMusicPlay()
   const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -129,4 +129,4 @@ const Dock: React.FC<DockProps> = ({ className }) => {
   )
 }
 
-export default Dock
+export default SideDock

@@ -16,8 +16,8 @@ import {
 } from '~/components/base/dialog'
 import { useSignInDialog } from '~/hooks/use-sign-in-dialog'
 import { authClient } from '~/lib/auth-client'
-import { Badge } from '../base/badge'
-import { Link } from '../base/link'
+import { Badge } from '../../base/badge'
+import { Link } from '../../base/link'
 
 type Provider = 'github' | 'google'
 

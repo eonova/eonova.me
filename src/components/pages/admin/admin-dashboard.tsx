@@ -1,7 +1,7 @@
 'use client'
 
-import { BookOpenIcon, Eye, Github, Heart, ImageIcon, LinkIcon, MessageSquareIcon, MicIcon, UsersIcon, Youtube } from 'lucide-react'
-
+import { SiGithub, SiYoutube } from '@icons-pack/react-simple-icons'
+import { BookOpenIcon, Eye, Heart, ImageIcon, LinkIcon, MessageSquareIcon, MicIcon, UsersIcon } from 'lucide-react'
 import { useDashboardStats, useRecentActivity } from '~/hooks/queries/admin.query'
 import { useGitHubStat, useNoteLikeStat, useNoteViewStat, usePostLikeStat, usePostViewStat, useTalkLikeStat, useTalkViewStat, useYouTubeStat } from '~/hooks/queries/stat.query'
 import { RecentActivity } from './dashboard/recent-activity'
@@ -102,13 +102,13 @@ function AdminDashboard() {
       title: 'YouTube Subscribers',
       value: youtubeStats?.subscribers,
       change: 0,
-      icon: Youtube,
+      icon: SiYoutube,
     },
     {
       title: 'GitHub Stars',
       value: githubStats?.stars,
       change: 0,
-      icon: Github,
+      icon: SiGithub,
     },
   ]
 

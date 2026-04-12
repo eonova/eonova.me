@@ -8,34 +8,35 @@ trustPolicyExclude:
 packages:
   - ./*
 
+catalog:
 catalogs:
   analysis:
-    '@next/bundle-analyzer': ^16.1.6
+    '@next/bundle-analyzer': ^16.2.3
     '@vercel/speed-insights': ^2.0.0
-    posthog-js: ^1.360.2
-    posthog-node: ^5.28.2
+    posthog-js: ^1.367.0
+    posthog-node: ^5.29.2
   backend:
-    '@ai-sdk/deepseek': ^2.0.24
+    '@ai-sdk/deepseek': ^2.0.29
     '@aws-sdk/client-s3': 3.919.0
     '@aws-sdk/s3-request-presigner': 3.919.0
     '@fastify/deepmerge': 3.1.0
     '@octokit/rest': ^22.0.1
-    '@orpc/client': ^1.13.7
-    '@orpc/server': ^1.13.7
-    '@orpc/tanstack-query': ^1.13.7
-    '@tanstack/react-query': ^5.90.21
-    '@tanstack/react-query-devtools': ^5.91.3
+    '@orpc/client': ^1.13.14
+    '@orpc/server': ^1.13.14
+    '@orpc/tanstack-query': ^1.13.14
+    '@tanstack/react-query': ^5.99.0
+    '@tanstack/react-query-devtools': ^5.99.0
     '@upstash/ratelimit': ^2.0.8
     '@upstash/redis': ^1.37.0
-    ai: ^6.0.116
-    better-auth: ^1.5.5
-    better-call: ^2.0.2
+    ai: ^6.0.158
+    better-auth: ^1.6.2
+    better-call: ^2.0.3
     consola: ^3.4.2
     drizzle-orm: ^0.45.1
     drizzle-zod: ^0.8.3
-    jose: ^6.2.1
+    jose: ^6.2.2
     postgres: 3.4.7
-    resend: ^6.9.3
+    resend: ^6.10.0
     server-only: ^0.0.1
   build:
     '@vitejs/plugin-react': 5.1.4
@@ -45,22 +46,22 @@ catalogs:
   frontend:
     '@ducanh2912/next-pwa': ^10.2.9
     '@radix-ui/react-visually-hidden': ^1.2.4
-    '@t3-oss/env-nextjs': ^0.13.10
-    '@tanstack/react-form': ^1.28.5
+    '@t3-oss/env-nextjs': ^0.13.11
+    '@tanstack/react-form': ^1.29.0
     bowser: ^2.14.1
     class-variance-authority: ^0.7.1
     clsx: ^2.1.1
     cmdk: ^1.1.1
     cn-fontsource-ding-talk-jin-bu-ti-regular: ^1.0.3
     cn-fontsource-yozai-medium: ^1.0.6
-    cobe: ^0.6.5
+    cobe: ^2.0.1
     cva: 1.0.0-beta.3
     embla-carousel-react: ^8.6.0
     emoji-mart: ^5.6.0
     geist: ^1.7.0
     input-otp: ^1.4.2
     merge-refs: ^2.0.0
-    motion: ^12.23.24
+    motion: ^12.38.0
     next: 16.1.5
     next-themes: ^0.4.6
     nuqs: ^2.8.9
@@ -68,26 +69,27 @@ catalogs:
     react-day-picker: ^9.14.0
     react-dom: 19.2.1
     react-email: 4.3.2
-    react-hook-form: ^7.71.2
+    react-hook-form: ^7.72.1
     react-intersection-observer: ^10.0.3
-    react-medium-image-zoom: ^5.4.1
+    react-medium-image-zoom: ^5.4.3
     react-spring: ^10.0.3
     rss: ^1.2.2
     tinycolor2: ^1.6.0
     tw-animate-css: ^1.4.0
     use-debounce: 10.1.0
     vaul: ^1.1.2
-    zustand: ^5.0.11
+    zustand: ^5.0.12
   lint:
     '@antfu/eslint-config': ^7.7.2
+    '@antfu/nip': ^0.1.1
     '@eslint-react/eslint-plugin': ^2.13.0
-    cspell: ^9.7.0
-    eslint: ^10.0.3
+    cspell: ^10.0.0
+    eslint: ^10.2.0
     eslint-plugin-react-hooks: ^7.0.1
     eslint-plugin-react-refresh: ^0.5.2
-    knip: ^5.86.0
+    knip: ^6.4.0
     lint-staged: ^16.4.0
-    oxfmt: ^0.40.0
+    oxfmt: ^0.44.0
     simple-git-hooks: ^2.13.1
   mdx:
     '@content-collections/cli': ^0.1.9
@@ -110,35 +112,35 @@ catalogs:
   script:
     cross-env: ^10.1.0
     dotenv-cli: ^11.0.0
-    drizzle-kit: ^0.31.9
+    drizzle-kit: ^0.31.10
     execa: ^9.6.1
     picocolors: ^1.1.1
     plop: ^4.0.5
-    taze: ^19.10.0
+    taze: ^19.11.0
     tsx: ^4.21.0
   test:
     '@axe-core/playwright': ^4.11.1
-    '@playwright/test': ^1.58.2
+    '@playwright/test': ^1.59.1
     '@testing-library/jest-dom': ^6.9.1
     '@testing-library/react': ^16.3.2
     '@vitest/coverage-v8': 4.1.0
-    '@vitest/ui': ^4.1.0
-    jsdom: ^28.1.0
-    vitest: ^4.1.0
+    '@vitest/ui': ^4.1.4
+    jsdom: ^29.0.2
+    vitest: ^4.1.4
   types:
     '@types/canvas-confetti': ^1.9.0
     '@types/hast': ^3.0.4
     '@types/mdast': ^4.0.4
-    '@types/node': ^25.5.0
+    '@types/node': ^25.6.0
     '@types/react': 19.2.2
     '@types/react-dom': 19.2.2
     '@types/rss': ^0.0.32
-    '@types/spotify-api': ^0.0.25
+    '@types/spotify-api': ^0.0.26
     '@types/tinycolor2': ^1.4.6
-    discord-api-types: ^0.38.42
-    schema-dts: ^1.1.5
+    discord-api-types: ^0.38.45
+    schema-dts: ^2.0.0
   ui:
-    '@ark-ui/react': ^5.34.1
+    '@ark-ui/react': ^5.36.0
     '@base-ui/react': ^1.3.0
     '@emoji-mart/data': ^1.2.1
     '@emoji-mart/react': ^1.1.1
@@ -146,17 +148,17 @@ catalogs:
     '@number-flow/react': ^0.6.0
     '@react-email/components': 0.5.7
     '@react-email/preview-server': 4.3.2
-    '@tailwindcss/postcss': ^4.2.1
+    '@tailwindcss/postcss': ^4.2.2
     '@tailwindcss/typography': ^0.5.19
     '@tanstack/react-table': ^8.21.3
     canvas-confetti: ^1.9.4
     gsap: ^3.14.2
-    lenis: ^1.3.18
-    lucide-react: ^0.577.0
-    postcss: ^8.5.8
+    lenis: ^1.3.21
+    lucide-react: ^1.8.0
+    postcss: ^8.5.9
     postcss-load-config: ^6.0.1
     radix-ui: ^1.4.3
     sonner: ^2.0.7
     tailwind-merge: ^3.5.0
-    tailwindcss: ^4.2.1
-    yet-another-react-lightbox: ^3.29.1
+    tailwindcss: ^4.2.2
+    yet-another-react-lightbox: ^3.31.0

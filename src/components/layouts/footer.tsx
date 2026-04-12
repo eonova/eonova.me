@@ -4,7 +4,7 @@ import { memo } from 'react'
 import { SITE_GITHUB_URL } from '~/config/constants'
 
 import { FOOTER_LINKS } from '~/config/links'
-import NowPlaying from './now-playing'
+import NowPlaying from './internal/now-playing'
 
 const Footer: React.FC = () => {
   return (

@@ -4,7 +4,7 @@ import { HomeIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Button } from '~/components/base/button'
 import { SidebarTrigger } from '~/components/base/sidebar'
-import ThemeSwitcher from '~/components/layouts/theme-switcher'
+import ThemeSwitcher from '~/components/layouts/internal/theme-switcher'
 
 function AdminHeader() {
   const router = useRouter()

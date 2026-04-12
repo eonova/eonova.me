@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { HEADER_LINKS } from '~/config/links'
 import { cn } from '~/utils'
 
-const MenuPopover = dynamic(() => import('./menu-popover'), {
+const MenuPopover = dynamic(() => import('./internal/menu-popover'), {
   loading: () => null,
 })
 
@@ -64,6 +64,7 @@ function Navbar() {
               className="nav-menu relative flex h-[64px] items-center justify-center"
               onMouseEnter={() => {
                 if (hasSubMenu) {
+                  console.log('hoverEnter', link.key)
                   // 添加防抖处理
                   debounce(() => {
                     if (hoverTimeout)
@@ -96,28 +97,32 @@ function Navbar() {
                 {link.text}
               </Link>
 
-              {isActive && (
-                <>
-                  <div className="bg-nav-link-indicator dark:bg-nav-link-indicator-dark absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2" />
-                  <div className="absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-lg bg-[rgb(255_122_151)] blur dark:bg-[rgb(223_29_72)]" />
-                </>
-              )}
+              {
+                isActive && (
+                  <>
+                    <div className="bg-nav-link-indicator dark:bg-nav-link-indicator-dark absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2" />
+                    <div className="absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-lg bg-[rgb(255_122_151)] blur dark:bg-[rgb(223_29_72)]" />
+                  </>
+                )
+              }
 
-              {hasSubMenu && (
-                <div
-                  className={cn(
-                    'absolute top-full left-1/2 z-50 mt-2 -translate-x-1/2 transform transition-all duration-200 ease-out',
-                    activeSubMenu === link.key
-                      ? 'translate-y-0 opacity-100'
-                      : 'pointer-events-none translate-y-2 opacity-0',
-                  )}
-                  data-key={link.key}
-                  onMouseEnter={() => hoverTimeout && clearTimeout(hoverTimeout)}
-                  onMouseLeave={() => setActiveSubMenu(null)}
-                >
-                  <MenuPopover isOpen={activeSubMenu === link.key} link={link} />
-                </div>
-              )}
+              {
+                hasSubMenu && (
+                  <div
+                    className={cn(
+                      'absolute top-full left-1/2 z-50 mt-2 -translate-x-1/2 transform transition-all duration-200 ease-out',
+                      activeSubMenu === link.key
+                        ? 'translate-y-0 opacity-100'
+                        : 'pointer-events-none translate-y-2 opacity-0',
+                    )}
+                    data-key={link.key}
+                    onMouseEnter={() => hoverTimeout && clearTimeout(hoverTimeout)}
+                    onMouseLeave={() => setActiveSubMenu(null)}
+                  >
+                    <MenuPopover isOpen={activeSubMenu === link.key} link={link} />
+                  </div>
+                )
+              }
             </li>
           )
         })}

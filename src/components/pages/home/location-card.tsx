@@ -50,7 +50,8 @@ function LocationCard() {
       glowColor: [0.5, 0.5, 0.5],
       markers: [{ location: [22.535449017108995, 114.07374367580996], size: 0.1 }],
       scale: 1.05,
-      onRender: (state) => {
+      // @ts-ignore onRender is missing in cobe v2 types
+      onRender: (state: Record<string, number>) => {
         state.phi = 2.75 + r.get()
         state.width = width * 2
         state.height = width * 2

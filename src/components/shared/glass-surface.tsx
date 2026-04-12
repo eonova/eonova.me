@@ -65,13 +65,13 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   width = 905,
   height = 80,
   borderRadius = 30,
-  borderWidth = 0.05,
-  brightness = 50,
-  opacity = 0.93,
+  borderWidth = 0,
+  brightness = 40,
+  opacity = 0.95,
   blur = 8,
   displace = 0.5,
   backgroundOpacity = 0,
-  saturation = 1,
+  saturation = 0.8,
   distortionScale = -180,
   redOffset = 0,
   greenOffset = 10,
@@ -314,7 +314,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   }
 
   const glassSurfaceClasses
-    = 'relative flex items-center justify-center overflow-hidden transition-opacity duration-[260ms] ease-out'
+    = 'relative flex items-center justify-center  transition-opacity duration-[260ms] ease-out'
 
   const focusVisibleClasses = isDarkMode
     ? 'focus-visible:outline-2 focus-visible:outline-[#0A84FF] focus-visible:outline-offset-2'

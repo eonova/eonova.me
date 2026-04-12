@@ -167,7 +167,7 @@ export function CommandMenu() {
         data-testid="command-menu-button"
         className="cursor-pointer"
       >
-        <CommandIcon className="size-7 sm:size-5" />
+        <CommandIcon className="size-5" />
       </Button>
       <CommandDialog open={isOpen} onOpenChange={setIsOpen}>
         <Command>

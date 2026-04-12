@@ -3,9 +3,21 @@ import { useEffect, useState } from 'react'
 /** 视为「到达顶部」的阈值（px），避免移动端超额滚出回弹时误判导致 header 不显示 */
 const TOP_THRESHOLD = 10
 
-function useScrollDirection() {
+interface ScrollState {
+  isVisible: boolean
+  isAtTop: boolean
+}
+
+/**
+ * 监听滚动方向，判断是否到达顶部或滚动向下
+ * @returns 滚动状态
+ */
+function useScrollDirection(): ScrollState {
   const [prevScrollPos, setPrevScrollPos] = useState(0)
-  const [isVisible, setIsVisible] = useState(true)
+  const [scrollState, setScrollState] = useState<ScrollState>({
+    isVisible: true,
+    isAtTop: true,
+  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,8 +25,11 @@ function useScrollDirection() {
       const atTop = currentScrollPos <= TOP_THRESHOLD
       const isScrollingDown = currentScrollPos > prevScrollPos
 
-      // 到达顶部时始终显示 header（解决移动端顶部回弹不显示的问题）
-      setIsVisible(atTop || !isScrollingDown)
+      setScrollState({
+        // 到达顶部时始终显示 header（解决移动端顶部回弹不显示的问题）
+        isVisible: atTop || !isScrollingDown,
+        isAtTop: atTop,
+      })
       setPrevScrollPos(currentScrollPos)
     }
 
@@ -22,7 +37,7 @@ function useScrollDirection() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [prevScrollPos])
 
-  return isVisible
+  return scrollState
 }
 
 export default useScrollDirection

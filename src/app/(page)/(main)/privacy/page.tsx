@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { notFound } from 'next/navigation'
 
-import PageHeader from '~/components/layouts/page-header'
+import PageHeader from '~/components/layouts/internal/page-header'
 import Mdx from '~/components/modules/mdx'
 import { getPageBySlug } from '~/lib/content'
 import { createMetadata } from '~/lib/metadata'

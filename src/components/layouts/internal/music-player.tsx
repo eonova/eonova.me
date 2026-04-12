@@ -3,11 +3,11 @@
 import type { Track } from '~/types/music'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePlaybackControl } from '~/hooks/use-playback-control'
-import MusicSection from '../modules/player/music-section'
-import MusicPlayerContainer from '../modules/player/player-container'
-import PlayerControl from '../modules/player/player-control'
-import Playlist from '../modules/player/playlist'
-import PlaylistTile from '../modules/player/playlist-title'
+import MusicSection from '../../modules/player/music-section'
+import MusicPlayerContainer from '../../modules/player/player-container'
+import PlayerControl from '../../modules/player/player-control'
+import Playlist from '../../modules/player/playlist'
+import PlaylistTile from '../../modules/player/playlist-title'
 import '~/styles/page/music-playing.css'
 
 interface Playlist {

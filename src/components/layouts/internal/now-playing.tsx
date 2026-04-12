@@ -2,7 +2,7 @@
 import type { UrlObject } from 'node:url'
 import Link from 'next/link'
 import { useSpotifyStats } from '~/hooks/queries/stat.query'
-import ShinyText from '../shared/shiny-text'
+import ShinyText from '../../shared/shiny-text'
 
 function NowPlaying() {
   const { isSuccess, isLoading, isError, data } = useSpotifyStats()

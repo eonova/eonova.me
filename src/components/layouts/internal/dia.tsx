@@ -3,6 +3,7 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useSettings } from '~/hooks/queries/settings.query'
 import { useDia } from '~/hooks/use-dia'
 import { cn } from '~/utils/cn'
 import '~/styles/page/dia.css'
@@ -12,6 +13,16 @@ interface DiaProps {
 }
 
 function Dia({ className }: DiaProps) {
+  const { data: settings, isError, isLoading } = useSettings()
+  const { setEnable: setDiaEnable } = useDia()
+  useEffect(() => {
+    if (isLoading)
+      return
+    if (isError)
+      setDiaEnable(true)
+    else if (settings)
+      setDiaEnable(settings.diaEnabled)
+  }, [settings, isError, isLoading, setDiaEnable])
   const diaStore = useDia()
   const [showDia, setShowDia] = useState(false)
   const { theme } = useTheme()

@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
+import PageHeader from '~/components/layouts/internal/page-header'
 import MainLayout from '~/components/layouts/main-layout'
-import PageHeader from '~/components/layouts/page-header'
 import AccountMobileNav from '~/components/modules/account/account-mobile-nav'
 import AccountSidebar from '~/components/modules/account/account-sidebar'
 import { getSession } from '~/lib/auth'
